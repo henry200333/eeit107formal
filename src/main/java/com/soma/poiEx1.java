@@ -18,7 +18,7 @@ public class poiEx1 {
 
 		XSSFSheet mySheet = myWorkBook.getSheetAt(0); // Return first sheet from the XLSX workbook
 
-		GetColor RGB = new GetColor();
+//		GetColor RGB = new GetColor();
 		
 		for (int i = 0; i < 270; i++) {
 			XSSFRow row = mySheet.createRow(i);
