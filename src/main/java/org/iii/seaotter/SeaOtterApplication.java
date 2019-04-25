@@ -3,7 +3,7 @@ package org.iii.seaotter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication //­­¨î¡B¼Ğ°O
+@SpringBootApplication //é™åˆ¶ã€æ¨™è¨˜
 public class SeaOtterApplication {
 
 	public static void main(String[] args) {
