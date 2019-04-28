@@ -1,12 +1,23 @@
 package com.jasonpeng;
 
+import java.util.Scanner;
+
 public class ex1 {
 
 	public static void main(String[] args) {
+
+		System.out.println("k = ?");
+		Scanner console1 = new Scanner(System.in);
+		int k = console1.nextInt();
+
+		System.out.println("String plz");
+		Scanner console2 = new Scanner(System.in);
+		String s = console2.nextLine();
+
 		ans a = new ans();
-		String s = "AAAAaAaaaAAaaa";
-		int d = 2;
-		a.go(s, d);
+		a.go(s, k);
+		console1.close();
+		console2.close();
 	}
 
 }
