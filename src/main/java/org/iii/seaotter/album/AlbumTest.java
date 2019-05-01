@@ -14,7 +14,7 @@ public class AlbumTest {
 		
 		/*Insert Test
 		Album album = new Album();
-		album.setId(2);
+		album.setId(6);
 		album.setSinger("張學友");
 		album.setName("吻別");
 		//sql.date process
