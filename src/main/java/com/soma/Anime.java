@@ -8,6 +8,11 @@ public class Anime {
 	private String genre;
 	private int episode;
 	
+	@Override
+	public String toString() {
+		return "Anime [id=" + id + ", name=" + name + ", releaseDate=" + releaseDate + ", genre=" + genre + ", episode="
+				+ episode + "]";
+	}
 	public Integer getId() {
 		return id;
 	}
