@@ -1,11 +1,12 @@
 package com.soma;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,10 +14,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AnimeDao {
 	
-	@Autowired
-	private DataSource dataSource;
+	private static final String URL = "jdbc:sqlserver://localhost:1433;database=SeaOtter";
 	
-	private static final String URL = "jdbc:sqlserver://localhost:1433;database=java";
+	@Autowired
 	private static final String USERNAME = "sa";
 	private static final String PASSWORD = "passw0rd";
 	
@@ -29,26 +29,77 @@ public class AnimeDao {
 	private static final String DELETE = "DELETE FROM anime WHERE id=?";
 	
 	public void insert(Anime anime) {
-
+		try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);) {
+			PreparedStatement pstmt = connection.prepareStatement(INSERT);
+			pstmt.setInt(1, anime.getId());
+			pstmt.setString(2, anime.getName());
+			pstmt.setDate(3, anime.getReleaseDate());
+			pstmt.setString(4, anime.getGenre());
+			pstmt.setInt(5, anime.getEpisode());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void update(Anime anime) {
-
+		try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);) {
+			PreparedStatement pstmt = connection.prepareStatement(UPDATE);
+			pstmt.setString(1, anime.getName());
+			pstmt.setDate(2, anime.getReleaseDate());
+			pstmt.setString(3, anime.getGenre());
+			pstmt.setInt(4, anime.getEpisode());
+			pstmt.setInt(5, anime.getId());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void delete(Integer id) {
-
+		try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);) {
+			PreparedStatement pstmt = connection.prepareStatement(DELETE);
+			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public Anime findOne(Integer id) {
-		
-		return new Anime(); 
+		Anime anime = new Anime();
+		try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);) {
+			PreparedStatement pstmt = connection.prepareStatement(FIND_BY_ID);
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				anime.setId(rs.getInt(1));
+				anime.setName(rs.getString(2));
+				anime.setReleaseDate(rs.getDate(3));
+				anime.setGenre(rs.getString(4));
+				anime.setEpisode(rs.getInt(5));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return anime; 
 	}
 	
 	public List<Anime> findAll() {
-		try {
-			Connection connection = dataSource.getConnection();
-			
+		List<Anime> animeList = new ArrayList<Anime>();
+		try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);) {
+			PreparedStatement pstmt = connection.prepareStatement(FIND_ALL);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Anime anime = new Anime();
+				anime.setId(rs.getInt(1));
+				anime.setName(rs.getString(2));
+				anime.setReleaseDate(rs.getDate(3));
+				anime.setGenre(rs.getString(4));
+				anime.setEpisode(rs.getInt(5));
+				
+				animeList.add(anime);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

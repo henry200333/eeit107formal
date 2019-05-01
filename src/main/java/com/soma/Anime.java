@@ -4,7 +4,7 @@ public class Anime {
 	
 	private Integer id;
 	private String name;
-	private java.util.Date releaseDate;
+	private java.sql.Date releaseDate;
 	private String genre;
 	private int episode;
 	
@@ -25,10 +25,10 @@ public class Anime {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public java.util.Date getReleaseDate() {
+	public java.sql.Date getReleaseDate() {
 		return releaseDate;
 	}
-	public void setReleaseDate(java.util.Date releaseDate) {
+	public void setReleaseDate(java.sql.Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 	public String getGenre() {
