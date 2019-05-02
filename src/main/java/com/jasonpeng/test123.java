@@ -4,6 +4,9 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import org.iii.seaotter.player.Player;
+import org.iii.seaotter.player.PlayerDAO;
+
 public class test123 {
 
 	public static void main(String[] args) throws SQLException {

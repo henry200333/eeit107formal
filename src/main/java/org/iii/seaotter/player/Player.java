@@ -1,4 +1,4 @@
-package com.jasonpeng;
+package org.iii.seaotter.player;
 
 public class Player {
 

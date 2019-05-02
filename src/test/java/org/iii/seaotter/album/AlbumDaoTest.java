@@ -21,5 +21,7 @@ public class AlbumDaoTest {
 		System.out.println(albumDaoList);
 		
 	}
+	
+	public void test
 
 }
