@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class AlbumDao {
-	@Autowired //AUTO LOADING
+	@Autowired 
 	private DataSource dataSource;
 
 	public void insert(Album album) {

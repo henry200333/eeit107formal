@@ -9,8 +9,8 @@ public class AlbumTest {
 
 	public static void main(String[] args) {
 		
-	
-		AlbumDao albumDao = new AlbumDao();
+		
+		AlbumDao albumDao = dataSource.AlbumDao();
 		
 		/*Insert Test
 		Album album = new Album();
