@@ -1,12 +1,12 @@
 package com.jasonpeng;
 
-public class PlayerBean {
+public class Player {
 
 	private Integer playerId;
 	private String playerName;
 	private java.sql.Date playerBDate;
 	private String playerTel;
-	private String playerYears;
+	private Integer playerYears;
 
 	@Override
 	public String toString() {
@@ -46,11 +46,11 @@ public class PlayerBean {
 		this.playerTel = playerTel;
 	}
 
-	public String getPlayerYears() {
+	public Integer getPlayerYears() {
 		return playerYears;
 	}
 
-	public void setPlayerYears(String playerYears) {
+	public void setPlayerYears(Integer playerYears) {
 		this.playerYears = playerYears;
 	}
 
