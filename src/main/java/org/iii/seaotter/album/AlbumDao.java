@@ -15,12 +15,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class AlbumDao {
-	String url = "jdbc:sqlserver://localhost:1433;databaseName=SeaOtter";
-//	@Autowired
-//	private DataSource dataSource;
+	@Autowired //AUTO LOADING
+	private DataSource dataSource;
 
 	public void insert(Album album) {
-		try (Connection connection = DriverManager.getConnection(url, "sa", "passw0rd");) {
+		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection.prepareStatement("insert into Album values(?,?,?,?,?)");
 			pstmt.setInt(1, album.getId());
 			pstmt.setString(2, album.getSinger());
@@ -35,7 +34,7 @@ public class AlbumDao {
 	}
 
 	public void update(Album album) {
-		try (Connection connection = DriverManager.getConnection(url, "sa", "passw0rd");) {
+		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection
 					.prepareStatement("update Album set Singer=?, Name=?, Published=?, Company=? where ID = ?");
 			pstmt.setInt(5, album.getId());
@@ -52,7 +51,7 @@ public class AlbumDao {
 	}
 
 	public void delete(Integer id) {
-		try (Connection connection = DriverManager.getConnection(url, "sa", "passw0rd");) {
+		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection.prepareStatement("delete from Album where ID = ?");
 			pstmt.setInt(1, id);
 			pstmt.executeUpdate();
@@ -64,7 +63,7 @@ public class AlbumDao {
 	}
 	public Album findOne(Integer id) {
 		Album album = new Album();
-		try (Connection connection = DriverManager.getConnection(url, "sa", "passw0rd");) {
+		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection.prepareStatement("select * from Album where ID = ?");
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
@@ -84,7 +83,7 @@ public class AlbumDao {
 
 	public List<Album> findAll() {
 		List<Album> albumList = new ArrayList<Album>();
-		try (Connection connection = DriverManager.getConnection(url, "sa", "passw0rd");) {
+		try (Connection connection = dataSource.getConnection();) {
 //			Connection connection = dataSource.getConnection();
 			PreparedStatement pstmt = connection.prepareStatement("select * from Album");
 			ResultSet rs = pstmt.executeQuery();
