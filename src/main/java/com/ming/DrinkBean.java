@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class DrinkBean {
 	private Long id;
-	private String name;
+	private String prodname;
 	private Date effdate;
 	private Integer capacity;
 	private String venname;
 
 	public String toString() {
-		return "DrinkBean [id=" + id + ", name=" + name + ", effdate=" + effdate + ", capacity=" + capacity
+		return "DrinkBean [id=" + id + ", prodname=" + prodname + ", effdate=" + effdate + ", capacity=" + capacity
 				+ ", venname=" + venname + "]";
 	}
 
@@ -22,12 +22,12 @@ public class DrinkBean {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getProdname() {
+		return prodname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setProdname(String prodname) {
+		this.prodname = prodname;
 	}
 
 	public Integer getCapacity() {

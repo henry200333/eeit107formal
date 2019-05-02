@@ -15,8 +15,8 @@ public class DrinkDAO {
 	private static final String SELECT_BY_PK = "select * from drink where id=?";
 	private static final String SELECT_ALL = "select * from drink";
 	private static final String CREATE = "INSERT INTO drink VALUES (?, ?, ?, ?, ?)";
-	private static final String UPDATE = "UPDATE drink SET name=?, effdate=?, capacity=?, venname=? WHERE id = ?";
-	private static final String REMOVE = "DELETE FROM Player WHERE id=?";
+	private static final String UPDATE = "UPDATE drink SET prodname=?, effdate=?, capacity=?, venname=? WHERE id = ?";
+	private static final String REMOVE = "DELETE FROM drink WHERE id=?";
 
 	DrinkBean findOne(Integer id) throws SQLException {
 		DrinkBean drink = new DrinkBean();
@@ -29,7 +29,7 @@ public class DrinkDAO {
 			ResultSet res = pstm.executeQuery();
 			while (res.next()) {
 				drink.setId(res.getLong("id"));
-				drink.setName(res.getString("name"));
+				drink.setProdname(res.getString("prodname"));
 				drink.setEffdate(res.getDate("effdate"));
 				drink.setCapacity(res.getInt("capacity"));
 				drink.setVenname(res.getString("venname"));
@@ -65,7 +65,7 @@ public class DrinkDAO {
 			while (res.next()) {
 				drink = new DrinkBean();
 				drink.setId(res.getLong("id"));
-				drink.setName(res.getString("name"));
+				drink.setProdname(res.getString("prodname"));
 				drink.setEffdate(res.getDate("effdate"));
 				drink.setCapacity(res.getInt("capacity"));
 				drink.setVenname(res.getString("venname"));
@@ -95,7 +95,7 @@ public class DrinkDAO {
 		try {
 			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstm = con.prepareStatement(UPDATE);
-			pstm.setString(1, drink.getName());
+			pstm.setString(1, drink.getProdname());
 			java.sql.Date date = new java.sql.Date(drink.getEffdate().getTime());
 			pstm.setDate(2, date);
 			pstm.setInt(3, drink.getCapacity());
@@ -126,7 +126,7 @@ public class DrinkDAO {
 			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstm = con.prepareStatement(CREATE);
 			pstm.setLong(1, drink.getId());
-			pstm.setString(2, drink.getName());
+			pstm.setString(2, drink.getProdname());
 			java.sql.Date date = new java.sql.Date(drink.getEffdate().getTime());
 			pstm.setDate(3, date);
 			pstm.setInt(4, drink.getCapacity());
