@@ -1,12 +1,13 @@
 package com.soma;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,11 +15,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AnimeDao {
 	
-	private static final String URL = "jdbc:sqlserver://localhost:1433;database=SeaOtter";
-	
 	@Autowired
-	private static final String USERNAME = "sa";
-	private static final String PASSWORD = "passw0rd";
+	private DataSource dataSource;
 	
 	private static final String FIND_BY_ID = "SELECT * FROM anime WHERE id=?";
 	private static final String FIND_ALL = "SELECT TOP 1000 * FROM anime";
@@ -29,7 +27,7 @@ public class AnimeDao {
 	private static final String DELETE = "DELETE FROM anime WHERE id=?";
 	
 	public void insert(Anime anime) {
-		try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);) {
+		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection.prepareStatement(INSERT);
 			pstmt.setInt(1, anime.getId());
 			pstmt.setString(2, anime.getName());
@@ -43,7 +41,7 @@ public class AnimeDao {
 	}
 
 	public void update(Anime anime) {
-		try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);) {
+		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection.prepareStatement(UPDATE);
 			pstmt.setString(1, anime.getName());
 			pstmt.setDate(2, anime.getReleaseDate());
@@ -57,7 +55,7 @@ public class AnimeDao {
 	}
 
 	public void delete(Integer id) {
-		try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);) {
+		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection.prepareStatement(DELETE);
 			pstmt.setInt(1, id);
 			pstmt.executeUpdate();
@@ -68,7 +66,7 @@ public class AnimeDao {
 	
 	public Anime findOne(Integer id) {
 		Anime anime = new Anime();
-		try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);) {
+		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection.prepareStatement(FIND_BY_ID);
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
@@ -87,7 +85,7 @@ public class AnimeDao {
 	
 	public List<Anime> findAll() {
 		List<Anime> animeList = new ArrayList<Anime>();
-		try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);) {
+		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection.prepareStatement(FIND_ALL);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {

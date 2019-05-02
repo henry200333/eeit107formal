@@ -1,4 +1,4 @@
-package com.jasonpeng;
+package org.iii.seaotter.player;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

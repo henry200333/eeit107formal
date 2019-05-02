@@ -1,4 +1,6 @@
-package org.iii.seaotter.album;
+package com.soma;
+
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -10,18 +12,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class AlbumDaoTest {
+public class AnimeDaoTest {
 	@Autowired
-	private AlbumDao albumDao;
-
-	@Test
-	public void testFindAll() {
-//		fail("Not yet implemented");
-		List<Album> albumDaoList = albumDao.findAll();
-		System.out.println(albumDaoList);
-		
-	}
+	private AnimeDao animeDao;
 	
-	public void test
+	@Test
+	public void test() {
+//		fail("Not yet implemented");
+		List<Anime> animeDaoList = animeDao.findAll();
+		System.out.println(animeDaoList);
+	}
 
 }
