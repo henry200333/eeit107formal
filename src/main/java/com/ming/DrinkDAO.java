@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DrinkDAO {
+public class DrinkDAO {  
 	private static final String URL = "jdbc:sqlserver://localhost:1433;database=seaotter";
 	private static final String USERNAME = "sa";
 	private static final String PASSWORD = "passw0rd";

@@ -3,7 +3,7 @@ package com.ming;
 import java.util.Date;
 
 public class DrinkBean {
-	private Long id;
+	private Long id; 
 	private String prodname;
 	private Date effdate;
 	private Integer capacity;

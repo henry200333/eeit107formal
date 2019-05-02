@@ -11,7 +11,7 @@ public class DrinkDataBase {
 	private static final String PASSWORD = "passw0rd";
 	private static final String DataBase = "create table drink( id bigint primary key,prodname varchar(50),effdate date,capacity int,venname varchar(50))";
 
-	void database() {
+	void database() {  
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
