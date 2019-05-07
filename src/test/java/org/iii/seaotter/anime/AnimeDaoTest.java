@@ -1,7 +1,9 @@
-package com.soma;
+package org.iii.seaotter.anime;
 
 import java.util.List;
 
+import org.iii.seaotter.anime.Anime;
+import org.iii.seaotter.anime.AnimeDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

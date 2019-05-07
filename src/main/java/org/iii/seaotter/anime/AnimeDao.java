@@ -1,4 +1,4 @@
-package com.soma;
+package org.iii.seaotter.anime;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
