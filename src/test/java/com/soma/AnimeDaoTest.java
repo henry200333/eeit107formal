@@ -1,7 +1,5 @@
 package com.soma;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
 import org.junit.Test;
@@ -20,7 +18,7 @@ public class AnimeDaoTest {
 	public void test() {
 //		fail("Not yet implemented");
 		List<Anime> animeDaoList = animeDao.findAll();
-		System.out.println(animeDaoList);
+		System.out.println(animeDaoList.size());
 	}
 
 }
