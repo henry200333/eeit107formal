@@ -17,10 +17,10 @@ public class AnimeDaoTest {
 	private AnimeDao animeDao;
 	
 	@Test
-	public void test() {
+	public void testProcedure() {
 //		fail("Not yet implemented");
 		List<Anime> animeDaoList = animeDao.findAll();
-		System.out.println(animeDaoList.size());
+		System.out.println(animeDaoList);
 	}
 
 }

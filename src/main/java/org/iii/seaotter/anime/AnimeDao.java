@@ -19,7 +19,7 @@ public class AnimeDao {
 	private DataSource dataSource;
 	
 	private static final String FIND_BY_ID = "SELECT * FROM anime WHERE id=?";
-	private static final String FIND_ALL = "SELECT TOP 1000 * FROM anime";
+	private static final String FIND_ALL = "SELECT * FROM anime";
 	private static final String UPDATE =
 			"UPDATE anime SET name=?, release_date=?, genre=?, episode=? WHERE id=?";
 	private static final String INSERT =
@@ -101,7 +101,7 @@ public class AnimeDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return new ArrayList<Anime>();
+		return animeList;
 	}
 	
 }
