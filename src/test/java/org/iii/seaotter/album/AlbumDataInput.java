@@ -5,15 +5,22 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+@SpringBootTest
+@RunWith(SpringRunner.class)
 public class AlbumDataInput {
-	public static void main(String[] args) {
-			
+	@Autowired
+	private AlbumDao albumDao;
+	
+	@Test
+	public void dataInput() {		
 		//Create Table
 		try(Connection connection = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=SeaOtter","sa","passw0rd");) {
 			String CREATE_TABLE = "create table Album (ID int primary key, Singer varchar(30), [Name] nvarchar(20), Published date, Company nvarchar(30))";
@@ -32,7 +39,6 @@ public class AlbumDataInput {
 		Integer[] dayList = { 28, 27, 27, 22, 25 };
 		String[] companyList = { "艾格普蘭特艾格有限公司", "亞神音樂", "愛貝克思", "華研國際音樂", "福茂唱片" };
 		
-		AlbumDao albumDao = new AlbumDao();
 		Album album = new Album();
 		
 		for (int i = 0; i < idList.length; i++) {
