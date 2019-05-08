@@ -48,7 +48,6 @@ public class AlbumDaoTest {
 		assertEquals(album,albumDao.findOne(6));
 		
 		albumDao.delete(6);
-		ass
 	}
 	
 		
