@@ -62,6 +62,7 @@ public class AnimeDaoTest {
 		animeDao.delete(100);
 		animeDaoList = animeDao.findAll();
 		assertEquals(5, animeDaoList.size());
+		//test delete() End
 	}
 
 }
