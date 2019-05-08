@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -39,13 +41,13 @@ public class AlbumDataInput {
 			album.setSinger(singerList[i]);
 			album.setName(nameList[i]);
 			// sql.date process
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Calendar cal = Calendar.getInstance();
-			cal.set(Calendar.YEAR, yearList[i]);
-			cal.set(Calendar.MONTH, monthList[i] - 1);
-			cal.set(Calendar.DAY_OF_MONTH, dayList[i]);
-			java.sql.Date date = new java.sql.Date(cal.getTimeInMillis());
-
+//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//			Calendar cal = Calendar.getInstance();
+//			cal.set(Calendar.YEAR, yearList[i]);
+//			cal.set(Calendar.MONTH, monthList[i] - 1);
+//			cal.set(Calendar.DAY_OF_MONTH, dayList[i]);
+//			java.sql.Date date = new java.sql.Date(cal.getTimeInMillis());
+			Timestamp date = Timestamp.valueOf(LocalDateTime.of(yearList[i], monthList[i], dayList[i], 0, 0, 0));
 			album.setPublished(date);
 			album.setCompany(companyList[i]);
 			albumDao.insert(album);

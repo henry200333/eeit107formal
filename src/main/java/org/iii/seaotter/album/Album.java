@@ -1,12 +1,13 @@
 package org.iii.seaotter.album;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Album {
 	private Integer id;
 	private String singer;
 	private String name;
-	private java.sql.Date published;
+	private Timestamp published;
 	private String company;
 		
 	@Override
@@ -32,11 +33,11 @@ public class Album {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public java.sql.Date getPublished() {
+	public Timestamp getPublished() {
 		return published;
 	}
-	public void setPublished(java.sql.Date published) {
-		this.published = published;
+	public void setPublished(Timestamp date) {
+		this.published = date;
 	}
 	public String getCompany() {
 		return company;

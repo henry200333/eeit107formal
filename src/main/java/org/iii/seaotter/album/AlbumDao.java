@@ -24,7 +24,7 @@ public class AlbumDao {
 			pstmt.setInt(1, album.getId());
 			pstmt.setString(2, album.getSinger());
 			pstmt.setString(3, album.getName());
-			pstmt.setDate(4, album.getPublished());
+			pstmt.setTimestamp(4, album.getPublished());
 			pstmt.setString(5, album.getCompany());
 			pstmt.executeUpdate();
 			
@@ -40,7 +40,7 @@ public class AlbumDao {
 			pstmt.setInt(5, album.getId());
 			pstmt.setString(1, album.getSinger());
 			pstmt.setString(2, album.getName());
-			pstmt.setDate(3, album.getPublished());
+			pstmt.setTimestamp(3, album.getPublished());
 			pstmt.setString(4, album.getCompany());
 			pstmt.executeUpdate();
 
@@ -71,7 +71,7 @@ public class AlbumDao {
 				album.setId(rs.getInt(1));
 				album.setSinger(rs.getString(2));
 				album.setName(rs.getString(3));
-				album.setPublished(rs.getDate(4));
+				album.setPublished(rs.getTimestamp(4));
 				album.setCompany(rs.getString(5));
 			}
 
@@ -93,7 +93,7 @@ public class AlbumDao {
 				album.setId(rs.getInt(1));
 				album.setSinger(rs.getString(2));
 				album.setName(rs.getString(3));
-				album.setPublished(rs.getDate(4));
+				album.setPublished(rs.getTimestamp(4));
 				album.setCompany(rs.getString(5));
 
 				albumList.add(album);
