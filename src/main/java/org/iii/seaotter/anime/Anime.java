@@ -1,4 +1,4 @@
-package com.soma;
+package org.iii.seaotter.anime;
 
 public class Anime {
 	
