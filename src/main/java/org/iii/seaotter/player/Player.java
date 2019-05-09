@@ -1,10 +1,12 @@
 package org.iii.seaotter.player;
 
+import java.sql.Date;
+
 public class Player {
 
 	private Integer playerId;
 	private String playerName;
-	private java.sql.Date playerBDate;
+	private Date playerBDate;
 	private String playerTel;
 	private Integer playerYears;
 
@@ -30,11 +32,11 @@ public class Player {
 		this.playerName = playerName;
 	}
 
-	public java.sql.Date getPlayerBDate() {
+	public Date getPlayerBDate() {
 		return playerBDate;
 	}
 
-	public void setPlayerBDate(java.sql.Date playerBDate) {
+	public void setPlayerBDate(Date playerBDate) {
 		this.playerBDate = playerBDate;
 	}
 

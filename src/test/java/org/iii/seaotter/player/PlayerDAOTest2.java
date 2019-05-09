@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class PlayerDAOTest {
+public class PlayerDAOTest2 {
 	
 	@Autowired
 	private PlayerDAO playerDAO;
