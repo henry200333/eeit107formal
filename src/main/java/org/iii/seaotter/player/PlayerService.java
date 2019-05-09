@@ -11,7 +11,7 @@ public class PlayerService {
 	
 	@Autowired
 	private PlayerDAO playerDAO;
-	public Player getOne(int id) throws SQLException {	
+	public Player getOne(Integer id) throws SQLException {	
 		return playerDAO.findOne(id);
 	}
 	
@@ -27,5 +27,7 @@ public class PlayerService {
 		playerDAO.update(player);
 	}
 	
-	public void delete()
+	public void delete(Integer id) throws SQLException {
+		playerDAO.remove(id);;
+	}
 }
