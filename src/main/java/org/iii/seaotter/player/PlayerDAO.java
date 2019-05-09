@@ -1,7 +1,6 @@
 package org.iii.seaotter.player;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +17,7 @@ public class PlayerDAO {
 
 	@Autowired
 	private DataSource datasource;
-	
+
 	private static final String SELECT_BY_PK = "select * from Player where playerId=?";
 	private static final String SELECT_ALL = "select * from Player";
 	private static final String CREATE = "INSERT INTO Player VALUES (?, ?, ?, ?, ?)";
@@ -27,9 +26,8 @@ public class PlayerDAO {
 
 	public Player findOne(Integer playerId) throws SQLException {
 		Player player = null;
-		Connection conn = null;
 		try {
-			conn = datasource.getConnection();
+			Connection conn = datasource.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(SELECT_BY_PK);
 			pstmt.setInt(1, playerId);
 			ResultSet rs = pstmt.executeQuery();
@@ -43,10 +41,6 @@ public class PlayerDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			if (conn != null) {
-				conn.close();
-			}
 		}
 		return player;
 	}
@@ -54,9 +48,8 @@ public class PlayerDAO {
 	public List<Player> findAll() throws SQLException {
 		Player player = null;
 		List<Player> players = new ArrayList<Player>();
-		Connection conn = null;
 		try {
-			conn = datasource.getConnection();
+			Connection conn = datasource.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(SELECT_ALL);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -70,18 +63,13 @@ public class PlayerDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			if (conn != null) {
-				conn.close();
-			}
 		}
 		return players;
 	}
 
 	public void update(Player player) throws SQLException {
-		Connection conn = null;
 		try {
-			conn = datasource.getConnection();
+			Connection conn = datasource.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(UPDATE);
 			pstmt.setInt(5, player.getPlayerId());
 			pstmt.setString(1, player.getPlayerName());
@@ -91,17 +79,12 @@ public class PlayerDAO {
 			pstmt.executeLargeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			if (conn != null) {
-				conn.close();
-			}
 		}
 	}
 
 	public void create(Player Player) throws SQLException {
-		Connection conn = null;
 		try {
-			conn = datasource.getConnection();
+			Connection conn = datasource.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(CREATE);
 			pstmt.setInt(1, Player.getPlayerId());
 			pstmt.setString(2, Player.getPlayerName());
@@ -111,26 +94,17 @@ public class PlayerDAO {
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			if (conn != null) {
-				conn.close();
-			}
 		}
 	}
 
 	public void remove(Integer playerId) throws SQLException {
-		Connection conn = null;
 		try {
-			conn = datasource.getConnection();
+			Connection conn = datasource.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(REMOVE);
 			pstmt.setInt(1, playerId);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			if (conn != null) {
-				conn.close();
-			}
 		}
 	}
 
