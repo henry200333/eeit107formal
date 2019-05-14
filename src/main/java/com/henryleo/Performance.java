@@ -9,12 +9,12 @@ public class Performance {
 	private String p_name;
 	private String p_url;
 	private Timestamp update_time;
-	private Integer count;
+	private Integer counts;
 		
 	@Override
 	public String toString() {
 		return "Performance [p_id=" + p_id + ", a_id=" + a_id + ", p_name=" + p_name + ", p_url=" + p_url
-				+ ", update_time=" + update_time + ", count=" + count + "]";
+				+ ", update_time=" + update_time + ", counts=" + counts + "]";
 	}
 	public Integer getP_id() {
 		return p_id;
@@ -46,11 +46,11 @@ public class Performance {
 	public void setUpdate_time(Timestamp update_time) {
 		this.update_time = update_time;
 	}
-	public Integer getCount() {
-		return count;
+	public Integer getCounts() {
+		return counts;
 	}
-	public void setCount(Integer count) {
-		this.count = count;
+	public void setCounts(Integer counts) {
+		this.counts = counts;
 	}
 	
 	

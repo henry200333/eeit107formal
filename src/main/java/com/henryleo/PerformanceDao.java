@@ -20,8 +20,8 @@ public class PerformanceDao {
 	@Autowired
 	private DataSource dataSource;
 
-	private static final String INSERT = "INSERT INTO Performance(a_id, p_name, p_url, update_time) VALUES(?,?,?,?)";
-	private static final String UPDATE = "UPDATE Performance SET a_id=?, p_name=?, p_url=?, update_time=? WHERE p_id = ?";
+	private static final String INSERT = "INSERT INTO Performance(a_id, p_name, p_url, update_time,counts) VALUES(?,?,?,?,?)";
+	private static final String UPDATE = "UPDATE Performance SET a_id=?, p_name=?, p_url=?, update_time=?, counts=? WHERE p_id = ?";
 	private static final String DELETE = "DELETE FROM Performance WHERE p_id = ?";
 	private static final String FIND_ONE = "SELECT * FROM Performance WHERE p_id = ?";
 	private static final String FIND_ALL = "SELECT * FROM Performance";
@@ -34,6 +34,7 @@ public class PerformanceDao {
 			pstmt.setString(2, performance.getP_name());
 			pstmt.setString(3, performance.getP_url());
 			pstmt.setTimestamp(4, performance.getUpdate_time());
+			pstmt.setInt(5, performance.getCounts());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -48,7 +49,8 @@ public class PerformanceDao {
 			pstmt.setString(2, performance.getP_name());
 			pstmt.setString(3, performance.getP_url());
 			pstmt.setTimestamp(4, performance.getUpdate_time());
-			pstmt.setInt(5, performance.getP_id());
+			pstmt.setInt(5, performance.getCounts());
+			pstmt.setInt(6, performance.getP_id());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -79,7 +81,7 @@ public class PerformanceDao {
 				performance.setP_name(rs.getString(3));
 				performance.setP_url(rs.getString(4));
 				performance.setUpdate_time(rs.getTimestamp(5));
-				performance.setCount(rs.getInt(6));
+				performance.setCounts(rs.getInt(6));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -101,7 +103,7 @@ public class PerformanceDao {
 				performance.setP_name(rs.getString(3));
 				performance.setP_url(rs.getString(4));
 				performance.setUpdate_time(rs.getTimestamp(5));
-				performance.setCount(rs.getInt(6));
+				performance.setCounts(rs.getInt(6));
 				
 				performanceList.add(performance);
 			}
