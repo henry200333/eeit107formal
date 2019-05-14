@@ -38,8 +38,9 @@ a_id integer REFERENCES artists(a_id),
 p_name varchar(30),
 p_url varchar(200),
 update_time datetime,
+counts Integer,
 );
 
-INSERT INTO performance values ('2', '千里之外', 'https://youtu.be/ocDo3ySyHSI', '2019-5-11 13:15:20');
-INSERT INTO performance values ('2', '聽媽媽的話', 'https://youtu.be/_B8RaLCNUZw', '2019-5-11 13:16:34');
-INSERT INTO performance values ('2', '牛仔很忙', 'https://youtu.be/9o20U91aJdg', '2019-5-11 13:18:02');
+INSERT INTO performance values ('2', '千里之外', 'https://youtu.be/ocDo3ySyHSI', '2019-5-11 13:15:20',0);
+INSERT INTO performance values ('2', '聽媽媽的話', 'https://youtu.be/_B8RaLCNUZw', '2019-5-11 13:16:34',0);
+INSERT INTO performance values ('2', '牛仔很忙', 'https://youtu.be/9o20U91aJdg', '2019-5-11 13:18:02',0);
