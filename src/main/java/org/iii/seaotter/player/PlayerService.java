@@ -28,6 +28,6 @@ public class PlayerService {
 	}
 	
 	public void delete(Integer id) throws SQLException {
-		playerDAO.remove(id);;
+		playerDAO.remove(id);
 	}
 }
