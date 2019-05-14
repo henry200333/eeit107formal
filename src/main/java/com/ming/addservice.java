@@ -16,17 +16,17 @@ public class addservice {
 	}
 	
 	void addshow(String showName, String artist, String type, Timestamp date) {
-		Show show=new Show(showName, artist, type, date);
-		new ShowDao().insert(show);
+		Performance performance=new Performance(showName, artist, type, date);
+		new PerformanceDao().insert(performance);
 	}
-	void addshow(Show show) {
-		new ShowDao().insert(show);
+	void addshow(Performance performance) {
+		new PerformanceDao().insert(performance);
 	}
 	
-	void addshows(Collection<Show> shows) {
-		ShowDao dao=new ShowDao();
-			for (Show show : shows){
-				 dao.insert(show);
+	void addshows(Collection<Performance> performances) {
+		PerformanceDao dao=new PerformanceDao();
+			for (Performance performance : performances){
+				 dao.insert(performance);
 			}			
 	}
 	

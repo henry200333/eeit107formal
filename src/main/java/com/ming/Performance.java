@@ -2,7 +2,7 @@ package com.ming;
 
 import java.sql.Timestamp;
 
-public class Show {
+public class Performance {
 	
 	private Integer id;
 	private String showName;
@@ -10,19 +10,19 @@ public class Show {
 	private String type;
 	private Timestamp date;
 	
-	public Show(String showName, String artist, String type, Timestamp date) {
+	public Performance(String showName, String artist, String type, Timestamp date) {
 		
 		this.showName = showName;
 		this.artist = artist;
 		this.type = type;
 		this.date = date;
 	}
-	public Show() {
+	public Performance() {
 		
 	}
 	@Override
 	public String toString() {
-		return "Show [id=" + id + ", showName=" + showName + ", artist=" + artist + ", type=" + type + ", date=" + date
+		return "performance [id=" + id + ", showName=" + showName + ", artist=" + artist + ", type=" + type + ", date=" + date
 				+ "]";
 	}
 	public Integer getId() {
