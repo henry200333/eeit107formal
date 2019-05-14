@@ -1,6 +1,6 @@
 package com.ming;
 
-import java.sql.Date;
+import java.sql.Date; 
 import java.sql.Timestamp;
 import java.util.Collection;
 
