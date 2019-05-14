@@ -55,58 +55,60 @@ public class PerformanceDao {
 		}
 	}
 
-	public void delete(Integer id) {
+	public void delete(Integer p_id) {
 		try {
 			Connection conn = dataSource.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(DELETE);
-			pstmt.setInt(1, id);
+			pstmt.setInt(1, p_id);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public Performance findOne(Integer id) {
-		Show show = new Show();
+	public Performance findOne(Integer p_id) {
+		Performance performance = new Performance();
 		try {
 			Connection conn = dataSource.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(FIND_ONE);
-			pstmt.setInt(1, id);
+			pstmt.setInt(1, p_id);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
-				show.setId(rs.getInt(1));
-				show.setShowName(rs.getString(2));
-				show.setArtist(rs.getString(3));
-				show.setType(rs.getString(4));
-				show.setDate(rs.getTimestamp(5));
+				performance.setP_id(rs.getInt(1));
+				performance.setA_id(rs.getInt(2));
+				performance.setP_name(rs.getString(3));
+				performance.setP_url(rs.getString(4));
+				performance.setUpdate_time(rs.getTimestamp(5));
+				performance.setCount(rs.getInt(6));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return show;
+		return performance;
 	}
 
-	public List<Show> findAll() {
-		List<Show> showList = new ArrayList<Show>();
+	public List<Performance> findAll() {
+		List<Performance> performanceList = new ArrayList<Performance>();
 		try {
 			Connection conn = dataSource.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(FIND_ALL);
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				Show show = new Show();
-				show.setId(rs.getInt(1));
-				show.setShowName(rs.getString(2));
-				show.setArtist(rs.getString(3));
-				show.setType(rs.getString(4));
-				show.setDate(rs.getTimestamp(5));
-
-				showList.add(show);
+				Performance performance = new Performance();
+				performance.setP_id(rs.getInt(1));
+				performance.setA_id(rs.getInt(2));
+				performance.setP_name(rs.getString(3));
+				performance.setP_url(rs.getString(4));
+				performance.setUpdate_time(rs.getTimestamp(5));
+				performance.setCount(rs.getInt(6));
+				
+				performanceList.add(performance);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return showList;
+		return performanceList;
 	}
 	
 
