@@ -63,57 +63,57 @@ public class ArtistDao {
 	}
 	
 	public Artist findOne(Integer id) {
-		Artist artists = new Artist();
+		Artist artist = new Artist();
 		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection.prepareStatement(FIND_BY_ID);
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				artists.setId(rs.getInt(1));
-				artists.setName(rs.getString(2));
-				artists.setJoinDate(rs.getDate(3));
-				artists.setManager(rs.getInt(4));
+				artist.setId(rs.getInt(1));
+				artist.setName(rs.getString(2));
+				artist.setJoinDate(rs.getDate(3));
+				artist.setManager(rs.getInt(4));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return artists; 
+		return artist; 
 	}
 	
 	public Artist findByName(String name) {
-		Artist artists = new Artist();
+		Artist artist = new Artist();
 		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection.prepareStatement(FIND_BY_NAME);
 			pstmt.setString(1, name);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				artists.setId(rs.getInt(1));
-				artists.setName(rs.getString(2));
-				artists.setJoinDate(rs.getDate(3));
-				artists.setManager(rs.getInt(4));
+				artist.setId(rs.getInt(1));
+				artist.setName(rs.getString(2));
+				artist.setJoinDate(rs.getDate(3));
+				artist.setManager(rs.getInt(4));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return artists; 
+		return artist; 
 	}
 	
 	public List<Artist> findAll(){
-		List<Artist> artistsList = new ArrayList<Artist>();
+		List<Artist> artistList = new ArrayList<Artist>();
 		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection.prepareStatement(FIND_ALL);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				Artist artists = new Artist();
-				artists.setId(rs.getInt(1));
-				artists.setName(rs.getString(2));
-				artists.setJoinDate(rs.getDate(3));
-				artists.setManager(rs.getInt(4));
-				artistsList.add(artists);
+				Artist artist = new Artist();
+				artist.setId(rs.getInt(1));
+				artist.setName(rs.getString(2));
+				artist.setJoinDate(rs.getDate(3));
+				artist.setManager(rs.getInt(4));
+				artistList.add(artist);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return artistsList;
+		return artistList;
 	}
 }
