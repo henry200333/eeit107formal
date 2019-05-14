@@ -4,47 +4,47 @@ import java.sql.Timestamp;
 
 public class Performance {
 	
-	private Integer p_id;
-	private Integer a_id;
-	private String p_name;
-	private String p_url;
-	private Timestamp update_time;
+	private Integer pId;
+	private Integer aId;
+	private String pName;
+	private String pUrl;
+	private Timestamp updateTime;
 	private Integer counts;
 		
 	@Override
 	public String toString() {
-		return "Performance [p_id=" + p_id + ", a_id=" + a_id + ", p_name=" + p_name + ", p_url=" + p_url
-				+ ", update_time=" + update_time + ", counts=" + counts + "]";
+		return "Performance [pId=" + pId + ", aId=" + aId + ", pName=" + pName + ", pUrl=" + pUrl + ", updateTime="
+				+ updateTime + ", counts=" + counts + "]";
 	}
-	public Integer getP_id() {
-		return p_id;
+	public Integer getpId() {
+		return pId;
 	}
-	public void setP_id(Integer p_id) {
-		this.p_id = p_id;
+	public void setpId(Integer pId) {
+		this.pId = pId;
 	}
-	public Integer getA_id() {
-		return a_id;
+	public Integer getaId() {
+		return aId;
 	}
-	public void setA_id(Integer a_id) {
-		this.a_id = a_id;
+	public void setaId(Integer aId) {
+		this.aId = aId;
 	}
-	public String getP_name() {
-		return p_name;
+	public String getpName() {
+		return pName;
 	}
-	public void setP_name(String p_name) {
-		this.p_name = p_name;
+	public void setpName(String pName) {
+		this.pName = pName;
 	}
-	public String getP_url() {
-		return p_url;
+	public String getpUrl() {
+		return pUrl;
 	}
-	public void setP_url(String p_url) {
-		this.p_url = p_url;
+	public void setpUrl(String pUrl) {
+		this.pUrl = pUrl;
 	}
-	public Timestamp getUpdate_time() {
-		return update_time;
+	public Timestamp getUpdateTime() {
+		return updateTime;
 	}
-	public void setUpdate_time(Timestamp update_time) {
-		this.update_time = update_time;
+	public void setUpdateTime(Timestamp updateTime) {
+		this.updateTime = updateTime;
 	}
 	public Integer getCounts() {
 		return counts;
@@ -52,6 +52,7 @@ public class Performance {
 	public void setCounts(Integer counts) {
 		this.counts = counts;
 	}
+		
 	
 	
 	
