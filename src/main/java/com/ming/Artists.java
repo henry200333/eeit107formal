@@ -1,12 +1,13 @@
 package com.ming;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+
 
 public class Artists {
 
 	private Integer id;
 	private String name;
-	private java.sql.Date joinDate;
+	private Timestamp joinDate;
 	private Integer manager;
 	
 	@Override
@@ -25,10 +26,10 @@ public class Artists {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public java.sql.Date getJoinDate() {
+	public Timestamp getJoinDate() {
 		return joinDate;
 	}
-	public void setJoinDate(java.sql.Date joinDate) {
+	public void setJoinDate(Timestamp joinDate) {
 		this.joinDate = joinDate;
 	}
 	public Integer getManager() {
@@ -37,7 +38,7 @@ public class Artists {
 	public void setManager(Integer manager) {
 		this.manager = manager;
 	}
-	public Artists(String name, Date joinDate, Integer manager) {
+	public Artists(String name, Timestamp joinDate, Integer manager) {
 		this.name = name;
 		this.joinDate = joinDate;
 		this.manager = manager;

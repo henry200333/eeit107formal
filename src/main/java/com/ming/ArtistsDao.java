@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Timestamp;
 
 import javax.sql.DataSource;
 
@@ -22,7 +23,7 @@ public class ArtistsDao {
 		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection.prepareStatement("insert into Artists values(?,?,?)");
 			pstmt.setString(1, artists.getName());
-			pstmt.setDate(2, artists.getJoinDate());
+			pstmt.setTimestamp(2, artists.getJoinDate());
 			pstmt.setInt(3, artists.getManager());
 			
 			pstmt.executeUpdate();	
@@ -37,7 +38,7 @@ public class ArtistsDao {
 					.prepareStatement("update Artists set  Name=?, JoinDate=?, Manager=? where ID = ?");
 			pstmt.setInt(4, artists.getId());
 			pstmt.setString(1, artists.getName());
-			pstmt.setDate(2, artists.getJoinDate());
+			pstmt.setTimestamp(2, artists.getJoinDate());
 			pstmt.setInt(3, artists.getManager());
 
 			pstmt.executeUpdate();
@@ -67,7 +68,7 @@ public class ArtistsDao {
 			if(rs.next()) {
 				artists.setId(rs.getInt(1));
 				artists.setName(rs.getString(2));
-				artists.setJoinDate(rs.getDate(3));
+				artists.setJoinDate(rs.getTimestamp(3));
 				artists.setManager(rs.getInt(4));
 			}
 
@@ -89,7 +90,7 @@ public class ArtistsDao {
 				Artists artists = new Artists();
 				artists.setId(rs.getInt(1));
 				artists.setName(rs.getString(2));
-				artists.setJoinDate(rs.getDate(3));
+				artists.setJoinDate(rs.getTimestamp(3));
 				artists.setManager(rs.getInt(4));
 				artistsList.add(artists);
 			}
