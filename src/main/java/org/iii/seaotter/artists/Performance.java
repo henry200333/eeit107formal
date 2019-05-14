@@ -2,11 +2,14 @@ package org.iii.seaotter.artists;
 
 import java.sql.Timestamp;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class Performance {
 
 	private Integer id;
 	private String showName;
-	private String artist;
+	private String artist; //要是 artist 的 id
 	private String type;
 	private Timestamp date;
 	private Integer counts;
