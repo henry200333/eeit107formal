@@ -1,6 +1,6 @@
-package org.iii.seaotter.artists;
+package org.iii.seaotter.artist;
 
-public class Artists {
+public class Artist {
 
 	private Integer id;
 	private String name;

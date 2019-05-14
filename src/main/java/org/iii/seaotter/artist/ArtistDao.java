@@ -1,4 +1,4 @@
-package org.iii.seaotter.artists;
+package org.iii.seaotter.artist;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ArtistsDao {
+public class ArtistDao {
 	
 	@Autowired 
 	private DataSource dataSource;
@@ -27,7 +27,7 @@ public class ArtistsDao {
 			"INSERT INTO artists (name, join_time, manager) VALUES (?, ?, ?)";
 	private static final String DELETE = "DELETE FROM artists WHERE a_id=?";
 
-	public void insert(Artists artists) {
+	public void insert(Artist artists) {
 		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection.prepareStatement(INSERT);
 			pstmt.setString(1, artists.getName());
@@ -39,7 +39,7 @@ public class ArtistsDao {
 		}
 	}
 	
-	public void update(Artists artists) {
+	public void update(Artist artists) {
 		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection.prepareStatement(UPDATE);
 			pstmt.setString(1, artists.getName());
@@ -62,8 +62,8 @@ public class ArtistsDao {
 		}
 	}
 	
-	public Artists findOne(Integer id) {
-		Artists artists = new Artists();
+	public Artist findOne(Integer id) {
+		Artist artists = new Artist();
 		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection.prepareStatement(FIND_BY_ID);
 			pstmt.setInt(1, id);
@@ -80,8 +80,8 @@ public class ArtistsDao {
 		return artists; 
 	}
 	
-	public Artists findByName(String name) {
-		Artists artists = new Artists();
+	public Artist findByName(String name) {
+		Artist artists = new Artist();
 		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection.prepareStatement(FIND_BY_NAME);
 			pstmt.setString(1, name);
@@ -98,13 +98,13 @@ public class ArtistsDao {
 		return artists; 
 	}
 	
-	public List<Artists> findAll(){
-		List<Artists> artistsList = new ArrayList<Artists>();
+	public List<Artist> findAll(){
+		List<Artist> artistsList = new ArrayList<Artist>();
 		try (Connection connection = dataSource.getConnection();) {
 			PreparedStatement pstmt = connection.prepareStatement(FIND_ALL);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				Artists artists = new Artists();
+				Artist artists = new Artist();
 				artists.setId(rs.getInt(1));
 				artists.setName(rs.getString(2));
 				artists.setJoinDate(rs.getDate(3));

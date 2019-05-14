@@ -1,4 +1,4 @@
-package org.iii.seaotter.artists;
+package org.iii.seaotter.performance;
 
 import java.sql.Connection; 
 import java.sql.PreparedStatement;
