@@ -1,6 +1,6 @@
 package com.ming;
 
-import java.sql.Date; 
+
 import java.sql.Timestamp;
 import java.util.Collection;
 
@@ -10,7 +10,7 @@ public class addservice {
 	void Newartists(Artists artists) {
 		new ArtistsDao().insert(artists);
 	}
-	void Newartists(String name,Date joinDate,Integer manager) {
+	void Newartists(String name,Timestamp joinDate,Integer manager) {
 		Artists artists=new Artists(name, joinDate, manager);
 		new ArtistsDao().insert(artists);
 	}
