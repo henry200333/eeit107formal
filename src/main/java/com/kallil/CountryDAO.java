@@ -1,6 +1,5 @@
 package com.kallil;
 
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -9,6 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.iii.seaotter.artist.Artist;
+import org.iii.seaotter.artist.ArtistDao;
+import org.iii.seaotter.artist.Performance;
 
 public class CountryDAO {
 
@@ -76,7 +79,7 @@ public class CountryDAO {
 				return null;
 
 			} else {
-				while(rs.next()) {
+				while (rs.next()) {
 					CountryBean.setCountryId(rs.getInt(1));
 					CountryBean.setCountryCode(rs.getInt(2));
 					CountryBean.setCountryName(rs.getString(3));
@@ -92,10 +95,11 @@ public class CountryDAO {
 	}
 
 	private static String FINDALL = "select * from Country";
+
 	public List<CountryBean> findAll() {
 		List<CountryBean> CountryBeanList = new ArrayList<CountryBean>();
 		try (Connection conn = DriverManager.getConnection(URL, "sa", "passw0rd");) {
-						
+
 			PreparedStatement pstmt = conn.prepareStatement(FINDALL);
 			ResultSet rs = pstmt.executeQuery();
 
@@ -113,5 +117,35 @@ public class CountryDAO {
 			e.printStackTrace();
 		}
 		return CountryBeanList;
+	}
+
+	// 額外兩個方法
+	// 用表演者搜尋影片
+	public List<Performance> findByArtist(String name) {
+			List<Performance> performanceList = new ArrayList<Performance>();
+//			try {
+//				Connection conn = dataSource.getConnection();
+//				ArtistDao artistDao = new ArtistDao();
+//				Artist bean = new Artist();
+//				bean  = artistDao.findOne();
+//				PreparedStatement pstmt = conn.prepareStatement(FIND_BY_ARTIST);
+//				ResultSet rs = pstmt.executeQuery();
+//
+//				while (rs.next()) {
+//					Performance performance = new Performance();
+//					performance.setpId(rs.getInt(1));
+//					performance.setaId(rs.getInt(2));
+//					performance.setpName(rs.getString(3));
+//					performance.setpUrl(rs.getString(4));
+//					performance.setUpdateTime(rs.getTimestamp(5));
+//					performance.setCounts(rs.getInt(6));
+//					
+//					performanceList.add(performance);
+//				}
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+			return performanceList;
+//		}
 	}
 }
