@@ -1,12 +1,10 @@
 package org.iii.seaotter.artist;
 
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 import org.iii.seaotter.performance.PerformanceDao;
-import org.iii.seaotter.player.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +16,14 @@ public class ArtistService {
 	
 	@Autowired
 	private PerformanceDao performanceDao;
+	
+	public Artist login(String username) {
+		Artist artist = artistsDao.findByName(username);
+		if (artist != null) {
+			return artist;
+		}
+		return null;
+	}
 	
 	public Artist getOne(Integer id) throws SQLException {	
 		return artistsDao.findOne(id);
