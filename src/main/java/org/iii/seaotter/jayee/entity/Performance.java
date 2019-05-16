@@ -7,10 +7,10 @@ package org.iii.seaotter.jayee.entity;
  */
 public class Performance {
 
-	private Integer id;
+	private long id;
 	private String name;
 	private String url;
-	private java.util.Date updatetime;
+	private java.util.Date updateTime;
 	private Integer activity;
 
 
@@ -18,7 +18,7 @@ public class Performance {
 		public String toString() {
 			return super.toString();
 		}
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 	public void setId(Integer id) {
@@ -36,11 +36,11 @@ public class Performance {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public java.util.Date getUpdatetime() {
-		return updatetime;
+	public java.util.Date getUpdateTime() {
+		return updateTime;
 	}
-	public void setUpdatetime(java.util.Date updatetime) {
-		this.updatetime = updatetime;
+	public void setUpdatetime(java.util.Date updateTime) {
+		this.updateTime = updateTime;
 	}
 	public Integer getActivity() {
 		return activity;
