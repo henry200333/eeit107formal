@@ -8,9 +8,9 @@ package org.iii.seaotter.jayee.entity;
  */
 public class Vender {
 	private Long id;
-	private String vendername;
-	private String venderaddress;
-	private Integer maxpeople;
+	private String name;
+	private String address;
+	private Integer maxPeople;
 	private String phone;
 	public Long getId() {
 		return id;
@@ -18,23 +18,23 @@ public class Vender {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getVendername() {
-		return vendername;
+	public String getName() {
+		return name;
 	}
-	public void setVendername(String vendername) {
-		this.vendername = vendername;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getVenderaddress() {
-		return venderaddress;
+	public String getAddress() {
+		return address;
 	}
-	public void setVenderaddress(String venderaddress) {
-		this.venderaddress = venderaddress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public Integer getMaxpeople() {
-		return maxpeople;
+	public Integer getMaxPeople() {
+		return maxPeople;
 	}
-	public void setMaxpeople(Integer maxpeople) {
-		this.maxpeople = maxpeople;
+	public void setMaxPeople(Integer maxPeople) {
+		this.maxPeople = maxPeople;
 	}
 	public String getPhone() {
 		return phone;
@@ -42,6 +42,7 @@ public class Vender {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
 	
 
 }
