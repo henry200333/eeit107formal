@@ -11,12 +11,20 @@ import lombok.Data;
 @Data
 public class Activity {
 	/**
-	 * id XXXXX
+	 * Activity id
 	 */
-	
 	private Long id;
+	/**
+	 * Activity name
+	 */
 	private String name;
+	/**
+	 * Activity time
+	 */
 	private java.util.Date time;
+	/**
+	 * Activity article
+	 */
 	private String article;
 	
 	
