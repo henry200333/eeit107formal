@@ -11,7 +11,7 @@ public class Performance {
 	private String name;
 	private String url;
 	private java.util.Date updateTime;
-	private Integer activity;
+	private Long activityId;
 
 
 	@Override
