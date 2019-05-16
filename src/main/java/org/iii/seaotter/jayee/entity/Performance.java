@@ -5,12 +5,12 @@ package org.iii.seaotter.jayee.entity;
  * @author Kallil(李承宇
  *
  */
-public class performance {
+public class Performance {
 
-	private Integer id;
+	private long id;
 	private String name;
 	private String url;
-	private String announcer;
+	private java.util.Date updateTime;
 	private Integer activity;
 
 
@@ -18,7 +18,7 @@ public class performance {
 		public String toString() {
 			return super.toString();
 		}
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 	public void setId(Integer id) {
@@ -36,11 +36,11 @@ public class performance {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public String getAnnouncer() {
-		return announcer;
+	public java.util.Date getUpdateTime() {
+		return updateTime;
 	}
-	public void setAnnouncer(String announcer) {
-		this.announcer = announcer;
+	public void setUpdatetime(java.util.Date updateTime) {
+		this.updateTime = updateTime;
 	}
 	public Integer getActivity() {
 		return activity;
@@ -48,4 +48,6 @@ public class performance {
 	public void setActivity(Integer activty) {
 		this.activity = activty;
 	}
+
+
 }

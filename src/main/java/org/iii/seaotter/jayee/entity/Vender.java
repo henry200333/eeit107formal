@@ -7,11 +7,11 @@ package org.iii.seaotter.jayee.entity;
  * 
  */
 public class Vender {
-	Long id;
-	String vendername;
-	String venderaddress;
-	Integer maxpeople;
-	String phone;
+	private Long id;
+	private String vendername;
+	private String venderaddress;
+	private Integer maxpeople;
+	private String phone;
 	public Long getId() {
 		return id;
 	}
