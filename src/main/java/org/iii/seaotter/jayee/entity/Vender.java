@@ -8,7 +8,7 @@ import lombok.Data;
  * 
  */
 @Data
-public class Vender { 
+public class Vender {
 	private Long id;
 	private String name;
 	private String address;
