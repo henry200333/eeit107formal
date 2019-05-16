@@ -7,14 +7,23 @@ package org.iii.seaotter.jayee.entity;
  */
 
 public class Article {
+	private Long id;
 	private Long refId;
 	private String name;
 	private Integer type;
 	private String context;
 	
+	
 	@Override
 	public String toString() {
-		return "Article [refId=" + refId + ", name=" + name + ", type=" + type + ", context=" + context + "]";
+		return "Article [id=" + id + ", refId=" + refId + ", name=" + name + ", type=" + type + ", context=" + context
+				+ "]";
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public Long getRefId() {
 		return refId;
