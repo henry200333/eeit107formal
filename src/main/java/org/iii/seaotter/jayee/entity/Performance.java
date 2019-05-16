@@ -7,7 +7,7 @@ package org.iii.seaotter.jayee.entity;
  */
 public class Performance {
 
-	private long id;
+	private Long id;
 	private String name;
 	private String url;
 	private java.util.Date updateTime;
@@ -21,7 +21,7 @@ public class Performance {
 	public long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {
