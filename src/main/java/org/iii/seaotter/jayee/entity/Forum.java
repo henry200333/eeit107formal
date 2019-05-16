@@ -7,19 +7,19 @@ package org.iii.seaotter.jayee.entity;
  */
 
 public class Forum {
-	private long id;
+	private Long id;
 	private String name;
 	private String context;
-	private java.util.Date date;
+	private java.util.Date commentDate;
 	
 	@Override
 	public String toString() {
-		return "Forum [id=" + id + ", name=" + name + ", context=" + context + ", date=" + date + "]";
+		return "Forum [id=" + id + ", name=" + name + ", context=" + context + ", date=" + commentDate + "]";
 	}
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -35,10 +35,10 @@ public class Forum {
 		this.context = context;
 	}
 	public java.util.Date getDate() {
-		return date;
+		return commentDate;
 	}
-	public void setDate(java.util.Date date) {
-		this.date = date;
+	public void setDate(java.util.Date commentDate) {
+		this.commentDate = commentDate;
 	}
 	
 	
