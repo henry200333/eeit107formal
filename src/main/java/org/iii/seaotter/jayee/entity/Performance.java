@@ -42,12 +42,13 @@ public class Performance {
 	public void setUpdatetime(java.util.Date updateTime) {
 		this.updateTime = updateTime;
 	}
-	public Integer getActivity() {
-		return activity;
+	public Long getActivityId() {
+		return activityId;
 	}
-	public void setActivity(Integer activty) {
-		this.activity = activty;
+	public void setActivityId(Long activityId) {
+		this.activityId = activityId;
 	}
+
 
 
 }
