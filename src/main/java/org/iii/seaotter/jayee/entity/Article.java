@@ -11,4 +11,33 @@ public class Article {
 	private String name;
 	private Integer type;
 	private String context;
+	
+	@Override
+	public String toString() {
+		return "Article [refId=" + refId + ", name=" + name + ", type=" + type + ", context=" + context + "]";
+	}
+	public Long getRefId() {
+		return refId;
+	}
+	public void setRefId(Long refId) {
+		this.refId = refId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
+	}
+	public String getContext() {
+		return context;
+	}
+	public void setContext(String context) {
+		this.context = context;
+	}
 }
