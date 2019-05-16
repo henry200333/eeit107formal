@@ -27,6 +27,7 @@ public class PerformanceDao {
 	private static final String FIND_ALL = "SELECT * FROM Performance";
 	private static final String FIND_BY_ARTIST = "SELECT * FROM Performance where a_id=?";
 	private static final String FIND_BY_NAME = "SELECT * FROM Performance";
+	
 
 	public void insert(Performance performance) {
 		try {
