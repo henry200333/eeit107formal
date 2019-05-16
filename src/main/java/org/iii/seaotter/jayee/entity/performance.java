@@ -10,7 +10,8 @@ public class performance {
 	private Integer id;
 	private String name;
 	private String url;
-	private Integer activty;
+	private String announcer;
+	private Integer activity;
 
 
 	@Override
@@ -35,10 +36,16 @@ public class performance {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public Integer getActivty() {
-		return activty;
+	public String getAnnouncer() {
+		return announcer;
 	}
-	public void setActivty(Integer activty) {
-		this.activty = activty;
+	public void setAnnouncer(String announcer) {
+		this.announcer = announcer;
+	}
+	public Integer getActivity() {
+		return activity;
+	}
+	public void setActivity(Integer activty) {
+		this.activity = activty;
 	}
 }
