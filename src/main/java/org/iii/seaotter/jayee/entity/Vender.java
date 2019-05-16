@@ -13,7 +13,7 @@ public class Vender {
 	private String name;
 	private String address;
 	private Integer maxPeople;
-	private String phone;
+	private String phone; 
 	
 	
 	
