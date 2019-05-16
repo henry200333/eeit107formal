@@ -10,7 +10,7 @@ public class performance {
 	private Integer id;
 	private String name;
 	private String url;
-	private String announcer;
+	private java.util.Date updatetime;
 	private Integer activity;
 
 
@@ -36,11 +36,11 @@ public class performance {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public String getAnnouncer() {
-		return announcer;
+	public java.util.Date getUpdatetime() {
+		return updatetime;
 	}
-	public void setAnnouncer(String announcer) {
-		this.announcer = announcer;
+	public void setUpdatetime(java.util.Date updatetime) {
+		this.updatetime = updatetime;
 	}
 	public Integer getActivity() {
 		return activity;
@@ -48,4 +48,6 @@ public class performance {
 	public void setActivity(Integer activty) {
 		this.activity = activty;
 	}
+
+
 }
