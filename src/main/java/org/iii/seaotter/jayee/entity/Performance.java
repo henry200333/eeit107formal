@@ -5,7 +5,7 @@ package org.iii.seaotter.jayee.entity;
  * @author Kallil(李承宇
  *
  */
-public class performance {
+public class Performance {
 
 	private Integer id;
 	private String name;
