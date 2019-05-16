@@ -1,4 +1,4 @@
-package org.iii.seaotter.jayee.entity.performance;
+package org.iii.seaotter.jayee.entity;
 
 /**
  * 
