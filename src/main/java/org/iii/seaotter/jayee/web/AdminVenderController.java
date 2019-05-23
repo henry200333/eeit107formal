@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminVenderController {
 	@RequestMapping("/list")
 	public String listPage() {
-		return "/WEB-INF/jsp/admin/vender-list.jsp";
+		return "/admin/vender-list";
 
 	}
 
 	@RequestMapping("/add")
 	public String addPage() {
-		return "/WEB-INF/jsp/admin/vender-add.jsp";
+		return "/admin/vender-add";
 
 	}
 
 	@RequestMapping("/edit")
 	public String editPage() {
-		return "/WEB-INF/jsp/admin/vender-edit.jsp";
+		return "/admin/vender-edit";
 
 	}
 
