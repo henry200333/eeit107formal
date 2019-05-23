@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin/artist")
 public class AdminArtistController {
+
 	@RequestMapping("/list")
 	public String listPage() {
 		return "/WEB-INF/jsp/admin/artist-list.jsp";
