@@ -10,19 +10,19 @@ public class AdminArtistController {
 
 	@RequestMapping("/list")
 	public String listPage() {
-		return "/WEB-INF/jsp/admin/artist-list.jsp";
+		return "/admin/artist-list";
 
 	}
 
 	@RequestMapping("/add")
 	public String addPage() {
-		return "/WEB-INF/jsp/admin/artist-add.jsp";
+		return "/admin/artist-add";
 
 	}
 
 	@RequestMapping("/edit")
 	public String editPage() {
-		return "/WEB-INF/jsp/admin/artist-edit.jsp";
+		return "/admin/artist-edit";
 
 	}
 
