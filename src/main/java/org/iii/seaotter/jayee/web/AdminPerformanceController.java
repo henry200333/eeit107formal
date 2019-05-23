@@ -9,19 +9,19 @@ public class AdminPerformanceController {
 	
 	@RequestMapping("/list")
 	public String listPage() {
-		return "/WEB-INF/jsp/admin/performance-list.jsp";
+		return "/admin/performance-list";
 
 	}
 
 	@RequestMapping("/add")
 	public String addPage() {
-		return "/WEB-INF/jsp/admin/performance-add.jsp";
+		return "/admin/performance-add";
 
 	}
 
 	@RequestMapping("/edit")
 	public String editPage() {
-		return "/WEB-INF/jsp/admin/performance-edit.jsp";
+		return "/admin/performance-edit";
 
 	}
 
