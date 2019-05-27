@@ -22,7 +22,7 @@ public class Performance {
 	private Long id;
 	@Column(name="name")
 	private String name;
-	@Column(name="url")
+	@Column(name="youtube_url")
 	private String url;
 	@Column(name="update_time")
 	private java.util.Date updateTime;
