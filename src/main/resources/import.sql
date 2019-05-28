@@ -8,3 +8,8 @@
  (1, 1, '薔薔', '大家好', '2019/05/25 18:13:21'),
  (2, 1, '博恩', '我真有那麼尷尬嗎？', '2019/05/22 13:50:02');
  
+ INSERT INTO performance (id,name,youtube_url,update_time,activity_id) values
+ (1,'中正紀念堂舞蹈表演','www.youtube.com','2019/05/25 17:12:05')
+ (2,'自家餵狗秀','www.youtube.com','2019/05/28 19:10:35')
+ (3,'倒立30分鐘','www.youtube.com','2019/05/28 21:05:46')
+ 
