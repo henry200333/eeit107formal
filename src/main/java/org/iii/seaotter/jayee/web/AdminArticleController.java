@@ -1,5 +1,6 @@
 package org.iii.seaotter.jayee.web;
 
+import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,9 @@ public class AdminArticleController {
 	
 	@RequestMapping("/list")
 	public String listPage(Model model) {
-		model.addAttribute("models", articleService.getAll());
+		java.util.List<Article> list = new java.util.ArrayList<>();
+		list = articleService.getAll();
+		model.addAttribute("models", list);
 		return "/admin/article-list";
 
 	}
