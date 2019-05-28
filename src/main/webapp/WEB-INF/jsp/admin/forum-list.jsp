@@ -4,11 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>List Page</title>
+<title>header</title>
 </head>
 <body>
- 
+<jsp:include page="header.jsp"></jsp:include>
 ${models[0]}
-
 </body>
 </html>
