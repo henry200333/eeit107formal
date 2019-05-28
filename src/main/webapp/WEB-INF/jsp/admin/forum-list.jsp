@@ -10,6 +10,5 @@
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 ${models[0]}
-
 </body>
 </html>
