@@ -27,9 +27,9 @@
 					<tr>
 						<td>${bean.id}</td>
 						<td>${bean.name}</td>
-						<td>${bean.youtube_url}</td>
-						<td></td>
-						<td></td>
+						<td>${bean.url}</td>
+						<td>${bean.updateTime}</td>
+						<td>${bean.activityId}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
