@@ -9,7 +9,7 @@
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
-<h2>performancelist<h2>
+<h2>performancelist</h2>
 <c:if test="${not empty performances}">
 
 		<table>
