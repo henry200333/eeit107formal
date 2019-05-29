@@ -17,13 +17,16 @@ import lombok.Data;
 public class Activity {
 	
 	@Id
-	@Column(name="id")
+	@Column(name="activity_id")
 	private Long id;
 	@Column(name="name")
 	private String name;
-	@Column(name="time")
-	private java.util.Date time;
-	@Column(name="article")
-	private String article;
+	@Column(name="artist")
+	private String artist;
+	@Column(name="begin_time")
+	private java.util.Date beginTime;
+	@Column(name="end_time")
+	private java.util.Date endTime;
+	
 		
 }
