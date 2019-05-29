@@ -18,7 +18,7 @@ public class AdminActivityController {
 	
 	@RequestMapping("/list")
 	public String listPage(Model model) {
-		model.addAttribute("models",activityService.getAll());
+		model.addAttribute("activityList",activityService.getAll());
 		return "/admin/activity-list";
 		
 	}
