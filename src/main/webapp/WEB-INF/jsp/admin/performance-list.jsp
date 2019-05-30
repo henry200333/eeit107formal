@@ -64,12 +64,13 @@ th {
 						<td class="t2">${bean.url}</td>
 						<td class="t2">${bean.updateTime}</td>
 						<td class="t2">${bean.activityId}</td>
+						<td><button  type="button" onclick="javascript:location.href='add?id=${bean.id}&name=${bean.name }&url=${bean.url }&updateTime=${bean.updateTime }&activityId=${bean.activityId }'" >update</button></td>
+						<td><button  >delete</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 
 	</c:if>
-
 </body>
 </html>
