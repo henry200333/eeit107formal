@@ -23,7 +23,7 @@
 		<tbody>
 			<tr>
 				<c:forEach var="bean" items="${models} ">
-					<td>${bean.id }</td>
+					<td></td>
 					<td>${bean.name }</td>
 					<td>${bean.fanNumber }</td>
 					<td>${bean.location }</td>
