@@ -17,8 +17,9 @@
 			<tr>
 				<th>id</th>
 				<th>name</th>
-				<th>fannumber</th>
-				<th>location</th>
+				<th>address</th>
+				<th>maxPeople</th>
+				<th>phone</th>
 			</tr>
 		</thead>
 		<tbody>
