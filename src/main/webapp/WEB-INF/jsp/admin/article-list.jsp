@@ -1,5 +1,6 @@
 <%@page import="org.springframework.web.servlet.ModelAndView"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -8,9 +9,9 @@
 <title>header</title>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
-<h2>List of Article</h2>
-<c:if test="${not empty articleList}">
+	<jsp:include page="header.jsp"></jsp:include>
+	<h2>List of Article</h2>
+<%-- 	<c:if test="${not empty articleList}"> --%>
 		<table border="1">
 			<thead>
 				<tr>
@@ -33,8 +34,6 @@
 				</c:forEach>
 			</tbody>
 		</table>
-</c:if>
-
-
+<%-- 	</c:if> --%>
 </body>
 </html>
