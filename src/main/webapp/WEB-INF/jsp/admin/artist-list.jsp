@@ -21,16 +21,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<c:forEach var="bean" items="${models} ">
-					<td>${bean.id }</td>
+			<c:forEach var="bean" items="${models} ">
+				<tr>
+					<td></td>
 					<td>${bean.name }</td>
 					<td>${bean.fanNumber }</td>
 					<td>${bean.location }</td>
-				</c:forEach>
-			</tr>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
-	${models}
 </body>
 </html>
