@@ -36,9 +36,9 @@ public class AdminPerformanceController {
 		return null;
 
 	}
-
+	@RequestMapping("/update")
 	public String update() {
-		return null;
+		return  "/admin/performance-update";
 
 	}
 
