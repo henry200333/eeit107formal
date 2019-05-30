@@ -6,34 +6,49 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+.allpage{
+	width: 1200px;
+	margin: auto;
+}
+</style>
 <title>header</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<h2>List of Article</h2>
-<%-- 	<c:if test="${not empty articleList}"> --%>
-		<table border="1">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>CONTEXT</th>
-					<th>TYPE</th>
-					<th>REF_ID</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="bean" items="${articleList}">
+	<div class="allpage">
+		<h2>List of Article</h2>
+		<input type="button" value="add"
+			onclick="javascript:location.href='add'">
+		<hr>
+		<c:if test="${not empty articleList}">
+			<table border="1">
+				<thead>
 					<tr>
-						<td>${bean.id}</td>
-						<td>${bean.name}</td>
-						<td>${bean.context}</td>
-						<td>${bean.type}</td>
-						<td>${bean.refId}</td>
+						<th>ID</th>
+						<th>Name</th>
+						<th>CONTEXT</th>
+						<th>TYPE</th>
+						<th>REF_ID</th>
+						<th>EDIT</th>
+						<th>DELETE</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-<%-- 	</c:if> --%>
+				</thead>
+				<tbody>
+					<c:forEach var="bean" items="${articleList}">
+						<tr>
+							<td>${bean.id}</td>
+							<td>${bean.name}</td>
+							<td>${bean.context}</td>
+							<td>${bean.type}</td>
+							<td>${bean.refId}</td>
+							<td><input type="button" value="EDIT"></td>
+							<td><input type="button" value="DELETE"></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</c:if>
+	</div>
 </body>
 </html>
