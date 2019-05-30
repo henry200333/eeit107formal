@@ -36,6 +36,20 @@ th {
 	background-color: #FFCCCC;
 	font-weight: bold;
 }
+.up{
+	color:#99BBFF;
+	background-color:white;
+	border:1px solid white;
+	font-size:25px;
+}
+
+.de{
+	color:#FF8888;
+	background-color:white;
+	border:1px solid white;
+	font-size:25px;
+}
+
 </style>
 </head>
 <body>
@@ -54,6 +68,7 @@ th {
 					<th class="t2">YOUTUBE_URL</th>
 					<th class="t2">UPDATE_TIME</th>
 					<th class="t2">ACTIVITY_ID</th>
+					<th class="t2">UPDATE</th><th class="t2">DELETE</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -64,8 +79,8 @@ th {
 						<td class="t2">${bean.url}</td>
 						<td class="t2">${bean.updateTime}</td>
 						<td class="t2">${bean.activityId}</td>
-						<td><button  type="button" onclick="javascript:location.href='add?id=${bean.id}&name=${bean.name }&url=${bean.url }&updateTime=${bean.updateTime }&activityId=${bean.activityId }'" >update</button></td>
-						<td><button  >delete</button></td>
+						<td class="t2"><button   class="up"  type="button" onclick="javascript:location.href='update?id=${bean.id}&name=${bean.name }&url=${bean.url }&updateTime=${bean.updateTime }&activityId=${bean.activityId }'" >update</button></td>
+						<td class="t2"><button class="de" >delete</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
