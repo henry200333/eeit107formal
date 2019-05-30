@@ -24,8 +24,8 @@ public class Vender {
 	private String name;
 	@Column(name="address")
 	private String address;
-	@Column(name="maxpeople")
-	private Integer maxpeople;
+	@Column(name="max_people")
+	private Integer maxPeople;
 	@Column(name="phone")
 	private String phone; 
 	
