@@ -52,7 +52,7 @@ th {
 				</tr>
 					<tr>
 						<th class="t2">ID</th>
-						<th class="t2">Name</th>
+						<th class="t2">NAME</th>
 						<th class="t2">CONTEXT</th>
 						<th class="t2">TYPE</th>
 						<th class="t2">REF_ID</th>
