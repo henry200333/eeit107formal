@@ -21,4 +21,10 @@ public class ArtistService {
 		Artist artist = artistDao.save(entity);
 		return artist;
 	}
+	
+	public void delete() {
+		
+	}
+	
+	
 }
