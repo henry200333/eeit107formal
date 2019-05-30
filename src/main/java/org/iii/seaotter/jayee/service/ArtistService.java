@@ -11,9 +11,14 @@ import org.springframework.stereotype.Service;
 public class ArtistService {
 	@Autowired
 	private ArtistDao artistDao;
-	
+
 	public List<Artist> getAll() {
 		return artistDao.findAll();
-		
+	}
+
+	public Artist insert() {
+		Artist entity = new Artist();
+		Artist artist = artistDao.save(entity);
+		return artist;
 	}
 }
