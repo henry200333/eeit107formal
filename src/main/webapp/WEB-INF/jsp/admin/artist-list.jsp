@@ -11,6 +11,8 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<h1>list from Artist</h1>
+	
+		<a style="color:black" href="/admin/artist/add">Add</a>
 	<table>
 		<thead>
 			<tr>
