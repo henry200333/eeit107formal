@@ -9,6 +9,17 @@
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
+<table>
+<c:forEach var="bean" items="${models}">
+	<tr>
+<td>${bean.}</td>
+<td>${bean.}</td>
+<td>${bean.}</td>
+<td>${bean.}</td>
+<td>${bean.}</td>
+</tr>
+</c:forEach>
+</table>
 ${models[0].context}
 </body>
 </html>
