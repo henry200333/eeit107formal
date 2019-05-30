@@ -22,15 +22,23 @@
 		</thead>
 		<tbody>
 			<tr>
+<<<<<<< HEAD
 				<c:forEach var="bean" items="${models} ">
 					<td></td>
 					<td>${bean.name }</td>
 					<td>${bean.fanNumber }</td>
 					<td>${bean.location }</td>
 				</c:forEach>
+=======
+				<c:forEach var="bean" items="${models}">
+					<td>${bean.id}</td>
+					<td>${bean.name}</td>
+					<td>${bean.fanNumber}</td>
+					<td>${bean.location}</td>
+>>>>>>> branch 'master' of https://github.com/henry200333/eeit107formal.git
 			</tr>
+			</c:forEach>
 		</tbody>
 	</table>
-	${models}
 </body>
 </html>
