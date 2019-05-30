@@ -22,11 +22,12 @@
 		</thead>
 		<tbody>
 			<tr>
-				<c:forEach var="bean" items="${models} "></c:forEach>
-				<td>${bean.id }</td>
-				<td>${bean.name }</td>
-				<td>${bean.fannumber }</td>
-				<td>${bean.location }</td>
+				<c:forEach var="bean" items="${models} ">
+					<td>${bean.id }</td>
+					<td>${bean.name }</td>
+					<td>${bean.fanNumber }</td>
+					<td>${bean.location }</td>
+				</c:forEach>
 			</tr>
 		</tbody>
 	</table>
