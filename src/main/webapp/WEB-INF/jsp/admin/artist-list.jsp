@@ -19,8 +19,6 @@
 				<th>name</th>
 				<th>fannumber</th>
 				<th>location</th>
-				<th>edit</th>
-				<th>delete</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -30,8 +28,6 @@
 					<td>${bean.name }</td>
 					<td>${bean.fanNumber }</td>
 					<td>${bean.location }</td>
-					<td><a style="color:black" href="/admin/artist/edit">Edit</a></td>
-					<td><input type="button" value="delete"></td>
 				</tr>
 			</c:forEach>
 		</tbody>
