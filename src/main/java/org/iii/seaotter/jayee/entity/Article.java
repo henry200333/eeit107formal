@@ -17,7 +17,7 @@ import lombok.Data;
 @Data
 public class Article {
 	@Id
-//	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	@Column(name="ref_id")
