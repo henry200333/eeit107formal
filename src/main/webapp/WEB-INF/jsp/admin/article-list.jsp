@@ -23,25 +23,25 @@
 					<caption class="c1">Article</caption>
 				</tr>
 					<tr>
-						<th class="t2">ID</th>
-						<th class="t2">NAME</th>
-						<th class="t2">CONTEXT</th>
-						<th class="t2">TYPE</th>
-						<th class="t2">REF_ID</th>
-						<th class="t2">EDIT</th>
-						<th class="t2">DELETE</th>
+						<th>ID</th>
+						<th>NAME</th>
+						<th>CONTEXT</th>
+						<th>TYPE</th>
+						<th>REF_ID</th>
+						<th>EDIT</th>
+						<th>DELETE</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="bean" items="${articleList}">
 						<tr>
-							<td class="t2">${bean.id}</td>
-							<td class="t2">${bean.name}</td>
-							<td class="t2">${bean.context}</td>
-							<td class="t2">${bean.type}</td>
-							<td class="t2">${bean.refId}</td>
-							<td class="t2"><input type="button" value="EDIT"></td>
-							<td class="t2"><input type="button" value="DELETE"></td>
+							<td>${bean.id}</td>
+							<td>${bean.name}</td>
+							<td>${bean.context}</td>
+							<td>${bean.type}</td>
+							<td>${bean.refId}</td>
+							<td><input type="button" value="EDIT"></td>
+							<td><input type="button" value="DELETE"></td>
 						</tr>
 					</c:forEach>
 				</tbody>
