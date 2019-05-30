@@ -9,6 +9,6 @@
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
-${models[0]}
+${models[0].context}
 </body>
 </html>
