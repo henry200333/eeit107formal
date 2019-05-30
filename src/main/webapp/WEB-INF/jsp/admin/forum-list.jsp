@@ -10,16 +10,26 @@
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 <table>
+<thead>
+						<tr>
+							<th>ID</th>
+							<th>board</th>
+							<th>name</th>
+							<th>context</th>
+							<th>commentDate</th>
+						</tr>
+					</thead>
+					<tbody>
 <c:forEach var="bean" items="${models}">
 	<tr>
-<td>${bean.}</td>
-<td>${bean.}</td>
-<td>${bean.}</td>
-<td>${bean.}</td>
-<td>${bean.}</td>
+<td>${bean.id}</td>
+<td>${bean.board}</td>
+<td>${bean.name}</td>
+<td>${bean.context}</td>
+<td>${bean.commentDate}</td>
 </tr>
 </c:forEach>
+</tbody>
 </table>
-${models[0].context}
 </body>
 </html>
