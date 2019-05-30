@@ -48,7 +48,7 @@ th {
 			<table border="1" class="r2">
 				<thead>
 				<tr>
-					<caption class="c1">Performance</caption>
+					<caption class="c1">Article</caption>
 				</tr>
 					<tr>
 						<th class="t2">ID</th>
