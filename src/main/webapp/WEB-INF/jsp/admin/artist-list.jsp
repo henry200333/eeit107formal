@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <jsp:include page="header.jsp"></jsp:include>
-
 <body>
 	<jsp:include page="nav.jsp"></jsp:include>
 	<h1>list from Artist</h1>
