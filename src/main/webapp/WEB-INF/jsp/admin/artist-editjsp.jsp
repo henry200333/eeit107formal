@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>artist add</title>
+<title>artist edit</title>
 </head>
 <body>
-<h1>artist add</h1>
+<h1>artist edit</h1>
 </body>
 </html>
