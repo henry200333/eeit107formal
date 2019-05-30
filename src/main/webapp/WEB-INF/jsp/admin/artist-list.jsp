@@ -4,14 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>list from Artist</title>
-</head>
+<jsp:include page="header.jsp"></jsp:include>
+
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="nav.jsp"></jsp:include>
 	<h1>list from Artist</h1>
-		<a style="color:black" href="/admin/artist/add">Add</a>
+	<a style="color: black" href="/admin/artist/add">Add</a>
 	<table>
 		<thead>
 			<tr>

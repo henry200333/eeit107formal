@@ -1,20 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+
 <head>
-<meta charset="UTF-8">
-<title>header</title>
-<link
-	href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
-	rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<title>jayee</title>
+<!-- Bootstrap core CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<style>
-
-</style>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
@@ -27,18 +24,5 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 </head>
-<body>
-	<div>
-		<table class="r1">
-			<tr>
-				<td class="t1"><a href="/admin/artist/list">Artist</a></td>
-				<td class="t1"><a href="/admin/article/list">Article</a></td>
-				<td class="t1"><a href="/admin/performance/list">Performance</a></td>
-				<td class="t1"><a href="/admin/activity/list">Activity</a></td>
-				<td class="t1"><a href="/admin/vender/list">Vender</a></td>
-				<td class="t1"><a href="/admin/forum/list">Forum</a></td>
-			</tr>
-		</table>
-	</div>
-</body>
-</html>
+
+
