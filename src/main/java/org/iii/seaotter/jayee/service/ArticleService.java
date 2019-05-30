@@ -15,4 +15,8 @@ public class ArticleService {
 	public List<Article> getAll(){
 		return articleDao.findAll();
 	}
+	
+	public Article addAll(Article article){
+		return articleDao.save(article);
+	}
 }
