@@ -6,11 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-<title>header</title>
+<jsp:include page="header.jsp"></jsp:include>
 </head>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="nav.jsp"></jsp:include>
 	<div>
 		<h2>List of Article</h2>
 		<input type="button" value="ADD"
