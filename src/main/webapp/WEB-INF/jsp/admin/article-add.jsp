@@ -6,12 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
-.allpage {
-	width: 1200px;
-	margin: auto;
-}
-</style>
+
 <title>header</title>
 </head>
 <body>

@@ -9,36 +9,6 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap"
 	rel="stylesheet">
-<style>
-.c1 {
-	font-size: 30px;
-	border-radius: 15px;
-	color: white;
-	background-color: #FF8888;
-	font-weight: bold;
-}
-
-.t2 {
-	font-size: 20px;
-	border: 1px solid black;
-	padding: 10px;
-}
-
-.r2 {
-	text-align: center;
-	line-height: 50px;
-	margin: auto;
-	margin-top: 50px;
-	font-family: 'Overpass Mono', monospace;
-}
-
-th {
-	background-color: #FFCCCC;
-	font-weight: bold;
-	
-}
-</style>
-
 
 </head>
 <body>
