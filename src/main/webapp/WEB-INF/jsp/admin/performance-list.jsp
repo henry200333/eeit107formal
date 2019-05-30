@@ -3,19 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Performance</title>
-<link
-	href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap"
-	rel="stylesheet">
-
-</head>
+<jsp:include page="header.jsp"></jsp:include>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="nav.jsp"></jsp:include>
 	<h2></h2>
 	<c:if test="${not empty performances}">
-
 		<table class="r2">
 			<thead>
 				<tr>
@@ -44,7 +36,6 @@
 				</c:forEach>
 			</tbody>
 		</table>
-
 	</c:if>
 </body>
 </html>
