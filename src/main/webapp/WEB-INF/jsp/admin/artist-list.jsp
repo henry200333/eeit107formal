@@ -7,9 +7,12 @@
 <jsp:include page="header.jsp"></jsp:include>
 <body>
 	<jsp:include page="nav.jsp"></jsp:include>
+	
+
+	 <div class="container">
 	<h1>list from Artist</h1>
 	<a style="color: black" href="/admin/artist/add">Add</a>
-	<table>
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>id</th>
@@ -29,5 +32,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	</div>
 </body>
 </html>
