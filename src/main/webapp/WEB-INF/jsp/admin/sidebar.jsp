@@ -5,9 +5,9 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/activity/list">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/artist/list">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-fw fa-drum"></i>
+          <i class="fas fa-fw fa-guitar"></i>
         </div>
         <div class="sidebar-brand-text mx-3">JAYEE<sup> 1.0</sup></div>
       </a>
