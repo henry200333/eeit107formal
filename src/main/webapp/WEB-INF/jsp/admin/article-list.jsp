@@ -33,7 +33,7 @@
 						<h1 class="h3 mb-0 text-gray-800">List of Article</h1>
 						<a href="#"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
 					</div>
 
 					<!-- Add New Article Button -->
@@ -62,8 +62,8 @@
 												<th>CONTEXT</th>
 												<th>TYPE</th>
 												<th>REF_ID</th>
-												<th>EDIT</th>
-												<th>DELETE</th>
+												<th></th>
+												<th></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -74,8 +74,8 @@
 													<td>${bean.context}</td>
 													<td>${bean.type}</td>
 													<td>${bean.refId}</td>
-													<td><a href="" class="btn btn-primary"><i class="fas fa-edit"></i></a></td>
-													<td><a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
+													<td><a href="" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a></td>
+													<td><a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
 												</tr>
 											</c:forEach>
 										</tbody>

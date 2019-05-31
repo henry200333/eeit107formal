@@ -21,7 +21,7 @@
       </div>
 
       <!-- Nav Item - Artist -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="/admin/artist/list">
           <i class="fas fa-fw fa-users"></i>
           <span>Artist</span></a>
