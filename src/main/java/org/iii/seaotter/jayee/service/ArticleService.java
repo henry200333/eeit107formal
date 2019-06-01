@@ -33,4 +33,8 @@ public class ArticleService {
 		Article artist = articleDao.save(entity);
 		return artist;
 	}
+	
+	public void delete() {
+		
+	}
 }
