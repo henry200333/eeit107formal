@@ -4,77 +4,100 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<style>
-.allpage{
-	width: 1200px;
-	margin: auto;
-}
-.c1 {
-	font-size: 30px;
-	border-radius: 15px;
-	color: white;
-	background-color: #FF8888;
-	font-weight: bold;
-}
-.t2 {
-	font-size: 20px;
-	border: 1px solid black;
-	padding: 10px;
-}
-.r2 {
-	text-align: center;
-	line-height: 50px;
-	margin: auto;
-	margin-top: 50px;
-	font-family: 'Overpass Mono', monospace;
-}
-th {
-	background-color: #FFCCCC;
-	font-weight: bold;
-}
-</style>
-<title>header</title>
-</head>
-<body>
-	<jsp:include page="header.jsp"></jsp:include>
-	<div class="allpage">
-		<h2>List of Article</h2>
-		<input type="button" value="add"
-			onclick="javascript:location.href='add'">
-		<hr>
-		<c:if test="${not empty articleList}">
-			<table border="1" class="r2">
-				<thead>
-				<tr>
-					<caption class="c1">Performance</caption>
-				</tr>
-					<tr>
-						<th class="t2">ID</th>
-						<th class="t2">NAME</th>
-						<th class="t2">CONTEXT</th>
-						<th class="t2">TYPE</th>
-						<th class="t2">REF_ID</th>
-						<th class="t2">EDIT</th>
-						<th class="t2">DELETE</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="bean" items="${articleList}">
-						<tr>
-							<td class="t2">${bean.id}</td>
-							<td class="t2">${bean.name}</td>
-							<td class="t2">${bean.context}</td>
-							<td class="t2">${bean.type}</td>
-							<td class="t2">${bean.refId}</td>
-							<td class="t2"><input type="button" value="EDIT"></td>
-							<td class="t2"><input type="button" value="DELETE"></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</c:if>
+
+<!-- header -->
+<jsp:include page="header.jsp"></jsp:include>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<jsp:include page="sidebar.jsp"></jsp:include>
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<jsp:include page="topbar.jsp"></jsp:include>
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+
+					<!-- Page Heading -->
+					<div
+						class="d-sm-flex align-items-center justify-content-between mb-4">
+						<h1 class="h3 mb-0 text-gray-800">List of Article</h1>
+						<a href="#"
+							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
+					</div>
+
+					<!-- Add New Article Button -->
+					<a href="add" class="btn btn-primary btn-icon-split"> <span
+						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
+					</span> <span class="text">Add New Article</span>
+					</a>
+
+					<hr>
+
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">List of
+								Article</h6>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<c:if test="${not empty articleList}">
+
+									<table class="table table-bordered table-striped table-hover"
+										id="dataTable" width="100%" cellspacing="0">
+										<thead>
+											<tr>
+												<th>ID</th>
+												<th>NAME</th>
+												<th>CONTEXT</th>
+												<th>TYPE</th>
+												<th>REF_ID</th>
+												<th></th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="bean" items="${articleList}">
+												<tr>
+													<td>${bean.id}</td>
+													<td>${bean.name}</td>
+													<td>${bean.context}</td>
+													<td>${bean.type}</td>
+													<td>${bean.refId}</td>
+													<td><a href="" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a></td>
+													<td><a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</c:if>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- /.container-fluid -->
+
+			</div>
+			<!-- End of Main Content -->
+
+			<jsp:include page="footer.jsp"></jsp:include>
+
+		</div>
+		<!-- End of Content Wrapper -->
+
 	</div>
+	<!-- End of Page Wrapper -->
+		
 </body>
 </html>

@@ -6,17 +6,22 @@ import org.iii.seaotter.jayee.dao.ArticleDao;
 import org.iii.seaotter.jayee.entity.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class ArticleService {
 	@Autowired
 	private ArticleDao articleDao;
 	
+	@Transactional(readOnly=true)
 	public List<Article> getAll(){
 		return articleDao.findAll();
 	}
 	
-	public Article addAll(Article article){
-		return articleDao.save(article);
-	}
+	
+	public Article getById(Long id){
+		
+		return articleDao.findById(id).orElse(null);
+	} 
 }
