@@ -30,7 +30,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">List of Article</h1>
+						<h1 class="h3 mb-0 text-gray-800">List of Performance</h1>
 						<a href="#"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
 							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
@@ -39,7 +39,7 @@
 					<!-- Add New Article Button -->
 					<a href="add" class="btn btn-primary btn-icon-split"> <span
 						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
-					</span> <span class="text">Add New Article</span>
+					</span> <span class="text">Add New Performance</span>
 					</a>
 
 					<hr>
@@ -47,7 +47,7 @@
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">List of
-								Article</h6>
+								Performance</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
