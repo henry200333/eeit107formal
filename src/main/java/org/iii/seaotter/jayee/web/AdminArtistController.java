@@ -18,7 +18,7 @@ public class AdminArtistController {
 	
 	@RequestMapping("/list")
 	public String listPage(Model model) {
-		model.addAttribute("models",artistService.getAll());
+		model.addAttribute("artistlist",artistService.getAll());
 		return "/admin/artist-list";
 		
 	}
