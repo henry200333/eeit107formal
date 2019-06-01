@@ -37,7 +37,7 @@
 					</div>
 
 					<!-- Add New Article Button -->
-					<a href="add" class="btn btn-primary btn-icon-split"> <span
+					<a href="add" class="btn btn-primary btn-icon-split" style="background-color: #66009D;border: 1px solid #66009D;"> <span
 						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
 					</span> <span class="text">Add New Performance</span>
 					</a>
