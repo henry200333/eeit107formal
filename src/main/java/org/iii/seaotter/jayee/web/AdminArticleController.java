@@ -2,6 +2,8 @@ package org.iii.seaotter.jayee.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin/article")
 public class AdminArticleController {
-	
+
 	@Autowired
 	private ArticleService articleService;
-	
+
 	@RequestMapping("/list")
 	public String listPage(Model model) {
 		List<Article> list = articleService.getAll();
@@ -27,7 +29,6 @@ public class AdminArticleController {
 	@RequestMapping("/add")
 	public String addPage() {
 		return "/admin/article-add";
-
 	}
 
 	@RequestMapping("/edit")
@@ -36,9 +37,12 @@ public class AdminArticleController {
 
 	}
 
-	public String insert() {
-		return null;
-
+	@RequestMapping("/insert")
+	public String insert(Article article, Model model) {
+		articleService.insert(article);
+		List<Article> list = articleService.getAll();
+		model.addAttribute("articleList", list);
+		return "/admin/article-list";
 	}
 
 	public String update() {
@@ -50,5 +54,5 @@ public class AdminArticleController {
 		return null;
 
 	}
-	
+
 }
