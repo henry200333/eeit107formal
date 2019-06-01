@@ -16,7 +16,6 @@ public class AdminForumController {
 	@RequestMapping("/list")
 	public String listPage(Model model) {
 		model.addAttribute("models", forumService.getAll());
-		System.out.println(forumService.getAll().get(1));
 		return "/admin/forum-list";
 	}
 	
