@@ -4,10 +4,10 @@ INSERT INTO article (name, context, type, ref_id) values
   ('AI贏過放射專家', '肺癌預測的人機對決 谷歌AI贏過6位放射專家', 2, 200);
  
  insert into forum (board, name, context, comment_date) values
- (null, '薔薔', '大家好', '2019/05/25 18:13:21'),
- (null, '博恩', '我真有那麼尷尬嗎？', '2019/05/22 13:50:02'),
- (null, '豬孝天', '流星雨揪團', '2006/03/04 13:14:55'),
- (null, '永和金城武', '不要再冒充我了！', '2019/05/28 20:00:27');
+ ('Ariticle', '薔薔', '大家好', '2019/05/25 18:13:21'),
+ ('Ariticle', '博恩', '我真有那麼尷尬嗎？', '2019/05/22 13:50:02'),
+ ('Ariticle', '豬孝天', '流星雨揪團', '2006/03/04 13:14:55'),
+ ('Ariticle', '永和金城武', '不要再冒充我了！', '2019/05/28 20:00:27');
  
  INSERT INTO performance (name,youtube_url,update_time,activity_id) values
  ('中正紀念堂舞蹈表演','www.youtube.com','2019/05/25 17:12:05',1),
