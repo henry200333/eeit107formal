@@ -26,8 +26,8 @@ public class Article {
 	private String name;
 	@Column(name="type")
 	private Integer type;
-	@Column(name="context")
-	private String context;
+	@Column(name="content")
+	private String content;
 	
 	
 	

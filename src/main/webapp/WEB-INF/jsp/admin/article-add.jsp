@@ -35,45 +35,50 @@
 					</div>
 
 					<!-- Return to Article -->
-					<a href="list" class="btn btn-primary btn-icon-split"> <span
+					<a href="list" class="btn btn-info btn-icon-split"> <span
 						class="icon text-white-50"> <i class="fas fa-reply"></i>
 					</span> <span class="text">Return to Article</span>
 					</a>
 
 					<hr>
 
-					<form class="user">
-						<div class="form-group row">
-							<div class="col-sm-9 mb-3 mb-sm-0">
+					<form class="user" id="addArticle" name="addArticle" action="/admin/article/insert" method="POST">
+						<div class="form-group row" style="font-family:'Noto Sans TC', sans-serif;">
+							<div class="col-sm-3 mb-3 mb-sm-0">
+								<label for="name">ID:</label> <input type="text"
+									class="form-control form-control-user" id="id" name="id"
+									placeholder="系統將自動產生ID" readonly>
+							</div>
+							<div class="col-sm-6 mb-3 mb-sm-0">
 								<label for="name">NAME:</label> <input type="text"
 									class="form-control form-control-user" id="name" name="name"
-									placeholder="NAME">
+									placeholder="NAME" value="${param.name}">
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0"></div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-9 mb-3 mb-sm-0">
-								<label for="context">CONTEXT:</label>
-								<textarea class="form-control" id="context" name="context"></textarea>
+								<label for="content">CONTENT:</label>
+								<textarea class="form-control" id="content" name="content">${param.content}</textarea>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="type">TYPE:</label> <input type="text"
 									class="form-control form-control-user" id="type" name="type"
-									placeholder="TYPE">
+									placeholder="TYPE" value="${param.type}">
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="refId">REF_ID:</label> <input type="text"
 									class="form-control form-control-user" id="refId" name="refId"
-									placeholder="REF_ID">
+									placeholder="REF_ID" value="${param.refId}">
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 						</div>
-						<a href="#" class="btn btn-primary btn-user btn-block"><span
+						<a href="javascript:document.getElementById('addArticle').submit();" class="btn btn-primary btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-import"></i>
-						</span> <span class="text"> Insert New Article</span></a> <a href="#"
+						</span> <span class="text"> Insert New Article</span></a> <a href="javascript:document.getElementById('addArticle').reset();"
 							class="btn btn-danger btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
 						</span> <span class="text"> Reset Input</span></a>
