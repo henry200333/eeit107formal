@@ -2,13 +2,12 @@ package org.iii.seaotter.jayee.web;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -37,12 +36,10 @@ public class AdminArticleController {
 
 	}
 
-	@RequestMapping("/insert")
-	public String insert(Article article, Model model) {
+	@PostMapping("/insert")
+	public String insert(Article article) {
 		articleService.insert(article);
-		List<Article> list = articleService.getAll();
-		model.addAttribute("articleList", list);
-		return "/admin/article-list";
+		return "redirect:/admin/article/list";
 	}
 
 	public String update() {
