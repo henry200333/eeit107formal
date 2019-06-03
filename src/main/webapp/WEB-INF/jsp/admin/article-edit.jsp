@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 
@@ -42,48 +43,48 @@
 
 					<hr>
 
-					<form class="user" id="editArticle" name="editArticle" action="" method="POST">
+					<form:form modelAttribute="article" class="user" action="/admin/article/update" method="POST">
 						<div class="form-group row" style="font-family:'Noto Sans TC', sans-serif;">
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="name">ID:</label> <input type="text"
 									class="form-control form-control-user" id="id" name="id"
-									placeholder="" value="${param.id}"  readonly>
+									placeholder="" value="${articleParam.id}"  readonly>
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<label for="name">NAME:</label> <input type="text"
-									class="form-control form-control-user" id="name" name="name"
-									placeholder="NAME" value="${param.name}">
+								<label for="name">NAME:</label> <form:input
+									class="form-control form-control-user" path="name"
+									placeholder="NAME" value="${articleParam.name}"/>
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0"></div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-9 mb-3 mb-sm-0">
 								<label for="context">CONTENT:</label>
-								<textarea class="form-control" id="content" name="content">${param.content}</textarea>
+								<textarea id="content" name="content" class="form-control">${articleParam.content}</textarea>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="type">TYPE:</label> <input type="text"
-									class="form-control form-control-user" id="type" name="type"
-									placeholder="TYPE" value="${param.type}">
+								<label for="type">TYPE:</label> <form:input path="type"
+									class="form-control form-control-user"
+									placeholder="TYPE" value="${articleParam.type}"/>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="refId">REF_ID:</label> <input type="text"
-									class="form-control form-control-user" id="refId" name="refId"
-									placeholder="REF_ID" value="${param.refId}">
+								<label for="refId">REF_ID:</label> <form:input path="refId"
+									class="form-control form-control-user"
+									placeholder="REF_ID" value="${articleParam.refId}"/>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 						</div>
-						<a href="javascript:document.getElementById('editArticle').submit();" class="btn btn-primary btn-user btn-block"><span
+						<a href="javascript:document.getElementById('article').submit();" class="btn btn-primary btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-import"></i>
-						</span> <span class="text"> Edit This Article</span></a> <a href="javascript:document.getElementById('editArticle').reset();"
+						</span> <span class="text"> Edit This Article</span></a> <a href="javascript:document.getElementById('article').reset();"
 							class="btn btn-danger btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
 						</span> <span class="text"> Reset Input</span></a>
 
-					</form>
+					</form:form>
 				</div>
 				<!-- /.container-fluid -->
 

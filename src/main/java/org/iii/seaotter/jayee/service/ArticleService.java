@@ -22,20 +22,21 @@ public class ArticleService {
 	public Article getById(Long id) {
 		return articleDao.findById(id).orElse(null);
 	}
-	
+
 	public Article insert(Article entity) {
-		System.out.println(entity);
-			Article article = articleDao.save(entity);
+		Article article = articleDao.save(entity);
 		return article;
 	}
-	
-	public Article update() {
-		Article entity = new Article();
-		Article artist = articleDao.save(entity);
-		return artist;
+
+	public Article update(Article entity) {
+		Article article = null;
+		if (articleDao.findById(entity.getId()) != null) {
+			article = articleDao.save(entity);
+		}
+		return article;
 	}
-	
+
 	public void delete() {
-		
+
 	}
 }

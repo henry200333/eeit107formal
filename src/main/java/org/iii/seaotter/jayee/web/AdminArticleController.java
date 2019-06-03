@@ -25,6 +25,7 @@ public class AdminArticleController {
 	public String listPage(Model model) {
 		List<Article> list = articleService.getAll();
 		model.addAttribute("articleList", list);
+		model.addAttribute("article", new Article());
 		return "/admin/article-list";
 
 	}
@@ -36,9 +37,10 @@ public class AdminArticleController {
 	}
 
 	@RequestMapping("/edit")
-	public String editPage() {
+	public String editPage(@ModelAttribute("article") Article article, Model model) {
+		article = articleService.getById(article.getId());
+		model.addAttribute("articleParam", article);
 		return "/admin/article-edit";
-
 	}
 
 	@PostMapping("/insert")
@@ -50,15 +52,22 @@ public class AdminArticleController {
 		articleService.insert(article);
 		return "redirect:/admin/article/list";
 	}
-
-	public String update() {
-		return null;
+	
+	@PostMapping("/update")
+	public String update(@Valid@ModelAttribute("article") Article article, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("articleParam", article);
+			return "/admin/article-edit";
+		}
+		articleService.update(article);
+		return "redirect:/admin/article/list";
 
 	}
-
+	
+	@PostMapping("/delete")
 	public String delete() {
+		
 		return null;
-
 	}
 
 }

@@ -50,43 +50,43 @@
 								Article</h6>
 						</div>
 						<div class="card-body">
-							<div class="table-responsive" style="font-family:'Noto Sans TC', sans-serif;">
+							<div class="table-responsive"
+								style="font-family: 'Noto Sans TC', sans-serif;">
 								<c:if test="${not empty articleList}">
-
-									<table class="table table-bordered table-striped table-hover"
-										id="dataTable" width="100%" cellspacing="0">
-										<thead>
-											<tr>
-												<th>ID</th>
-												<th>NAME</th>
-												<th>CONTENT</th>
-												<th>TYPE</th>
-												<th>REF_ID</th>
-												<th></th>
-												<th></th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="bean" items="${articleList}">
-											<c:url value="/admin/article/edit" var="path">
-											<c:param name="id" value="${bean.id}"></c:param>
-											<c:param name="name" value="${bean.name}"></c:param>
-											<c:param name="content" value="${bean.content}"></c:param>
-											<c:param name="type" value="${bean.type}"></c:param>
-											<c:param name="refId" value="${bean.refId}"></c:param>
-											</c:url>
+									<form id="article" name="article" action="" method="post">
+										<table class="table table-bordered table-striped table-hover"
+											id="dataTable" width="100%" cellspacing="0">
+											<thead>
 												<tr>
-													<td>${bean.id}</td>
-													<td>${bean.name}</td>
-													<td>${bean.content}</td>
-													<td>${bean.type}</td>
-													<td>${bean.refId}</td>
-													<td><a href="${path}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a></td>
-													<td><a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+													<th>ID</th>
+													<th>NAME</th>
+													<th>CONTENT</th>
+													<th>TYPE</th>
+													<th>REF_ID</th>
+													<th></th>
+													<th></th>
 												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
+											</thead>
+											<tbody>
+												<c:forEach var="bean" items="${articleList}">
+													<tr>
+														<td>${bean.id}</td>
+														<td>${bean.name}</td>
+														<td>${bean.content}</td>
+														<td>${bean.type}</td>
+														<td>${bean.refId}</td>
+														<td><input type="text" id="id" name="id"
+															style="display: none"> <a id="${bean.id}"
+															href="javascript:document.getElementById('article').submit();"
+															onclick="sendId(this)" class="btn btn-primary btn-sm"><i
+																class="fas fa-edit"></i></a></td>
+														<td><a id="" href="" class="btn btn-danger btn-sm"><i
+																class="fas fa-trash"></i></a></td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</form>
 								</c:if>
 							</div>
 						</div>
@@ -105,6 +105,12 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
-		
+	<script>
+		function sendId(Object) {
+			article.action = '/admin/article/edit';
+			document.getElementById("id").value = Object.id;
+			document.article.submit();
+		}
+	</script>
 </body>
 </html>
