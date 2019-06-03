@@ -43,7 +43,7 @@
 					<hr>
 
 					<form class="user" id="addForum" name="addArticle"
-						action="/admin/article/insert" method="POST">
+						action="/admin/forum/insert" method="POST">
 						<div class="form-group row"
 							style="font-family: 'Noto Sans TC', sans-serif;">
 							<div class="col-sm-6 mb-3 mb-sm-0">

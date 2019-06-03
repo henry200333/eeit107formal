@@ -33,7 +33,8 @@ public class Forum {
 	@Column(name="comment_date")
 	private java.util.Date commentDate;
 
-	enum Board {
+
+	public enum Board {
 		Ariticle, Activity, Performance
 	}
 

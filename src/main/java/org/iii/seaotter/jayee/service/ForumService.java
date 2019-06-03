@@ -15,5 +15,9 @@ public class ForumService {
 	public List<Forum> getAll(){
 		return forumDao.findAll();
 	}
+	
+	public Forum create(Forum forum) {	
+		return forumDao.save(forum);
+	}
 
 }
