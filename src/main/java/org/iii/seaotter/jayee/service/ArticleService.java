@@ -24,6 +24,7 @@ public class ArticleService {
 	}
 	
 	public Article insert(Article entity) {
+		System.out.println(entity);
 			Article article = articleDao.save(entity);
 		return article;
 	}
