@@ -36,7 +36,9 @@ public class ArticleService {
 		return article;
 	}
 
-	public void delete() {
-
+	public void delete(Article entity) {
+		if (articleDao.findById(entity.getId()) != null) {
+			articleDao.delete(entity);
+		}
 	}
 }

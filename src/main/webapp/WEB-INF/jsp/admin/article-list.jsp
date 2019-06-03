@@ -76,12 +76,11 @@
 														<td>${bean.type}</td>
 														<td>${bean.refId}</td>
 														<td><input type="text" id="id" name="id"
-															style="display: none"> <a id="${bean.id}"
-															href="javascript:document.getElementById('article').submit();"
+															style="display: none"><a id="${bean.id}" href="javascript:document.getElementById('article').submit();"
 															onclick="sendId(this)" class="btn btn-primary btn-sm"><i
 																class="fas fa-edit"></i></a></td>
-														<td><a id="" href="" class="btn btn-danger btn-sm"><i
-																class="fas fa-trash"></i></a></td>
+														<td><a id="${bean.id}" href="javascript:document.getElementById('article').submit();" onclick="deleId(this)"
+															class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -109,7 +108,10 @@
 		function sendId(Object) {
 			article.action = '/admin/article/edit';
 			document.getElementById("id").value = Object.id;
-			document.article.submit();
+		}
+		function deleId(Object) {
+			article.action = '/admin/article/delete';
+			document.getElementById("id").value = Object.id;
 		}
 	</script>
 </body>

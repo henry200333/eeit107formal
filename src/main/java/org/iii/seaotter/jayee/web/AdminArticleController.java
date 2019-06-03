@@ -65,9 +65,9 @@ public class AdminArticleController {
 	}
 	
 	@PostMapping("/delete")
-	public String delete() {
-		
-		return null;
+	public String delete(@ModelAttribute("article") Article article) {
+		articleService.delete(article);
+		return "redirect:/admin/article/list";
 	}
 
 }
