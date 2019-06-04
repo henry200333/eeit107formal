@@ -28,12 +28,13 @@ public class Forum {
 	private Board board;
 	@Column(name="name")
 	private String name;
-	@Column(name="context")
-	private String context;
+	@Column(name="content")
+	private String content;
 	@Column(name="comment_date")
 	private java.util.Date commentDate;
 
-	enum Board {
+
+	public enum Board {
 		Ariticle, Activity, Performance
 	}
 
