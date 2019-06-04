@@ -19,7 +19,7 @@ public class AdminVenderController {
 	@RequestMapping("/list")
 
 	public String listPage(Model model) {	
-		model.addAttribute("models", venderService.getAll());
+		model.addAttribute("venders", venderService.getAll());
 		return "/admin/vender-list";
 	}
 
