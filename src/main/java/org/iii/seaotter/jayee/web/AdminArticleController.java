@@ -1,7 +1,5 @@
 package org.iii.seaotter.jayee.web;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.entity.Article;

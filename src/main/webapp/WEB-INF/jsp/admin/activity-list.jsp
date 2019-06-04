@@ -52,7 +52,7 @@
 						<div class="card-body">
 							<div class="table-responsive">
 								<c:if test="${not empty activityList}">
-									
+									<form id="activity" name="activity" action="" method="post">
 									<table class="table table-bordered table-striped table-hover"
 										id="dataTable" width="100%" cellspacing="0">
 										<thead>
@@ -74,12 +74,17 @@
 													<td>${bean.artist}</td>
 													<td>${bean.beginTime}</td>
 													<td>${bean.endTime}</td>
-													<td><a href="" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a></td>
-													<td><a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+													<td><input type="text" id="id" name="id"
+															style="display: none"><a id="${bean.id}" href="javascript:document.getElementById('activity').submit();"
+															onclick="sendId(this)" class="btn btn-primary btn-sm"><i
+																class="fas fa-edit"></i></a></td>
+													<td><a id="${bean.id}" href="javascript:document.getElementById('activity').submit();" onclick="deleId(this)"
+															class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
 												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
+									</form>
 								</c:if>
 							</div>
 						</div>
@@ -95,5 +100,15 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
+	<script>
+		function sendId(Object) {
+			activity.action = '/admin/activity/edit';
+			document.getElementById("id").value = Object.id;
+		}
+		function deleId(Object) {
+			activity.action = '/admin/activity/delete';
+			document.getElementById("id").value = Object.id;
+		}
+	</script>
 </body>
 </html>
