@@ -35,6 +35,8 @@ public class Article {
 	@Column(name="content")
 	private String content;
 	
-	
+	public enum Board {
+		Ariticle, Activity, Performance, Vender
+	}
 	
 }

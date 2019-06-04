@@ -1,7 +1,5 @@
 package org.iii.seaotter.jayee.web;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.entity.Article;
@@ -23,8 +21,7 @@ public class AdminArticleController {
 
 	@RequestMapping("/list")
 	public String listPage(Model model) {
-		List<Article> list = articleService.getAll();
-		model.addAttribute("articleList", list);
+		model.addAttribute("articleList", articleService.getAll());
 		model.addAttribute("article", new Article());
 		return "/admin/article-list";
 
