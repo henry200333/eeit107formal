@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
 <!DOCTYPE html>
 <html>
 
@@ -42,32 +43,37 @@
 
 					<hr>
 
-					<form class="user">
+					<form:form modelAttribute="performance" class="user"
+						action="/admin/performance/insert" method="POST">
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
-								<label for="name">NAME:</label> <input type="text"
-									class="form-control form-control-user" id="name" name="name"
-									placeholder="NAME">
+								<form:input path="name" class="form-control form-control-user"
+									placeholder="NAME" value=""	onblur="checkName()" />
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0"></div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
-								<label for="context">URL:</label> <input type="text"
-									class="form-control form-control-user" id="url" name="url"
-									placeholder="URL">
+								<label for="context">URL:</label>
+								 <form:input path="url" class="form-control form-control-user"
+									placeholder="URL" value="" />
+									
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
-								<label for="type">Related activities:</label> <input type="text"
-									class="form-control form-control-user" id="activitiy"
-									name="activitiy" placeholder="ACTIVITY">
+								<label for="type">Related activities:</label>
+								<form:input path="activityId" class="form-control form-control-user"
+									placeholder="ACTIVITYID" value="" />
+								<datalist id = "activityselect">
+									<option value="123">									
+								</datalist>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<a href="#" class="btn btn-primary btn-user btn-block"><span
+								<a href="javascript:document.getElementById('performance').submit();" 
+								class="btn btn-primary btn-user btn-block"><span
 									class="icon text-white-50"> <i
 										class="fas fa-file-import"></i>
 								</span> <span class="text">OK</span></a>
@@ -75,13 +81,14 @@
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<a href="#" class="btn btn-danger btn-user btn-block"><span
+								<a href="javascript:document.getElementById('performance').reset();" 
+								class="btn btn-danger btn-user btn-block"><span
 									class="icon text-white-50"> <i class="fas fa-file-excel"></i>
 								</span> <span class="text"> Reset</span></a>
 							</div>
 						</div>
 
-					</form>
+					</form:form>
 				</div>
 				<!-- /.container-fluid -->
 
