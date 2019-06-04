@@ -23,8 +23,7 @@ public class AdminArticleController {
 
 	@RequestMapping("/list")
 	public String listPage(Model model) {
-		List<Article> list = articleService.getAll();
-		model.addAttribute("articleList", list);
+		model.addAttribute("articleList", articleService.getAll());
 		model.addAttribute("article", new Article());
 		return "/admin/article-list";
 
