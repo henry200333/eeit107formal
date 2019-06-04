@@ -75,7 +75,7 @@
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="commentDate">Date:</label> <input type="text"
-									class="form-control form-control-user" id="commentDat" name="commentDat"
+									class="form-control form-control-user" id="showDate" name="showDate"
 									placeholder="系統將自動產生Date" value="${forum}" readonly>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>

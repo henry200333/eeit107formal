@@ -25,7 +25,7 @@ public class AdminForumController {
 	}
 	@RequestMapping("/add")
 	public String addPage(Model model) {
-		model.addAttribute("forum",null);
+		model.addAttribute("forum",new Forum());
 		return "/admin/forum-add";
 	}
 	@RequestMapping("/edit")
@@ -36,12 +36,13 @@ public class AdminForumController {
 	}
 	@PostMapping("/insert")
 	public String insert(@ModelAttribute("forum") Forum forum, Model model) {
-		
+		forum.setCommentDate(new Timestamp(new java.util.Date().getTime()));
 		forumService.create(forum);
 		return "redirect:/admin/forum/list";
 	}
 	@PostMapping("/update")
 	public String update(@ModelAttribute("forum") Forum forum, Model model) {
+		forum.setCommentDate(forumService.getById(forum.getId()).getCommentDate());
 		forumService.update(forum);
 		return "redirect:/admin/forum/list";
 	}
