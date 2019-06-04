@@ -80,10 +80,12 @@
 													<td>${bean.name}</td>
 													<td>${bean.content}</td>
 													<td>${bean.commentDate}</td>
-													<td><a href="${path}" class="btn btn-primary btn-sm"><i
-															class="fas fa-edit"></i></a></td>
-													<td><a href="" class="btn btn-danger btn-sm"><i
-															class="fas fa-trash"></i></a></td>
+													<td><input type="text" id="id" name="id"
+															style="display: none"><a id="${bean.id}" href="javascript:document.getElementById('forum').submit();"
+															onclick="sendId(this)" class="btn btn-primary btn-sm"><i
+																class="fas fa-edit"></i></a></td>
+														<td><a id="${bean.id}" href="javascript:document.getElementById('forum').submit();" onclick="deleId(this)"
+															class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -106,6 +108,16 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
+	<script>
+		function sendId(Object) {
+			article.action = '/admin/forum/edit';
+			document.getElementById("id").value = Object.id;
+		}
+		function deleId(Object) {
+			article.action = '/admin/forum/delete';
+			document.getElementById("id").value = Object.id;
+		}
+	</script>
 
 </body>
 </html>

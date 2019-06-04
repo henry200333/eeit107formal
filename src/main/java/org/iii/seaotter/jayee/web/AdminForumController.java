@@ -1,66 +1,53 @@
 package org.iii.seaotter.jayee.web;
 
-import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
 
 import org.iii.seaotter.jayee.entity.Forum;
-import org.iii.seaotter.jayee.entity.Forum.Board;
 import org.iii.seaotter.jayee.service.ForumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin/forum")
 public class AdminForumController {
-
 	@Autowired
 	private ForumService forumService;
 	
 	@RequestMapping("/list")
 	public String listPage(Model model) {
 		model.addAttribute("models", forumService.getAll());
+		model.addAttribute("forum", new Forum());
 		return "/admin/forum-list";
 	}
-	
 	@RequestMapping("/add")
 	public String addPage(Model model) {
+		model.addAttribute("forum",null);
 		return "/admin/forum-add";
 	}
 	@RequestMapping("/edit")
-	public String editPage(Model model) {
+	public String editPage(@ModelAttribute("forum") Forum forum,Model model) {
+		forum = forumService.getById(forum.getId());
+		model.addAttribute("forumParam", forum);
 		return "/admin/forum-edit";
 	}
-	
-	public String update() {
-		return null;
+	@PostMapping("/insert")
+	public String insert(@ModelAttribute("forum") Forum forum, Model model) {
+		
+		forumService.create(forum);
+		return "redirect:/admin/forum/list";
 	}
-	public String delete() {
-		return null;
+	@PostMapping("/update")
+	public String update(@ModelAttribute("forum") Forum forum, Model model) {
+		forumService.update(forum);
+		return "redirect:/admin/forum/list";
 	}
-	
-
-	@RequestMapping("/insert")
-	public String insert(Model model, HttpServletRequest request) {
-		Forum forum = null;
-		try {
-			request.setCharacterEncoding("UTF-8");
-			forum = new Forum();
-			forum.setName(request.getParameter("name"));
-			forum.setBoard(Board.valueOf(request.getParameter("Board")));
-			forum.setContent(request.getParameter("content"));
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
-			forum.setCommentDate(new java.sql.Timestamp(new java.util.Date().getTime()));
-			forumService.create(forum);
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}		
-		return listPage(model);
+	@PostMapping("/delete")
+	public String delete(@ModelAttribute("forum") Forum forum, Model model) {
+		forumService.delete(forum);
+		return "redirect:/admin/forum/list";
 	}
-	
-	
 }
