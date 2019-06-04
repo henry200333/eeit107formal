@@ -105,11 +105,11 @@
 	<!-- End of Page Wrapper -->
 	<script>
 		function sendId(Object) {
-			article.action = '/admin/artist/edit';
+			artist.action = '/admin/artist/edit';
 			document.getElementById("id").value = Object.id;
 		}
 		function deleId(Object) {
-			article.action = '/admin/artist/delete';
+			artist.action = '/admin/artist/delete';
 			document.getElementById("id").value = Object.id;
 		}
 	</script>

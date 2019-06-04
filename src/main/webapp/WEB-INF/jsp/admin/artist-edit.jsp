@@ -50,7 +50,7 @@
 							<div class="col-sm-6 mb-3 mb-sm-0">
 								<label for="id">Id:</label>
 								<form:input path="id" class="form-control form-control-user"
-									readonly value="${artistParam.id}" />
+									value="${artistParam.id}" readonly="readonly" />
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<form:errors path="name"></form:errors>
