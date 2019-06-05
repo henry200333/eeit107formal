@@ -60,6 +60,7 @@
 												<th>ID</th>
 												<th>Name</th>
 												<th>Artist</th>
+												<th>Description</th>
 												<th>Begin time</th>
 												<th>End time</th>
 												<th></th>
@@ -72,6 +73,7 @@
 													<td>${bean.id}</td>
 													<td>${bean.name}</td>
 													<td>${bean.artist}</td>
+													<td>${bean.description}</td>
 													<td>${bean.beginTime}</td>
 													<td>${bean.endTime}</td>
 													<td><input type="text" id="id" name="id"

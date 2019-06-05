@@ -59,13 +59,13 @@
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="type">Begin Time:</label> <input type="text"
+								<label for="type">Begin Time:</label> <input type="datetime-local"
 									class="form-control form-control-user" id="beginTime" name="beginTime"
 									placeholder="BeginTime">
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="refId">End Time:</label> <input type="text"
+								<label for="refId">End Time:</label> <input type="datetime-local"
 									class="form-control form-control-user" id="endTime" name="endTime"
 									placeholder="EndTime">
 							</div>

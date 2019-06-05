@@ -58,6 +58,7 @@ public class AdminActivityController {
 	}
 	@PostMapping("/update")
 	public String update(@Valid@ModelAttribute("activity") Activity activity, BindingResult bindingResult, Model model) {
+		System.out.println(activity);
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("activityParam", activity);
 			return "/admin/activity-edit";
