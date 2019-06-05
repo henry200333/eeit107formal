@@ -28,13 +28,23 @@ public class Forum {
 	private Board board;
 	@Column(name="name")
 	private String name;
-	@Column(name="context")
-	private String context;
+	@Column(name="content")
+	private String content;
 	@Column(name="comment_date")
 	private java.util.Date commentDate;
 
-	enum Board {
-		Ariticle, Activity, Performance
-	}
 
+	public enum Board {
+		Ariticle, Activity, Performance;
+		
+		public static boolean contains(String string) {
+			for(Board board:Board.values()) {
+				if(board.name().equals(string)) {
+					return true;
+				};
+			}
+			return false;
+		}
+		
+	}
 }

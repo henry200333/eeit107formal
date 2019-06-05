@@ -1,6 +1,110 @@
-<h1>edit by Activity</h1>
-<h2>edit by Activity</h2>
-<h3>edit by Activity</h3>
-<h4>edit by Activity</h4>
-<h5>edit by Activity</h5>
-<h6>edit by Activity</h6>
+<%@page import="org.springframework.web.servlet.ModelAndView"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<!DOCTYPE html>
+<html>
+
+<!-- header -->
+<jsp:include page="header.jsp"></jsp:include>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<jsp:include page="sidebar.jsp"></jsp:include>
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<jsp:include page="topbar.jsp"></jsp:include>
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+
+					<!-- Page Heading -->
+					<div
+						class="d-sm-flex align-items-center justify-content-between mb-4">
+						<h1 class="h3 mb-0 text-gray-800">Edit This Activity</h1>
+
+					</div>
+
+					<!-- Return to Activity -->
+					<a href="list" class="btn btn-info btn-icon-split"> <span
+						class="icon text-white-50"> <i class="fas fa-reply"></i>
+					</span> <span class="text">Return to Activity</span>
+					</a>
+
+					<hr>
+
+					<form:form modelAttribute="activity" class="user" action="/admin/activity/update" method="POST">
+						<div class="form-group row" style="font-family:'Noto Sans TC', sans-serif;">
+							<div class="col-sm-3 mb-3 mb-sm-0">
+								<label for="id">ID:</label> <input type="text"
+									class="form-control form-control-user" id="id" name="id"
+									placeholder="" value="${activityParam.id}"  readonly>
+							</div>
+							<div class="col-sm-3 mb-3 mb-sm-0">
+								<label for="name">Name:</label> <form:input
+									class="form-control form-control-user" path="name"
+									placeholder="NAME" value="${activityParam.name}"/>
+							</div>
+							<div class="col-sm-3 mb-3 mb-sm-0">
+								<label for="artist">Artist:</label> <form:input
+									class="form-control form-control-user" path="artist"
+									placeholder="Artist" value="${activityParam.artist}"/>
+							</div>
+						</div>
+						
+							
+						
+						<div class="form-group row">
+							<div class="col-sm-9 mb-3 mb-sm-0">
+								<label for="description">Description:</label>
+								<textarea id="description" name="description" class="form-control">${activityParam.description}</textarea>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-sm-3 mb-3 mb-sm-0">
+								<label for="beginTime">Begin time:</label> <form:input type="datetime-local" path="beginTime"
+									class="form-control form-control-user"
+									placeholder="BeginTime" value="${activityParam.beginTime}"/>
+							</div>
+							<div class="col-sm-3 mb-3 mb-sm-0"></div>
+							<div class="col-sm-3 mb-3 mb-sm-0">
+								<label for="endTime">End time:</label> <form:input type="datetime-local" path="endTime"
+									class="form-control form-control-user"
+									placeholder="EndTime" value="${activityParam.endTime}"/>
+							</div>
+							<div class="col-sm-3 mb-3 mb-sm-0"></div>
+						</div>
+						<a href="javascript:document.getElementById('activity').submit();" class="btn btn-primary btn-user btn-block"><span
+							class="icon text-white-50"> <i class="fas fa-file-import"></i>
+						</span> <span class="text"> Edit This Activity</span></a> <a href="javascript:document.getElementById('activity').reset();"
+							class="btn btn-danger btn-user btn-block"><span
+							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
+						</span> <span class="text"> Reset Input</span></a>
+
+					</form:form>
+				</div>
+				<!-- /.container-fluid -->
+
+			</div>
+			<!-- End of Main Content -->
+
+			<jsp:include page="footer.jsp"></jsp:include>
+
+		</div>
+		<!-- End of Content Wrapper -->
+
+	</div>
+	<!-- End of Page Wrapper -->
+
+</body>
+</html>

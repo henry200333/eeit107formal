@@ -1,9 +1,12 @@
 package org.iii.seaotter.jayee.web;
 
+import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -21,7 +24,8 @@ public class AdminPerformanceController {
 	}
 
 	@RequestMapping("/add")
-	public String addPage() {
+	public String addPage(Model model) {
+		model.addAttribute("performance", new Performance());
 		return "/admin/performance-add";
 
 	}
@@ -31,9 +35,11 @@ public class AdminPerformanceController {
 		return "/admin/performance-edit";
 
 	}
-
-	public String insert() {
-		return null;
+	@PostMapping("/insert")
+	public String insert(@ModelAttribute("performance") Performance performance,Model model) {
+		performanceSurvice.insert(performance);
+		
+		return "redirect:/admin/performance/list";
 
 	}
 	@RequestMapping("/update")

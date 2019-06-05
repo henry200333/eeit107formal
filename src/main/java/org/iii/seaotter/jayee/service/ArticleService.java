@@ -13,15 +13,32 @@ import org.springframework.transaction.annotation.Transactional;
 public class ArticleService {
 	@Autowired
 	private ArticleDao articleDao;
-	
-	@Transactional(readOnly=true)
-	public List<Article> getAll(){
+
+	@Transactional(readOnly = true)
+	public List<Article> getAll() {
 		return articleDao.findAll();
 	}
-	
-	
-	public Article getById(Long id){
-		
+
+	public Article getById(Long id) {
 		return articleDao.findById(id).orElse(null);
-	} 
+	}
+
+	public Article insert(Article entity) {
+		Article article = articleDao.save(entity);
+		return article;
+	}
+
+	public Article update(Article entity) {
+		Article article = null;
+		if (articleDao.findById(entity.getId()) != null) {
+			article = articleDao.save(entity);
+		}
+		return article;
+	}
+
+	public void delete(Article entity) {
+		if (articleDao.findById(entity.getId()) != null) {
+			articleDao.delete(entity);
+		}
+	}
 }
