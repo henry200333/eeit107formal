@@ -53,40 +53,40 @@
 							<div class="table-responsive"
 								style="font-family: 'Noto Sans TC', sans-serif;">
 								<c:if test="${not empty articleList}">
-									<form id="article" name="article" action="" method="post">
-										<table class="table table-bordered table-striped table-hover"
-											id="dataTable" width="100%" cellspacing="0">
-											<thead>
+									<table class="table table-bordered table-striped table-hover"
+										id="dataTable" width="100%" cellspacing="0">
+										<thead>
+											<tr>
+												<th>ID</th>
+												<th>NAME</th>
+												<th>CONTENT</th>
+												<th>TYPE</th>
+												<th>REF_ID</th>
+												<th></th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="bean" items="${articleList}">
 												<tr>
-													<th>ID</th>
-													<th>NAME</th>
-													<th>CONTENT</th>
-													<th>TYPE</th>
-													<th>REF_ID</th>
-													<th></th>
-													<th></th>
+													<td>${bean.id}</td>
+													<td>${bean.name}</td>
+													<td>${bean.content}</td>
+													<td>${bean.type}</td>
+													<td>${bean.refId}</td>
+													<td><a id="${bean.id}"
+														href="javascript:document.getElementById('article').submit();"
+														onclick="sendId(this)" class="btn btn-primary btn-sm"><i
+															class="fas fa-edit"></i></a></td>
+													<td><a id="${bean.id}"
+														href="javascript:document.getElementById('article').submit();"
+														onclick="deleId(this)" class="btn btn-danger btn-sm"><i
+															class="fas fa-trash"></i></a></td>
 												</tr>
-											</thead>
-											<tbody>
-												<c:forEach var="bean" items="${articleList}">
-													<tr>
-														<td>${bean.id}</td>
-														<td>${bean.name}</td>
-														<td>${bean.content}</td>
-														<td>${bean.type}</td>
-														<td>${bean.refId}</td>
-														<td><a id="${bean.id}"
-															href="javascript:document.getElementById('article').submit();"
-															onclick="sendId(this)" class="btn btn-primary btn-sm"><i
-																class="fas fa-edit"></i></a></td>
-														<td><a id="${bean.id}"
-															href="javascript:document.getElementById('article').submit();"
-															onclick="deleId(this)" class="btn btn-danger btn-sm"><i
-																class="fas fa-trash"></i></a></td>
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
+											</c:forEach>
+										</tbody>
+									</table>
+									<form id="article" name="article" action="" method="post">
 										<input type="text" id="id" name="id" style="display: none">
 									</form>
 								</c:if>

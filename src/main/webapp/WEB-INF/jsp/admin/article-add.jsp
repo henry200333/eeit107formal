@@ -92,7 +92,6 @@
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0">
 								<label for="refId">REF_ID:</label>
-
 								<form:input path="refId" class="form-control form-control-user"
 									placeholder="REF_ID" value="${articleParam.refId}" />
 								<div>
