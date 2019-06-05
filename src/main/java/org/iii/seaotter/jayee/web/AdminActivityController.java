@@ -1,5 +1,7 @@
 package org.iii.seaotter.jayee.web;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -40,6 +42,9 @@ public class AdminActivityController {
 	@RequestMapping("/edit")
 	public String editPage(@ModelAttribute("activity") Activity activity, Model model) {
 		activity = activityService.getById(activity.getId());
+		Date date=activity.getBeginTime();
+		System.out.println(date);
+		
 		model.addAttribute("activityParam", activity);
 		
 		return "/admin/activity-edit";
