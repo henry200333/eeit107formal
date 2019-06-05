@@ -50,7 +50,6 @@
 								<form:input path="name" class="form-control form-control-user"
 									placeholder="NAME" value=""	onblur="checkName()" />
 							</div>
-							<div class="col-sm-6 mb-3 mb-sm-0"></div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
