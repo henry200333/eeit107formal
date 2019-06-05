@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 
@@ -51,6 +51,7 @@
 								<label for="name">NAME:</label> <input type="text"
 									class="form-control form-control-user" id="name" name="name"
 									placeholder="NAME" value="${forumParam.name}">
+									${errorMsg.name}
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="name">ID:</label> <input type="text"
@@ -59,39 +60,39 @@
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0"></div>
 						</div>
-				
+
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="Board">Board:</label> 
-								<select id="Board" name="Board">
-									<option value="Ariticle"
-										${forumParam.board=='Ariticle'?'selected':''}>Article</option>
-									<option value="Activity"
-										${forumParam.board=='Activity'?'selected':''}>Activity</option>
-									<option value="Performance"
-										${forumParam.board=='Performance'?'selected':''}>Performance</option>
+								<label for="Board">Board:</label> <select id="Board"
+									name="Board">
+									<option value="${forumParam.board}">${forumParam.board==null?'請選擇':forumParam.board}</option>
+									<option value="Ariticle">Article</option>
+									<option value="Activity">Activity</option>
+									<option value="Performance">Performance</option>
 								</select>
+								${errorMsg.board}
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="commentDate">Date:</label> <input type="text"
-									class="form-control form-control-user" id="showDate" name="showDate"
-									placeholder="系統將自動產生Date" value="${forum}" readonly>
+									class="form-control form-control-user" id="showDate"
+									name="showDate" placeholder="系統將自動產生Date" value="${forum.commentDate}"
+									readonly>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 						</div>
-								<div class="form-group row">
+						<div class="form-group row">
 							<div class="col-sm-9 mb-3 mb-sm-0">
 								<label for="content">CONTENT:</label>
 								<textarea class="form-control" id="content" name="content">${forumParam.content}</textarea>
+							${errorMsg.content}
 							</div>
 						</div>
-						<a
-							href="javascript:document.getElementById('forum').submit();"
+						<a href="javascript:document.getElementById('forum').submit();"
 							class="btn btn-primary btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-import"></i>
-						</span> <span class="text"> Insert New Forum</span></a> <a
-							href="javascript:document.getElementById('forum').reset();"
+						</span> <span class="text"> Insert New Forum</span></a>
+						<a href="javascript:document.getElementById('forum').reset();"
 							class="btn btn-danger btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
 						</span> <span class="text"> Reset Input</span></a>
