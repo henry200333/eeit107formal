@@ -44,28 +44,34 @@
 
 					<form class="user">
 						<div class="form-group row">
-							<div class="col-sm-9 mb-3 mb-sm-0">
+							<div class="col-sm-5 mb-3 mb-sm-0">
 								<label for="name">Name:</label> <input type="text"
 									class="form-control form-control-user" id="name" name="name"
 									placeholder="NAME">
 							</div>
+							<div class="col-sm-4 mb-3 mb-sm-0">
+								<label for="artist">Artist:</label>
+								<input type="text"
+									class="form-control form-control-user" id="artist" name="artist"
+									placeholder="Artist">
+							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0"></div>
 						</div>
 						<div class="form-group row">
-							<div class="col-sm-9 mb-3 mb-sm-0">
-								<label for="context">Artist:</label>
-								<textarea class="form-control" id="artist" name="artist"></textarea>
-							</div>
+						<div class="col-sm-9 mb-3 mb-sm-0">
+								<label for="description">Description:</label>
+								<textarea class="form-control" id="description" name="description"></textarea>
+							</div>	
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="type">Begin Time:</label> <input type="datetime-local"
+								<label for="beginTime">Begin Time:</label> <input type="datetime-local"
 									class="form-control form-control-user" id="beginTime" name="beginTime"
 									placeholder="BeginTime">
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="refId">End Time:</label> <input type="datetime-local"
+								<label for="endTime">End Time:</label> <input type="datetime-local"
 									class="form-control form-control-user" id="endTime" name="endTime"
 									placeholder="EndTime">
 							</div>
