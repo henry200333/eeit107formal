@@ -35,7 +35,16 @@ public class Forum {
 
 
 	public enum Board {
-		Ariticle, Activity, Performance
+		Ariticle, Activity, Performance;
+		
+		public static boolean contains(String string) {
+			for(Board board:Board.values()) {
+				if(board.name().equals(string)) {
+					return true;
+				};
+			}
+			return false;
+		}
+		
 	}
-
 }
