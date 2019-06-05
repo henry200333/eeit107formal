@@ -30,6 +30,9 @@ public class Activity {
 	@Column(name="artist")
 	private String artist;
 	
+	@Column(name="description")
+	private String description;
+	
 	@Column(name="begin_time")
 	private java.util.Date beginTime;
 	
