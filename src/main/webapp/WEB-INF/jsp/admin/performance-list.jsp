@@ -5,8 +5,7 @@
 <html>
 <jsp:include page="header.jsp"></jsp:include>
 <body>
-<jsp:include page="nav.jsp"></jsp:include>
-	<h2></h2>
+<jsp:include page="nav.jsp"></jsp:include>	
 	<c:if test="${not empty performances}">
 		<table>
 			<thead>
