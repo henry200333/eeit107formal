@@ -26,7 +26,8 @@
 				<jsp:include page="topbar.jsp"></jsp:include>
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid" style="font-family: 'Noto Sans TC', sans-serif;">
+				<div class="container-fluid"
+					style="font-family: 'Noto Sans TC', sans-serif;">
 
 					<!-- Page Heading -->
 					<div
@@ -56,9 +57,9 @@
 								<form:input path="name" class="form-control form-control-user"
 									placeholder="NAME" value="${articleParam.name}"
 									onblur="checkName()" />
+							<div>
+								<form:errors path="name" cssClass="text-danger"></form:errors>
 							</div>
-							<div class="col-sm-3 mb-3 mb-sm-0">
-								<form:errors path="name"></form:errors>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -70,19 +71,35 @@
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="type">TYPE:</label>
-								<form:input path="type" class="form-control form-control-user"
-									placeholder="TYPE" value="${articleParam.type}" />
+								<div class=" input-group">
+									<input type="text" id="type" name="type" class="form-control" value="${articleParam.type}">
+									<div class="input-group-append">
+										<button class="btn btn-secondary dropdown-toggle"
+											type="button" id="dropdownMenuButton" data-toggle="dropdown"
+											aria-haspopup="true">選擇TYPE</button>
+										<div class="dropdown-menu"
+											aria-labelledby="dropdownMenuButton">
+											<a class="dropdown-item" href="javascript:return false;" onclick="selectArtist()">Artist</a> <a
+												class="dropdown-item" href="javascript:return false;" onclick="selectActivity()">Activity</a> <a
+												class="dropdown-item" href="javascript:return false;" onclick="selectPerformance()">Performance</a> <a
+												class="dropdown-item" href="javascript:return false;" onclick="selectVender()">Vender</a>
+										</div>
+									</div>
+								</div>
+								<div>
+									<form:errors path="type" cssClass="text-danger"></form:errors>
+								</div>
 							</div>
-							<div class="col-sm-3 mb-3 mb-sm-0">
-								<form:errors path="type"></form:errors>
-							</div>
-							<div class="col-sm-3 mb-3 mb-sm-0">
+							<div class="col-sm-6 mb-3 mb-sm-0">
 								<label for="refId">REF_ID:</label>
 
+								<form:input path="refId" class="form-control form-control-user"
+									placeholder="REF_ID" value="${articleParam.refId}" />
+								<div>
+									<form:errors path="refId" cssClass="text-danger"></form:errors>
+								</div>
 							</div>
-							<div class="col-sm-3 mb-3 mb-sm-0">
-								<form:errors path="refId"></form:errors>
-							</div>
+
 						</div>
 						<a href="javascript:document.getElementById('article').submit();"
 							class="btn btn-primary btn-user btn-block"><span
@@ -101,7 +118,20 @@
 			<!-- End of Main Content -->
 
 			<jsp:include page="footer.jsp"></jsp:include>
-
+			<script>
+				function selectArtist() {
+					document.getElementById('type').value = 'Artist';
+				}
+				function selectActivity() {
+					document.getElementById('type').value = 'Activity';
+				}
+				function selectPerformance() {
+					document.getElementById('type').value = 'Performance';
+				}
+				function selectVender() {
+					document.getElementById('type').value = 'Vender';
+				}
+			</script>
 		</div>
 		<!-- End of Content Wrapper -->
 
