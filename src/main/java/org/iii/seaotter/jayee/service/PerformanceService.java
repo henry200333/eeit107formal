@@ -8,12 +8,15 @@ import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class PerformanceService {
 	@Autowired
 	private PerformanceDao performanceDao;
 	
+	@Transactional(readOnly=true)
 	public List<Performance> getAll(){
 		return performanceDao.findAll();
 		
