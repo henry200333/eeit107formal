@@ -49,12 +49,13 @@ public class AdminForumController {
 		if (forum.getContent() == null || forum.getContent().trim() == "") {
 			errorMsg.put("content", "content不要空");
 		}
-		if (!Board.contains(forum.getBoard().name())) {
+		if (forum.getBoard() == null || !Board.contains(forum.getBoard().name())) {
 			errorMsg.put("board", "board不要空");
 		}
+
 		if (!errorMsg.isEmpty()) {
 			model.addAttribute("forumParam", forum);
-			model.addAttribute("errorMsg",errorMsg);
+			model.addAttribute("errorMsg", errorMsg);
 			return "/admin/forum-add";
 		}
 		forum.setCommentDate(new Timestamp(new java.util.Date().getTime()));
