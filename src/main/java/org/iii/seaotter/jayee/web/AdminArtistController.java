@@ -34,6 +34,7 @@ public class AdminArtistController {
 
 	@RequestMapping("/edit")
 	public String editPage(@ModelAttribute("artist") Artist artist, Model model) {
+		System.out.println("test123");
 		artist = artistService.getById(artist.getId());
 		model.addAttribute("artistParam", artist);
 		return "/admin/artist-edit";
@@ -51,6 +52,7 @@ public class AdminArtistController {
 
 	@PostMapping("/update")
 	public String update(@Valid @ModelAttribute("artist") Artist artist, BindingResult bindingResult, Model model) {
+		System.out.println("123");
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("artistParam", artist);
 			return "/admin/artist-edit";
