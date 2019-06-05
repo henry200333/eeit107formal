@@ -50,28 +50,35 @@
 									class="form-control form-control-user" id="id" name="id"
 									placeholder="" value="${activityParam.id}"  readonly>
 							</div>
-							<div class="col-sm-6 mb-3 mb-sm-0">
+							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="name">Name:</label> <form:input
 									class="form-control form-control-user" path="name"
 									placeholder="NAME" value="${activityParam.name}"/>
 							</div>
-							<div class="col-sm-6 mb-3 mb-sm-0"></div>
+							<div class="col-sm-3 mb-3 mb-sm-0">
+								<label for="artist">Artist:</label> <form:input
+									class="form-control form-control-user" path="artist"
+									placeholder="Artist" value="${activityParam.artist}"/>
+							</div>
 						</div>
+						
+							
+						
 						<div class="form-group row">
 							<div class="col-sm-9 mb-3 mb-sm-0">
-								<label for="artist">Artist:</label>
-								<textarea id="artist" name="artist" class="form-control">${activityParam.artist}</textarea>
+								<label for="description">Description:</label>
+								<textarea id="description" name="description" class="form-control">${activityParam.description}</textarea>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="beginTime">Begin time:</label> <form:input path="beginTime"
+								<label for="beginTime">Begin time:</label> <form:input type="datetime-local" path="beginTime"
 									class="form-control form-control-user"
 									placeholder="BeginTime" value="${activityParam.beginTime}"/>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="endTime">End time:</label> <form:input path="endTime"
+								<label for="endTime">End time:</label> <form:input type="datetime-local" path="endTime"
 									class="form-control form-control-user"
 									placeholder="EndTime" value="${activityParam.endTime}"/>
 							</div>
