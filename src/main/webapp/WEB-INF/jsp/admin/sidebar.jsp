@@ -21,14 +21,14 @@
       </div>
 
       <!-- Nav Item - Artist -->
-      <li class="nav-item">
+      <li id="navArtist" class="nav-item">
         <a class="nav-link" href="/admin/artist/list">
           <i class="fas fa-fw fa-users"></i>
           <span>Artist</span></a>
       </li>
 
       <!-- Nav Item - Activity -->
-      <li class="nav-item">
+      <li id="navActivity" class="nav-item">
         <a class="nav-link" href="/admin/activity/list">
           <i class="fas fa-fw fa-calendar-alt"></i>
           <span>Activity</span>
@@ -36,7 +36,7 @@
       </li>
 
       <!-- Nav Item - Performance -->
-      <li class="nav-item">
+      <li id="navPerformance" class="nav-item">
         <a class="nav-link" href="/admin/performance/list">
           <i class="fas fa-fw fa-film"></i>
           <span>Performance</span>
@@ -44,7 +44,7 @@
       </li>
 
       <!-- Nav Item - Vender -->
-      <li class="nav-item">
+      <li id="navVender" class="nav-item">
         <a class="nav-link" href="/admin/vender/list">
           <i class="fas fa-fw fa-dollar-sign"></i>
           <span>Vender</span>
@@ -52,14 +52,14 @@
       </li>
 
       <!-- Nav Item - Article -->
-      <li class="nav-item">
+      <li id="navArticle" class="nav-item">
         <a class="nav-link" href="/admin/article/list">
           <i class="fas fa-fw fa-file-alt"></i>
           <span>Article</span></a>
       </li>
 
       <!-- Nav Item - Forum -->
-      <li class="nav-item">
+      <li id="navForum" class="nav-item">
         <a class="nav-link" href="/admin/forum/list">
           <i class="fas fa-fw fa-comments"></i>
           <span>Forum</span></a>
