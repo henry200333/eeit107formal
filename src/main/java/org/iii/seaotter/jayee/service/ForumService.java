@@ -19,5 +19,17 @@ public class ForumService {
 	public Forum create(Forum forum) {	
 		return forumDao.save(forum);
 	}
+	
+	public Forum getById(Long id) {
+		return forumDao.findById(id).orElse(null);
+	}
+	
+	public void update(Forum forum) {
+		forumDao.save(forum);
+	}
+	
+	public void delete(Forum forum) {
+		forumDao.delete(forum);
+	}
 
 }
