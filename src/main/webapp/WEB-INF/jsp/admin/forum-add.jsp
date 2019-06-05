@@ -30,72 +30,76 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Add New Forum</h1>
-
+						<h1 class="h3 mb-0 text-gray-800">List of Forum</h1>
+						<a href="#"
+							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
 					</div>
 
-					<!-- Return to Article -->
-					<a href="list" class="btn btn-info btn-icon-split"> <span
-						class="icon text-white-50"> <i class="fas fa-reply"></i>
-					</span> <span class="text">Return to Forum</span>
+					<!-- Add New Article Button -->
+					<a href="add" class="btn btn-primary btn-icon-split"> <span
+						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
+					</span> <span class="text">Add New Forum</span>
 					</a>
 
 					<hr>
 
-					<form class="user" id="addForum" name="addArticle"
-						action="/admin/forum/insert" method="POST">
-						<div class="form-group row"
-							style="font-family: 'Noto Sans TC', sans-serif;">
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<label for="name">NAME:</label> <input type="text"
-									class="form-control form-control-user" id="name" name="name"
-									placeholder="NAME" value="${param.name}">
-							</div>
-							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="name">ID:</label> <input type="text"
-									class="form-control form-control-user" id="id" name="id"
-									value="${param.id}" placeholder="系統將自動產生ID" readonly>
-							</div>
-							<div class="col-sm-6 mb-3 mb-sm-0"></div>
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">List of Forum</h6>
 						</div>
-				
-						<div class="form-group row">
-							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="Board">Board:</label> 
-								<select id="Board" name="Board">
-									<option value="Ariticle"
-										${param.board=='Ariticle'?'selected':''}>Article</option>
-									<option value="Activity"
-										${param.board=='Activity'?'selected':''}>Activity</option>
-									<option value="Performance"
-										${param.board=='Performance'?'selected':''}>Performance</option>
-								</select>
-							</div>
-							<div class="col-sm-3 mb-3 mb-sm-0"></div>
-							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="commentDate">Date:</label> <input type="text"
-									class="form-control form-control-user" id="commentDate" name="commentDate"
-									placeholder="系統將自動產生Date" value="${param.commentDate}" readonly>
-							</div>
-							<div class="col-sm-3 mb-3 mb-sm-0"></div>
-						</div>
-								<div class="form-group row">
-							<div class="col-sm-9 mb-3 mb-sm-0">
-								<label for="content">CONTENT:</label>
-								<textarea class="form-control" id="content" name="content">${param.content}</textarea>
-							</div>
-						</div>
-						<a
-							href="javascript:document.getElementById('addForum').submit();"
-							class="btn btn-primary btn-user btn-block"><span
-							class="icon text-white-50"> <i class="fas fa-file-import"></i>
-						</span> <span class="text"> Insert New Forum</span></a> <a
-							href="javascript:document.getElementById('addForum').reset();"
-							class="btn btn-danger btn-user btn-block"><span
-							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
-						</span> <span class="text"> Reset Input</span></a>
+						<div class="card-body">
+							<div class="table-responsive">
+								<c:if test="${not empty models}">
+									<table class="table table-bordered table-striped table-hover"
+										id="dataTable" width="100%" cellspacing="0">
+										<thead>
+											<tr>
+												<th>ID</th>
+												<th>board</th>
+												<th>name</th>
+												<th>content</th>
+												<th>commentDate</th>
+												<th>EDIT</th>
+												<th>DELETE</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="bean" items="${models}">
+												<c:url value="/admin/forum/edit" var="path">
+													<c:param name="id" value="${bean.id}"></c:param>
+													<c:param name="name" value="${bean.name}"></c:param>
+													<c:param name="content" value="${bean.content}"></c:param>
+													<c:param name="board" value="${bean.board}"></c:param>
+													<c:param name="commentDate" value="${bean.commentDate}"></c:param>
+												</c:url>
 
-					</form>
+												<tr>
+													<td>${bean.id}</td>
+													<td>${bean.board}</td>
+													<td>${bean.name}</td>
+													<td>${bean.content}</td>
+													<td>${bean.commentDate}</td>
+													<td><a id="${bean.id}"
+														href="javascript:document.getElementById('forum').submit();"
+														onclick="sendId(this)" class="btn btn-primary btn-sm"><i
+															class="fas fa-edit"></i></a></td>
+													<td><a id="${bean.id}"
+														href="javascript:document.getElementById('forum').submit();"
+														onclick="deleId(this)" class="btn btn-danger btn-sm"><i
+															class="fas fa-trash"></i></a></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									<form id="forum" method="post">
+										<input type="text" id="id" name="id" style="display: none">
+									</form>
+								</c:if>
+							</div>
+						</div>
+					</div>
+
 				</div>
 				<!-- /.container-fluid -->
 
@@ -109,6 +113,16 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
+	<script>
+		function sendId(Object) {
+			forum.action = '/admin/forum/edit';
+			document.getElementById("id").value = Object.id;
+		}
+		function deleId(Object) {
+			forum.action = '/admin/forum/delete';
+			document.getElementById("id").value = Object.id;
+		}
+	</script>
 
 </body>
 </html>
