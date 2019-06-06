@@ -53,7 +53,7 @@
 									placeholder="ex:Peter" value="${artistParam.name}" />
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<form:errors path="name"></form:errors>
+								<form:errors path="name" cssClass="text-danger"></form:errors>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -64,7 +64,7 @@
 									value="${artistParam.fanNumber}" />
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<form:errors path="fanNumber"></form:errors>
+								<form:errors path="fanNumber" cssClass="text-danger"></form:errors>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -75,7 +75,7 @@
 									value="${artistParam.location}" />
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<form:errors path="location"></form:errors>
+								<form:errors path="location" cssClass="text-danger"></form:errors>
 							</div>
 						</div>
 						<a href="javascript:document.getElementById('artist').submit();"

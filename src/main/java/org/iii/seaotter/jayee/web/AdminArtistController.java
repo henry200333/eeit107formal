@@ -43,7 +43,7 @@ public class AdminArtistController {
 	public String insert(@Valid @ModelAttribute("artist") Artist artist, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("artistParam", artist);
-			return "/admin/article-add";
+			return "/admin/artist-add";
 		}
 		artistService.insert(artist);
 		return "redirect:/admin/artist/list";
