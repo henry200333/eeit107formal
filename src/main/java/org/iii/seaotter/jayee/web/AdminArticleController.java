@@ -1,5 +1,7 @@
 package org.iii.seaotter.jayee.web;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.entity.Article;
@@ -11,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/admin/article")
@@ -38,6 +41,12 @@ public class AdminArticleController {
 		article = articleService.getById(article.getId());
 		model.addAttribute("articleParam", article);
 		return "/admin/article-edit";
+	}
+	
+	@RequestMapping("/query")
+	@ResponseBody  //轉成JSON
+	public List<Article> query(String name){
+		return articleService.getAll();
 	}
 
 	@PostMapping("/insert")
