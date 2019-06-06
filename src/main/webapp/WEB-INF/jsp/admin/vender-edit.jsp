@@ -30,19 +30,19 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Edit This Article</h1>
+						<h1 class="h3 mb-0 text-gray-800">Edit This Vender</h1>
 
 					</div>
 
 					<!-- Return to Article -->
 					<a href="list" class="btn btn-info btn-icon-split"> <span
 						class="icon text-white-50"> <i class="fas fa-reply"></i>
-					</span> <span class="text">Return to Article</span>
+					</span> <span class="text">Return to Vender</span>
 					</a>
 
 					<hr>
 
-					<form class="user" id="editArticle" name="editVender" action="" method="POST">
+					<form class="user" id="editVender" name="editVender" action="" method="POST">
 						<div class="form-group row" style="font-family:'Noto Sans TC', sans-serif;">
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="name">ID:</label> <input type="text"
