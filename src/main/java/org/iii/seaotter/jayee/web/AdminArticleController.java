@@ -44,7 +44,7 @@ public class AdminArticleController {
 	}
 	
 	@RequestMapping("/query")
-	@ResponseBody  //ˋ轉成JSON
+	@ResponseBody  //轉成JSON
 	public List<Article> query(String name){
 		return articleService.getAll();
 	}
