@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -50,52 +51,22 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<c:if test="${not empty models}">
-									<table class="table table-bordered table-striped table-hover"
-										id="dataTable" width="100%" cellspacing="0">
-										<thead>
-											<tr>
-												<th>ID</th>
-												<th>board</th>
-												<th>name</th>
-												<th>content</th>
-												<th>commentDate</th>
-												<th>EDIT</th>
-												<th>DELETE</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="bean" items="${models}">
-												<c:url value="/admin/forum/edit" var="path">
-													<c:param name="id" value="${bean.id}"></c:param>
-													<c:param name="name" value="${bean.name}"></c:param>
-													<c:param name="content" value="${bean.content}"></c:param>
-													<c:param name="board" value="${bean.board}"></c:param>
-													<c:param name="commentDate" value="${bean.commentDate}"></c:param>
-												</c:url>
-
-												<tr>
-													<td>${bean.id}</td>
-													<td>${bean.board}</td>
-													<td>${bean.name}</td>
-													<td>${bean.content}</td>
-													<td>${bean.commentDate}</td>
-													<td><a id="${bean.id}"
-														href="javascript:document.getElementById('forum').submit();"
-														onclick="sendId(this)" class="btn btn-primary btn-sm"><i
-															class="fas fa-edit"></i></a></td>
-													<td><a id="${bean.id}"
-														href="javascript:document.getElementById('forum').submit();"
-														onclick="deleId(this)" class="btn btn-danger btn-sm"><i
-															class="fas fa-trash"></i></a></td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-									<form id="forum" method="post">
-										<input type="text" id="id" name="id" style="display: none">
-									</form>
-								</c:if>
+								<table class="table table-bordered table-striped table-hover"
+									id="dataTable" width="100%" cellspacing="0">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>board</th>
+											<th>name</th>
+											<th>content</th>
+											<th>commentDate</th>
+											<th>EDIT</th>
+											<th>DELETE</th>
+										</tr>
+									</thead>
+									<tbody id="tbody">
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -114,14 +85,26 @@
 	</div>
 	<!-- End of Page Wrapper -->
 	<script>
-		function sendId(Object) {
-			forum.action = '/admin/forum/edit';
-			document.getElementById("id").value = Object.id;
+	$.ajax({
+		url:"query",
+		type:"GET",
+		success:function(data){
+			showNames(data);
 		}
-		function deleId(Object) {
-			forum.action = '/admin/forum/delete';
-			document.getElementById("id").value = Object.id;
-		}
+	})
+
+	function showNames(data){
+		var txt = "";
+		$.each(data,function(index,value){
+			txt += "<tr>";
+			for(i in value){
+				txt += "<td>"+ value[i]+ "</td>";
+			}
+			txt += "</tr>";
+		})
+		$("#tbody").html(txt);
+	}
+	
 	</script>
 
 </body>
