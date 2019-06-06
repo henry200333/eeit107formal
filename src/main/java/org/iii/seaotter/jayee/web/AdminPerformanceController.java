@@ -1,14 +1,16 @@
 package org.iii.seaotter.jayee.web;
 
-import javax.validation.Valid;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,13 +19,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/admin/performance")
 public class AdminPerformanceController {
-	
+
 	@Autowired
 	private PerformanceService performanceSurvice;
-	
+
 	@RequestMapping("/list")
 	public String listPage(Model model) {
-		model.addAttribute("performances",performanceSurvice.getAll() );
+		model.addAttribute("performances", performanceSurvice.getAll());
 		return "/admin/performance-list";
 
 	}
@@ -36,8 +38,8 @@ public class AdminPerformanceController {
 	}
 
 	@RequestMapping("/edit")
-	public String editPage(@RequestParam("id") String idget,Model model) {
-		Long id =Long.parseLong(idget);
+	public String editPage(@RequestParam("id") String idget, Model model) {
+		Long id = Long.parseLong(idget);
 		Performance performance = performanceSurvice.getById(id);
 		Performance performanceUpdate = new Performance();
 		model.addAttribute("performance", performanceUpdate);
@@ -45,23 +47,92 @@ public class AdminPerformanceController {
 		return "/admin/performance-edit";
 
 	}
+
 	@PostMapping("/insert")
-	public String insert(@ModelAttribute("performance") Performance performance,Model model) {
+	public String insert(@ModelAttribute("performance") Performance performance, Model model) {
+
+		Map<String, String> errorMsg = new HashMap<>();
+		model.addAttribute("error",errorMsg );
+		String name = performance.getName();
+		String url = performance.getUrl();
+		Long aid = performance.getActivityId();
+
+		// name
+		if (name == null || name.trim().length() == 0) {
+			errorMsg.put("name", "NAME欄位不能為空");
+		}
+
+		// url
+		if (url == null || url.trim().length() == 0) {
+			errorMsg.put("url", "URL欄位不能為空");
+		}else {
+			try {
+				URL checkUrl = new URL(url);
+				checkUrl.openStream();
+			} catch (Exception e) {
+				e.printStackTrace();
+				errorMsg.put("url", "無效的網址");
+			}
+		}
+
+		//aid
+		if (aid == null ) {
+			errorMsg.put("aid", "ACTIVITYID欄位不能為空");
+		}
+		System.out.println(performance);
+		if (!errorMsg.isEmpty()) {	
+			model.addAttribute("peformacnce", performance);
+			return "/admin/performance-add";
+		}
 		performanceSurvice.insert(performance);
-		
 		return "redirect:/admin/performance/list";
 
 	}
+
 	@PostMapping("/update")
-	public String update(@ModelAttribute("performance") Performance performance,  Model model) {
+	public String update(@ModelAttribute("performance") Performance performance, Model model) {
+		Map<String, String> errorMsg = new HashMap<>();
+		model.addAttribute("error",errorMsg );
+		String name = performance.getName();
+		String url = performance.getUrl();
+		Long aid = performance.getActivityId();
+
+		// name
+		if (name == null || name.trim().length() == 0) {
+			errorMsg.put("name", "NAME欄位不能為空");
+		}
+
+		// url
+		if (url == null || url.trim().length() == 0) {
+			errorMsg.put("url", "URL欄位不能為空");
+		}else {
+			try {
+				URL checkUrl = new URL(url);
+				checkUrl.openStream();
+			} catch (Exception e) {
+				e.printStackTrace();
+				errorMsg.put("url", "無效的網址");
+			}
+		}
+
+		//aid
+		if (aid == null ) {
+			errorMsg.put("aid", "ACTIVITYID欄位不能為空");
+		}
+		System.out.println(performance);
+		if (!errorMsg.isEmpty()) {	
+			model.addAttribute("peformacnce", performance);
+			return "/admin/performance-edit";
+		}
+		
 		boolean re = performanceSurvice.update(performance);
-		System.out.println("re");
 		return "redirect:/admin/performance/list";
 
 	}
+
 	@PostMapping("delete")
 	public String delete(@RequestParam("id") String idget) {
-		Long id =Long.parseLong(idget);
+		Long id = Long.parseLong(idget);
 		Performance performance = new Performance();
 		performance.setId(id);
 		performanceSurvice.delete(performance);
