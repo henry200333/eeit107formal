@@ -39,8 +39,9 @@ public class AdminVenderController {
 
 	@RequestMapping("/edit")
 	public String editPage() {
-		return "/admin/vender-edit";
 
+
+		return "/admin/vender-edit";
 	}
 
 	
@@ -75,9 +76,40 @@ public class AdminVenderController {
 
 
 	}
+	@PostMapping("/update")
+	public String update(@ModelAttribute("vender") Vender vender, Model model) {
+		Map<String, String> errMsg = new HashMap<>();
+		System.out.println(vender);
+		String name=vender.getName();
+		if(name==null||name.trim().length()==0) {
+			errMsg.put("nameerr", "請輸入名字");
+		}
+		String address=vender.getAddress();
+		if(address==null||address.trim().length()==0) {
+			errMsg.put("addresserr", "請輸入地址");
+		}
+		Integer max_people=vender.getMaxPeople();
+		if(max_people==null||max_people==0) {
+			errMsg.put("max_peopleerr", "請輸入容納人數");
+		}
+		String phone=vender.getPhone();
+		if(phone==null||phone.trim().length()==0) {
+			errMsg.put("phoneerr", "請輸入電話");
+		}
+		if(!errMsg.isEmpty()) {
+			model.addAttribute("venderParam", vender);
+			model.addAttribute("errMsg",errMsg);
+			return "/admin/vender-add";
+		}
+		if(!errMsg.isEmpty()) {
+			model.addAttribute("venderParam", vender);
+			model.addAttribute("errMsg",errMsg);
+			return "/admin/vender-edit";
 
-	public String update() {
-		return null;
+		}
+		venderService.edit(vender);
+		return "redirect:/admin/vender/list";
+		
 
 	}
 	@PostMapping("/delete")

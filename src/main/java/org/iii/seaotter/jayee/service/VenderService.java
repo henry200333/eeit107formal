@@ -26,4 +26,7 @@ public class VenderService {
 		  venderDao.deleteById(id);
 		  return ;
 	}
+	public Vender edit(Vender vender) {	
+		return venderDao.save(vender);
+	}
 }

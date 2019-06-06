@@ -42,7 +42,7 @@
 
 					<hr>
 
-					<form class="user" id="editVender" name="editVender" action="" method="POST">
+					<form class="user" id="editVender" name="editVender" action="/admin/vender/update" method="POST">
 						<div class="form-group row" style="font-family:'Noto Sans TC', sans-serif;">
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="name">ID:</label> <input type="text"
@@ -78,7 +78,7 @@
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 						</div>
-						<a href="javascript:document.getElementById('editvender').submit();" class="btn btn-primary btn-user btn-block"><span
+						<a href="javascript:document.getElementById('editVender').submit();" class="btn btn-primary btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-import"></i>
 						</span> <span class="text"> Edit This Article</span></a> <a href="javascript:document.getElementById('editArticle').reset();"
 							class="btn btn-danger btn-user btn-block"><span
