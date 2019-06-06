@@ -54,35 +54,6 @@
 									<form id="artist" name="artist" action="" method="post">
 										<table class="table table-bordered table-striped table-hover"
 											id="dataTable" width="100%" cellspacing="0">
-											<thead>
-												<tr>
-													<th>ID</th>
-													<th>NAME</th>
-													<th>FAN_NUMBER</th>
-													<th>LOCATION</th>
-													<th></th>
-													<th></th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach var="bean" items="${artistlist}">
-													<tr>
-														<td>${bean.id }</td>
-														<td>${bean.name }</td>
-														<td>${bean.fanNumber }</td>
-														<td>${bean.location }</td>
-														<td><input type="text" id="id" name="id"
-															style="display: none"><a id="${bean.id}"
-															href="javascript:document.getElementById('artist').submit();"
-															onclick="sendId(this)" class="btn btn-primary btn-sm"><i
-																class="fas fa-edit"></i></a></td>
-														<td><a id="${bean.id}"
-															href="javascript:document.getElementById('artist').submit();"
-															onclick="deleId(this)" class="btn btn-danger btn-sm"><i
-																class="fas fa-trash"></i></a></td>
-													</tr>
-												</c:forEach>
-											</tbody>
 										</table>
 									</form>
 								</c:if>
@@ -104,6 +75,26 @@
 	</div>
 	<!-- End of Page Wrapper -->
 	<script>
+		$.ajax({
+			url : "query",
+			type : "GET",
+			success : function(data) {
+				query(data);
+			}
+		});
+
+		function query(data) {
+			var txt = "";
+			$.each(data, function(idx, val) {
+				txt += "<tr>";
+				for (i in val) {
+					txt += "<td>" + val[i] + "</td>";
+				}
+				txt += "</tr>"
+			});
+			$("#dataTable").html(txt);
+		}
+
 		function sendId(Object) {
 			artist.action = '/admin/artist/edit';
 			document.getElementById("id").value = Object.id;

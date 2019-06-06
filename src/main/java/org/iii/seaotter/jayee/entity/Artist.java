@@ -22,13 +22,10 @@ public class Artist {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-	@NotNull(message = "Name欄位不可空白")
 	@Column(name = "name")
 	private String name;
-	@NotNull(message = "FanNumber欄位不可空白")
 	@Column(name = "fan_number")
 	private Long fanNumber;
-	@NotNull(message = "Location欄位不可空白")
 	@Column(name = "location")
 	private String location;
 

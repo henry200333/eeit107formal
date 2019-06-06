@@ -24,7 +24,7 @@ public class Article {
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
-	@NotNull(message="REF_ID欄位不可空白")
+	@NotNull(message="REF _ID欄位不可空白")
 	@Column(name="ref_id")
 	private Long refId;
 	@Size(min=2, max=30,message="長度必須介於2~30字元之間")

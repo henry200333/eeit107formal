@@ -1,5 +1,7 @@
 package org.iii.seaotter.jayee.web;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.entity.Artist;
@@ -11,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/admin/artist")
@@ -38,7 +41,13 @@ public class AdminArtistController {
 		model.addAttribute("artistParam", artist);
 		return "/admin/artist-edit";
 	}
-
+	
+	@RequestMapping("/query")
+	@ResponseBody
+	public List<Artist> query(){
+		return artistService.getAll();
+	}
+	
 	@PostMapping("/insert")
 	public String insert(@Valid @ModelAttribute("artist") Artist artist, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
