@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/admin/performance")
@@ -28,6 +31,12 @@ public class AdminPerformanceController {
 		model.addAttribute("performances", performanceSurvice.getAll());
 		return "/admin/performance-list";
 
+	}
+	
+	@RequestMapping("/query")
+	@ResponseBody  //轉成JSON
+	public List<Performance> query(){
+		return performanceSurvice.getAll();
 	}
 
 	@RequestMapping("/add")

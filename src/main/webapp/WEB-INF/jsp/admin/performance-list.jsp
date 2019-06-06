@@ -54,45 +54,8 @@
 								<c:if test="${not empty performances}">
 
 									<table class="table table-bordered table-striped table-hover"
-										id="dataTable" width="100%" cellspacing="0">
-										<thead>
-											<tr>
-												<th>ID</th>
-												<th>Name</th>
-												<th>YOUTUBE_URL</th>
-												<th>UPDATE_TIME</th>
-												<th>ACTIVITY_ID</th>
-												<th>UPDATE</th>
-												<th class="t2">DELETE</th>
-											</tr>
-										</thead>
-										<tbody>
-
-											<c:forEach var="bean" items="${performances}">
-												<tr>
-													<td>${bean.id}</td>
-													<td>${bean.name}</td>
-													<td>${bean.url}</td>
-													<td>${bean.updateTime}</td>
-													<td>${bean.activityId}</td>
-
-													<td>
-														<form action="/admin/performance/edit" method="post">															
-															<input type="hidden" name="id" value="${bean.id}">
-															<button type="submit" class="btn btn-primary btn-sm"><i
-															class="fas fa-edit"></i></button>
-														</form>
-													</td>
-
-													<td><form action="/admin/performance/delete" method="post">															
-															<input type="hidden" name="id" value="${bean.id}">
-															<button type="submit" class="btn btn-danger btn-sm"><i
-															class="fas fa-trash"></i></button>
-														</form></td>
-
-												</tr>
-											</c:forEach>
-										</tbody>
+										id="dataTable" width="100%" cellspacing="0" >										
+										
 									</table>
 
 								</c:if>
@@ -113,6 +76,28 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
-
+<script>
+	$.ajax({
+		url:"/admin/performance/query",
+		type:"POST",
+		success: function(data){
+			var txt="<thead><tr><th>ID</th><th>Name</th><th>YOUTUBE_URL</th><th>UPDATE_TIME</th><th>ACTIVITY_ID</th></thead>";
+			$("#dataTable").html(txt);
+			showNames(data);			
+		}
+	});
+	
+	function showNames(data){
+		var txt2 = "";
+		$.each(data,function(index,value){
+			txt2 += "<tr>";
+			for(i in value){
+				txt2 += "<td>"+ value[i]+ "</td>";
+			}
+			txt2 += "</tr>";
+		})
+		$("#dataTable").append(txt2);
+	}
+</script>
 </body>
 </html>
