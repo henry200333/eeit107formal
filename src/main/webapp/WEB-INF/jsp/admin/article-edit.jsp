@@ -56,7 +56,7 @@
 								<label for="name">NAME:</label>
 								<form:input class="form-control form-control-user" path="name"
 									placeholder="NAME" value="${articleParam.name}" />
-									<div>
+								<div>
 									<form:errors path="name" cssClass="text-danger"></form:errors>
 								</div>
 							</div>
@@ -85,7 +85,8 @@
 											<a class="dropdown-item" href="javascript:return false;"
 												onclick="selectPerformance()">Performance</a> <a
 												class="dropdown-item" href="javascript:return false;"
-												onclick="selectVender()">Vender</a>
+												onclick="selectVender()">Vender</a><a class="dropdown-item"
+												href="javascript:return false;" onclick="selectOther()">Other</a>
 										</div>
 									</div>
 								</div>
@@ -121,16 +122,19 @@
 			<jsp:include page="footer.jsp"></jsp:include>
 			<script>
 				function selectArtist() {
-					document.getElementById('type').value = 'Artist';
+					$("#type").val("Artist");
 				}
 				function selectActivity() {
-					document.getElementById('type').value = 'Activity';
+					$("#type").val("Activity");
 				}
 				function selectPerformance() {
-					document.getElementById('type').value = 'Performance';
+					$("#type").val("Performance");
 				}
 				function selectVender() {
-					document.getElementById('type').value = 'Vender';
+					$("#type").val("Vender");
+				}
+				function selectOther() {
+					$("#type").val("Other");
 				}
 			</script>
 		</div>
