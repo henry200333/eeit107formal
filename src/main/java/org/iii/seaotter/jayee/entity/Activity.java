@@ -35,7 +35,7 @@ public class Activity {
 	@Column(name="description")
 	private String description;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	@Column(name="begin_time")
 	private java.util.Date beginTime;
 	

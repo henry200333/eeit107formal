@@ -5,7 +5,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
-
 <!-- header -->
 <jsp:include page="header.jsp"></jsp:include>
 
@@ -72,13 +71,13 @@
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="beginTime">Begin time:</label> <form:input type="datetime-local" path="beginTime"
+								<label for="beginTime">Begin time:</label> <form:input id="beT" type="datetime-local" path="beginTime"
 									class="form-control form-control-user"
-									placeholder="BeginTime" value="2013-03-25T22:30:00.0"/>
+									placeholder="BeginTime" value=""/>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="endTime">End time:</label> <form:input type="datetime-local" path="endTime"
+								<label for="endTime">End time:</label> <form:input path="endTime"
 									class="form-control form-control-user"
 									placeholder="EndTime" value="${activityParam.endTime}"/>
 							</div>
@@ -107,4 +106,11 @@
 	<!-- End of Page Wrapper -->
 
 </body>
+<script>
+// 	var txt = "";
+// 	var date=new Date(${activityParam.beginTime});		
+// 	txt = date.getFullYear() +"-"+ fix((date.getMonth() + 1), 2) +"-"+ fix(date.getDate(), 2) + "T"+fix(date.getHours(), 2) + ":" + fix(date.getMinutes(), 2);
+//     $("#beT").val(txt);		
+	
+</script>
 </html>

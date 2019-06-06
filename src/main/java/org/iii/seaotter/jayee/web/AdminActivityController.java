@@ -1,5 +1,6 @@
 package org.iii.seaotter.jayee.web;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin/activity")
 public class AdminActivityController {
+	
+	
 	
 	@Autowired
 	private ActivityService activityService;
@@ -42,9 +45,10 @@ public class AdminActivityController {
 	@RequestMapping("/edit")
 	public String editPage(@ModelAttribute("activity") Activity activity, Model model) {
 		activity = activityService.getById(activity.getId());
-		Date date=activity.getBeginTime();
-		System.out.println(date);
-		
+//		Date date=activity.getBeginTime();
+//		String bGdateToStr = date.toString();
+//		String beginTime=bGdateToStr.substring(0, 10)+"T"+bGdateToStr.substring(11, 16);
+//		String endTime=bGdateToStr.substring(0, 10)+"T"+bGdateToStr.substring(11, 16);
 		model.addAttribute("activityParam", activity);
 		
 		return "/admin/activity-edit";
