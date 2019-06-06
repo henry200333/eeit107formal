@@ -31,7 +31,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Add New Performace</h1>
+						<h1 class="h3 mb-0 text-gray-800">Add New Performance</h1>
 
 					</div>
 
@@ -48,26 +48,27 @@
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
 								<form:input path="name" class="form-control form-control-user"
-									placeholder="NAME" value=""	onblur="checkName()" />
+									placeholder="NAME" value="${performance.name}"	onblur="checkName()" />
+									<span style="color:red">${error.name}</span>
 							</div>
-							<div class="col-sm-6 mb-3 mb-sm-0"></div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
 								<label for="context">URL:</label>
 								 <form:input path="url" class="form-control form-control-user"
-									placeholder="URL" value="" />
-									
+									placeholder="URL" value="${performance.url}" />
+									<span style="color:red">${error.url}</span>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
 								<label for="type">Related activities:</label>
 								<form:input path="activityId" class="form-control form-control-user"
-									placeholder="ACTIVITYID" value="" />
+									placeholder="ACTIVITYID" value="${performance.activityId}" />
 								<datalist id = "activityselect">
 									<option value="123">									
 								</datalist>
+								<span style="color:red">${error.aid}</span>
 							</div>
 						</div>
 						<div class="form-group row">

@@ -106,7 +106,7 @@
 	<script>
 		function sendId(Object) {
 			artist.action = '/admin/artist/edit';
-			document.getElementById("	id").value = Object.id;
+			document.getElementById("id").value = Object.id;
 		}
 		function deleId(Object) {
 			artist.action = '/admin/artist/delete';

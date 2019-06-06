@@ -74,7 +74,7 @@
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="beginTime">Begin time:</label> <form:input type="datetime-local" path="beginTime"
 									class="form-control form-control-user"
-									placeholder="BeginTime" value="${activityParam.beginTime}"/>
+									placeholder="BeginTime" value="2013-03-25T22:30:00.0"/>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">

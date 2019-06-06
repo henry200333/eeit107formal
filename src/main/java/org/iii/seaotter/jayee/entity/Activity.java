@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 /**
@@ -33,9 +35,11 @@ public class Activity {
 	@Column(name="description")
 	private String description;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	@Column(name="begin_time")
 	private java.util.Date beginTime;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	@Column(name="end_time")
 	private java.util.Date endTime;
 	

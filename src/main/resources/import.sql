@@ -14,9 +14,9 @@ INSERT INTO article (name, content, type, ref_id) values
  ('Ariticle', '永和金城武', '不要再冒充我了！', '2019/05/28 20:00:27');
  
  INSERT INTO performance (name,youtube_url,update_time,activity_id) values
- ('中正紀念堂舞蹈表演','www.youtube.com','2019/05/25 17:12:05',1),
- ('自家餵狗秀','www.youtube.com','2019/05/28 19:10:35',1),
- ('倒立30分鐘','www.youtube.com','2019/05/28 21:05:46',1);
+ ('中正紀念堂舞蹈表演','http://www.youtube.com','2019/05/25 17:12:05',1),
+ ('自家餵狗秀','http://www.youtube.com','2019/05/28 19:10:35',2),
+ ('倒立30分鐘','http://www.youtube.com','2019/05/28 21:05:46',3);
  
  INSERT INTO artist(name,fan_number,location) VALUES
  ('口鳥鳴',1314,'資策會'),
@@ -24,9 +24,9 @@ INSERT INTO article (name, content, type, ref_id) values
  ('杳堯要咬瑤',6666,'高雄市');
  
  INSERT INTO activity (name,artist,description,begin_time,end_time) values
- ('吃飯','王世堅','王世堅喜歡炒飯','2019/05/28 12:03:04','2019/05/28 12:30:08'),
- ('睡覺','柯文哲','柯文哲議會質詢在睡覺','2019/05/29 23:35:16','2019/05/30 07:35:47'),
- ('打東東','韓國瑜','韓國瑜被東東海K','2019/05/30 07:35:48','2019/06/03 17:15:46');
+ ('吃飯','王世堅','王世堅喜歡炒飯','2019/05/28 12:03','2019/05/28 12:30'),
+ ('睡覺','柯文哲','柯文哲議會質詢在睡覺','2019/05/29 23:35','2019/05/30 07:35'),
+ ('打東東','韓國瑜','韓國瑜被東東海K','2019/05/30 07:35','2019/06/03 17:15');
 
 insert into  Vender (name,address,max_people,phone) values
 ('EZ5音樂餐廳','106台北市大安區安和路二段211號',50,'0227383995'),
