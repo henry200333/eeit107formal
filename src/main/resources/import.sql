@@ -14,9 +14,9 @@ INSERT INTO article (name, content, type, ref_id) values
  ('Ariticle', '永和金城武', '不要再冒充我了！', '2019/05/28 20:00:27');
  
  INSERT INTO performance (name,youtube_url,update_time,activity_id) values
- ('中正紀念堂舞蹈表演','www.youtube.com','2019/05/25 17:12:05',1),
- ('自家餵狗秀','www.youtube.com','2019/05/28 19:10:35',1),
- ('倒立30分鐘','www.youtube.com','2019/05/28 21:05:46',1);
+ ('中正紀念堂舞蹈表演','http://www.youtube.com','2019/05/25 17:12:05',1),
+ ('自家餵狗秀','http://www.youtube.com','2019/05/28 19:10:35',2),
+ ('倒立30分鐘','http://www.youtube.com','2019/05/28 21:05:46',3);
  
  INSERT INTO artist(name,fan_number,location) VALUES
  ('口鳥鳴',1314,'資策會'),
