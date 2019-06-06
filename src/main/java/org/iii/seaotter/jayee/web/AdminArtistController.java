@@ -34,7 +34,6 @@ public class AdminArtistController {
 
 	@RequestMapping("/edit")
 	public String editPage(@ModelAttribute("artist") Artist artist, Model model) {
-		System.out.println("test123");
 		artist = artistService.getById(artist.getId());
 		model.addAttribute("artistParam", artist);
 		return "/admin/artist-edit";
@@ -44,7 +43,7 @@ public class AdminArtistController {
 	public String insert(@Valid @ModelAttribute("artist") Artist artist, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("artistParam", artist);
-			return "/admin/article-add";
+			return "/admin/artist-add";
 		}
 		artistService.insert(artist);
 		return "redirect:/admin/artist/list";
@@ -52,7 +51,6 @@ public class AdminArtistController {
 
 	@PostMapping("/update")
 	public String update(@Valid @ModelAttribute("artist") Artist artist, BindingResult bindingResult, Model model) {
-		System.out.println("123");
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("artistParam", artist);
 			return "/admin/artist-edit";

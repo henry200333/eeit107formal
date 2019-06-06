@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -13,19 +14,22 @@ import lombok.Data;
  * @author Jason Peng 彭璿哲
  */
 @Entity
-@Table(name="Artist")
+@Table(name = "Artist")
 @Data
 public class Artist {
-	
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
-	@Column(name="name")
+	@NotNull(message = "Name欄位不可空白")
+	@Column(name = "name")
 	private String name;
-	@Column(name="fan_number")
+	@NotNull(message = "FanNumber欄位不可空白")
+	@Column(name = "fan_number")
 	private Long fanNumber;
-	@Column(name="location")
+	@NotNull(message = "Location欄位不可空白")
+	@Column(name = "location")
 	private String location;
-	 
+
 }
