@@ -49,14 +49,11 @@ public class AdminArticleController {
 		return articleService.getAll();
 	}
 
-	@PostMapping("/insert")
-	public String insert(@Valid@ModelAttribute("article") Article article, BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) {
-			model.addAttribute("articleParam", article);
-			return "/admin/article-add";
-		}
-		articleService.insert(article);
-		return "redirect:/admin/article/list";
+	@RequestMapping("/insert")
+	public String insert(Article article) {
+		System.out.println(article);
+		System.out.println(article.toString());
+		return null;
 	}
 	
 	@PostMapping("/update")
