@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -43,14 +44,18 @@ public class AdminForumController {
 	}
 
 	@PostMapping("/insert")
-	public String insert(@ModelAttribute("forum") Forum forum, Model model) {
+	public String insert(@RequestBody List<Forum> forums, Model model) {
+		System.out.println(123);
 		Map<String, String> errorMsg = new HashMap<>();
+		Forum forum = forums.get(0);
+		System.out.println(forum.getName());
 		if (forum.getName() == null || forum.getName().trim() == "") {
 			errorMsg.put("name", "name不要空");
 		}
 		if (forum.getContent() == null || forum.getContent().trim() == "") {
 			errorMsg.put("content", "content不要空");
 		}
+		
 		if (forum.getBoard() == null || !Board.contains(forum.getBoard().name())) {
 			errorMsg.put("board", "board不要空");
 		}
@@ -58,11 +63,13 @@ public class AdminForumController {
 		if (!errorMsg.isEmpty()) {
 			model.addAttribute("forumParam", forum);
 			model.addAttribute("errorMsg", errorMsg);
+			System.out.println("no");
 			return "/admin/forum-add";
 		}
+		System.out.println(forum.getName());
 		forum.setCommentDate(new Timestamp(new java.util.Date().getTime()));
 		forumService.create(forum);
-		return "redirect:/admin/forum/list";
+		return "redirect:/admin/forum/list"; 
 	}
 
 	@PostMapping("/update")
