@@ -63,27 +63,11 @@
 												<th>Description</th>
 												<th>Begin time</th>
 												<th>End time</th>
-												<th></th>
-												<th></th>
+												<th>Edit</th>
+												<th>Delete</th>
 											</tr>
 										</thead>
-										<tbody>
-											<c:forEach var="bean" items="${activityList}">
-												<tr>
-													<td>${bean.id}</td>
-													<td>${bean.name}</td>
-													<td>${bean.artist}</td>
-													<td>${bean.description}</td>
-													<td>${bean.beginTime}</td>
-													<td>${bean.endTime}</td>
-													<td><input type="text" id="id" name="id"
-															style="display: none"><a id="${bean.id}" href="javascript:document.getElementById('activity').submit();"
-															onclick="sendId(this)" class="btn btn-primary btn-sm"><i
-																class="fas fa-edit"></i></a></td>
-													<td><a id="${bean.id}" href="javascript:document.getElementById('activity').submit();" onclick="deleId(this)"
-															class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
-												</tr>
-											</c:forEach>
+										<tbody id="tbody">
 										</tbody>
 									</table>
 									</form>
@@ -111,6 +95,28 @@
 			activity.action = '/admin/activity/delete';
 			document.getElementById("id").value = Object.id;
 		}
+		
+		$.ajax({
+			url:"query",
+			type:"GET",
+			success:function(data){
+				showNames(data);
+			}
+		})
+
+		function showNames(data){
+			var txt = "";
+			$.each(data,function(index,value){
+				txt += "<tr>";
+				for(i in value){
+					txt += "<td>"+ value[i]+ "</td>";
+				}
+				txt += "</tr>";
+			})
+			$("#tbody").html(txt);
+		}
+		
+		
 	</script>
 </body>
 </html>
