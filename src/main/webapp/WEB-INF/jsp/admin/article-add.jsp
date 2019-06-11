@@ -74,15 +74,16 @@
 											aria-haspopup="true">選擇TYPE</button>
 										<div class="dropdown-menu"
 											aria-labelledby="dropdownMenuButton">
-											<a class="dropdown-item" href="javascript:return false;"
-												onclick="selectArtist()">Artist</a> <a class="dropdown-item"
-												href="javascript:return false;" onclick="selectActivity()">Activity</a>
-											<a class="dropdown-item" href="javascript:return false;"
-												onclick="selectPerformance()">Performance</a> <a
-												class="dropdown-item" href="javascript:return false;"
-												onclick="selectVender()">Article</a> <a
-												class="dropdown-item" href="javascript:return false;"
-												onclick="selectOther()">Other</a>
+											<a class="dropdown-item" href=""
+												onclick="selectArtist();return false">Artist</a> <a
+												class="dropdown-item" href=""
+												onclick="selectActivity();return false">Activity</a> <a
+												class="dropdown-item" href=""
+												onclick="selectPerformance();return false">Performance</a> <a
+												class="dropdown-item" href=""
+												onclick="selectVender();return false">Article</a> <a
+												class="dropdown-item" href=""
+												onclick="selectOther();return false">Other</a>
 										</div>
 									</div>
 								</div>
@@ -96,7 +97,7 @@
 							</div>
 
 						</div>
-						<a href="#" id="gotoinsert"
+						<a href="" id="gotoinsert"
 							class="btn btn-primary btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-import"></i>
 						</span> <span class="text"> Insert New Article</span></a> <a
@@ -132,15 +133,29 @@
 			</script>
 			<script>
 				$("#gotoinsert").click(function() {
-					console.info($('#article').serializeArray())
+					var input = $("#article").serializeArray();
+					alert(JSON.stringify(input));
+					var obj = {};
+					$.each(input, function(index, field) {
+						obj[field.name] = field.value;
+					});
+					var article = JSON.stringify(obj);
+					alert(article);
 					$.ajax({
-						method : 'post',
 						url : '/admin/article/insert',
+						method : 'POST',
+						contentType : 'application/json;charset=UTF-8',
 						dataType : 'json',
-						data : $('#article').serializeArray(),
+						data : article,
 						success : function(data) {
-						}
+							alert("資料新增成功！" + JSON.stringify(data));
+							$(location).attr('href', '/admin/article/list');  //跳轉頁面，要看response先把我註解
+						},
+						error: function (data) {
+							alert("資料新增失敗！請檢查輸入欄位！");
+		                }
 					})
+					return false;
 				})
 			</script>
 		</div>

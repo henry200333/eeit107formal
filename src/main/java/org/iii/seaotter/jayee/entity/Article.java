@@ -1,7 +1,5 @@
 package org.iii.seaotter.jayee.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -21,8 +19,7 @@ import lombok.Data;
 @Entity
 @Table(name = "Article")
 @Data
-public class Article implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Article {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")

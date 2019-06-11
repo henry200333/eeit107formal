@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -42,22 +43,25 @@ public class AdminArticleController {
 		model.addAttribute("articleParam", article);
 		return "/admin/article-edit";
 	}
-	
+
 	@RequestMapping("/query")
-	@ResponseBody  //轉成JSON
-	public List<Article> query(String name){
+	@ResponseBody // 轉成JSON
+	public List<Article> query(String name) {
 		return articleService.getAll();
 	}
 
 	@RequestMapping("/insert")
-	public String insert(Article article) {
+	@ResponseBody
+	public Article insert(@Valid @RequestBody Article article, BindingResult result) {
 		System.out.println(article);
-		System.out.println(article.toString());
-		return null;
+		if (result.hasErrors()) {
+			return null;
+		}
+		return articleService.insert(article);
 	}
-	
+
 	@PostMapping("/update")
-	public String update(@Valid@ModelAttribute("article") Article article, BindingResult bindingResult, Model model) {
+	public String update(@Valid @ModelAttribute("article") Article article, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("articleParam", article);
 			return "/admin/article-edit";
@@ -66,7 +70,7 @@ public class AdminArticleController {
 		return "redirect:/admin/article/list";
 
 	}
-	
+
 	@PostMapping("/delete")
 	public String delete(@ModelAttribute("article") Article article) {
 		articleService.delete(article);
