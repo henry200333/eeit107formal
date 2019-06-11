@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,42 +59,44 @@ public class AdminPerformanceController {
 	}
 
 	@PostMapping("/insert")
-	public String insert(@ModelAttribute("performance") Performance performance, Model model) {
-
-		Map<String, String> errorMsg = new HashMap<>();
-		model.addAttribute("error",errorMsg );
-		String name = performance.getName();
-		String url = performance.getUrl();
-		Long aid = performance.getActivityId();
-
-		// name
-		if (name == null || name.trim().length() == 0) {
-			errorMsg.put("name", "NAME欄位不能為空");
-		}
-
-		// url
-		if (url == null || url.trim().length() == 0) {
-			errorMsg.put("url", "URL欄位不能為空");
-		}else {
-			try {
-				URL checkUrl = new URL(url);
-				checkUrl.openStream();
-			} catch (Exception e) {
-				e.printStackTrace();
-				errorMsg.put("url", "無效的網址");
-			}
-		}
-
-		//aid
-		if (aid == null ) {
-			errorMsg.put("aid", "ACTIVITYID欄位不能為空");
-		}
+	public String insert(@RequestBody List<Performance> performance, Model model) {
+		System.out.println("123");
 		System.out.println(performance);
-		if (!errorMsg.isEmpty()) {	
-			model.addAttribute("peformacnce", performance);
-			return "/admin/performance-add";
-		}
-		performanceSurvice.insert(performance);
+
+//		Map<String, String> errorMsg = new HashMap<>();
+//		model.addAttribute("error",errorMsg );
+//		String name = performance.getName();
+//		String url = performance.getUrl();
+//		Long aid = performance.getActivityId();
+//
+//		// name
+//		if (name == null || name.trim().length() == 0) {
+//			errorMsg.put("name", "NAME欄位不能為空");
+//		}
+//
+//		// url
+//		if (url == null || url.trim().length() == 0) {
+//			errorMsg.put("url", "URL欄位不能為空");
+//		}else {
+//			try {
+//				URL checkUrl = new URL(url);
+//				checkUrl.openStream();
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				errorMsg.put("url", "無效的網址");
+//			}
+//		}
+//
+//		//aid
+//		if (aid == null ) {
+//			errorMsg.put("aid", "ACTIVITYID欄位不能為空");
+//		}
+//		System.out.println(performance);
+//		if (!errorMsg.isEmpty()) {	
+//			model.addAttribute("peformacnce", performance);
+//			return "/admin/performance-add";
+//		}
+//		performanceSurvice.insert(performance);
 		return "redirect:/admin/performance/list";
 
 	}
