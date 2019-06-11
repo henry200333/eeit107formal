@@ -50,13 +50,11 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<c:if test="${not empty artistlist}">
 									<form id="artist" name="artist" action="" method="post">
 										<table class="table table-bordered table-striped table-hover"
 											id="dataTable" width="100%" cellspacing="0">
 										</table>
 									</form>
-								</c:if>
 							</div>
 						</div>
 					</div>
@@ -84,7 +82,7 @@
 		});
 
 		function query(data) {
-			var txt = "";
+			var txt = "<tr><th>Id</th><th>Name</th><th>Fan_Number</th><th>Location</th></tr>";
 			$.each(data, function(idx, val) {
 				txt += "<tr>";
 				for (i in val) {
@@ -93,15 +91,6 @@
 				txt += "</tr>"
 			});
 			$("#dataTable").html(txt);
-		}
-
-		function sendId(Object) {
-			artist.action = '/admin/artist/edit';
-			document.getElementById("id").value = Object.id;
-		}
-		function deleId(Object) {
-			artist.action = '/admin/artist/delete';
-			document.getElementById("id").value = Object.id;
 		}
 	</script>
 </body>
