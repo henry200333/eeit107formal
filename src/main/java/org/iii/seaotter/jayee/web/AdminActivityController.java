@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -47,10 +48,6 @@ public class AdminActivityController {
 	@RequestMapping("/edit")
 	public String editPage(@ModelAttribute("activity") Activity activity, Model model) {
 		activity = activityService.getById(activity.getId());
-//		Date date=activity.getBeginTime();
-//		String bGdateToStr = date.toString();
-//		String beginTime=bGdateToStr.substring(0, 10)+"T"+bGdateToStr.substring(11, 16);
-//		String endTime=bGdateToStr.substring(0, 10)+"T"+bGdateToStr.substring(11, 16);
 		model.addAttribute("activityParam", activity);
 		
 		return "/admin/activity-edit";
@@ -58,12 +55,12 @@ public class AdminActivityController {
 	}
 	
 	@PostMapping("/insert")
-	public String insert(@Valid@ModelAttribute("activity") Activity activity, BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) {
-			model.addAttribute("activityParam", activity);
-			return "/admin/activity-add";
-		}
-		activityService.insert(activity);
+	public String insert(@RequestBody List<Activity> activity, Model model) {
+		System.out.println("123");
+		System.out.println(activity);
+		
+		
+//		activityService.insert(activity);
 		return "redirect:/admin/activity/list";
 
 	}
