@@ -2,6 +2,7 @@ package org.iii.seaotter.jayee.web;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -16,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -82,4 +84,14 @@ public class AdminActivityController {
 		return "redirect:/admin/activity/list";
 
 	}
+	
+	@RequestMapping("/query")
+	@ResponseBody
+	public List<Activity> query(){	
+		return activityService.getAll();
+	}
+	
+	
+	
+	
 }
