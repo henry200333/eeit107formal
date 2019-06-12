@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 
@@ -43,7 +42,7 @@
 
 					<hr>
 
-					<form:form modelAttribute="forum" class="user" action="/admin/forum/update" method="POST">
+					<form id="forum" class="user" action="/admin/forum/update" method="POST">
 						<div class="form-group row"
 							style="font-family: 'Noto Sans TC', sans-serif;">
 							<div class="col-sm-6 mb-3 mb-sm-0">
@@ -95,7 +94,7 @@
 							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
 						</span> <span class="text"> Reset Input</span></a>
 
-					</form:form>
+					</form>
 				</div>
 				<!-- /.container-fluid -->
 

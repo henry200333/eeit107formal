@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Forum.Board;
 import org.iii.seaotter.jayee.service.ForumService;
@@ -31,45 +34,40 @@ public class AdminForumController {
 	}
 
 	@RequestMapping("/add")
-	public String addPage(Model model) {
-		model.addAttribute("forum", new Forum());
+	public String addPage() {
 		return "/admin/forum-add";
 	}
 
 	@RequestMapping("/edit")
-	public String editPage(@ModelAttribute("forum") Forum forum, Model model) {
-		forum = forumService.getById(forum.getId());
-		model.addAttribute("forumParam", forum);
+	public String editPage(HttpServletRequest request) {
+		Long id = (Long) Long.valueOf(request.getParameter("id"));
+		Forum forum = forumService.getById(id);
+		request.setAttribute("forumParam", forum);
 		return "/admin/forum-edit";
 	}
 
 	@PostMapping("/insert")
-	public String insert(@RequestBody List<Forum> forums, Model model) {
-		System.out.println(123);
-		Map<String, String> errorMsg = new HashMap<>();
-		Forum forum = forums.get(0);
+	@ResponseBody
+	public Map<String, String> insert(@RequestBody Forum forum, Model model) {
+		Map<String, String> result = new HashMap<>();
 		System.out.println(forum.getName());
 		if (forum.getName() == null || forum.getName().trim() == "") {
-			errorMsg.put("name", "name不要空");
+			result.put("eName", "請輸入名稱");
 		}
 		if (forum.getContent() == null || forum.getContent().trim() == "") {
-			errorMsg.put("content", "content不要空");
+			result.put("eContent", "請輸入內容");
 		}
-		
 		if (forum.getBoard() == null || !Board.contains(forum.getBoard().name())) {
-			errorMsg.put("board", "board不要空");
+			result.put("eBoard", "請選擇");
 		}
-
-		if (!errorMsg.isEmpty()) {
-			model.addAttribute("forumParam", forum);
-			model.addAttribute("errorMsg", errorMsg);
-			System.out.println("no");
-			return "/admin/forum-add";
+		if (!result.isEmpty()) {
+			return result;
 		}
-		System.out.println(forum.getName());
 		forum.setCommentDate(new Timestamp(new java.util.Date().getTime()));
+		System.out.println(forum.getCommentDate());
 		forumService.create(forum);
-		return "redirect:/admin/forum/list"; 
+		result.put("success", "ok");
+		return result; 
 	}
 
 	@PostMapping("/update")
@@ -80,8 +78,9 @@ public class AdminForumController {
 	}
 
 	@PostMapping("/delete")
-	public String delete(@ModelAttribute("forum") Forum forum, Model model) {
-		forumService.delete(forum);
+	public String delete(HttpServletRequest request) {
+		Long id = (Long) Long.valueOf(request.getParameter("id"));
+		forumService.deleteById(id);
 		return "redirect:/admin/forum/list";
 	}
 	
