@@ -88,35 +88,22 @@
 	</div>
 	<!-- End of Page Wrapper -->
 	<script>
-		function sendId(Object) {
-			activity.action = '/admin/activity/edit';
-			document.getElementById("id").value = Object.id;
-		}
-		function deleId(Object) {
-			activity.action = '/admin/activity/delete';
-			document.getElementById("id").value = Object.id;
-		}
-		
 		$.ajax({
 			url:"query",
-			type:"GET",
+			type:"POST",
 			success:function(data){
-				showNames(data);
+				var txt = "";
+				$.each(data,function(index,value){
+					txt += "<tr>";
+					for(i in value){
+						txt += "<td>"+ value[i]+ "</td>";
+					}
+					txt +="<td><a  href='' class='btn btn-primary btn-sm'><i	class='fas fa-edit' id='edit'></i></a></td><td><a id='delete' href='' class='btn btn-danger btn-sm'	onclick='delete'><i class='fas fa-trash'></i></a></td></tr>";	
+				})
+				$("#tbody").html(txt);
 			}
 		})
 
-		function showNames(data){
-			var txt = "";
-			$.each(data,function(index,value){
-				txt += "<tr>";
-				for(i in value){
-					txt += "<td>"+ value[i]+ "</td>";
-				}
-				txt += "</tr>";
-			})
-			$("#tbody").html(txt);
-		}
-		
 		
 	</script>
 </body>

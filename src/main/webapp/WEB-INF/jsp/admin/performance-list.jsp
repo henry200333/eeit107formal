@@ -85,7 +85,8 @@
 			$("#dataTable").html(txt);
 			showNames(data);			
 		}
-	});
+	})
+
 	
 	function showNames(data){
 		var txt2 = "";
@@ -93,11 +94,32 @@
 			txt2 += "<tr>";
 			for(i in value){
 				txt2 += "<td>"+ value[i]+ "</td>";
-			}
-			txt2 += "<td><a   href='' class='btn btn-primary btn-sm'><i	class='fas fa-edit' id='edit'></i></a></td><td><a id='delete' href='' class='btn btn-danger btn-sm'	onclick='delete'><i class='fas fa-trash'></i></a></td></tr>";
-		})
+				var id = value['id'];
+				
+			}			
+			alert(JSON.stringify(value));
+			txt2 += "<td><a  name='id' href='' class='btn btn-primary btn-sm' id='edit"+id+"'><i	class='fas fa-edit' ></i></a></td><td><a id='delete' href='' class='btn btn-danger btn-sm'	onclick='delete'><i class='fas fa-trash'></i></a></td></tr>";
+		});
 		$("#dataTable").append(txt2);
+		$("a[id*=edit]").click(function(){
+			$.ajax({
+				url:"/admin/performance/edit",
+				type:"POST",
+				contentType:"application/json",
+				data:'{"id":'+this.id.substring(4)+'}',
+				dataType:"text",
+				success:function(data){
+					$.ajax({
+						url:
+					})
+				}
+			});
+			return false;
+		});
 	}
+	
+	
+	
 </script>
 </body>
 </html>

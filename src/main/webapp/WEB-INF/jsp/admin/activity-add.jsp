@@ -42,7 +42,7 @@
 
 					<hr>
 
-					<form class="user" id="form">
+					<form class="user" id="form" action="/admin/activity/insert" method="POST">
 						<div class="form-group row">
 							<div class="col-sm-5 mb-3 mb-sm-0">
 								<label for="name">Name:</label> <input type="text"
@@ -66,14 +66,16 @@
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="beginTime">Begin Time:</label> <input
-									type="datetime-local" class="form-control form-control-user"
+									type="text" class="form-control form-control-user"
 									id="beginTime" name="beginTime" placeholder="BeginTime">
+									
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="endTime">End Time:</label> <input
-									type="datetime-local" class="form-control form-control-user"
+									type="text" class="form-control form-control-user"
 									id="endTime" name="endTime" placeholder="EndTime">
+									
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 						</div>
@@ -102,27 +104,31 @@
 	<script>
 		$("#submit").click(function() {
 			var input = $("#form").serializeArray();
-			alert(JSON.stringify(input));
-			var a = [];
+			alert("JSON.stringify(input)..."+JSON.stringify(input));
 			var o = {};
-			$.each(input, function(i, filed) {
-
-				o[filed.name] = filed.value;
-
-			});
-			a.push(o);
-			var a2 = JSON.stringify(a);
-			alert(a2);
+			$.each(input, function(index, field) {
+				o[field.name] = field.value;
+			});				
+			var activity = JSON.stringify(o);
+			alert("JSON.stringify(o)..."+activity);
+			
+			alert(activity.name);
+			
 			$.ajax({
 				url : "/admin/activity/insert",
 				type : "POST",
-				contentType : "application/json",
+				contentType : "application/json;charset=UTF-8",
 				dataType : "json",
-				data : a2,
-				success : function() {
-
-				}
-			});
+				data : activity,
+				success : function(data) {
+					alert("資料新增成功！" + JSON.stringify(data));
+					$(location).attr('href', '/admin/activity/list');  
+				},
+				error: function (data) {
+					alert("資料新增失敗！");
+                }
+			})
+			return false;
 		});
 	</script>
 
