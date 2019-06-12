@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -41,20 +42,17 @@ public class AdminArtistController {
 		model.addAttribute("artistParam", artist);
 		return "/admin/artist-edit";
 	}
-	
+
 	@RequestMapping("/query")
 	@ResponseBody
-	public List<Artist> query(){
+	public List<Artist> query() {
 		return artistService.getAll();
 	}
-	
+
 	@PostMapping("/insert")
-	public String insert(@Valid @ModelAttribute("artist") Artist artist, BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) {
-			model.addAttribute("artistParam", artist);
-			return "/admin/artist-add";
-		}
-		artistService.insert(artist);
+	public String insert(@Valid @RequestBody List<Artist> list, Model model) {
+		System.out.println(list.get(0));
+		artistService.insert(list.get(0));
 		return "redirect:/admin/artist/list";
 	}
 

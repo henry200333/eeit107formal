@@ -42,7 +42,7 @@
 
 					<hr>
 
-					<form class="user">
+					<form class="user" id="form">
 						<div class="form-group row">
 							<div class="col-sm-5 mb-3 mb-sm-0">
 								<label for="name">Name:</label> <input type="text"
@@ -50,36 +50,36 @@
 									placeholder="NAME">
 							</div>
 							<div class="col-sm-4 mb-3 mb-sm-0">
-								<label for="artist">Artist:</label>
-								<input type="text"
-									class="form-control form-control-user" id="artist" name="artist"
-									placeholder="Artist">
+								<label for="artist">Artist:</label> <input type="text"
+									class="form-control form-control-user" id="artist"
+									name="artist" placeholder="Artist">
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0"></div>
 						</div>
 						<div class="form-group row">
-						<div class="col-sm-9 mb-3 mb-sm-0">
+							<div class="col-sm-9 mb-3 mb-sm-0">
 								<label for="description">Description:</label>
-								<textarea class="form-control" id="description" name="description"></textarea>
-							</div>	
+								<textarea class="form-control" id="description"
+									name="description"></textarea>
+							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="beginTime">Begin Time:</label> <input type="datetime-local"
-									class="form-control form-control-user" id="beginTime" name="beginTime"
-									placeholder="BeginTime">
+								<label for="beginTime">Begin Time:</label> <input
+									type="datetime-local" class="form-control form-control-user"
+									id="beginTime" name="beginTime" placeholder="BeginTime">
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="endTime">End Time:</label> <input type="datetime-local"
-									class="form-control form-control-user" id="endTime" name="endTime"
-									placeholder="EndTime">
+								<label for="endTime">End Time:</label> <input
+									type="datetime-local" class="form-control form-control-user"
+									id="endTime" name="endTime" placeholder="EndTime">
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 						</div>
-						<a href="#" class="btn btn-primary btn-user btn-block"><span
+						<a id="submit" href="" class="btn btn-primary btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-import"></i>
-						</span> <span class="text"> Insert New Activity</span></a> <a href="#"
+						</span> <span class="text"> Insert New Activity</span></a> <a href="javascript:document.getElementById('activity').reset();"
 							class="btn btn-danger btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
 						</span> <span class="text"> Reset Input</span></a>
@@ -98,6 +98,34 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
+
+	<script>
+		$("#submit").click(function() {
+			var input = $("#form").serializeArray();
+			alert(JSON.stringify(input));
+			var a = [];
+			var o = {};
+			$.each(input, function(i, filed) {
+
+				o[filed.name] = filed.value;
+
+			});
+			a.push(o);
+			var a2 = JSON.stringify(a);
+			alert(a2);
+			$.ajax({
+				url : "/admin/activity/insert",
+				type : "POST",
+				contentType : "application/json",
+				dataType : "json",
+				data : a2,
+				success : function() {
+
+				}
+			});
+		});
+	</script>
+
 
 </body>
 </html>

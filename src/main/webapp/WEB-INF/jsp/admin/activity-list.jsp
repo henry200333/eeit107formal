@@ -63,11 +63,12 @@
 												<th>Description</th>
 												<th>Begin time</th>
 												<th>End time</th>
-												<th>Edit</th>
-												<th>Delete</th>
+												<th></th>
+												<th></th>
 											</tr>
 										</thead>
-										<tbody id="tbody">
+										<tbody id='tbody'>
+											
 										</tbody>
 									</table>
 									</form>
