@@ -41,49 +41,55 @@
 					</a>
 
 					<hr>
-
-					<form class="user" id="addvender" name="addVender" action="/admin/vender/insert" method="POST">
-						<div class="form-group row" style="font-family:'Noto Sans TC', sans-serif;">
+					<!--  action="/admin/vender/insert" -->
+					<form class="user" id="addvender" name="addVender" method="POST">
+						<div class="form-group row"
+							style="font-family: 'Noto Sans TC', sans-serif;">
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="name">ID:</label> <input type="text"
 									class="form-control form-control-user" id="id" name="id"
-									placeholder="" value="${param.id}"  readonly>
+									placeholder="" value="${param.id}" readonly>
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0">
 								<label for="name">NAME:</label> <input type="text"
 									class="form-control form-control-user" id="name" name="name"
-									placeholder="NAME" value="${param.name}">${errMsg.nameerr}
+									placeholder="NAME" value="${param.name}"><span
+									style="color: red" id="namecheck" class="check"></span>
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0"></div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-9 mb-3 mb-sm-0">
-								<label for="context">ADDRESS:</label>
-								<input type="text"
-									class="form-control form-control-user" id="address" name="address"
-									placeholder="ADDRESS" value="${param.address}">${errMsg.addresserr}
+								<label for="address">ADDRESS:</label> <input type="text"
+									class="form-control form-control-user" id="address"
+									name="address" placeholder="ADDRESS" value="${param.address}"><span
+									style="color: red" id="addresscheck" class="check"></span>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="type">MAXPEOPLE:</label> <input type="text"
-									class="form-control form-control-user" id="maxPeople" name="maxPeople"
-									placeholder="maxPeople" value="${param.maxPeople}">${errMsg.max_peopleerr}
+								<label for="maxPeople">MAXPEOPLE:</label> <input type="text"
+									class="form-control form-control-user" id="maxPeople"
+									name="maxPeople" placeholder="maxPeople"
+									value="${param.maxPeople}"><span style="color: red"
+									id="maxPeoplecheck" class="check"></span>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="refId">PHONE:</label> <input type="text"
+								<label for="phone">PHONE:</label> <input type="text"
 									class="form-control form-control-user" id="phone" name="phone"
-									placeholder="phone" value="${param.phone}">${errMsg.phoneerr}
+									placeholder="phone" value="${param.phone}"><span
+									style="color: red" id="phonecheck" class="check"></span>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 						</div>
-						<a href="javascript:document.getElementById('addvender').submit();" class="btn btn-primary btn-user btn-block"><span
-							class="icon text-white-50"> <i class="fas fa-file-import"></i>
-						</span> <span class="text"> Add This Vender</span></a> <a href="javascript:document.getElementById('addVender').reset();"
-							class="btn btn-danger btn-user btn-block"><span
-							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
-						</span> <span class="text"> Reset Input</span></a>
+						<button id="submitp">submita</button>
+						<!-- 						<a href="javascript:document.getElementById('addvender').submit();" class="btn btn-primary btn-user btn-block"><span -->
+						<!-- 							class="icon text-white-50"> <i class="fas fa-file-import"></i> -->
+						<!-- 						</span> <span class="text"> Add This Vender</span></a> <a href="javascript:document.getElementById('addVender').reset();" -->
+						<!-- 							class="btn btn-danger btn-user btn-block"><span -->
+						<!-- 							class="icon text-white-50"> <i class="fas fa-file-excel"></i> -->
+						<!-- 						</span> <span class="text"> Reset Input</span></a> -->
 
 					</form>
 				</div>
@@ -101,4 +107,43 @@
 	<!-- End of Page Wrapper -->
 
 </body>
+
+<script>
+	$(document).ready(function() {
+		$("#submitp").click(function() {
+			var dat = $("#addvender").serializeArray();
+			var a = [];
+			var o = {};
+			// 	alert(JSON.stringify(dat));
+			$.each(dat, function(i, filed) {
+				o[filed.name] = filed.value;
+			});
+			a.push(o);
+			var a2 = JSON.stringify(a);
+
+			$.ajax({
+				url : "/admin/vender/insert",
+				type : "POST",
+				dataType : "text",
+				data : a2,
+				contentType : "application/json",
+				success : function(data) {
+					data = JSON.parse(data);
+					$("span.check").html("");
+					$.each(data, function(index, value) {
+						$("#" + index + "check").html(value)
+					})
+					if (data["success"] != null)
+						window.location.assign("/admin/vender/list");
+				}
+			})
+			return false;
+		})
+		
+		
+	
+		
+		
+	});
+</script>
 </html>

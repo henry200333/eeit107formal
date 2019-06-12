@@ -30,10 +30,7 @@ public class ActivityService {
 	}
 
 	public Activity update(Activity entity) {
-		Activity activity = null;
-		if (activityDao.findById(entity.getId()) != null) {
-			activity = activityDao.save(entity);
-		}
+		Activity activity = activityDao.save(entity);
 		return activity;
 	}
 

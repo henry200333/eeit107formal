@@ -29,7 +29,10 @@ public class ForumService {
 	}
 	
 	public void delete(Forum forum) {
-		forumDao.delete(forum);
+		forumDao.delete(forum);	
+	}
+	public void deleteById(Long id) {
+		forumDao.deleteById(id);
 	}
 
 }
