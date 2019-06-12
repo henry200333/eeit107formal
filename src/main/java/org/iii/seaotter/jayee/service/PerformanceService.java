@@ -24,12 +24,14 @@ public class PerformanceService {
 	
 	public Performance getById(Long id) {
 		return performanceDao.findById(id).orElse(null);
+		
 	}
 	
 
 	public Performance insert(Performance entity) {
 		java.util.Date date = new Date();
 		entity.setUpdateTime(date);
+		System.out.println(entity.getUpdateTime());
 		Performance performance = performanceDao.save(entity);
 		return performance;
 		

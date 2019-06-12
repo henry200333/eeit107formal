@@ -37,6 +37,10 @@ public class AdminPerformanceController {
 	@RequestMapping("/query")
 	@ResponseBody  //轉成JSON
 	public List<Performance> query(){
+		List<Performance> list = performanceSurvice.getAll();
+		for(Performance p : list) {
+			System.out.println(p.getUpdateTime());
+		}
 		return performanceSurvice.getAll();
 	}
 
@@ -59,45 +63,46 @@ public class AdminPerformanceController {
 	}
 
 	@PostMapping("/insert")
-	public String insert(@RequestBody List<Performance> performance, Model model) {
-		System.out.println("123");
+	@ResponseBody
+	public Map<String,String> insert(@RequestBody Performance performance, Model model) {
+
 		System.out.println(performance);
 
-//		Map<String, String> errorMsg = new HashMap<>();
-//		model.addAttribute("error",errorMsg );
-//		String name = performance.getName();
-//		String url = performance.getUrl();
-//		Long aid = performance.getActivityId();
-//
-//		// name
-//		if (name == null || name.trim().length() == 0) {
-//			errorMsg.put("name", "NAME欄位不能為空");
-//		}
-//
-//		// url
-//		if (url == null || url.trim().length() == 0) {
-//			errorMsg.put("url", "URL欄位不能為空");
-//		}else {
-//			try {
-//				URL checkUrl = new URL(url);
-//				checkUrl.openStream();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				errorMsg.put("url", "無效的網址");
-//			}
-//		}
-//
-//		//aid
-//		if (aid == null ) {
-//			errorMsg.put("aid", "ACTIVITYID欄位不能為空");
-//		}
-//		System.out.println(performance);
-//		if (!errorMsg.isEmpty()) {	
-//			model.addAttribute("peformacnce", performance);
-//			return "/admin/performance-add";
-//		}
-//		performanceSurvice.insert(performance);
-		return "redirect:/admin/performance/list";
+		Map<String, String> result = new HashMap<>();
+		
+		String name = performance.getName();
+		String url = performance.getUrl();
+		Long aid = performance.getActivityId();
+
+		// name
+		if (name == null || name.trim().length() == 0) {
+			result.put("name", "NAME欄位不能為空");
+		}
+
+		// url
+		if (url == null || url.trim().length() == 0) {
+			result.put("url", "URL欄位不能為空");
+		}else {
+			try {
+				URL checkUrl = new URL(url);
+				checkUrl.openStream();
+			} catch (Exception e) {
+				e.printStackTrace();
+				result.put("url", "無效的網址");
+			}
+		}
+
+		//aid
+		if (aid == null ) {
+			result.put("aid", "ACTIVITYID欄位不能為空");
+		}
+		if (!result.isEmpty()) {	
+			return result;
+		}
+		
+		performanceSurvice.insert(performance);
+		result.put("success", "success");
+		return result;
 
 	}
 

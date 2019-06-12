@@ -81,7 +81,7 @@
 		url:"/admin/performance/query",
 		type:"POST",
 		success: function(data){
-			var txt="<thead><tr><th>ID</th><th>Name</th><th>YOUTUBE_URL</th><th>UPDATE_TIME</th><th>ACTIVITY_ID</th></thead>";
+			var txt="<thead><tr><th>ID</th><th>Name</th><th>YOUTUBE_URL</th><th>UPDATE_TIME</th><th>ACTIVITY_ID</th><th>UPDATE</th><th>DELETE</th></thead>";
 			$("#dataTable").html(txt);
 			showNames(data);			
 		}
@@ -94,7 +94,7 @@
 			for(i in value){
 				txt2 += "<td>"+ value[i]+ "</td>";
 			}
-			txt2 += "</tr>";
+			txt2 += "<td><a   href='' class='btn btn-primary btn-sm'><i	class='fas fa-edit' id='edit'></i></a></td><td><a id='delete' href='' class='btn btn-danger btn-sm'	onclick='delete'><i class='fas fa-trash'></i></a></td></tr>";
 		})
 		$("#dataTable").append(txt2);
 	}
