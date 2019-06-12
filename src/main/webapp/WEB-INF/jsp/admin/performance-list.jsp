@@ -54,12 +54,15 @@
 								<c:if test="${not empty performances}">
 
 									<table class="table table-bordered table-striped table-hover"
-										id="dataTable" width="100%" cellspacing="0" >										
-										
+										id="dataTable" width="100%" cellspacing="0">
+
 									</table>
 
 								</c:if>
 							</div>
+							<form id="forum" method="post">
+								<input type="text" id="id" name="id" style="display: none">
+							</form>
 						</div>
 					</div>
 
@@ -76,7 +79,7 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
-<script>
+	<script>
 	$.ajax({
 		url:"/admin/performance/query",
 		type:"POST",
@@ -97,27 +100,23 @@
 				var id = value['id'];
 				
 			}			
-			alert(JSON.stringify(value));
-			txt2 += "<td><a  name='id' href='' class='btn btn-primary btn-sm' id='edit"+id+"'><i	class='fas fa-edit' ></i></a></td><td><a id='delete' href='' class='btn btn-danger btn-sm'	onclick='delete'><i class='fas fa-trash'></i></a></td></tr>";
+			txt2 += "<td><a id=" +"'"+ id  +"'" + "href='' onclick='sendId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
+			txt2 += "<td><a id="+"'"+ id + "'" + 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
+			txt2+= "</tr>";
 		});
 		$("#dataTable").append(txt2);
-		$("a[id*=edit]").click(function(){
-			$.ajax({
-				url:"/admin/performance/edit",
-				type:"POST",
-				contentType:"application/json",
-				data:'{"id":'+this.id.substring(4)+'}',
-				dataType:"text",
-				success:function(data){
-					$.ajax({
-						url:
-					})
-				}
-			});
-			return false;
-		});
 	}
 	
+	function sendId(Object) {
+		$("#forum").attr("action",'/admin/performance/edit');
+		$("#id").val(Object.id);
+		$('#forum').submit();
+	}
+	function deleId(Object) {
+		$("#forum").attr("action",'/admin/performance/delete');
+		$("#id").val(Object.id);
+		$('#forum').submit();
+	}
 	
 	
 </script>

@@ -52,12 +52,11 @@ public class AdminPerformanceController {
 	}
 
 	@RequestMapping("/edit")
-	@ResponseBody
-	public Performance editPage(@RequestBody Performance performance, Model model) {		
-
-		Performance performanceEdit = performanceSurvice.getById(performance.getId());	
-		
-		return performanceEdit;
+	public String editPage(@ModelAttribute("performance") Performance performance, Model model) {		
+		System.out.println(performance);
+		performance = performanceSurvice.getById(performance.getId());	
+		model.addAttribute("performance",performance);
+		return  "/admin/performance-edit";
 
 	}
 
