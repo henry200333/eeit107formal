@@ -1,6 +1,8 @@
 package org.iii.seaotter.jayee.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -26,7 +28,6 @@ public class AdminArtistController {
 	@RequestMapping("/list")
 	public String listPage(Model model) {
 		model.addAttribute("artistlist", artistService.getAll());
-		model.addAttribute("artist", new Artist());
 		return "/admin/artist-list";
 	}
 
@@ -46,14 +47,36 @@ public class AdminArtistController {
 	@RequestMapping("/query")
 	@ResponseBody
 	public List<Artist> query() {
-		return artistService.getAll();
+		List<Artist> list = artistService.getAll();
+		for(Artist artist : list) {
+			System.out.println(artist.getId());
+		}
+		return list;
 	}
 
 	@PostMapping("/insert")
-	public String insert(@Valid @RequestBody List<Artist> list, Model model) {
-		System.out.println(list.get(0));
-		artistService.insert(list.get(0));
-		return "redirect:/admin/artist/list";
+	@ResponseBody
+	public Map<String,String> insert(@RequestBody Artist artist, Model model) {
+		System.out.println(artist);
+		Map<String, String> result = new HashMap<>();
+		String name = artist.getName();
+		Long number= artist.getFanNumber();
+		String location = artist.getLocation();
+		if (name == null || name.trim().length()==0) {
+			result.put("name", "姓名請勿空白");
+		}
+		if (number == null || number==0) {
+			result.put("fanNumber", "粉絲人數請勿空白");
+		}
+		if (location == null || location.trim().length()==0) {
+			result.put("location", "地點請勿空白");
+		}
+		if (!result.isEmpty()) {
+			return result;
+		}
+		artistService.insert(artist);
+		result.put("success", "success");
+		return result;
 	}
 
 	@PostMapping("/update")

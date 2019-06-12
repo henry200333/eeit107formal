@@ -5,6 +5,11 @@
 <!-- 被淘汰 -->
 <!DOCTYPE html>
 <html>
+<style>
+.hidden {
+	display: none;
+}
+</style>
 
 <!-- header -->
 <jsp:include page="header.jsp"></jsp:include>
@@ -33,28 +38,30 @@
 					</span> <span class="text">Return to Artist</span>
 					</a>
 					<hr>
-					<form id="user">
+					<form id="input">
 						<div class="form-group row">
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<label for="name">Name:</label> <input name="name" 
+								<label for="name">Name:</label> <input name="name" id="name"
 									class="form-control form-control-user" placeholder="ex:Peter"
-									value="${artistParam.name}" />
+									autofocus="autofocus" /> <span style="color: red"
+									id="namecheck" class="check"></span>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-sm-6 mb-3 mb-sm-0">
+								<label for="fanNumber">Fan_Number:</label> <input
+									name="fanNumber" id="fanNumber"
+									class="form-control form-control-user" placeholder="ex:30678" />
+								<span style="color: red" id="numcheck" class="check"></span>
 							</div>
 
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<label for="fanNumber">Fan_Number:</label> <input name="fanNumber"
-									class="form-control form-control-user" placeholder="ex:30678"
-									value="${artistParam.fanNumber}" />
-							</div>
-
-						</div>
-						<div class="form-group row">
-							<div class="col-sm-6 mb-3 mb-sm-0">
-								<label for="name">Location:</label> <input name="location"
-									class="form-control form-control-user" placeholder="ex:Taipei"
-									value="${artistParam.location}" />
+								<label for="location">Location:</label> <input name="location"
+									id="location" class="form-control form-control-user"
+									placeholder="ex:Taipei" /> <span style="color: red"
+									id="locationcheck" class="check"></span>
 							</div>
 						</div>
 						<input id="bt" type="button" value="send">
@@ -69,26 +76,58 @@
 	</div>
 	<!-- End of Page Wrapper -->
 	<script>
+		$(document).ready(function() {
+			var rule = /^.+$/;
+			$('#name').blur(function() {
+				if (rule.test($('#name').val())) {
+					$('#namecheck').text('');
+					$('#bt').removeAttr('disabled');
+				} else {
+					$('#namecheck').text('請輸入姓名');
+					$('#bt').attr('disabled', 'disabled');
+				}
+			})
+			var ruleNum = /^\d+$/;
+			$('#fanNumber').blur(function() {
+				if (ruleNum.test($('#fanNumber').val())) {
+					$('#numcheck').text('');
+					$('#bt').removeAttr('disabled');
+				} else {
+					$('#numcheck').text('請輸入粉絲人數');
+					$('#bt').attr('disabled', 'disabled');
+				}
+			})
+
+			$('#location').blur(function() {
+				if (rule.test($('#location').val())) {
+					$('#locationcheck').text('');
+					$('#bt').removeAttr('disabled');
+				} else {
+					$('#locationcheck').text('請輸入地點');
+					$('#bt').attr('disabled', 'disabled');
+				}
+			})
+		})
 		$("#bt").click(function() {
-			var input = $("#user").serializeArray();
-// 			alert(JSON.stringify(input));
-			var a = [];
+			var input = $("#input").serializeArray();
 			var o = {};
 			$.each(input, function(i, filed) {
 				o[filed.name] = filed.value;
 			});
-			a.push(o);
-			var a2 = JSON.stringify(a);
-// 			alert(a2);
 			$.ajax({
 				type : "POST",
 				url : "/admin/artist/insert",
-				contentType : "application/json",
+				contentType : "application/json;charset=UTF-8",
 				dataType : "text",
-				data : a2,
-				success : function() {
-					alert("success");
-					window.location.assign("/admin/artist/list");
+				data : JSON.stringify(o),
+				success : function(data) {
+					data = JSON.parse(data);
+					$("span.check").html("");
+					$.each(data, function(index, value) {
+						$("#" + index + "check").html(value);
+					});
+					if (data["success"] != null)
+						window.location.assign("/admin/artist/list");
 				},
 			});
 		});
