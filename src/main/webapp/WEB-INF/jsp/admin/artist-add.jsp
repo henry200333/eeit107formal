@@ -5,12 +5,6 @@
 <!-- 被淘汰 -->
 <!DOCTYPE html>
 <html>
-<style>
-.hidden {
-	display: none;
-}
-</style>
-
 <!-- header -->
 <jsp:include page="header.jsp"></jsp:include>
 
