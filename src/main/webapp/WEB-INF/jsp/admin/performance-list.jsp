@@ -109,7 +109,9 @@
 				data:'{"id":'+this.id.substring(4)+'}',
 				dataType:"text",
 				success:function(data){
-					
+					$.ajax({
+						url:
+					})
 				}
 			});
 			return false;
