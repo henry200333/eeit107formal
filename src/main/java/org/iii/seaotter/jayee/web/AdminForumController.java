@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -78,9 +79,9 @@ public class AdminForumController {
 	}
 
 	@PostMapping("/delete")
-	public String delete(HttpServletRequest request) {
-		Long id = (Long) Long.valueOf(request.getParameter("id"));
-		forumService.deleteById(id);
+	public String delete(@RequestParam("id") Long id1, HttpServletRequest request,Model model) {
+//		Long id = (Long) Long.valueOf(request.getParameter("id"));
+		forumService.deleteById(id1);
 		return "redirect:/admin/forum/list";
 	}
 	
