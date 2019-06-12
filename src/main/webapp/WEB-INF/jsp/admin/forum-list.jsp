@@ -110,7 +110,7 @@
 					txt += "<td>" + value[i] + "</td>";
 					id=Object.values(value)[0];
 				}
-				txt += "<td><a id=" +"'"+ id  +"'" + "onclick='sendId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
+				txt += "<td><a id=" +"'"+ id  +"'" + "href='' onclick='sendId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
 				txt += "<td><a id="+"'"+ id + "'" + 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
 				txt+= "</tr>";
 			})
