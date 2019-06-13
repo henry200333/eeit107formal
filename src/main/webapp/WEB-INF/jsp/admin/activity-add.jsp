@@ -112,8 +112,6 @@
 			var activity = JSON.stringify(o);
 			alert("JSON.stringify(o)..."+activity);
 			
-			alert(activity.name);
-			
 			$.ajax({
 				url : "/admin/activity/insert",
 				type : "POST",
