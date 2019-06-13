@@ -114,6 +114,25 @@
 			vender.action = '/admin/vender/delete';
 			document.getElementById("id").value = Object.id;
 		}
-	</script>
-</body>
-</html>
+
+
+		$.ajax({
+			url : '/admin/vender/query',
+			type : "POST",
+			success : function(data) {
+				var txt = "";
+				$.each(data, function(key, obj) {
+					txt += "<tr>";
+					for (i in obj) {
+						
+						txt += "<td>" + obj[i] + "</td>";
+					}
+					
+					txt +='<td><a  href="${path}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a></td>';
+					txt +='<td><a id='+obj[]+'href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
+					txt += "</tr>";
+				})
+				$("#tbody").append(txt);
+			}
+		})
+		

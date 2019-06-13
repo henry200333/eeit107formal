@@ -56,7 +56,7 @@ public class AdminVenderController {
 		Vender vender=venders.get(0);
 		String name=vender.getName();
 		if(name==null||name.trim().length()==0) {
-			res.put("name", "請輸入名字");
+			res.put("name", "請輸入餐廳名稱");
 		}
 		String address=vender.getAddress();
 		if(address==null||address.trim().length()==0) {
@@ -81,38 +81,32 @@ public class AdminVenderController {
 
 	}
 	@PostMapping("/update")
-	public String update(@ModelAttribute("vender") Vender vender, Model model) {
-		Map<String, String> errMsg = new HashMap<>();
-		System.out.println(vender);
+	@ResponseBody
+	public Map<String, String> updateinsert(@RequestBody List<Vender> venders, Model model) {
+		Map<String, String> res = new HashMap<>();
+		Vender vender=venders.get(0);
 		String name=vender.getName();
 		if(name==null||name.trim().length()==0) {
-			errMsg.put("nameerr", "請輸入名字");
+			res.put("name", "請輸入名字");
 		}
 		String address=vender.getAddress();
 		if(address==null||address.trim().length()==0) {
-			errMsg.put("addresserr", "請輸入地址");
+			res.put("address", "請輸入地址");
 		}
 		Integer max_people=vender.getMaxPeople();
 		if(max_people==null||max_people==0) {
-			errMsg.put("max_peopleerr", "請輸入容納人數");
+			res.put("maxPeople", "請輸入容納人數");
 		}
 		String phone=vender.getPhone();
 		if(phone==null||phone.trim().length()==0) {
-			errMsg.put("phoneerr", "請輸入電話");
+			res.put("phone", "請輸入電話");
 		}
-		if(!errMsg.isEmpty()) {
-			model.addAttribute("venderParam", vender);
-			model.addAttribute("errMsg",errMsg);
-			return "/admin/vender-add";
-		}
-		if(!errMsg.isEmpty()) {
-			model.addAttribute("venderParam", vender);
-			model.addAttribute("errMsg",errMsg);
-			return "/admin/vender-edit";
-
+		if(!res.isEmpty()) {
+			return res;
 		}
 		venderService.edit(vender);
-		return "/admin/vender/list";
+		res.put("success", "success");
+		return res; 
 		
 
 	}
