@@ -50,11 +50,12 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-									<form id="artist" name="artist" action="" method="post">
-										<table class="table table-bordered table-striped table-hover"
-											id="dataTable" width="100%" cellspacing="0">
-										</table>
-									</form>
+								<form id="artist" name="artist" method="post">
+									<input type="text" id="id" name="id" style="display: none">
+									<table class="table table-bordered table-striped table-hover"
+										id="dataTable" width="100%" cellspacing="0">
+									</table>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -73,24 +74,52 @@
 	</div>
 	<!-- End of Page Wrapper -->
 	<script>
-		$.ajax({
-			url : "query",
-			type : "GET",
-			success : function(data) {
-				query(data);
-			}
-		});
+		$
+				.ajax({
+					url : "query",
+					type : "GET",
+					success : function(data) {
+						var txt = "<tr><th>Id</th><th>Name</th><th>Fan_Number</th><th>Location</th></tr>";
+						$("#dataTable").html(txt);
+						query(data);
+					}
+				});
 
 		function query(data) {
-			var txt = "<tr><th>Id</th><th>Name</th><th>Fan_Number</th><th>Location</th></tr>";
-			$.each(data, function(idx, val) {
-				txt += "<tr>";
-				for (i in val) {
-					txt += "<td>" + val[i] + "</td>";
-				}
-				txt += "</tr>"
-			});
-			$("#dataTable").html(txt);
+			var txt2 = "";
+			$
+					.each(
+							data,
+							function(index, value) {
+								txt2 += "<tr>";
+								for (i in value) {
+									txt2 += "<td>" + value[i] + "</td>";
+									var id = value['id'];
+								}
+								txt2 += "<td><a id="
+										+ "'"
+										+ id
+										+ "'"
+										+ "href='' onclick='sendId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
+								txt2 += "<td><a id="
+										+ "'"
+										+ id
+										+ "'"
+										+ 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
+								txt2 += "</tr>"
+							});
+			$("#dataTable").append(txt2);
+		}
+
+		function sendId(Object) {
+			$("#artist").attr("action", '/admin/artist/edit');
+			$("#id").val(Object.id);
+			$('#artist').submit();
+		}
+		function deleId(Object) {
+			$("#artist").attr("action", '/admin/artist/delete');
+			$("#id").val(Object.id);
+			$('#artist').submit();
 		}
 	</script>
 </body>
