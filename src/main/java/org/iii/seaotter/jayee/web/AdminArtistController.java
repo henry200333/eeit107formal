@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -48,7 +49,7 @@ public class AdminArtistController {
 	@ResponseBody
 	public List<Artist> query() {
 		List<Artist> list = artistService.getAll();
-		for(Artist artist : list) {
+		for (Artist artist : list) {
 			System.out.println(artist.getId());
 		}
 		return list;
@@ -56,19 +57,19 @@ public class AdminArtistController {
 
 	@PostMapping("/insert")
 	@ResponseBody
-	public Map<String,String> insert(@RequestBody Artist artist, Model model) {
+	public Map<String, String> insert(@RequestBody Artist artist, Model model) {
 		System.out.println(artist);
 		Map<String, String> result = new HashMap<>();
 		String name = artist.getName();
-		Long number= artist.getFanNumber();
+		Long number = artist.getFanNumber();
 		String location = artist.getLocation();
-		if (name == null || name.trim().length()==0) {
+		if (name == null || name.trim().length() == 0) {
 			result.put("name", "姓名請勿空白");
 		}
-		if (number == null || number==0) {
+		if (number == null || number == 0) {
 			result.put("fanNumber", "粉絲人數請勿空白");
 		}
-		if (location == null || location.trim().length()==0) {
+		if (location == null || location.trim().length() == 0) {
 			result.put("location", "地點請勿空白");
 		}
 		if (!result.isEmpty()) {
@@ -90,7 +91,10 @@ public class AdminArtistController {
 	}
 
 	@PostMapping("/delete")
-	public String delete(@ModelAttribute("artist") Artist artist) {
+	public String delete(@RequestParam("id") String id) {
+		Long Id = Long.parseLong(id);
+		Artist artist = new Artist();
+		artist.setId(Id);
 		artistService.delete(artist);
 		return "redirect:/admin/artist/list";
 	}

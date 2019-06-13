@@ -1,4 +1,4 @@
-<%@page import="org.springframework.web.servlet.ModelAndView"%>
+%@page import="org.springframework.web.servlet.ModelAndView"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -59,6 +59,7 @@
 							</div>
 						</div>
 						<input id="bt" type="button" value="send">
+						<input id="reset" type="reset" value="reset">
 					</form>
 				</div>
 				<!-- /.container-fluid -->
@@ -101,7 +102,13 @@
 					$('#bt').attr('disabled', 'disabled');
 				}
 			})
-		})
+		});
+		$("#reset").click(function(){
+			$('#namecheck').text('');
+			$('#numcheck').text('');
+			$('#locationcheck').text('');
+			$('#bt').removeAttr('disabled');
+		});
 		$("#bt").click(function() {
 			var input = $("#input").serializeArray();
 			var o = {};

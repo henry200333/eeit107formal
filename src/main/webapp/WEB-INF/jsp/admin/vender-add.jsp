@@ -83,7 +83,10 @@
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 						</div>
-						<button id="submitp">submita</button>
+						<div class="btn btn-primary btn-user btn-block" id="submit">
+						<label  >submit</label></div>
+						<div class="btn btn-primary btn-user btn-block" id="reset">
+						<label  >reset</label></div>
 						<!-- 						<a href="javascript:document.getElementById('addvender').submit();" class="btn btn-primary btn-user btn-block"><span -->
 						<!-- 							class="icon text-white-50"> <i class="fas fa-file-import"></i> -->
 						<!-- 						</span> <span class="text"> Add This Vender</span></a> <a href="javascript:document.getElementById('addVender').reset();" -->
@@ -110,7 +113,7 @@
 
 <script>
 	$(document).ready(function() {
-		$("#submitp").click(function() {
+		$("#submit").click(function() {
 			var dat = $("#addvender").serializeArray();
 			var a = [];
 			var o = {};
@@ -139,10 +142,40 @@
 			})
 			return false;
 		})
-		
-		
-	
-		
+		$("#name").blur(function(){
+			var re=/.+/;
+		if(!re.test($("#name").val()))
+			$("#namecheck").html("請輸入餐廳名稱");
+		else
+			$("#namecheck").html("");
+		});
+		$("#address").blur(function(){
+			var re=/.+/;
+			if(!re.test($("#address").val()))
+			$("#addresscheck").html("請輸入地址");
+			else
+				$("#addresscheck").html("");
+		});
+		$("#maxPeople").blur(function(){
+			var re=/\d+/;
+			if(!re.test($("#maxPeople").val()))
+			$("#maxPeoplecheck").html("請輸入容納人數");
+			else
+				$("#maxPeoplecheck").html("");
+		});
+		$("#phone").blur(function(){
+			var re=/\d+/;
+			if(!re.test($("#phone").val()))
+			$("#phonecheck").html("請輸入電話");
+			else
+				$("#phonecheck").html("");
+		});
+		$("#reset").click(function(){
+			alert($("#addvender")[0])
+			alert($("#addvender"))
+// 			alert("aaa");
+			$("#addvender")[0].reset();
+	})
 		
 	});
 </script>
