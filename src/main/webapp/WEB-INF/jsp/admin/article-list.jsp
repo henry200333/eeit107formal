@@ -56,12 +56,6 @@
 									id="dataTable" width="100%" cellspacing="0">
 
 								</table>
-								<a id="" href="#" class="btn btn-primary btn-sm"><i
-									class="fas fa-edit"></i></a> <a id="" href="#"
-									class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
-								<form id="article" name="article" action="" method="post">
-									<input type="text" id="id" name="id" style="display: none">
-								</form>
 							</div>
 						</div>
 					</div>
@@ -85,19 +79,28 @@
 					type : "POST",
 					success : function(data) {
 						var table = "";
-						$("#dataTable").append("<thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th></tr></thead>");
+						$("#dataTable").append("<thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th><th>EDIT</th><th>DELE</th></tr></thead>");
 						table += "<tbody>";
 						$.each(data, function(key, value) {
 							table += "<tr>";
 							for (i in value) {
 								table += "<td>" + value[i] + "</td>";
+								id = Object.values(value)[0];
 							}
+							table += "<td><a id='" + id + "' href='' onclick='editId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
+							table += "<td><a id='" + id + "' href='' onclick='deleId(this);return false' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></a></td>";
 							table += "</tr>";
 						})
 						table += "</tbody>";
 						$("#dataTable").append(table);
 					}
 				})
+	function editId(obj){
+		
+	}
+	function deleId(obj){
+		
+	}
 	</script>
 </body>
 </html>
