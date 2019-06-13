@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 
@@ -43,12 +42,12 @@
 					</a>
 
 					<hr>
-					<form:form modelAttribute="performance" class="user"
+					<form id="performance" class="user"
 						action="/admin/performance/update" method="POST">
-						<form:hidden path="id" value="${performance.id}" />
+						<input type="hidden" id="id" name="id" value="${performance.id}" />
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
-								<form:input path="name" class="form-control form-control-user"
+								<input type="text" id="name" name="name" class="form-control form-control-user"
 									placeholder="NAME" value="${performance.name}" onblur="" />
 								<span style="color: red">${error.name}</span>
 							</div>
@@ -56,7 +55,7 @@
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
 								<label for="context">URL:</label>
-								<form:input path="url" class="form-control form-control-user"
+								<input type="text" id="url"  name="url" class="form-control form-control-user"
 									placeholder="URL" value="${performance.url}" />
 								<span style="color: red">${error.url}</span>
 							</div>
@@ -64,7 +63,7 @@
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
 								<label for="type">Related activities:</label>
-								<form:input path="activityId"
+								<input type="text" id="activityId" name="activityId"
 									class="form-control form-control-user" placeholder="ACTIVITYID"
 									value="${performanceEdit.activityId}" />
 								<datalist id="activityselect">
@@ -93,7 +92,7 @@
 							</div>
 						</div>
 
-					</form:form>
+					</form>
 				</div>
 				<!-- /.container-fluid -->
 
