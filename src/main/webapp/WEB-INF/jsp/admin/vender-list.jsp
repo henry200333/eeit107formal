@@ -116,7 +116,7 @@
 		}
 
 
-		$.ajax({
+		$.ajax({ 
 			url : '/admin/vender/query',
 			type : "POST",
 			success : function(data) {
