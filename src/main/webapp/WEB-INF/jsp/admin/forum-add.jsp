@@ -38,7 +38,7 @@
 								<label for="name">NAME:</label> <input type="text"
 									class="form-control form-control-user" id="name" name="name"
 									placeholder="NAME" value=""> <span class="errorMessage"
-									id="eName" style="color:red"></span>
+									id="eName" style="color: red"></span>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="name">ID:</label> <input type="text"
@@ -54,7 +54,7 @@
 									<option value="Ariticle">Article</option>
 									<option value="Activity">Activity</option>
 									<option value="Performance">Performance</option>
-								</select> <span class="errorMessage" id="eBoard" style="color:red"></span>
+								</select> <span class="errorMessage" id="eBoard" style="color: red"></span>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
@@ -68,14 +68,16 @@
 							<div class="col-sm-9 mb-3 mb-sm-0">
 								<label for="content">CONTENT:</label>
 								<textarea class="form-control" id="content" name="content"></textarea>
-								<span class="errorMessage" id="eContent" style="color:red"></span>
+								<span class="errorMessage" id="eContent" style="color: red"></span>
 							</div>
 						</div>
-						<a href="" id="insertButton"
-							class="btn btn-primary btn-user btn-block"><span
-							class="icon text-white-50"> <i class="fas fa-file-import"></i>
-						</span> <span class="text"> Insert New Forum</span></a> <a
-							href="javascript:document.getElementById('forum').reset();"
+						<button type="button" id="insertButton"
+							class="btn btn-primary btn-user btn-block">
+							<span class="icon text-white-50"> <i
+								class="fas fa-file-import"></i>
+							</span> <span class="text"> Insert New Forum</span>
+						</button>
+						<a href="javascript:document.getElementById('forum').reset();"
 							class="btn btn-danger btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
 						</span> <span class="text"> Reset Input</span></a>
@@ -96,26 +98,31 @@
 	<!-- End of Page Wrapper -->
 	<script>
 		$("#insertButton").click(function() {
-			var input = $("#form").serializeArray();
+
 			var o = {};
-			$.each(input, function(i, filed) {
-				o[filed.name] = filed.value;
-			});
+			// 			$.each(input, function(i, filed) {
+			// 				o[filed.name] = filed.value;
+			// 			});
+
+			console.log($("#form").serializeObject());
+			
 			$.ajax({
 				url : "/admin/forum/insert",
 				type : "POST",
 				contentType : "application/json",
-				dataType : "text",
-				data : JSON.stringify(o),
+				dataType : "json",
+				data : JSON.stringify($("#form").serializeObject()),
 				success : function(result) {
-					result = JSON.parse(result);
+					// 					result = JSON.parse(result);
+					console.log(result.name);
 					if (result.success != null) {
-						window.location.assign("/admin/forum/list");
+						// 						window.location.assign("/admin/forum/list");
 					} else {
 						$("span.errorMessage").html("");
-						$.each(result, function(index, value) {
-							$("#" + index).html(value);
-						})
+// 						console.result(result);
+// 						$.each(result, function(index, value) {
+// 							$("#" + index).html(value);
+// 						})
 					}
 				},
 				error : function() {

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Forum.Board;
@@ -14,6 +14,7 @@ import org.iii.seaotter.jayee.service.ForumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,7 +50,9 @@ public class AdminForumController {
 
 	@PostMapping("/insert")
 	@ResponseBody
-	public Map<String, String> insert(@RequestBody Forum forum, Model model) {
+	public Forum insert(@Valid@RequestBody Forum forum,BindingResult bindingResult, Model model) {
+		
+		System.out.println(bindingResult.getAllErrors());
 		Map<String, String> result = new HashMap<>();
 		System.out.println(forum.getName());
 		if (forum.getName() == null || forum.getName().trim() == "") {
@@ -62,13 +65,13 @@ public class AdminForumController {
 			result.put("eBoard", "請選擇");
 		}
 		if (!result.isEmpty()) {
-			return result;
+			return forumService.create(forum);
 		}
 		forum.setCommentDate(new Timestamp(new java.util.Date().getTime()));
 		System.out.println(forum.getCommentDate());
-		forumService.create(forum);
+//		forumService.create(forum);
 		result.put("success", "ok");
-		return result; 
+		return forumService.create(forum); 
 	}
 
 	@PostMapping("/update")

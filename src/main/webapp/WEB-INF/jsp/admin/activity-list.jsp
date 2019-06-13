@@ -69,7 +69,7 @@
 										</tbody>
 									</table>
 									<form id="activity" name="activity" method="post">
-									<input type="text" id="id" name="id">
+									<input type="text" id="id" name="id" style="display:none">
 									</form>
 							</div>
 						</div>
@@ -116,7 +116,8 @@
 			$("#id").val(Object.id);
 			$('#activity').submit();
 		}
-
+	
 	</script>
+	
 </body>
 </html>
