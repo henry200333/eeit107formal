@@ -45,11 +45,11 @@
 					<hr>
 					<form:form modelAttribute="performance" class="user"
 						action="/admin/performance/update" method="POST">
-						<form:hidden path="id" value="${performanceEdit.id}" />
+						<form:hidden path="id" value="${performance.id}" />
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
 								<form:input path="name" class="form-control form-control-user"
-									placeholder="NAME" value="${performanceEdit.name}" onblur="" />
+									placeholder="NAME" value="${performance.name}" onblur="" />
 								<span style="color: red">${error.name}</span>
 							</div>
 						</div>
@@ -57,7 +57,7 @@
 							<div class="col-sm-7 mb-3 mb-sm-0">
 								<label for="context">URL:</label>
 								<form:input path="url" class="form-control form-control-user"
-									placeholder="URL" value="${performanceEdit.url}" />
+									placeholder="URL" value="${performance.url}" />
 								<span style="color: red">${error.url}</span>
 							</div>
 						</div>
