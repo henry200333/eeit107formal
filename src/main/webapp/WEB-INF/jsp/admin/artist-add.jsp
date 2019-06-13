@@ -1,4 +1,4 @@
-%@page import="org.springframework.web.servlet.ModelAndView"%>
+<%@page import="org.springframework.web.servlet.ModelAndView"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -58,8 +58,10 @@
 									id="locationcheck" class="check"></span>
 							</div>
 						</div>
-						<input id="bt" type="button" value="send">
-						<input id="reset" type="reset" value="reset">
+						<input id="bt" type="button" value="send" class="btn btn-primary btn-user btn-block"><span
+							class="icon text-white-50"> <i class="fas fa-file-import"></i>
+						</span>
+						<input id="reset" type="reset" value="reset" class="btn btn-danger btn-user btn-block">
 					</form>
 				</div>
 				<!-- /.container-fluid -->
