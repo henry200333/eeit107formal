@@ -1,8 +1,8 @@
 package org.iii.seaotter.jayee.web;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.service.ActivityService;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -41,10 +42,10 @@ public class AdminActivityController {
 	}
 
 	@RequestMapping("/edit")
-	public String editPage(@ModelAttribute("activity") Activity activity, Model model) {
-		activity = activityService.getById(activity.getId());
-		model.addAttribute("activityParam", activity);
-		
+	public String editPage(HttpServletRequest request) {
+		Long id=Long.valueOf(request.getParameter("id"));
+		Activity activity=activityService.getById(id);
+		request.setAttribute("activityParam", activity);
 		return "/admin/activity-edit";
 
 	}
@@ -84,18 +85,14 @@ public class AdminActivityController {
 
 	}
 	@PostMapping("/update")
-	@ResponseBody
-	public Activity update(@RequestBody Activity activity, Model model) {
+	public String update(@ModelAttribute("activity") Activity activity, Model model) {
 		System.out.println(activity);
-		Map<String, String> errorMsg = new HashMap<>();
-				
-		return activityService.update(activity);
-		
-
+		activityService.update(activity);			
+		return "redirect:/admin/activity/list";
 	}
 	@PostMapping("/delete")
-	public String delete(@ModelAttribute("activity") Activity activity) {
-		activityService.delete(activity);
+	public String delete(@RequestParam("id") Long idThis, HttpServletRequest request, Model model) {
+		activityService.deleteById(idThis);
 		return "redirect:/admin/activity/list";
 
 	}
