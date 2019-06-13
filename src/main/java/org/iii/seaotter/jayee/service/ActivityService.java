@@ -39,5 +39,8 @@ public class ActivityService {
 			activityDao.delete(entity);
 		}
 	}
+	public void deleteById(Long id) {
+		activityDao.deleteById(id);
+	}
 	
 }

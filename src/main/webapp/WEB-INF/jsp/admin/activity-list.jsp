@@ -51,8 +51,6 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<c:if test="${not empty activityList}">
-									<form id="activity" name="activity" action="" method="post">
 									<table class="table table-bordered table-striped table-hover"
 										id="dataTable" width="100%" cellspacing="0">
 										<thead>
@@ -63,16 +61,16 @@
 												<th>Description</th>
 												<th>Begin time</th>
 												<th>End time</th>
-												<th></th>
-												<th></th>
+												<th>Edit</th>
+												<th>Delete</th>
 											</tr>
 										</thead>
 										<tbody id='tbody'>
-											
 										</tbody>
 									</table>
+									<form id="activity" name="activity" method="post">
+									<input type="text" id="id" name="id">
 									</form>
-								</c:if>
 							</div>
 						</div>
 					</div>
@@ -90,21 +88,35 @@
 	<script>
 		$.ajax({
 			url:"query",
-			type:"POST",
+			type:"GET",
 			success:function(data){
 				var txt = "";
 				$.each(data,function(index,value){
 					txt += "<tr>";
 					for(i in value){
 						txt += "<td>"+ value[i]+ "</td>";
+						id=Object.values(value)[0];
 					}
-					txt +="<td><a  href='' class='btn btn-primary btn-sm'><i	class='fas fa-edit' id='edit'></i></a></td><td><a id='delete' href='' class='btn btn-danger btn-sm'	onclick='delete'><i class='fas fa-trash'></i></a></td></tr>";	
+					txt += "<td><a id=" +"'"+ id  +"'" + "href='' onclick='sendId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
+					txt += "<td><a id="+"'"+ id + "'" + 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
+					txt+= "</tr>";	
 				})
 				$("#tbody").html(txt);
 			}
 		})
 
 		
+		function sendId(Object) {
+			$("#activity").attr("action",'/admin/activity/edit');
+			$("#id").val(Object.id);
+			$('#activity').submit();
+		}
+		function deleId(Object) {
+			$("#activity").attr("action",'/admin/activity/delete');
+			$("#id").val(Object.id);
+			$('#activity').submit();
+		}
+
 	</script>
 </body>
 </html>
