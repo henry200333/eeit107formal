@@ -58,10 +58,11 @@
 									id="locationcheck" class="check"></span>
 							</div>
 						</div>
-						<input id="bt" type="button" value="send" class="btn btn-primary btn-user btn-block"><span
+						<input id="bt" type="button" value="send"
+							class="btn btn-primary btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-import"></i>
-						</span>
-						<input id="reset" type="reset" value="reset" class="btn btn-danger btn-user btn-block">
+						</span> <input id="reset" type="reset" value="reset"
+							class="btn btn-danger btn-user btn-block">
 					</form>
 				</div>
 				<!-- /.container-fluid -->
@@ -105,32 +106,22 @@
 				}
 			})
 		});
-		$("#reset").click(function(){
+		$("#reset").click(function() {
 			$('#namecheck').text('');
 			$('#numcheck').text('');
 			$('#locationcheck').text('');
 			$('#bt').removeAttr('disabled');
 		});
 		$("#bt").click(function() {
-			var input = $("#input").serializeArray();
-			var o = {};
-			$.each(input, function(i, filed) {
-				o[filed.name] = filed.value;
-			});
 			$.ajax({
-				type : "POST",
 				url : "/admin/artist/insert",
+				type : "POST",
 				contentType : "application/json;charset=UTF-8",
-				dataType : "text",
-				data : JSON.stringify(o),
+				dataType : "json",
+				data : JSON.stringify($("#input").serializeObject()),
 				success : function(data) {
-					data = JSON.parse(data);
-					$("span.check").html("");
-					$.each(data, function(index, value) {
-						$("#" + index + "check").html(value);
-					});
-					if (data["success"] != null)
-						window.location.assign("/admin/artist/list");
+					alert(data.name);
+					window.location.assign("/admin/artist/list");
 				},
 			});
 		});

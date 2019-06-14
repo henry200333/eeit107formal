@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,7 +56,7 @@ public class AdminArtistController {
 
 	@PostMapping("/insert")
 	@ResponseBody
-	public Map<String, String> insert(@RequestBody Artist artist, Model model) {
+	public Artist insert(@RequestBody Artist artist, Model model) {
 		Map<String, String> result = new HashMap<>();
 		String name = artist.getName();
 		String location = artist.getLocation();
@@ -65,14 +67,14 @@ public class AdminArtistController {
 			result.put("location", "地點請勿空白");
 		}
 		if (!result.isEmpty()) {
-			return result;
+			return null;
 		}
 		artistService.insert(artist);
 		result.put("success", "success");
-		return result;
+		return artistService.insert(artist);
 	}
 
-	@PostMapping("/update")
+	@PutMapping("/update")
 	public String update(@Valid @ModelAttribute("artist") Artist artist, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("artistParam", artist);
@@ -82,7 +84,7 @@ public class AdminArtistController {
 		return "redirect:/admin/artist/list";
 	}
 
-	@PostMapping("/delete")
+	@DeleteMapping("/delete")
 	public String delete(@RequestParam("id") String id) {
 		Long Id = Long.parseLong(id);
 		Artist artist = new Artist();
