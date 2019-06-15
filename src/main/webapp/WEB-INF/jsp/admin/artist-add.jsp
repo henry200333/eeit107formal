@@ -118,7 +118,7 @@
 				type : "POST",
 				contentType : "application/json;charset=UTF-8",
 				dataType : "json",
-				data : JSON.stringify($("#input").serializeObject()),
+				data : $("#input").serializeObject(),
 				success : function(data) {
 					alert(data.name);
 					window.location.assign("/admin/artist/list");

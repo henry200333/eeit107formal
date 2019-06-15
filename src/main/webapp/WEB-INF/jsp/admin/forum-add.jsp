@@ -111,12 +111,12 @@
 				type : "POST",
 				contentType : "application/json",
 				dataType : "json",
-				data : JSON.stringify($("#form").serializeObject()),
+				data : $("#form").serializeObject(),
 				success : function(result) {
 					// 					result = JSON.parse(result);
 					console.log(result.name);
 					if (result.success != null) {
-						// 						window.location.assign("/admin/forum/list");
+// 							window.location.assign("/admin/forum/list");
 					} else {
 						$("span.errorMessage").html("");
 // 						console.result(result);
