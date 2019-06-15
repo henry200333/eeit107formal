@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,6 +37,10 @@ public class AdminPerformanceController {
 	@RequestMapping("/query")
 	@ResponseBody  //轉成JSON
 	public List<Performance> query(){
+		List<Performance> list = performanceSurvice.getAll();
+		for(Performance p : list) {
+			System.out.println(p.getUpdateTime());
+		}
 		return performanceSurvice.getAll();
 	}
 
@@ -47,54 +52,55 @@ public class AdminPerformanceController {
 	}
 
 	@RequestMapping("/edit")
-	public String editPage(@RequestParam("id") String idget, Model model) {
-		Long id = Long.parseLong(idget);
-		Performance performance = performanceSurvice.getById(id);
-		Performance performanceUpdate = new Performance();
-		model.addAttribute("performance", performanceUpdate);
-		model.addAttribute("performanceEdit", performance);
-		return "/admin/performance-edit";
+	public String editPage(@ModelAttribute("performance") Performance performance, Model model) {		
+		System.out.println(performance);
+		performance = performanceSurvice.getById(performance.getId());	
+		model.addAttribute("performance",performance);
+		return  "/admin/performance-edit";
 
 	}
 
 	@PostMapping("/insert")
-	public String insert(@ModelAttribute("performance") Performance performance, Model model) {
+	@ResponseBody
+	public Map<String,String> insert(@RequestBody Performance performance, Model model) {
 
-		Map<String, String> errorMsg = new HashMap<>();
-		model.addAttribute("error",errorMsg );
+		System.out.println(performance);
+
+		Map<String, String> result = new HashMap<>();
+		
 		String name = performance.getName();
 		String url = performance.getUrl();
 		Long aid = performance.getActivityId();
 
 		// name
 		if (name == null || name.trim().length() == 0) {
-			errorMsg.put("name", "NAME欄位不能為空");
+			result.put("name", "NAME欄位不能為空");
 		}
 
 		// url
 		if (url == null || url.trim().length() == 0) {
-			errorMsg.put("url", "URL欄位不能為空");
+			result.put("url", "URL欄位不能為空");
 		}else {
 			try {
 				URL checkUrl = new URL(url);
 				checkUrl.openStream();
 			} catch (Exception e) {
 				e.printStackTrace();
-				errorMsg.put("url", "無效的網址");
+				result.put("url", "無效的網址");
 			}
 		}
 
 		//aid
 		if (aid == null ) {
-			errorMsg.put("aid", "ACTIVITYID欄位不能為空");
+			result.put("aid", "ACTIVITYID欄位不能為空");
 		}
-		System.out.println(performance);
-		if (!errorMsg.isEmpty()) {	
-			model.addAttribute("peformacnce", performance);
-			return "/admin/performance-add";
+		if (!result.isEmpty()) {	
+			return result;
 		}
+		
 		performanceSurvice.insert(performance);
-		return "redirect:/admin/performance/list";
+		result.put("success", "success");
+		return result;
 
 	}
 

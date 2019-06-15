@@ -54,12 +54,15 @@
 								<c:if test="${not empty performances}">
 
 									<table class="table table-bordered table-striped table-hover"
-										id="dataTable" width="100%" cellspacing="0" >										
-										
+										id="dataTable" width="100%" cellspacing="0">
+
 									</table>
 
 								</c:if>
 							</div>
+							<form id="forum" method="post">
+								<input type="text" id="id" name="id" style="display: none">
+							</form>
 						</div>
 					</div>
 
@@ -76,16 +79,17 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
-<script>
+	<script>
 	$.ajax({
 		url:"/admin/performance/query",
 		type:"POST",
 		success: function(data){
-			var txt="<thead><tr><th>ID</th><th>Name</th><th>YOUTUBE_URL</th><th>UPDATE_TIME</th><th>ACTIVITY_ID</th></thead>";
+			var txt="<thead><tr><th>ID</th><th>Name</th><th>YOUTUBE_URL</th><th>UPDATE_TIME</th><th>ACTIVITY_ID</th><th>UPDATE</th><th>DELETE</th></thead>";
 			$("#dataTable").html(txt);
 			showNames(data);			
 		}
-	});
+	})
+
 	
 	function showNames(data){
 		var txt2 = "";
@@ -93,11 +97,28 @@
 			txt2 += "<tr>";
 			for(i in value){
 				txt2 += "<td>"+ value[i]+ "</td>";
-			}
-			txt2 += "</tr>";
-		})
+				var id = value['id'];
+				
+			}			
+			txt2 += "<td><a id=" +"'"+ id  +"'" + "href='' onclick='sendId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
+			txt2 += "<td><a id="+"'"+ id + "'" + 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
+			txt2+= "</tr>";
+		});
 		$("#dataTable").append(txt2);
 	}
+	
+	function sendId(Object) {
+		$("#forum").attr("action",'/admin/performance/edit');
+		$("#id").val(Object.id);
+		$('#forum').submit();
+	}
+	function deleId(Object) {
+		$("#forum").attr("action",'/admin/performance/delete');
+		$("#id").val(Object.id);
+		$('#forum').submit();
+	}
+	
+	
 </script>
 </body>
 </html>

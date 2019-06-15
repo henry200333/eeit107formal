@@ -1,21 +1,20 @@
 package org.iii.seaotter.jayee.web;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.entity.Activity;
-import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -43,43 +42,68 @@ public class AdminActivityController {
 	}
 
 	@RequestMapping("/edit")
-	public String editPage(@ModelAttribute("activity") Activity activity, Model model) {
-		activity = activityService.getById(activity.getId());
-//		Date date=activity.getBeginTime();
-//		String bGdateToStr = date.toString();
-//		String beginTime=bGdateToStr.substring(0, 10)+"T"+bGdateToStr.substring(11, 16);
-//		String endTime=bGdateToStr.substring(0, 10)+"T"+bGdateToStr.substring(11, 16);
-		model.addAttribute("activityParam", activity);
-		
+	public String editPage(HttpServletRequest request) {
+		Long id=Long.valueOf(request.getParameter("id"));
+		Activity activity=activityService.getById(id);
+		request.setAttribute("activityParam", activity);
 		return "/admin/activity-edit";
 
 	}
 	
 	@PostMapping("/insert")
-	public String insert(@Valid@ModelAttribute("activity") Activity activity, BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) {
-			model.addAttribute("activityParam", activity);
-			return "/admin/activity-add";
-		}
-		activityService.insert(activity);
-		return "redirect:/admin/activity/list";
+	@ResponseBody
+	public Activity insert(@RequestBody Activity activity, Model model) {
+		System.out.println(activity);
+//		Map<String, String> errorMsg = new HashMap<>();
+//		
+//		if(activity.getName()==null || activity.getName().trim()=="") {
+//			System.out.println("name為空");
+//			errorMsg.put("name","請輸入活動名稱");
+//		}
+//		if(activity.getArtist()==null || activity.getArtist().trim()=="") {
+//			errorMsg.put("artist","請輸入表演者");
+//		}
+//		if(activity.getDescription()==null || activity.getDescription().trim()=="") {
+//			errorMsg.put("description","請輸入活動描述");
+//		}
+//		if(activity.getBeginTime()==null) {
+//			errorMsg.put("bt","日期格式錯誤");
+//		}
+//		if(activity.getEndTime()==null) {
+//			errorMsg.put("et","日期格式錯誤");
+//		}
+//		
+//		if(!errorMsg.isEmpty()) {
+//			model.addAttribute("errorMsg", errorMsg);
+//			System.out.println("錯誤訊息不為空");
+//			return activity;
+//		}
+//		activityService.insert(activity);
+//		errorMsg.put("noError","無錯誤");
+//		System.out.println("新增成功");
+		return activityService.insert(activity);
 
 	}
 	@PostMapping("/update")
-	public String update(@Valid@ModelAttribute("activity") Activity activity, BindingResult bindingResult, Model model) {
+	public String update(@ModelAttribute("activity") Activity activity, Model model) {
 		System.out.println(activity);
-		if (bindingResult.hasErrors()) {
-			model.addAttribute("activityParam", activity);
-			return "/admin/activity-edit";
-		}
-		activityService.update(activity);
+		activityService.update(activity);			
 		return "redirect:/admin/activity/list";
-
 	}
 	@PostMapping("/delete")
-	public String delete(@ModelAttribute("activity") Activity activity) {
-		activityService.delete(activity);
+	public String delete(@RequestParam("id") Long idThis, HttpServletRequest request, Model model) {
+		activityService.deleteById(idThis);
 		return "redirect:/admin/activity/list";
 
 	}
+	
+	@RequestMapping("/query")
+	@ResponseBody
+	public List<Activity> query(){	
+		return activityService.getAll();
+	}
+	
+	
+	
+	
 }

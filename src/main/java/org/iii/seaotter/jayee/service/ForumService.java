@@ -6,12 +6,15 @@ import org.iii.seaotter.jayee.dao.ForumDao;
 import org.iii.seaotter.jayee.entity.Forum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class ForumService {
 	@Autowired
 	private ForumDao forumDao;
 	
+	@Transactional(readOnly = true)
 	public List<Forum> getAll(){
 		return forumDao.findAll();
 	}
@@ -29,7 +32,10 @@ public class ForumService {
 	}
 	
 	public void delete(Forum forum) {
-		forumDao.delete(forum);
+		forumDao.delete(forum);	
+	}
+	public void deleteById(Long id) {
+		forumDao.deleteById(id);
 	}
 
 }

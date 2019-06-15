@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html>
 <html>
 <!-- header -->
@@ -42,7 +42,7 @@
 
 					<hr>
 
-					<form:form modelAttribute="activity" class="user" action="/admin/activity/update" method="POST">
+					<form id="activity" class="user" action="/admin/activity/update" method="POST">
 						<div class="form-group row" style="font-family:'Noto Sans TC', sans-serif;">
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="id">ID:</label> <input type="text"
@@ -50,18 +50,16 @@
 									placeholder="" value="${activityParam.id}"  readonly>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="name">Name:</label> <form:input
-									class="form-control form-control-user" path="name"
+								<label for="name">Name:</label> <input id="name" name="name"
+									class="form-control form-control-user"
 									placeholder="NAME" value="${activityParam.name}"/>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="artist">Artist:</label> <form:input
-									class="form-control form-control-user" path="artist"
+								<label for="artist">Artist:</label> <input id="artist" name="artist"
+									class="form-control form-control-user"
 									placeholder="Artist" value="${activityParam.artist}"/>
 							</div>
-						</div>
-						
-							
+						</div>		
 						
 						<div class="form-group row">
 							<div class="col-sm-9 mb-3 mb-sm-0">
@@ -71,13 +69,13 @@
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="beginTime">Begin time:</label> <form:input id="beT" type="datetime-local" path="beginTime"
+								<label for="beginTime">Begin time:</label> <input id="beginTime"  name="beginTime" type="text"
 									class="form-control form-control-user"
-									placeholder="BeginTime" value=""/>
+									placeholder="BeginTime" value="${activityParam.beginTime}"/>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="endTime">End time:</label> <form:input path="endTime"
+								<label for="endTime">End time:</label> <input id="endTime" name="endTime"
 									class="form-control form-control-user"
 									placeholder="EndTime" value="${activityParam.endTime}"/>
 							</div>
@@ -89,8 +87,7 @@
 							class="btn btn-danger btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
 						</span> <span class="text"> Reset Input</span></a>
-
-					</form:form>
+					</form>
 				</div>
 				<!-- /.container-fluid -->
 

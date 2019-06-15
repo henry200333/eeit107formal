@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 
@@ -44,7 +43,7 @@
 
 					<hr>
 
-					<form:form modelAttribute="article" class="user"
+					<form id="article" name="article" class="user"
 						action="/admin/article/insert" method="POST">
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
@@ -53,68 +52,61 @@
 									readonly>
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<label for="name">NAME:</label>
-								<form:input path="name" class="form-control form-control-user"
-									placeholder="NAME" value="${articleParam.name}"
-									onblur="checkName()" />
-								<div>
-									<form:errors path="name" cssClass="text-danger"></form:errors>
-								</div>
+								<label for="name">NAME:</label> <input id="name" name="name"
+									class="form-control form-control-user" placeholder="NAME" />
+								<div></div>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-9 mb-3 mb-sm-0">
 								<label for="content">CONTENT:</label>
-								<form:textarea path="content" class="form-control"></form:textarea>
+								<textarea id="content" name="content" class="form-control"></textarea>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="type">TYPE:</label>
 								<div class=" input-group">
-									<input type="text" id="type" name="type" class="form-control"
-										value="${articleParam.type}">
+									<input type="text" id="type" name="type" class="form-control" />
 									<div class="input-group-append">
 										<button class="btn btn-secondary dropdown-toggle"
 											type="button" id="dropdownMenuButton" data-toggle="dropdown"
 											aria-haspopup="true">選擇TYPE</button>
 										<div class="dropdown-menu"
 											aria-labelledby="dropdownMenuButton">
-											<a class="dropdown-item" href="javascript:return false;"
-												onclick="selectArtist()">Artist</a> <a class="dropdown-item"
-												href="javascript:return false;" onclick="selectActivity()">Activity</a>
-											<a class="dropdown-item" href="javascript:return false;"
-												onclick="selectPerformance()">Performance</a> <a
-												class="dropdown-item" href="javascript:return false;"
-												onclick="selectVender()">Article</a> <a class="dropdown-item"
-												href="javascript:return false;" onclick="selectOther()">Other</a>
+											<a class="dropdown-item" href=""
+												onclick="selectArtist();return false">Artist</a> <a
+												class="dropdown-item" href=""
+												onclick="selectActivity();return false">Activity</a> <a
+												class="dropdown-item" href=""
+												onclick="selectPerformance();return false">Performance</a> <a
+												class="dropdown-item" href=""
+												onclick="selectVender();return false">Article</a> <a
+												class="dropdown-item" href=""
+												onclick="selectOther();return false">Other</a>
 										</div>
 									</div>
 								</div>
-								<div>
-									<form:errors path="type" cssClass="text-danger"></form:errors>
-								</div>
+								<div></div>
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<label for="refId">REF_ID:</label>
-								<form:input path="refId" class="form-control form-control-user"
-									placeholder="REF_ID" value="${articleParam.refId}" />
-								<div>
-									<form:errors path="refId" cssClass="text-danger"></form:errors>
-								</div>
+								<label for="refId">REF_ID:</label> <input id="refId"
+									name="refId" class="form-control form-control-user"
+									placeholder="REF_ID" />
+								<div></div>
 							</div>
 
 						</div>
-						<a href="javascript:document.getElementById('article').submit();"
+						<a href="" id="gotoinsert"
 							class="btn btn-primary btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-import"></i>
-						</span> <span class="text"> Insert New Article</span></a>
-						<a href="javascript:document.getElementById('article').reset();"
+						</span> <span class="text"> Insert New Article</span></a> <a
+							href="javascript:document.getElementById('article').reset();"
 							class="btn btn-danger btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
 						</span> <span class="text"> Reset Input</span></a>
 
-					</form:form>
+					</form>
 				</div>
 				<!-- /.container-fluid -->
 
@@ -138,6 +130,33 @@
 				function selectOther() {
 					$("#type").val("Other");
 				}
+			</script>
+			<script>
+				$("#gotoinsert").click(function() {
+					var input = $("#article").serializeArray();
+					alert(JSON.stringify(input));
+					var obj = {};
+					$.each(input, function(index, field) {
+						obj[field.name] = field.value;
+					});
+					var article = JSON.stringify(obj);
+					alert(article);
+					$.ajax({
+						url : '/admin/article/insert',
+						method : 'POST',
+						contentType : 'application/json;charset=UTF-8',
+						dataType : 'json',
+						data : article,
+						success : function(data) {
+							alert("資料新增成功！" + JSON.stringify(data));
+							$(location).attr('href', '/admin/article/list');  //跳轉頁面，要看response先把我註解
+						},
+						error: function (data) {
+							alert("資料新增失敗！請檢查輸入欄位！");
+		                }
+					})
+					return false;
+				})
 			</script>
 		</div>
 		<!-- End of Content Wrapper -->

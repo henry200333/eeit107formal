@@ -5,15 +5,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Forum.Board;
 import org.iii.seaotter.jayee.service.ForumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -30,39 +36,42 @@ public class AdminForumController {
 	}
 
 	@RequestMapping("/add")
-	public String addPage(Model model) {
-		model.addAttribute("forum", new Forum());
+	public String addPage() {
 		return "/admin/forum-add";
 	}
 
 	@RequestMapping("/edit")
-	public String editPage(@ModelAttribute("forum") Forum forum, Model model) {
-		forum = forumService.getById(forum.getId());
-		model.addAttribute("forumParam", forum);
+	public String editPage(HttpServletRequest request) {
+		Long id = (Long) Long.valueOf(request.getParameter("id"));
+		Forum forum = forumService.getById(id);
+		request.setAttribute("forumParam", forum);
 		return "/admin/forum-edit";
 	}
 
 	@PostMapping("/insert")
-	public String insert(@ModelAttribute("forum") Forum forum, Model model) {
-		Map<String, String> errorMsg = new HashMap<>();
+	@ResponseBody
+	public Forum insert(@Valid@RequestBody Forum forum,BindingResult bindingResult, Model model) {
+		
+		System.out.println(bindingResult.getAllErrors());
+		Map<String, String> result = new HashMap<>();
+		System.out.println(forum.getName());
 		if (forum.getName() == null || forum.getName().trim() == "") {
-			errorMsg.put("name", "name不要空");
+			result.put("eName", "請輸入名稱");
 		}
 		if (forum.getContent() == null || forum.getContent().trim() == "") {
-			errorMsg.put("content", "content不要空");
+			result.put("eContent", "請輸入內容");
 		}
 		if (forum.getBoard() == null || !Board.contains(forum.getBoard().name())) {
-			errorMsg.put("board", "board不要空");
+			result.put("eBoard", "請選擇");
 		}
-
-		if (!errorMsg.isEmpty()) {
-			model.addAttribute("forumParam", forum);
-			model.addAttribute("errorMsg", errorMsg);
-			return "/admin/forum-add";
+		if (!result.isEmpty()) {
+			return forumService.create(forum);
 		}
 		forum.setCommentDate(new Timestamp(new java.util.Date().getTime()));
-		forumService.create(forum);
-		return "redirect:/admin/forum/list";
+		System.out.println(forum.getCommentDate());
+//		forumService.create(forum);
+		result.put("success", "ok");
+		return forumService.create(forum); 
 	}
 
 	@PostMapping("/update")
@@ -73,8 +82,9 @@ public class AdminForumController {
 	}
 
 	@PostMapping("/delete")
-	public String delete(@ModelAttribute("forum") Forum forum, Model model) {
-		forumService.delete(forum);
+	public String delete(@RequestParam("id") Long id1, HttpServletRequest request,Model model) {
+//		Long id = (Long) Long.valueOf(request.getParameter("id"));
+		forumService.deleteById(id1);
 		return "redirect:/admin/forum/list";
 	}
 	
