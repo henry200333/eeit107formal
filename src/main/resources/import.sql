@@ -7,7 +7,7 @@ INSERT INTO article (name, content, type, ref_id) values
   ('資料庫自動產生insert時間', '用@CreatTime?', 'Other', 666),
   ('nav.jsp', '抓到網址列的資訊，啟動active的css', 'Other', 666);
  
- insert into forum (board, name, content, comment_date) values
+ insert into forum (board, name, comment, comment_date) values
  ('Ariticle', '薔薔', '大家好', '2019/05/25 18:13:21'),
  ('Ariticle', '博恩', '我真有那麼尷尬嗎？', '2019/05/22 13:50:02'),
  ('Ariticle', '豬孝天', '流星雨揪團', '2006/03/04 13:14:55'),
