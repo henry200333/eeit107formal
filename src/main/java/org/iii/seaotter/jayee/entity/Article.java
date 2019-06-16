@@ -24,16 +24,16 @@ public class Article {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-	@NotNull(message = "REF _ID欄位不可空白")
+	@NotNull
 	@Column(name = "ref_id")
 	private Long refId;
-	@Size(min = 2, max = 30, message = "長度必須介於2~30字元之間")
+	@Size(min = 2, max = 30)
 	@Column(name = "name")
 	private String name;
-	@Size(max = 10000, message = "內容最多只能輸入10000個字元")
+	@Size(max = 10000)
 	@Column(name = "content")
 	private String content;
-	@NotNull(message = "TYPE欄位不可空白")
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(name = "type")
 	private Type type;

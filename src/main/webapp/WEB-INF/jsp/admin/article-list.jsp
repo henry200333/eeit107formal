@@ -76,7 +76,7 @@
 	<script>
 	$.ajax({
 					url : "/admin/article/query",
-					type : "POST",
+					type : "GET",
 					success : function(data) {
 						var table = "";
 						$("#dataTable").append("<thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th><th>EDIT</th><th>DELE</th></tr></thead>");

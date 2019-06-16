@@ -43,47 +43,37 @@
 
 					<hr>
 
-					<form id="article" name="article" class="user"
-						action="/admin/article/insert" method="POST">
+					<form id="form1" name="form1" class="user" autocomplete="off">
 						<div class="form-group row">
-							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="name">ID:</label> <input id="id" name="id"
-									class="form-control form-control-user" placeholder="系統將自動產生ID"
-									readonly>
-							</div>
-							<div class="col-sm-6 mb-3 mb-sm-0">
+							<div class="col-sm-9 mb-3 mb-sm-0">
 								<label for="name">NAME:</label> <input id="name" name="name"
 									class="form-control form-control-user" placeholder="NAME" />
-								<div></div>
+								<small class="form-text text-muted">NAME最少2個字元，最大30個字元</small>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-9 mb-3 mb-sm-0">
 								<label for="content">CONTENT:</label>
-								<textarea id="content" name="content" class="form-control"></textarea>
+								<textarea id="content" name="content" class="form-control form-control-user"></textarea>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="type">TYPE:</label>
 								<div class=" input-group">
-									<input type="text" id="type" name="type" class="form-control" />
+									<input type="text" id="type" name="type" class="form-control form-control-user" value="Other"
+									 readonly="readonly" style="background-color: white;pointer-events: none;"/>
 									<div class="input-group-append">
 										<button class="btn btn-secondary dropdown-toggle"
 											type="button" id="dropdownMenuButton" data-toggle="dropdown"
-											aria-haspopup="true">選擇TYPE</button>
+											aria-haspopup="true">請選擇TYPE</button>
 										<div class="dropdown-menu"
 											aria-labelledby="dropdownMenuButton">
-											<a class="dropdown-item" href=""
-												onclick="selectArtist();return false">Artist</a> <a
-												class="dropdown-item" href=""
-												onclick="selectActivity();return false">Activity</a> <a
-												class="dropdown-item" href=""
-												onclick="selectPerformance();return false">Performance</a> <a
-												class="dropdown-item" href=""
-												onclick="selectVender();return false">Article</a> <a
-												class="dropdown-item" href=""
-												onclick="selectOther();return false">Other</a>
+											<button type="button" class="dropdown-item"	onclick="(function(){$('#type').val('Artist')})()">Artist</button>
+											<button type="button" class="dropdown-item"	onclick="(function(){$('#type').val('Activity')})()">Activity</button>
+											<button type="button" class="dropdown-item" onclick="(function(){$('#type').val('Performance')})()">Performance</button>
+											<button type="button" class="dropdown-item" onclick="(function(){$('#type').val('Vender')})()">Vender</button>
+											<button type="button" class="dropdown-item"	onclick="(function(){$('#type').val('Other')})()">Other</button>
 										</div>
 									</div>
 								</div>
@@ -93,18 +83,22 @@
 								<label for="refId">REF_ID:</label> <input id="refId"
 									name="refId" class="form-control form-control-user"
 									placeholder="REF_ID" />
-								<div></div>
+								<small class="form-text text-muted">REF_ID必須為數字</small>
 							</div>
 
 						</div>
-						<a href="" id="gotoinsert"
-							class="btn btn-primary btn-user btn-block"><span
-							class="icon text-white-50"> <i class="fas fa-file-import"></i>
-						</span> <span class="text"> Insert New Article</span></a> <a
-							href="javascript:document.getElementById('article').reset();"
-							class="btn btn-danger btn-user btn-block"><span
-							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
-						</span> <span class="text"> Reset Input</span></a>
+						<button type="button" id="goToInsert"
+							class="btn btn-primary btn-user btn-block">
+							<span class="icon text-white-50"> <i
+								class="fas fa-file-import"></i>
+							</span> <span class="text"> Insert New Article</span>
+						</button>
+						<button type="reset" id="resetinsert"
+							class="btn btn-danger btn-user btn-block">
+							<span class="icon text-white-50"> <i
+								class="fas fa-file-excel"></i>
+							</span> <span class="text"> Reset Input</span>
+						</button>
 
 					</form>
 				</div>
@@ -115,47 +109,42 @@
 
 			<jsp:include page="footer.jsp"></jsp:include>
 			<script>
-				function selectArtist() {
-					$("#type").val("Artist");
-				}
-				function selectActivity() {
-					$("#type").val("Activity");
-				}
-				function selectPerformance() {
-					$("#type").val("Performance");
-				}
-				function selectVender() {
-					$("#type").val("Vender");
-				}
-				function selectOther() {
-					$("#type").val("Other");
-				}
-			</script>
-			<script>
-				$("#gotoinsert").click(function() {
-					var input = $("#article").serializeArray();
-					alert(JSON.stringify(input));
-					var obj = {};
-					$.each(input, function(index, field) {
-						obj[field.name] = field.value;
-					});
-					var article = JSON.stringify(obj);
-					alert(article);
+				$("#goToInsert").click(function() {
 					$.ajax({
-						url : '/admin/article/insert',
+						url : '/admin/article/add',
 						method : 'POST',
 						contentType : 'application/json;charset=UTF-8',
 						dataType : 'json',
-						data : article,
-						success : function(data) {
-							alert("資料新增成功！" + JSON.stringify(data));
-							$(location).attr('href', '/admin/article/list');  //跳轉頁面，要看response先把我註解
+						data : $("#form1").serializeObject(),
+						success : function(response) {
+							if (response.type == 'SUCCESS'){
+								alert("資料新增成功！\n您新增了一筆名為：" + JSON.stringify(response.data.name) + "的文章");
+							$(location).attr('href', '/admin/article/list'); //跳轉頁面，要看response先把我註解
+							} else {
+								alert("資料新增失敗！請檢察輸入欄位！");
+							}
 						},
-						error: function (data) {
-							alert("資料新增失敗！請檢查輸入欄位！");
-		                }
+						error : function(respH) {
+							alert("資料新增失敗！請檢察輸入欄位！");
+						}
 					})
 					return false;
+				})
+				$("#name").blur(function(){
+					var input = $(this).val();
+					if(input.length >= 2 && input.length <= 30){
+						$(this).attr("class", "form-control form-control-user is-valid")
+					} else {
+						$(this).attr("class", "form-control form-control-user is-invalid")
+					}
+				})
+				$("#refId").blur(function(){
+					var input = $(this).val();
+					if(input.length != 0 && !isNaN(input)){
+						$(this).attr("class", "form-control form-control-user is-valid")
+					} else {
+						$(this).attr("class", "form-control form-control-user is-invalid")
+					}
 				})
 			</script>
 		</div>

@@ -4,14 +4,19 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.iii.seaotter.jayee.common.AjaxResponse;
+import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,16 +29,12 @@ public class AdminArticleController {
 	private ArticleService articleService;
 
 	@RequestMapping("/list")
-	public String listPage(Model model) {
-		model.addAttribute("articleList", articleService.getAll());
-		model.addAttribute("article", new Article());
+	public String listPage() {
 		return "/admin/article-list";
-
 	}
 
 	@RequestMapping("/add")
-	public String addPage(Model model) {
-		model.addAttribute("article", new Article());
+	public String addPage() {
 		return "/admin/article-add";
 	}
 
@@ -44,23 +45,27 @@ public class AdminArticleController {
 		return "/admin/article-edit";
 	}
 
-	@RequestMapping("/query")
+	@GetMapping("/query")
 	@ResponseBody // 轉成JSON
 	public List<Article> query(String name) {
 		return articleService.getAll();
 	}
 
-	@RequestMapping("/insert")
+	@PostMapping("/add")
 	@ResponseBody
-	public Article insert(@Valid @RequestBody Article article, BindingResult result) {
+	public AjaxResponse<Article> insert(@Valid @RequestBody Article article, BindingResult result) {
 		System.out.println(article);
+		AjaxResponse<Article> ajaxRes = new AjaxResponse<>();
 		if (result.hasErrors()) {
-			return null;
+			ajaxRes.setType(AjaxResponseType.ERROR);
+			return ajaxRes;
 		}
-		return articleService.insert(article);
+		ajaxRes.setType(AjaxResponseType.SUCCESS);
+		ajaxRes.setData(articleService.insert(article));
+		return ajaxRes;
 	}
 
-	@PostMapping("/update")
+	@PutMapping("/update")
 	public String update(@Valid @ModelAttribute("article") Article article, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("articleParam", article);
@@ -71,7 +76,7 @@ public class AdminArticleController {
 
 	}
 
-	@PostMapping("/delete")
+	@DeleteMapping("/delete")
 	public String delete(@ModelAttribute("article") Article article) {
 		articleService.delete(article);
 		return "redirect:/admin/article/list";

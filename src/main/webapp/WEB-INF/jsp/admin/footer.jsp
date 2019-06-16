@@ -32,6 +32,7 @@
 <!-- Page level custom scripts -->
 <script src="/resources/js/demo/datatables-demo.js"></script>
 
+<!-- SideBar Active -->
 <script>
 	$(document).ready(function() {
 		var url = $(location).attr('href');
@@ -50,6 +51,8 @@
 		}
 	})
 </script>
+
+<!-- Ajax SerializeObject Function -->
 <script>
     $.fn.serializeObject = function() {
         var o = {};
@@ -66,5 +69,4 @@
         });
         return JSON.stringify(o);
     };
-
 </script>
