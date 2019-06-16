@@ -64,7 +64,7 @@
                 o[this.name] = this.value || '';
             }
         });
-        return o;
+        return JSON.stringify(o);
     };
 
 </script>

@@ -116,7 +116,7 @@
 					// 					result = JSON.parse(result);
 					console.log(result.name);
 					if (result.success != null) {
-						// 						window.location.assign("/admin/forum/list");
+// 							window.location.assign("/admin/forum/list");
 					} else {
 						$("span.errorMessage").html("");
 // 						console.result(result);
