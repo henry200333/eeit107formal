@@ -111,7 +111,7 @@
 				type : "POST",
 				contentType : "application/json",
 				dataType : "json",
-				data : JSON.stringify($("#form").serializeObject()),
+				data : $("#form").serializeObject(),
 				success : function(result) {
 					// 					result = JSON.parse(result);
 					console.log(result.name);
