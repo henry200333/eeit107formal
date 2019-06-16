@@ -81,8 +81,8 @@
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-9 mb-3 mb-sm-0">
-								<label for="content">CONTENT:</label>
-								<textarea class="form-control" id="content" name="content">${forumParam.content}</textarea>
+								<label for="comment">COMMENT:</label>
+								<textarea class="form-control" id="comment" name="comment">${forumParam.comment}</textarea>
 							</div>
 						</div>
 						<button 

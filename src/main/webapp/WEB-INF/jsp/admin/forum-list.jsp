@@ -60,7 +60,7 @@
 											<th>ID</th>
 											<th>board</th>
 											<th>name</th>
-											<th>content</th>
+											<th>comment</th>
 											<th>commentDate</th>
 											<th>EDIT</th>
 											<th>DELETE</th>
@@ -95,14 +95,17 @@
 			$.ajax({
 				url : "query",
 				type : "GET",
-				data:"json",
+				dataType:"json",
 				success : function(data) {
+					console.log("enter success");
 					showNames(data);
+					console.log(data);
 				}
 			})
 		})
 
 		function showNames(data) {
+			console.log("enter showdata");
 			var txt = "";
 			var id="";
 			$.each(data, function(index, value) {

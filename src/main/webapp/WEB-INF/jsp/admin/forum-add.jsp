@@ -41,9 +41,9 @@
 									id="eName" style="color: red"></span>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="name">ID:</label> <input type="text"
+								<label for="id">ID:</label> <input type="text"
 									class="form-control form-control-user" id="id" name="id"
-									value="" placeholder="系統將自動產生ID" readonly>
+									value="" placeholder="系統將自動產生ID" >
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0"></div>
 						</div>
@@ -66,9 +66,9 @@
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-9 mb-3 mb-sm-0">
-								<label for="content">CONTENT:</label>
-								<textarea class="form-control" id="content" name="content"></textarea>
-								<span class="errorMessage" id="eContent" style="color: red"></span>
+								<label for="comment">COMMENT:</label>
+								<textarea class="form-control" id="comment" name="comment"></textarea>
+								<span class="errorMessage" id="eComment" style="color: red"></span>
 							</div>
 						</div>
 						<button type="button" id="insertButton"
@@ -106,19 +106,38 @@
 				dataType : "json",
 				data : $("#form").serializeObject(),
 				success : function(result) {
-					console.log(result.name);
-					if (result.success != null) {
-					} else {
-						$("span.errorMessage").html("");
+					console.log("enter success");
+					if (result.type=="SUCCESS") {
+						$("#form").attr("action",'/admin/forum/edit');
+						$("#id").val(result.data["id"]);
+						$('#form').submit();
+					} else if(result.type=="ERROR"){					
+						alert("新增失敗，請檢查輸入");
+						var messages = result.messages;
+						$.each(messages,function(index,value){
+							console.log(value);
+							console.log(value.title);
+							$("#"+value.title).after("<span>"+value.content+"</span>");
+						})
 					}
-				},
-				error : function() {
-					alert("新增失敗，請檢查輸入");
 				}
 			});
 		});
+		
+		$("#name").blur(function(){
+			console.log($(this).val());
+			if($(this).val()!=null&&$(this).val()!=""){
+				console.log("name輸入檢查通過");
+				$(this).next("span").remove();
+			}
+		})
+				$("#comment").blur(function(){
+			console.log($(this).val());
+			if($(this).val()!=null&&$(this).val()!=""){
+				console.log("comment輸入檢查通過");
+				$(this).next("span").remove();
+			}
+		})
 	</script>
-
-
 </body>
 </html>

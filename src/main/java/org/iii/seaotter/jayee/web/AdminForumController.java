@@ -58,8 +58,8 @@ public class AdminForumController {
 		if (forum.getName() == null || forum.getName().trim() == "") {		
 			messages.add(new Message("name", "請輸入名稱"));
 		}
-		if (forum.getContent() == null || forum.getContent().trim() == "") {
-			messages.add(new Message("content", "請輸入內容"));
+		if (forum.getComment() == null || forum.getComment().trim() == "") {
+			messages.add(new Message("comment", "請輸入內容"));
 		}
 		if (forum.getBoard() == null || !Board.contains(forum.getBoard().name())) {
 			messages.add(new Message("board", "請選擇"));
@@ -95,7 +95,6 @@ public class AdminForumController {
 
 	@PostMapping("/delete")
 	public String delete(@RequestParam("id") Long id1, HttpServletRequest request,Model model) {
-//		Long id = (Long) Long.valueOf(request.getParameter("id"));
 		forumService.deleteById(id1);
 		return "redirect:/admin/forum/list";
 	}
