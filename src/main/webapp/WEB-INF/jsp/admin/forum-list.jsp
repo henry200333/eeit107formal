@@ -95,6 +95,7 @@
 			$.ajax({
 				url : "query",
 				type : "GET",
+				data:"json",
 				success : function(data) {
 					showNames(data);
 				}
@@ -110,8 +111,8 @@
 					txt += "<td>" + value[i] + "</td>";
 					id=Object.values(value)[0];
 				}
-				txt += "<td><a id=" +"'"+ id  +"'" + "href='' onclick='sendId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
-				txt += "<td><a id="+"'"+ id + "'" + 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
+				txt += "<td><button type='button' id=" +"'"+ id  +"'" + "onclick='sendId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
+				txt += "<td><button type='button' id="+"'"+ id + "'" + 'onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></td>';
 				txt+= "</tr>";
 			})
 			$("#tbody").html(txt);

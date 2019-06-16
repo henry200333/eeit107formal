@@ -98,14 +98,7 @@
 	<!-- End of Page Wrapper -->
 	<script>
 		$("#insertButton").click(function() {
-
-			var o = {};
-			// 			$.each(input, function(i, filed) {
-			// 				o[filed.name] = filed.value;
-			// 			});
-
 			console.log($("#form").serializeObject());
-			
 			$.ajax({
 				url : "/admin/forum/insert",
 				type : "POST",
@@ -113,23 +106,16 @@
 				dataType : "json",
 				data : $("#form").serializeObject(),
 				success : function(result) {
-					// 					result = JSON.parse(result);
 					console.log(result.name);
 					if (result.success != null) {
-// 							window.location.assign("/admin/forum/list");
 					} else {
 						$("span.errorMessage").html("");
-// 						console.result(result);
-// 						$.each(result, function(index, value) {
-// 							$("#" + index).html(value);
-// 						})
 					}
 				},
 				error : function() {
 					alert("新增失敗，請檢查輸入");
 				}
 			});
-			return false;
 		});
 	</script>
 

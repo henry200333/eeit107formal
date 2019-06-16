@@ -42,7 +42,7 @@
 
 					<hr>
 
-					<form id="forum" class="user" action="/admin/forum/update" method="POST">
+					<form id="forum" class="user"  method="POST">
 						<div class="form-group row"
 							style="font-family: 'Noto Sans TC', sans-serif;">
 							<div class="col-sm-6 mb-3 mb-sm-0">
@@ -85,10 +85,10 @@
 								<textarea class="form-control" id="content" name="content">${forumParam.content}</textarea>
 							</div>
 						</div>
-						<a href="javascript:document.getElementById('forum').submit();"
-							class="btn btn-primary btn-user btn-block"><span
+						<button 
+							type="button" id="editButton" class="btn btn-primary btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-import"></i>
-						</span> <span class="text"> Edit This Forum</span></a> <a
+						</span> <span class="text"> Edit This Forum</span></button> <a
 							href="javascript:document.getElementById('forum').reset();"
 							class="btn btn-danger btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
@@ -108,6 +108,33 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
+	
+	<script>
+	$("#editButton").click(function(){
+		console.log("edit button onclick");
+		var o = $("#forum").serializeObject();
+		$.ajax({
+			url:"/admin/forum/update",
+			type:"post",
+			contentType:"application/json",
+			dataType:"json",
+			data:o,
+			success:function(result){
+				console.log("ajax return success");
+				console.log(result);	
+				if(result.type=="SUCCESS"){
+					console.log("redirect");
+					alert("資料更新成功");
+				}else if(result.type=="ERROR"){
+					alert("資料更新失敗");
+				}else{
+					alert("Ajax回應沒有設定結果");
+				}
+			}	
+		})		
+	})
+	
+	</script>
 
 </body>
 </html>
