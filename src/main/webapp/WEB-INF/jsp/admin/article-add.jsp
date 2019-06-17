@@ -118,24 +118,23 @@
 						data : $("#form1").serializeObject(),
 						success : function(response) {
 							if (response.type == 'SUCCESS'){
-								alert("資料新增成功！\n您新增了一筆名為：" + JSON.stringify(response.data.name) + "的文章");
-							$(location).attr('href', '/admin/article/list'); //跳轉頁面，要看response先把我註解
+								alert("資料新增成功！\n您新增了一筆名為：" + JSON.stringify(response.data.name) + "的文章\n即將跳轉到EDIT頁面！");
+								$(location).attr('href', '/admin/article/edit?id=' + response.data.id); //跳轉頁面，要看response先把我註解
 							} else {
-								alert("資料新增失敗！請檢察輸入欄位！");
+								alert("資料新增失敗！請檢查輸入欄位！");
 							}
 						},
 						error : function(respH) {
-							alert("資料新增失敗！請檢察輸入欄位！");
+							alert("資料新增失敗！請檢查輸入欄位！");
 						}
 					})
-					return false;
 				})
 				$("#name").blur(function(){
 					var input = $(this).val();
 					if(input.length >= 2 && input.length <= 30){
-						$(this).attr("class", "form-control form-control-user is-valid")
+						$(this).attr("class", "form-control form-control-user is-valid");
 					} else {
-						$(this).attr("class", "form-control form-control-user is-invalid")
+						$(this).attr("class", "form-control form-control-user is-invalid");
 					}
 				})
 				$("#refId").blur(function(){
@@ -143,7 +142,7 @@
 					if(input.length != 0 && !isNaN(input)){
 						$(this).attr("class", "form-control form-control-user is-valid")
 					} else {
-						$(this).attr("class", "form-control form-control-user is-invalid")
+						$(this).attr("class", "form-control form-control-user is-invalid");
 					}
 				})
 			</script>

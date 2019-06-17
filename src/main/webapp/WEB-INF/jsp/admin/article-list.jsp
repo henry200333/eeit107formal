@@ -87,8 +87,8 @@
 								table += "<td>" + value[i] + "</td>";
 								id = Object.values(value)[0];
 							}
-							table += "<td><a id='" + id + "' href='' onclick='editId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
-							table += "<td><a id='" + id + "' href='' onclick='deleId(this);return false' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></a></td>";
+							table += "<td><button id='" + id + "' type='button' onclick='editId(this);' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
+							table += "<td><button id='" + id + "' type='button' onclick='deleId(this);' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
 							table += "</tr>";
 						})
 						table += "</tbody>";
@@ -96,10 +96,17 @@
 					}
 				})
 	function editId(obj){
-		
+		$(location).attr('href', '/admin/article/edit?id=' + obj.id);
 	}
 	function deleId(obj){
-		
+		$.confirm({
+		    confirm: function(){
+		            console.log('the user clicked confirm');
+		    },
+		    cancel: function(){
+		            console.log('the user clicked cancel');
+		    }
+		}); 
 	}
 	</script>
 </body>

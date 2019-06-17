@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 
@@ -44,75 +43,62 @@
 
 					<hr>
 
-					<form:form modelAttribute="article" class="user"
-						action="/admin/article/update" method="POST">
+					<form id="form1" name="form1" class="user" autocomplete="off">
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="name">ID:</label> <input type="text"
 									class="form-control form-control-user" id="id" name="id"
-									placeholder="" value="${articleParam.id}" readonly>
+									placeholder="" value="${articleParam.id}" readonly="readonly" style="pointer-events: none;">
+								<small class="form-text text-muted">由系統自動產生ID，不可修改</small>
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0">
 								<label for="name">NAME:</label>
-								<form:input class="form-control form-control-user" path="name"
+								<input class="form-control form-control-user" id="name" name="name"
 									placeholder="NAME" value="${articleParam.name}" />
-								<div>
-									<form:errors path="name" cssClass="text-danger"></form:errors>
-								</div>
+								<small class="form-text text-muted">NAME最少2個字元，最大30個字元</small>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-9 mb-3 mb-sm-0">
 								<label for="context">CONTENT:</label>
-								<textarea id="content" name="content" class="form-control">${articleParam.content}</textarea>
+								<textarea id="content" name="content" class="form-control form-control-user">${articleParam.content}</textarea>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="type">TYPE:</label>
 								<div class=" input-group">
-									<input type="text" id="type" name="type" class="form-control"
-										value="${articleParam.type}">
+									<input type="text" id="type" name="type" class="form-control form-control-user"
+										value="${articleParam.type}" readonly="readonly" style="background-color: white;pointer-events: none;">
 									<div class="input-group-append">
-										<button class="btn btn-secondary dropdown-toggle"
+										<button type="button" class="btn btn-secondary dropdown-toggle"
 											type="button" id="dropdownMenuButton" data-toggle="dropdown"
-											aria-haspopup="true">選擇TYPE</button>
+											aria-haspopup="true">請選擇TYPE</button>
 										<div class="dropdown-menu"
 											aria-labelledby="dropdownMenuButton">
-											<a class="dropdown-item" href="javascript:return false;"
-												onclick="selectArtist()">Artist</a> <a class="dropdown-item"
-												href="javascript:return false;" onclick="selectActivity()">Activity</a>
-											<a class="dropdown-item" href="javascript:return false;"
-												onclick="selectPerformance()">Performance</a> <a
-												class="dropdown-item" href="javascript:return false;"
-												onclick="selectVender()">Vender</a><a class="dropdown-item"
-												href="javascript:return false;" onclick="selectOther()">Other</a>
+											<button type="button" class="dropdown-item"	onclick="(function(){$('#type').val('Artist')})()">Artist</button>
+											<button type="button" class="dropdown-item"	onclick="(function(){$('#type').val('Activity')})()">Activity</button>
+											<button type="button" class="dropdown-item" onclick="(function(){$('#type').val('Performance')})()">Performance</button>
+											<button type="button" class="dropdown-item" onclick="(function(){$('#type').val('Vender')})()">Vender</button>
+											<button type="button" class="dropdown-item"	onclick="(function(){$('#type').val('Other')})()">Other</button>
 										</div>
 									</div>
-								</div>
-								<div>
-									<form:errors path="type" cssClass="text-danger"></form:errors>
 								</div>
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0">
 								<label for="refId">REF_ID:</label>
-								<form:input path="refId" class="form-control form-control-user"
+								<input id="refId" name="refId" class="form-control form-control-user"
 									placeholder="REF_ID" value="${articleParam.refId}" />
-								<div>
-									<form:errors path="refId" cssClass="text-danger"></form:errors>
-								</div>
+								<small class="form-text text-muted">REF_ID必須為數字</small>
 							</div>
 						</div>
-						<a href="javascript:document.getElementById('article').submit();"
-							class="btn btn-primary btn-user btn-block"><span
+						<button id="goToUpdate" type="button" class="btn btn-primary btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-import"></i>
-						</span> <span class="text"> Edit This Article</span></a>
-						<a href="javascript:document.getElementById('article').reset();"
-							class="btn btn-danger btn-user btn-block"><span
+						</span> <span class="text"> Edit This Article</span></button>
+						<button type="reset" class="btn btn-danger btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
-						</span> <span class="text"> Reset Input</span></a>
-
-					</form:form>
+						</span> <span class="text"> Reset Input</span></button>
+					</form>
 				</div>
 				<!-- /.container-fluid -->
 
@@ -120,22 +106,43 @@
 			<!-- End of Main Content -->
 
 			<jsp:include page="footer.jsp"></jsp:include>
+			
 			<script>
-				function selectArtist() {
-					$("#type").val("Artist");
-				}
-				function selectActivity() {
-					$("#type").val("Activity");
-				}
-				function selectPerformance() {
-					$("#type").val("Performance");
-				}
-				function selectVender() {
-					$("#type").val("Vender");
-				}
-				function selectOther() {
-					$("#type").val("Other");
-				}
+				$("#goToUpdate").click(function() {
+					$.ajax({
+						url : '/admin/article/edit',
+						method : 'PUT',
+						contentType : 'application/json;charset=UTF-8',
+						dataType : 'json',
+						data : $("#form1").serializeObject(),
+						success : function(response) {
+							if (response.type == 'SUCCESS'){
+								alert("資料修改成功！\n您修改了一筆名為：" + JSON.stringify(response.data.name) + "的文章！");
+							} else {
+								alert("資料新增失敗！請檢查輸入欄位！");
+							}
+						},
+						error : function(respH) {
+							alert("資料新增失敗！請檢查輸入欄位！");
+						}
+					})
+				})
+				$("#name").blur(function(){
+					var input = $(this).val();
+					if(input.length >= 2 && input.length <= 30){
+						$(this).attr("class", "form-control form-control-user is-valid");
+					} else {
+						$(this).attr("class", "form-control form-control-user is-invalid");
+					}
+				})
+				$("#refId").blur(function(){
+					var input = $(this).val();
+					if(input.length != 0 && !isNaN(input)){
+						$(this).attr("class", "form-control form-control-user is-valid")
+					} else {
+						$(this).attr("class", "form-control form-control-user is-invalid");
+					}
+				})
 			</script>
 		</div>
 		<!-- End of Content Wrapper -->

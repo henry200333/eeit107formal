@@ -39,7 +39,7 @@ public class AdminArticleController {
 	}
 
 	@RequestMapping("/edit")
-	public String editPage(@ModelAttribute("article") Article article, Model model) {
+	public String editPage(Article article, Model model) {
 		article = articleService.getById(article.getId());
 		model.addAttribute("articleParam", article);
 		return "/admin/article-edit";
@@ -65,14 +65,18 @@ public class AdminArticleController {
 		return ajaxRes;
 	}
 
-	@PutMapping("/update")
-	public String update(@Valid @ModelAttribute("article") Article article, BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) {
-			model.addAttribute("articleParam", article);
-			return "/admin/article-edit";
+	@PutMapping("/edit")
+	@ResponseBody
+	public AjaxResponse<Article> update(@Valid @RequestBody Article article, BindingResult result) {
+		System.out.println(article);
+		AjaxResponse<Article> ajaxRes = new AjaxResponse<>();
+		if (result.hasErrors()) {
+			ajaxRes.setType(AjaxResponseType.ERROR);
+			return ajaxRes;
 		}
-		articleService.update(article);
-		return "redirect:/admin/article/list";
+		ajaxRes.setType(AjaxResponseType.SUCCESS);
+		ajaxRes.setData(articleService.update(article));
+		return ajaxRes;
 
 	}
 
