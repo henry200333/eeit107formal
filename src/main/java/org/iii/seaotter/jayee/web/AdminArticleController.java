@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -81,9 +80,19 @@ public class AdminArticleController {
 	}
 
 	@DeleteMapping("/delete")
-	public String delete(@ModelAttribute("article") Article article) {
-		articleService.delete(article);
-		return "redirect:/admin/article/list";
+	@ResponseBody
+	public AjaxResponse<Article> delete(@RequestBody Article article) {
+		System.out.println(article);
+		AjaxResponse<Article> ajaxRes = new AjaxResponse<>();
+		article = articleService.getById(article.getId());
+		if (article != null) {
+			articleService.delete(article);
+			ajaxRes.setType(AjaxResponseType.SUCCESS);
+			ajaxRes.setData(article);
+		} else {
+			ajaxRes.setType(AjaxResponseType.ERROR);
+		}
+		return ajaxRes;
 	}
 
 }

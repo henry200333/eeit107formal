@@ -99,14 +99,27 @@
 		$(location).attr('href', '/admin/article/edit?id=' + obj.id);
 	}
 	function deleId(obj){
-		$.confirm({
-		    confirm: function(){
-		            console.log('the user clicked confirm');
-		    },
-		    cancel: function(){
-		            console.log('the user clicked cancel');
-		    }
-		}); 
+		var r = confirm("確定要刪除這筆ID=" + obj.id + "的文章嗎？");
+		if (r == true) {
+			$.ajax({
+				url : '/admin/article/delete',
+				method : 'DELETE',
+				contentType : 'application/json;charset=UTF-8',
+				dataType : 'json',
+				data : '{"id":"' + obj.id + '"}',
+				success : function(response) {
+					if (response.type == 'SUCCESS'){
+						alert("資料刪除成功！\n您刪除了一筆ID為：" + response.data.id + "的文章！\n即將重新進入LIST頁面！");
+						$(location).attr('href', '/admin/article/list');
+					} else {
+						alert("資料刪除失敗！請重新搜尋清單確保資料為最新！");
+					}
+				},
+				error : function(respH) {
+					alert("資料刪除失敗！請檢查伺服器連線！");
+				}
+			})
+		}
 	}
 	</script>
 </body>

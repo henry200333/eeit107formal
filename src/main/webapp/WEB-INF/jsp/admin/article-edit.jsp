@@ -119,11 +119,11 @@
 							if (response.type == 'SUCCESS'){
 								alert("資料修改成功！\n您修改了一筆名為：" + JSON.stringify(response.data.name) + "的文章！");
 							} else {
-								alert("資料新增失敗！請檢查輸入欄位！");
+								alert("資料修改失敗！請檢查輸入欄位！");
 							}
 						},
 						error : function(respH) {
-							alert("資料新增失敗！請檢查輸入欄位！");
+							alert("資料修改失敗！請檢查輸入欄位！");
 						}
 					})
 				})
