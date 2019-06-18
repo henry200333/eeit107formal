@@ -1,7 +1,7 @@
 <%@page import="org.springframework.web.servlet.ModelAndView"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -50,18 +50,29 @@
 								Performance</h6>
 						</div>
 						<div class="card-body">
-							<div class="table-responsive">
-								<c:if test="${not empty performances}">
+							<div class="table-responsive"
+							style="font-family: 'Noto Sans TC', sans-serif;">
+								
 
 									<table class="table table-bordered table-striped table-hover"
-										id="dataTable" width="100%" cellspacing="0">
-
-									</table>
-
-								</c:if>
+									id="dataTable" width="100%" cellspacing="0">
+								
+								
+								</table>
+								<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+								<script>
+								$.ajax({
+									url : "/admin/performance/query",
+									type : "GET",
+									success : function(data) {
+										showNames(data);
+									}
+								})
+								</script>
+							
 							</div>
 							<form id="send" method="post">
-								<input type="hidden" id="sendid" name="id">
+								<input type="hidden" id="sendid" name="id"/>
 							</form>
 						</div>
 					</div>
@@ -72,52 +83,61 @@
 			<!-- End of Main Content -->
 
 			<jsp:include page="footer.jsp"></jsp:include>
-
+			
 		</div>
 		<!-- End of Content Wrapper -->
 
 	</div>
 	<!-- End of Page Wrapper -->
 	<script>
-	$.ajax({
-		url:"/admin/performance/query",
-		type:"POST",
-		success: function(data){
-			var txt="<thead><tr><th>ID</th><th>Name</th><th>YOUTUBE_URL</th><th>UPDATE_TIME</th><th>ACTIVITY_ID</th><th>UPDATE</th><th>DELETE</th></thead>";
-			$("#dataTable").html(txt);
-			showNames(data);			
-		}
-	})
-	
-	function showNames(data){
-		var txt2 = "";
-		$.each(data,function(index,value){
-			txt2 += "<tr>";
-			for(i in value){
-				txt2 += "<td>"+ value[i]+ "</td>";
-				var id = value['id'];
+		
+
+		function showNames(data) {
+			var txt1 = "<thead>";
+			var txt2 = "<tbody>";
+			var keys = Object.keys(data[0]);
+			for(i in keys){
+				txt1+="<th>"+keys[i] +"</th>";
 				
-			}			
-			txt2 += "<td><button type='button' id='"+ id  +"' href='' onclick='sendId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
-			txt2 += "<td><button type='button' id='" + id + "' href='' onclick='deleId(this);return false' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
-			txt2+= "</tr>";
-		});
-		$("#dataTable").append(txt2);
-	}
+			}
+			
+			$.each(data,function(index,value){
+				
+					txt2+="<tr>"
+				for(i in value){
+					txt2 += "<td>" + value[i] + "</td>";
+					var id = value['id'];
+				}
+				txt2 += "<td><button type='button' id='"
+					+ id
+					+ "' href='' onclick='sendId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
+				txt2 += "<td><button type='button' id='"
+					+ id
+					+ "' href='' onclick='deleId(this);return false' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";	
+				txt2+="</tr>";
+				
+				
+			})
+			txt1+="<th>UPDATE</th><th>DELETE</th>";
+			txt1+="</thead>";
+			txt2+="</tbody>";
+			$("#dataTable").append(txt1);
+			$("#dataTable").append(txt2);
+		}
+				
+
+		function sendId(Object) {
+			console.log("id=" + Object.id);
+			$("#send").attr("action", "/admin/performance/edit");
+			$("#sendid").val(Object.id);
+			$('#send').submit();
+		}
+		function deleId(Object) {
+			$("#send").attr("action", "/admin/performance/delete");
+			$("#sendid").val(Object.id);
+			$('#send').submit();
+		}
+	</script>
 	
-	function sendId(Object) {
-		console.log("id="+Object.id);
-		$("#send").attr("action","/admin/performance/edit");
-		$("#sendid").val(Object.id);
-		$('#send').submit();
-	}
-	function deleId(Object) {
-		$("#send").attr("action","/admin/performance/delete");
-		$("#sendid").val(Object.id);
-		$('#send').submit();
-	}
-	
-	
-</script>
 </body>
 </html>
