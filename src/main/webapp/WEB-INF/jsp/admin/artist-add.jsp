@@ -32,18 +32,18 @@
 					</span> <span class="text">Return to Artist</span>
 					</a>
 					<hr>
-					<form id="input">
+					<form id="inputform">
 						<div class="form-group row">
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<label for="name">Name:</label> <input name="name" id="name"
-									class="form-control form-control-user" placeholder="ex:Peter"
-									autofocus="autofocus" /> <span style="color: red"
-									id="namecheck" class="check"></span>
+								<label for="name">Name:</label> <input type="text" name="name"
+									id="name" class="form-control form-control-user"
+									placeholder="ex:Peter" autofocus="autofocus" /> <span
+									style="color: red" id="namecheck" class="check"></span>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<label for="fanNumber">Fan_Number:</label> <input
+								<label for="fanNumber">Fan_Number:</label> <input type="text"
 									name="fanNumber" id="fanNumber"
 									class="form-control form-control-user" placeholder="ex:30678" />
 								<span style="color: red" id="numcheck" class="check"></span>
@@ -52,17 +52,21 @@
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<label for="location">Location:</label> <input name="location"
-									id="location" class="form-control form-control-user"
-									placeholder="ex:Taipei" /> <span style="color: red"
-									id="locationcheck" class="check"></span>
+								<label for="location">Location:</label> <input type="text"
+									name="location" id="location"
+									class="form-control form-control-user" placeholder="ex:Taipei" />
+								<span style="color: red" id="locationcheck" class="check"></span>
 							</div>
 						</div>
-						<input id="bt" type="button" value="send"
-							class="btn btn-primary btn-user btn-block"><span
+						<button id="bt" type="button"
+							class="btn btn-primary btn-user btn-block"  disabled="disabled"><span
 							class="icon text-white-50"> <i class="fas fa-file-import"></i>
-						</span> <input id="reset" type="reset" value="reset"
-							class="btn btn-danger btn-user btn-block">
+						</span> <span class="text"> Send</span></button> 
+						<button type="reset" id="resetbt" class="btn btn-danger btn-user btn-block">
+							<span class="icon text-white-50"> <i
+								class="fas fa-file-excel"></i>
+							</span> <span class="text"> Reset</span>
+						</button>
 					</form>
 				</div>
 				<!-- /.container-fluid -->
@@ -106,25 +110,36 @@
 				}
 			})
 		});
-		$("#reset").click(function() {
-			$('#namecheck').text('');
-			$('#numcheck').text('');
-			$('#locationcheck').text('');
-			$('#bt').removeAttr('disabled');
-		});
 		$("#bt").click(function() {
 			$.ajax({
-				url : "/admin/artist/insert",
+				url : "insert",
 				type : "POST",
 				contentType : "application/json;charset=UTF-8",
 				dataType : "json",
-				data : $("#input").serializeObject(),
-				success : function(data) {
-					alert(data.name);
-					window.location.assign("/admin/artist/list");
+				data : $("#inputform").serializeObject(),
+				success : function(response) {
+					if (response.type == 'SUCCESS') {
+						alert("新增成功" + JSON.stringify(response.data.name));
+						$(location).attr('href',
+						'/admin/artist/list');
+					} else {
+						alert("新增失敗");
+					}
 				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					alert(XMLHttpRequest.status);
+					alert(XMLHttpRequest.readyState);
+					alert(textStatus);
+					alert("新增失敗，請檢查欄位");
+				}
 			});
 		});
+		$("#resetbt").click(function(){
+			$('#bt').attr('disabled', 'disabled');
+			$('#namecheck').text('');
+			$('#numcheck').text('');
+			$('#locationcheck').text('');
+		})
 	</script>
 </body>
 </html>

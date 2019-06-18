@@ -65,7 +65,6 @@
 							</form>
 						</div>
 					</div>
-
 				</div>
 				<!-- /.container-fluid -->
 
@@ -107,7 +106,7 @@
 	}
 	
 	function sendId(Object) {
-		alert(Object.id);
+		console.log("id="+Object.id);
 		$("#send").attr("action","/admin/performance/edit");
 		$("#sendid").val(Object.id);
 		$('#send').submit();
