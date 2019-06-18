@@ -45,12 +45,12 @@
 					</span> <span class="text">Add New Forum</span>
 					</a>
 					<form id="searchData">
-					<select id="board" name="board">
-						<option value="Performance">Performance</option>
-						<option value="Activity">Activity</option>
-						<option value="Ariticle">Ariticle</option>
-					</select>
-					<button type="button" id="searchButton">S</button>
+						<select id="board" name="board">
+							<option value="Performance">Performance</option>
+							<option value="Activity">Activity</option>
+							<option value="Ariticle">Ariticle</option>
+						</select>
+						<button type="button" id="searchButton">S</button>
 					</form>
 					<hr>
 
@@ -76,9 +76,23 @@
 									<tbody id="tbody">
 									</tbody>
 								</table>
+								<script
+									src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+								<script>
+									$.ajax({
+										url : "query",
+										type : "GET",
+										dataType : "json",
+										success : function(data) {
+											console.log("enter success");
+											showNames(data);
+											console.log(data);
+										}
+									})
+								</script>
 							</div>
 							<form id="forum" method="post">
-									<input type="text" id="id" name="id" style="display: none">
+								<input type="text" id="id" name="id" style="display: none">
 							</form>
 						</div>
 					</div>
@@ -98,65 +112,62 @@
 	<!-- End of Page Wrapper -->
 	<fmt:setTimeZone value="GMT-8" />
 	<script>
-		$(function() {
-			$.ajax({
-				url : "query",
-				type : "GET",
-				dataType:"json",
-				success : function(data) {
-					console.log("enter success");
-					showNames(data);
-					console.log(data);
-				}
-			})
-		})
-
 		function showNames(data) {
 			console.log("enter showdata1");
 			var txt = "";
-			var id="";
-			$.each(data, function(index, value) {
-				txt += "<tr>";
-				for (i in value) {
-					txt += "<td>" + value[i] + "</td>";
-					id=Object.values(value)[0];
-				}
-				txt += "<td><button type='button' id=" +"'"+ id  +"'" + "onclick='sendId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
-				txt += "<td><button type='button' id="+"'"+ id + "'" + 'onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></td>';
-				txt+= "</tr>";
-			})
+			var id = "";
+			$
+					.each(
+							data,
+							function(index, value) {
+								txt += "<tr>";
+								for (i in value) {
+									txt += "<td>" + value[i] + "</td>";
+									id = Object.values(value)[0];
+								}
+								txt += "<td><button type='button' id="
+										+ "'"
+										+ id
+										+ "'"
+										+ "onclick='sendId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
+								txt += "<td><button type='button' id="
+										+ "'"
+										+ id
+										+ "'"
+										+ 'onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></td>';
+								txt += "</tr>";
+							})
 			$("#tbody").html(txt);
 		}
-		
+
 		function sendId(Object) {
-			$("#forum").attr("action",'/admin/forum/edit');
+			$("#forum").attr("action", '/admin/forum/edit');
 			$("#id").val(Object.id);
 			$('#forum').submit();
 		}
 		function deleId(Object) {
-			$("#forum").attr("action",'/admin/forum/delete');
+			$("#forum").attr("action", '/admin/forum/delete');
 			$("#id").val(Object.id);
 			$('#forum').submit();
 		}
-		
-		$("#searchButton").click(function(){
+
+		$("#searchButton").click(function() {
 			$.ajax({
-				url:"/admin/forum/search",
+				url : "/admin/forum/search",
 				type : "POST",
 				contentType : "application/json",
 				dataType : "json",
-				data : $("#searchData").serializeObject() ,
+				data : $("#searchData").serializeObject(),
 				success : function(data) {
 					console.log("55688");
 					showNames(data);
 					console.log(data);
 				},
-				error:function(){
+				error : function() {
 					console.log("error");
 				}
 			})
 		})
-			
 	</script>
 
 </body>
