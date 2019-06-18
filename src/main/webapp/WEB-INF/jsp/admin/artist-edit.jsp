@@ -82,7 +82,7 @@
 								class="fas fa-file-import"></i>
 							</span> <span class="text">Edit This Artist</span>
 						</button>
-						<button type="reset" class="btn btn-danger btn-user btn-block">
+						<button type="reset" id="resetbt" class="btn btn-danger btn-user btn-block">
 							<span class="icon text-white-50"> <i
 								class="fas fa-file-excel"></i>
 							</span> <span class="text">Reset</span>
@@ -158,6 +158,12 @@
 					alert("修改失敗，請檢查欄位");
 				}
 			})
+		});
+		$("#resetbt").click(function(){
+			$('#bt').removeAttr('disabled');
+			$('#namecheck').text('');
+			$('#numcheck').text('');
+			$('#locationcheck').text('');
 		})
 	</script>
 </body>

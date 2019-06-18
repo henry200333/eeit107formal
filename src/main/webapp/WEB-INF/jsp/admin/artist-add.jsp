@@ -62,7 +62,7 @@
 							class="btn btn-primary btn-user btn-block"  disabled="disabled"><span
 							class="icon text-white-50"> <i class="fas fa-file-import"></i>
 						</span> <span class="text"> Send</span></button> 
-						<button type="reset" class="btn btn-danger btn-user btn-block">
+						<button type="reset" id="resetbt" class="btn btn-danger btn-user btn-block">
 							<span class="icon text-white-50"> <i
 								class="fas fa-file-excel"></i>
 							</span> <span class="text"> Reset</span>
@@ -110,12 +110,6 @@
 				}
 			})
 		});
-		$("#reset").click(function() {
-			$('#namecheck').text('');
-			$('#numcheck').text('');
-			$('#locationcheck').text('');
-			$('#bt').removeAttr('disabled');
-		});
 		$("#bt").click(function() {
 			$.ajax({
 				url : "insert",
@@ -140,6 +134,12 @@
 				}
 			});
 		});
+		$("#resetbt").click(function(){
+			$('#bt').attr('disabled', 'disabled');
+			$('#namecheck').text('');
+			$('#numcheck').text('');
+			$('#locationcheck').text('');
+		})
 	</script>
 </body>
 </html>
