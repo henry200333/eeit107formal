@@ -1,13 +1,14 @@
 package org.iii.seaotter.jayee.web;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.iii.seaotter.jayee.entity.Article;
+import org.iii.seaotter.jayee.common.AjaxResponse;
+import org.iii.seaotter.jayee.common.AjaxResponseType;
+import org.iii.seaotter.jayee.common.Message;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,13 +47,14 @@ public class AdminPerformanceController {
 
 	@RequestMapping("/add")
 	public String addPage(Model model) {
-		model.addAttribute("performance", new Performance());
+		System.out.println("add");
 		return "/admin/performance-add";
 
 	}
 
 	@RequestMapping("/edit")
 	public String editPage(@ModelAttribute("performance") Performance performance, Model model) {		
+		System.out.println("edit");
 		System.out.println(performance);
 		performance = performanceSurvice.getById(performance.getId());	
 		model.addAttribute("performance",performance);
@@ -62,44 +64,50 @@ public class AdminPerformanceController {
 
 	@PostMapping("/insert")
 	@ResponseBody
-	public Map<String,String> insert(@RequestBody Performance performance, Model model) {
-
+	public AjaxResponse<Performance> insert(@RequestBody Performance performance, Model model) {
+		System.out.println("insert");
+		//測試是否傳到後台
 		System.out.println(performance);
-
-		Map<String, String> result = new HashMap<>();
+		
+		//回傳型態AjaxResponse與內部的宣告
+		AjaxResponse<Performance> result = new AjaxResponse<>();
+		List<Message> messages = new ArrayList<>();
 		
 		String name = performance.getName();
 		String url = performance.getUrl();
 		Long aid = performance.getActivityId();
+		
 
 		// name
 		if (name == null || name.trim().length() == 0) {
-			result.put("name", "NAME欄位不能為空");
+			messages.add(new Message("name", "NAME欄位不能為空"));
 		}
 
 		// url
 		if (url == null || url.trim().length() == 0) {
-			result.put("url", "URL欄位不能為空");
+			messages.add(new Message("url", "URL欄位不能為空"));
 		}else {
 			try {
 				URL checkUrl = new URL(url);
 				checkUrl.openStream();
 			} catch (Exception e) {
 				e.printStackTrace();
-				result.put("url", "無效的網址");
+				messages.add(new Message("url", "無效的網址"));
 			}
 		}
 
 		//aid
 		if (aid == null ) {
-			result.put("aid", "ACTIVITYID欄位不能為空");
+			messages.add(new Message("aid", "ACTIVITYID欄位不能為空"));
 		}
-		if (!result.isEmpty()) {	
+		if (!messages.isEmpty()) {
+			result.setType(AjaxResponseType.ERROR);
+			result.setMessages(messages);
 			return result;
-		}
+		}		
 		
-		performanceSurvice.insert(performance);
-		result.put("success", "success");
+		result.setType(AjaxResponseType.SUCCESS);
+		result.setData(performanceSurvice.insert(performance));
 		return result;
 
 	}
@@ -131,6 +139,7 @@ public class AdminPerformanceController {
 		}
 
 		//aid
+		System.out.println(aid);
 		if (aid == null ) {
 			errorMsg.put("aid", "ACTIVITYID欄位不能為空");
 		}

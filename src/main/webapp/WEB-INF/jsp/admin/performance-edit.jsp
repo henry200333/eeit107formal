@@ -65,7 +65,7 @@
 								<label for="type">Related activities:</label>
 								<input type="text" id="activityId" name="activityId"
 									class="form-control form-control-user" placeholder="ACTIVITYID"
-									value="${performanceEdit.activityId}" />
+									value="${performance.activityId}" />
 								<datalist id="activityselect">
 									<option value="123">
 								</datalist>

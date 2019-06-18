@@ -60,8 +60,8 @@
 
 								</c:if>
 							</div>
-							<form id="forum" method="post">
-								<input type="text" id="id" name="id" style="display: none">
+							<form id="send" method="post">
+								<input type="hidden" id="sendid" name="id">
 							</form>
 						</div>
 					</div>
@@ -89,7 +89,6 @@
 			showNames(data);			
 		}
 	})
-
 	
 	function showNames(data){
 		var txt2 = "";
@@ -100,22 +99,23 @@
 				var id = value['id'];
 				
 			}			
-			txt2 += "<td><a id=" +"'"+ id  +"'" + "href='' onclick='sendId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
-			txt2 += "<td><a id="+"'"+ id + "'" + 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
+			txt2 += "<td><button type='button' id='"+ id  +"' href='' onclick='sendId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
+			txt2 += "<td><button type='button' id='" + id + "' href='' onclick='deleId(this);return false' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
 			txt2+= "</tr>";
 		});
 		$("#dataTable").append(txt2);
 	}
 	
 	function sendId(Object) {
-		$("#forum").attr("action",'/admin/performance/edit');
-		$("#id").val(Object.id);
-		$('#forum').submit();
+		alert(Object.id);
+		$("#send").attr("action","/admin/performance/edit");
+		$("#sendid").val(Object.id);
+		$('#send').submit();
 	}
 	function deleId(Object) {
-		$("#forum").attr("action",'/admin/performance/delete');
-		$("#id").val(Object.id);
-		$('#forum').submit();
+		$("#send").attr("action","/admin/performance/delete");
+		$("#sendid").val(Object.id);
+		$('#send').submit();
 	}
 	
 	
