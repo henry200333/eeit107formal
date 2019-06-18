@@ -42,7 +42,7 @@
 					</a>
 
 					<hr>
-					<form id="performance" class="user"
+					<form id="form" class="user"
 						action="/admin/performance/update" method="POST">
 						<input type="hidden" id="id" name="id" value="${performance.id}" />
 						<div class="form-group row">
@@ -62,24 +62,19 @@
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
-								<label for="type">Related activities:</label>
-								<input type="text" id="activityId" name="activityId"
-									class="form-control form-control-user" placeholder="ACTIVITYID"
-									value="${performance.activityId}" />
-								<datalist id="activityselect">
-									<option value="123">
-								</datalist>
-								<span style="color: red">${error.aid}</span>
+								<label for="type">Related activities:</label> <select
+									name="activityId" id="activityId"
+									class="form-control " ></select>
+
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<a
-									href="javascript:document.getElementById('performance').submit();"
+								<button type="button" id="update"
 									class="btn btn-primary btn-user btn-block"><span
 									class="icon text-white-50"> <i
 										class="fas fa-file-import"></i>
-								</span> <span class="text">OK</span></a>
+								</span> <span class="text">OK</span></button>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -106,6 +101,49 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
+<script>
+$.ajax({
+	url:"/admin/performance/aid",
+	type:"POST",
+	success: function(data){
+		var txt="";		
+		console.log(data);
+		$.each(data,function(index,value){
+			txt += 	"<option value='"+value['id']+"'>"+ value['name']+"</option>"			
+			})	
+		$("select").html(txt);
+	}
+})
 
+$("#update").click(
+				function() {
+					console.log($("#form").serializeObject());
+					$.ajax({
+						url : "/admin/performance/update",
+						type : "POST",
+						contentType : "application/json",
+						dataType : "json",
+						data : $("#form").serializeObject(),
+						success : function(result) {
+							if (result.type == "SUCCESS") {
+								alert("更新成功");
+							} else if (result.type == "ERROR") {
+								alert("更新失敗，請檢查輸入");
+								var messages = result.messages;
+								$("span.check").remove();
+								$.each(messages, function(index, value) {
+									console.log(value);
+									$("#" + value.title)
+											.after(
+													"<span class='check'>"
+															+ value.content
+															+ "</span>");
+								})
+							}
+
+						}
+					});
+				});
+</script>
 </body>
 </html>
