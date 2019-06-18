@@ -44,7 +44,14 @@
 						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
 					</span> <span class="text">Add New Forum</span>
 					</a>
-
+					<form id="searchData">
+					<select id="board" name="board">
+						<option value="Performance">Performance</option>
+						<option value="Activity">Activity</option>
+						<option value="Ariticle">Ariticle</option>
+					</select>
+					<button type="button" id="searchButton">S</button>
+					</form>
 					<hr>
 
 					<div class="card shadow mb-4">
@@ -105,7 +112,7 @@
 		})
 
 		function showNames(data) {
-			console.log("enter showdata");
+			console.log("enter showdata1");
 			var txt = "";
 			var id="";
 			$.each(data, function(index, value) {
@@ -131,7 +138,24 @@
 			$("#id").val(Object.id);
 			$('#forum').submit();
 		}
-				
+		
+		$("#searchButton").click(function(){
+			$.ajax({
+				url:"/admin/forum/search",
+				type : "POST",
+				contentType : "application/json",
+				dataType : "json",
+				data : $("#searchData").serializeObject() ,
+				success : function(data) {
+					console.log("55688");
+					showNames(data);
+					console.log(data);
+				},
+				error:function(){
+					console.log("error");
+				}
+			})
+		})
 			
 	</script>
 

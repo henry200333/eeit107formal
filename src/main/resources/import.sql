@@ -9,8 +9,8 @@ INSERT INTO article (name, content, type, ref_id) values
  
  insert into forum (board, name, comment, comment_date) values
  ('Ariticle', '薔薔', '大家好', '2019/05/25 18:13:21'),
- ('Ariticle', '博恩', '我真有那麼尷尬嗎？', '2019/05/22 13:50:02'),
- ('Ariticle', '豬孝天', '流星雨揪團', '2006/03/04 13:14:55'),
+ ('Performance', '博恩', '我真有那麼尷尬嗎？', '2019/05/22 13:50:02'),
+ ('Activity', '豬孝天', '流星雨揪團', '2006/03/04 13:14:55'),
  ('Ariticle', '永和金城武', '不要再冒充我了！', '2019/05/28 20:00:27');
  
  INSERT INTO performance (name,youtube_url,update_time,activity_id) values

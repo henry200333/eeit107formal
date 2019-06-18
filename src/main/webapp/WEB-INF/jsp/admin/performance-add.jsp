@@ -46,7 +46,7 @@
 
 					<hr>
 
-					<form id="form" method="POST">
+					<form id="form" class="user">
 						<input type="hidden" name="id" id="id">
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
@@ -64,30 +64,28 @@
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
-								<label for="type">Related activities:</label> <input type="text"
+								<label for="type">Related activities:</label> <select
 									name="activityId" id="activityId"
-									class="form-control form-control-user" placeholder="ACTIVITYID" />
+									class="form-control " ></select>
 
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<button id="submit" type="button"
+								<button type="button" id="insert"
 									class="btn btn-primary btn-user btn-block">
 									<span class="icon text-white-50"> <i
 										class="fas fa-file-import"></i>
-									</span> <span class="text">OK</span>
+									</span> <span class="text"> OK</span>
 								</button>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<button type="button" id="reset"
-									class="btn btn-danger btn-user btn-block">
-									<span class="icon text-white-50"> <i
-										class="fas fa-file-excel"></i>
-									</span> <span class="text"> Reset</span>
-								</button>
+								<a href="javascript:document.getElementById('forum').reset();"
+									class="btn btn-danger btn-user btn-block"><span
+									class="icon text-white-50"> <i class="fas fa-file-excel"></i>
+								</span> <span class="text"> Reset Input</span></a>
 							</div>
 						</div>
 					</form>
@@ -105,7 +103,19 @@
 	</div>
 	<!-- End of Page Wrapper -->
 	<script>
-		$("#submit").click(
+	$.ajax({
+		url:"/admin/performance/aid",
+		type:"POST",
+		success: function(data){
+			var txt="";		
+			console.log(data);
+			$.each(data,function(index,value){
+				txt += 	"<option value='"+value['id']+"'>"+ value['name']+"</option>"			
+				})	
+			$("select").html(txt);
+		}
+	})
+		$("#insert").click(
 				function() {
 					console.log($("#form").serializeObject());
 					$.ajax({

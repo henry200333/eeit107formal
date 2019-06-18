@@ -2,6 +2,7 @@ package org.iii.seaotter.jayee.web;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import net.minidev.json.JSONArray;
+
 @Controller
 @RequestMapping("/admin/forum")
 public class AdminForumController {
@@ -31,8 +34,8 @@ public class AdminForumController {
 
 	@RequestMapping("/list")
 	public String listPage(Model model) {
-		model.addAttribute("models", forumService.getAll());
-		model.addAttribute("forum", new Forum());
+//		model.addAttribute("models", forumService.getAll());
+//		model.addAttribute("forum", new Forum());
 		return "/admin/forum-list";
 	}
 
@@ -42,10 +45,10 @@ public class AdminForumController {
 	}
 
 	@RequestMapping("/edit")
-	public String editPage(HttpServletRequest request) {
-		Long id = (Long) Long.valueOf(request.getParameter("id"));
+	public String editPage(@RequestParam Long id,Model model) {
+//		Long id = (Long) Long.valueOf(request.getParameter("id"));
 		Forum forum = forumService.getById(id);
-		request.setAttribute("forumParam", forum);
+		model.addAttribute("forumParam", forum);
 		return "/admin/forum-edit";
 	}
 
@@ -77,8 +80,7 @@ public class AdminForumController {
 
 	@PostMapping("/update")
 	@ResponseBody
-	public AjaxResponse<Forum> update(@Valid@RequestBody Forum forum, BindingResult bindingResult) {
-		System.out.println("enter to update");
+	public AjaxResponse<Forum> update(@RequestBody Forum forum, BindingResult bindingResult) {
 		AjaxResponse<Forum> result = new AjaxResponse<Forum>();
 		if(bindingResult.hasErrors()) {		
 			System.out.println(bindingResult.getObjectName());
@@ -86,7 +88,7 @@ public class AdminForumController {
 			System.out.println("result with error");
 			return result;
 		}
-		forum.setCommentDate(forumService.getById(forum.getId()).getCommentDate());
+//		forum.setCommentDate(forumService.getById(forum.getId()).getCommentDate());
 		forumService.update(forum);
 		result.setType(AjaxResponseType.SUCCESS);
 		System.out.println("result with success");
@@ -101,8 +103,23 @@ public class AdminForumController {
 	
 	@RequestMapping("/query")
 	@ResponseBody
-	public List<Forum> query(){
+	public List<Forum> query(){	
 		return forumService.getAll();
+	}
+	@RequestMapping("/search")
+	@ResponseBody
+	public List<Forum> search(@RequestBody Forum forum){	
+		Board board = forum.getBoard();
+		List<Forum> list = new ArrayList<>();
+		Iterator<Forum> tempList = forumService.getAll().iterator();
+		while(tempList.hasNext()) {
+			Forum value = tempList.next();
+			if(value.getBoard().equals(board)) {
+				list.add(value);	
+			}
+		}
+		System.out.println(list.size());
+		return list;
 	}
 	
 }
