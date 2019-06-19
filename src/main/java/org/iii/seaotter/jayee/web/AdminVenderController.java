@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.entity.Vender;
@@ -14,10 +16,13 @@ import org.iii.seaotter.jayee.service.VenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -80,7 +85,7 @@ public class AdminVenderController {
 
 
 	}
-	@PostMapping("/update")
+	@PutMapping("/update")
 	@ResponseBody
 	public Map<String, String> updateinsert(@RequestBody List<Vender> venders, Model model) {
 		Map<String, String> res = new HashMap<>();
@@ -110,12 +115,12 @@ public class AdminVenderController {
 		
 
 	}
-	@PostMapping("/delete")
-	public String delete(@ModelAttribute("vender") Vender vender, Model model) {
-		System.out.println("aaaa");
-		System.out.println();
-		System.out.println(vender);
-		venderService.delete(vender.getId());
+	@DeleteMapping("/delete")
+	public String delete(@RequestBody Vender vender, Model model,@RequestParam String a2) {
+	System.out.println("aa");
+System.out.println(a2);
+System.out.println(vender);
+//		venderService.delete(vender.getId());
 		return "redirect:/admin/vender/list";
 
 	}

@@ -80,10 +80,11 @@
 													<td class="t2">${bean.address}</td>
 													<td class="t2">${bean.maxPeople}</td>
 													<td class="t2">${bean.phone}</td>
-													<td><a   href="${path}" class="btn btn-primary btn-sm"><i
+													<td><a href="${path}" class="btn btn-primary btn-sm"><i
 															class="fas fa-edit"></i></a></td>
-													<td><a id="${bean.id}" href="javascript:document.getElementById('vender').submit();" class="btn btn-danger btn-sm"
-														onclick="deleteId(this)"><i class="fas fa-trash"></i></a></td>
+													<td><a id="${bean.id}" href=""
+														class="btn btn-danger btn-sm" onclick="deleteId(this)"><i
+															class="fas fa-trash"></i></a></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -111,28 +112,44 @@
 	<!-- End of Page Wrapper -->
 	<script>
 		function deleteId(Object) {
-			vender.action = '/admin/vender/delete';
-			document.getElementById("id").value = Object.id;
+
+			// 			document.getElementById("id").value = Object.id;
+			var a2 = Object.id;
+			a2 = '[{"id"=' + a2 + "}]";
+			$.ajax({
+				url : '/admin/vender/delete',
+				type : "DELETE",
+				dataType : "text",
+				data : a2,
+				success : function(data) {
+					alert("success");
+				}
+			})
+
 		}
 
+		$
+				.ajax({
+					url : '/admin/vender/query',
+					type : "POST",
+					success : function(data) {
+						var txt = "";
+						$
+								.each(
+										data,
+										function(key, obj) {
+											txt += "<tr>";
+											for (i in obj) {
 
-		$.ajax({ 
-			url : '/admin/vender/query',
-			type : "POST",
-			success : function(data) {
-				var txt = "";
-				$.each(data, function(key, obj) {
-					txt += "<tr>";
-					for (i in obj) {
-						
-						txt += "<td>" + obj[i] + "</td>";
+												txt += "<td>" + obj[i]
+														+ "</td>";
+											}
+
+											txt += '<td><a  href="${path}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a></td>';
+											txt += '<td><a id='+obj[1]+'href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
+											txt += "</tr>";
+										})
+						$("#tbody").append(txt);
 					}
-					
-					txt +='<td><a  href="${path}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a></td>';
-					txt +='<td><a id='+obj[]+'href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
-					txt += "</tr>";
 				})
-				$("#tbody").append(txt);
-			}
-		})
-		
+	</script>
