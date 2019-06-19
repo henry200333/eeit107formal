@@ -30,8 +30,7 @@
 					</span> <span class="text">Return to Forum</span>
 					</a>
 					<hr>
-					<form id="form" class="user" action="/admin/forum/insert"
-						method="POST">
+					<form id="form" class="user" method="POST">
 						<div class="form-group row"
 							style="font-family: 'Noto Sans TC', sans-serif;">
 							<div class="col-sm-6 mb-3 mb-sm-0">
@@ -51,6 +50,8 @@
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="Board">Board:</label> <select id="board"
 									name="board">
+									
+									<option value="ddd">Apple</option>
 									<option value="Ariticle">Article</option>
 									<option value="Activity">Activity</option>
 									<option value="Performance">Performance</option>

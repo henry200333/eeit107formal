@@ -60,8 +60,8 @@
 
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="Board">Board:</label> <select id="Board"
-									name="Board">
+								<label for="Board">Board:</label> <select id="board"
+									name="board">
 									<option value="Activity"
 										${forumParam.board=='Activity'?'selected':''}>Activity</option>
 									<option value="Ariticle"
@@ -74,7 +74,7 @@
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="commentDate">Date:</label> <input type="text"
 									class="form-control form-control-user" id="showDate"
-									name="showDate" placeholder="系統將自動產生Date"
+									name="commentDate" placeholder="系統將自動產生Date"
 									value="${forumParam.commentDate}" readonly>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
@@ -88,11 +88,11 @@
 						<button 
 							type="button" id="editButton" class="btn btn-primary btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-import"></i>
-						</span> <span class="text"> Edit This Forum</span></button> <a
-							href="javascript:document.getElementById('forum').reset();"
+						</span> <span class="text"> Edit This Forum</span></button> 
+						<button type="button" id="resetButton"
 							class="btn btn-danger btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
-						</span> <span class="text"> Reset Input</span></a>
+						</span> <span class="text"> Reset Input</span></button>
 
 					</form>
 				</div>
@@ -132,6 +132,9 @@
 				}
 			}	
 		})		
+	})
+	
+	$("#resetButton").click(function(){
 	})
 	
 	</script>
