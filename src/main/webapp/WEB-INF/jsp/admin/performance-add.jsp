@@ -113,6 +113,7 @@
 				txt += 	"<option value='"+value['id']+"'>"+ value['name']+"</option>"			
 				})	
 			$("select").html(txt);
+			
 		}
 	})
 		$("#insert").click(

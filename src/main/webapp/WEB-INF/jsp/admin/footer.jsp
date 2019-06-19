@@ -29,17 +29,17 @@
 <script>
 	$(document).ready(function() {
 		var url = $(location).attr('href');
-		if (url.match('artist') != null) {
+		if (url.match('/artist') != null) {
 			$("#navArtist").addClass("active");
-		} else if (url.match('activity') != null) {
+		} else if (url.match('/activity') != null) {
 			$("#navActivity").addClass("active");
-		} else if (url.match('performance') != null) {
+		} else if (url.match('/performance') != null) {
 			$("#navPerformance").addClass("active");
-		} else if (url.match('vender') != null) {
+		} else if (url.match('/vender') != null) {
 			$("#navVender").addClass("active");
-		} else if (url.match('article') != null) {
+		} else if (url.match('/article') != null) {
 			$("#navArticle").addClass("active");
-		} else if (url.match('forum') != null) {
+		} else if (url.match('/forum') != null) {
 			$("#navForum").addClass("active");
 		}
 	})
