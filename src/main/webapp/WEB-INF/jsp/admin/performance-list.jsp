@@ -25,7 +25,7 @@
 				<jsp:include page="topbar.jsp"></jsp:include>
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div class="container-fluid" >
 
 					<!-- Page Heading -->
 					<div
@@ -77,10 +77,13 @@
 							
 						</div>
 					</div>
-					<a href="test"><button type="button" >請點我試試看</button></a>
+					<a href="test"><button type="button" >請點我試試看超酷網站?</button></a>
+					<button type="button" id="vdeo">點我預覽影片排版</button>
 				</div>
+				<hr>
 				<!-- /.container-fluid -->
-
+				<div id="vd" class='form-group row' style="margin-left:10px;">
+				
 			</div>
 			<!-- End of Main Content -->
 
@@ -92,6 +95,7 @@
 	</div>
 	<!-- End of Page Wrapper -->
 	<script>
+	
 		
 
 		function showNames(data) {
@@ -125,6 +129,15 @@
 			txt2+="</tbody>";
 			$("#dataTable").append(txt1);
 			$("#dataTable").append(txt2);
+			$("body").append($("<script />", {
+				  src: "/resources/vendor/datatables/jquery.dataTables.min.js"
+				}))
+			$("body").append($("<script />", {
+				  src: "/resources/vendor/datatables/dataTables.bootstrap4.min.js"
+				}))
+			$("body").append($("<script />", {
+				  src: "/resources/js/demo/datatables-demo.js"
+				}))
 		}
 				
 
@@ -139,6 +152,34 @@
 			$("#sendid").val(Object.id);
 			$('#send').submit();
 		}
+		
+
+		jQuery("#vdeo").click(function(){
+			$.ajax({
+				url:"/admin/performance/query",
+				type:"POST",
+				success: function(data){
+					var txt="";	
+					var txtname="";
+					console.log(data);
+					
+					//https://www.youtube.com/embed/Lhel0tzHE08
+					//https://www.youtube.com/watch?v=Lhel0tzHE08
+					$.each(data,function(index,value){
+						var head=value['url'].substring(0,24);
+						var back = value['url'].substring(32,43)
+						console.log();
+						
+						txt+= "<div class='col-sm-3 mb-3 mb-sm-0'><iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe></div>"
+						txtname+="<div class='col-sm-3 mb-3 mb-sm-0'><span>"+value['name']+"</span></div>"			
+						});	
+						
+						
+					$("#vd").html(txt);
+					$("#vd").append(txtname);
+				}
+			});
+		});
 	</script>
 	
 </body>
