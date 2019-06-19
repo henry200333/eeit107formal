@@ -74,8 +74,10 @@
 							<form id="send" method="post">
 								<input type="hidden" id="sendid" name="id"/>
 							</form>
+							
 						</div>
 					</div>
+					<a href="test"><button type="button" >請點我試試看</button></a>
 				</div>
 				<!-- /.container-fluid -->
 

@@ -39,6 +39,12 @@ public class AdminPerformanceController {
 		return "/admin/performance-list";
 
 	}
+	
+	@RequestMapping("/test")
+	public String test() {
+		return "/admin/test";
+
+	}
 
 	@RequestMapping("/query")
 	@ResponseBody // 轉成JSON
