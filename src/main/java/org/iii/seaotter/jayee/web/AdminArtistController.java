@@ -83,6 +83,7 @@ public class AdminArtistController {
 	@DeleteMapping("/delete")
 	@ResponseBody
 	public AjaxResponse<Artist> delete(@RequestBody Artist artist) {
+		System.out.println(artist);
 		AjaxResponse<Artist> ajaxRes = new AjaxResponse<>();
 		artist = artistService.getById(artist.getId());
 		if(null != artist) {
