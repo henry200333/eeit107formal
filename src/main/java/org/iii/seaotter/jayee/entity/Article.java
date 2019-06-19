@@ -24,9 +24,6 @@ public class Article {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-	@NotNull
-	@Column(name = "ref_id")
-	private Long refId;
 	@Size(min = 2, max = 30)
 	@Column(name = "name")
 	private String name;
@@ -37,6 +34,9 @@ public class Article {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "type")
 	private Type type;
+	@NotNull
+	@Column(name = "ref_id")
+	private Long refId;
 
 	public enum Type {
 		Artist, Activity, Performance, Vender, Other
