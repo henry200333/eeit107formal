@@ -79,7 +79,7 @@
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 						</div>
-						<a id="submit" href="" class="btn btn-primary btn-user btn-block"><span
+						<a id="insert" href="" class="btn btn-primary btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-import"></i>
 						</span> <span class="text"> Insert New Activity</span></a> <a href="javascript:document.getElementById('activity').reset();"
 							class="btn btn-danger btn-user btn-block"><span
@@ -102,32 +102,28 @@
 	<!-- End of Page Wrapper -->
 
 	<script>
-		$("#submit").click(function() {
-			var input = $("#form").serializeArray();
-			alert("JSON.stringify(input)..."+JSON.stringify(input));
-			var o = {};
-			$.each(input, function(index, field) {
-				o[field.name] = field.value;
-			});				
-			var activity = JSON.stringify(o);
-			alert("JSON.stringify(o)..."+activity);
-			
+		$("#insert").click(function() {
 			$.ajax({
 				url : "/admin/activity/insert",
 				type : "POST",
 				contentType : "application/json;charset=UTF-8",
 				dataType : "json",
-				data : activity,
-				success : function(data) {
-					alert("資料新增成功！" + JSON.stringify(data));
-					$(location).attr('href', '/admin/activity/list');  
+				data : $("#form").serializeObject(),
+				success : function(response) {
+					if(response.type == 'SUCCESS'){
+						alert("資料新增成功！" + JSON.stringify(response.data.name)+"即將跳轉Edit頁面...才怪");
+						$(location).attr('href', '/admin/activity/edit?id=' + response.data.id);  //新增完成後無法轉Edit頁面,待修
+					}else{
+						alert("哈! 有錯誤  笨蛋!");
+					}
+					
 				},
-				error: function (data) {
+				error: function (re) {
 					alert("資料新增失敗！");
                 }
 			})
-			return false;
-		});
+			
+		})
 	</script>
 
 
