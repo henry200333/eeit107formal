@@ -77,8 +77,34 @@
 							
 						</div>
 					</div>
-					<a href="test"><button type="button" >請點我試試看超酷網站?</button></a>
-					<button type="button" id="vdeo">點我預覽影片排版</button>
+					<a href="test"><button type="button" class="btn btn-primary btn-user btn-block">請點我試試看超酷網站?</button></a>
+					<br>
+					<button type="button" id="vdeo" class="btn btn-primary btn-user btn-block">點我預覽影片排版</button>
+					<hr>
+					<div id="wrapper"> 
+					
+  <input id="fileUpload" type="file" /><br />
+  <div id="image-holder"> </div>
+</div>
+<script>
+$("#fileUpload").on('change', function () {
+	  if (typeof (FileReader) != "undefined") {
+	    var image_holder = $("#image-holder");
+	    image_holder.empty();
+	    var reader = new FileReader();
+	    reader.onload = function (e) {
+	      $("<img />", {
+	      "src": e.target.result,
+	      "class": "thumb-image"
+	      }).appendTo(image_holder);
+	    }
+	    image_holder.show();
+	    reader.readAsDataURL($(this)[0].files[0]);
+	  } else {
+	    alert("This browser does not support FileReader.");
+	  }
+	});
+</script>
 				</div>
 				<hr>
 				<!-- /.container-fluid -->
@@ -157,12 +183,11 @@
 		jQuery("#vdeo").click(function(){
 			$.ajax({
 				url:"/admin/performance/query",
-				type:"POST",
+				type:"GET",
 				success: function(data){
 					var txt="";	
 					var txtname="";
-					console.log(data);
-					
+					console.log(data);					
 					//https://www.youtube.com/embed/Lhel0tzHE08
 					//https://www.youtube.com/watch?v=Lhel0tzHE08
 					$.each(data,function(index,value){

@@ -57,4 +57,10 @@ public class PerformanceService {
 		}
 	
 	}
+	
+	public List<Performance> test(Long x) {
+		
+		return performanceDao.findByIdGreaterThanEqual(x);
+	}
+	
 }

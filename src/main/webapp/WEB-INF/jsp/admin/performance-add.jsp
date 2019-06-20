@@ -52,7 +52,7 @@
 							<div class="col-sm-7 mb-3 mb-sm-0">
 								<label for="context">FILE NAME:</label><input type="text"
 									name="name" id="name" class="form-control form-control-user"
-									placeholder="File NAME" onblur="" />
+									placeholder="File NAME" onchange="alert('再改啊!')" />
 							</div>
 						</div>
 						<div class="form-group row">
