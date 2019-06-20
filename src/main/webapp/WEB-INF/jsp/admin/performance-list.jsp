@@ -195,13 +195,13 @@ $("#fileUpload").on('change', function () {
 						var back = value['url'].substring(32,43)
 						console.log();
 						
-						txt+= "<div class='col-sm-3 mb-3 mb-sm-0'><iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe></div>"
-						txtname+="<div class='col-sm-3 mb-3 mb-sm-0'><span>"+value['name']+"</span></div>"			
+						txt+= "<div class='col-sm-3 mb-3 mb-sm-0'><iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe><br><span>"+value['name']+"</span></div></div>"
+						txtname+=""			
 						});	
 						
 						
 					$("#vd").html(txt);
-					$("#vd").append(txtname);
+					//$("#vd").append(txtname);
 				}
 			});
 		});
