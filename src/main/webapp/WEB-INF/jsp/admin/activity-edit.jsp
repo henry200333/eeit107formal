@@ -72,7 +72,7 @@
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="beginTime">Begin time:</label> <input id="beginTime"
-									name="beginTime" type="text"
+									name="beginTime" type="dateTime-local"
 									class="form-control form-control-user" placeholder="BeginTime"
 									value="${activityParam.beginTime}" />
 							</div>

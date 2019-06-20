@@ -1,5 +1,9 @@
 package org.iii.seaotter.jayee.web;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -70,7 +74,9 @@ public class AdminActivityController {
 	@PutMapping("/update")
 	@ResponseBody
 	public AjaxResponse<Activity> update(@RequestBody Activity activity) {
+		System.out.println("123");
 		System.out.println(activity);
+		System.out.println("456");
 		AjaxResponse<Activity> aJaxResp=new AjaxResponse<>();
 		activity=activityService.update(activity);
 		aJaxResp.setType(AjaxResponseType.SUCCESS);
@@ -97,7 +103,20 @@ public class AdminActivityController {
 	@GetMapping("/query")
 	@ResponseBody
 	public List<Activity> query(){	
-		return activityService.getAll();
+		System.out.println(activityService.getAll());
+		List<Activity> activity=activityService.getAll();
+		DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");	
+		System.out.println(dateFormat.format(activity.get(1).getBeginTime()));
+		Date date;
+		try {
+			date = dateFormat.parse(dateFormat.format(activity.get(1).getBeginTime()));
+			activity.get(1).setBeginTime(date);
+			System.out.println("gggg   "+activity.get(1));
+		} catch (ParseException e) {
+			System.out.println("日期解析錯誤");
+			e.printStackTrace();
+		}
+		return activity;
 	}
 	
 	
