@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -46,8 +47,12 @@ public class AdminArticleController {
 
 	@GetMapping("/query")
 	@ResponseBody // 轉成JSON
-	public List<Article> query(String name) {
-		return articleService.getAll();
+	public List<Article> query(@RequestParam(name="search", defaultValue="77777") String name) {
+		System.out.println(name);
+		if ("77777".equals(name)) {
+			return articleService.getAll();
+		}
+		return articleService.getByNameContainingOrContentContaining(name, name);
 	}
 
 	@PostMapping("/add")
