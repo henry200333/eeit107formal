@@ -83,12 +83,12 @@
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 						</div>
-						<a id="insert" href="" class="btn btn-primary btn-user btn-block"><span
+						<button type="button" id="insert" class="btn btn-primary btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-import"></i>
-						</span> <span class="text"> Insert New Activity</span></a> <a href="javascript:document.getElementById('activity').reset();"
+						</span> <span class="text"> Insert New Activity</span></button> <button type="reset"
 							class="btn btn-danger btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
-						</span> <span class="text"> Reset Input</span></a>
+						</span> <span class="text"> Reset Input</span></button>
 
 					</form>
 				</div>
