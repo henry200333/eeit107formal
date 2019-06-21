@@ -138,6 +138,7 @@
 								txt += "</tr>";
 							})
 			$("#tbody").html(txt);
+			tableRefresh();
 		}
 
 		function sendId(Object) {
