@@ -120,7 +120,7 @@ $("#update").click(
 					console.log($("#form").serializeObject());
 					$.ajax({
 						url : "/admin/performance/update",
-						type : "POST",
+						type : "PUT",
 						contentType : "application/json",
 						dataType : "json",
 						data : $("#form").serializeObject(),

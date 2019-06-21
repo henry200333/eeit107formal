@@ -2,9 +2,7 @@ package org.iii.seaotter.jayee.web;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
@@ -16,8 +14,10 @@ import org.iii.seaotter.jayee.service.PerformanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,7 +46,7 @@ public class AdminPerformanceController {
 
 	}
 
-	@RequestMapping("/query")
+	@GetMapping("/query")
 	@ResponseBody // 轉成JSON
 	public List<Performance> query() {
 		List<Performance> list = performanceSurvice.getAll();
@@ -68,6 +68,14 @@ public class AdminPerformanceController {
 	public List<Activity> addAid() {
 		System.out.println("aid");
 		return activityService.getAll();
+
+	}
+	
+	@RequestMapping("/test2")
+	@ResponseBody
+	public List<Performance> test2() {
+		
+		return performanceSurvice.test(2L);
 
 	}
 
@@ -125,7 +133,7 @@ public class AdminPerformanceController {
 
 	}
 
-	@PostMapping("/update")
+	@PutMapping("/update")
 	@ResponseBody
 	public AjaxResponse<Performance> update(@RequestBody Performance performance, Model model) {
 		System.out.println("update");
