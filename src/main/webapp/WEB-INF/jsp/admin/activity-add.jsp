@@ -70,14 +70,15 @@
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="beginTime">Begin Time:</label> <input
 									type="text" class="form-control form-control-user" 
-									id="beginTime" name="beginTime" placeholder="BeginTime" autocomplete="off">
+									id="beginTime" name="beginTime" placeholder="點我輸入起始日期" autocomplete="off" readonly="readonly" style="background-color:#ffffff">
+									
 									
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="endTime">End Time:</label> <input
 									 class="form-control form-control-user" type="text"
-									id="endTime" name="endTime" placeholder="EndTime" autocomplete="off">
+									id="endTime" name="endTime" placeholder="點我輸入結束日期" autocomplete="off" readonly="readonly" style="background-color:#ffffff">
 									
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
@@ -132,12 +133,21 @@
 		    $( "#beginTime" ).datetimepicker({
 		        showButtonPanel: true,
 		        dateFormat:'yy-mm-dd',
-		        timeFormat: "HH:mm"
+		        timeFormat: "HH:mm:ss",
+		        onClose: function(selectedDate) {
+					$("#endTime").datepicker("option", "minDate", selectedDate)}
 		    });
-		    $( "#endTime" ).datetimepicker();
+		    $( "#endTime" ).datetimepicker({
+		        showButtonPanel: true,
+		        dateFormat:'yy-mm-dd',
+		        timeFormat: "HH:mm:ss",
+		        onClose: function(selectedDate) {
+					$("#beginTime").datepicker("option", "maxDate", selectedDate)}
+		    });
 		  });
 		
 
+		
 	</script>
 
 	

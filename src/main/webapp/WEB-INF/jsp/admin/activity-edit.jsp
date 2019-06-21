@@ -7,7 +7,8 @@
 <html>
 <!-- header -->
 <jsp:include page="header.jsp"></jsp:include>
-
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />	
+<link rel="stylesheet" href="/resources/css/jquery-ui-timepicker-addon.css">
 <body id="page-top">
 
 	<!-- Page Wrapper -->
@@ -72,15 +73,15 @@
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="beginTime">Begin time:</label> <input id="beginTime"
-									name="beginTime" type="dateTime-local"
+									name="beginTime" type="text"
 									class="form-control form-control-user" placeholder="BeginTime"
-									value="${activityParam.beginTime}" />
+									value="${activityParam.beginTime}" readonly="readonly" style="background-color:#ffffff" />
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="endTime">End time:</label> <input id="endTime" type="dateTime-local"
+								<label for="endTime">End time:</label> <input id="endTime" type="text"
 									name="endTime" class="form-control form-control-user"
-									placeholder="EndTime" value="${activityParam.endTime}" />
+									placeholder="EndTime" value="${activityParam.endTime}" readonly="readonly" style="background-color:#ffffff" />
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 						</div>
@@ -113,6 +114,8 @@
 	<!-- End of Page Wrapper -->
 
 </body>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery-ui-timepicker-addon.js"></script>
 <script>
 	$("#update").click(
 			function() {
@@ -135,5 +138,24 @@
 					}
 				})
 			})
+			
+			
+			
+			$(function() {
+		    $( "#beginTime" ).datetimepicker({
+		        showButtonPanel: true,
+		        dateFormat:'yy-mm-dd',
+		        timeFormat: "HH:mm:ss",
+		        onClose: function(selectedDate) {
+					$("#endTime").datepicker("option", "minDate", selectedDate)}
+		    });
+		    $( "#endTime" ).datetimepicker({
+		        showButtonPanel: true,
+		        dateFormat:'yy-mm-dd',
+		        timeFormat: "HH:mm:ss",
+		        onClose: function(selectedDate) {
+					$("#beginTime").datepicker("option", "maxDate", selectedDate)}
+		    });
+		  });
 </script>
 </html>
