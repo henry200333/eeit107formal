@@ -103,15 +103,7 @@
 															})
 											table += "</tbody>"
 											$("#dataTable").append(table);
-											$("body").append($("<script />", {
-												  src: "/resources/vendor/datatables/jquery.dataTables.min.js"
-												}))
-											$("body").append($("<script />", {
-												  src: "/resources/vendor/datatables/dataTables.bootstrap4.min.js"
-												}))
-											$("body").append($("<script />", {
-												  src: "/resources/js/demo/datatables-demo.js"
-												}));
+											tableRefresh();
 										}
 									});
 
