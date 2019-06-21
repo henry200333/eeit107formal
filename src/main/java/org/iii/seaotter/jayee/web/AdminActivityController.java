@@ -103,19 +103,19 @@ public class AdminActivityController {
 	@GetMapping("/query")
 	@ResponseBody
 	public List<Activity> query(){	
-		System.out.println(activityService.getAll());
+//		System.out.println(activityService.getAll());
 		List<Activity> activity=activityService.getAll();
-		DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");	
-		System.out.println(dateFormat.format(activity.get(1).getBeginTime()));
-		Date date;
-		try {
-			date = dateFormat.parse(dateFormat.format(activity.get(1).getBeginTime()));
-			activity.get(1).setBeginTime(date);
-			System.out.println("gggg   "+activity.get(1));
-		} catch (ParseException e) {
-			System.out.println("日期解析錯誤");
-			e.printStackTrace();
-		}
+//		DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");	
+//		System.out.println(dateFormat.format(activity.get(1).getBeginTime()));
+//		Date date;
+//		try {
+//			date = dateFormat.parse(dateFormat.format(activity.get(1).getBeginTime()));
+//			activity.get(1).setBeginTime(date);
+//			System.out.println("gggg   "+activity.get(1));
+//		} catch (ParseException e) {
+//			System.out.println("日期解析錯誤");
+//			e.printStackTrace();
+//		}
 		return activity;
 	}
 	

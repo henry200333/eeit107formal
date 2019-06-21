@@ -8,7 +8,10 @@
 <!-- header -->
 <jsp:include page="header.jsp"></jsp:include>
 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />	
+<link rel="stylesheet" href="/resources/css/jquery-ui-timepicker-addon.css">
 <body id="page-top">
+
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -66,15 +69,15 @@
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="beginTime">Begin Time:</label> <input
-									type="text" class="form-control form-control-user"
-									id="beginTime" name="beginTime" placeholder="BeginTime">
+									type="text" class="form-control form-control-user" 
+									id="beginTime" name="beginTime" placeholder="BeginTime" autocomplete="off">
 									
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="endTime">End Time:</label> <input
-									type="text" class="form-control form-control-user"
-									id="endTime" name="endTime" placeholder="EndTime">
+									 class="form-control form-control-user" type="text"
+									id="endTime" name="endTime" placeholder="EndTime" autocomplete="off">
 									
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
@@ -124,8 +127,22 @@
 			})
 			
 		})
+		
+		$(function() {
+		    $( "#beginTime" ).datetimepicker({
+		        showButtonPanel: true,
+		        dateFormat:'yy-mm-dd',
+		        timeFormat: "HH:mm"
+		    });
+		    $( "#endTime" ).datetimepicker();
+		  });
+		
+
 	</script>
 
+	
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery-ui-timepicker-addon.js"></script>
 
 </body>
 </html>

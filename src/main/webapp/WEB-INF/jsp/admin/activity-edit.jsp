@@ -78,7 +78,7 @@
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="endTime">End time:</label> <input id="endTime"
+								<label for="endTime">End time:</label> <input id="endTime" type="dateTime-local"
 									name="endTime" class="form-control form-control-user"
 									placeholder="EndTime" value="${activityParam.endTime}" />
 							</div>
