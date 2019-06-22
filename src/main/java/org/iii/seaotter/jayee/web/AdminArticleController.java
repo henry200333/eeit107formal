@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,11 +44,10 @@ public class AdminArticleController {
 		return "/admin/article-edit";
 	}
 
-	@GetMapping("/query")
+	@RequestMapping("/query")
 	@ResponseBody // 轉成JSON
-	public List<Article> query(@RequestParam(name="search", defaultValue="77777") String name) {
-		System.out.println(name);
-		if ("77777".equals(name)) {
+	public List<Article> query(@RequestParam(name="search", defaultValue="") String name) {
+		if ("".equals(name) || name == null) {
 			return articleService.getAll();
 		}
 		return articleService.getByNameContainingOrContentContaining(name, name);

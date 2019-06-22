@@ -37,20 +37,26 @@
 					</div>
 
 					<!-- Add New Article Button -->
-					<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-			            <div class="input-group">
-			              <input id="search" name="search" type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-			              <div class="input-group-append">
-			                <button id="searchBT" class="btn btn-primary" type="button">
-			                  <i class="fas fa-search fa-sm"></i>
-			                </button>
-			              </div>
+					<form class="user">
+			            <div class="form-group row">
+			            	<div class="col-sm-3 mb-3 mb-sm-0">
+					            <div class="input-group">
+					              <input id="search" name="search" type="text" class="form-control border-0 small" placeholder="Search Article..." aria-label="Search" aria-describedby="basic-addon2">
+					              <div class="input-group-append">
+					                <button id="searchBT" class="btn btn-primary" type="button">
+					                  <i class="fas fa-search fa-sm"></i>
+					                </button>
+					              </div>
+					            </div>
+				            </div>
+				            <div class="col-sm-3 mb-3 mb-sm-0">
+				            	<a href="add" class="btn btn-primary btn-icon-split"> <span
+									class="icon text-white-50"> <i class="fas fa-file-medical"></i>
+									</span> <span class="text">Add New Article</span>
+								</a>
+				            </div>
 			            </div>
-			          </form>
-					<a href="add" class="btn btn-primary btn-icon-split"> <span
-						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
-					</span> <span class="text">Add New Article</span>
-					</a>
+			        </form>
 
 					<hr>
 
@@ -135,10 +141,10 @@
 	}
 	$("#searchBT").click(function(){
 		$.ajax({
-			url : "/admin/article/query",
+			url : "/admin/article/query?search=" + $("#search").val(),
 			type : "GET",
-			data : '{"name":"' + $("#search").val() + '"}',
 			success : function(data) {
+				$("#dataTable").text("")
 				var table = "";
 				$("#dataTable").append("<thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th><th>EDIT</th><th>DELE</th></tr></thead>");
 				table += "<tbody>";
@@ -154,8 +160,6 @@
 				})
 				table += "</tbody>";
 				$("#dataTable").append(table);
-				
-				tableRefresh();
 			}
 		})
 	})
