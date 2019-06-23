@@ -72,7 +72,6 @@ public class AdminForumController {
 			result.setMessages(messages);
 			return result;
 		}
-		forum.setCommentDate(new Timestamp(new java.util.Date().getTime()));
 		result.setType(AjaxResponseType.SUCCESS);
 		result.setData(forumService.create(forum));
 		return result;
@@ -107,21 +106,58 @@ public class AdminForumController {
 		return forumService.getAll();
 	}
 
+//	@RequestMapping("/search")
+//	@ResponseBody
+//	public List<Forum> search(@RequestBody Forum forum) {
+//		Board board = forum.getBoard();
+//		List<Forum> list = new ArrayList<>();
+//		Iterator<Forum> tempList = forumService.getAll().iterator();
+//		while (tempList.hasNext()) {
+//			Forum value = tempList.next();
+//			if (value.getBoard().equals(board)) {
+//				list.add(value);
+//			}
+//		}
+//		System.out.println(list.size());
+//		return list;
+//	}
+	
 	@RequestMapping("/search")
 	@ResponseBody
-	public List<Forum> search(@RequestBody Forum forum) {
-		Board board = forum.getBoard();
+	public List<Forum> search(@RequestBody Forum forum0) {
 		List<Forum> list = new ArrayList<>();
-		Iterator<Forum> tempList = forumService.getAll().iterator();
-		while (tempList.hasNext()) {
-			Forum value = tempList.next();
-			if (value.getBoard().equals(board)) {
-				list.add(value);
-			}
+		String searchWord = forum0.getComment();
+		System.out.println(searchWord);
+		if(searchWord!=null&&searchWord!="") {
+			List<Forum> tempList = forumService.getAll();
+			//每行資料逐欄位比對字串
+			for(int i =0;i<tempList.size();i++) {
+				Boolean flag1 = false;
+				Forum forum = tempList.get(i);				
+				if(forum.getBoard().toString().contains(searchWord)) {
+					flag1 = true;
+				}else if(forum.getComment().toString().contains(searchWord)) {
+					flag1 = true;
+				}else if(forum.getCommentDate().toString().contains(searchWord)) {
+					flag1 = true;
+				}else if(forum.getId().toString().contains(searchWord)) {
+					flag1 = true;
+				}else if(forum.getRefCommentId().toString().contains(searchWord)) {
+					flag1 = true;
+				}else if(forum.getRefId().toString().contains(searchWord)) {
+					flag1 = true;
+				}else if(forum.getUserName().toString().contains(searchWord)) {
+					flag1 = true;
+				}else{}
+				
+				if(flag1) {
+					list.add(forum);
+				}		
+			}			
 		}
-		System.out.println(list.size());
 		return list;
 	}
+	
 
 	@RequestMapping("/fitComment")
 	@ResponseBody

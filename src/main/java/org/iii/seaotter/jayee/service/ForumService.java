@@ -1,5 +1,9 @@
 package org.iii.seaotter.jayee.service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 
 import org.iii.seaotter.jayee.dao.ForumDao;
@@ -21,6 +25,11 @@ public class ForumService {
 	}
 	
 	public Forum create(Forum forum) {	
+		LocalDateTime localDateTime = LocalDateTime.now();		
+		ZoneId zoneId = ZoneId.systemDefault();
+        ZonedDateTime zdt = localDateTime.atZone(zoneId);
+        Date date = Date.from(zdt.toInstant());
+        forum.setCommentDate(date);
 		return forumDao.save(forum);
 	}
 	

@@ -44,12 +44,17 @@
 						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
 					</span> <span class="text">Add New Forum</span>
 					</a>
+<!-- 					<form id="searchData"> -->
+<!-- 						<select id="board" name="board"> -->
+<!-- 							<option value="Performance">Performance</option> -->
+<!-- 							<option value="Activity">Activity</option> -->
+<!-- 							<option value="Ariticle">Ariticle</option> -->
+<!-- 						</select> -->
+<!-- 						<button type="button" id="searchButton">Search</button> -->
+<!-- 					</form> -->
+
 					<form id="searchData">
-						<select id="board" name="board">
-							<option value="Performance">Performance</option>
-							<option value="Activity">Activity</option>
-							<option value="Ariticle">Ariticle</option>
-						</select>
+						<input type="text" name="comment"/>
 						<button type="button" id="searchButton">Search</button>
 					</form>
 					<hr>
