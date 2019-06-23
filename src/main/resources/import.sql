@@ -13,10 +13,10 @@ INSERT INTO article (name, content, type, ref_id) values
  ('Activity', '豬孝天', '流星雨揪團', '2006/03/04 13:14:55'),
  ('Ariticle', '永和金城武', '不要再冒充我了！', '2019/05/28 20:00:27');
  
- INSERT INTO performance (name,youtube_url,update_time,activity_id) values
- ('陳忻玥 Vicky Chen -【入土之前】','https://www.youtube.com/watch?v=GfWkG4qedoE','2019/05/25 17:12:05',1),
- ('A-Lin《有一種悲傷 A Kind of Sorrow》','https://www.youtube.com/watch?v=BRcudpJzy1I','2019/05/28 19:10:35',2),
- ('G.E.M.【再見 GOODBYE】鄧紫棋','https://www.youtube.com/watch?v=Lhel0tzHE08','2019/05/28 21:05:46',3);
+ INSERT INTO performance (title,introduction,youtube_url,update_time,activity_id,views) values
+ ('陳忻玥 Vicky Chen -【入土之前】','陳祈玥入土之前完整MV','https://www.youtube.com/watch?v=GfWkG4qedoE','2019/05/25 17:12:05',1,300),
+ ('A-Lin《有一種悲傷 A Kind of Sorrow》','ALIN最新歌曲有一種悲傷','https://www.youtube.com/watch?v=BRcudpJzy1I','2019/05/28 19:10:35',2,200),
+ ('G.E.M.【再見 GOODBYE】鄧紫棋','鄧紫棋發燒歌曲再見，讓您聆聽','https://www.youtube.com/watch?v=Lhel0tzHE08','2019/05/28 21:05:46',3,100);
  							
  
  INSERT INTO artist(name,fan_number,location) VALUES
