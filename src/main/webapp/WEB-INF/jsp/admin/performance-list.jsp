@@ -79,6 +79,8 @@
 					</div>
 					<a href="test"><button type="button" class="btn btn-primary btn-user btn-block">請點我試試看超酷網站?</button></a>
 					<br>
+					<a href="index"><button type="button" class="btn btn-primary btn-user btn-block">請點我看首頁切版試做</button></a>
+					<br>
 					<button type="button" id="vdeo" class="btn btn-primary btn-user btn-block">點我預覽影片排版</button>
 					<hr>
 					<div id="wrapper"> 
@@ -129,6 +131,10 @@ $("#fileUpload").on('change', function () {
 			var txt2 = "<tbody>";
 			var keys = Object.keys(data[0]);
 			for(i in keys){
+				if(i==2){
+					console.log(keys[i]);
+					continue;
+				}
 				txt1+="<th>"+keys[i] +"</th>";
 				
 			}
@@ -137,6 +143,14 @@ $("#fileUpload").on('change', function () {
 				
 					txt2+="<tr>"
 				for(i in value){
+					
+					if(i=="introduction"){
+						console.log(value[i]);
+						continue;
+						}
+						
+						
+					
 					txt2 += "<td>" + value[i] + "</td>";
 					var id = value['id'];
 				}
@@ -187,7 +201,7 @@ $("#fileUpload").on('change', function () {
 						var back = value['url'].substring(32,43)
 						console.log();
 						
-						txt+= "<div class='col-sm-3 mb-3 mb-sm-0'><iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe><br><span>"+value['name']+"</span></div></div>"
+						txt+= "<div class='col-sm-3 mb-3 mb-sm-0'><iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe><br><span>"+value['title']+"</span></div></div>"
 						txtname+=""			
 						});	
 						

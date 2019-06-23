@@ -23,13 +23,17 @@ public class Performance {
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
-	@Column(name="name")
-	private String name;
+	@Column(name="title")
+	private String title;
+	@Column(name="introduction")
+	private String introduction;
 	@Column(name="youtube_url")
 	private String url;
 	@Column(name="update_time")
 	private java.util.Date updateTime;
 	@Column(name="activity_id")
 	private Long activityId;
+	@Column(name="views")
+	private Long views;
 
 }
