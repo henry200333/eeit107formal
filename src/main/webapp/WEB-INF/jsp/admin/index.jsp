@@ -186,19 +186,19 @@ margin-top:5px;
 	<div class="articled">
 	<br>
 	<span style="color:white;margin-left:25px;">TOP 10 </span><a href='/admin/article/list'>Article</a>
-	<ol style="margin-left:50px;width:200px;color:white">
-	<li>AAA</li>
-	<li>BBB</li>
-	<li>CCC</li>
-	<li>DDD</li>
-	<li>EEE</li>
-	<li>FFF</li>
-	<li>GGG</li>
-	<li>HHH</li>
-	<li>III</li>
-	<li>JJJ</li>
+	<ol style="width:200px;color:white">
+	<li style="margin-left:50px;">AAA</li>
+	<li style="margin-left:50px;">BBB</li>
+	<li style="margin-left:50px;">CCC</li>
+	<li style="margin-left:50px;">DDD</li>
+	<li style="margin-left:50px;">EEE</li>
+	<li style="margin-left:50px;">FFF</li>
+	<li style="margin-left:50px;">GGG</li>
+	<li style="margin-left:50px;">HHH</li>
+	<li style="margin-left:50px;">III</li>
+	<li style="margin-left:50px;">JJJ</li>
 	</ol>
-	<br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	</div>
 	<div class="performanced">
 	<br>
