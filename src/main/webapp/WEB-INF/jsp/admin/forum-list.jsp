@@ -54,7 +54,7 @@
 <!-- 					</form> -->
 
 					<form id="searchData">
-						<input type="text" name="comment"/>
+						<input type="text" name="searchWord"/>
 						<button type="button" id="searchButton">Search</button>
 					</form>
 					<hr>
@@ -148,14 +148,13 @@
 			$("#id").val(Object.id);
 			$('#forum').submit();
 		}
-
+	
 		$("#searchButton").click(function() {
-			$.ajax({
+			$.ajax({				
 				url : "/admin/forum/search",
 				type : "POST",
-				contentType : "application/json",
 				dataType : "json",
-				data : $("#searchData").serializeObject(),
+				data : JSON.parse($("#searchData").serializeObject()),
 				success : function(data) {
 					showNames(data);
 				},

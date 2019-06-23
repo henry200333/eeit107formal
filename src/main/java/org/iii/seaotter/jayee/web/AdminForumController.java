@@ -124,10 +124,8 @@ public class AdminForumController {
 	
 	@RequestMapping("/search")
 	@ResponseBody
-	public List<Forum> search(@RequestBody Forum forum0) {
+	public List<Forum> search(@RequestParam String searchWord) {
 		List<Forum> list = new ArrayList<>();
-		String searchWord = forum0.getComment();
-		System.out.println(searchWord);
 		if(searchWord!=null&&searchWord!="") {
 			List<Forum> tempList = forumService.getAll();
 			//每行資料逐欄位比對字串
