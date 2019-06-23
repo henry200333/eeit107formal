@@ -70,7 +70,7 @@ public class AdminPerformanceController {
 		return activityService.getAll();
 
 	}
-	
+	//測試JPA id>=2
 	@RequestMapping("/test2")
 	@ResponseBody
 	public List<Performance> test2() {
@@ -79,6 +79,13 @@ public class AdminPerformanceController {
 
 	}
 
+	@RequestMapping("/index")
+	public String index() {
+		
+		return "/admin/index";
+
+	}
+	
 	@RequestMapping("/edit")
 	public String editPage(@ModelAttribute("performance") Performance performance, Model model) {
 		System.out.println("edit");
