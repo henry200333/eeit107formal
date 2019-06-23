@@ -28,8 +28,8 @@ public class Forum {
 	private Board board;
 	@Column(name="name")
 	private String name;
-	@Column(name="content")
-	private String content;
+	@Column(name="comment")
+	private String comment;
 	@Column(name="comment_date")
 	private java.util.Date commentDate;
 

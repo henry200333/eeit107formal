@@ -37,10 +37,26 @@
 					</div>
 
 					<!-- Add New Article Button -->
-					<a href="add" class="btn btn-primary btn-icon-split"> <span
-						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
-					</span> <span class="text">Add New Article</span>
-					</a>
+					<form class="user">
+			            <div class="form-group row">
+			            	<div class="col-sm-3 mb-3 mb-sm-0">
+					            <div class="input-group">
+					              <input id="search" name="search" type="text" class="form-control border-0 small" placeholder="Search Article..." aria-label="Search" aria-describedby="basic-addon2">
+					              <div class="input-group-append">
+					                <button id="searchBT" class="btn btn-primary" type="button">
+					                  <i class="fas fa-search fa-sm"></i>
+					                </button>
+					              </div>
+					            </div>
+				            </div>
+				            <div class="col-sm-3 mb-3 mb-sm-0">
+				            	<a href="add" class="btn btn-primary btn-icon-split"> <span
+									class="icon text-white-50"> <i class="fas fa-file-medical"></i>
+									</span> <span class="text">Add New Article</span>
+								</a>
+				            </div>
+			            </div>
+			        </form>
 
 					<hr>
 
@@ -76,7 +92,7 @@
 	<script>
 	$.ajax({
 					url : "/admin/article/query",
-					type : "POST",
+					type : "GET",
 					success : function(data) {
 						var table = "";
 						$("#dataTable").append("<thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th><th>EDIT</th><th>DELE</th></tr></thead>");
@@ -87,20 +103,67 @@
 								table += "<td>" + value[i] + "</td>";
 								id = Object.values(value)[0];
 							}
-							table += "<td><a id='" + id + "' href='' onclick='editId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
-							table += "<td><a id='" + id + "' href='' onclick='deleId(this);return false' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></a></td>";
+							table += "<td><button id='" + id + "' type='button' onclick='editId(this);' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
+							table += "<td><button id='" + id + "' type='button' onclick='deleId(this);' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
 							table += "</tr>";
 						})
 						table += "</tbody>";
 						$("#dataTable").append(table);
+						
+						tableRefresh();
 					}
 				})
 	function editId(obj){
-		
+		$(location).attr('href', '/admin/article/edit?id=' + obj.id);
 	}
 	function deleId(obj){
-		
+		var r = confirm("確定要刪除這筆ID=" + obj.id + "的文章嗎？");
+		if (r == true) {
+			$.ajax({
+				url : '/admin/article/delete',
+				method : 'DELETE',
+				contentType : 'application/json;charset=UTF-8',
+				dataType : 'json',
+				data : '{"id":"' + obj.id + '"}',
+				success : function(response) {
+					if (response.type == 'SUCCESS'){
+						alert("資料刪除成功！\n您刪除了一筆ID為：" + response.data.id + "的文章！\n即將重新進入LIST頁面！");
+						$(location).attr('href', '/admin/article/list');
+					} else {
+						alert("資料刪除失敗！請重新搜尋清單確保資料為最新！");
+					}
+				},
+				error : function(respH) {
+					alert("資料刪除失敗！請檢查伺服器連線！");
+				}
+			})
+		}
 	}
+	$("#searchBT").click(function(){
+		$.ajax({
+			url : "/admin/article/query?search=" + $("#search").val(),
+			type : "GET",
+			success : function(data) {
+				$("#dataTable").text("")
+				var table = "";
+				$("#dataTable").append("<thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th><th>EDIT</th><th>DELE</th></tr></thead>");
+				table += "<tbody>";
+				$.each(data, function(key, value) {
+					table += "<tr>";
+					for (i in value) {
+						table += "<td>" + value[i] + "</td>";
+						id = Object.values(value)[0];
+					}
+					table += "<td><button id='" + id + "' type='button' onclick='editId(this);' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
+					table += "<td><button id='" + id + "' type='button' onclick='deleId(this);' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
+					table += "</tr>";
+				})
+				table += "</tbody>";
+				$("#dataTable").append(table);
+			}
+		})
+	})
+	
 	</script>
 </body>
 </html>

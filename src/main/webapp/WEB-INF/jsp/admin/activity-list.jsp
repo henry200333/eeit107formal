@@ -68,9 +68,7 @@
 										<tbody id='tbody'>
 										</tbody>
 									</table>
-									<form id="activity" name="activity" method="post">
-									<input type="text" id="id" name="id">
-									</form>
+								
 							</div>
 						</div>
 					</div>
@@ -97,26 +95,63 @@
 						txt += "<td>"+ value[i]+ "</td>";
 						id=Object.values(value)[0];
 					}
-					txt += "<td><a id=" +"'"+ id  +"'" + "href='' onclick='sendId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
+					txt += "<td><a id=" +"'"+ id  +"'" + "href='' onclick='editId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
 					txt += "<td><a id="+"'"+ id + "'" + 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
 					txt+= "</tr>";	
 				})
 				$("#tbody").html(txt);
+				
+				tableRefresh();
+				
 			}
 		})
 
+		function editId(obj){
+		$(location).attr('href', '/admin/activity/edit?id=' + obj.id);
+	}
+	function deleId(obj){
+		var r = confirm("確定要刪除這筆ID=" + obj.id + "的資料嗎？");
+		if (r == true) {
+			$.ajax({
+				url : '/admin/activity/delete',
+				method : 'DELETE',
+				contentType : 'application/json;charset=UTF-8',
+				dataType : 'json',
+				data : '{"id":"' + obj.id + '"}',
+				success : function(response) {
+					if (response.type == 'SUCCESS'){
+						alert("資料刪除成功！\n您刪除了一筆ID為：" + response.data.id + "的資料！\n即將重新進入LIST頁面！");
+						$(location).attr('href', '/admin/activity/list');
+					} else {
+						alert("資料刪除失敗！請重新搜尋清單確保資料為最新！");
+					}
+				},
+				error : function(respH) {
+					alert("資料刪除失敗！請檢查伺服器連線！");
+				}
+			})
+		}
+	}
 		
-		function sendId(Object) {
-			$("#activity").attr("action",'/admin/activity/edit');
-			$("#id").val(Object.id);
-			$('#activity').submit();
-		}
-		function deleId(Object) {
-			$("#activity").attr("action",'/admin/activity/delete');
-			$("#id").val(Object.id);
-			$('#activity').submit();
-		}
-
+		
+		
+		
+		
+		
+		
+		
+// 		function sendId(Object) {
+// 			$("#activity").attr("action",'/admin/activity/edit');
+// 			$("#id").val(Object.id);
+// 			$('#activity').submit();
+// 		}
+// 		function deleId(Object) {
+// 			$("#activity").attr("action",'/admin/activity/delete');
+// 			$("#id").val(Object.id);
+// 			$('#activity').submit();
+// 		}
+	
 	</script>
+	
 </body>
 </html>

@@ -30,18 +30,17 @@
 					</span> <span class="text">Return to Forum</span>
 					</a>
 					<hr>
-					<form id="form" class="user" action="/admin/forum/insert"
-						method="POST">
+					<form id="form" class="user" method="POST">
 						<div class="form-group row"
 							style="font-family: 'Noto Sans TC', sans-serif;">
 							<div class="col-sm-6 mb-3 mb-sm-0">
 								<label for="name">NAME:</label> <input type="text"
 									class="form-control form-control-user" id="name" name="name"
 									placeholder="NAME" value=""> <span class="errorMessage"
-									id="eName" style="color:red"></span>
+									id="eName" style="color: red"></span>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="name">ID:</label> <input type="text"
+								<label for="id">ID:</label> <input type="text"
 									class="form-control form-control-user" id="id" name="id"
 									value="" placeholder="系統將自動產生ID" readonly>
 							</div>
@@ -51,10 +50,12 @@
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="Board">Board:</label> <select id="board"
 									name="board">
+									
+									<option value="ddd">Apple</option>
 									<option value="Ariticle">Article</option>
 									<option value="Activity">Activity</option>
 									<option value="Performance">Performance</option>
-								</select> <span class="errorMessage" id="eBoard" style="color:red"></span>
+								</select> <span class="errorMessage" id="eBoard" style="color: red"></span>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
@@ -66,16 +67,18 @@
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-9 mb-3 mb-sm-0">
-								<label for="content">CONTENT:</label>
-								<textarea class="form-control" id="content" name="content"></textarea>
-								<span class="errorMessage" id="eContent" style="color:red"></span>
+								<label for="comment">COMMENT:</label>
+								<textarea class="form-control" id="comment" name="comment"></textarea>
+								<span class="errorMessage" id="eComment" style="color: red"></span>
 							</div>
 						</div>
-						<a href="" id="insertButton"
-							class="btn btn-primary btn-user btn-block"><span
-							class="icon text-white-50"> <i class="fas fa-file-import"></i>
-						</span> <span class="text"> Insert New Forum</span></a> <a
-							href="javascript:document.getElementById('forum').reset();"
+						<button type="button" id="insertButton"
+							class="btn btn-primary btn-user btn-block">
+							<span class="icon text-white-50"> <i
+								class="fas fa-file-import"></i>
+							</span> <span class="text"> Insert New Forum</span>
+						</button>
+						<a href="javascript:document.getElementById('forum').reset();"
 							class="btn btn-danger btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
 						</span> <span class="text"> Reset Input</span></a>
@@ -96,36 +99,46 @@
 	<!-- End of Page Wrapper -->
 	<script>
 		$("#insertButton").click(function() {
-			var input = $("#form").serializeArray();
-			var o = {};
-			$.each(input, function(i, filed) {
-				o[filed.name] = filed.value;
-			});
+			console.log($("#form").serializeObject());
 			$.ajax({
 				url : "/admin/forum/insert",
 				type : "POST",
 				contentType : "application/json",
-				dataType : "text",
-				data : JSON.stringify(o),
+				dataType : "json",
+				data : $("#form").serializeObject(),
 				success : function(result) {
-					result = JSON.parse(result);
-					if (result.success != null) {
-						window.location.assign("/admin/forum/list");
-					} else {
-						$("span.errorMessage").html("");
-						$.each(result, function(index, value) {
-							$("#" + index).html(value);
+					console.log("enter success");
+					if (result.type=="SUCCESS") {
+						$("#form").attr("action",'/admin/forum/edit');
+						$("#id").val(result.data["id"]);
+						$('#form').submit();
+					} else if(result.type=="ERROR"){					
+						alert("新增失敗，請檢查輸入");
+						var messages = result.messages;
+						$.each(messages,function(index,value){
+							console.log(value);
+							console.log(value.title);
+							$("#"+value.title).after("<span>"+value.content+"</span>");
 						})
 					}
-				},
-				error : function() {
-					alert("新增失敗，請檢查輸入");
 				}
 			});
-			return false;
 		});
+		
+		$("#name").blur(function(){
+			console.log($(this).val());
+			if($(this).val()!=null&&$(this).val()!=""){
+				console.log("name輸入檢查通過");
+				$(this).next("span").remove();
+			}
+		})
+				$("#comment").blur(function(){
+			console.log($(this).val());
+			if($(this).val()!=null&&$(this).val()!=""){
+				console.log("comment輸入檢查通過");
+				$(this).next("span").remove();
+			}
+		})
 	</script>
-
-
 </body>
 </html>

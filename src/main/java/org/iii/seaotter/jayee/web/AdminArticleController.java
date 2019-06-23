@@ -4,16 +4,20 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.iii.seaotter.jayee.common.AjaxResponse;
+import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -24,21 +28,17 @@ public class AdminArticleController {
 	private ArticleService articleService;
 
 	@RequestMapping("/list")
-	public String listPage(Model model) {
-		model.addAttribute("articleList", articleService.getAll());
-		model.addAttribute("article", new Article());
+	public String listPage() {
 		return "/admin/article-list";
-
 	}
 
 	@RequestMapping("/add")
-	public String addPage(Model model) {
-		model.addAttribute("article", new Article());
+	public String addPage() {
 		return "/admin/article-add";
 	}
 
 	@RequestMapping("/edit")
-	public String editPage(@ModelAttribute("article") Article article, Model model) {
+	public String editPage(Article article, Model model) {
 		article = articleService.getById(article.getId());
 		model.addAttribute("articleParam", article);
 		return "/admin/article-edit";
@@ -46,35 +46,56 @@ public class AdminArticleController {
 
 	@RequestMapping("/query")
 	@ResponseBody // 轉成JSON
-	public List<Article> query(String name) {
-		return articleService.getAll();
+	public List<Article> query(@RequestParam(name="search", defaultValue="") String name) {
+		if ("".equals(name) || name == null) {
+			return articleService.getAll();
+		}
+		return articleService.getByNameContainingOrContentContaining(name, name);
 	}
 
-	@RequestMapping("/insert")
+	@PostMapping("/add")
 	@ResponseBody
-	public Article insert(@Valid @RequestBody Article article, BindingResult result) {
+	public AjaxResponse<Article> insert(@Valid @RequestBody Article article, BindingResult result) {
 		System.out.println(article);
+		AjaxResponse<Article> ajaxRes = new AjaxResponse<>();
 		if (result.hasErrors()) {
-			return null;
+			ajaxRes.setType(AjaxResponseType.ERROR);
+			return ajaxRes;
 		}
-		return articleService.insert(article);
+		ajaxRes.setType(AjaxResponseType.SUCCESS);
+		ajaxRes.setData(articleService.insert(article));
+		return ajaxRes;
 	}
 
-	@PostMapping("/update")
-	public String update(@Valid @ModelAttribute("article") Article article, BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) {
-			model.addAttribute("articleParam", article);
-			return "/admin/article-edit";
+	@PutMapping("/edit")
+	@ResponseBody
+	public AjaxResponse<Article> update(@Valid @RequestBody Article article, BindingResult result) {
+		System.out.println(article);
+		AjaxResponse<Article> ajaxRes = new AjaxResponse<>();
+		if (result.hasErrors()) {
+			ajaxRes.setType(AjaxResponseType.ERROR);
+			return ajaxRes;
 		}
-		articleService.update(article);
-		return "redirect:/admin/article/list";
+		ajaxRes.setType(AjaxResponseType.SUCCESS);
+		ajaxRes.setData(articleService.update(article));
+		return ajaxRes;
 
 	}
 
-	@PostMapping("/delete")
-	public String delete(@ModelAttribute("article") Article article) {
-		articleService.delete(article);
-		return "redirect:/admin/article/list";
+	@DeleteMapping("/delete")
+	@ResponseBody
+	public AjaxResponse<Article> delete(@RequestBody Article article) {
+		System.out.println(article);
+		AjaxResponse<Article> ajaxRes = new AjaxResponse<>();
+		article = articleService.getById(article.getId());
+		if (article != null) {
+			articleService.delete(article);
+			ajaxRes.setType(AjaxResponseType.SUCCESS);
+			ajaxRes.setData(article);
+		} else {
+			ajaxRes.setType(AjaxResponseType.ERROR);
+		}
+		return ajaxRes;
 	}
 
 }

@@ -49,13 +49,10 @@
 							<h6 class="m-0 font-weight-bold text-primary">List of Artist</h6>
 						</div>
 						<div class="card-body">
-							<div class="table-responsive">
-								<form id="artist" name="artist" method="post">
-									<input type="text" id="id" name="id" style="display: none">
-									<table class="table table-bordered table-striped table-hover"
-										id="dataTable" width="100%" cellspacing="0">
-									</table>
-								</form>
+							<div class="table-responsive">								
+								<table class="table table-bordered table-striped table-hover"
+									id="dataTable" style="width: 100%; cellspacing: 0">
+								</table>
 							</div>
 						</div>
 					</div>
@@ -74,52 +71,72 @@
 	</div>
 	<!-- End of Page Wrapper -->
 	<script>
-		$
-				.ajax({
-					url : "query",
-					type : "GET",
-					success : function(data) {
-						var txt = "<tr><th>Id</th><th>Name</th><th>Fan_Number</th><th>Location</th></tr>";
-						$("#dataTable").html(txt);
-						query(data);
-					}
-				});
+		$(document)
+				.ready(
+						function() {
+							$
+									.ajax({
+										url : "query",
+										type : "GET",
+										success : function(data) {
+											var table = "<thead><tr><th>Id</th><th>Name</th><th>Fan_Number</th><th>Location</th><th>Edit</th><th>Delete</th></tr></thead>";
+											table += "<tbody>";
+											$
+													.each(
+															data,
+															function(key, value) {
+																table += "<tr>";
+																for (i in value) {
+																	table += "<td>"
+																			+ value[i]
+																			+ "</td>";
+																	id = Object
+																			.values(value)[0];
+																}
+																table += "<td><button id='"
+																		+ id
+																		+ "' type='button' onclick='edit(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
+																table += "<td><button id='"
+																		+ id
+																		+ "' type='button' onclick='dele(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
+																table += "</tr>"
+															})
+											table += "</tbody>"
+											$("#dataTable").append(table);
+											tableRefresh();
+										}
+									});
 
-		function query(data) {
-			var txt2 = "";
-			$
-					.each(
-							data,
-							function(index, value) {
-								txt2 += "<tr>";
-								for (i in value) {
-									txt2 += "<td>" + value[i] + "</td>";
-									var id = value['id'];
+						});
+		function edit(Object) {
+			$(location).attr('href', '/admin/artist/edit?id=' + Object.id);
+		}
+		function dele(Object) {
+			var r = confirm("是否刪除" + Object.id + "號Artist");
+			if (r == true) {
+				$
+						.ajax({
+							url : "delete",
+							type : "DELETE",
+							contentType : 'application/json;charset=UTF-8',
+							dataType : 'json',
+							data : '{"id":"' + Object.id + '"}',
+							success : function(response) {
+								if (response.type == 'SUCCESS') {
+									alert("已刪除了一筆ID為：" + response.data.id
+											+ "的Artist！");
+									$(location).attr('href',
+											'/admin/artist/list');
+								} else {
+									alert("資料刪除失敗！請重新搜尋清單確保資料為最新！");
 								}
-								txt2 += "<td><a id="
-										+ "'"
-										+ id
-										+ "'"
-										+ "href='' onclick='sendId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
-								txt2 += "<td><a id="
-										+ "'"
-										+ id
-										+ "'"
-										+ 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
-								txt2 += "</tr>"
-							});
-			$("#dataTable").append(txt2);
-		}
+							},
+							error : function(respH) {
+								alert("資料刪除失敗！請檢查伺服器連線！");
+							}
+						})
+			}
 
-		function sendId(Object) {
-			$("#artist").attr("action", '/admin/artist/edit');
-			$("#id").val(Object.id);
-			$('#artist').submit();
-		}
-		function deleId(Object) {
-			$("#artist").attr("action", '/admin/artist/delete');
-			$("#id").val(Object.id);
-			$('#artist').submit();
 		}
 	</script>
 </body>

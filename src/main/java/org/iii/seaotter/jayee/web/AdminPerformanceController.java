@@ -1,20 +1,23 @@
 package org.iii.seaotter.jayee.web;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import org.iii.seaotter.jayee.entity.Article;
+import org.iii.seaotter.jayee.common.AjaxResponse;
+import org.iii.seaotter.jayee.common.AjaxResponseType;
+import org.iii.seaotter.jayee.common.Message;
+import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Performance;
+import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +30,9 @@ public class AdminPerformanceController {
 	@Autowired
 	private PerformanceService performanceSurvice;
 
+	@Autowired
+	private ActivityService activityService;
+
 	@RequestMapping("/list")
 	public String listPage(Model model) {
 		model.addAttribute("performances", performanceSurvice.getAll());
@@ -34,11 +40,17 @@ public class AdminPerformanceController {
 
 	}
 	
-	@RequestMapping("/query")
-	@ResponseBody  //轉成JSON
-	public List<Performance> query(){
+	@RequestMapping("/test")
+	public String test() {
+		return "/admin/test";
+
+	}
+
+	@GetMapping("/query")
+	@ResponseBody // 轉成JSON
+	public List<Performance> query() {
 		List<Performance> list = performanceSurvice.getAll();
-		for(Performance p : list) {
+		for (Performance p : list) {
 			System.out.println(p.getUpdateTime());
 		}
 		return performanceSurvice.getAll();
@@ -46,104 +58,136 @@ public class AdminPerformanceController {
 
 	@RequestMapping("/add")
 	public String addPage(Model model) {
-		model.addAttribute("performance", new Performance());
+		System.out.println("add");
 		return "/admin/performance-add";
 
 	}
 
+	@RequestMapping("/aid")
+	@ResponseBody
+	public List<Activity> addAid() {
+		System.out.println("aid");
+		return activityService.getAll();
+
+	}
+	
+	@RequestMapping("/test2")
+	@ResponseBody
+	public List<Performance> test2() {
+		
+		return performanceSurvice.test(2L);
+
+	}
+
 	@RequestMapping("/edit")
-	public String editPage(@ModelAttribute("performance") Performance performance, Model model) {		
+	public String editPage(@ModelAttribute("performance") Performance performance, Model model) {
+		System.out.println("edit");
 		System.out.println(performance);
-		performance = performanceSurvice.getById(performance.getId());	
-		model.addAttribute("performance",performance);
-		return  "/admin/performance-edit";
+		performance = performanceSurvice.getById(performance.getId());
+		model.addAttribute("performance", performance);
+		return "/admin/performance-edit";
 
 	}
 
 	@PostMapping("/insert")
 	@ResponseBody
-	public Map<String,String> insert(@RequestBody Performance performance, Model model) {
-
+	public AjaxResponse<Performance> insert(@RequestBody Performance performance, Model model) {
+		System.out.println("insert");
+		// 測試是否傳到後台
 		System.out.println(performance);
 
-		Map<String, String> result = new HashMap<>();
-		
+		// 回傳型態AjaxResponse與內部的宣告
+		AjaxResponse<Performance> result = new AjaxResponse<>();
+		List<Message> messages = new ArrayList<>();
+
 		String name = performance.getName();
 		String url = performance.getUrl();
-		Long aid = performance.getActivityId();
 
 		// name
 		if (name == null || name.trim().length() == 0) {
-			result.put("name", "NAME欄位不能為空");
+			messages.add(new Message("name", "NAME欄位不能為空"));
 		}
 
 		// url
 		if (url == null || url.trim().length() == 0) {
-			result.put("url", "URL欄位不能為空");
-		}else {
+			messages.add(new Message("url", "URL欄位不能為空"));
+		} else {
 			try {
 				URL checkUrl = new URL(url);
 				checkUrl.openStream();
 			} catch (Exception e) {
 				e.printStackTrace();
-				result.put("url", "無效的網址");
+				messages.add(new Message("url", "無效的網址"));
 			}
 		}
 
-		//aid
-		if (aid == null ) {
-			result.put("aid", "ACTIVITYID欄位不能為空");
-		}
-		if (!result.isEmpty()) {	
+		if (!messages.isEmpty()) {
+			result.setType(AjaxResponseType.ERROR);
+			result.setMessages(messages);
 			return result;
 		}
-		
-		performanceSurvice.insert(performance);
-		result.put("success", "success");
+
+		result.setType(AjaxResponseType.SUCCESS);
+		result.setData(performanceSurvice.insert(performance));
 		return result;
 
 	}
 
-	@PostMapping("/update")
-	public String update(@ModelAttribute("performance") Performance performance, Model model) {
-		Map<String, String> errorMsg = new HashMap<>();
-		model.addAttribute("error",errorMsg );
+	@PutMapping("/update")
+	@ResponseBody
+	public AjaxResponse<Performance> update(@RequestBody Performance performance, Model model) {
+		System.out.println("update");
+		// 測試是否傳到後台
+		System.out.println(performance);
+
+		// 回傳型態AjaxResponse與內部的宣告
+		AjaxResponse<Performance> result = new AjaxResponse<>();
+		List<Message> messages = new ArrayList<>();
+
 		String name = performance.getName();
 		String url = performance.getUrl();
-		Long aid = performance.getActivityId();
 
 		// name
 		if (name == null || name.trim().length() == 0) {
-			errorMsg.put("name", "NAME欄位不能為空");
+			messages.add(new Message("name", "NAME欄位不能為空"));
 		}
 
 		// url
 		if (url == null || url.trim().length() == 0) {
-			errorMsg.put("url", "URL欄位不能為空");
-		}else {
+			messages.add(new Message("url", "URL欄位不能為空"));
+		} else {
 			try {
 				URL checkUrl = new URL(url);
 				checkUrl.openStream();
 			} catch (Exception e) {
 				e.printStackTrace();
-				errorMsg.put("url", "無效的網址");
+				messages.add(new Message("url", "無效的網址"));
 			}
 		}
 
-		//aid
-		if (aid == null ) {
-			errorMsg.put("aid", "ACTIVITYID欄位不能為空");
+		if (!messages.isEmpty()) {
+			result.setType(AjaxResponseType.ERROR);
+			result.setMessages(messages);
+			return result;
 		}
-		System.out.println(performance);
-		if (!errorMsg.isEmpty()) {	
-			model.addAttribute("peformacnce", performance);
-			return "/admin/performance-edit";
+
+		result.setType(AjaxResponseType.SUCCESS);
+		if (!messages.isEmpty()) {
+			result.setType(AjaxResponseType.ERROR);
+			result.setMessages(messages);
+			return result;
+		}		
+		boolean updateResult  =performanceSurvice.update(performance);
+		if(updateResult) {
+			result.setType(AjaxResponseType.SUCCESS);
+			result.setData(performanceSurvice.getById(performance.getId()));
+		}else {
+			result.setType(AjaxResponseType.ERROR);
 		}
-		
-		boolean re = performanceSurvice.update(performance);
-		return "redirect:/admin/performance/list";
+			return result;
 
 	}
+
 
 	@PostMapping("delete")
 	public String delete(@RequestParam("id") String idget) {
