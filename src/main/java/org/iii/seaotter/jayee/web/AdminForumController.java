@@ -45,7 +45,7 @@ public class AdminForumController {
 	}
 
 	@RequestMapping("/edit")
-	public String editPage(@RequestParam Long id,Model model) {
+	public String editPage(@RequestParam Long id, Model model) {
 //		Long id = (Long) Long.valueOf(request.getParameter("id"));
 		Forum forum = forumService.getById(id);
 		model.addAttribute("forumParam", forum);
@@ -54,11 +54,11 @@ public class AdminForumController {
 
 	@PostMapping("/insert")
 	@ResponseBody
-	public AjaxResponse<Forum> insert(@Valid@RequestBody Forum forum,BindingResult bindingResult, Model model) {
+	public AjaxResponse<Forum> insert(@Valid @RequestBody Forum forum, BindingResult bindingResult, Model model) {
 		AjaxResponse<Forum> result = new AjaxResponse<>();
 		List<Message> messages = new ArrayList<>();
 		System.out.println(bindingResult.getAllErrors());
-		if (forum.getName() == null || forum.getName().trim() == "") {		
+		if (forum.getUserName() == null || forum.getUserName().trim() == "") {
 			messages.add(new Message("name", "請輸入名稱"));
 		}
 		if (forum.getComment() == null || forum.getComment().trim() == "") {
@@ -75,14 +75,14 @@ public class AdminForumController {
 		forum.setCommentDate(new Timestamp(new java.util.Date().getTime()));
 		result.setType(AjaxResponseType.SUCCESS);
 		result.setData(forumService.create(forum));
-		return result; 
+		return result;
 	}
 
 	@PostMapping("/update")
 	@ResponseBody
 	public AjaxResponse<Forum> update(@RequestBody Forum forum, BindingResult bindingResult) {
 		AjaxResponse<Forum> result = new AjaxResponse<Forum>();
-		if(bindingResult.hasErrors()) {		
+		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.getObjectName());
 			result.setType(AjaxResponseType.ERROR);
 			System.out.println("result with error");
@@ -92,34 +92,40 @@ public class AdminForumController {
 		forumService.update(forum);
 		result.setType(AjaxResponseType.SUCCESS);
 		System.out.println("result with success");
-		return result; 
+		return result;
 	}
 
 	@PostMapping("/delete")
-	public String delete(@RequestParam("id") Long id1, HttpServletRequest request,Model model) {
+	public String delete(@RequestParam("id") Long id1, HttpServletRequest request, Model model) {
 		forumService.deleteById(id1);
 		return "redirect:/admin/forum/list";
 	}
-	
+
 	@RequestMapping("/query")
 	@ResponseBody
-	public List<Forum> query(){	
+	public List<Forum> query() {
 		return forumService.getAll();
 	}
+
 	@RequestMapping("/search")
 	@ResponseBody
-	public List<Forum> search(@RequestBody Forum forum){	
+	public List<Forum> search(@RequestBody Forum forum) {
 		Board board = forum.getBoard();
 		List<Forum> list = new ArrayList<>();
 		Iterator<Forum> tempList = forumService.getAll().iterator();
-		while(tempList.hasNext()) {
+		while (tempList.hasNext()) {
 			Forum value = tempList.next();
-			if(value.getBoard().equals(board)) {
-				list.add(value);	
+			if (value.getBoard().equals(board)) {
+				list.add(value);
 			}
 		}
 		System.out.println(list.size());
 		return list;
 	}
-	
+
+	@RequestMapping("/fitComment")
+	@ResponseBody
+	public List<Forum> fitComment(@RequestBody Forum targetData) {
+		return forumService.selectByBoardAndRefId(targetData.getBoard(), targetData.getRefId());
+	}
 }
