@@ -29,6 +29,7 @@ public class PerformanceService {
 	
 
 	public Performance insert(Performance entity) {
+		//localDate
 		java.util.Date date = new Date();
 		entity.setUpdateTime(date);
 		System.out.println(entity.getUpdateTime());
