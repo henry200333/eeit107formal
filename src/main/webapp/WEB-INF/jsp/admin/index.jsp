@@ -203,16 +203,55 @@ margin-top:5px;
 	<div class="performanced">
 	<br>
 	<span style="color:white;margin-left:25px;">TOP 3 </span><a href='/admin/performance/list'>Performance</a>
+	<br>
+<!-- 	<img src="../../../resources/img/photo.gif" class="m8"> -->
+<!-- 	<img src="../../../resources/img/photo.gif" class="m8"> -->
+<!-- 	<img src="../../../resources/img/photo.gif" class="m8"> -->
+<!-- 	<img src="../../../resources/img/photo.gif" class="m9"> -->
+<!-- 	<img src="../../../resources/img/photo.gif" class="m9"> -->
+<!-- 	<img src="../../../resources/img/photo.gif" class="m9"> -->
 	<br><br>
-	<img src="../../../resources/img/photo.gif" class="m8">
-	<img src="../../../resources/img/photo.gif" class="m8">
-	<img src="../../../resources/img/photo.gif" class="m8">
-	<img src="../../../resources/img/photo.gif" class="m9">
-	<img src="../../../resources/img/photo.gif" class="m9">
-	<img src="../../../resources/img/photo.gif" class="m9">
-	<br><br>
 	</div>
 	</div>
 	</div>
+	<!-- Bootstrap core JavaScript-->
+<script src="/resources/vendor/jquery/jquery.min.js"></script>
+<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="/resources/js/sb-admin-2.min.js"></script>
+<script>
+
+	$.ajax({
+		url:"/admin/performance/query",
+		type:"GET",
+		success: function(data){
+			var txt="";	
+			var title="";
+			console.log(data);					
+			//https://www.youtube.com/embed/Lhel0tzHE08
+			//https://www.youtube.com/watch?v=Lhel0tzHE08
+			$.each(data,function(index,value){
+				var head=value['url'].substring(0,24);
+				var back = value['url'].substring(32,43)
+				console.log(head+"embed/"+back);
+				
+				txt+= "<iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='m8'></iframe>";
+				title+="<span class='m9'>"+value['title']+"</span>";
+				});	
+				
+				
+			$("div.performanced").append(txt);
+			$("div.performanced").append(title);
+			
+		}
+	});
+
+		
+
+</script>
 </body>
 </html>
