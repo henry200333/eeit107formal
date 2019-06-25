@@ -49,9 +49,9 @@
 							<h6 class="m-0 font-weight-bold text-primary">List of Artist</h6>
 						</div>
 						<div class="card-body">
-							<div class="table-responsive">
+							<div class="table-responsive">								
 								<table class="table table-bordered table-striped table-hover"
-									id="dataTable" style="width:100%; cellspacing:0"  >
+									id="dataTable" style="width: 100%; cellspacing: 0">
 								</table>
 							</div>
 						</div>
@@ -71,34 +71,43 @@
 	</div>
 	<!-- End of Page Wrapper -->
 	<script>
-		$
-				.ajax({
-					url : "query",
-					type : "GET",
-					success : function(data) {
-						var table = "<thead><tr><th>Id</th><th>Name</th><th>Fan_Number</th><th>Location</th><th>Edit</th><th>Delete</th></tr></thead><tbody>";
-						$
-								.each(
-										data,
-										function(key, value) {
-											table += "<tr>";
-											for (i in value) {
-												table += "<td>" + value[i]
-														+ "</td>";
-												id = Object.values(value)[0];
-											}
-											table += "<td><button id='"
-													+ id
-													+ "' type='button' onclick='edit(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
-											table += "<td><button id='"
-													+ id
-													+ "' type='button' onclick='dele(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
-											table += "</tr>"
-										})
-						table += "</tbody>"
-						$("#dataTable").append(table);
-					}
-				});
+		$(document)
+				.ready(
+						function() {
+							$
+									.ajax({
+										url : "query",
+										type : "GET",
+										success : function(data) {
+											var table = "<thead><tr><th>Id</th><th>Name</th><th>Fan_Number</th><th>Location</th><th>Edit</th><th>Delete</th></tr></thead>";
+											table += "<tbody>";
+											$
+													.each(
+															data,
+															function(key, value) {
+																table += "<tr>";
+																for (i in value) {
+																	table += "<td>"
+																			+ value[i]
+																			+ "</td>";
+																	id = Object
+																			.values(value)[0];
+																}
+																table += "<td><button id='"
+																		+ id
+																		+ "' type='button' onclick='edit(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
+																table += "<td><button id='"
+																		+ id
+																		+ "' type='button' onclick='dele(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
+																table += "</tr>"
+															})
+											table += "</tbody>"
+											$("#dataTable").append(table);
+											tableRefresh();
+										}
+									});
+
+						});
 		function edit(Object) {
 			$(location).attr('href', '/admin/artist/edit?id=' + Object.id);
 		}

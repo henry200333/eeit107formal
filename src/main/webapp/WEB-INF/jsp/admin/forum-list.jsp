@@ -44,13 +44,18 @@
 						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
 					</span> <span class="text">Add New Forum</span>
 					</a>
+<!-- 					<form id="searchData"> -->
+<!-- 						<select id="board" name="board"> -->
+<!-- 							<option value="Performance">Performance</option> -->
+<!-- 							<option value="Activity">Activity</option> -->
+<!-- 							<option value="Ariticle">Ariticle</option> -->
+<!-- 						</select> -->
+<!-- 						<button type="button" id="searchButton">Search</button> -->
+<!-- 					</form> -->
+
 					<form id="searchData">
-						<select id="board" name="board">
-							<option value="Performance">Performance</option>
-							<option value="Activity">Activity</option>
-							<option value="Ariticle">Ariticle</option>
-						</select>
-						<button type="button" id="searchButton">S</button>
+						<input type="text" name="searchWord"/>
+						<button type="button" id="searchButton">Search</button>
 					</form>
 					<hr>
 
@@ -62,41 +67,15 @@
 							<div class="table-responsive">
 								<table class="table table-bordered table-striped table-hover"
 									id="dataTable" width="100%" cellspacing="0">
-									<thead>
-										<tr>
-											<th>ID</th>
-											<th>board</th>
-											<th>name</th>
-											<th>comment</th>
-											<th>commentDate</th>
-											<th>EDIT</th>
-											<th>DELETE</th>
-										</tr>
-									</thead>
-									<tbody id="tbody">
-									</tbody>
 								</table>
-								<script
-									src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-								<script>
-									$.ajax({
-										url : "query",
-										type : "GET",
-										dataType : "json",
-										success : function(data) {
-											console.log("enter success");
-											showNames(data);
-											console.log(data);
-										}
-									})
-								</script>
+
 							</div>
 							<form id="forum" method="post">
 								<input type="text" id="id" name="id" style="display: none">
 							</form>
 						</div>
 					</div>
-
+<div><button type='button' id='testBT'>Click</button></div>
 				</div>
 				<!-- /.container-fluid -->
 
@@ -112,15 +91,32 @@
 	<!-- End of Page Wrapper -->
 	<fmt:setTimeZone value="GMT-8" />
 	<script>
+	$.ajax({
+		url : "query",
+		type : "GET",
+		dataType : "json",
+		success : function(data) {
+			console.log("enter success");
+			showNames(data);
+		}
+	})
 		function showNames(data) {
 			console.log("enter showdata1");
 			var txt = "";
 			var id = "";
-			$
-					.each(
-							data,
-							function(index, value) {
-								txt += "<tr>";
+			var columnName;
+			if(!data[0]){
+				return
+			}else{
+			columnName= Object.keys(data[0]);
+			txt += "<thead><tr>";
+			for(var i in columnName){
+				txt += "<th>" + columnName[i] + "</th>"
+			}
+			txt += "<th>EDIT</th><th>DELETE</th></tr></thead>"
+			}
+			$.each(data,function(index, value) {
+								txt += "<tbody id='tbody'<tr>";
 								for (i in value) {
 									txt += "<td>" + value[i] + "</td>";
 									id = Object.values(value)[0];
@@ -129,15 +125,17 @@
 										+ "'"
 										+ id
 										+ "'"
-										+ "onclick='sendId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
+										+ " onclick='sendId(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
 								txt += "<td><button type='button' id="
 										+ "'"
 										+ id
 										+ "'"
-										+ 'onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></td>';
+										+ " onclick='deleId(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
 								txt += "</tr>";
 							})
-			$("#tbody").html(txt);
+							txt += "</tbody>"
+			$("#dataTable").html(txt);
+			tableRefresh();
 		}
 
 		function sendId(Object) {
@@ -150,22 +148,33 @@
 			$("#id").val(Object.id);
 			$('#forum').submit();
 		}
-
+	
 		$("#searchButton").click(function() {
-			$.ajax({
+			$.ajax({				
 				url : "/admin/forum/search",
 				type : "POST",
-				contentType : "application/json",
 				dataType : "json",
-				data : $("#searchData").serializeObject(),
+				data : JSON.parse($("#searchData").serializeObject()),
 				success : function(data) {
-					console.log("55688");
 					showNames(data);
-					console.log(data);
 				},
 				error : function() {
 					console.log("error");
 				}
+			})
+		})
+		
+		$("#testBT").click(function(){
+			$.ajax({
+				url:"/admin/forum/fitComment",
+				type:"POST",
+				contentType : "application/json",
+				dataType : "json",
+				data:JSON.stringify({board:"Ariticle",refId:1}),
+				success:function(data){
+					showNames(data);
+				}
+			
 			})
 		})
 	</script>

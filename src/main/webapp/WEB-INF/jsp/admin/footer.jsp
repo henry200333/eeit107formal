@@ -63,3 +63,18 @@
         return JSON.stringify(o);
     };
 </script>
+
+<!-- loading dataTable js -->
+<script>
+	 function tableRefresh() {
+		$("body").append($("<script />", {
+			  src: "/resources/vendor/datatables/jquery.dataTables.min.js"
+			}));
+		$("body").append($("<script />", {
+			  src: "/resources/vendor/datatables/dataTables.bootstrap4.min.js"
+			}));
+		$("body").append($("<script />", {
+			  src: "/resources/js/demo/datatables-demo.js"
+			}));
+	};
+</script>

@@ -26,8 +26,12 @@ public class Forum {
 	@Column(name="board")
 	@Enumerated(EnumType.STRING)
 	private Board board;
-	@Column(name="name")
-	private String name;
+	@Column(name="ref_id")
+	private Long refId;
+	@Column(name="ref_comment_id")
+	private Long refCommentId;
+	@Column(name="user_name")
+	private String userName;
 	@Column(name="comment")
 	private String comment;
 	@Column(name="comment_date")

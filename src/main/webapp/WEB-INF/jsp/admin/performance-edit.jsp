@@ -7,7 +7,11 @@
 
 <!-- header -->
 <jsp:include page="header.jsp"></jsp:include>
-
+<style>
+.check {
+	color: red;
+}
+</style>
 <body id="page-top">
 
 	<!-- Page Wrapper -->
@@ -47,9 +51,18 @@
 						<input type="hidden" id="id" name="id" value="${performance.id}" />
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
-								<input type="text" id="name" name="name" class="form-control form-control-user"
-									placeholder="NAME" value="${performance.name}" onblur="" />
-								<span style="color: red">${error.name}</span>
+							<label for="context">Title:</label>
+								<input type="text" id="title" name="title" class="form-control form-control-user"
+									placeholder="title" value="${performance.title}"  />
+								
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-sm-7 mb-3 mb-sm-0">
+							<label for="context">Introduction:</label>
+								<input type="text" id="introduction" name="introduction" class="form-control form-control-user"
+									placeholder="Introduction" value="${performance.introduction}"  />
+								
 							</div>
 						</div>
 						<div class="form-group row">
@@ -57,12 +70,12 @@
 								<label for="context">URL:</label>
 								<input type="text" id="url"  name="url" class="form-control form-control-user"
 									placeholder="URL" value="${performance.url}" />
-								<span style="color: red">${error.url}</span>
-							</div>
+								
+						</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
-								<label for="type">Related activities:</label> <select
+								<label for="type">Related Activity:</label> <select
 									name="activityId" id="activityId"
 									class="form-control " ></select>
 
@@ -120,7 +133,7 @@ $("#update").click(
 					console.log($("#form").serializeObject());
 					$.ajax({
 						url : "/admin/performance/update",
-						type : "POST",
+						type : "PUT",
 						contentType : "application/json",
 						dataType : "json",
 						data : $("#form").serializeObject(),

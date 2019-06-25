@@ -37,10 +37,26 @@
 					</div>
 
 					<!-- Add New Article Button -->
-					<a href="add" class="btn btn-primary btn-icon-split"> <span
-						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
-					</span> <span class="text">Add New Article</span>
-					</a>
+					<form class="user">
+			            <div class="form-group row">
+			            	<div class="col-sm-3 mb-3 mb-sm-0">
+					            <div class="input-group">
+					              <input id="search" name="search" type="text" class="form-control border-0 small" placeholder="Search Article..." aria-label="Search" aria-describedby="basic-addon2">
+					              <div class="input-group-append">
+					                <button id="searchBT" class="btn btn-primary" type="button">
+					                  <i class="fas fa-search fa-sm"></i>
+					                </button>
+					              </div>
+					            </div>
+				            </div>
+				            <div class="col-sm-3 mb-3 mb-sm-0">
+				            	<a href="add" class="btn btn-primary btn-icon-split"> <span
+									class="icon text-white-50"> <i class="fas fa-file-medical"></i>
+									</span> <span class="text">Add New Article</span>
+								</a>
+				            </div>
+			            </div>
+			        </form>
 
 					<hr>
 
@@ -94,15 +110,7 @@
 						table += "</tbody>";
 						$("#dataTable").append(table);
 						
-						$("body").append($("<script />", {
-							  src: "/resources/vendor/datatables/jquery.dataTables.min.js"
-							}))
-						$("body").append($("<script />", {
-							  src: "/resources/vendor/datatables/dataTables.bootstrap4.min.js"
-							}))
-						$("body").append($("<script />", {
-							  src: "/resources/js/demo/datatables-demo.js"
-							}))
+						tableRefresh();
 					}
 				})
 	function editId(obj){
@@ -131,6 +139,31 @@
 			})
 		}
 	}
+	$("#searchBT").click(function(){
+		$.ajax({
+			url : "/admin/article/query?search=" + $("#search").val(),
+			type : "GET",
+			success : function(data) {
+				$("#dataTable").text("")
+				var table = "";
+				$("#dataTable").append("<thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th><th>EDIT</th><th>DELE</th></tr></thead>");
+				table += "<tbody>";
+				$.each(data, function(key, value) {
+					table += "<tr>";
+					for (i in value) {
+						table += "<td>" + value[i] + "</td>";
+						id = Object.values(value)[0];
+					}
+					table += "<td><button id='" + id + "' type='button' onclick='editId(this);' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
+					table += "<td><button id='" + id + "' type='button' onclick='deleId(this);' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
+					table += "</tr>";
+				})
+				table += "</tbody>";
+				$("#dataTable").append(table);
+			}
+		})
+	})
+	
 	</script>
 </body>
 </html>

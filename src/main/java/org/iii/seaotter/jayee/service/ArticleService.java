@@ -41,4 +41,8 @@ public class ArticleService {
 			articleDao.delete(entity);
 		}
 	}
+	
+	public List<Article> getByNameContainingOrContentContaining(String name, String content){
+		return articleDao.findByNameContainingOrContentContaining(name, content);
+	}
 }

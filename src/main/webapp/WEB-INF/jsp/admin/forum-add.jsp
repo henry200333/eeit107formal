@@ -34,10 +34,9 @@
 						<div class="form-group row"
 							style="font-family: 'Noto Sans TC', sans-serif;">
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<label for="name">NAME:</label> <input type="text"
-									class="form-control form-control-user" id="name" name="name"
-									placeholder="NAME" value=""> <span class="errorMessage"
-									id="eName" style="color: red"></span>
+								<label for="userName">NAME:</label> <input type="text"
+									class="form-control form-control-user" id="userName" name="userName"
+									placeholder="NAME" value="">
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="id">ID:</label> <input type="text"
@@ -48,10 +47,8 @@
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="Board">Board:</label> <select id="board"
-									name="board">
-									
-									<option value="ddd">Apple</option>
+								<label for="board">Board:</label> <select id="board"
+									name="board" class="form-control">
 									<option value="Ariticle">Article</option>
 									<option value="Activity">Activity</option>
 									<option value="Performance">Performance</option>
@@ -99,7 +96,7 @@
 	<!-- End of Page Wrapper -->
 	<script>
 		$("#insertButton").click(function() {
-			console.log($("#form").serializeObject());
+			console.log($("#form").serializeObject());			
 			$.ajax({
 				url : "/admin/forum/insert",
 				type : "POST",
@@ -108,6 +105,7 @@
 				data : $("#form").serializeObject(),
 				success : function(result) {
 					console.log("enter success");
+					
 					if (result.type=="SUCCESS") {
 						$("#form").attr("action",'/admin/forum/edit');
 						$("#id").val(result.data["id"]);

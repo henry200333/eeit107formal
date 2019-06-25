@@ -1,16 +1,26 @@
 package org.iii.seaotter.jayee.web;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.iii.seaotter.jayee.common.AjaxResponse;
+import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.entity.Activity;
+import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,65 +52,71 @@ public class AdminActivityController {
 	}
 
 	@RequestMapping("/edit")
-	public String editPage(HttpServletRequest request) {
-		Long id=Long.valueOf(request.getParameter("id"));
-		Activity activity=activityService.getById(id);
-		request.setAttribute("activityParam", activity);
+	public String editPage(Activity activity, Model model) {
+		activity=activityService.getById(activity.getId());
+		model.addAttribute("activityParam",activity);
 		return "/admin/activity-edit";
 
 	}
 	
 	@PostMapping("/insert")
 	@ResponseBody
-	public Activity insert(@RequestBody Activity activity, Model model) {
-		System.out.println(activity);
-//		Map<String, String> errorMsg = new HashMap<>();
-//		
-//		if(activity.getName()==null || activity.getName().trim()=="") {
-//			System.out.println("name為空");
-//			errorMsg.put("name","請輸入活動名稱");
-//		}
-//		if(activity.getArtist()==null || activity.getArtist().trim()=="") {
-//			errorMsg.put("artist","請輸入表演者");
-//		}
-//		if(activity.getDescription()==null || activity.getDescription().trim()=="") {
-//			errorMsg.put("description","請輸入活動描述");
-//		}
-//		if(activity.getBeginTime()==null) {
-//			errorMsg.put("bt","日期格式錯誤");
-//		}
-//		if(activity.getEndTime()==null) {
-//			errorMsg.put("et","日期格式錯誤");
-//		}
-//		
-//		if(!errorMsg.isEmpty()) {
-//			model.addAttribute("errorMsg", errorMsg);
-//			System.out.println("錯誤訊息不為空");
-//			return activity;
-//		}
-//		activityService.insert(activity);
-//		errorMsg.put("noError","無錯誤");
-//		System.out.println("新增成功");
-		return activityService.insert(activity);
-
-	}
-	@PostMapping("/update")
-	public String update(@ModelAttribute("activity") Activity activity, Model model) {
-		System.out.println(activity);
-		activityService.update(activity);			
-		return "redirect:/admin/activity/list";
-	}
-	@PostMapping("/delete")
-	public String delete(@RequestParam("id") Long idThis, HttpServletRequest request, Model model) {
-		activityService.deleteById(idThis);
-		return "redirect:/admin/activity/list";
+	public AjaxResponse<Activity> insert(@RequestBody Activity activity) {
+		System.out.println("即將新增資料:"+activity);
+		AjaxResponse<Activity> aJaxResp=new AjaxResponse<>();
+		activity=activityService.insert(activity);
+		aJaxResp.setData(activity);
+		aJaxResp.setType(AjaxResponseType.SUCCESS);
+		return aJaxResp;
 
 	}
 	
-	@RequestMapping("/query")
+	@PutMapping("/update")
+	@ResponseBody
+	public AjaxResponse<Activity> update(@RequestBody Activity activity) {
+		System.out.println("123");
+		System.out.println(activity);
+		System.out.println("456");
+		AjaxResponse<Activity> aJaxResp=new AjaxResponse<>();
+		activity=activityService.update(activity);
+		aJaxResp.setType(AjaxResponseType.SUCCESS);
+		aJaxResp.setData(activity);
+		return aJaxResp;
+	}
+	
+	@DeleteMapping("/delete")
+	@ResponseBody
+	public AjaxResponse<Activity> delete(@RequestBody Activity activity) {
+		AjaxResponse<Activity> aJaxResp=new AjaxResponse<>();		
+		activity =activityService.getById(activity.getId());
+		
+		if(activity!=null) {
+			activityService.delete(activity);
+			aJaxResp.setType(AjaxResponseType.SUCCESS);
+			aJaxResp.setData(activity);
+		}else {
+			aJaxResp.setType(AjaxResponseType.ERROR);
+		}
+		return aJaxResp;
+	}
+	
+	@GetMapping("/query")
 	@ResponseBody
 	public List<Activity> query(){	
-		return activityService.getAll();
+//		System.out.println(activityService.getAll());
+		List<Activity> activity=activityService.getAll();
+//		DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");	
+//		System.out.println(dateFormat.format(activity.get(1).getBeginTime()));
+//		Date date;
+//		try {
+//			date = dateFormat.parse(dateFormat.format(activity.get(1).getBeginTime()));
+//			activity.get(1).setBeginTime(date);
+//			System.out.println("gggg   "+activity.get(1));
+//		} catch (ParseException e) {
+//			System.out.println("日期解析錯誤");
+//			e.printStackTrace();
+//		}
+		return activity;
 	}
 	
 	
