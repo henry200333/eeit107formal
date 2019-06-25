@@ -124,8 +124,8 @@
 			var a2 = JSON.stringify(a);
 
 			$.ajax({
-				url : "/admin/vender/update",
-				type : "POST",
+				url : "update",
+				type : "PUT",
 				dataType : "text",
 				data : a2,
 				contentType : "application/json",
