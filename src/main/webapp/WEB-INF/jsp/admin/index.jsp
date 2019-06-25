@@ -260,7 +260,7 @@ var sortBy = function (filed, rev, primer) {
 				console.log(head+"embed/"+back);
 				console.log(value['title'] + ",點閱="+ value['views']);
 				txt= "<iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='m8' id='"+value['id']+"'></iframe>";
-				title="<div  class='m9'><span style='font-size:18px;'>"+value['title']+"</span><br><button type='button' onclick='views("+value['id']+")'>點閱率++</button><br><span style='margin-left:300px;'>點閱率   :</span><span style='margin-left:300px;' id='view'>"+value['views'] +"</span></div>";
+				title="<div  class='m9'><span style='font-size:18px;'>"+value['title']+"</span><br><button type='button' onclick='views("+value['id']+")'>點閱率++</button><br><span style='margin-left:300px;'>點閱率   :</span><span id='view'>"+value['views'] +"</span></div>";
 				});	
 				
 			$("div.performanced").append(txt);
