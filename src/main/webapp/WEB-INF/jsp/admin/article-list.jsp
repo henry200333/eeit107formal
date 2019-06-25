@@ -37,10 +37,26 @@
 					</div>
 
 					<!-- Add New Article Button -->
-					<a href="add" class="btn btn-primary btn-icon-split"> <span
-						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
-					</span> <span class="text">Add New Article</span>
-					</a>
+					<form class="user">
+			            <div class="form-group row">
+			            	<div class="col-sm-3 mb-3 mb-sm-0">
+					            <div class="input-group">
+					              <input id="search" name="search" type="text" class="form-control border-0 small" placeholder="Search Article..." aria-label="Search" aria-describedby="basic-addon2">
+					              <div class="input-group-append">
+					                <button id="searchBT" class="btn btn-primary" type="button">
+					                  <i class="fas fa-search fa-sm"></i>
+					                </button>
+					              </div>
+					            </div>
+				            </div>
+				            <div class="col-sm-3 mb-3 mb-sm-0">
+				            	<a href="add" class="btn btn-primary btn-icon-split"> <span
+									class="icon text-white-50"> <i class="fas fa-file-medical"></i>
+									</span> <span class="text">Add New Article</span>
+								</a>
+				            </div>
+			            </div>
+			        </form>
 
 					<hr>
 
@@ -113,7 +129,7 @@
 		if (r == true) {
 			$.ajax({
 				url : '/admin/article/delete',
-				method : 'DELETE',
+				type : 'DELETE',
 				contentType : 'application/json;charset=UTF-8',
 				dataType : 'json',
 				data : '{"id":"' + obj.id + '"}',
