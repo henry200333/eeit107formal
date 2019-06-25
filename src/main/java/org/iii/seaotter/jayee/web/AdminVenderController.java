@@ -52,13 +52,20 @@ public class AdminVenderController {
 
 		return "/admin/vender-edit";
 	}
-
+	
+	
+	@RequestMapping("/query")
+	@ResponseBody
+	public List<Vender> query(){	
+	
+		return venderService.getAll();
+	}
 	
 	@PostMapping("/insert")
 	@ResponseBody
-	public Map<String, String> insert(@RequestBody List<Vender> venders, Model model) {
+	public Map<String, String> insert(@RequestBody Vender vender, Model model) {
 		Map<String, String> res = new HashMap<>();
-		Vender vender=venders.get(0);
+//		Vender vender=venders.get(0);
 		String name=vender.getName();
 		if(name==null||name.trim().length()==0) {
 			res.put("name", "請輸入餐廳名稱");
@@ -116,12 +123,13 @@ public class AdminVenderController {
 
 	}
 	@DeleteMapping("/delete")
-	public String delete(@RequestBody Vender vender, Model model,@RequestParam String a2) {
+	@ResponseBody
+	public Vender delete(@RequestBody Vender vender ) {
 	System.out.println("aa");
-System.out.println(a2);
-System.out.println(vender);
-//		venderService.delete(vender.getId());
-		return "redirect:/admin/vender/list";
+	System.out.println(vender);
+//System.out.println(vender);
+		venderService.delete(vender.getId());
+		return vender;
 
 	}
 }

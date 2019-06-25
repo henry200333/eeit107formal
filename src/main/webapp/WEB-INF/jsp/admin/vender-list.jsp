@@ -47,58 +47,31 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive"
-								style="font-family: 'Noto Sans TC', sans-serif;">
-								<c:if test="${not empty venders}">
-
-									<table class="table table-bordered table-striped table-hover"
-										id="dataTable" width="100%" cellspacing="0">
-										<thead>
-											<tr>
-												<th>id</th>
-												<th>name</th>
-												<th>address</th>
-												<th>maxPeople</th>
-												<th>phone</th>
-												<th></th>
-												<th></th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="bean" items="${venders}">
-												<c:url value="/admin/vender/edit" var="path">
-													<c:param name="id" value="${bean.id}"></c:param>
-													<c:param name="name" value="${bean.name}"></c:param>
-													<c:param name="address" value="${bean.address}"></c:param>
-													<c:param name="maxPeople" value="${bean.maxPeople}"></c:param>
-													<c:param name="phone" value="${bean.phone}"></c:param>
-
-												</c:url>
-												<tr>
-													<td class="t2">${bean.id}</td>
-													<td class="t2">${bean.name}</td>
-													<td class="t2">${bean.address}</td>
-													<td class="t2">${bean.maxPeople}</td>
-													<td class="t2">${bean.phone}</td>
-													<td><a href="${path}" class="btn btn-primary btn-sm"><i
-															class="fas fa-edit"></i></a></td>
-													<td><a id="${bean.id}" href=""
-														class="btn btn-danger btn-sm" onclick="deleteId(this)"><i
-															class="fas fa-trash"></i></a></td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-									<form id="vender" method="post">
-										<input type="text" id="id" name="id" style="display: none">
-									</form>
-								</c:if>
-							</div>
+								style="font-family: 'Noto Sans TC', sans-serif;"></div>
 						</div>
 					</div>
 
 				</div>
 				<!-- /.container-fluid -->
+				<table class="table table-bordered table-striped table-hover"
+					id="dataTable" width="100%" cellspacing="0">
 
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>name</th>
+							<th>address</th>
+							<th>maxPeople</th>
+							<th>phone</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id="tbody"></tbody>
+				</table>
+				<form id="vender" method="post">
+					<input type="text" id="id" name="id" style="display: none">
+				</form>
 			</div>
 			<!-- End of Main Content -->
 
@@ -108,47 +81,74 @@
 		<!-- End of Content Wrapper -->
 
 	</div>
-	<!-- End of Page Wrapper -->
-	<script>
-		function deleteId(Object) {
+</body>
+<!-- End of Page Wrapper -->
+<script>
+	function deleteId(Object) {
+		document.getElementById("id").value = Object.id;
 
-			// 			document.getElementById("id").value = Object.id;
-			var a2 = Object.id;
-			a2 = '[{"id"=' + a2 + "}]";
-			$.ajax({
-				url : '/admin/vender/delete',
-				type : "DELETE",
-				dataType : "text",
-				data : a2,
+		// 			var a2 = $("vender").serializeObject();
+		alert($("#vender").serializeObject());
+
+		$.ajax({
+			url : '/admin/vender/delete',
+			type : "DELETE",
+			dataType : "json",
+			contentType : "application/json",
+			data : $("#vender").serializeObject(),
+			success : function(data) {
+				alert(data.id+"號資料刪除成功")
+				window.location.assign("/admin/vender/list");
+				
+			}
+		})
+
+	}
+
+	$
+			.ajax({
+				url : '/admin/vender/query',
+				type : "POST",
 				success : function(data) {
-					alert("success");
+					var txt = "";
+					$
+							.each(
+									data,
+									function(key, obj) {
+										txt += "<tr>";
+										for (i in obj) {
+
+											txt += "<td>" + obj[i] + "</td>";
+										}
+
+										txt += '<td><button  href="${path}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button></td>';
+// 												<td><button  href="${path}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button></td>
+										txt += '<td><button id='
+												+ obj["id"]
+												+ ' class="btn btn-danger btn-sm" onclick="deleteId(this)"><i class="fas fa-trash"></i></button></td>';
+										// 												<td><a id="	         " href="" class="btn btn-danger btn-sm" onclick="deleteId(this)"><i class="fas fa-trash"></i></a></td>
+										txt += "</tr>";
+									})
+
+					$("#tbody").append(txt);
+					$("body")
+							.append(
+									$(
+											"<script />",
+											{
+												src : "/resources/vendor/datatables/jquery.dataTables.min.js"
+											}))
+					$("body")
+							.append(
+									$(
+											"<script />",
+											{
+												src : "/resources/vendor/datatables/dataTables.bootstrap4.min.js"
+											}))
+					$("body").append($("<script />", {
+						src : "/resources/js/demo/datatables-demo.js"
+					}))
 				}
 			})
-
-		}
-
-		$
-				.ajax({
-					url : '/admin/vender/query',
-					type : "POST",
-					success : function(data) {
-						var txt = "";
-						$
-								.each(
-										data,
-										function(key, obj) {
-											txt += "<tr>";
-											for (i in obj) {
-
-												txt += "<td>" + obj[i]
-														+ "</td>";
-											}
-
-											txt += '<td><a  href="${path}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a></td>';
-											txt += '<td><a id='+obj[1]+'href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
-											txt += "</tr>";
-										})
-						$("#tbody").append(txt);
-					}
-				})
-	</script>
+</script>
+</html>
