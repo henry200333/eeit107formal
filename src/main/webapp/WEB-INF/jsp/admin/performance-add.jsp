@@ -50,9 +50,16 @@
 						<input type="hidden" name="id" id="id">
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
-								<label for="context">FILE NAME:</label><input type="text"
-									name="name" id="name" class="form-control form-control-user"
-									placeholder="File NAME" onblur="" />
+								<label for="context">FILE TITLE:</label><input type="text"
+									name="title" id="title" class="form-control form-control-user"
+									placeholder="File Title"  />
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-sm-7 mb-3 mb-sm-0">
+								<label for="context">FILE INTRODUCTION:</label><input type="text"
+									name="introduction" id="introduction" class="form-control form-control-user"
+									placeholder="File Introduction"  />
 							</div>
 						</div>
 						<div class="form-group row">

@@ -82,7 +82,8 @@
 								class="fas fa-file-import"></i>
 							</span> <span class="text">Edit This Artist</span>
 						</button>
-						<button type="reset" id="resetbt" class="btn btn-danger btn-user btn-block">
+						<button type="reset" id="resetbt"
+							class="btn btn-danger btn-user btn-block">
 							<span class="icon text-white-50"> <i
 								class="fas fa-file-excel"></i>
 							</span> <span class="text">Reset</span>
@@ -105,35 +106,46 @@
 	<script>
 		$(document).ready(function() {
 			var rule = /^.+$/;
+			var nameflag = false;
+			var numflag = false;
+			var locationflag = false;
 			$('#name').blur(function() {
 				if (rule.test($('#name').val())) {
 					$('#namecheck').text('');
-					$('#bt').removeAttr('disabled');
+					nameflag = true;
+					if (nameflag && numflag && locationflag)
+						$('#bt').prop('disabled', false);
 				} else {
 					$('#namecheck').text('請輸入姓名');
-					$('#bt').attr('disabled', 'disabled');
+					nameflag = false;
+					$('#bt').prop('disabled', true);
 				}
-			})
+			});
 			var ruleNum = /^\d+$/;
 			$('#fanNumber').blur(function() {
 				if (ruleNum.test($('#fanNumber').val())) {
 					$('#numcheck').text('');
-					$('#bt').removeAttr('disabled');
+					numflag = true;
+					if (nameflag && numflag && locationflag)
+						$('#bt').prop('disabled', false);
 				} else {
 					$('#numcheck').text('請輸入粉絲人數');
-					$('#bt').attr('disabled', 'disabled');
+					numflag = false;
+					$('#bt').prop('disabled', true);
 				}
-			})
-
+			});
 			$('#location').blur(function() {
 				if (rule.test($('#location').val())) {
 					$('#locationcheck').text('');
-					$('#bt').removeAttr('disabled');
+					locationflag = true;
+					if (nameflag && numflag && locationflag)
+						$('#bt').prop('disabled', false);
 				} else {
 					$('#locationcheck').text('請輸入地點');
-					$('#bt').attr('disabled', 'disabled');
+					locationflag = false;
+					$('#bt').prop('disabled', true);
 				}
-			})
+			});
 		});
 		$("#bt").click(function() {
 			$.ajax({
@@ -145,13 +157,12 @@
 				success : function(response) {
 					if (response.type == 'SUCCESS') {
 						alert("成功修改" + JSON.stringify(response.data.name));
-						$(location).attr('href',
-						'/admin/artist/list');
+						$(location).attr('href', '/admin/artist/list');
 					} else {
 						alert("修改失敗");
 					}
 				},
-				error: function(XMLHttpRequest, textStatus, errorThrown) {
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
 					alert(XMLHttpRequest.status);
 					alert(XMLHttpRequest.readyState);
 					alert(textStatus);
@@ -159,7 +170,7 @@
 				}
 			})
 		});
-		$("#resetbt").click(function(){
+		$("#resetbt").click(function() {
 			$('#bt').removeAttr('disabled');
 			$('#namecheck').text('');
 			$('#numcheck').text('');

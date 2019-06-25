@@ -110,15 +110,7 @@
 						table += "</tbody>";
 						$("#dataTable").append(table);
 						
-						$("body").append($("<script />", {
-							  src: "/resources/vendor/datatables/jquery.dataTables.min.js"
-							}))
-						$("body").append($("<script />", {
-							  src: "/resources/vendor/datatables/dataTables.bootstrap4.min.js"
-							}))
-						$("body").append($("<script />", {
-							  src: "/resources/js/demo/datatables-demo.js"
-							}))
+						tableRefresh();
 					}
 				})
 	function editId(obj){
@@ -147,6 +139,31 @@
 			})
 		}
 	}
+	$("#searchBT").click(function(){
+		$.ajax({
+			url : "/admin/article/query?search=" + $("#search").val(),
+			type : "GET",
+			success : function(data) {
+				$("#dataTable").text("")
+				var table = "";
+				$("#dataTable").append("<thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th><th>EDIT</th><th>DELE</th></tr></thead>");
+				table += "<tbody>";
+				$.each(data, function(key, value) {
+					table += "<tr>";
+					for (i in value) {
+						table += "<td>" + value[i] + "</td>";
+						id = Object.values(value)[0];
+					}
+					table += "<td><button id='" + id + "' type='button' onclick='editId(this);' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
+					table += "<td><button id='" + id + "' type='button' onclick='deleId(this);' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
+					table += "</tr>";
+				})
+				table += "</tbody>";
+				$("#dataTable").append(table);
+			}
+		})
+	})
+	
 	</script>
 </body>
 </html>

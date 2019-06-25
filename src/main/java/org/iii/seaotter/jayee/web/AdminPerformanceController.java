@@ -2,9 +2,7 @@ package org.iii.seaotter.jayee.web;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
@@ -16,8 +14,10 @@ import org.iii.seaotter.jayee.service.PerformanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,7 +46,7 @@ public class AdminPerformanceController {
 
 	}
 
-	@RequestMapping("/query")
+	@GetMapping("/query")
 	@ResponseBody // 轉成JSON
 	public List<Performance> query() {
 		List<Performance> list = performanceSurvice.getAll();
@@ -70,7 +70,22 @@ public class AdminPerformanceController {
 		return activityService.getAll();
 
 	}
+	//測試JPA id>=2
+	@RequestMapping("/test2")
+	@ResponseBody
+	public List<Performance> test2() {
+		
+		return performanceSurvice.test(2L);
 
+	}
+
+	@RequestMapping("/index")
+	public String index() {
+		
+		return "/admin/index";
+
+	}
+	
 	@RequestMapping("/edit")
 	public String editPage(@ModelAttribute("performance") Performance performance, Model model) {
 		System.out.println("edit");
@@ -92,13 +107,19 @@ public class AdminPerformanceController {
 		AjaxResponse<Performance> result = new AjaxResponse<>();
 		List<Message> messages = new ArrayList<>();
 
-		String name = performance.getName();
+		String title = performance.getTitle();
 		String url = performance.getUrl();
+		String introduction = performance.getIntroduction();
 
-		// name
-		if (name == null || name.trim().length() == 0) {
-			messages.add(new Message("name", "NAME欄位不能為空"));
+		// title
+		if (title == null || title.trim().length() == 0) {
+			messages.add(new Message("title", "title欄位不能為空"));
 		}
+		
+		// introduction
+				if (introduction == null || introduction.trim().length() == 0) {
+					performance.setIntroduction("沒有簡介");
+				}
 
 		// url
 		if (url == null || url.trim().length() == 0) {
@@ -118,14 +139,14 @@ public class AdminPerformanceController {
 			result.setMessages(messages);
 			return result;
 		}
-
+		performance.setViews(0L);
 		result.setType(AjaxResponseType.SUCCESS);
 		result.setData(performanceSurvice.insert(performance));
 		return result;
 
 	}
 
-	@PostMapping("/update")
+	@PutMapping("/update")
 	@ResponseBody
 	public AjaxResponse<Performance> update(@RequestBody Performance performance, Model model) {
 		System.out.println("update");
@@ -136,14 +157,20 @@ public class AdminPerformanceController {
 		AjaxResponse<Performance> result = new AjaxResponse<>();
 		List<Message> messages = new ArrayList<>();
 
-		String name = performance.getName();
+		String title = performance.getTitle();
 		String url = performance.getUrl();
+		String introduction = performance.getIntroduction();
 
-		// name
-		if (name == null || name.trim().length() == 0) {
-			messages.add(new Message("name", "NAME欄位不能為空"));
+		// title
+		if (title == null || title.trim().length() == 0) {
+			messages.add(new Message("title", "TITLE欄位不能為空"));
 		}
 
+		// introduction
+		if (introduction == null || introduction.trim().length() == 0) {
+			performance.setIntroduction("沒有簡介");
+		}
+		
 		// url
 		if (url == null || url.trim().length() == 0) {
 			messages.add(new Message("url", "URL欄位不能為空"));

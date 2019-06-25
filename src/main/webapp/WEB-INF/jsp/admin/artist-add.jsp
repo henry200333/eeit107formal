@@ -80,35 +80,46 @@
 	<script>
 		$(document).ready(function() {
 			var rule = /^.+$/;
+			var nameflag = false;
+			var numflag = false;
+			var locationflag = false;
 			$('#name').blur(function() {
 				if (rule.test($('#name').val())) {
 					$('#namecheck').text('');
-					$('#bt').removeAttr('disabled');
+					nameflag = true;
+					if (nameflag && numflag && locationflag)
+						$('#bt').prop('disabled',false);
 				} else {
 					$('#namecheck').text('請輸入姓名');
-					$('#bt').attr('disabled', 'disabled');
+					nameflag = false;
+					$('#bt').prop('disabled',true);
 				}
-			})
+			});
 			var ruleNum = /^\d+$/;
 			$('#fanNumber').blur(function() {
 				if (ruleNum.test($('#fanNumber').val())) {
 					$('#numcheck').text('');
-					$('#bt').removeAttr('disabled');
+					numflag = true;
+					if (nameflag && numflag && locationflag)
+						$('#bt').prop('disabled',false);
 				} else {
 					$('#numcheck').text('請輸入粉絲人數');
-					$('#bt').attr('disabled', 'disabled');
+					numflag = false;
+					$('#bt').prop('disabled',true);
 				}
-			})
-
+			});
 			$('#location').blur(function() {
 				if (rule.test($('#location').val())) {
 					$('#locationcheck').text('');
-					$('#bt').removeAttr('disabled');
+					locationflag = true;
+					if (nameflag && numflag && locationflag)
+						$('#bt').prop('disabled',false);
 				} else {
 					$('#locationcheck').text('請輸入地點');
-					$('#bt').attr('disabled', 'disabled');
+					locationflag = false;
+					$('#bt').prop('disabled',true);
 				}
-			})
+			});
 		});
 		$("#bt").click(function() {
 			$.ajax({
@@ -120,8 +131,7 @@
 				success : function(response) {
 					if (response.type == 'SUCCESS') {
 						alert("新增成功" + JSON.stringify(response.data.name));
-						$(location).attr('href',
-						'/admin/artist/list');
+						$(location).attr('href', '/admin/artist/edit?id=' + response.data.id);
 					} else {
 						alert("新增失敗");
 					}
@@ -135,7 +145,7 @@
 			});
 		});
 		$("#resetbt").click(function(){
-			$('#bt').attr('disabled', 'disabled');
+			$('#bt').prop('disabled', true);
 			$('#namecheck').text('');
 			$('#numcheck').text('');
 			$('#locationcheck').text('');

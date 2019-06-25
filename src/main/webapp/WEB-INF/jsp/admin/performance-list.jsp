@@ -77,8 +77,36 @@
 							
 						</div>
 					</div>
-					<a href="test"><button type="button" >請點我試試看超酷網站?</button></a>
-					<button type="button" id="vdeo">點我預覽影片排版</button>
+					<a href="test"><button type="button" class="btn btn-primary btn-user btn-block">請點我試試看超酷網站?</button></a>
+					<br>
+					<a href="index"><button type="button" class="btn btn-primary btn-user btn-block">請點我看首頁切版試做</button></a>
+					<br>
+					<button type="button" id="vdeo" class="btn btn-primary btn-user btn-block">點我預覽影片排版</button>
+					<hr>
+					<div id="wrapper"> 
+					
+  <input id="fileUpload" type="file" /><br />
+  <div id="image-holder"> </div>
+</div>
+<script>
+$("#fileUpload").on('change', function () {
+	  if (typeof (FileReader) != "undefined") {
+	    var image_holder = $("#image-holder");
+	    image_holder.empty();
+	    var reader = new FileReader();
+	    reader.onload = function (e) {
+	      $("<img />", {
+	      "src": e.target.result,
+	      "class": "thumb-image"
+	      }).appendTo(image_holder);
+	    }
+	    image_holder.show();
+	    reader.readAsDataURL($(this)[0].files[0]);
+	  } else {
+	    alert("This browser does not support FileReader.");
+	  }
+	});
+</script>
 				</div>
 				<hr>
 				<!-- /.container-fluid -->
@@ -103,6 +131,10 @@
 			var txt2 = "<tbody>";
 			var keys = Object.keys(data[0]);
 			for(i in keys){
+				if(i==2){
+					console.log(keys[i]);
+					continue;
+				}
 				txt1+="<th>"+keys[i] +"</th>";
 				
 			}
@@ -111,6 +143,14 @@
 				
 					txt2+="<tr>"
 				for(i in value){
+					
+					if(i=="introduction"){
+						console.log(value[i]);
+						continue;
+						}
+						
+						
+					
 					txt2 += "<td>" + value[i] + "</td>";
 					var id = value['id'];
 				}
@@ -129,15 +169,7 @@
 			txt2+="</tbody>";
 			$("#dataTable").append(txt1);
 			$("#dataTable").append(txt2);
-			$("body").append($("<script />", {
-				  src: "/resources/vendor/datatables/jquery.dataTables.min.js"
-				}))
-			$("body").append($("<script />", {
-				  src: "/resources/vendor/datatables/dataTables.bootstrap4.min.js"
-				}))
-			$("body").append($("<script />", {
-				  src: "/resources/js/demo/datatables-demo.js"
-				}))
+			tableRefresh();
 		}
 				
 
@@ -157,12 +189,11 @@
 		jQuery("#vdeo").click(function(){
 			$.ajax({
 				url:"/admin/performance/query",
-				type:"POST",
+				type:"GET",
 				success: function(data){
 					var txt="";	
 					var txtname="";
-					console.log(data);
-					
+					console.log(data);					
 					//https://www.youtube.com/embed/Lhel0tzHE08
 					//https://www.youtube.com/watch?v=Lhel0tzHE08
 					$.each(data,function(index,value){
@@ -170,13 +201,13 @@
 						var back = value['url'].substring(32,43)
 						console.log();
 						
-						txt+= "<div class='col-sm-3 mb-3 mb-sm-0'><iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe></div>"
-						txtname+="<div class='col-sm-3 mb-3 mb-sm-0'><span>"+value['name']+"</span></div>"			
+						txt+= "<div class='col-sm-3 mb-3 mb-sm-0'><iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe><br><span>"+value['title']+"</span></div></div>"
+						txtname+=""			
 						});	
 						
 						
 					$("#vd").html(txt);
-					$("#vd").append(txtname);
+					//$("#vd").append(txtname);
 				}
 			});
 		});

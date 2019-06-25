@@ -1,5 +1,8 @@
 package org.iii.seaotter.jayee.service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +32,10 @@ public class PerformanceService {
 	
 
 	public Performance insert(Performance entity) {
-		java.util.Date date = new Date();
+		LocalDateTime localDateTime = LocalDateTime.now();		
+		ZoneId zoneId = ZoneId.systemDefault();
+        ZonedDateTime zdt = localDateTime.atZone(zoneId);
+        Date date = Date.from(zdt.toInstant());
 		entity.setUpdateTime(date);
 		System.out.println(entity.getUpdateTime());
 		Performance performance = performanceDao.save(entity);
@@ -39,7 +45,10 @@ public class PerformanceService {
 	
 	public boolean update(Performance entity) {
 		boolean result = false;
-		java.util.Date date = new Date();
+		LocalDateTime localDateTime = LocalDateTime.now();		
+		ZoneId zoneId = ZoneId.systemDefault();
+        ZonedDateTime zdt = localDateTime.atZone(zoneId);
+        Date date = Date.from(zdt.toInstant());
 		entity.setUpdateTime(date);
 		System.out.println(entity);
 		if(performanceDao.findById(entity.getId())!=null) {
@@ -57,4 +66,10 @@ public class PerformanceService {
 		}
 	
 	}
+	
+	public List<Performance> test(Long x) {
+		
+		return performanceDao.findByIdGreaterThanEqual(x);
+	}
+	
 }
