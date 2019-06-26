@@ -53,6 +53,11 @@ public class AdminVenderController {
 		return "/admin/vender-edit";
 	}
 	
+	@RequestMapping("/maptest")
+	public String mapPage() {
+		return "/admin/vender-maptest";
+	}
+	
 	
 	@RequestMapping("/query")
 	@ResponseBody
