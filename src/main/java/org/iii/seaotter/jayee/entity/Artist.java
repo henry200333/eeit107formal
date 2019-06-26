@@ -1,12 +1,12 @@
 package org.iii.seaotter.jayee.entity;
 
-import java.sql.Blob;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 import lombok.Data;
 
 /**
@@ -27,7 +27,5 @@ public class Artist {
 	private Long fanNumber;
 	@Column(name = "location")
 	private String location;
-	@Column(name = "photo", columnDefinition = "NVARCHAR(MAX)")
-	private String photo;
 
 }

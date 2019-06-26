@@ -38,6 +38,8 @@ public class Article {
 	@NotNull
 	@Column(name = "ref_id")
 	private Long refId;
+	@Column(name = "count")
+	private Long count;
 
 	public enum Type {
 		Artist, Activity, Performance, Vender, Other

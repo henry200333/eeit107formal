@@ -45,4 +45,12 @@ public class ArticleService {
 	public List<Article> getByNameContainingOrContentContaining(String name, String content){
 		return articleDao.findByNameContainingOrContentContaining(name, content);
 	}
+	
+	public Article getTopByCount() {
+		return articleDao.findTopByOrderByCountDesc();
+	}
+	
+	public List<Article> getTop10ByCount() {
+		return articleDao.findTop10ByOrderByCountDesc();
+	}
 }
