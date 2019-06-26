@@ -5,7 +5,6 @@ import java.util.List;
 import org.iii.seaotter.jayee.dao.ArtistDao;
 import org.iii.seaotter.jayee.entity.Artist;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,8 +21,7 @@ public class ArtistService {
 
 	@Transactional(readOnly = true)
 	public List<Artist> getNameByFanNumberTop5() {
-		List<Artist> artists = artistDao.findAll(Sort.by(Sort.Direction.DESC, "fanNumber")).subList(0, 5);
-		return artists;
+		return artistDao.findTop5ByOrderByFanNumberDesc();
 	}
 
 	public Artist getById(Long id) {
