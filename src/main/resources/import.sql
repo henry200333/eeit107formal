@@ -8,11 +8,12 @@ INSERT INTO article (name, content, type, ref_id, count) values
   ('nav.jsp', '抓到網址列的資訊，啟動active的css', 'Other', 666, 4);
  
  insert into forum (ref_id, ref_comment_id, board, user_name, comment, comment_date) values
- (1, 0,'Ariticle', '薔薔', '大家好', '2019/05/25 18:13:21'),
- (1, 0,'Performance', '博恩', '我真有那麼尷尬嗎？', '2019/05/22 13:50:02'),
- (1, 0,'Activity', '豬孝天', '流星雨揪團', '2006/03/04 13:14:55'),
- (1, 1,'Ariticle', '永和金城武', '不要再冒充我了！', '2019/05/28 20:00:27');
- 
+ (1, 0,'Performance', '薔薔', '大家好', '2019/05/25 18:13:21'),
+ (2, 1,'Activity', '博恩', '我真有那麼尷尬嗎？', '2019/05/22 13:50:02'),
+ (2, 1,'Performance', '豬孝天', '流星雨揪團', '2006/03/04 13:14:55'),
+ (2, 1,'Activity', '永和金城武', '不要再冒充我了！', '2019/05/28 20:00:27'),
+ (2, 1,'Article', '大中天', '以前你偶爾聽，現在你應該天天聽', '2006/03/04 13:14:55'),
+ (2, 1,'Article', '大平台', '我已經買了zzZ', '2019/05/28 20:00:27'); 
  INSERT INTO performance (title,introduction,youtube_url,update_time,activity_id,views) values
  ('陳忻玥 Vicky Chen -【入土之前】','陳祈玥入土之前完整MV','https://www.youtube.com/watch?v=GfWkG4qedoE','2019/05/25 17:12:05',1,3000),
  ('A-Lin《有一種悲傷 A Kind of Sorrow》','ALIN最新歌曲有一種悲傷','https://www.youtube.com/watch?v=BRcudpJzy1I','2019/05/28 19:10:35',2,100),

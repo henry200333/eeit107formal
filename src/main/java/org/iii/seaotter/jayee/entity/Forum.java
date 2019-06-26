@@ -45,7 +45,7 @@ public class Forum {
 
 
 	public enum Board {
-		Ariticle, Activity, Performance;
+		Article, Activity, Performance;
 		
 		public static boolean contains(String string) {
 			for(Board board:Board.values()) {

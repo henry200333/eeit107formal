@@ -34,8 +34,6 @@ public class AdminForumController {
 
 	@RequestMapping("/list")
 	public String listPage(Model model) {
-//		model.addAttribute("models", forumService.getAll());
-//		model.addAttribute("forum", new Forum());
 		return "/admin/forum-list";
 	}
 
@@ -46,7 +44,6 @@ public class AdminForumController {
 
 	@RequestMapping("/edit")
 	public String editPage(@RequestParam Long id, Model model) {
-//		Long id = (Long) Long.valueOf(request.getParameter("id"));
 		Forum forum = forumService.getById(id);
 		model.addAttribute("forumParam", forum);
 		return "/admin/forum-edit";
@@ -87,7 +84,6 @@ public class AdminForumController {
 			System.out.println("result with error");
 			return result;
 		}
-//		forum.setCommentDate(forumService.getById(forum.getId()).getCommentDate());
 		forumService.update(forum);
 		result.setType(AjaxResponseType.SUCCESS);
 		System.out.println("result with success");
@@ -155,11 +151,5 @@ public class AdminForumController {
 		}
 		return list;
 	}
-	
 
-	@RequestMapping("/fitComment")
-	@ResponseBody
-	public List<Forum> fitComment(@RequestBody Forum targetData) {
-		return forumService.selectByBoardAndRefId(targetData.getBoard(), targetData.getRefId());
-	}
 }

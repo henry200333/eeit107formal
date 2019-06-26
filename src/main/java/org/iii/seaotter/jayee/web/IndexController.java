@@ -9,12 +9,16 @@ import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Artist;
+import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.ArtistService;
+import org.iii.seaotter.jayee.service.ForumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,6 +32,8 @@ public class IndexController {
 	private ArticleService articleService;
 	@Autowired
 	private ActivityService activityService;
+	@Autowired
+	private ForumService forumService;
 	
 	@RequestMapping("/index")
 	public String index(HttpServletRequest request) {
@@ -73,6 +79,12 @@ public class IndexController {
 	@ResponseBody
 	public List<Activity> activityTop3() {
 		return activityService.getTop3NameByAwesomeNum();
+	}
+	
+	@PostMapping("/fitComments")
+	@ResponseBody
+	public List<Forum> fitComment(@RequestBody Forum targetData) {
+		return forumService.selectByBoardAndRefId(targetData.getBoard(), targetData.getRefId());
 	}
 	
 	

@@ -210,15 +210,15 @@ font-size:12px;
 			</div>
 			<div id="forumWrapper" style="width: 56%;float: right;padding: 2px">
 				<!-- 			put forum into this div -->
-				<div id="forum1" style="padding: 2px">
-					<b>大中天</b>
-					<div>以前你偶爾聽，現在你應該天天聽</div>
-				</div>
-				<div id="forum2" style="padding: 2px">
-					<b>大平台</b>
-					<div>我已經買了</div>
-				</div>
-			</div>
+<!-- 				<div id="forum1" style="padding: 2px"> -->
+<!-- 					<b>大中天</b> -->
+<!-- 					<div>以前你偶爾聽，現在你應該天天聽</div> -->
+<!-- 				</div> -->
+<!-- 				<div id="forum2" style="padding: 2px"> -->
+<!-- 					<b>大平台</b> -->
+<!-- 					<div>我已經買了</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 		
 		</div>
 	</div>
@@ -307,6 +307,8 @@ var sortBy = function (filed, rev, primer) {
 		};
 	
 // 		append Top1 Article div next to performance
+//		save ID for Forum
+var articleId;
 		$.ajax({
 			url : "/user/articleTop",
 			type : "GET",
@@ -316,48 +318,83 @@ var sortBy = function (filed, rev, primer) {
 					articleDiv += "<b style='mergin: 2px;font-size: 1.5em'>" + res.data.name + "</b>";
 					articleDiv += "<div>" + res.data.content + "</div><br><hr style='width: '>";
 					$("#articleWrapper").append(articleDiv);
+					articleId=res.data.id;
+					getComment();
 				}
 			}
 		})
-// 		append Top10 Article div into performance
-		$.ajax({
-			url : "/user/articleTop10",
-			type : "GET",
-			success : function(res) {
-				if(res.type == 'SUCCESS'){
-					var articleDiv = "";
-					var i = 0;
-					$.each(res.data, function() {
-							articleDiv += "<div style='margin: 8px'><b>" + (i+1) + ". </b><a href='#'>" + res.data[i].name + "</a></div>";
-							i++;
-					})
-					$("#top10Article").append(articleDiv);
-				}
-			}
-		});
 		
+		// top 1 comment for article 
+
+	function getComment() {
+		var board = "Article";
+		var commentReqData = {
+			"board" : board,
+			"refId" : articleId
+		};
 		$.ajax({
-			url :"/user/activityTop3",
-			type:"GET",
-			success: function(data){
-				txt1 = "<div style='border-style:solid;border-radius:20px;margin:2px;background-color:#FFFFBB'><img style='border-radius:20px;border-style:double;border-width:3px;display:inline' src='/resources/user-bootstrap/img/activity/activity"
+			url : "/user/fitComments",
+			type : "POST",
+			contentType : "application/json",
+			dataType : "json",
+			data : JSON.stringify(commentReqData),
+			success : function(data) {
+				var txtComment='';
+				$.each(data,function(index,value){
+					if(index>1) return false;
+					txtComment += '<div id="forum' + (index+1) + '" style="padding: 2px">'
+					txtComment += "<b>" + value.userName + "</b>";
+					txtComment += "<div>" + value.comment +"</div></div>";					
+				})
+				console.log(txtComment);
+				console.log(data);
+				$("#forumWrapper").append(txtComment);
+			}
+		})
+	}
+
+	// 		append Top10 Article div into performance
+	$.ajax({
+		url : "/user/articleTop10",
+		type : "GET",
+		success : function(res) {
+			if (res.type == 'SUCCESS') {
+				var articleDiv = "";
+				var i = 0;
+				$.each(res.data, function() {
+					articleDiv += "<div style='margin: 8px'><b>" + (i + 1)
+							+ ". </b><a href='#'>" + res.data[i].name
+							+ "</a></div>";
+					i++;
+				})
+				$("#top10Article").append(articleDiv);
+			}
+		}
+	});
+
+	$
+			.ajax({
+				url : "/user/activityTop3",
+				type : "GET",
+				success : function(data) {
+					txt1 = "<div style='border-style:solid;border-radius:20px;margin:2px;background-color:#FFFFBB'><img style='border-radius:20px;border-style:double;border-width:3px;display:inline' src='/resources/user-bootstrap/img/activity/activity"
 				txt2 = ".jpg' class='m7'><div style='margin-left:10px;display:inline;float:right;width:350px;border-color:#DDDDDD'>"
-				txt3 = "</div></div>"
-				txt4 = "<br>"
-					$.each(data, function(key,value){
+					txt3 = "</div></div>"
+					txt4 = "<br>"
+					$.each(data, function(key, value) {
 						pictureNum = value['id'];
-						txt5 = "活動名稱: "+value['name']+txt4+"表演者: "+value['artist']+txt4+"活動描述: "+value['description']+txt4+"舉辦時間: "+value['beginTime']+txt4+"結束時間: "+value['endTime']+txt4+"讚數: "+value['awesomeNum'] 
+						txt5 = "活動名稱: " + value['name'] + txt4 + "表演者: "
+								+ value['artist'] + txt4 + "活動描述: "
+								+ value['description'] + txt4 + "舉辦時間: "
+								+ value['beginTime'] + txt4 + "結束時間: "
+								+ value['endTime'] + txt4 + "讚數: "
+								+ value['awesomeNum']
 						txt6 = txt1 + pictureNum + txt2 + txt5 + txt3
 						$("div.activityTop3").append(txt6)
-						
+
 					})
-			}
-		});
-		
-		
-		
-
-
+				}
+			});
 </script>
 </body>
 </html>
