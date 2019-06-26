@@ -186,34 +186,41 @@ font-size:12px;
 	<br><br>
 	</div>
 	<div class="articled">
-	<br>
-	<span style="color:white;margin-left:25px;">TOP 10 </span><a href='/admin/article/list'>Article</a>
-	<ol style="width:200px;color:white">
-	<li style="margin-left:50px;">AAA</li>
-	<li style="margin-left:50px;">BBB</li>
-	<li style="margin-left:50px;">CCC</li>
-	<li style="margin-left:50px;">DDD</li>
-	<li style="margin-left:50px;">EEE</li>
-	<li style="margin-left:50px;">FFF</li>
-	<li style="margin-left:50px;">GGG</li>
-	<li style="margin-left:50px;">HHH</li>
-	<li style="margin-left:50px;">III</li>
-	<li style="margin-left:50px;">JJJ</li>
-	</ol>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br>
+		<span style="color:white;margin-left:15px;">TOP 10 </span><a href='/admin/article/list'>Article</a>
+		<div id="top10Article">
+		<!-- 		put top10 article here -->
+		</div>
 	</div>
-	<div class="performanced">
-	<br>
-	<span style="color:white;margin-left:25px;">推薦</span><a href='/admin/performance/list'>表演</a>
-	<br>
-<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m8"> -->
-<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m8"> -->
-<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m8"> -->
-<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m9"> -->
-<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m9"> -->
-<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m9"> -->
-	<br><br>
-	</div>
+		<div class="performanced">
+			<br>
+			<span style="color:white;margin-left:25px;">推薦</span><a href='/admin/performance/list'>表演</a>
+			<br>
+			<div id="iframeWrapper" style="width: 42%;float: left;">
+				<!-- 			put iframe element into this div -->
+				<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m8"> -->
+				<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m8"> -->
+				<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m8"> -->
+				<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m9"> -->
+				<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m9"> -->
+				<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m9"> -->
+			</div>
+			<div id="articleWrapper" style="width: 56%;float: right;padding: 2px">
+				<!-- 			put top1 article into this div -->
+			</div>
+			<div id="forumWrapper" style="width: 56%;float: right;padding: 2px">
+				<!-- 			put forum into this div -->
+				<div id="forum1" style="padding: 2px">
+					<b>大中天</b>
+					<div>以前你偶爾聽，現在你應該天天聽</div>
+				</div>
+				<div id="forum2" style="padding: 2px">
+					<b>大平台</b>
+					<div>我已經買了</div>
+				</div>
+			</div>
+		
+		</div>
 	</div>
 	</div>
 	<!-- Bootstrap core JavaScript-->
@@ -263,9 +270,9 @@ var sortBy = function (filed, rev, primer) {
 				title="<div  class='m9'><span style='font-size:18px;'>"+value['title']+"</span><br><button type='button' onclick='views("+value['id']+")'>點閱率++</button><br><span style='margin-left:300px;'>點閱率   :</span><span id='view'>"+value['views'] +"</span></div>";
 				});	
 				
-			$("div.performanced").append(txt);
-			$("div.performanced").append("<br>");
-			$("div.performanced").append(title);
+			$("#iframeWrapper").append(txt);
+			$("#iframeWrapper").append("<br>");
+			$("#iframeWrapper").append(title);
 			
 		}
 	});
@@ -303,19 +310,28 @@ var sortBy = function (filed, rev, primer) {
 		$.ajax({
 			url : "/user/articleTop",
 			type : "GET",
-			success : function(data) {
-				if(response.type == 'SUCCESS'){
+			success : function(res) {
+				if(res.type == 'SUCCESS'){
 					var articleDiv = "";
-					$.each(data, function(key, value) {
-						articleDiv += "<tr>";
-						for (i in value) {
-							table += "<td>" + value[i] + "</td>";
-							id = Object.values(value)[0];
-						}
+					articleDiv += "<b style='mergin: 2px;font-size: 1.5em'>" + res.data.name + "</b>";
+					articleDiv += "<div>" + res.data.content + "</div><br><hr style='width: '>";
+					$("#articleWrapper").append(articleDiv);
+				}
+			}
+		})
+// 		append Top10 Article div into performance
+		$.ajax({
+			url : "/user/articleTop10",
+			type : "GET",
+			success : function(res) {
+				if(res.type == 'SUCCESS'){
+					var articleDiv = "";
+					var i = 0;
+					$.each(res.data, function() {
+							articleDiv += "<div style='margin: 8px'><b>" + (i+1) + ". </b><a href='#'>" + res.data[i].name + "</a></div>";
+							i++;
 					})
-					$("div.table-responsive").append(articleDiv);
-					
-					tableRefresh();
+					$("#top10Article").append(articleDiv);
 				}
 			}
 		});
