@@ -19,10 +19,12 @@ INSERT INTO article (name, content, type, ref_id) values
  ('G.E.M.【再見 GOODBYE】鄧紫棋','鄧紫棋發燒歌曲再見，讓您聆聽','https://www.youtube.com/watch?v=Lhel0tzHE08','2019/05/28 21:05:46',3,100);
  							
  
- INSERT INTO artist(name,fan_number,location) VALUES
- ('口鳥鳴',1314,'資策會'),
- ('柳常玄',30678,'台北市'),
- ('杳堯要咬瑤',6666,'高雄市');
+ INSERT INTO artist(name,fan_number,location,photo) VALUES
+ ('桑源雅沂',86520,'東京','test'),
+ ('白賊虞',30678,'高雄市','test'),
+ ('柳川鳳',66666,'神奈川','test'),
+ ('張添財',98765,'自由新鎮','test'),
+ ('敏敏',12345,'大都','test')
  
  INSERT INTO activity (name,artist,description,begin_time,end_time) values
  ('吃飯','王世堅','王世堅喜歡炒飯','2019/05/28 12:03','2019/05/28 12:30'),
