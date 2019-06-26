@@ -11,11 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/admin/performance/index")
+@RequestMapping("/admin")
 public class IndexController {
 	
 	@Autowired
 	private ArtistService artistService;
+	
+	@RequestMapping("/index")
+	public String index() {
+		return "/admin/index";
+	}
 	
 	@GetMapping("/artistsTop5")
 	@ResponseBody

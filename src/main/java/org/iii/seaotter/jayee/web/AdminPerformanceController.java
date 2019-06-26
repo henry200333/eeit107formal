@@ -79,12 +79,12 @@ public class AdminPerformanceController {
 
 	}
 
-	@RequestMapping("/index")
-	public String index() {
-		
-		return "/admin/index";
-
-	}
+//	@RequestMapping("/index")
+//	public String index() {
+//		
+//		return "/admin/index";
+//
+//	}
 	
 	//增加點閱率
 	@RequestMapping("/viewplus")
