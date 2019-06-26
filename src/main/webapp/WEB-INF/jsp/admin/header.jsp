@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="/resources/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="/resources/admin-bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
   
   <!-- Custom styles for datatables -->
   <link href="/resources/admin-bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
