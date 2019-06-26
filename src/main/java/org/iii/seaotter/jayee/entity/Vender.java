@@ -31,6 +31,10 @@ public class Vender {
 	private Integer maxPeople;
 	@Column(name="phone")
 	private String phone; 
+	@Column(name="lat")
+	private Double lat;
+	@Column(name="lng")
+	private Double lng;
 	
 	
 	

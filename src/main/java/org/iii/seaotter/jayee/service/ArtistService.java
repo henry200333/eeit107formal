@@ -19,12 +19,13 @@ public class ArtistService {
 	public List<Artist> getAll() {
 		return artistDao.findAll();
 	}
-	
+
+	@Transactional(readOnly = true)
 	public List<Artist> getNameByFanNumberTop5() {
 		List<Artist> artists = artistDao.findAll(Sort.by(Sort.Direction.DESC, "fanNumber")).subList(0, 5);
 		return artists;
 	}
-	
+
 	public Artist getById(Long id) {
 		return artistDao.findById(id).orElse(null);
 	}
@@ -42,9 +43,8 @@ public class ArtistService {
 	}
 
 	public void delete(Artist entity) {
-		if (artistDao.findById(entity.getId()) != null) {
+		if (artistDao.findById(entity.getId()) != null)
 			artistDao.delete(entity);
-		}
 	}
 
 }

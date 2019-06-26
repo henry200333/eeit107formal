@@ -145,11 +145,11 @@ font-size:12px;
 	<div class="d1">
 
 		<div class="topd">
-			<img src="../../../resources/img/jayee.gif" class="m1"> <img
-				src="../../../resources/img/message.gif" class="m2"> <img
-				src="../../../resources/img/notice.gif" class="m3"> <img
-				src="../../../resources/img/photo.gif" class="m4"> <img
-				src="../../../resources/img/logout.gif" class="m5"> <br>
+			<img src="../../../resources/admin-bootstrape/img/jayee.gif" class="m1"> <img
+				src="../../../resources/admin-bootstrape/img/message.gif" class="m2"> <img
+				src="../../../resources/admin-bootstrape/img/notice.gif" class="m3"> <img
+				src="../../../resources/admin-bootstrape/img/photo.gif" class="m4"> <img
+				src="../../../resources/admin-bootstrape/img/logout.gif" class="m5"> <br>
 			<br>
 		</div>
 	<div class="leftd">
@@ -177,11 +177,11 @@ font-size:12px;
 	<br>
 	<span style="color:white;margin-left:25px;">TOP 4 </span><a href='/admin/activity/list'>Activities</a>
 	<br><br>
-	<img src="../../../resources/img/photo2.gif" class="m7">
-	<img src="../../../resources/img/photo2.gif" class="m7">
+	<img src="../../../resources/admin-bootstrape/img/photo2.gif" class="m7">
+	<img src="../../../resources/admin-bootstrape/img/photo2.gif" class="m7">
 	<br><br>
-	<img src="../../../resources/img/photo2.gif" class="m7">
-	<img src="../../../resources/img/photo2.gif" class="m7">
+	<img src="../../../resources/admin-bootstrape/img/photo2.gif" class="m7">
+	<img src="../../../resources/admin-bootstrape/img/photo2.gif" class="m7">
 	<br><br>
 	</div>
 	<div class="articled">
@@ -205,25 +205,25 @@ font-size:12px;
 	<br>
 	<span style="color:white;margin-left:25px;">推薦</span><a href='/admin/performance/list'>表演</a>
 	<br>
-<!-- 	<img src="../../../resources/img/photo.gif" class="m8"> -->
-<!-- 	<img src="../../../resources/img/photo.gif" class="m8"> -->
-<!-- 	<img src="../../../resources/img/photo.gif" class="m8"> -->
-<!-- 	<img src="../../../resources/img/photo.gif" class="m9"> -->
-<!-- 	<img src="../../../resources/img/photo.gif" class="m9"> -->
-<!-- 	<img src="../../../resources/img/photo.gif" class="m9"> -->
+<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m8"> -->
+<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m8"> -->
+<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m8"> -->
+<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m9"> -->
+<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m9"> -->
+<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m9"> -->
 	<br><br>
 	</div>
 	</div>
 	</div>
 	<!-- Bootstrap core JavaScript-->
-<script src="/resources/vendor/jquery/jquery.min.js"></script>
-<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/resources/admin-bootstrape/vendor/jquery/jquery.min.js"></script>
+<script src="/resources/admin-bootstrape/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/resources/admin-bootstrape/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="/resources/js/sb-admin-2.min.js"></script>
+<script src="/resources/admin-bootstrape/js/sb-admin-2.min.js"></script>
 <script>
 
 var sortBy = function (filed, rev, primer) {
@@ -269,10 +269,10 @@ var sortBy = function (filed, rev, primer) {
 		}
 	});
 	$.ajax({
-		url :"/admin/artistsTop5",
+		url :"/user/artistsTop5",
 		type:"GET",
 		success: function(data){
-			txt = "<div style='position: relative;display:inline'><img src='../../../resources/img/artist"
+			txt = "<div style='position: relative;display:inline'><img src='/resources/admin-bootstrape/img/artist"
 			txt2 = ".jpg' class='m6'><div style='position: absolute;z-index: 2;left:20px'>"
 			txt3 = "</div></div>"
 			$.each(data, function(index,value){
