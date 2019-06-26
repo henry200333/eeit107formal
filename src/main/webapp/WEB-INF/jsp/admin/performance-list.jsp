@@ -82,8 +82,6 @@
 					</div>
 					<a href="test"><button type="button" class="btn btn-primary btn-user btn-block">請點我試試看超酷網站?</button></a>
 					<br>
-					<a href="index"><button type="button" class="btn btn-primary btn-user btn-block">請點我看首頁切版試做</button></a>
-					<br>
 					<button type="button" id="vdeo" class="btn btn-primary btn-user btn-block">點我預覽影片排版</button>
 					<hr>
 					<div id="wrapper"> 
