@@ -98,7 +98,7 @@
 		$("#insertButton").click(function() {
 			console.log($("#form").serializeObject());			
 			$.ajax({
-				url : "/admin/forum/insert",
+				url : "/admin/forum",
 				type : "POST",
 				contentType : "application/json",
 				dataType : "json",

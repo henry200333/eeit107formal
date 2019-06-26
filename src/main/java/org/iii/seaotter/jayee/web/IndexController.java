@@ -10,6 +10,7 @@ import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.Forum;
+import org.iii.seaotter.jayee.entity.Forum.Board;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.ArtistService;
@@ -17,8 +18,8 @@ import org.iii.seaotter.jayee.service.ForumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -81,10 +82,10 @@ public class IndexController {
 		return activityService.getTop3NameByAwesomeNum();
 	}
 	
-	@PostMapping("/fitComments")
+	@GetMapping("/fitComments/{board}/{refId}")
 	@ResponseBody
-	public List<Forum> fitComment(@RequestBody Forum targetData) {
-		return forumService.selectByBoardAndRefId(targetData.getBoard(), targetData.getRefId());
+	public List<Forum> fitComment(@PathVariable Board board, @PathVariable Long refId) {
+		return forumService.selectByBoardAndRefId(board,refId);
 	}
 	
 	

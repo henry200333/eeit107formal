@@ -328,26 +328,24 @@ var articleId;
 
 	function getComment() {
 		var board = "Article";
+		var upperBound = 2;
 		var commentReqData = {
 			"board" : board,
 			"refId" : articleId
 		};
 		$.ajax({
-			url : "/user/fitComments",
-			type : "POST",
-			contentType : "application/json",
-			dataType : "json",
-			data : JSON.stringify(commentReqData),
+			url : "/user/fitComments/"+board+"/"+articleId,
+			type : "GET",
 			success : function(data) {
 				var txtComment='';
 				$.each(data,function(index,value){
-					if(index>1) return false;
+					if((index+1)>upperBound) return false;
 					txtComment += '<div id="forum' + (index+1) + '" style="padding: 2px">'
 					txtComment += "<b>" + value.userName + "</b>";
 					txtComment += "<div>" + value.comment +"</div></div>";					
 				})
-				console.log(txtComment);
-				console.log(data);
+// 				console.log(txtComment);
+// 				console.log(data);
 				$("#forumWrapper").append(txtComment);
 			}
 		})

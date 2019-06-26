@@ -1,8 +1,6 @@
 package org.iii.seaotter.jayee.web;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,13 +16,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import net.minidev.json.JSONArray;
 
 @Controller
 @RequestMapping("/admin/forum")
@@ -49,7 +48,7 @@ public class AdminForumController {
 		return "/admin/forum-edit";
 	}
 
-	@PostMapping("/insert")
+	@PostMapping
 	@ResponseBody
 	public AjaxResponse<Forum> insert(@Valid @RequestBody Forum forum, BindingResult bindingResult, Model model) {
 		AjaxResponse<Forum> result = new AjaxResponse<>();
@@ -74,7 +73,7 @@ public class AdminForumController {
 		return result;
 	}
 
-	@PostMapping("/update")
+	@PutMapping
 	@ResponseBody
 	public AjaxResponse<Forum> update(@RequestBody Forum forum, BindingResult bindingResult) {
 		AjaxResponse<Forum> result = new AjaxResponse<Forum>();
@@ -90,10 +89,11 @@ public class AdminForumController {
 		return result;
 	}
 
-	@PostMapping("/delete")
-	public String delete(@RequestParam("id") Long id1, HttpServletRequest request, Model model) {
-		forumService.deleteById(id1);
-		return "redirect:/admin/forum/list";
+	@DeleteMapping("/{id}")
+	public String delete(@PathVariable Long id) {
+		System.out.println("enter delete");		
+		forumService.deleteById(id);
+		return "success";
 	}
 
 	@RequestMapping("/query")

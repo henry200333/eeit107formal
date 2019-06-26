@@ -144,9 +144,25 @@
 			$('#forum').submit();
 		}
 		function deleId(Object) {
-			$("#forum").attr("action", '/admin/forum/delete');
-			$("#id").val(Object.id);
-			$('#forum').submit();
+// 			$("#forum").attr("action", '/admin/forum'+Object.id);
+// 			$("#id").val();
+// 			$('#forum').submit();
+			$.ajax({
+				url:'/admin/forum/'+Object.id,
+				type:"DELETE",
+				dataType : "text",
+				success:function(data){
+					console.log(data);
+					window.location.href = "/admin/forum/list";
+					console.log("delete success");
+				},
+				error: function(data){
+					console.log(data);
+					console.log("error")
+					window.location.href = "/admin/forum/list";
+				}
+			})
+			
 		}
 	
 		$("#searchButton").click(function() {
