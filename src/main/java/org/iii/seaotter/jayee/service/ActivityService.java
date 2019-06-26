@@ -45,7 +45,7 @@ public class ActivityService {
 	}
 	
 	public List<Activity> getTop3NameByAwesomeNum() {
-		List<Activity> activity = activityDao.findAll(Sort.by(Sort.Direction.DESC, "awesomeNum")).subList(0, 3);	
+		List<Activity> activity = activityDao.findTop3ByOrderByAwesomeNumDesc();	
 		return activity;
 		
 	}

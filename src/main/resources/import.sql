@@ -1,11 +1,11 @@
-INSERT INTO article (name, content, type, ref_id) values
-  ('明昕兒童中心徵求表演者', '2019/8/8 將舉辦慈善表演，徵求兒童節目表演者，詳洽02-12345678，MR.口鳥先生', 'Vender', 100),
-  ('經濟0分', '政治100分，經濟0分', 'Other', 105),
-  ('好"扯"', '扯鈴藝術家-Jason前進太陽馬戲團，再創台灣口碑', 'Artist', 200),
-  ('網頁跳轉', 'add頁面insert失敗，網址變為insert', 'Other', 666),
-  ('時間格式', '自動包裝entity含有date，String無法轉為long', 'Other', 666),
-  ('資料庫自動產生insert時間', '用@CreatTime?', 'Other', 666),
-  ('nav.jsp', '抓到網址列的資訊，啟動active的css', 'Other', 666);
+INSERT INTO article (name, content, type, ref_id, count) values
+  ('明昕兒童中心徵求表演者', '2019/8/8 將舉辦慈善表演，徵求兒童節目表演者，詳洽02-12345678，MR.口鳥先生', 'Vender', 100, 2),
+  ('經濟0分', '政治100分，經濟0分', 'Other', 105, 99),
+  ('好"扯"', '扯鈴藝術家-Jason前進太陽馬戲團，再創台灣口碑', 'Artist', 200, 5),
+  ('網頁跳轉', 'add頁面insert失敗，網址變為insert', 'Other', 666, 10),
+  ('時間格式', '自動包裝entity含有date，String無法轉為long', 'Other', 666, 1),
+  ('資料庫自動產生insert時間', '用@CreatTime?', 'Other', 666, 3),
+  ('nav.jsp', '抓到網址列的資訊，啟動active的css', 'Other', 666, 4);
  
  insert into forum (ref_id, ref_comment_id, board, user_name, comment, comment_date) values
  (1, 0,'Ariticle', '薔薔', '大家好', '2019/05/25 18:13:21'),
