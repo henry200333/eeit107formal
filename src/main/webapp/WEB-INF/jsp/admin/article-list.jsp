@@ -91,7 +91,7 @@
 					type : "GET",
 					success : function(data) {
 						var table = "";
-						table += "<table class='table table-bordered table-striped table-hover'	id='dataTable' width='100%' cellspacing='0'><thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th><th>EDIT</th><th>DELE</th></tr></thead><tbody>";
+						table += "<table class='table table-bordered table-striped table-hover'	id='dataTable' width='100%' cellspacing='0'><thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th><th>count</th><th>EDIT</th><th>DELE</th></tr></thead><tbody>";
 						$.each(data, function(key, value) {
 							table += "<tr>";
 							for (i in value) {
@@ -141,7 +141,7 @@
 			success : function(data) {
 				$("div.table-responsive").empty();
 				var table = "";
-				table += "<table class='table table-bordered table-striped table-hover'	id='dataTable' width='100%' cellspacing='0'><thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th><th>EDIT</th><th>DELE</th></tr></thead><tbody>";
+				table += "<table class='table table-bordered table-striped table-hover'	id='dataTable' width='100%' cellspacing='0'><thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th><th>count</th><th>EDIT</th><th>DELE</th></tr></thead><tbody>";
 				$.each(data, function(key, value) {
 					table += "<tr>";
 					for (i in value) {
