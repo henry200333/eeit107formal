@@ -127,7 +127,8 @@ background-color:#DDDDDD;
 .m7{
 width:365px;
 height:150px; 
-margin-left:20px;
+margin-left:50px;
+border-radius:20px;
 }
 .m8{
 width:330px;
@@ -140,6 +141,15 @@ width:230px;
 margin-left:40px;
 margin-top:5px;
 font-size:12px;
+}
+.act{
+position:absolute; 
+left:65px; 
+top:10px; 
+color:white; 
+font-weight:bold;
+z-index:2;
+display:none;
 }
 </style>
 </head>
@@ -178,7 +188,7 @@ font-size:12px;
 	<div class="rightd">
 	<div class="activityd">
 	<br>
-	<span style="color:white;margin-left:25px;">TOP 3 </span><a href='/admin/activity/list'>Activities</a>
+	<span style="color:white;margin-left:45px;">TOP 3 </span><a href='/admin/activity/list'>Activities</a>
 	<br><br>
 	<div class="activityTop3">
 	
@@ -371,30 +381,43 @@ var articleId;
 			}
 		}
 	});
-
+	
 	$
 			.ajax({
 				url : "/user/activityTop3",
 				type : "GET",
 				success : function(data) {
-					txt1 = "<div style='border-style:solid;border-radius:20px;margin:2px;background-color:#FFFFBB'><img style='border-radius:20px;border-style:double;border-width:3px;display:inline' src='/resources/user-bootstrap/img/activity/activity"
-				txt2 = ".jpg' class='m7'><div style='margin-left:10px;display:inline;float:right;width:350px;border-color:#DDDDDD'>"
-					txt3 = "</div></div>"
-					txt4 = "<br>"
+					txt1 = "<div style='position:relative'>"
+					txt2 = "<div class='act'>";
+					txt3 = "</div><div  class='m7' style='position:absolute;left:0px;top:0px;background-color:rgba(0,0,0,0.0);z-index:1;'></div><div><img class='m7' src='/resources/user-bootstrap/img/activity/activity";
+					txt4 = ".jpg'></div></div>";				
+					txt5 = "<br>";
 					$.each(data, function(key, value) {
 						pictureNum = value['id'];
-						txt5 = "活動名稱: " + value['name'] + txt4 + "表演者: "
-								+ value['artist'] + txt4 + "活動描述: "
-								+ value['description'] + txt4 + "舉辦時間: "
-								+ value['beginTime'] + txt4 + "結束時間: "
-								+ value['endTime'] + txt4 + "讚數: "
+						txt6 = "活動名稱: " + value['name']  +txt5+ "表演者: "
+								+ value['artist']  +txt5+ "活動描述: "
+								+ value['description']  +txt5+ "舉辦時間: "
+								+ value['beginTime']  +txt5+ "結束時間: "
+								+ value['endTime']  +txt5+ "讚數: "
 								+ value['awesomeNum']
-						txt6 = txt1 + pictureNum + txt2 + txt5 + txt3
-						$("div.activityTop3").append(txt6)
+						txt7 = txt1 + txt2 + txt6 + txt3 + pictureNum + txt4 + txt5;
+								console.log(txt7);
+						$("div.activityTop3").append(txt7)
 
 					})
+					$("div.m7").hover(function(){
+						  $("div.act").show();
+						  $("div.m7").css("background-color","rgba(0,0,0,0.7)")
+						},function(){
+							  $("div.act").hide();
+							  $("div.m7").css("background-color","rgba(0,0,0,0.0)")
+							});
 				}
 			});
+	
+
+
 </script>
+</div>
 </body>
 </html>
