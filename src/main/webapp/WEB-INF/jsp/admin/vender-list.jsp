@@ -69,12 +69,16 @@
 					</thead>
 					<tbody id="tbody"></tbody>
 				</table>
+			
 				<form id="vender" method="post">
 					<input type="text" id="id" name="id" style="display: none">
 				</form>
+					<a href="maptest" class="btn btn-primary btn-icon-split"> <span
+						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
+					</span> <span class="text">maptest</span></a>
 			</div>
 			<!-- End of Main Content -->
-
+		
 			<jsp:include page="footer.jsp"></jsp:include>
 
 		</div>
