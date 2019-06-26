@@ -340,15 +340,16 @@ var sortBy = function (filed, rev, primer) {
 			url :"/user/activityTop3",
 			type:"GET",
 			success: function(data){
-				txt = "<div style='border-style:solid;border-radius:20px;margin:2px'><img style='border-radius:20px;border-style:double;border-width:3px;display:inline' src='/resources/user-bootstrap/img/activity/activity"
-				txt2 = ".jpg' class='m7'><div style='margin-left:10px;display:inline;float:right'>"
+				txt1 = "<div style='border-style:solid;border-radius:20px;margin:2px;background-color:#FFFFBB'><img style='border-radius:20px;border-style:double;border-width:3px;display:inline' src='/resources/user-bootstrap/img/activity/activity"
+				txt2 = ".jpg' class='m7'><div style='margin-left:10px;display:inline;float:right;width:350px;border-color:#DDDDDD'>"
 				txt3 = "</div></div>"
-				txt5 = "<br>"
+				txt4 = "<br>"
 					$.each(data, function(key,value){
 						pictureNum = value['id'];
-						txt6 = "活動名稱: "+value['name']+txt5+"表演者: "+value['artist']+txt5+"活動描述: "+value['description']+txt5+"舉辦時間: "+value['beginTime']+txt5+"結束時間: "+value['endTime']+txt5+"讚數: "+value['awesomeNum'] 
-						txt4 = txt + pictureNum + txt2 + txt6 + txt3
-						$("div.activityTop3").append(txt4)
+						txt5 = "活動名稱: "+value['name']+txt4+"表演者: "+value['artist']+txt4+"活動描述: "+value['description']+txt4+"舉辦時間: "+value['beginTime']+txt4+"結束時間: "+value['endTime']+txt4+"讚數: "+value['awesomeNum'] 
+						txt6 = txt1 + pictureNum + txt2 + txt5 + txt3
+						$("div.activityTop3").append(txt6)
+						
 					})
 			}
 		});
