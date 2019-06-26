@@ -24,10 +24,10 @@ INSERT INTO article (name, content, type, ref_id) values
  ('柳常玄',30678,'台北市'),
  ('杳堯要咬瑤',6666,'高雄市');
  
- INSERT INTO activity (name,artist,description,begin_time,end_time) values
- ('吃飯','王世堅','王世堅喜歡炒飯','2019/05/28 12:03','2019/05/28 12:30'),
- ('睡覺','柯文哲','柯文哲議會質詢在睡覺','2019/05/29 23:35','2019/05/30 07:35'),
- ('打東東','韓國瑜','韓國瑜被東東海K','2019/05/30 07:35','2019/06/03 17:15');
+ INSERT INTO activity (name,artist,description,begin_time,end_time,awesome_Num,bad_Num,cover_Image) values
+ ('吃飯','王世堅','王世堅喜歡炒飯','2019/05/28 12:03','2019/05/28 12:30',50,15,null),
+ ('睡覺','柯文哲','柯文哲議會質詢在睡覺','2019/05/29 23:35','2019/05/30 07:35',100,25,null),
+ ('打東東','韓國瑜','韓國瑜被東東海K','2019/05/30 07:35','2019/06/03 17:15',150,35,null);
 
 insert into  Vender (name,address,max_people,phone) values
 ('EZ5音樂餐廳','106台北市大安區安和路二段211號',50,'0227383995'),

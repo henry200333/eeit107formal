@@ -61,6 +61,9 @@
 												<th>Description</th>
 												<th>Begin time</th>
 												<th>End time</th>
+												<th>AwesomeNum</th>
+												<th>BadNum</th>
+												<th>CoverImage</th>
 												<th>Edit</th>
 												<th>Delete</th>
 											</tr>

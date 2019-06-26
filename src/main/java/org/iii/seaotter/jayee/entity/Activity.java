@@ -1,5 +1,7 @@
 package org.iii.seaotter.jayee.entity;
 
+import java.sql.Blob;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,5 +44,13 @@ public class Activity {
 	@Column(name="end_time")
 	private java.util.Date endTime;
 	
+	@Column(name="awesome_Num")
+	private Long awesomeNum;
+	
+	@Column(name="bad_Num")
+	private Long badNum;
+			
+	@Column(name="cover_Image")
+	private Blob coverImage;	
 		
 }
