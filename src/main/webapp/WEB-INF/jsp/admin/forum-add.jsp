@@ -130,9 +130,10 @@
 				$(this).next("span").remove();
 			}
 		})
-				$("#comment").blur(function(){
+	
+		$("#comment").blur(function() {
 			console.log($(this).val());
-			if($(this).val()!=null&&$(this).val()!=""){
+			if ($(this).val() != null && $(this).val() != "") {
 				console.log("comment輸入檢查通過");
 				$(this).next("span").remove();
 			}

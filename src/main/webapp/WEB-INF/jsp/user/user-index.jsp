@@ -301,6 +301,26 @@ var sortBy = function (filed, rev, primer) {
 			});
 		};
 	
+// 		append Top1 Article div next to performance
+		$.ajax({
+			url : "/user/articleTop",
+			type : "GET",
+			success : function(data) {
+				if(response.type == 'SUCCESS'){
+					var articleDiv = "";
+					$.each(data, function(key, value) {
+						articleDiv += "<tr>";
+						for (i in value) {
+							table += "<td>" + value[i] + "</td>";
+							id = Object.values(value)[0];
+						}
+					})
+					$("div.table-responsive").append(articleDiv);
+					
+					tableRefresh();
+				}
+			}
+		})
 
 
 </script>
