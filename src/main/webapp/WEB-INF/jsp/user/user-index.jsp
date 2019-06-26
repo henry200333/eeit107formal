@@ -8,6 +8,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Comfortaa|Rubik+Mono+One&display=swap"
 	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Knewave|Pacifico&display=swap" rel="stylesheet">
 <style>
 body{
 font-family: 'Rubik Mono One', sans-serif;
@@ -26,10 +27,11 @@ font-family:'微軟正黑體';
 }
 
 .m1 {
-	width: 200px;
-	margin-top: 30px;
+	font-size:80px;
+	margin-top: 70px;
 	margin-left: 30px;
-	transform:rotate(-5deg)
+		font-family: 'Pacifico', cursive;
+		color:white;
 }
 
 .m2 {
@@ -145,7 +147,8 @@ font-size:12px;
 	<div class="d1">
 
 		<div class="topd">
-			<img src="../../../resources/admin-bootstrap/img/jayee.gif" class="m1"> <img
+			<span class="m1">Jayee</span>
+			 <img
 				src="../../../resources/admin-bootstrap/img/message.gif" class="m2"> <img
 				src="../../../resources/admin-bootstrap/img/notice.gif" class="m3"> <img
 				src="../../../resources/admin-bootstrap/img/photo.gif" class="m4"> <img
