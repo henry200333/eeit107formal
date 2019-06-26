@@ -30,7 +30,7 @@ public class IndexController {
 	public String index(HttpServletRequest request) {
 		
 		String username  = request.getParameter("username");
-		if(username.equals("SeaOtter"))
+		if("SeaOtter".equals(username))
 			return "redirect:/admin/artist/list";
 		
 		else

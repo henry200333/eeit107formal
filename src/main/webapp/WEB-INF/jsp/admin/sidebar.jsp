@@ -8,7 +8,9 @@
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/user/index">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-fw fa-guitar"></i>
+
         </div>
+
         <div class="sidebar-brand-text mx-3">JAYEE<sup> 1.0</sup></div>
       </a>
 
