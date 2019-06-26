@@ -269,10 +269,10 @@ var sortBy = function (filed, rev, primer) {
 		}
 	});
 	$.ajax({
-		url :"/admin/artistsTop5",
+		url :"/user/artistsTop5",
 		type:"GET",
 		success: function(data){
-			txt = "<div style='position: relative;display:inline'><img src='../../../resources/img/artist"
+			txt = "<div style='position: relative;display:inline'><img src='/resources/admin-bootstrape/img/artist"
 			txt2 = ".jpg' class='m6'><div style='position: absolute;z-index: 2;left:20px'>"
 			txt3 = "</div></div>"
 			$.each(data, function(index,value){

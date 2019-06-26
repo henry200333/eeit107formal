@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/user")
 public class IndexController {
 	
 	@Autowired
@@ -19,12 +19,13 @@ public class IndexController {
 	
 	@RequestMapping("/index")
 	public String index() {
-		return "/admin/index";
+		return "/user/index";
 	}
 	
 	@GetMapping("/artistsTop5")
 	@ResponseBody
 	public List<Artist> queryTop5() {
+		System.out.println("img");
 		return artistService.getNameByFanNumberTop5();
 	}
 	
