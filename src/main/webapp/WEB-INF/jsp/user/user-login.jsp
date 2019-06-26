@@ -180,6 +180,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-user"></i></span>
 							<input type="text" class="form-control" name="username" placeholder="Username" required="required">
+							<p>使用帳號SeaOtter進入後台</p>
 						</div>
 					</div>
 					<div class="form-group">
