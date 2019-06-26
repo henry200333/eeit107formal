@@ -6,6 +6,7 @@ import org.iii.seaotter.jayee.dao.ActivityDao;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,5 +43,12 @@ public class ActivityService {
 	public void deleteById(Long id) {
 		activityDao.deleteById(id);
 	}
+	
+	public List<Activity> getTop3NameByAwesomeNum() {
+		List<Activity> activity = activityDao.findAll(Sort.by(Sort.Direction.DESC, "awesomeNum")).subList(0, 3);	
+		return activity;
+		
+	}
+	
 	
 }

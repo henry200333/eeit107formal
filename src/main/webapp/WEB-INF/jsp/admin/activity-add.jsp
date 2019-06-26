@@ -9,7 +9,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />	
-<link rel="stylesheet" href="/resources/css/jquery-ui-timepicker-addon.css">
+<link rel="stylesheet" href="/resources/admin-bootstrape/css/jquery-ui-timepicker-addon.css">
 <body id="page-top">
 
 
@@ -115,10 +115,10 @@
 				data : $("#form").serializeObject(),
 				success : function(response) {
 					if(response.type == 'SUCCESS'){
-						alert("資料新增成功！" + JSON.stringify(response.data.name)+"即將跳轉Edit頁面...才怪");
-						$(location).attr('href', '/admin/activity/edit?id=' + response.data.id);  //新增完成後無法轉Edit頁面,待修
+						alert("資料新增成功！" + JSON.stringify(response.data.name)+"即將跳轉Edit頁面");
+						$(location).attr('href', '/admin/activity/edit?id=' + response.data.id);  
 					}else{
-						alert("哈! 有錯誤  笨蛋!");
+						alert("有錯誤!");
 					}
 					
 				},
@@ -152,7 +152,7 @@
 
 	
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-	<script type="text/javascript" src="/resources/js/jquery-ui-timepicker-addon.js"></script>
+	<script type="text/javascript" src="/resources/admin-bootstrape/js/jquery-ui-timepicker-addon.js"></script>
 
 </body>
 </html>

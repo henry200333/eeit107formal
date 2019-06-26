@@ -2,7 +2,9 @@ package org.iii.seaotter.jayee.web;
 
 import java.util.List;
 
+import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Artist;
+import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,9 @@ public class IndexController {
 	@Autowired
 	private ArtistService artistService;
 	
+	@Autowired
+	private ActivityService activityService;
+	
 	@RequestMapping("/index")
 	public String index() {
 		return "/user/index";
@@ -27,6 +32,12 @@ public class IndexController {
 	public List<Artist> queryTop5() {
 		System.out.println("img");
 		return artistService.getNameByFanNumberTop5();
+	}
+	
+	@GetMapping("/activityTop3")
+	@ResponseBody
+	public List<Activity> queryTop3(){
+		return activityService.getTop3NameByAwesomeNum();
 	}
 	
 }

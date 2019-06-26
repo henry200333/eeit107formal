@@ -175,13 +175,11 @@ font-size:12px;
 	<div class="rightd">
 	<div class="activityd">
 	<br>
-	<span style="color:white;margin-left:25px;">TOP 4 </span><a href='/admin/activity/list'>Activities</a>
+	<span style="color:white;margin-left:25px;">TOP 3 </span><a href='/admin/activity/list'>Activities</a>
 	<br><br>
-	<img src="../../../resources/admin-bootstrape/img/photo2.gif" class="m7">
-	<img src="../../../resources/admin-bootstrape/img/photo2.gif" class="m7">
-	<br><br>
-	<img src="../../../resources/admin-bootstrape/img/photo2.gif" class="m7">
-	<img src="../../../resources/admin-bootstrape/img/photo2.gif" class="m7">
+	<div class="activityTop3">
+	
+	</div>
 	<br><br>
 	</div>
 	<div class="articled">
@@ -283,7 +281,6 @@ var sortBy = function (filed, rev, primer) {
 			})
 		}
 	});
-	
 
 		var views  = function(id){
 			$.ajax({
@@ -298,6 +295,24 @@ var sortBy = function (filed, rev, primer) {
 			});
 		};
 	
+		$.ajax({
+			url :"/user/activityTop3",
+			type:"GET",
+			success: function(data){
+				txt = "<div style='position: relative;display:inline'><img src='/resources/admin-bootstrape/img/activity/activity"
+				txt2 = ".jpg' class='m7'><div style='position: absolute;z-index: 2;left:20px'>"
+				txt3 = "</div></div><br>"
+				$.each(data, function(index,value){
+					name =  value['name']
+					num = index+1
+					txt4 = txt + num + txt2 + name + txt3
+					$("div.activityTop3").append(txt4)
+				})
+			}
+		});
+		
+		
+		
 
 
 </script>
