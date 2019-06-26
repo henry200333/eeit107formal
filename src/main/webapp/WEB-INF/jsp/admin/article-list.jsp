@@ -68,10 +68,6 @@
 						<div class="card-body">
 							<div class="table-responsive"
 								style="font-family: 'Noto Sans TC', sans-serif;">
-								<table class="table table-bordered table-striped table-hover"
-									id="dataTable" width="100%" cellspacing="0">
-
-								</table>
 							</div>
 						</div>
 					</div>
@@ -95,8 +91,7 @@
 					type : "GET",
 					success : function(data) {
 						var table = "";
-						$("#dataTable").append("<thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th><th>EDIT</th><th>DELE</th></tr></thead>");
-						table += "<tbody>";
+						table += "<table class='table table-bordered table-striped table-hover'	id='dataTable' width='100%' cellspacing='0'><thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th><th>EDIT</th><th>DELE</th></tr></thead><tbody>";
 						$.each(data, function(key, value) {
 							table += "<tr>";
 							for (i in value) {
@@ -107,8 +102,8 @@
 							table += "<td><button id='" + id + "' type='button' onclick='deleId(this);' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
 							table += "</tr>";
 						})
-						table += "</tbody>";
-						$("#dataTable").append(table);
+						table += "</tbody></table>";
+						$("div.table-responsive").append(table);
 						
 						tableRefresh();
 					}
@@ -144,10 +139,9 @@
 			url : "/admin/article/query?search=" + $("#search").val(),
 			type : "GET",
 			success : function(data) {
-				$("#dataTable").text("")
+				$("div.table-responsive").empty();
 				var table = "";
-				$("#dataTable").append("<thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th><th>EDIT</th><th>DELE</th></tr></thead>");
-				table += "<tbody>";
+				table += "<table class='table table-bordered table-striped table-hover'	id='dataTable' width='100%' cellspacing='0'><thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th><th>EDIT</th><th>DELE</th></tr></thead><tbody>";
 				$.each(data, function(key, value) {
 					table += "<tr>";
 					for (i in value) {
@@ -158,8 +152,10 @@
 					table += "<td><button id='" + id + "' type='button' onclick='deleId(this);' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
 					table += "</tr>";
 				})
-				table += "</tbody>";
-				$("#dataTable").append(table);
+				table += "</tbody></table>";
+				$("div.table-responsive").append(table);
+				
+				tableRefresh();
 			}
 		})
 	})
