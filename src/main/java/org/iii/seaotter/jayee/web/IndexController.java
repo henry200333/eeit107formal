@@ -22,6 +22,11 @@ public class IndexController {
 		return "/user/index";
 	}
 	
+	@RequestMapping("/login")
+	public String login() {
+		return "/user/login";
+	}
+	
 	@GetMapping("/artistsTop5")
 	@ResponseBody
 	public List<Artist> queryTop5() {
