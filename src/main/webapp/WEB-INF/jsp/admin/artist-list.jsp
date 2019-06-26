@@ -1,7 +1,6 @@
 <%@page import="org.springframework.web.servlet.ModelAndView"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -56,7 +55,10 @@
 							</div>
 						</div>
 					</div>
-
+					<form action="/somewhere/to/upload" enctype="multipart/form-data">
+					<input type="file" id="InputPic" accept="image/gif, image/jpeg, image/png" />
+					<img id="PreviewPic" src="#" style="weight:180px;height:180px"/>
+					</form>
 				</div>
 				<!-- /.container-fluid -->
 
@@ -71,40 +73,32 @@
 	</div>
 	<!-- End of Page Wrapper -->
 	<script>
-		$(document)
-				.ready(
-						function() {
-							$
-									.ajax({
-										url : "query",
-										type : "GET",
-										success : function(data) {
-											var table = "<thead><tr><th>Id</th><th>Name</th><th>Fan_Number</th><th>Location</th><th>Edit</th><th>Delete</th></tr></thead>";
-											table += "<tbody>";
-											$.each(data,function(key, value) {
-																table += "<tr>";
-																for (i in value) {
-																	table += "<td>"
-																			+ value[i]
-																			+ "</td>";
-																	id = Object
-																			.values(value)[0];
-																}
-																table += "<td><button id='"
-																		+ id
-																		+ "' type='button' onclick='edit(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
-																table += "<td><button id='"
-																		+ id
-																		+ "' type='button' onclick='dele(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
-																table += "</tr>"
-															})
-											table += "</tbody>"
-											$("#dataTable").append(table);
-											tableRefresh();
-										}
-									});
-
-						});
+		$(document).ready(function() {
+			$.ajax({
+				url : "query",
+				type : "GET",
+				success : function(data) {
+					table = "<thead><tr>";
+					column = Object.keys(data[0]);
+					for (i in column)
+						table += "<th>" +  column[i] + "</th>";
+					table += "<th>edit</th><th>delete</th></tr><thead>";
+					table += "<tbody>";
+					$.each(data,function(key, value) {
+						table += "<tr>";
+						for (i in value) {
+							table += "<td>"+ value[i]+ "</td>";
+							id = Object.values(value)[0];}
+						table += "<td><button id='"+ id+ "' type='button' onclick='edit(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
+						table += "<td><button id='"+ id+ "' type='button' onclick='dele(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
+						table += "</tr>"
+						})
+						table += "</tbody>"
+						$("#dataTable").append(table);
+						tableRefresh();
+						}
+					});
+			});
 		function edit(Object) {
 			$(location).attr('href', '/admin/artist/edit?id=' + Object.id);
 		}
@@ -133,8 +127,20 @@
 							}
 						})
 			}
-
 		}
+		$("#InputPic").change(function(){
+			readURL(this);
+			});
+	
+		function readURL(input){
+			  if(input.files && input.files[0]){
+			    var reader = new FileReader();
+			    reader.onload = function (e) {
+			       $("#PreviewPic").attr('src', e.target.result);
+			    }
+			    reader.readAsDataURL(input.files[0]);
+			  }
+			}
 	</script>
 </body>
 </html>

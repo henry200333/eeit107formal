@@ -45,7 +45,6 @@ public class IndexController {
 	@GetMapping("/artistsTop5")
 	@ResponseBody
 	public List<Artist> queryTop5() {
-		System.out.println("img");
 		return artistService.getNameByFanNumberTop5();
 	}
 	
