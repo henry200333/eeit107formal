@@ -6,8 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
+import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Artist;
+import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class IndexController {
 	private ArtistService artistService;
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private ActivityService activityService;
 	
 	@RequestMapping("/index")
 	public String index(HttpServletRequest request) {
@@ -64,5 +68,12 @@ public class IndexController {
 		res.setData(articleService.getTop10ByCount());
 		return res;
 	}
+	
+	@GetMapping("/activityTop3")
+	@ResponseBody
+	public List<Activity> activityTop3() {
+		return activityService.getTop3NameByAwesomeNum();
+	}
+	
 	
 }

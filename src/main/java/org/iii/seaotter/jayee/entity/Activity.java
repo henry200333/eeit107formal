@@ -51,6 +51,6 @@ public class Activity {
 	private Long badNum;
 			
 	@Column(name="cover_Image")
-	private Blob coverImage;	
+	private Long coverImage;	
 		
 }
