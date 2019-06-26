@@ -81,10 +81,7 @@
 										success : function(data) {
 											var table = "<thead><tr><th>Id</th><th>Name</th><th>Fan_Number</th><th>Location</th><th>Edit</th><th>Delete</th></tr></thead>";
 											table += "<tbody>";
-											$
-													.each(
-															data,
-															function(key, value) {
+											$.each(data,function(key, value) {
 																table += "<tr>";
 																for (i in value) {
 																	table += "<td>"

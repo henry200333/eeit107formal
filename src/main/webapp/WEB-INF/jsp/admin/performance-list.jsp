@@ -40,8 +40,11 @@
 					<a href="add" class="btn btn-primary btn-icon-split"> <span
 						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
 					</span> <span class="text">Add New Performance</span>
+					
 					</a>
-
+					<br>
+					<br>
+					Search for: <input type="text" id="search" oninput="searchp()"/>
 					<hr>
 
 					<div class="card shadow mb-4">
@@ -78,8 +81,6 @@
 						</div>
 					</div>
 					<a href="test"><button type="button" class="btn btn-primary btn-user btn-block">請點我試試看超酷網站?</button></a>
-					<br>
-					<a href="index"><button type="button" class="btn btn-primary btn-user btn-block">請點我看首頁切版試做</button></a>
 					<br>
 					<button type="button" id="vdeo" class="btn btn-primary btn-user btn-block">點我預覽影片排版</button>
 					<hr>
@@ -124,7 +125,26 @@ $("#fileUpload").on('change', function () {
 	<!-- End of Page Wrapper -->
 	<script>
 	
-		
+		function searchp(){
+			var search = $("#search").val();
+			$.ajax({
+				url:"/admin/performance/search",
+				type:"GET",
+				data:{"search":search},
+				success:function(data){
+					$("#dataTable").html("");
+					$("div#dataTable_length").remove();
+					$("div#dataTable_filter").remove();
+					$("div#dataTable_info").remove();
+					$("div#dataTable_paginate").remove();
+					showNames(data);
+					
+					$("td.datap").html(function() {
+					    return $(this).html().replace(search,"<font color=\"red\">"+search+"</font>");
+					});
+				}
+			})
+		}
 
 		function showNames(data) {
 			var txt1 = "<thead>";
@@ -151,7 +171,7 @@ $("#fileUpload").on('change', function () {
 						
 						
 					
-					txt2 += "<td>" + value[i] + "</td>";
+					txt2 += "<td class='datap'>" + value[i] + "</td>";
 					var id = value['id'];
 				}
 				txt2 += "<td><button type='button' id='"
