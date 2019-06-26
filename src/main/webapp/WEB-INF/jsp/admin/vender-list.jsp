@@ -49,7 +49,7 @@
 							<div class="table-responsive"
 								style="font-family: 'Noto Sans TC', sans-serif;"></div>
 						</div>
-					</div>
+					
 
 				</div>
 				<!-- /.container-fluid -->
@@ -78,7 +78,7 @@
 					</span> <span class="text">maptest</span></a>
 			</div>
 			<!-- End of Main Content -->
-		
+		</div>
 			<jsp:include page="footer.jsp"></jsp:include>
 
 		</div>
