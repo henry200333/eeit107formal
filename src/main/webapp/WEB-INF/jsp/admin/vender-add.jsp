@@ -114,24 +114,26 @@
 <script>
 	$(document).ready(function() {
 		$("#submit").click(function() {
+			console.log($("#addvender").serializeObject());
+			alert($("#addvender").serializeObject())
 			var dat = $("#addvender").serializeArray();
 			var a = [];
 			var o = {};
-			// 	alert(JSON.stringify(dat));
+				alert(JSON.stringify(dat));
 			$.each(dat, function(i, filed) {
 				o[filed.name] = filed.value;
 			});
 			a.push(o);
 			var a2 = JSON.stringify(a);
-
+			console.log(a2);
 			$.ajax({
-				url : "/admin/vender/insert",
+				url : "insert",
 				type : "POST",
-				dataType : "text",
-				data : a2,
+				dataType : "json",
+				data :$("#addvender").serializeObject(),
 				contentType : "application/json",
 				success : function(data) {
-					data = JSON.parse(data);
+// 					data = JSON.parse(data);
 					$("span.check").html("");
 					$.each(data, function(index, value) {
 						$("#" + index + "check").html(value)

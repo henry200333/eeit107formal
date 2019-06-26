@@ -86,6 +86,22 @@ public class AdminPerformanceController {
 
 	}
 	
+	//增加點閱率
+	@RequestMapping("/viewplus")
+	@ResponseBody
+	public Performance viewplus(@ModelAttribute("performance") Performance performance, Model model) {
+		System.out.println("viewplus");
+		performance = performanceSurvice.getById(performance.getId());
+		System.out.println(performance);
+		Long views = performance.getViews();
+		views ++;
+		performance.setViews(views);
+		System.out.println(performance);
+		performanceSurvice.update(performance);
+		return performance;
+
+	}
+	
 	@RequestMapping("/edit")
 	public String editPage(@ModelAttribute("performance") Performance performance, Model model) {
 		System.out.println("edit");

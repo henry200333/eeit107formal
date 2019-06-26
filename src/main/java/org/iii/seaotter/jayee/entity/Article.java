@@ -7,6 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -27,7 +28,7 @@ public class Article {
 	@Size(min = 2, max = 30)
 	@Column(name = "name")
 	private String name;
-	@Size(max = 10000)
+	@Lob
 	@Column(name = "content")
 	private String content;
 	@NotNull
