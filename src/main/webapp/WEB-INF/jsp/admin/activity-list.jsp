@@ -36,12 +36,27 @@
 							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
 					</div>
 
-					<!-- Add New Article Button -->
-					<a href="add" class="btn btn-primary btn-icon-split"> <span
-						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
-					</span> <span class="text">Add New Activity</span>
-					</a>
-
+					<!-- Add New Activity Button -->
+					<form class="user">
+			            <div class="form-group row">
+				            <div class="col-sm-2 mb-3 mb-sm-0">
+				            	<a href="add" class="btn btn-primary btn-icon-split"> <span
+									class="icon text-white-50"> <i class="fas fa-file-medical"></i>
+									</span> <span class="text">Add New Activity</span>
+								</a>
+				            </div>
+				            <div class="col-sm-3 mb-3 mb-sm-0">
+					            <div class="input-group">
+					              <input id="search" name="search" type="text" class="form-control border-0 small" placeholder="搜尋活動..." aria-label="Search" aria-describedby="basic-addon2">
+					              <div class="input-group-append">
+					                <button id="searchBT" class="btn btn-primary" type="button">
+					                  <i class="fas fa-search fa-sm"></i>
+					                </button>
+					              </div>
+					            </div>
+				            </div>
+			            </div>
+			        </form>
 					<hr>
 
 					<div class="card shadow mb-4">
@@ -50,29 +65,7 @@
 								Activity</h6>
 						</div>
 						<div class="card-body">
-							<div class="table-responsive">
-									<table class="table table-bordered table-striped table-hover"
-										id="dataTable" width="100%" cellspacing="0">
-										<thead>
-											<tr>
-												<th>ID</th>
-												<th>Name</th>
-												<th>Artist</th>
-												<th>Description</th>
-												<th>Begin time</th>
-												<th>End time</th>
-												<th>AwesomeNum</th>
-												<th>BadNum</th>
-												<th>CoverImage</th>
-												<th>Edit</th>
-												<th>Delete</th>
-											</tr>
-										</thead>
-										<tbody id='tbody'>
-										</tbody>
-									</table>
-								
-							</div>
+							<div class="table-responsive"></div>
 						</div>
 					</div>
 				</div>
@@ -87,74 +80,105 @@
 	</div>
 	<!-- End of Page Wrapper -->
 	<script>
-		$.ajax({
-			url:"query",
-			type:"GET",
-			success:function(data){
-				var txt = "";
-				$.each(data,function(index,value){
-					txt += "<tr>";
-					for(i in value){
-						txt += "<td>"+ value[i]+ "</td>";
-						id=Object.values(value)[0];
+		$
+				.ajax({
+					url : "/admin/activity/query",
+					type : "GET",
+					success : function(data) {
+						var txt = "";
+						txt += "<table class='table table-bordered table-striped table-hover'	id='dataTable' width='100%' cellspacing='0'><thead><tr><th>ID</th><th>Name</th><th>Artist</th><th>Description</th><th>Begin time</th><th>End time</th><th>AwesomeNum</th><th>BadNum</th><th>CoverImage</th><th>Edit</th><th>Delete</th></tr></thead><tbody>";
+						$
+								.each(
+										data,
+										function(index, value) {
+											txt += "<tr>";
+											for (i in value) {
+												txt += "<td>" + value[i]
+														+ "</td>";
+												id = Object.values(value)[0];
+											}
+											txt += "<td><a id="
+													+ "'"
+													+ id
+													+ "'"
+													+ "href='' onclick='editId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
+											txt += "<td><a id="
+													+ "'"
+													+ id
+													+ "'"
+													+ 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
+											txt += "</tr>";
+										})
+						txt += "</tbody></table>";
+						$("div.table-responsive").append(txt);
+						tableRefresh();
 					}
-					txt += "<td><a id=" +"'"+ id  +"'" + "href='' onclick='editId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
-					txt += "<td><a id="+"'"+ id + "'" + 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
-					txt+= "</tr>";	
 				})
-				$("#tbody").html(txt);
-				
-				tableRefresh();
-				
-			}
-		})
 
-		function editId(obj){
-		$(location).attr('href', '/admin/activity/edit?id=' + obj.id);
-	}
-	function deleId(obj){
-		var r = confirm("確定要刪除這筆ID=" + obj.id + "的資料嗎？");
-		if (r == true) {
-			$.ajax({
-				url : '/admin/activity/delete',
-				method : 'DELETE',
-				contentType : 'application/json;charset=UTF-8',
-				dataType : 'json',
-				data : '{"id":"' + obj.id + '"}',
-				success : function(response) {
-					if (response.type == 'SUCCESS'){
-						alert("資料刪除成功！\n您刪除了一筆ID為：" + response.data.id + "的資料！\n即將重新進入LIST頁面！");
-						$(location).attr('href', '/admin/activity/list');
-					} else {
-						alert("資料刪除失敗！請重新搜尋清單確保資料為最新！");
+		function editId(obj) {
+			$(location).attr('href', '/admin/activity/edit?id=' + obj.id);
+		}
+		function deleId(obj) {
+			var r = confirm("確定要刪除這筆ID=" + obj.id + "的資料嗎？");
+			if (r == true) {
+				$.ajax({
+					url : '/admin/activity/delete',
+					method : 'DELETE',
+					contentType : 'application/json;charset=UTF-8',
+					dataType : 'json',
+					data : '{"id":"' + obj.id + '"}',
+					success : function(response) {
+						if (response.type == 'SUCCESS') {
+							alert("資料刪除成功！\n您刪除了一筆ID為：" + response.data.id
+									+ "的資料！\n即將重新進入LIST頁面！");
+							$(location).attr('href', '/admin/activity/list');
+						} else {
+							alert("資料刪除失敗！請重新搜尋清單確保資料為最新！");
+						}
+					},
+					error : function(respH) {
+						alert("資料刪除失敗！請檢查伺服器連線！");
 					}
-				},
-				error : function(respH) {
-					alert("資料刪除失敗！請檢查伺服器連線！");
+				})
+			}
+		}
+		
+		$("#searchBT").click(function(){
+			$.ajax({
+				url : "/admin/activity/query?search=" + $("#search").val(),
+				type : "GET",
+				success : function(data) {
+					var txt = "";
+					txt += "<table class='table table-bordered table-striped table-hover'	id='dataTable' width='100%' cellspacing='0'><thead><tr><th>ID</th><th>Name</th><th>Artist</th><th>Description</th><th>Begin time</th><th>End time</th><th>AwesomeNum</th><th>BadNum</th><th>CoverImage</th><th>Edit</th><th>Delete</th></tr></thead><tbody>";
+					$
+							.each(
+									data,
+									function(index, value) {
+										txt += "<tr>";
+										for (i in value) {
+											txt += "<td>" + value[i]
+													+ "</td>";
+											id = Object.values(value)[0];
+										}
+										txt += "<td><a id="
+												+ "'"
+												+ id
+												+ "'"
+												+ "href='' onclick='editId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
+										txt += "<td><a id="
+												+ "'"
+												+ id
+												+ "'"
+												+ 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
+										txt += "</tr>";
+									})
+					txt += "</tbody></table>";
+					$("div.table-responsive").append(txt);
+					tableRefresh();
 				}
 			})
-		}
-	}
-		
-		
-		
-		
-		
-		
-		
-		
-// 		function sendId(Object) {
-// 			$("#activity").attr("action",'/admin/activity/edit');
-// 			$("#id").val(Object.id);
-// 			$('#activity').submit();
-// 		}
-// 		function deleId(Object) {
-// 			$("#activity").attr("action",'/admin/activity/delete');
-// 			$("#id").val(Object.id);
-// 			$('#activity').submit();
-// 		}
-	
+		})
 	</script>
-	
+
 </body>
 </html>
