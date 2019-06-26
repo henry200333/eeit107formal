@@ -8,5 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ArticleDao extends JpaRepository<Article, Long> {
 
 	public List<Article> findByNameContainingOrContentContaining(String name, String content);
-	
+	public Article findTopByOrderByCountDesc();
+	public List<Article> findTop10ByOrderByCountDesc();
 }
