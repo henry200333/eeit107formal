@@ -269,7 +269,7 @@ var sortBy = function (filed, rev, primer) {
 		}
 	});
 	$.ajax({
-		url :"/admin/performance/index/artistsTop5",
+		url :"/admin/artistsTop5",
 		type:"GET",
 		success: function(data){
 			txt = "<div style='position: relative;display:inline'><img src='../../../resources/img/artist"

@@ -156,6 +156,10 @@
 				dataType : "json",
 				data : JSON.parse($("#searchData").serializeObject()),
 				success : function(data) {
+					$("div#dataTable_length").remove();
+					$("div#dataTable_filter").remove();
+					$("div#dataTable_info").remove();
+					$("div#dataTable_paginate").remove();
 					showNames(data);
 				},
 				error : function() {

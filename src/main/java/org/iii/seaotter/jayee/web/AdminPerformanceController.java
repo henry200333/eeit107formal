@@ -49,10 +49,6 @@ public class AdminPerformanceController {
 	@GetMapping("/query")
 	@ResponseBody // 轉成JSON
 	public List<Performance> query() {
-		List<Performance> list = performanceSurvice.getAll();
-		for (Performance p : list) {
-			System.out.println(p.getUpdateTime());
-		}
 		return performanceSurvice.getAll();
 	}
 
@@ -79,12 +75,50 @@ public class AdminPerformanceController {
 
 	}
 
-	@RequestMapping("/index")
-	public String index() {
-		
-		return "/admin/index";
 
+	@RequestMapping("/index")
+	public String index() {		
+		return "/admin/index";
 	}
+	
+	@RequestMapping("/search")
+	@ResponseBody
+	public List<Performance> search(@RequestParam String search){
+		List<Performance> getdata = performanceSurvice.getAll();
+		if(search==null || search.trim().length()==0) {
+			return getdata;
+		}
+		
+		List<Performance> searchResult = new ArrayList<>();
+		for(int i=0;i<getdata.size();i++) {
+			boolean flag = false;
+			Performance data = getdata.get(i);
+			if(data.getActivityId().toString().contains(search))
+				flag=true;
+			if(data.getTitle().contains(search))
+				flag=true;
+			if(data.getUrl().contains(search))
+				flag=true;
+			if(data.getUpdateTime().toString().contains(search))
+				flag=true;
+			if(data.getActivityId().toString().contains(search))
+				flag=true;
+			if(data.getViews().toString().contains(search))
+				flag=true;
+			if(flag)
+				searchResult.add(data);
+		}
+		System.out.println(searchResult);
+		return searchResult;
+	}
+
+//	@RequestMapping("/index")
+//	public String index() {
+//		
+//		return "/admin/index";
+//
+//	}
+
 	
 	//增加點閱率
 	@RequestMapping("/viewplus")
