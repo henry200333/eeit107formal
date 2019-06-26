@@ -16,14 +16,14 @@
 </a>
 
 <!-- Bootstrap core JavaScript-->
-<script src="/resources/vendor/jquery/jquery.min.js"></script>
-<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/resources/admin-bootstrape/vendor/jquery/jquery.min.js"></script>
+<script src="/resources/admin-bootstrape/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/resources/admin-bootstrape/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="/resources/js/sb-admin-2.min.js"></script>
+<script src="/resources/admin-bootstrape/js/sb-admin-2.min.js"></script>
 
 <!-- SideBar Active -->
 <script>
@@ -68,13 +68,13 @@
 <script>
 	 function tableRefresh() {
 		$("body").append($("<script />", {
-			  src: "/resources/vendor/datatables/jquery.dataTables.min.js"
+			  src: "/resources/admin-bootstrape/vendor/datatables/jquery.dataTables.min.js"
 			}));
 		$("body").append($("<script />", {
-			  src: "/resources/vendor/datatables/dataTables.bootstrap4.min.js"
+			  src: "/resources/admin-bootstrape/vendor/datatables/dataTables.bootstrap4.min.js"
 			}));
 		$("body").append($("<script />", {
-			  src: "/resources/js/demo/datatables-demo.js"
+			  src: "/resources/admin-bootstrape/js/demo/datatables-demo.js"
 			}));
 	};
 </script>
