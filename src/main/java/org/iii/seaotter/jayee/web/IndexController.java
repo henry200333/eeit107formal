@@ -2,6 +2,8 @@ package org.iii.seaotter.jayee.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.entity.Article;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -24,13 +27,19 @@ public class IndexController {
 	private ArticleService articleService;
 	
 	@RequestMapping("/index")
-	public String index() {
-		return "/user/index";
+	public String index(HttpServletRequest request) {
+		
+		String username  = request.getParameter("username");
+		if(username.equals("SeaOtter"))
+			return "redirect:/admin/artist/list";
+		
+		else
+		return "/user/user-index";
 	}
 	
 	@RequestMapping("/login")
 	public String login() {
-		return "/user/login";
+		return "/user/user-login";
 	}
 	
 	@GetMapping("/artistsTop5")
