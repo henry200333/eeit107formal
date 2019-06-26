@@ -75,6 +75,7 @@ public class AdminPerformanceController {
 
 	}
 
+
 	@RequestMapping("/index")
 	public String index() {		
 		return "/admin/index";
@@ -110,6 +111,14 @@ public class AdminPerformanceController {
 		System.out.println(searchResult);
 		return searchResult;
 	}
+
+//	@RequestMapping("/index")
+//	public String index() {
+//		
+//		return "/admin/index";
+//
+//	}
+
 	
 	//增加點閱率
 	@RequestMapping("/viewplus")

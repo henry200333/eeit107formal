@@ -94,6 +94,7 @@ float:right;
 
 .m6{
 width:180px; 
+height:180px;
 margin-left:20px;
 }
 .rightd{
@@ -166,11 +167,9 @@ font-size:12px;
 	<br>
 	<span style="color:white;margin-left:25px;">TOP 5 </span><a href='/admin/artist/list'>Artist</a>
 	<br><br>
-	<img src="../../../resources/img/photo.gif" class="m6">
-	<img src="../../../resources/img/photo.gif" class="m6">
-	<img src="../../../resources/img/photo.gif" class="m6">
-	<img src="../../../resources/img/photo.gif" class="m6">
-	<img src="../../../resources/img/photo.gif" class="m6">
+	<div class="artists5">
+	
+	</div>
 	<br><br>
 	</div>
 	<div class="rightd">
@@ -269,7 +268,22 @@ var sortBy = function (filed, rev, primer) {
 			
 		}
 	});
-
+	$.ajax({
+		url :"/admin/artistsTop5",
+		type:"GET",
+		success: function(data){
+			txt = "<div style='position: relative;display:inline'><img src='../../../resources/img/artist"
+			txt2 = ".jpg' class='m6'><div style='position: absolute;z-index: 2;left:20px'>"
+			txt3 = "</div></div>"
+			$.each(data, function(index,value){
+				name =  value['name']
+				num = index+1
+				txt4 = txt + num + txt2 + name + txt3
+				$("div.artists5").append(txt4)
+			})
+		}
+	});
+	
 
 		var views  = function(id){
 			$.ajax({
