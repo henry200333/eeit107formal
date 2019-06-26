@@ -8,6 +8,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Comfortaa|Rubik+Mono+One&display=swap"
 	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Knewave|Pacifico&display=swap" rel="stylesheet">
 <style>
 body{
 font-family: 'Rubik Mono One', sans-serif;
@@ -26,10 +27,11 @@ font-family:'微軟正黑體';
 }
 
 .m1 {
-	width: 200px;
-	margin-top: 30px;
+	font-size:80px;
+	margin-top: 70px;
 	margin-left: 30px;
-	transform:rotate(-5deg)
+		font-family: 'Pacifico', cursive;
+		color:white;
 }
 
 .m2 {
@@ -145,11 +147,12 @@ font-size:12px;
 	<div class="d1">
 
 		<div class="topd">
-			<img src="../../../resources/admin-bootstrape/img/jayee.gif" class="m1"> <img
-				src="../../../resources/admin-bootstrape/img/message.gif" class="m2"> <img
-				src="../../../resources/admin-bootstrape/img/notice.gif" class="m3"> <img
-				src="../../../resources/admin-bootstrape/img/photo.gif" class="m4"> <img
-				src="../../../resources/admin-bootstrape/img/logout.gif" class="m5"> <br>
+			<span class="m1">Jayee</span>
+			 <img
+				src="../../../resources/admin-bootstrap/img/message.gif" class="m2"> <img
+				src="../../../resources/admin-bootstrap/img/notice.gif" class="m3"> <img
+				src="../../../resources/admin-bootstrap/img/photo.gif" class="m4"> <img
+				src="../../../resources/admin-bootstrap/img/logout.gif" class="m5"> <br>
 			<br>
 		</div>
 	<div class="leftd">
@@ -177,11 +180,11 @@ font-size:12px;
 	<br>
 	<span style="color:white;margin-left:25px;">TOP 4 </span><a href='/admin/activity/list'>Activities</a>
 	<br><br>
-	<img src="../../../resources/admin-bootstrape/img/photo2.gif" class="m7">
-	<img src="../../../resources/admin-bootstrape/img/photo2.gif" class="m7">
+	<img src="../../../resources/admin-bootstrap/img/photo2.gif" class="m7">
+	<img src="../../../resources/admin-bootstrap/img/photo2.gif" class="m7">
 	<br><br>
-	<img src="../../../resources/admin-bootstrape/img/photo2.gif" class="m7">
-	<img src="../../../resources/admin-bootstrape/img/photo2.gif" class="m7">
+	<img src="../../../resources/admin-bootstrap/img/photo2.gif" class="m7">
+	<img src="../../../resources/admin-bootstrap/img/photo2.gif" class="m7">
 	<br><br>
 	</div>
 	<div class="articled">
@@ -205,25 +208,25 @@ font-size:12px;
 	<br>
 	<span style="color:white;margin-left:25px;">推薦</span><a href='/admin/performance/list'>表演</a>
 	<br>
-<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m8"> -->
-<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m8"> -->
-<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m8"> -->
-<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m9"> -->
-<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m9"> -->
-<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m9"> -->
+<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m8"> -->
+<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m8"> -->
+<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m8"> -->
+<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m9"> -->
+<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m9"> -->
+<!-- 	<img src="../../../admin-bootstrap/resources/img/photo.gif" class="m9"> -->
 	<br><br>
 	</div>
 	</div>
 	</div>
 	<!-- Bootstrap core JavaScript-->
-<script src="/resources/admin-bootstrape/vendor/jquery/jquery.min.js"></script>
-<script src="/resources/admin-bootstrape/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/resources/admin-bootstrap/vendor/jquery/jquery.min.js"></script>
+<script src="/resources/admin-bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="/resources/admin-bootstrape/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/resources/admin-bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="/resources/admin-bootstrape/js/sb-admin-2.min.js"></script>
+<script src="/resources/admin-bootstrap/js/sb-admin-2.min.js"></script>
 <script>
 
 var sortBy = function (filed, rev, primer) {
@@ -272,7 +275,7 @@ var sortBy = function (filed, rev, primer) {
 		url :"/user/artistsTop5",
 		type:"GET",
 		success: function(data){
-			txt = "<div style='position: relative;display:inline'><img src='/resources/admin-bootstrape/img/artist"
+			txt = "<div style='position: relative;display:inline'><img src='/resources/admin-bootstrap/img/artist"
 			txt2 = ".jpg' class='m6'><div style='position: absolute;z-index: 2;left:20px'>"
 			txt3 = "</div></div>"
 			$.each(data, function(index,value){
@@ -298,6 +301,26 @@ var sortBy = function (filed, rev, primer) {
 			});
 		};
 	
+// 		append Top1 Article div next to performance
+		$.ajax({
+			url : "/user/articleTop",
+			type : "GET",
+			success : function(data) {
+				if(response.type == 'SUCCESS'){
+					var articleDiv = "";
+					$.each(data, function(key, value) {
+						articleDiv += "<tr>";
+						for (i in value) {
+							table += "<td>" + value[i] + "</td>";
+							id = Object.values(value)[0];
+						}
+					})
+					$("div.table-responsive").append(articleDiv);
+					
+					tableRefresh();
+				}
+			}
+		})
 
 
 </script>

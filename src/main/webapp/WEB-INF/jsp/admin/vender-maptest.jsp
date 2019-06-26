@@ -13,6 +13,7 @@
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4fmDiIyJ9mPTKGL7iIVPvB5Igfo54eMk&callback=initMap"
 		async defer></script>
+
 <!-- Custom scripts for all pages-->
 <script src="/resources/js/sb-admin-2.min.js"></script>
 <head>
@@ -24,9 +25,11 @@
        * element that contains the map. */
 #map {
 	height: 80%;
-	margin: 20%;
-	width: 60%;
 }
+.body{
+height: 100%;
+}
+
 /* Optional: Makes the sample page fill the window. */
 html, body {
 	height: 100%;
@@ -36,8 +39,11 @@ html, body {
 </style>
 </head>
 <body>
-	<div id="map"></div>
 
+<div class="body">
+	<div id="map"></div>
+	<input type="text" id="address"></input><button id="click">搜尋地址</button>
+</div>
 	<script>
 		var map;
 		var self;
@@ -121,13 +127,34 @@ html, body {
 						}
 					});
 				
-					 attachSecretMessage(marker,obj['name']);	;
+					 attachSecretMessage(marker,obj['name']);
+					 
+			
+					 
+					 
+					 
 				});
 				
 				
 			}
 		})}
-	
+	$("#click").click(function(){
+		alert($("#address").val())
+		var geocoder = new google.maps.Geocoder();
+		geocoder.geocode({
+		        'address':$("#address").val(),
+		    }, function (results, status) {
+		        if (status == google.maps.GeocoderStatus.OK) {
+				map.setCenter(results[0].geometry.location);
+	            map.setZoom(19);
+	            self.setPosition(results[0].geometry.location);
+		    }
+		        
+		});	 
+	});
+		
+		
+		
 	</script>
 
 </body>

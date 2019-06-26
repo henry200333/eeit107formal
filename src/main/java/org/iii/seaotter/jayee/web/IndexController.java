@@ -2,6 +2,8 @@ package org.iii.seaotter.jayee.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.entity.Article;
@@ -24,14 +26,24 @@ public class IndexController {
 	private ArticleService articleService;
 	
 	@RequestMapping("/index")
-	public String index() {
-		return "/user/index";
+	public String index(HttpServletRequest request) {
+		
+		String username  = request.getParameter("username");
+		if(username.equals("SeaOtter"))
+			return "redirect:/admin/artist/list";
+		
+		else
+		return "/user/user-index";
+	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		return "/user/user-login";
 	}
 	
 	@GetMapping("/artistsTop5")
 	@ResponseBody
 	public List<Artist> queryTop5() {
-		System.out.println("img");
 		return artistService.getNameByFanNumberTop5();
 	}
 	
