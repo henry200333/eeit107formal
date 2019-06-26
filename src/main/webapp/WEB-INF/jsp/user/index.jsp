@@ -11,6 +11,7 @@
 <style>
 body{
 font-family: 'Rubik Mono One', sans-serif;
+font-family:'微軟正黑體';
 }
 .d1 {
 	width: 80%;
@@ -93,6 +94,7 @@ float:right;
 
 .m6{
 width:180px; 
+height:180px;
 margin-left:20px;
 }
 .rightd{
@@ -126,15 +128,16 @@ height:150px;
 margin-left:20px;
 }
 .m8{
-width:230px;
-height:150px; 
-margin-left:20px;
+width:330px;
+height:200px; 
+margin-left:40px;
 }
 .m9{
+display:inline;
 width:230px;
-height:10px; 
-margin-left:20px;
+margin-left:40px;
 margin-top:5px;
+font-size:12px;
 }
 </style>
 </head>
@@ -142,11 +145,11 @@ margin-top:5px;
 	<div class="d1">
 
 		<div class="topd">
-			<img src="../../../resources/img/jayee.gif" class="m1"> <img
-				src="../../../resources/img/message.gif" class="m2"> <img
-				src="../../../resources/img/notice.gif" class="m3"> <img
-				src="../../../resources/img/photo.gif" class="m4"> <img
-				src="../../../resources/img/logout.gif" class="m5"> <br>
+			<img src="../../../resources/admin-bootstrape/img/jayee.gif" class="m1"> <img
+				src="../../../resources/admin-bootstrape/img/message.gif" class="m2"> <img
+				src="../../../resources/admin-bootstrape/img/notice.gif" class="m3"> <img
+				src="../../../resources/admin-bootstrape/img/photo.gif" class="m4"> <img
+				src="../../../resources/admin-bootstrape/img/logout.gif" class="m5"> <br>
 			<br>
 		</div>
 	<div class="leftd">
@@ -164,11 +167,9 @@ margin-top:5px;
 	<br>
 	<span style="color:white;margin-left:25px;">TOP 5 </span><a href='/admin/artist/list'>Artist</a>
 	<br><br>
-	<img src="../../../resources/img/photo.gif" class="m6">
-	<img src="../../../resources/img/photo.gif" class="m6">
-	<img src="../../../resources/img/photo.gif" class="m6">
-	<img src="../../../resources/img/photo.gif" class="m6">
-	<img src="../../../resources/img/photo.gif" class="m6">
+	<div class="artists5">
+	
+	</div>
 	<br><br>
 	</div>
 	<div class="rightd">
@@ -176,11 +177,11 @@ margin-top:5px;
 	<br>
 	<span style="color:white;margin-left:25px;">TOP 4 </span><a href='/admin/activity/list'>Activities</a>
 	<br><br>
-	<img src="../../../resources/img/photo2.gif" class="m7">
-	<img src="../../../resources/img/photo2.gif" class="m7">
+	<img src="../../../resources/admin-bootstrape/img/photo2.gif" class="m7">
+	<img src="../../../resources/admin-bootstrape/img/photo2.gif" class="m7">
 	<br><br>
-	<img src="../../../resources/img/photo2.gif" class="m7">
-	<img src="../../../resources/img/photo2.gif" class="m7">
+	<img src="../../../resources/admin-bootstrape/img/photo2.gif" class="m7">
+	<img src="../../../resources/admin-bootstrape/img/photo2.gif" class="m7">
 	<br><br>
 	</div>
 	<div class="articled">
@@ -202,28 +203,44 @@ margin-top:5px;
 	</div>
 	<div class="performanced">
 	<br>
-	<span style="color:white;margin-left:25px;">TOP 3 </span><a href='/admin/performance/list'>Performance</a>
+	<span style="color:white;margin-left:25px;">推薦</span><a href='/admin/performance/list'>表演</a>
 	<br>
-<!-- 	<img src="../../../resources/img/photo.gif" class="m8"> -->
-<!-- 	<img src="../../../resources/img/photo.gif" class="m8"> -->
-<!-- 	<img src="../../../resources/img/photo.gif" class="m8"> -->
-<!-- 	<img src="../../../resources/img/photo.gif" class="m9"> -->
-<!-- 	<img src="../../../resources/img/photo.gif" class="m9"> -->
-<!-- 	<img src="../../../resources/img/photo.gif" class="m9"> -->
+<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m8"> -->
+<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m8"> -->
+<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m8"> -->
+<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m9"> -->
+<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m9"> -->
+<!-- 	<img src="../../../admin-bootstrape/resources/img/photo.gif" class="m9"> -->
 	<br><br>
 	</div>
 	</div>
 	</div>
 	<!-- Bootstrap core JavaScript-->
-<script src="/resources/vendor/jquery/jquery.min.js"></script>
-<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/resources/admin-bootstrape/vendor/jquery/jquery.min.js"></script>
+<script src="/resources/admin-bootstrape/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/resources/admin-bootstrape/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="/resources/js/sb-admin-2.min.js"></script>
+<script src="/resources/admin-bootstrape/js/sb-admin-2.min.js"></script>
 <script>
+
+var sortBy = function (filed, rev, primer) {
+    rev = (rev) ? -1 : 1;
+    return function (a, b) {
+        a = a[filed];
+        b = b[filed];
+        if (typeof (primer) != 'undefined') {
+            a = primer(a);
+            b = primer(b);
+        }
+        if (a < b) { return rev * -1; }
+        if (a > b) { return rev * 1; }
+        return 1;
+    }
+};
+
 
 	$.ajax({
 		url:"/admin/performance/query",
@@ -231,26 +248,57 @@ margin-top:5px;
 		success: function(data){
 			var txt="";	
 			var title="";
-			console.log(data);					
+			console.log(data);
+			data.sort(sortBy('views', false, parseInt));
+			console.log(data);
 			//https://www.youtube.com/embed/Lhel0tzHE08
 			//https://www.youtube.com/watch?v=Lhel0tzHE08
 			$.each(data,function(index,value){
 				var head=value['url'].substring(0,24);
-				var back = value['url'].substring(32,43)
+				var back = value['url'].substring(32,43);
 				console.log(head+"embed/"+back);
-				
-				txt+= "<iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='m8'></iframe>";
-				title+="<span class='m9'>"+value['title']+"</span>";
+				console.log(value['title'] + ",點閱="+ value['views']);
+				txt= "<iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='m8' id='"+value['id']+"'></iframe>";
+				title="<div  class='m9'><span style='font-size:18px;'>"+value['title']+"</span><br><button type='button' onclick='views("+value['id']+")'>點閱率++</button><br><span style='margin-left:300px;'>點閱率   :</span><span id='view'>"+value['views'] +"</span></div>";
 				});	
 				
-				
 			$("div.performanced").append(txt);
+			$("div.performanced").append("<br>");
 			$("div.performanced").append(title);
 			
 		}
 	});
+	$.ajax({
+		url :"/user/artistsTop5",
+		type:"GET",
+		success: function(data){
+			txt = "<div style='position: relative;display:inline'><img src='/resources/admin-bootstrape/img/artist"
+			txt2 = ".jpg' class='m6'><div style='position: absolute;z-index: 2;left:20px'>"
+			txt3 = "</div></div>"
+			$.each(data, function(index,value){
+				name =  value['name']
+				num = index+1
+				txt4 = txt + num + txt2 + name + txt3
+				$("div.artists5").append(txt4)
+			})
+		}
+	});
+	
 
-		
+		var views  = function(id){
+			$.ajax({
+				url:"/admin/performance/viewplus",
+				type: "GET",
+				data:{"id":id},
+				success: function(data){
+ 					$("#view").html(data['views']);
+							
+
+				}
+			});
+		};
+	
+
 
 </script>
 </body>
