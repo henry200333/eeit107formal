@@ -116,7 +116,7 @@
 		if (r == true) {
 			$.ajax({
 				url : '/admin/article/delete',
-				method : 'DELETE',
+				type : 'DELETE',
 				contentType : 'application/json;charset=UTF-8',
 				dataType : 'json',
 				data : '{"id":"' + obj.id + '"}',

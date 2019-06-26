@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -30,7 +29,7 @@ public class IndexController {
 	public String index(HttpServletRequest request) {
 		
 		String username  = request.getParameter("username");
-		if(username.equals("SeaOtter"))
+		if("SeaOtter".equals(username))
 			return "redirect:/admin/artist/list";
 		
 		else
@@ -45,7 +44,6 @@ public class IndexController {
 	@GetMapping("/artistsTop5")
 	@ResponseBody
 	public List<Artist> queryTop5() {
-		System.out.println("img");
 		return artistService.getNameByFanNumberTop5();
 	}
 	
