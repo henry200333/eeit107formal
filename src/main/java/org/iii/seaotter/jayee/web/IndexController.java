@@ -55,6 +55,12 @@ public class IndexController {
 		return "/user/user-login";
 	}
 	
+	@RequestMapping("/performancetop")
+	@ResponseBody
+	public Performance performancetop1() {
+		return performanceService.getTopByOrderByViewsDesc();
+	}
+	
 	@GetMapping("/artistsTop5")
 	@ResponseBody
 	public List<Artist> queryTop5() {
