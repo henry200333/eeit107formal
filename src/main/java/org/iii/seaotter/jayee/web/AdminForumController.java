@@ -3,7 +3,6 @@ package org.iii.seaotter.jayee.web;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
@@ -13,6 +12,9 @@ import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Forum.Board;
 import org.iii.seaotter.jayee.service.ForumService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -98,7 +100,8 @@ public class AdminForumController {
 
 	@RequestMapping("/query")
 	@ResponseBody
-	public List<Forum> query() {
+	public List<Forum> query(@Param("page") Integer page,@Param("size") Integer size) {
+		Pageable  pageable = PageRequest.of(page, size);
 		return forumService.getAll();
 	}
 

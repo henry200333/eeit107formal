@@ -136,7 +136,7 @@
 	}
 	$("#searchBT").click(function(){
 		$.ajax({
-			url : "/admin/article/query?search=" + $("#search").val(),
+			url : "/admin/article/query?name=" + $("#search").val()+"&type=&page=0&size=2",
 			type : "GET",
 			success : function(data) {
 				$("div.table-responsive").empty();

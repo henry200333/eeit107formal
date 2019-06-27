@@ -21,7 +21,9 @@ public class ForumService {
 	
 	@Transactional(readOnly = true)
 	public List<Forum> getAll(){
+		//forumDao.findAll(spec, pageable);
 		return forumDao.findAll();
+		
 	}
 	
 	public Forum create(Forum forum) {	

@@ -6,6 +6,9 @@ import org.iii.seaotter.jayee.dao.ArticleDao;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Article.Type;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,5 +56,9 @@ public class ArticleService {
 	
 	public List<Article> getTop10ByCount() {
 		return articleDao.findTop10ByOrderByCountDesc();
+	}
+	
+	public Page<Article> getAll(Specification<Article> specification,Pageable  pageable) {
+		return articleDao.findAll(specification,pageable);
 	}
 }
