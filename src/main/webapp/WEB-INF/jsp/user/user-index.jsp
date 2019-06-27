@@ -321,7 +321,7 @@ var sortBy = function (filed, rev, primer) {
 //		save ID for Forum
 var articleId;
 		$.ajax({
-			url : "/user/articleTop",
+			url : "/user/articleWithPerformanceTop",
 			type : "GET",
 			success : function(res) {
 				if(res.type == 'SUCCESS'){

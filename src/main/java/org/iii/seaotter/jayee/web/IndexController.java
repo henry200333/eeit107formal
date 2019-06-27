@@ -11,15 +11,16 @@ import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Forum.Board;
+import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.ArtistService;
 import org.iii.seaotter.jayee.service.ForumService;
+import org.iii.seaotter.jayee.service.PerformanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,6 +36,8 @@ public class IndexController {
 	private ActivityService activityService;
 	@Autowired
 	private ForumService forumService;
+	@Autowired
+	private PerformanceService performanceService;
 	
 	@RequestMapping("/index")
 	public String index(HttpServletRequest request) {
@@ -58,12 +61,21 @@ public class IndexController {
 		return artistService.getNameByFanNumberTop5();
 	}
 	
-	@GetMapping("/articleTop")
+	@GetMapping("/performanceTop")
+	@ResponseBody
+	public AjaxResponse<Performance> performanceTop() {
+		AjaxResponse<Performance> res = new AjaxResponse<>();
+		res.setType(AjaxResponseType.SUCCESS);
+		res.setData(performanceService.getTopByOrderByViewsDesc());
+		return res;
+	}
+	
+	@GetMapping("/articleWithPerformanceTop")
 	@ResponseBody
 	public AjaxResponse<Article> articleTop() {
 		AjaxResponse<Article> res = new AjaxResponse<>();
 		res.setType(AjaxResponseType.SUCCESS);
-		res.setData(articleService.getTopByCount());
+		res.setData(articleService.getByRefIdAndType(performanceService.getTopByOrderByViewsDesc().getId(), Article.Type.Performance));
 		return res;
 	}
 	

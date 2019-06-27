@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.iii.seaotter.jayee.dao.ArticleDao;
 import org.iii.seaotter.jayee.entity.Article;
+import org.iii.seaotter.jayee.entity.Article.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,8 +47,8 @@ public class ArticleService {
 		return articleDao.findByNameContainingOrContentContaining(name, content);
 	}
 	
-	public Article getTopByCount() {
-		return articleDao.findTopByOrderByCountDesc();
+	public Article getByRefIdAndType(Long refId, Type type) {
+		return articleDao.findByRefIdAndType(refId, type);
 	}
 	
 	public List<Article> getTop10ByCount() {

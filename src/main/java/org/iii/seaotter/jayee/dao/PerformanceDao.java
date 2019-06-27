@@ -10,4 +10,6 @@ public interface PerformanceDao extends JpaRepository<Performance,Long>{
 	
 	List<Performance> findByIdGreaterThanEqual(Long test);
 //	List<Performance> findAllOrderByViews();
+	
+	public Performance findTopByOrderByViewsDesc();
 }

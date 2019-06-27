@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.iii.seaotter.jayee.dao.PerformanceDao;
-import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,4 +71,7 @@ public class PerformanceService {
 		return performanceDao.findByIdGreaterThanEqual(x);
 	}
 	
+	public Performance getTopByOrderByViewsDesc() {
+		return performanceDao.findTopByOrderByViewsDesc();
+	}
 }
