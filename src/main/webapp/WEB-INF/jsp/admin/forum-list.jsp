@@ -116,7 +116,7 @@
 			txt += "<th>EDIT</th><th>DELETE</th></tr></thead>"
 			}
 			$.each(data,function(index, value) {
-								txt += "<tbody id='tbody'<tr>";
+								txt += "<tbody id='tbody'><tr>";
 								for (i in value) {
 									txt += "<td>" + value[i] + "</td>";
 									id = Object.values(value)[0];
@@ -134,6 +134,7 @@
 								txt += "</tr>";
 							})
 							txt += "</tbody>"
+							console.log(txt);
 			$("#dataTable").html(txt);
 			tableRefresh();
 		}

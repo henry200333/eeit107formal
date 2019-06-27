@@ -64,8 +64,8 @@
 									name="board">
 									<option value="Activity"
 										${forumParam.board=='Activity'?'selected':''}>Activity</option>
-									<option value="Ariticle"
-										${forumParam.board=='Ariticle'?'selected':''}>Article</option>
+									<option value="Article"
+										${forumParam.board=='Article'?'selected':''}>Article</option>
 									<option value="Performance"
 										${forumParam.board=='Performance'?'selected':''}>Performance</option>
 								</select>
