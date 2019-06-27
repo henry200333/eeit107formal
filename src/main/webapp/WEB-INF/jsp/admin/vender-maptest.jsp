@@ -59,7 +59,11 @@ html, body {
 					lat : 25.0282131,
 					lng : 121.5359507
 				},
+				clickableIcons:false,
 				zoom : 17.5,
+				minZoom:16 ,
+				maxZoom:19.5,
+				disableDefaultUI:true,
 				styles : [ {
 					"featureType" : "poi.business",
 					"stylers" : [ {
