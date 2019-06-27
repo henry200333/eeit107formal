@@ -275,7 +275,7 @@ var sortBy = function (filed, rev, primer) {
 				var back = data['url'].substring(32,43);
 				console.log(head+"embed/"+back);
 				console.log(data['title'] + ",點閱="+ data['views']);
-				txt= "<iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='m8' id='"+data['id']+"'></iframe>";
+				txt= "<iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='m8' id='frame'></iframe>";
 				title="<div  class='m9'><span style='font-size:18px;'>"+data['title']+"</span><br><button type='button' style='margin-left:40px;'onclick='views("+data['id']+")'>點閱率++</button><br><span style='margin-left:300px;'>點閱率   :</span><span id='view'>"+data['views'] +"</span></div>";
 					
 				
@@ -285,6 +285,8 @@ var sortBy = function (filed, rev, primer) {
 			 
 		}
 	});
+	
+	
 	$.ajax({
 		url :"/user/artistsTop5",
 		type:"GET",
