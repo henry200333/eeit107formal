@@ -150,6 +150,7 @@ color:white;
 font-weight:bold;
 z-index:2;
 display:none;
+width:365px;
 }
 </style>
 </head>
@@ -380,35 +381,53 @@ var articleId;
 		}
 	});
 	
-	$
-			.ajax({
-				url : "/user/activityTop3",
-				type : "GET",
-				success : function(data) {
-					txt1 = "<div style='position:relative'>"
-					txt2 = "<div class='act'>";
-					txt3 = "</div><div  class='m7' style='position:absolute;left:0px;top:0px;background-color:rgba(0,0,0,0.0);z-index:1;'></div><div><img class='m7' src='/resources/user-bootstrap/img/activity/activity";
-					txt4 = ".jpg'></div></div>";				
-					txt5 = "<br>";
-					$.each(data, function(key, value) {
-						pictureNum = value['id'];
-						txt6 = "活動名稱: " + value['name']  +txt5+ "表演者: "
-								+ value['artist']  +txt5+ "活動描述: "
-								+ value['description']  +txt5+ "舉辦時間: "
-								+ value['beginTime']  +txt5+ "結束時間: "
-								+ value['endTime']  +txt5+ "讚數: "
-								+ value['awesomeNum']
-						txt7 = txt1 + txt2 + txt6 + txt3 + pictureNum + txt4 + txt5;
-								console.log(txt7);
-						$("div.activityTop3").append(txt7)
-
+	// Get Top3 Activity
+	$.ajax({
+			url : "/user/activityTop3",
+			type : "GET",
+			success : function(data) {
+				txt1 = "<div";
+				txt8 = " style='position:relative;width:365px;'>"
+				txt2 = "<div class='act' ";                   //抓出的資料塞在txt2跟txt3之間
+				txt12 = "</div><div";
+				txt3 = " class='m7' style='position:absolute;left:0px;top:0px;background-color:rgba(0,0,0,0.0);z-index:1;'></div><div><img class='m7' src='/resources/user-bootstrap/img/activity/activity";
+				txt4 = ".jpg'></div></div>";				
+				txt5 = "<br>";
+				$.each(data, function(key, value) {
+					pictureNum = value['id'];
+					txt6 = "活動名稱: " + value['name']  +txt5+ "表演者: "
+							+ value['artist']  +txt5+ "活動描述: "
+							+ value['description']  +txt5+ "舉辦時間: "
+							+ value['beginTime']  +txt5+ "結束時間: "
+							+ value['endTime']  +txt5+ "讚數: "
+							+ value['awesomeNum']
+					txt9 = " id = 'cover"+ (key+1) + "'";
+					txt10 =" id = 'act"+(key+1) + "'>";
+					txt11 =" id = 'm7"+(key+1) + "'";
+					txt7 = txt1 + txt9 + txt8 + txt2 + txt10 + txt6 + txt12 + txt11 +txt3 + pictureNum + txt4 + txt5;
+					console.log(txt7);
+					$("div.activityTop3").append(txt7)
 					})
-					$("div.m7").hover(function(){
-						  $("div.act").show();
-						  $("div.m7").css("background-color","rgba(0,0,0,0.7)")
-						},function(){
-							  $("div.act").hide();
-							  $("div.m7").css("background-color","rgba(0,0,0,0.0)")
+				$("#cover1").hover(function(){
+					$("#act1").show();
+					$("#m71").css("background-color","rgba(0,0,0,0.4)")
+				},function(){
+					 $("#act1").hide();
+					 $("#m71").css("background-color","rgba(0,0,0,0.0)")
+							});
+				$("#cover2").hover(function(){
+					$("#act2").show();
+					$("#m72").css("background-color","rgba(0,0,0,0.4)")
+				},function(){
+					 $("#act2").hide();
+					 $("#m72").css("background-color","rgba(0,0,0,0.0)")
+							});
+				$("#cover3").hover(function(){
+					$("#act3").show();
+					$("#m73").css("background-color","rgba(0,0,0,0.4)")
+				},function(){
+					 $("#act3").hide();
+					 $("#m73").css("background-color","rgba(0,0,0,0.0)")
 							});
 				}
 			});

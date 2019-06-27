@@ -9,7 +9,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />	
-<link rel="stylesheet" href="/resources/admin-bootstrape/css/jquery-ui-timepicker-addon.css">
+<link rel="stylesheet" href="/resources/admin-bootstrap/css/jquery-ui-timepicker-addon.css">
 <body id="page-top">
 
 
@@ -152,7 +152,7 @@
 
 	
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-	<script type="text/javascript" src="/resources/admin-bootstrape/js/jquery-ui-timepicker-addon.js"></script>
+	<script type="text/javascript" src="/resources/admin-bootstrap/js/jquery-ui-timepicker-addon.js"></script>
 
 </body>
 </html>
