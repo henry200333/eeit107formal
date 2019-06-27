@@ -234,6 +234,6 @@ $("#fileUpload").on('change', function () {
 			});
 		});
 	</script>
-	
+	</div>
 </body>
 </html>

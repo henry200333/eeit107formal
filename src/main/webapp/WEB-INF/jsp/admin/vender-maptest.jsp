@@ -5,17 +5,19 @@
 <!DOCTYPE html>
 <html>
 <jsp:include page="header.jsp"></jsp:include>
-<script src="/resources/vendor/jquery/jquery.min.js"></script>
-<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/resources/admin-bootstrap/vendor/jquery/jquery.min.js"></script>
+<script src="/resources/admin-bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4fmDiIyJ9mPTKGL7iIVPvB5Igfo54eMk&callback=initMap"
-		async defer></script>
+<script src="/resources/admin-bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="/resources/js/sb-admin-2.min.js"></script>
+<script src="/resources/admin-bootstrap/js/sb-admin-2.min.js"></script>
+	
+<script	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4fmDiIyJ9mPTKGL7iIVPvB5Igfo54eMk&callback=initMap"
+		async defer></script>
+
+
 <head>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <meta charset="utf-8">
@@ -138,6 +140,7 @@ html, body {
 				
 			}
 		})}
+		
 	$("#click").click(function(){
 		alert($("#address").val())
 		var geocoder = new google.maps.Geocoder();
@@ -156,6 +159,9 @@ html, body {
 		
 		
 	</script>
+
+			<jsp:include page="footer.jsp"></jsp:include>
+
 
 </body>
 </html>
