@@ -44,7 +44,9 @@ html, body {
 
 <div class="body">
 	<div id="map"></div>
-	<input type="text" id="address"></input><button id="click">搜尋地址</button>
+	<input type="text" id="address"></input><button id="click">搜尋地址</button><br>
+	<label>Lat:</label><p id=lat></p>
+	<label>Lng:</label><p id=lng></p>
 </div>
 	<script>
 		var map;
@@ -80,15 +82,21 @@ html, body {
 				},
 				map : map
 			});
-
+			changelatlng();
 			map.addListener('click', function(event) {
-				self.setPosition(event.latLng)
+				self.setPosition(event.latLng);
 
-
+			changelatlng();
 				window.setTimeout(function() {
 					map.panTo(event.latLng);
 				}, 100);
+				
+			
 			});
+			
+		
+			
+			
 			addmarker(map);
 			
 
@@ -142,7 +150,7 @@ html, body {
 		})}
 		
 	$("#click").click(function(){
-		alert($("#address").val())
+// 		alert($("#address").val())
 		var geocoder = new google.maps.Geocoder();
 		geocoder.geocode({
 		        'address':$("#address").val(),
@@ -151,10 +159,18 @@ html, body {
 				map.setCenter(results[0].geometry.location);
 	            map.setZoom(19);
 	            self.setPosition(results[0].geometry.location);
+	    		changelatlng();
 		    }
 		        
-		});	 
+		});	
+
 	});
+	
+	
+	function changelatlng(){
+		$("#lat").text(self.getPosition().lat());
+		$("#lng").text(	self.getPosition().lng());
+	}
 		
 		
 		
