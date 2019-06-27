@@ -204,7 +204,7 @@ display:none;
 	</div>
 		<div class="performanced">
 			<br>
-			<span style="color:white;margin-left:25px;">推薦</span><a href='/admin/performance/list'>表演</a>
+			<span style="color:white;margin-left:40px;">推薦</span><a href='/admin/performance/list'>表演</a>
 			<br>
 			<div id="iframeWrapper" style="width: 42%;float: left;">
 				<!-- 			put iframe element into this div -->
@@ -277,7 +277,7 @@ var sortBy = function (filed, rev, primer) {
 				console.log(head+"embed/"+back);
 				console.log(value['title'] + ",點閱="+ value['views']);
 				txt= "<iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='m8' id='"+value['id']+"'></iframe>";
-				title="<div  class='m9'><span style='font-size:18px;'>"+value['title']+"</span><br><button type='button' onclick='views("+value['id']+")'>點閱率++</button><br><span style='margin-left:300px;'>點閱率   :</span><span id='view'>"+value['views'] +"</span></div>";
+				title="<div  class='m9'><span style='font-size:18px;'>"+value['title']+"</span><br><button type='button' style='margin-left:40px;'onclick='views("+value['id']+")'>點閱率++</button><br><span style='margin-left:300px;'>點閱率   :</span><span id='view'>"+value['views'] +"</span></div>";
 				});	
 				
 			$("#iframeWrapper").append(txt);
