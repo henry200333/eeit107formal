@@ -56,8 +56,8 @@ public class AdminArticleController {
 	@RequestMapping("/query")
 	@ResponseBody // 轉成JSON
 	public List<Article> query(@RequestParam(value="name", defaultValue="") String name, @RequestParam(value="type", defaultValue="") ArticleType articleType,
-			@RequestParam(value="page", defaultValue="0") Integer page, @RequestParam(value="size", defaultValue="10") Integer size) {
-		Pageable pageable = PageRequest.of(page, size);
+			@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size) {
+		Pageable pageable = PageRequest.of(page-1, size);
 		Specification<Article> specification = new Specification<Article>() {
 			private static final long serialVersionUID = 1L;
 

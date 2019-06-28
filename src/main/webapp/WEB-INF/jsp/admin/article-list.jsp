@@ -8,6 +8,11 @@
 <!-- header -->
 <jsp:include page="header.jsp"></jsp:include>
 
+<!-- Load basic css of Grid -->
+<link rel="stylesheet" type="text/css" href="/resources/jqgrid/css/ui.jqgrid.css" />
+<!-- Load jquery-ui css -->
+<link rel="stylesheet" type="text/css" href="/resources/jqgrid/jquery-ui/jquery-ui.theme.min.css"/>
+
 <body id="page-top">
 
 	<!-- Page Wrapper -->
@@ -65,10 +70,9 @@
 							<h6 class="m-0 font-weight-bold text-primary">List of
 								Article</h6>
 						</div>
-						<div class="card-body">
-							<div class="table-responsive"
-								style="font-family: 'Noto Sans TC', sans-serif;">
-							</div>
+						<div id="articleList" class="card-body">
+								<table id="articleGrid" class="table table-bordered table-striped table-hover"></table>
+								<div id="pager"></div>
 						</div>
 					</div>
 
@@ -85,80 +89,79 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
+	
+	<!-- 	Add language package for TW-ZH -->
+	<script src="/resources/jqgrid/js/i18n/grid.locale-tw.js" type="text/javascript"></script>
+	<!-- 	Add jquery plugin -->
+	<script src="/resources/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+	
 	<script>
-	$.ajax({
-					url : "/admin/article/query",
-					type : "GET",
-					success : function(data) {
-						var table = "";
-						table += "<table class='table table-bordered table-striped table-hover'	id='dataTable' width='100%' cellspacing='0'><thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th><th>count</th><th>EDIT</th><th>DELE</th></tr></thead><tbody>";
-						$.each(data, function(key, value) {
-							table += "<tr>";
-							for (i in value) {
-								table += "<td>" + value[i] + "</td>";
-								id = Object.values(value)[0];
-							}
-							table += "<td><button id='" + id + "' type='button' onclick='editId(this);' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
-							table += "<td><button id='" + id + "' type='button' onclick='deleId(this);' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
-							table += "</tr>";
-						})
-						table += "</tbody></table>";
-						$("div.table-responsive").append(table);
-						
-						tableRefresh();
-					}
-				})
-	function editId(obj){
-		$(location).attr('href', '/admin/article/edit?id=' + obj.id);
-	}
-	function deleId(obj){
-		var r = confirm("確定要刪除這筆ID=" + obj.id + "的文章嗎？");
-		if (r == true) {
-			$.ajax({
-				url : '/admin/article/delete',
-				type : 'DELETE',
-				contentType : 'application/json;charset=UTF-8',
-				dataType : 'json',
-				data : '{"id":"' + obj.id + '"}',
-				success : function(response) {
-					if (response.type == 'SUCCESS'){
-						alert("資料刪除成功！\n您刪除了一筆ID為：" + response.data.id + "的文章！\n即將重新進入LIST頁面！");
-						$(location).attr('href', '/admin/article/list');
-					} else {
-						alert("資料刪除失敗！請重新搜尋清單確保資料為最新！");
-					}
-				},
-				error : function(respH) {
-					alert("資料刪除失敗！請檢查伺服器連線！");
-				}
-			})
-		}
-	}
-	$("#searchBT").click(function(){
-		$.ajax({
-			url : "/admin/article/query?name=" + $("#search").val() + "&type=&page=0&size=2",
-			type : "GET",
-			success : function(data) {
-				$("div.table-responsive").empty();
-				var table = "";
-				table += "<table class='table table-bordered table-striped table-hover'	id='dataTable' width='100%' cellspacing='0'><thead><tr><th>ID</th><th>NAME</th><th>CONTENT</th><th>TYPE</th><th>REF_ID</th><th>count</th><th>EDIT</th><th>DELE</th></tr></thead><tbody>";
-				$.each(data, function(key, value) {
-					table += "<tr>";
-					for (i in value) {
-						table += "<td>" + value[i] + "</td>";
-						id = Object.values(value)[0];
-					}
-					table += "<td><button id='" + id + "' type='button' onclick='editId(this);' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
-					table += "<td><button id='" + id + "' type='button' onclick='deleId(this);' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
-					table += "</tr>";
-				})
-				table += "</tbody></table>";
-				$("div.table-responsive").append(table);
-				
-				tableRefresh();
-			}
-		})
-	})
+	 $("#articleGrid").jqGrid({
+        url: '/admin/article/query',
+        datatype: 'json',
+        mtype: 'GET',
+        colModel: [
+			{ name: 'id', label: 'ID', align: 'center', width: 30 },
+			{ name: 'name', label: 'Article_Title', width: 80 },
+			{ name: 'content', label: 'Content'},
+			{ name: 'articleType', label: 'Article_Type', align: 'center', width: 40 },
+			{ name: 'refId', label: 'REF_ID', align: 'center', width: 30 },
+			{ name: 'count', label: 'Views', align: 'center', width: 30 }
+		],
+        prmNames: {search: null, nd: null},
+        pager: '#pager',
+        page: 1,
+        autowidth: true,
+        shrinkToFit: true,
+        height: 'auto',
+        rowNum: 10,
+        rowList: [5, 10, 20, 50],
+        sortname: 'id',
+        sortorder: "asc",
+        viewrecords: true,
+        loadComplete: function() {
+            var grid = $("#articleGrid"),
+                ids = grid.getDataIDs();
+             $(".ui-jqgrid-labels").css ("height", 30);
+             $(".ui-jqgrid-sortable").css ("height", 30);
+             $(".ui-jqgrid").css ("font-size", 20);
+            for (var i = 0; i < ids.length; i++) {
+                grid.setRowData(ids[i], false, { height : 30 });
+            }
+        }
+    });
+	
+		$("#searchBT").click(function(){
+			$('#articleGrid').jqGrid("clearGridData") ;
+			$('#articleGrid').jqGrid('setGridParam',{url: '/admin/article/query?name=' + $('#search').val() }).trigger("reloadGrid");
+		});
+// 	function editId(obj){
+// 		$(location).attr('href', '/admin/article/edit?id=' + obj.id);
+// 	}
+// 	function deleId(obj){
+// 		var r = confirm("確定要刪除這筆ID=" + obj.id + "的文章嗎？");
+// 		if (r == true) {
+// 			$.ajax({
+// 				url : '/admin/article/delete',
+// 				type : 'DELETE',
+// 				contentType : 'application/json;charset=UTF-8',
+// 				dataType : 'json',
+// 				data : '{"id":"' + obj.id + '"}',
+// 				success : function(response) {
+// 					if (response.type == 'SUCCESS'){
+// 						alert("資料刪除成功！\n您刪除了一筆ID為：" + response.data.id + "的文章！\n即將重新進入LIST頁面！");
+// 						$(location).attr('href', '/admin/article/list');
+// 					} else {
+// 						alert("資料刪除失敗！請重新搜尋清單確保資料為最新！");
+// 					}
+// 				},
+// 				error : function(respH) {
+// 					alert("資料刪除失敗！請檢查伺服器連線！");
+// 				}
+// 			})
+// 		}
+// 	}
+
 	
 	</script>
 </body>
