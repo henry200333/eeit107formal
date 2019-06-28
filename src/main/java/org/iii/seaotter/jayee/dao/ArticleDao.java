@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface ArticleDao extends JpaRepository<Article, Long>,JpaSpecificationExecutor<Article> {
 
-	public Article findByRefIdAndType(Long refId, ArticleType type);
+	public Article findByRefIdAndArticleType(Long refId, ArticleType type);
 	public List<Article> findTop10ByOrderByCountDesc();
 }

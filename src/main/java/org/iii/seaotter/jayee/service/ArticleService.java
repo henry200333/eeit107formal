@@ -22,6 +22,11 @@ public class ArticleService {
 	public List<Article> getAll() {
 		return articleDao.findAll();
 	}
+	
+	@Transactional(readOnly = true)
+	public Page<Article> getAll(Specification<Article> specification, Pageable  pageable) {
+		return articleDao.findAll(specification,pageable);
+	}
 
 	public Article getById(Long id) {
 		return articleDao.findById(id).orElse(null);
@@ -47,14 +52,12 @@ public class ArticleService {
 	}
 	
 	public Article getByRefIdAndType(Long refId, ArticleType type) {
-		return articleDao.findByRefIdAndType(refId, type);
+		return articleDao.findByRefIdAndArticleType(refId, type);
 	}
 	
 	public List<Article> getTop10ByCount() {
 		return articleDao.findTop10ByOrderByCountDesc();
 	}
 	
-	public Page<Article> getAll(Specification<Article> specification,Pageable  pageable) {
-		return articleDao.findAll(specification,pageable);
-	}
+
 }

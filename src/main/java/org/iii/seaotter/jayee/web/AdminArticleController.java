@@ -55,8 +55,8 @@ public class AdminArticleController {
 
 	@RequestMapping("/query")
 	@ResponseBody // 轉成JSON
-	public List<Article> query(@RequestParam("name") String name, @RequestParam("type") ArticleType type,
-			@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
+	public List<Article> query(@RequestParam(value="name", defaultValue="") String name, @RequestParam(value="type", defaultValue="") ArticleType articleType,
+			@RequestParam(value="page", defaultValue="0") Integer page, @RequestParam(value="size", defaultValue="10") Integer size) {
 		Pageable pageable = PageRequest.of(page, size);
 		Specification<Article> specification = new Specification<Article>() {
 			private static final long serialVersionUID = 1L;
@@ -67,8 +67,8 @@ public class AdminArticleController {
 				if (!StringUtils.isEmpty(name)) {
 					where = cb.and(cb.like(root.get("name"), "%" + name + "%"));
 				}
-				if (!StringUtils.isEmpty(type)) {
-					where = cb.and(cb.equal(root.get("type"), type));
+				if (!StringUtils.isEmpty(articleType)) {
+					where = cb.and(cb.equal(root.get("type"), articleType));
 				}
 				return where;
 			}
