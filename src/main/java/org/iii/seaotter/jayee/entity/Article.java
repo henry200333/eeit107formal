@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.iii.seaotter.jayee.common.ArticleType;
+
 import lombok.Data;
 
 /**
@@ -34,16 +36,11 @@ public class Article {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(name = "type")
-	private Type type;
+	private ArticleType articleType;
 	@NotNull
 	@Column(name = "ref_id")
 	private Long refId;
 	@Column(name = "count")
 	private Long count;
-
-	public enum Type {
-		Artist, Activity, Performance, Vender, Other
-	}
-
 
 }

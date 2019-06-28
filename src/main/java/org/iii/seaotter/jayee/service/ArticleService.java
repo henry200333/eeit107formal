@@ -2,9 +2,9 @@ package org.iii.seaotter.jayee.service;
 
 import java.util.List;
 
+import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.dao.ArticleDao;
 import org.iii.seaotter.jayee.entity.Article;
-import org.iii.seaotter.jayee.entity.Article.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -46,11 +46,7 @@ public class ArticleService {
 		}
 	}
 	
-	public List<Article> getByNameContainingOrContentContaining(String name, String content){
-		return articleDao.findByNameContainingOrContentContaining(name, content);
-	}
-	
-	public Article getByRefIdAndType(Long refId, Type type) {
+	public Article getByRefIdAndType(Long refId, ArticleType type) {
 		return articleDao.findByRefIdAndType(refId, type);
 	}
 	

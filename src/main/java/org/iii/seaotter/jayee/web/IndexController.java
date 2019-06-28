@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
+import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Artist;
@@ -81,7 +82,7 @@ public class IndexController {
 	public AjaxResponse<Article> articleTop() {
 		AjaxResponse<Article> res = new AjaxResponse<>();
 		res.setType(AjaxResponseType.SUCCESS);
-		res.setData(articleService.getByRefIdAndType(performanceService.getTopByOrderByViewsDesc().getId(), Article.Type.Performance));
+		res.setData(articleService.getByRefIdAndType(performanceService.getTopByOrderByViewsDesc().getId(), ArticleType.Performance));
 		return res;
 	}
 	

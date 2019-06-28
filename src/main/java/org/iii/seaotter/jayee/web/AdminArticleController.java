@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
+import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,28 +55,25 @@ public class AdminArticleController {
 
 	@RequestMapping("/query")
 	@ResponseBody // 轉成JSON
-	public List<Article> query(@RequestParam("name") String name,@RequestParam("type") Article.Type type,@RequestParam("page") Integer page,@RequestParam("size") Integer size) {
-		Pageable  pageable = PageRequest.of(page, size);
+	public List<Article> query(@RequestParam("name") String name, @RequestParam("type") ArticleType type,
+			@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
+		Pageable pageable = PageRequest.of(page, size);
 		Specification<Article> specification = new Specification<Article>() {
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			public Predicate toPredicate(Root<Article> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				Predicate where = cb.conjunction();
-				if (!StringUtils.isEmpty(name)){
-                    where = cb.and(cb.like(root.get("name"), "%" +name+"%"));
-                }
-				
-				if (!StringUtils.isEmpty(type)){
+				if (!StringUtils.isEmpty(name)) {
+					where = cb.and(cb.like(root.get("name"), "%" + name + "%"));
+				}
+				if (!StringUtils.isEmpty(type)) {
 					where = cb.and(cb.equal(root.get("type"), type));
-                }
-				
-				return where; 
+				}
+				return where;
 			}
-			
 		};
-		
-			return articleService.getAll(specification,pageable).getContent();
-		
+		return articleService.getAll(specification, pageable).getContent();
 	}
 
 	@PostMapping("/add")
