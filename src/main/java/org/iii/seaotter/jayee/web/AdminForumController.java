@@ -155,4 +155,11 @@ public class AdminForumController {
 		return list;
 	}
 
+	@RequestMapping("/grid")
+	@ResponseBody
+	public List<Forum> gridResponseTest(){
+		System.out.println("enter grid");
+		return forumService.getAll();		
+	}
+	
 }

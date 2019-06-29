@@ -24,22 +24,30 @@ public class Forum {
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
+	
 	@Column(name="board")
 	@Enumerated(EnumType.STRING)
 	private Board board;
+	
 	@Column(name="ref_id")
 	private Long refId;
+	
 	@Column(name="ref_comment_id")
 	private Long refCommentId;
+	
 	@Column(name="user_name")
 	private String userName;
+	
 	@Lob
 	@Column(name="comment")
 	private String comment;
+	
 	@Column(name="comment_date")
 	private java.util.Date commentDate;
+	
 	@Column(name="like_count")
 	private Integer likeCount;
+	
 	@Column(name="dislike_count")
 	private Integer dislikeCount;
 
