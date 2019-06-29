@@ -9,7 +9,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 
 <!-- Load basic css of Grid -->
-<link rel="stylesheet" type="text/css" href="/resources/jqgrid/css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="/resources/jqgrid/css/ui.jqgrid-bootstrap4.css" />
 <!-- Load jquery-ui css -->
 <link rel="stylesheet" type="text/css" href="/resources/jqgrid/jquery-ui/jquery-ui.theme.min.css"/>
 
@@ -100,13 +100,14 @@
         url: '/admin/article/query',
         datatype: 'json',
         mtype: 'GET',
+        styleUI : 'Bootstrap4',
         colModel: [
-			{ name: 'id', label: 'ID', align: 'center', width: 30 },
+			{ name: 'id', label: 'ID', width: 30 },
 			{ name: 'name', label: 'Article_Title', width: 80 },
 			{ name: 'content', label: 'Content'},
-			{ name: 'articleType', label: 'Article_Type', align: 'center', width: 40 },
-			{ name: 'refId', label: 'REF_ID', align: 'center', width: 30 },
-			{ name: 'count', label: 'Views', align: 'center', width: 30 }
+			{ name: 'articleType', label: 'Article_Type', width: 40 },
+			{ name: 'refId', label: 'REF_ID', width: 30 },
+			{ name: 'count', label: 'Views', width: 30 }
 		],
         prmNames: {search: null, nd: null},
         pager: '#pager',
@@ -119,16 +120,6 @@
         sortname: 'id',
         sortorder: "asc",
         viewrecords: true,
-        loadComplete: function() {
-            var grid = $("#articleGrid"),
-                ids = grid.getDataIDs();
-             $(".ui-jqgrid-labels").css ("height", 30);
-             $(".ui-jqgrid-sortable").css ("height", 30);
-             $(".ui-jqgrid").css ("font-size", 20);
-            for (var i = 0; i < ids.length; i++) {
-                grid.setRowData(ids[i], false, { height : 30 });
-            }
-        }
     });
 	
 		$("#searchBT").click(function(){
