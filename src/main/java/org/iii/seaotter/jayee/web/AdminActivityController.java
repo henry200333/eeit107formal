@@ -10,7 +10,6 @@ import javax.persistence.criteria.Root;
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.entity.Activity;
-import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -100,38 +99,38 @@ public class AdminActivityController {
 		return aJaxResp;
 	}
 	
-//	@GetMapping("/query")
-//	@ResponseBody
-//	public List<Activity> query(){	
-//		List<Activity> activity=activityService.getAll();
-//		return activity;
-//	}
-	
-	
-	
 	@GetMapping("/query")
 	@ResponseBody
-	public List<Activity> query(@RequestParam(value="name", defaultValue="") String name,
-								@RequestParam(value="artist", defaultValue="") String artist, 
-								@RequestParam(value="page") Integer page, 
-								@RequestParam(value="rows") Integer size){	
-		Pageable pageable = PageRequest.of(page-1, size);
-		Specification<Activity> specification = new Specification<Activity>() {
-			private static final long serialVersionUID = 1L;
-			@Override
-			public Predicate toPredicate(Root<Activity> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				Predicate where = cb.conjunction();
-				if (!StringUtils.isEmpty(name)) {
-					where = cb.and(cb.like(root.get("name"), "%" + name + "%"));
-				}
-				if (!StringUtils.isEmpty(artist)) {
-					where = cb.and(cb.equal(root.get("artist"), artist));
-				}
-				return where;
-			}
-		};
-		return activityService.getAll(specification, pageable).getContent();
+	public List<Activity> query(){	
+		List<Activity> activity=activityService.getAll();
+		return activity;
 	}
 	
+	
+	
+//	@RequestMapping("/query")
+//	@ResponseBody
+//	public List<Activity> query(@RequestParam(value="name", defaultValue="") String name,
+//								@RequestParam(value="artist", defaultValue="") String artist, 
+//								@RequestParam(value="page") Integer page, 
+//								@RequestParam(value="rows") Integer size){	
+//		Pageable pageable = PageRequest.of(page-1, size);
+//		Specification<Activity> specification = new Specification<Activity>() {
+//			private static final long serialVersionUID = 1L;
+//			@Override
+//			public Predicate toPredicate(Root<Activity> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+//				Predicate where = cb.conjunction();
+//				if (!StringUtils.isEmpty(name)) {
+//					where = cb.and(cb.like(root.get("name"), "%" + name + "%"));
+//				}
+//				if (!StringUtils.isEmpty(artist)) {
+//					where = cb.and(cb.like(root.get("artist"), "%" + artist +"%"));
+//				}
+//				return where;
+//			}
+//		};
+//		return activityService.getAll(specification, pageable).getContent();
+//	}
+//	
 	
 }

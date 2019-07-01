@@ -39,7 +39,7 @@
 					<!-- Add New Activity Button -->
 					<form class="user">
 			            <div class="form-group row">
-				            <div class="col-sm-2 mb-3 mb-sm-0">
+				            <div class="col-sm-3 mb-3 mb-sm-0">
 				            	<a href="add" class="btn btn-primary btn-icon-split"> <span
 									class="icon text-white-50"> <i class="fas fa-file-medical"></i>
 									</span> <span class="text">Add New Activity</span>
@@ -80,35 +80,22 @@
 	</div>
 	<!-- End of Page Wrapper -->
 	<script>
-		$
-				.ajax({
-					url : "/admin/activity/query",
-					type : "GET",
-					success : function(data) {
-						var txt = "";
-						txt += "<table class='table table-bordered table-striped table-hover'	id='dataTable' width='100%' cellspacing='0'><thead><tr><th>ID</th><th>Name</th><th>Artist</th><th>Description</th><th>Begin time</th><th>End time</th><th>AwesomeNum</th><th>BadNum</th><th>CoverImage</th><th>Edit</th><th>Delete</th></tr></thead><tbody>";
-						$
-								.each(
-										data,
-										function(index, value) {
-											txt += "<tr>";
-											for (i in value) {
-												txt += "<td>" + value[i]
-														+ "</td>";
-												id = Object.values(value)[0];
-											}
-											txt += "<td><a id="
-													+ "'"
-													+ id
-													+ "'"
-													+ "href='' onclick='editId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
-											txt += "<td><a id="
-													+ "'"
-													+ id
-													+ "'"
-													+ 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
-											txt += "</tr>";
-										})
+		$.ajax({
+			url : "/admin/activity/query",
+			type : "GET",
+			success : function(data) {
+				var txt = "";
+				txt += "<table class='table table-bordered table-striped table-hover'	id='dataTable' width='100%' cellspacing='0'><thead><tr><th>ID</th><th>Name</th><th>Artist</th><th>Description</th><th>Begin time</th><th>End time</th><th>AwesomeNum</th><th>BadNum</th><th>CoverImage</th><th>Edit</th><th>Delete</th></tr></thead><tbody>";
+				$.each(data,function(index, value) {
+						txt += "<tr>";
+						for (i in value) {
+							txt += "<td>" + value[i] + "</td>";
+							id = Object.values(value)[0];
+						}
+						txt += "<td><a id=" + "'" + id + "'" + "href='' onclick='editId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
+						txt += "<td><a id=" + "'" + id + "'" + 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
+						txt += "</tr>";
+				})
 						txt += "</tbody></table>";
 						$("div.table-responsive").append(txt);
 						tableRefresh();
