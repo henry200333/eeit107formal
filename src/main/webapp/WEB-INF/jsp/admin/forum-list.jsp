@@ -2,14 +2,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
-
 <!DOCTYPE html>
 <html>
 
 <!-- header -->
 <jsp:include page="header.jsp"></jsp:include>
+
+<!-- Load basic css of Grid -->
+<link rel="stylesheet" type="text/css" href="/resources/jqgrid/css/ui.jqgrid-bootstrap4.css" />
+<!-- Load jquery-ui css -->
+<link rel="stylesheet" type="text/css" href="/resources/jqgrid/jquery-ui/jquery-ui.theme.min.css"/>
 
 <body id="page-top">
 
@@ -38,7 +40,6 @@
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
 							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
 					</div>
-
 					<!-- Add New Article Button -->
 					<a href="add" class="btn btn-primary btn-icon-split"> <span
 						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
@@ -53,29 +54,30 @@
 <!-- 						<button type="button" id="searchButton">Search</button> -->
 <!-- 					</form> -->
 
-					<form id="searchData">
-						<input type="text" name="searchWord"/>
-						<button type="button" id="searchButton">Search</button>
-					</form>
+<!-- 					<form id="searchData"> -->
+<!-- 						<input type="text" name="searchWord"/> -->
+<!-- 						<button type="button" id="searchButton">Search</button> -->
+<!-- 					</form> -->
 					<hr>
 
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">List of Forum</h6>
 						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered table-striped table-hover"
-									id="dataTable" width="100%" cellspacing="0">
-								</table>
+						<!-- Grid -->
+						<div id="forumList" class="card-body">
+							<table id="forumGrid"
+								class="table table-bordered table-striped table-hover"></table>
+							<div id="pager"></div>
+						</div>
 
-							</div>
+						<div class="card-body">
 							<form id="forum" method="post">
 								<input type="text" id="id" name="id" style="display: none">
 							</form>
 						</div>
 					</div>
-<div><button type='button' id='testBT'>Click</button></div>
+					<div><button type='button' id='testBT'>Click</button></div>
 				</div>
 				<!-- /.container-fluid -->
 
@@ -86,20 +88,54 @@
 
 		</div>
 		<!-- End of Content Wrapper -->
+		
+		<!-- 	Add language package for TW-ZH -->
+	<script src="/resources/jqgrid/js/i18n/grid.locale-tw.js" type="text/javascript"></script>
+	<!-- 	Add jquery plugin -->
+	<script src="/resources/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
 
 	</div>
 	<!-- End of Page Wrapper -->
-	<fmt:setTimeZone value="GMT-8" />
 	<script>
-	$.ajax({
-		url : "query",
-		type : "GET",
-		dataType : "json",
-		success : function(data) {
-			console.log("enter success");
-			showNames(data);
-		}
-	})
+// 	$.ajax({
+// 		url : "query",
+// 		type : "GET",
+// 		dataType : "json",
+// 		success : function(data) {
+// 			console.log("enter success");
+// 			showNames(data);
+// 		}
+// 	})
+
+ $("#forumGrid").jqGrid({
+        url: '/admin/forum/query',
+        datatype: 'json',
+        mtype: 'GET',
+        styleUI : 'Bootstrap4',
+    	colModel :[ //從這邊開始要設定的就是跟欄位本身有關係的設定了.....
+    		{name:'id', index:'id', sortable: false,width: 5}, //設定第一個欄位為id，並且index設成id為到時候ajax回server side連結時使用的parameter。並且設定為不可做排序。
+    		{name:'board', index:'board', width: 20},
+    		{name:'refId', index:'refId', width: 10},	
+    		{name:'refCommentId', index:'refCommentId', width: 15},
+    		{name:'userName', index:'userName', width: 15},
+    		{name:'comment', index:'comment', width: 50},
+    		{name:'commentDate', index:'commentDate', width: 25},
+    		{name:'likeCount', index:'likeCount', width: 15}, //設定第二個欄位為name，並且設定寬度為120px。寬度沒設定的話，預設為150(值會再經jqGrid再運算過)<a href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:colmodel_options" target="_blank"> colModel屬性說明</a>
+    		{name:'dislikeCount', index:'dislikeCount', width: 15,align:'right'} //設定url欄位，這邊是故意設定靠右對齊
+    		],
+        prmNames: {search: null, nd: null},
+        pager: '#pager',
+        page: 1,
+        autowidth: true,
+        shrinkToFit: true,
+        height: 'auto',
+        rowNum: 2,
+        rowList: [5, 10, 20, 50],
+        sortname: 'id',
+        sortorder: "asc",
+        viewrecords: true,
+    });
+
 		function showNames(data) {
 			console.log("enter showdata1");
 			var txt = "";
@@ -198,6 +234,8 @@
 			
 			})
 		})
+		
+		
 	</script>
 
 </body>

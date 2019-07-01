@@ -3,20 +3,30 @@ package org.iii.seaotter.jayee.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
+import org.iii.seaotter.jayee.common.ArticleType;
+import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.common.Message;
+import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Forum.Board;
 import org.iii.seaotter.jayee.service.ForumService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -98,68 +108,41 @@ public class AdminForumController {
 		return "success";
 	}
 
+//	@RequestMapping("/query")
+//	@ResponseBody
+//	public List<Forum> query(@Param("page") Integer page,@Param("size") Integer size) {
+//		Pageable  pageable = PageRequest.of(page, size);
+//		return forumService.getAll();
+//	}
+
+	
 	@RequestMapping("/query")
 	@ResponseBody
-	public List<Forum> query(@Param("page") Integer page,@Param("size") Integer size) {
-		Pageable  pageable = PageRequest.of(page, size);
-		return forumService.getAll();
-	}
-
-//	@RequestMapping("/search")
-//	@ResponseBody
-//	public List<Forum> search(@RequestBody Forum forum) {
-//		Board board = forum.getBoard();
-//		List<Forum> list = new ArrayList<>();
-//		Iterator<Forum> tempList = forumService.getAll().iterator();
-//		while (tempList.hasNext()) {
-//			Forum value = tempList.next();
-//			if (value.getBoard().equals(board)) {
-//				list.add(value);
-//			}
-//		}
-//		System.out.println(list.size());
-//		return list;
-//	}
+	public GridResponse <Forum> query(@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size) {
+		org.iii.seaotter.jayee.common.GridResponse<Forum> gridResponse = new org.iii.seaotter.jayee.common.GridResponse<Forum>();
 	
-	@RequestMapping("/search")
-	@ResponseBody
-	public List<Forum> search(@RequestParam String searchWord) {
-		List<Forum> list = new ArrayList<>();
-		if(searchWord!=null&&searchWord!="") {
-			List<Forum> tempList = forumService.getAll();
-			//每行資料逐欄位比對字串
-			for(int i =0;i<tempList.size();i++) {
-				Boolean flag1 = false;
-				Forum forum = tempList.get(i);				
-				if(forum.getBoard().toString().contains(searchWord)) {
-					flag1 = true;
-				}else if(forum.getComment().toString().contains(searchWord)) {
-					flag1 = true;
-				}else if(forum.getCommentDate().toString().contains(searchWord)) {
-					flag1 = true;
-				}else if(forum.getId().toString().contains(searchWord)) {
-					flag1 = true;
-				}else if(forum.getRefCommentId().toString().contains(searchWord)) {
-					flag1 = true;
-				}else if(forum.getRefId().toString().contains(searchWord)) {
-					flag1 = true;
-				}else if(forum.getUserName().toString().contains(searchWord)) {
-					flag1 = true;
-				}else{}
-				
-				if(flag1) {
-					list.add(forum);
-				}		
-			}			
-		}
-		return list;
-	}
+		Pageable pageable = PageRequest.of(page-1, size);
+		Specification<Forum> specification = new Specification<Forum>() {
+			private static final long serialVersionUID = 1L;
 
-	@RequestMapping("/grid")
-	@ResponseBody
-	public List<Forum> gridResponseTest(){
-		System.out.println("enter grid");
-		return forumService.getAll();		
-	}
+			@Override
+			public Predicate toPredicate(Root<Forum> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Predicate where = cb.conjunction();
+//				if (!StringUtils.isEmpty(name)) {
+//					where = cb.and(cb.like(root.get("name"), "%" + name + "%"));
+//				}
+//				if (!StringUtils.isEmpty(articleType)) {
+//					where = cb.and(cb.equal(root.get("type"), articleType));
+//				}
+				return where;
+			}
+		};
+		Page<Forum> result = forumService.getAll(specification, pageable);
+		gridResponse.setRows(result.getContent());
+		gridResponse.setPage(page);
+		gridResponse.setTotal(result.getTotalPages());
+	
+		return gridResponse;
+	};
 	
 }
