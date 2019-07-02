@@ -159,7 +159,7 @@
 		    });
 			
 		 function showButton (cellvalue, options, rowObject) {
-			  return "<button type='button' onclick='alert(options.rowId)' >"+options.rowId+"</button>" // 返回的html即為欄位中的樣式
+			  return "<button type='button' onclick=alert('"+rowObject.description+"')>"+options.rowId+"</button>" // 返回的html即為欄位中的樣式
 			};
 		
 			//cellvalue - 当前cell的值  
