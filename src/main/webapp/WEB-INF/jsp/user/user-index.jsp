@@ -98,6 +98,8 @@ float:right;
 width:180px; 
 height:180px;
 margin-left:20px;
+transform-origin:bottom;
+transform:skewX(-20deg);
 }
 .rightd{
 
