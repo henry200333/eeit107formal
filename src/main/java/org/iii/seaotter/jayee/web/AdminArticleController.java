@@ -2,15 +2,24 @@ package org.iii.seaotter.jayee.web;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
+import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,11 +55,25 @@ public class AdminArticleController {
 
 	@RequestMapping("/query")
 	@ResponseBody // 轉成JSON
-	public List<Article> query(@RequestParam(name="search", defaultValue="") String name) {
-		if ("".equals(name) || name == null) {
-			return articleService.getAll();
-		}
-		return articleService.getByNameContainingOrContentContaining(name, name);
+	public List<Article> query(@RequestParam(value="name", defaultValue="") String name, @RequestParam(value="type", defaultValue="") ArticleType articleType,
+			@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size) {
+		Pageable pageable = PageRequest.of(page-1, size);
+		Specification<Article> specification = new Specification<Article>() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Predicate toPredicate(Root<Article> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Predicate where = cb.conjunction();
+				if (!StringUtils.isEmpty(name)) {
+					where = cb.and(cb.like(root.get("name"), "%" + name + "%"));
+				}
+				if (!StringUtils.isEmpty(articleType)) {
+					where = cb.and(cb.equal(root.get("type"), articleType));
+				}
+				return where;
+			}
+		};
+		return articleService.getAll(specification, pageable).getContent();
 	}
 
 	@PostMapping("/add")

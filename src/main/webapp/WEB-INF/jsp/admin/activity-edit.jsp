@@ -85,6 +85,27 @@
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 						</div>
+						
+						<div class="form-group row">
+						<div class="col-sm-3 mb-3 mb-sm-0">
+						<label for="awesomeNum">Awesome Num:</label> <input id="awesomeNum" type="text"
+									name="awesomeNum" class="form-control form-control-user"
+									value="${activityParam.awesomeNum}"  />
+						</div>
+						<div class="col-sm-3 mb-3 mb-sm-0">
+						<label for="badNum">Bad Num:</label> <input id="badNum" type="text"
+									name="badNum" class="form-control form-control-user"
+									value="${activityParam.badNum}"  />
+						</div>
+						<div class="col-sm-3 mb-3 mb-sm-0">
+						<label for="coverImage">Cover Image:</label> <input id="coverImage" type="text"
+									name="coverImage" class="form-control form-control-user"
+									placeholder="coverImage" value="${activityParam.coverImage}" />
+						</div>
+						</div>
+						
+						
+						
 						<button id="update" type="button"
 							class="btn btn-primary btn-user btn-block">
 							<span class="icon text-white-50"> <i

@@ -7,9 +7,13 @@ import java.util.Date;
 import java.util.List;
 
 import org.iii.seaotter.jayee.dao.ForumDao;
+import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Forum.Board;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +25,15 @@ public class ForumService {
 	
 	@Transactional(readOnly = true)
 	public List<Forum> getAll(){
+		//forumDao.findAll(spec, pageable);
 		return forumDao.findAll();
+		
+	}
+	
+	public Page<Forum> getAll(Specification<Forum> specification, Pageable pageable){
+		//forumDao.findAll(spec, pageable);
+		return forumDao.findAll(specification,pageable);
+		
 	}
 	
 	public Forum create(Forum forum) {	

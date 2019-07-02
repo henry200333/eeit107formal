@@ -2,19 +2,29 @@ package org.iii.seaotter.jayee.web;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -96,5 +106,31 @@ public class AdminActivityController {
 		return activity;
 	}
 	
+	
+	
+//	@RequestMapping("/query")
+//	@ResponseBody
+//	public List<Activity> query(@RequestParam(value="name", defaultValue="") String name,
+//								@RequestParam(value="artist", defaultValue="") String artist, 
+//								@RequestParam(value="page") Integer page, 
+//								@RequestParam(value="rows") Integer size){	
+//		Pageable pageable = PageRequest.of(page-1, size);
+//		Specification<Activity> specification = new Specification<Activity>() {
+//			private static final long serialVersionUID = 1L;
+//			@Override
+//			public Predicate toPredicate(Root<Activity> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+//				Predicate where = cb.conjunction();
+//				if (!StringUtils.isEmpty(name)) {
+//					where = cb.and(cb.like(root.get("name"), "%" + name + "%"));
+//				}
+//				if (!StringUtils.isEmpty(artist)) {
+//					where = cb.and(cb.like(root.get("artist"), "%" + artist +"%"));
+//				}
+//				return where;
+//			}
+//		};
+//		return activityService.getAll(specification, pageable).getContent();
+//	}
+//	
 	
 }

@@ -83,6 +83,24 @@
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 						</div>
+						
+						<div class="form-group row">
+						<div class="col-sm-3 mb-3 mb-sm-0">
+						<label for="awesomeNum">Awesome Num:</label> <input
+									type="text" class="form-control form-control-user" 
+									id="awesomeNum" name="awesomeNum" placeholder="點我輸入讚數" autocomplete="off">
+						</div>
+						<div class="col-sm-3 mb-3 mb-sm-0">
+						<label for="badNum">Bad Num:</label> <input
+									type="text" class="form-control form-control-user" 
+									id="badNum" name="badNum" placeholder="點我輸入倒讚數" autocomplete="off">
+						</div>
+						<div class="col-sm-3 mb-3 mb-sm-0">
+						<label for="coverImage">Cover Image:</label> <input
+									type="text" class="form-control form-control-user" 
+									id="coverImage" name="coverImage" autocomplete="off">
+						</div>
+						</div>
 						<button type="button" id="insert" class="btn btn-primary btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-import"></i>
 						</span> <span class="text"> Insert New Activity</span></button> <button type="reset"

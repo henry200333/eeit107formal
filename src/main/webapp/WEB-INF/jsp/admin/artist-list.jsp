@@ -57,7 +57,8 @@
 					</div>
 					<form action="/somewhere/to/upload" enctype="multipart/form-data">
 					<input type="file" id="InputPic" accept="image/gif, image/jpeg, image/png" />
-					<img id="PreviewPic" src="#" style="weight:180px;height:180px"/>
+					<img id="PreviewPic" src="#" style="width:180px;height:180px" />
+						<!-- 			↑標籤請用生的好嗎 -->
 					</form>
 				</div>
 				<!-- /.container-fluid -->

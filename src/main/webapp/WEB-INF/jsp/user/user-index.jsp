@@ -262,31 +262,31 @@ var sortBy = function (filed, rev, primer) {
 
 
 	$.ajax({
-		url:"/admin/performance/query",
+		url:"/user/performancetop",
 		type:"GET",
 		success: function(data){
 			var txt="";	
 			var title="";
-			console.log(data);
-			data.sort(sortBy('views', false, parseInt));
-			console.log(data);
+			console.log(data);		
 			//https://www.youtube.com/embed/Lhel0tzHE08
 			//https://www.youtube.com/watch?v=Lhel0tzHE08
-			$.each(data,function(index,value){
-				var head=value['url'].substring(0,24);
-				var back = value['url'].substring(32,43);
+			
+				var head =data['url'].substring(0,24);
+				var back = data['url'].substring(32,43);
 				console.log(head+"embed/"+back);
-				console.log(value['title'] + ",點閱="+ value['views']);
-				txt= "<iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='m8' id='"+value['id']+"'></iframe>";
-				title="<div  class='m9'><span style='font-size:18px;'>"+value['title']+"</span><br><button type='button' style='margin-left:40px;'onclick='views("+value['id']+")'>點閱率++</button><br><span style='margin-left:300px;'>點閱率   :</span><span id='view'>"+value['views'] +"</span></div>";
-				});	
+				console.log(data['title'] + ",點閱="+ data['views']);
+				txt= "<iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='m8' id='frame'></iframe>";
+				title="<div  class='m9'><span style='font-size:18px;'>"+data['title']+"</span><br><button type='button' style='margin-left:40px;'onclick='views("+data['id']+")'>點閱率++</button><br><span style='margin-left:300px;'>點閱率   :</span><span id='view'>"+data['views'] +"</span></div>";
+					
 				
 			$("#iframeWrapper").append(txt);
 			$("#iframeWrapper").append("<br>");
 			$("#iframeWrapper").append(title);
-			
+			 
 		}
 	});
+	
+	
 	$.ajax({
 		url :"/user/artistsTop5",
 		type:"GET",
@@ -321,7 +321,7 @@ var sortBy = function (filed, rev, primer) {
 //		save ID for Forum
 var articleId;
 		$.ajax({
-			url : "/user/articleTop",
+			url : "/user/articleWithPerformanceTop",
 			type : "GET",
 			success : function(res) {
 				if(res.type == 'SUCCESS'){
