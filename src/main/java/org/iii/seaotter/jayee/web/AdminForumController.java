@@ -53,8 +53,8 @@ public class AdminForumController {
 		return "/admin/forum-add";
 	}
 
-	@RequestMapping("/edit")
-	public String editPage(@RequestParam Long id, Model model) {
+	@RequestMapping("/edit/{id}")
+	public String editPage(@PathVariable Long id, Model model) {
 		Forum forum = forumService.getById(id);
 		model.addAttribute("forumParam", forum);
 		return "/admin/forum-edit";
@@ -102,25 +102,21 @@ public class AdminForumController {
 	}
 
 	@DeleteMapping("/{id}")
-	public String delete(@PathVariable Long id) {
+	@ResponseBody
+	public  AjaxResponse<Forum> delete(@PathVariable Long id) {
 		System.out.println("enter delete");		
 		forumService.deleteById(id);
-		return "success";
+		AjaxResponse<Forum> ajaxResponse = new AjaxResponse<>();
+		ajaxResponse.setType(AjaxResponseType.SUCCESS);
+		return ajaxResponse;
 	}
-
-//	@RequestMapping("/query")
-//	@ResponseBody
-//	public List<Forum> query(@Param("page") Integer page,@Param("size") Integer size) {
-//		Pageable  pageable = PageRequest.of(page, size);
-//		return forumService.getAll();
-//	}
-
 	
 	@RequestMapping("/query")
 	@ResponseBody
-	public GridResponse <Forum> query(@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size) {
+	public GridResponse <Forum> query(@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size,@RequestParam(value="userName", defaultValue="") String userName) {
 		org.iii.seaotter.jayee.common.GridResponse<Forum> gridResponse = new org.iii.seaotter.jayee.common.GridResponse<Forum>();
-	
+	System.out.println(userName);
+		
 		Pageable pageable = PageRequest.of(page-1, size);
 		Specification<Forum> specification = new Specification<Forum>() {
 			private static final long serialVersionUID = 1L;
