@@ -44,9 +44,9 @@
 			            <div class="form-group row">
 			            	<div class="col-sm-3 mb-3 mb-sm-0">
 					            <div class="input-group">
-					            <label>User Name
-					              <input id="userName" name="userName" type="text" class="form-control border-0 small" placeholder="Search Article..." aria-label="Search" aria-describedby="basic-addon2">
-					              </label>
+					        
+					              <input id="userName" name="userName" type="text" class="form-control border-0 small" placeholder="Search Forum..." aria-label="Search" aria-describedby="basic-addon2">
+					         
 					              <div class="input-group-append">
 					                <button id="searchBT" class="btn btn-primary" type="button">
 					                  <i class="fas fa-search fa-sm"></i>
@@ -115,8 +115,8 @@
 	</div>
 	<!-- End of Page Wrapper -->
 	<script>
-		$.jgrid.defaults.iconSet = "fontAwesome";
 		$("#forumGrid").jqGrid({
+			iconSet : "fontAwesome",
 			url : '/admin/forum/query',
 			datatype : 'json',
 			mtype : 'GET',
@@ -181,7 +181,7 @@
 			autowidth : true,
 			shrinkToFit : true,
 			height : 'auto',
-			rowNum : 2,
+			rowNum : 5,
 			rowList : [ 5, 10, 20, 50 ],
 			sortname : 'id',
 			sortorder : "asc",
@@ -218,9 +218,7 @@
 				}
 			})
 		}
-		
-		
-		
+	
 		$("#searchBT").click(function(){
 			console.log(JSON.parse($("#searchForm").serializeObject()));
 			$('#forumGrid').jqGrid("clearGridData") ;
