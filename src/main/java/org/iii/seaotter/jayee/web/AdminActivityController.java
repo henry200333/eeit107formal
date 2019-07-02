@@ -9,9 +9,11 @@ import javax.persistence.criteria.Root;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
+import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -99,38 +101,45 @@ public class AdminActivityController {
 		return aJaxResp;
 	}
 	
-	@GetMapping("/query")
+//	@GetMapping("/query")
+//	@ResponseBody
+//	public List<Activity> query(){	
+//		List<Activity> activity=activityService.getAll();
+//		return activity;
+//	}
+	
+	
+	
+	@RequestMapping("/query")
 	@ResponseBody
-	public List<Activity> query(){	
-		List<Activity> activity=activityService.getAll();
-		return activity;
+	public GridResponse<Activity> query(@RequestParam(value="name", defaultValue="") String name,
+								@RequestParam(value="artist", defaultValue="") String artist, 
+								@RequestParam(value="page") Integer page, 
+								@RequestParam(value="rows") Integer size){	
+		GridResponse<Activity> gridResponse=new GridResponse<Activity>();
+		
+		
+		Pageable pageable = PageRequest.of(page-1, size);
+		Specification<Activity> specification = new Specification<Activity>() {
+			private static final long serialVersionUID = 1L;
+			@Override
+			public Predicate toPredicate(Root<Activity> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Predicate where = cb.conjunction();
+				if (!StringUtils.isEmpty(name)) {
+					where = cb.and(cb.like(root.get("name"), "%" + name + "%"));
+				}
+				if (!StringUtils.isEmpty(artist)) {
+					where = cb.and(cb.like(root.get("artist"), "%" + artist +"%"));
+				}
+				return where;
+			}
+		};
+		Page<Activity> result=activityService.getAll(specification, pageable);
+		gridResponse.setRows(result.getContent());
+		gridResponse.setPage(page);
+		gridResponse.setTotal(result.getTotalPages());
+		return gridResponse;
 	}
 	
-	
-	
-//	@RequestMapping("/query")
-//	@ResponseBody
-//	public List<Activity> query(@RequestParam(value="name", defaultValue="") String name,
-//								@RequestParam(value="artist", defaultValue="") String artist, 
-//								@RequestParam(value="page") Integer page, 
-//								@RequestParam(value="rows") Integer size){	
-//		Pageable pageable = PageRequest.of(page-1, size);
-//		Specification<Activity> specification = new Specification<Activity>() {
-//			private static final long serialVersionUID = 1L;
-//			@Override
-//			public Predicate toPredicate(Root<Activity> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-//				Predicate where = cb.conjunction();
-//				if (!StringUtils.isEmpty(name)) {
-//					where = cb.and(cb.like(root.get("name"), "%" + name + "%"));
-//				}
-//				if (!StringUtils.isEmpty(artist)) {
-//					where = cb.and(cb.like(root.get("artist"), "%" + artist +"%"));
-//				}
-//				return where;
-//			}
-//		};
-//		return activityService.getAll(specification, pageable).getContent();
-//	}
-//	
 	
 }
