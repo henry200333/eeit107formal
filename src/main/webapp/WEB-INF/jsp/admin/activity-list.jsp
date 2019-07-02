@@ -43,7 +43,7 @@
 					</div>
 
 					<!-- Add New Activity Button -->
-					<form class="user">
+					<form class="user" id="searchForm">
 			            <div class="form-group row">
 				            <div class="col-sm-3 mb-3 mb-sm-0">
 				            	<a href="add" class="btn btn-primary btn-icon-split"> <span
@@ -53,7 +53,7 @@
 				            </div>
 				            <div class="col-sm-3 mb-3 mb-sm-0">
 					            <div class="input-group">
-					              <input id="search" name="search" type="text" class="form-control border-0 small" placeholder="搜尋活動..." aria-label="Search" aria-describedby="basic-addon2">
+					              <input id="userInput" name="userInput" type="text" class="form-control border-0 small" placeholder="搜尋活動..." aria-label="Search" aria-describedby="basic-addon2">
 					              <div class="input-group-append">
 					                <button id="searchBT" class="btn btn-primary" type="button">
 					                  <i class="fas fa-search fa-sm"></i>
@@ -126,9 +126,6 @@
 		
 		<!-- jqGrid版 抓資料 -->
 		
-// 		 	$.jgrid.defaults.styleUI = 'Bootstrap4';
-// 	        $.jgrid.defaults.iconSet = "Iconic";
-	        $.jgrid.defaults.iconSet = "fontAwesome";
 		 $("#activityGrid").jqGrid({
 		        url: '/admin/activity/query',
 		        datatype: 'json',
@@ -144,7 +141,9 @@
 		    		{name:'awesomeNum', index:'awesomeNum', width: 10,align:'right'},
 		    		{name:'badNum', index:'badNum', width: 10,align:'right'}, //設定第二個欄位為name，並且設定寬度為120px。寬度沒設定的話，預設為150(值會再經jqGrid再運算過)<a href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:colmodel_options" target="_blank"> colModel屬性說明</a>
 		    		{name:'coverImage', index:'coverImage', width: 10}, //設定url欄位，這邊是故意設定靠右對齊
-		    		{name:'buttonTest', width:10, formatter:showButton}],
+		    		{name:'edit', width:10, formatter:editBT},
+		    		{name:'delete', width:10, formatter:deleteBT}
+		    		],
 		        prmNames: {search: null, nd: null},
 		        pager: '#pager',
 		        page: 1,
@@ -152,40 +151,46 @@
 		        shrinkToFit: true,
 		        height: 'auto',
 		        rowNum: 3,
-		        rowList: [5, 10, 20, 50],
+		        rowList: [3, 5, 7, 9],
 		        sortname: 'id',
 		        sortorder: "asc",
-		        viewrecords: true,   
+		        viewrecords: true, 
+		        iconSet:'fontAwesome'
 		    });
 			
-		 function showButton (cellvalue, options, rowObject) {
-			  return "<button type='button' onclick=alert('"+rowObject.description+"')>"+options.rowId+"</button>" // 返回的html即為欄位中的樣式
+		 function editBT (cellvalue, options, rowObject) {
+			 return "<button type='button' id='"
+				+ rowObject.id
+				+ "'onclick='editId(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button>";  //返回的html即為欄位中的樣式
+			};
+		 function deleteBT (cellvalue, options, rowObject) {
+			 return "<button type='button' id='"
+				+ rowObject.id
+				+ "'onclick='deleId(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i>"
 			};
 		
 			//cellvalue - 当前cell的值  
 			//options - 该cell的options设置，包括{rowId, colModel,pos,gid}  
-			//rowObject - 当前cell所在row的值，如{ id=1, name="name1", price=123.1, ...}  
-		
+			//rowObject - 当前cell所在row的值，如{ id=1, name="name1", price=123.1, ...}  	
 		
 
 
-		function editId(obj) {
-			$(location).attr('href', '/admin/activity/edit?id=' + obj.id);
+		function editId(Object) {
+			window.location.href = '/admin/activity/edit/' + Object.id;
 		}
-		function deleId(obj) {
-			var r = confirm("確定要刪除這筆ID=" + obj.id + "的資料嗎？");
+		function deleId(Object) {
+			var r = confirm("確定要刪除這筆ID=" + Object.id + "的資料嗎？");
 			if (r == true) {
 				$.ajax({
-					url : '/admin/activity/delete',
+					url : '/admin/activity/'+ Object.id,
 					method : 'DELETE',
 					contentType : 'application/json;charset=UTF-8',
 					dataType : 'json',
-					data : '{"id":"' + obj.id + '"}',
 					success : function(response) {
 						if (response.type == 'SUCCESS') {
-							alert("資料刪除成功！\n您刪除了一筆ID為：" + response.data.id
+							alert("資料刪除成功！\n您刪除了一筆ID為：" + Object.id
 									+ "的資料！\n即將重新進入LIST頁面！");
-							$(location).attr('href', '/admin/activity/list');
+							window.location.href = "/admin/activity/list";
 						} else {
 							alert("資料刪除失敗！請重新搜尋清單確保資料為最新！");
 						}
@@ -197,41 +202,50 @@
 			}
 		}
 		
+		
 		$("#searchBT").click(function(){
-			$.ajax({
-				url : "/admin/activity/query?search=" + $("#search").val(),
-				type : "GET",
-				success : function(data) {
-					var txt = "";
-					txt += "<table class='table table-bordered table-striped table-hover'	id='dataTable' width='100%' cellspacing='0'><thead><tr><th>ID</th><th>Name</th><th>Artist</th><th>Description</th><th>Begin time</th><th>End time</th><th>AwesomeNum</th><th>BadNum</th><th>CoverImage</th><th>Edit</th><th>Delete</th></tr></thead><tbody>";
-					$
-							.each(
-									data,
-									function(index, value) {
-										txt += "<tr>";
-										for (i in value) {
-											txt += "<td>" + value[i]
-													+ "</td>";
-											id = Object.values(value)[0];
-										}
-										txt += "<td><a id="
-												+ "'"
-												+ id
-												+ "'"
-												+ "href='' onclick='editId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
-										txt += "<td><a id="
-												+ "'"
-												+ id
-												+ "'"
-												+ 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
-										txt += "</tr>";
-									})
-					txt += "</tbody></table>";
-					$("div.table-responsive").append(txt);
-					tableRefresh();
-				}
-			})
-		})
+			console.log(JSON.parse($("#searchForm").serializeObject()));
+			$('#activityGrid').jqGrid("clearGridData") ;
+			$('#activityGrid').jqGrid('setGridParam',{postData:JSON.parse($("#searchForm").serializeObject())}).trigger("reloadGrid");
+		});
+		
+		
+		
+		
+		
+// 		$("#searchBT").click(function(){
+// 			$.ajax({
+// 				url : "/admin/activity/query?search=" + $("#search").val(),
+// 				type : "GET",
+// 				success : function(data) {
+// 					var txt = "";
+// 					txt += "<table class='table table-bordered table-striped table-hover'	id='dataTable' width='100%' cellspacing='0'><thead><tr><th>ID</th><th>Name</th><th>Artist</th><th>Description</th><th>Begin time</th><th>End time</th><th>AwesomeNum</th><th>BadNum</th><th>CoverImage</th><th>Edit</th><th>Delete</th></tr></thead><tbody>";
+// 					$.each(data,function(index, value) {
+// 						txt += "<tr>";
+// 							for (i in value) {
+// 								txt += "<td>" + value[i] + "</td>";
+// 											id = Object.values(value)[0];
+// 										}
+// 										txt += "<td><a id="
+// 												+ "'"
+// 												+ id
+// 												+ "'"
+// 												+ "href='' onclick='editId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
+// 										txt += "<td><a id="
+// 												+ "'"
+// 												+ id
+// 												+ "'"
+// 												+ 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
+// 										txt += "</tr>";
+// 									})
+// 					txt += "</tbody></table>";
+// 					$("div.table-responsive").append(txt);
+// 					tableRefresh();
+// 				}
+// 			})
+// 		})
+
+
 	</script>
 
 </body>

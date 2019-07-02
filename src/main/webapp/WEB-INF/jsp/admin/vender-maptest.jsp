@@ -27,6 +27,7 @@
        * element that contains the map. */
 #map {
 	height: 80%;
+	width: 80%;
 }
 .body{
 height: 100%;
@@ -62,7 +63,7 @@ html, body {
 				clickableIcons:false,
 				zoom : 17.5,
 				minZoom:16 ,
-				maxZoom:19.5,
+				maxZoom:20,
 				disableDefaultUI:true,
 				styles : [ {
 					"featureType" : "poi.business",
@@ -87,21 +88,29 @@ html, body {
 				map : map
 			});
 			changelatlng();
+			map.addListener('center_changed', function(event) {
+// 				alert(event.latLng.lat())
+				
+// 				alert(getDistance(self.getPosition().lat(), self.getPosition().lng(),event.latLng.lat(),event.latLng.lng()));
+
+		
+				changelatlng();
+					window.setTimeout(function() {
+						 addmarker(map);
+					}, 500);
+				
+			});
+			
 			map.addListener('click', function(event) {
 				self.setPosition(event.latLng);
 
-			changelatlng();
-				window.setTimeout(function() {
-					map.panTo(event.latLng);
-				}, 100);
-				
+				changelatlng();
+					window.setTimeout(function() {
+						map.panTo(event.latLng);
+					}, 100);
 			
-			});
-			
-		
-			
-			
-			addmarker(map);
+			});	
+// 			addmarker(map);
 			
 
 			
@@ -120,9 +129,53 @@ html, body {
 		
 		
 		
+		function changelatlng(){
+			$("#lat").text(self.getPosition().lat());
+			$("#lng").text(self.getPosition().lng());
+
+		}
+		function	getabslat(latLng,d) {
+				 d=d/1000;
+				 alert(d);
+
+		         lat1 = (Math.PI/180)*latLng.lat();  
+		         lon1 = (Math.PI/180)*latLng.lng();    
+		        //地球半径  
+		         R = 6371;  
+		      	 latdes=Math.acos(Math.cos(d/R))   
+		      	  alert(latdes);
+		        return Math.abs(latdes)/(Math.PI/180);  
+		 }
+		function	getabslng(latLng,d) { 
+			 d=d/1000;
+			 lat1 = (Math.PI/180)*latLng.lat();  
+	         lon1 = (Math.PI/180)*latLng.lng();          
+	       //地球半径  
+	        R = 6371;  
+	     	 londes=Math.acos((Math.cos(d/R)-Math.sin(lat1)*Math.sin(lat1))/(Math.cos(lat1)*Math.cos(lat1)))
+	     	 alert(londes);
+	       return Math.abs(londes)/(Math.PI/180);  
+	}
+		
+		
+		
+		
+		
+		
+		
+		
 		function addmarker(map){
+			 gp = map.getBounds();
+// 			 alert(gp.getNorthEast());
+// 			 alert(gp.getSouthWest());
+// 			latabs=getabslat(self.getPosition(),200);
+// 			lngabs=getabslng(self.getPosition(),200);
+			maxlat=gp.getNorthEast().lat();
+			minlat=gp.getSouthWest().lat();
+			maxlng=gp.getNorthEast().lng();
+			minlng=gp.getSouthWest().lng();	
 	$.ajax({
-			url : '/admin/vender/query',
+			url :  "/admin/vender/map?page=1&rows=20&maxlat="+maxlat+"&minlat="+minlat+"&maxlng="+maxlng+"&minlng="+minlng,
 			type : "POST",
 			success : function(data) {
 				$.each(data,function(key, obj) {
@@ -170,12 +223,10 @@ html, body {
 
 	});
 	
+
 	
-	function changelatlng(){
-		$("#lat").text(self.getPosition().lat());
-		$("#lng").text(	self.getPosition().lng());
-	}
-		
+
+
 		
 		
 	</script>

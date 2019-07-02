@@ -134,7 +134,7 @@
 				success : function(response) {
 					if(response.type == 'SUCCESS'){
 						alert("資料新增成功！" + JSON.stringify(response.data.name)+"即將跳轉Edit頁面");
-						$(location).attr('href', '/admin/activity/edit?id=' + response.data.id);  
+						window.location.href = "/admin/activity/edit/"+response.data.id;  
 					}else{
 						alert("有錯誤!");
 					}

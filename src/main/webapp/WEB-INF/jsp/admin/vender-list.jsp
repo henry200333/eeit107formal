@@ -1,9 +1,18 @@
+<%@page import="org.springframework.web.servlet.ModelAndView"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <jsp:include page="header.jsp"></jsp:include>
+<!-- Load basic css of Grid -->
+<link rel="stylesheet" type="text/css" href="/resources/jqgrid/css/ui.jqgrid-bootstrap4.css" />
+<!-- Load jquery-ui css -->
+<link rel="stylesheet" type="text/css" href="/resources/jqgrid/jquery-ui/jquery-ui.theme.min.css"/>
+
+
+
+
 <body id="page-top">
 
 
@@ -87,6 +96,12 @@
 	</div>
 </body>
 <!-- End of Page Wrapper -->
+
+
+	<!-- 	Add language package for TW-ZH -->
+	<script src="/resources/jqgrid/js/i18n/grid.locale-tw.js" type="text/javascript"></script>
+	<!-- 	Add jquery plugin -->
+	<script src="/resources/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
 <script>
 	function deleteId(Object) {
 		document.getElementById("id").value = Object.id;
@@ -109,49 +124,25 @@
 
 	}
 
-	$
-			.ajax({
-				url : '/admin/vender/query',
+	$.ajax({url : "/admin/vender/query?name=&type=&page=1&rows=20",
 				type : "POST",
 				success : function(data) {
 					var txt = "";
-					$
-							.each(
-									data,
-									function(key, obj) {
+					$.each(data,function(key, obj) {
 										txt += "<tr>";
 										for (i in obj) {
-
-											txt += "<td>" + obj[i] + "</td>";
+										txt += "<td>" + obj[i] + "</td>";
 										}
 
 										txt += '<td><button  href="${path}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button></td>';
-// 												<td><button  href="${path}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button></td>
 										txt += '<td><button id='
 												+ obj["id"]
 												+ ' class="btn btn-danger btn-sm" onclick="deleteId(this)"><i class="fas fa-trash"></i></button></td>';
-										// 												<td><a id="	         " href="" class="btn btn-danger btn-sm" onclick="deleteId(this)"><i class="fas fa-trash"></i></a></td>
 										txt += "</tr>";
 									})
 
 					$("#tbody").append(txt);
-					$("body")
-							.append(
-									$(
-											"<script />",
-											{
-												src : "/resources/vendor/datatables/jquery.dataTables.min.js"
-											}))
-					$("body")
-							.append(
-									$(
-											"<script />",
-											{
-												src : "/resources/vendor/datatables/dataTables.bootstrap4.min.js"
-											}))
-					$("body").append($("<script />", {
-						src : "/resources/js/demo/datatables-demo.js"
-					}))
+
 				}
 			})
 </script>

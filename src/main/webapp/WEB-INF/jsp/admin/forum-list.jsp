@@ -40,11 +40,33 @@
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
 							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
 					</div>
+					<form id="searchForm" class="user">
+			            <div class="form-group row">
+			            	<div class="col-sm-3 mb-3 mb-sm-0">
+					            <div class="input-group">
+					        
+					              <input id="userName" name="userName" type="text" class="form-control border-0 small" placeholder="Search Forum..." aria-label="Search" aria-describedby="basic-addon2">
+					         
+					              <div class="input-group-append">
+					                <button id="searchBT" class="btn btn-primary" type="button">
+					                  <i class="fas fa-search fa-sm"></i>
+					                </button>
+					              </div>
+					            </div>
+				            </div>
+				            <div class="col-sm-3 mb-3 mb-sm-0">
+								<a href="add" class="btn btn-primary btn-icon-split"> <span
+									class="icon text-white-50"> <i
+										class="fas fa-file-medical"></i>
+								</span> <span class="text">Add New Forum</span>
+								</a>
+							</div>
+			            </div>
+			        </form>
+					
+					
 					<!-- Add New Article Button -->
-					<a href="add" class="btn btn-primary btn-icon-split"> <span
-						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
-					</span> <span class="text">Add New Forum</span>
-					</a>
+					
 <!-- 					<form id="searchData"> -->
 <!-- 						<select id="board" name="board"> -->
 <!-- 							<option value="Performance">Performance</option> -->
@@ -54,10 +76,6 @@
 <!-- 						<button type="button" id="searchButton">Search</button> -->
 <!-- 					</form> -->
 
-<!-- 					<form id="searchData"> -->
-<!-- 						<input type="text" name="searchWord"/> -->
-<!-- 						<button type="button" id="searchButton">Search</button> -->
-<!-- 					</form> -->
 					<hr>
 
 					<div class="card shadow mb-4">
@@ -97,145 +115,150 @@
 	</div>
 	<!-- End of Page Wrapper -->
 	<script>
-// 	$.ajax({
-// 		url : "query",
-// 		type : "GET",
-// 		dataType : "json",
-// 		success : function(data) {
-// 			console.log("enter success");
-// 			showNames(data);
-// 		}
-// 	})
+		$("#forumGrid").jqGrid({
+			iconSet : "fontAwesome",
+			url : '/admin/forum/query',
+			datatype : 'json',
+			mtype : 'GET',
+			styleUI : 'Bootstrap4',
+			colModel : [
+			{
+				name : 'id',
+				index : 'id',
+				sortable : false,
+				width : 5
+			}, //設定第一個欄位為id，並且index設成id為到時候ajax回server side連結時使用的parameter。並且設定為不可做排序。
+			{
+				name : 'board',
+				index : 'board',
+				width : 20
+			}, {
+				name : 'refId',
+				index : 'refId',
+				width : 10
+			}, {
+				name : 'refCommentId',
+				index : 'refCommentId',
+				width : 15
+			}, {
+				name : 'userName',
+				index : 'userName',
+				width : 15
+			}, {
+				name : 'comment',
+				index : 'comment',
+				width : 50
+			}, {
+				name : 'commentDate',
+				index : 'commentDate',
+				width : 25
+			}, {
+				name : 'likeCount',
+				index : 'likeCount',
+				width : 15
+			},
+			{
+				name : 'dislikeCount',
+				index : 'dislikeCount',
+				width : 15,
+				align : 'right'
+			}, //設定欄位，這邊是故意設定靠右對齊
+			{
+				name : 'edit',
+				width : 15,
+				formatter : editBT
+			}, {
+				name : 'delete',
+				width : 15,
+				formatter : deleteBT
+			} ],
+			prmNames : {
+				search : null,
+				nd : null
+			},
+			pager : '#pager',
+			page : 1,
+			autowidth : true,
+			shrinkToFit : true,
+			height : 'auto',
+			rowNum : 5,
+			rowList : [ 5, 10, 20, 50 ],
+			sortname : 'id',
+			sortorder : "asc",
+			viewrecords : true,
+			altRows : true
+		});
 
- $("#forumGrid").jqGrid({
-        url: '/admin/forum/query',
-        datatype: 'json',
-        mtype: 'GET',
-        styleUI : 'Bootstrap4',
-    	colModel :[ //從這邊開始要設定的就是跟欄位本身有關係的設定了.....
-    		{name:'id', index:'id', sortable: false,width: 5}, //設定第一個欄位為id，並且index設成id為到時候ajax回server side連結時使用的parameter。並且設定為不可做排序。
-    		{name:'board', index:'board', width: 20},
-    		{name:'refId', index:'refId', width: 10},	
-    		{name:'refCommentId', index:'refCommentId', width: 15},
-    		{name:'userName', index:'userName', width: 15},
-    		{name:'comment', index:'comment', width: 50},
-    		{name:'commentDate', index:'commentDate', width: 25},
-    		{name:'likeCount', index:'likeCount', width: 15}, //設定第二個欄位為name，並且設定寬度為120px。寬度沒設定的話，預設為150(值會再經jqGrid再運算過)<a href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:colmodel_options" target="_blank"> colModel屬性說明</a>
-    		{name:'dislikeCount', index:'dislikeCount', width: 15,align:'right'} //設定url欄位，這邊是故意設定靠右對齊
-    		],
-        prmNames: {search: null, nd: null},
-        pager: '#pager',
-        page: 1,
-        autowidth: true,
-        shrinkToFit: true,
-        height: 'auto',
-        rowNum: 2,
-        rowList: [5, 10, 20, 50],
-        sortname: 'id',
-        sortorder: "asc",
-        viewrecords: true,
-    });
-
-		function showNames(data) {
-			console.log("enter showdata1");
-			var txt = "";
-			var id = "";
-			var columnName;
-			if(!data[0]){
-				return
-			}else{
-			columnName= Object.keys(data[0]);
-			txt += "<thead><tr>";
-			for(var i in columnName){
-				txt += "<th>" + columnName[i] + "</th>"
-			}
-			txt += "<th>EDIT</th><th>DELETE</th></tr></thead>"
-			}
-			$.each(data,function(index, value) {
-								txt += "<tbody id='tbody'><tr>";
-								for (i in value) {
-									txt += "<td>" + value[i] + "</td>";
-									id = Object.values(value)[0];
-								}
-								txt += "<td><button type='button' id="
-										+ "'"
-										+ id
-										+ "'"
-										+ " onclick='sendId(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
-								txt += "<td><button type='button' id="
-										+ "'"
-										+ id
-										+ "'"
-										+ " onclick='deleId(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
-								txt += "</tr>";
-							})
-							txt += "</tbody>"
-							console.log(txt);
-			$("#dataTable").html(txt);
-			tableRefresh();
+		function editBT(cellvalue, options, rowObject) {
+			return "<button type='button' id='"
+					+ rowObject.id
+					+ "'onclick='sendId(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button>";
 		}
-
+		function deleteBT(cellvalue, options, rowObject) {
+			return "<button type='button' id='"
+					+ rowObject.id
+					+ "'onclick='deleId(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i>"
+		}
 		function sendId(Object) {
-			$("#forum").attr("action", '/admin/forum/edit');
-			$("#id").val(Object.id);
-			$('#forum').submit();
+			window.location.href = "/admin/forum/edit/" + Object.id;
 		}
+
 		function deleId(Object) {
-// 			$("#forum").attr("action", '/admin/forum'+Object.id);
-// 			$("#id").val();
-// 			$('#forum').submit();
+			console.log("enter delete");
 			$.ajax({
-				url:'/admin/forum/'+Object.id,
-				type:"DELETE",
-				dataType : "text",
-				success:function(data){
-					console.log(data);
-					window.location.href = "/admin/forum/list";
-					console.log("delete success");
+				url : '/admin/forum/' + Object.id,
+				type : "DELETE",
+				dataType : "JSON",
+				success : function(data) {
+					if (data.type == 'SUCCESS')
+						window.location.href = "/admin/forum/list";
 				},
-				error: function(data){
-					console.log(data);
-					console.log("error")
-					window.location.href = "/admin/forum/list";
+				error : function(data) {
+					console.log('error');
 				}
 			})
-			
 		}
 	
-		$("#searchButton").click(function() {
-			$.ajax({				
-				url : "/admin/forum/search",
-				type : "POST",
-				dataType : "json",
-				data : JSON.parse($("#searchData").serializeObject()),
-				success : function(data) {
-					$("div#dataTable_length").remove();
-					$("div#dataTable_filter").remove();
-					$("div#dataTable_info").remove();
-					$("div#dataTable_paginate").remove();
-					showNames(data);
-				},
-				error : function() {
-					console.log("error");
-				}
-			})
-		})
-		
-		$("#testBT").click(function(){
-			$.ajax({
-				url:"/admin/forum/fitComment",
-				type:"POST",
-				contentType : "application/json",
-				dataType : "json",
-				data:JSON.stringify({board:"Ariticle",refId:1}),
-				success:function(data){
-					showNames(data);
-				}
-			
-			})
-		})
+		$("#searchBT").click(function(){
+			console.log(JSON.parse($("#searchForm").serializeObject()));
+			$('#forumGrid').jqGrid("clearGridData") ;
+			$('#forumGrid').jqGrid('setGridParam',{postData:JSON.parse($("#searchForm").serializeObject())}).trigger("reloadGrid");
+		});
 		
 		
+
+		// 		$("#searchButton").click(function() {
+		// 			$.ajax({				
+		// 				url : "/admin/forum/search",
+		// 				type : "POST",
+		// 				dataType : "json",
+		// 				data : JSON.parse($("#searchData").serializeObject()),
+		// 				success : function(data) {
+		// 					$("div#dataTable_length").remove();
+		// 					$("div#dataTable_filter").remove();
+		// 					$("div#dataTable_info").remove();
+		// 					$("div#dataTable_paginate").remove();
+		// 					showNames(data);
+		// 				},
+		// 				error : function() {
+		// 					console.log("error");
+		// 				}
+		// 			})
+		// 		})
+
+		// 		$("#testBT").click(function(){
+		// 			$.ajax({
+		// 				url:"/admin/forum/fitComment",
+		// 				type:"POST",
+		// 				contentType : "application/json",
+		// 				dataType : "json",
+		// 				data:JSON.stringify({board:"Ariticle",refId:1}),
+		// 				success:function(data){
+		// 					showNames(data);
+		// 				}
+
+		// 			})
+		// 		})
 	</script>
 
 </body>

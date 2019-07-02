@@ -6,15 +6,20 @@ import org.iii.seaotter.jayee.dao.VenderDao;
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Vender;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class VenderService {
 	@Autowired
 	private VenderDao venderDao;
 	
-	public List<Vender> getAll() {
-		return venderDao.findAll();
+	@Transactional(readOnly = true)
+	public Page<Vender> getAll(Specification<Vender> specification, Pageable pageable) {
+		return venderDao.findAll(specification, pageable);
 		
 	}
 	
