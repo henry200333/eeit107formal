@@ -113,7 +113,9 @@ public class AdminForumController {
 	
 	@RequestMapping("/query")
 	@ResponseBody
-	public GridResponse <Forum> query(@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size,@RequestParam(value="userName", defaultValue="") String userName) {
+	public GridResponse <Forum> query(@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size,
+			@RequestParam(value="userName", defaultValue="") String userName,
+			@RequestParam(value="comment", defaultValue="") String comment) {
 		org.iii.seaotter.jayee.common.GridResponse<Forum> gridResponse = new org.iii.seaotter.jayee.common.GridResponse<Forum>();
 	System.out.println(userName);
 		
@@ -123,21 +125,26 @@ public class AdminForumController {
 
 			@Override
 			public Predicate toPredicate(Root<Forum> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				Predicate where = cb.conjunction();
-//				if (!StringUtils.isEmpty(name)) {
-//					where = cb.and(cb.like(root.get("name"), "%" + name + "%"));
-//				}
-//				if (!StringUtils.isEmpty(articleType)) {
-//					where = cb.and(cb.equal(root.get("type"), articleType));
-//				}
+				Predicate where = cb.conjunction();	
+				if (!StringUtils.isEmpty(userName)) {
+					where = cb.and(cb.like(root.get("userName"), "%" + userName + "%"));
+				}
+
+				if (!StringUtils.isEmpty(userName)) {
+					where = cb.or(where,cb.like(root.get("comment"), "%" + userName + "%"));
+				}
+				
+				if (!StringUtils.isEmpty(comment)) {
+					where = cb.and(cb.like(root.get("comment"),"%" + comment + "%"));
+				}
 				return where;
 			}
 		};
 		Page<Forum> result = forumService.getAll(specification, pageable);
+		System.out.println(result);
 		gridResponse.setRows(result.getContent());
 		gridResponse.setPage(page);
 		gridResponse.setTotal(result.getTotalPages());
-	
 		return gridResponse;
 	};
 	

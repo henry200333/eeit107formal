@@ -49,7 +49,7 @@
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="board">Board:</label> <select id="board"
 									name="board" class="form-control">
-									<option value="Ariticle">Article</option>
+									<option value="Article">Article</option>
 									<option value="Activity">Activity</option>
 									<option value="Performance">Performance</option>
 								</select> <span class="errorMessage" id="eBoard" style="color: red"></span>
@@ -100,16 +100,14 @@
 			$.ajax({
 				url : "/admin/forum",
 				type : "POST",
-				contentType : "application/json",
+				contentType : "application/json;charset=utf-8",
 				dataType : "json",
 				data : $("#form").serializeObject(),
 				success : function(result) {
 					console.log("enter success");
 					
 					if (result.type=="SUCCESS") {
-						$("#form").attr("action",'/admin/forum/edit');
-						$("#id").val(result.data["id"]);
-						$('#form').submit();
+						window.location.href = "/admin/forum/edit/"+result.data["id"];
 					} else if(result.type=="ERROR"){					
 						alert("新增失敗，請檢查輸入");
 						var messages = result.messages;
