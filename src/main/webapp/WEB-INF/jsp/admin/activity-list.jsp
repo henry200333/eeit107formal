@@ -143,8 +143,8 @@
 		    		{name:'endTime', index:'endTime', width: 15},
 		    		{name:'awesomeNum', index:'awesomeNum', width: 10,align:'right'},
 		    		{name:'badNum', index:'badNum', width: 10,align:'right'}, //設定第二個欄位為name，並且設定寬度為120px。寬度沒設定的話，預設為150(值會再經jqGrid再運算過)<a href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:colmodel_options" target="_blank"> colModel屬性說明</a>
-		    		{name:'coverImage', index:'coverImage', width: 10} //設定url欄位，這邊是故意設定靠右對齊
-		    		],
+		    		{name:'coverImage', index:'coverImage', width: 10}, //設定url欄位，這邊是故意設定靠右對齊
+		    		{name:'buttonTest', width:10, formatter:showButton}],
 		        prmNames: {search: null, nd: null},
 		        pager: '#pager',
 		        page: 1,
@@ -155,12 +155,16 @@
 		        rowList: [5, 10, 20, 50],
 		        sortname: 'id',
 		        sortorder: "asc",
-		        viewrecords: true,
-		      
+		        viewrecords: true,   
 		    });
 			
+		 function showButton (cellvalue, options, rowObject) {
+			  return "<button type='button' onclick='alert(options.rowId)' >"+options.rowId+"</button>" // 返回的html即為欄位中的樣式
+			};
 		
-		
+			//cellvalue - 当前cell的值  
+			//options - 该cell的options设置，包括{rowId, colModel,pos,gid}  
+			//rowObject - 当前cell所在row的值，如{ id=1, name="name1", price=123.1, ...}  
 		
 		
 
