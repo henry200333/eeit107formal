@@ -142,7 +142,7 @@
 		font-size:30px;
 		color:white;
 		padding:15px;
-	font-family: 'Knewave', cursive;
+		font-family: 'Knewave', cursive;
 	}
 	.jayee{
 	font-size:250px;
@@ -160,13 +160,19 @@
 	.btnnew:visited{
 	color:white;
 	}
+	.heart{
+		width:90%;
+		opacity:0.6;
+		z-index:1;
+	}
 </style>
 </head>
 <body>
 <div class="text-center">
 	<!-- Button HTML (to Trigger Modal) -->
 	<p class="jayee">Jayee</p><br><br><br><br><br><br>
-	<a href="#myModal" class="btnnew" data-toggle="modal">LETS GO</a>
+	<a href="#myModal" class="btnnew" data-toggle="modal">LETS GO</a><br>
+<!-- 	<img src="/resources/user-bootstrap/img/heart.gif" class="heart" > -->
 </div>
 
 <!-- Modal HTML -->
