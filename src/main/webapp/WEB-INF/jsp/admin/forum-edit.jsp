@@ -35,7 +35,7 @@
 					</div>
 
 					<!-- Return to Article -->
-					<a href="list" class="btn btn-info btn-icon-split"> <span
+					<a href="/admin/forum/list" class="btn btn-info btn-icon-split"> <span
 						class="icon text-white-50"> <i class="fas fa-reply"></i>
 					</span> <span class="text">Return to Forum</span>
 					</a>
@@ -114,8 +114,8 @@
 		console.log("edit button onclick");
 		var o = $("#forum").serializeObject();
 		$.ajax({
-			url:"/admin/forum/update",
-			type:"post",
+			url:"/admin/forum",
+			type:"PUT",
 			contentType:"application/json",
 			dataType:"json",
 			data:o,
