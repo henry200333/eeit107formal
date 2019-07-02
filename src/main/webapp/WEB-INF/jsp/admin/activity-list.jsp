@@ -126,9 +126,6 @@
 		
 		<!-- jqGrid版 抓資料 -->
 		
-// 		 	$.jgrid.defaults.styleUI = 'Bootstrap4';
-// 	        $.jgrid.defaults.iconSet = "Iconic";
-	        $.jgrid.defaults.iconSet = "fontAwesome";
 		 $("#activityGrid").jqGrid({
 		        url: '/admin/activity/query',
 		        datatype: 'json',
@@ -152,20 +149,26 @@
 		        shrinkToFit: true,
 		        height: 'auto',
 		        rowNum: 3,
-		        rowList: [5, 10, 20, 50],
+		        rowList: [3, 5, 7, 9],
 		        sortname: 'id',
 		        sortorder: "asc",
-		        viewrecords: true,   
+		        viewrecords: true, 
+		        iconSet:'fontAwesome'
 		    });
 			
 		 function showButton (cellvalue, options, rowObject) {
-			  return "<button type='button' onclick=alert('"+rowObject.description+"')>"+options.rowId+"</button>" // 返回的html即為欄位中的樣式
+			 return "<button type='button' onclick=alert('"+rowObject.description+"')>"+options.rowId+"</button>" // 返回的html即為欄位中的樣式
 			};
 		
 			//cellvalue - 当前cell的值  
 			//options - 该cell的options设置，包括{rowId, colModel,pos,gid}  
 			//rowObject - 当前cell所在row的值，如{ id=1, name="name1", price=123.1, ...}  
 		
+		
+			
+		
+			
+			
 		
 
 
