@@ -8,6 +8,12 @@
 <!-- header -->
 <jsp:include page="header.jsp"></jsp:include>
 
+<!-- Load basic css of Grid -->
+<link rel="stylesheet" type="text/css" href="/resources/jqgrid/css/ui.jqgrid-bootstrap4.css" />
+<!-- Load jquery-ui css -->
+<link rel="stylesheet" type="text/css" href="/resources/jqgrid/jquery-ui/jquery-ui.theme.min.css"/>
+
+
 <body id="page-top">
 
 	<!-- Page Wrapper -->
@@ -65,7 +71,12 @@
 								Activity</h6>
 						</div>
 						<div class="card-body">
-							<div class="table-responsive"></div>
+<!-- 			ajax版 塞資料處				<div class="table-responsive"></div> -->
+
+						<table id="activityGrid"
+								class="table table-bordered table-striped table-hover"></table>
+							<div id="pager"></div>
+							
 						</div>
 					</div>
 				</div>
@@ -79,28 +90,80 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
+	
+	<!-- 	Add language package for TW-ZH -->
+	<script src="/resources/jqgrid/js/i18n/grid.locale-tw.js" type="text/javascript"></script>
+	<!-- 	Add jquery plugin -->
+	<script src="/resources/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+	
+	
 	<script>
-		$.ajax({
-			url : "/admin/activity/query",
-			type : "GET",
-			success : function(data) {
-				var txt = "";
-				txt += "<table class='table table-bordered table-striped table-hover'	id='dataTable' width='100%' cellspacing='0'><thead><tr><th>ID</th><th>Name</th><th>Artist</th><th>Description</th><th>Begin time</th><th>End time</th><th>AwesomeNum</th><th>BadNum</th><th>CoverImage</th><th>Edit</th><th>Delete</th></tr></thead><tbody>";
-				$.each(data,function(index, value) {
-						txt += "<tr>";
-						for (i in value) {
-							txt += "<td>" + value[i] + "</td>";
-							id = Object.values(value)[0];
-						}
-						txt += "<td><a id=" + "'" + id + "'" + "href='' onclick='editId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
-						txt += "<td><a id=" + "'" + id + "'" + 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
-						txt += "</tr>";
-				})
-						txt += "</tbody></table>";
-						$("div.table-responsive").append(txt);
-						tableRefresh();
-					}
-				})
+	
+		<!-- ajax版 抓資料 -->
+// 		$.ajax({
+// 			url : "/admin/activity/query",
+// 			type : "GET",
+// 			success : function(data) {
+// 				var txt = "";
+// 				txt += "<table class='table table-bordered table-striped table-hover'	id='dataTable' width='100%' cellspacing='0'><thead><tr><th>ID</th><th>Name</th><th>Artist</th><th>Description</th><th>Begin time</th><th>End time</th><th>AwesomeNum</th><th>BadNum</th><th>CoverImage</th><th>Edit</th><th>Delete</th></tr></thead><tbody>";
+// 				$.each(data,function(index, value) {
+// 						txt += "<tr>";
+// 						for (i in value) {
+// 							txt += "<td>" + value[i] + "</td>";
+// 							id = Object.values(value)[0];
+// 						}
+// 						txt += "<td><a id=" + "'" + id + "'" + "href='' onclick='editId(this);return false' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></a></td>";
+// 						txt += "<td><a id=" + "'" + id + "'" + 'href="" onclick="deleId(this);return false" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>';
+// 						txt += "</tr>";
+// 				})
+// 						txt += "</tbody></table>";
+// 						$("div.table-responsive").append(txt);
+// 						tableRefresh();
+// 					}
+// 				});
+		<!-- ajax版 抓資料 -->
+		
+		
+		<!-- jqGrid版 抓資料 -->
+		
+// 		 	$.jgrid.defaults.styleUI = 'Bootstrap4';
+// 	        $.jgrid.defaults.iconSet = "Iconic";
+	        $.jgrid.defaults.iconSet = "fontAwesome";
+		 $("#activityGrid").jqGrid({
+		        url: '/admin/activity/query',
+		        datatype: 'json',
+		        mtype: 'GET',
+		        styleUI : 'Bootstrap4',
+		    	colModel :[ //從這邊開始要設定的就是跟欄位本身有關係的設定了.....
+		    		{name:'id', index:'id', sortable: false,width: 5}, //設定第一個欄位為id，並且index設成id為到時候ajax回server side連結時使用的parameter。並且設定為不可做排序。
+		    		{name:'name', index:'name', width: 10},
+		    		{name:'artist', index:'artist', width: 10},	
+		    		{name:'description', index:'description', width: 25},
+		    		{name:'beginTime', index:'beginTime', width: 15},
+		    		{name:'endTime', index:'endTime', width: 15},
+		    		{name:'awesomeNum', index:'awesomeNum', width: 10,align:'right'},
+		    		{name:'badNum', index:'badNum', width: 10,align:'right'}, //設定第二個欄位為name，並且設定寬度為120px。寬度沒設定的話，預設為150(值會再經jqGrid再運算過)<a href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:colmodel_options" target="_blank"> colModel屬性說明</a>
+		    		{name:'coverImage', index:'coverImage', width: 10} //設定url欄位，這邊是故意設定靠右對齊
+		    		],
+		        prmNames: {search: null, nd: null},
+		        pager: '#pager',
+		        page: 1,
+		        autowidth: true,
+		        shrinkToFit: true,
+		        height: 'auto',
+		        rowNum: 3,
+		        rowList: [5, 10, 20, 50],
+		        sortname: 'id',
+		        sortorder: "asc",
+		        viewrecords: true,
+		      
+		    });
+			
+		
+		
+		
+		
+
 
 		function editId(obj) {
 			$(location).attr('href', '/admin/activity/edit?id=' + obj.id);
