@@ -8,16 +8,16 @@ INSERT INTO article (name, content, type, ref_id, count) values
   ('nav.jsp', '抓到網址列的資訊，啟動active的css', 'Other', 666, 4);
  
  insert into forum (ref_id, ref_comment_id, board, user_name, comment, comment_date) values
- (1, 0,'Performance', '薔薔', '大家好', '2019/05/25 18:13:21'),
- (2, 1,'Activity', '博恩', '我真有那麼尷尬嗎？', '2019/05/22 13:50:02'),
+ (1, 0,'Performance', '薔薔4', '大家好我是薔薔4', '2019/05/25 18:13:21'),
+ (2, 1,'Activity', '博恩4', '我真有那麼尷尬嗎？4', '2019/05/22 13:50:02'),
  (2, 1,'Performance', '豬孝天', '流星雨揪團', '2006/03/04 13:14:55'),
  (2, 1,'Activity', '永和金城武', '不要再冒充我了！', '2019/05/28 20:00:27'),
  (2, 1,'Article', '大中天', '以前你偶爾聽，現在你應該天天聽', '2006/03/04 13:14:55'),
  (2, 1,'Article', '大平台', '我已經買了zzZ', '2019/05/28 20:00:27'); 
- INSERT INTO performance (title,introduction,youtube_url,update_time,activity_id,views) values
- ('陳忻玥 Vicky Chen -【入土之前】','陳祈玥入土之前完整MV','https://www.youtube.com/watch?v=GfWkG4qedoE','2019/05/25 17:12:05',1,3000),
- ('A-Lin《有一種悲傷 A Kind of Sorrow》','ALIN最新歌曲有一種悲傷','https://www.youtube.com/watch?v=BRcudpJzy1I','2019/05/28 19:10:35',2,100),
- ('G.E.M.【再見 GOODBYE】鄧紫棋','鄧紫棋發燒歌曲再見，讓您聆聽','https://www.youtube.com/watch?v=Lhel0tzHE08','2019/05/28 21:05:46',3,2100);
+ INSERT INTO performance (title,introduction,youtube_url,update_time,activity_id,views,likes,unlikes) values
+ ('陳忻玥 Vicky Chen -【入土之前】','陳祈玥入土之前完整MV','https://www.youtube.com/watch?v=GfWkG4qedoE','2019/05/25 17:12:05',1,3000,200,10),
+ ('A-Lin《有一種悲傷 A Kind of Sorrow》','ALIN最新歌曲有一種悲傷','https://www.youtube.com/watch?v=BRcudpJzy1I','2019/05/28 19:10:35',2,2150,180,5),
+ ('G.E.M.【再見 GOODBYE】鄧紫棋','鄧紫棋發燒歌曲再見，讓您聆聽','https://www.youtube.com/watch?v=Lhel0tzHE08','2019/05/28 21:05:46',3,1100,10,0);
  							
  
  INSERT INTO artist(name,fan_number,location) VALUES
@@ -28,6 +28,11 @@ INSERT INTO article (name, content, type, ref_id, count) values
  ('敏敏',12345,'大都')
  
  INSERT INTO activity (name,artist,description,begin_time,end_time,awesome_Num,bad_Num,cover_Image) values
+ ('裝銅人','王世堅','裝了就硬幫幫','2019/03/28 12:03','2019/05/28 12:30',53,15,1),
+ ('跳火圈','柯文哲','沒事就愛跳火圈','2019/02/22 23:35','2019/02/23 07:35',109,25,2),
+ ('唱情歌','呂秀蓮','在北車唱情歌','2019/07/14 07:35','2019/07/14 17:15',77,35,3),
+ ('打工賺錢','蔡英文','賺錢選粽痛','2019/06/27 23:35','2019/06/28 07:35',127,25,4),
+ ('裝印地安人','郭台銘','One little two little three little indian..','2019/04/25 07:35','2019/05/01 17:15',203,35,5),
  ('裝銅人','王世堅','裝了就硬幫幫','2019/03/28 12:03','2019/05/28 12:30',53,15,1),
  ('跳火圈','柯文哲','沒事就愛跳火圈','2019/02/22 23:35','2019/02/23 07:35',109,25,2),
  ('唱情歌','呂秀蓮','在北車唱情歌','2019/07/14 07:35','2019/07/14 17:15',77,35,3),
