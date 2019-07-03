@@ -6,16 +6,19 @@
 <html>
 <jsp:include page="header.jsp"></jsp:include>
 <script src="/resources/admin-bootstrap/vendor/jquery/jquery.min.js"></script>
-<script src="/resources/admin-bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script
+	src="/resources/admin-bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="/resources/admin-bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script
+	src="/resources/admin-bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="/resources/admin-bootstrap/js/sb-admin-2.min.js"></script>
-	
-<script	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4fmDiIyJ9mPTKGL7iIVPvB5Igfo54eMk&callback=initMap"
-		async defer></script>
+
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4fmDiIyJ9mPTKGL7iIVPvB5Igfo54eMk&callback=initMap"
+	async defer></script>
 
 
 <head>
@@ -29,8 +32,9 @@
 	height: 80%;
 	width: 80%;
 }
-.body{
-height: 100%;
+
+.body {
+	height: 100%;
 }
 
 /* Optional: Makes the sample page fill the window. */
@@ -43,12 +47,15 @@ html, body {
 </head>
 <body>
 
-<div class="body">
-	<div id="map"></div>
-	<input type="text" id="address"></input><button id="click">搜尋地址</button><br>
-	<label>Lat:</label><p id=lat></p>
-	<label>Lng:</label><p id=lng></p>
-</div>
+	<div class="body">
+		<div id="map"></div>
+		<input type="text" id="address"></input>
+		<button id="click">搜尋地址</button>
+		<br> <label>Lat:</label>
+		<p id=lat></p>
+		<label>Lng:</label>
+		<p id=lng></p>
+	</div>
 	<script>
 		var map;
 		var self;
@@ -91,14 +98,14 @@ html, body {
 			map.addListener('center_changed', function(event) {
 // 				alert(event.latLng.lat())
 				
-// 				alert(getDistance(self.getPosition().lat(), self.getPosition().lng(),event.latLng.lat(),event.latLng.lng()));
+// 				alert(getDistance(self.getPosition().lat(), self.getPosition().lng(),event.latLng.lat(),event.latLng.lng()));		
+						
 
-		
-				changelatlng();
 					window.setTimeout(function() {
-						 addmarker(map);
-					}, 500);
-				
+						addmarker(map);
+					}, 100);
+
+	
 			});
 			
 			map.addListener('click', function(event) {
@@ -107,10 +114,10 @@ html, body {
 				changelatlng();
 					window.setTimeout(function() {
 						map.panTo(event.latLng);
-					}, 100);
+					}, 500);
 			
 			});	
-// 			addmarker(map);
+			addmarker(map);
 			
 
 			
@@ -170,10 +177,10 @@ html, body {
 // 			 alert(gp.getSouthWest());
 // 			latabs=getabslat(self.getPosition(),200);
 // 			lngabs=getabslng(self.getPosition(),200);
-			maxlat=gp.getNorthEast().lat();
-			minlat=gp.getSouthWest().lat();
-			maxlng=gp.getNorthEast().lng();
-			minlng=gp.getSouthWest().lng();	
+			maxlat=gp.getSouthWest().lat()+(gp.getNorthEast().lat()-gp.getSouthWest().lat())*0.8;
+			minlat=gp.getSouthWest().lat()+(gp.getNorthEast().lat()-gp.getSouthWest().lat())*0.2;
+			maxlng=gp.getSouthWest().lng()+(gp.getNorthEast().lng()-gp.getSouthWest().lng())*0.8;
+			minlng=gp.getSouthWest().lng()+(gp.getNorthEast().lng()-gp.getSouthWest().lng())*0.2;	
 	$.ajax({
 			url :  "/admin/vender/map?page=1&rows=20&maxlat="+maxlat+"&minlat="+minlat+"&maxlng="+maxlng+"&minlng="+minlng,
 			type : "POST",
@@ -231,7 +238,7 @@ html, body {
 		
 	</script>
 
-			<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="footer.jsp"></jsp:include>
 
 
 </body>

@@ -99,13 +99,9 @@ public class AdminVenderController {
 			public Predicate toPredicate(Root<Vender> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				Predicate predicate=cb.conjunction();
 				if (!StringUtils.isEmpty(maxlat)&&!StringUtils.isEmpty(minlat)) {
-					System.out.println(maxlat);
-					System.out.println(minlat);
 					predicate = cb.and(cb.between(root.get("lat"),minlat  ,maxlat ));
 				}
 				if (!StringUtils.isEmpty(maxlng)&&!StringUtils.isEmpty(minlng)) {
-					System.out.println(maxlng);
-					System.out.println(minlng);
 					
 					predicate = cb.and(cb.between(root.get("lng"), minlng,  maxlng));
 				}
@@ -115,7 +111,6 @@ public class AdminVenderController {
 		};
 		
 		
-		System.out.println(venderService.getAll(specification,pageable).getContent().size());
 		return venderService.getAll(specification,pageable).getContent();
 	}
 	
