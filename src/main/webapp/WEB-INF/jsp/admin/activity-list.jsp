@@ -212,7 +212,7 @@
 		
 		
 		<!--按Enter搜尋 起始-->
-		$("#userInput").bind("keypress", {}, keypressInBox);
+		$("#userInput").bind("keypress", keypressInBox);
 		function keypressInBox(e) {
 		var code = (e.keyCode ? e.keyCode : e.which);
 		if (code == 13) { //Enter keycode 
