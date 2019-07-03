@@ -1,7 +1,5 @@
 package org.iii.seaotter.jayee.web;
 
-import java.util.List;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -21,7 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -129,7 +126,8 @@ public class AdminActivityController {
 		Page<Activity> result=activityService.getAll(specification, pageable);
 		gridResponse.setRows(result.getContent());
 		gridResponse.setPage(page);
-		gridResponse.setRecords(result.getTotalPages());
+		gridResponse.setTotal(result.getTotalPages());
+		gridResponse.setRecords(result.getTotalElements());
 		return gridResponse;
 	}
 	
