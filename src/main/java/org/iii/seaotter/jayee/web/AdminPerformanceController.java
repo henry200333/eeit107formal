@@ -267,4 +267,51 @@ public class AdminPerformanceController {
 		return "redirect:/admin/performance/list";
 
 	}
+	
+	@PostMapping("like")
+	@ResponseBody
+	public Performance like(@RequestParam("id")Long id,@RequestParam("unlikeType") int unlikeType) {
+		Performance performance = performanceSurvice.getById(id);
+		Long likes = performance.getLikes();
+		Long unlikes = performance.getUnlikes();
+		if(unlikeType==0) {
+			likes++;
+			performance.setLikes(likes);
+		}
+		else if(unlikeType==1) {
+			likes++;
+			unlikes--;
+			performance.setLikes(likes);
+			performance.setUnlikes(unlikes);
+		}else if(unlikeType==2) {
+			likes--;
+			performance.setLikes(likes);
+		}
+		performanceSurvice.update(performance);
+		return performance;
+	}
+	
+	@PostMapping("unlike")
+	@ResponseBody
+	public Performance unlike(@RequestParam("id")Long id,@RequestParam("likeType")int likeType) {
+		System.out.println("unlike");
+		Performance performance = performanceSurvice.getById(id);
+		Long likes = performance.getLikes();
+		Long unlikes = performance.getUnlikes();		
+		if(likeType==0) {
+			unlikes++;
+			performance.setUnlikes(unlikes);
+		}
+		else if(likeType==1) {
+			unlikes++;
+			likes--;
+			performance.setUnlikes(unlikes);
+			performance.setLikes(likes);
+		}else if(likeType==2) {
+			unlikes--;
+			performance.setUnlikes(unlikes);
+		}
+		performanceSurvice.update(performance);
+		return performance;
+	}
 }
