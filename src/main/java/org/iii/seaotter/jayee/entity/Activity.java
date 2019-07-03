@@ -28,6 +28,9 @@ public class Activity {
 	@Column(name="name")
 	private String name;
 	
+	@Column(name="artistId")
+	private Long artistId;
+	
 	@Column(name="artist")
 	private String artist;
 	
@@ -48,7 +51,6 @@ public class Activity {
 	@Column(name="bad_Num")
 	private Long badNum;
 			
-	@Column(name="cover_Image")
-	private Long coverImage;	
+	
 		
 }
