@@ -195,7 +195,7 @@ width:365px;
 	<div class="leftd">
 	<br><br>
 	<ul>
-	<li class="linklist"><a href="" class="linkbtn">pagelink1</a></li>
+	<li class="linklist"><a href="/user/performance/add" class="linkbtn">Insert Performance</a></li>
 	<li class="linklist"><a href="" class="linkbtn">pagelink2</a></li>
 	<li class="linklist"><a href="" class="linkbtn">pagelink3</a></li>
 	<li class="linklist"><a href="" class="linkbtn">pagelink4</a></li>
