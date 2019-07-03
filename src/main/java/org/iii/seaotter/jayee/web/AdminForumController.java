@@ -143,7 +143,7 @@ public class AdminForumController {
 		System.out.println(result);
 		gridResponse.setRows(result.getContent());
 		gridResponse.setPage(page);
-		gridResponse.setRecords(result.getTotalPages());
+		gridResponse.setTotal(result.getTotalPages());
 		return gridResponse;
 	};
 	

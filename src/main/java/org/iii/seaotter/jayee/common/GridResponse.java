@@ -8,7 +8,8 @@ import lombok.Data;
 public class GridResponse <T>{
 	
 	private Integer page;
-	private Integer records;
+	private Long records;
+	private Integer total;
 	private List<T> rows;
 
 }
