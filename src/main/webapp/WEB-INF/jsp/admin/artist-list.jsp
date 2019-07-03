@@ -55,10 +55,10 @@
 							</div>
 						</div>
 					</div>
-					<form action="/somewhere/to/upload" enctype="multipart/form-data">
-					<input type="file" id="InputPic" accept="image/gif, image/jpeg, image/png" />
-					<img id="PreviewPic" src="#" style="width:180px;height:180px" />
-						<!-- 			↑標籤請用生的好嗎 -->
+					<form method="post" action="/admin/artist/uploadImage" enctype="multipart/form-data">
+					<input type="file" name="imageFile" id="imageFile" accept="image/gif, image/jpeg, image/png" />
+					<div id="previewDiv"></div>
+					<input type="submit" value="Upload" />
 					</form>
 				</div>
 				<!-- /.container-fluid -->
@@ -129,10 +129,11 @@
 						})
 			}
 		}
-		$("#InputPic").change(function(){
+		$("#imageFile").change(function(){
+			$("#previewDiv").html("<img id='PreviewPic' src='#' style='width:180px;height:180px' />");
 			readURL(this);
 			});
-	
+		
 		function readURL(input){
 			  if(input.files && input.files[0]){
 			    var reader = new FileReader();

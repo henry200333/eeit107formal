@@ -1,7 +1,11 @@
 package org.iii.seaotter.jayee.web;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
@@ -19,11 +23,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/admin/artist")
 public class AdminArtistController {
+	
+	@Autowired
+	ServletContext context;
 
 	@Autowired
 	private ArtistService artistService;
@@ -59,7 +68,7 @@ public class AdminArtistController {
 		if (result.hasErrors()) {
 			ajaxRes.setType(AjaxResponseType.ERROR);
 			return ajaxRes;
-		}else {
+		} else {
 			ajaxRes.setType(AjaxResponseType.SUCCESS);
 			ajaxRes.setData(artistService.insert(artist));
 			return ajaxRes;
@@ -73,7 +82,7 @@ public class AdminArtistController {
 		if (result.hasErrors()) {
 			ajaxRes.setType(AjaxResponseType.ERROR);
 			return ajaxRes;
-		}else {
+		} else {
 			ajaxRes.setType(AjaxResponseType.SUCCESS);
 			ajaxRes.setData(artistService.update(artist));
 			return ajaxRes;
@@ -86,13 +95,25 @@ public class AdminArtistController {
 		System.out.println(artist);
 		AjaxResponse<Artist> ajaxRes = new AjaxResponse<>();
 		artist = artistService.getById(artist.getId());
-		if(null != artist) {
+		if (null != artist) {
 			artistService.delete(artist);
 			ajaxRes.setType(AjaxResponseType.SUCCESS);
 			ajaxRes.setData(artist);
-		}else {
+		} else {
 			ajaxRes.setType(AjaxResponseType.ERROR);
 		}
 		return ajaxRes;
+	}
+
+	@PostMapping("/uploadImage")
+	public String upload(@RequestParam("imageFile") MultipartFile imageFile,HttpServletRequest request) throws IOException {
+		String returnValue = "/admin/artist-list";
+		try {		
+			ArtistService.saveImage(imageFile);
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnValue = "error";
+		}
+		return returnValue;
 	}
 }

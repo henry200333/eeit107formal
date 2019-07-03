@@ -22,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,9 +56,9 @@ public class AdminActivityController {
 
 	}
 
-	@RequestMapping("/edit")
-	public String editPage(Activity activity, Model model) {
-		activity=activityService.getById(activity.getId());
+	@RequestMapping("/edit/{id}")
+	public String editPage(@PathVariable Long id, Model model) {
+		Activity activity=activityService.getById(id);
 		model.addAttribute("activityParam",activity);
 		return "/admin/activity-edit";
 
@@ -85,19 +86,12 @@ public class AdminActivityController {
 		return aJaxResp;
 	}
 	
-	@DeleteMapping("/delete")
+	@DeleteMapping("/{id}")
 	@ResponseBody
-	public AjaxResponse<Activity> delete(@RequestBody Activity activity) {
+	public AjaxResponse<Activity> delete(@PathVariable Long id) {
 		AjaxResponse<Activity> aJaxResp=new AjaxResponse<>();		
-		activity =activityService.getById(activity.getId());
-		
-		if(activity!=null) {
-			activityService.delete(activity);
+		activityService.deleteById(id);
 			aJaxResp.setType(AjaxResponseType.SUCCESS);
-			aJaxResp.setData(activity);
-		}else {
-			aJaxResp.setType(AjaxResponseType.ERROR);
-		}
 		return aJaxResp;
 	}
 	
@@ -112,8 +106,7 @@ public class AdminActivityController {
 	
 	@RequestMapping("/query")
 	@ResponseBody
-	public GridResponse<Activity> query(@RequestParam(value="name", defaultValue="") String name,
-								@RequestParam(value="artist", defaultValue="") String artist, 
+	public GridResponse<Activity> query(@RequestParam(value="userInput", defaultValue="") String userInput,
 								@RequestParam(value="page") Integer page, 
 								@RequestParam(value="rows") Integer size){	
 		GridResponse<Activity> gridResponse=new GridResponse<Activity>();
@@ -125,11 +118,10 @@ public class AdminActivityController {
 			@Override
 			public Predicate toPredicate(Root<Activity> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				Predicate where = cb.conjunction();
-				if (!StringUtils.isEmpty(name)) {
-					where = cb.and(cb.like(root.get("name"), "%" + name + "%"));
-				}
-				if (!StringUtils.isEmpty(artist)) {
-					where = cb.and(cb.like(root.get("artist"), "%" + artist +"%"));
+				if (!StringUtils.isEmpty(userInput)) {
+					where = cb.and(cb.like(root.get("name"), "%" + userInput + "%"));
+					where = cb.or(where,cb.like(root.get("artist"), "%" + userInput +"%"));
+					where = cb.or(where,cb.like(root.get("description"), "%" + userInput +"%"));
 				}
 				return where;
 			}
@@ -137,7 +129,7 @@ public class AdminActivityController {
 		Page<Activity> result=activityService.getAll(specification, pageable);
 		gridResponse.setRows(result.getContent());
 		gridResponse.setPage(page);
-		gridResponse.setTotal(result.getTotalPages());
+		gridResponse.setRecords(result.getTotalPages());
 		return gridResponse;
 	}
 	

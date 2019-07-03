@@ -98,6 +98,8 @@ float:right;
 width:180px; 
 height:180px;
 margin-left:20px;
+transform-origin:bottom;
+transform:skewX(-20deg);
 }
 .rightd{
 
@@ -151,6 +153,30 @@ font-weight:bold;
 z-index:2;
 display:none;
 width:365px;
+}
+.likeauto {
+	content: url("/resources/admin-bootstrap/img/likeAuto.gif");
+	width:30px;
+}
+
+.unlikeauto {
+	content: url("/resources/admin-bootstrap/img/unlikeAuto.gif");
+	width:30px;
+}
+
+.like	{
+	content: url("/resources/admin-bootstrap/img/like.gif");
+	width:30px;
+}
+
+.unlike	{
+
+	content: url("/resources/admin-bootstrap/img/unlike.gif");
+	width:30px;
+}
+
+.likearea{
+	margin-left:250px;
 }
 </style>
 </head>
@@ -267,6 +293,7 @@ var sortBy = function (filed, rev, primer) {
 		success: function(data){
 			var txt="";	
 			var title="";
+			var like="";
 			console.log(data);		
 			//https://www.youtube.com/embed/Lhel0tzHE08
 			//https://www.youtube.com/watch?v=Lhel0tzHE08
@@ -276,15 +303,108 @@ var sortBy = function (filed, rev, primer) {
 				console.log(head+"embed/"+back);
 				console.log(data['title'] + ",點閱="+ data['views']);
 				txt= "<iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='m8' id='frame'></iframe>";
-				title="<div  class='m9'><span style='font-size:18px;'>"+data['title']+"</span><br><button type='button' style='margin-left:40px;'onclick='views("+data['id']+")'>點閱率++</button><br><span style='margin-left:300px;'>點閱率   :</span><span id='view'>"+data['views'] +"</span></div>";
-					
+				title="<div  class='m9'><span style='font-size:18px;'>"+data['title']+"</span><br><button type='button' style='margin-left:40px;'onclick='views("+data['id']+")'>點閱率++</button><br><span style='margin-left:300px;'>點閱率   :</span><span id='view'>"+data['views'] +"</span></div><br>";
+				like = "<div class='likearea'><img class='likeauto' id='like"+data['id']+"' onclick='like(this)'><span id='like"+data['id']+"'>"+data['likes']+"</span><img class='unlikeauto' id='unlike"+ data['id']+"' onclick='unlike(this)'><span id='unlike"+data['id']+"'>"+data['unlikes']+"</span><div><br><br><br>"
 				
 			$("#iframeWrapper").append(txt);
 			$("#iframeWrapper").append("<br>");
 			$("#iframeWrapper").append(title);
-			 
+			$("#iframeWrapper").append(like);
 		}
 	});
+	
+	function like(Object) {
+		if (Object.className == "likeauto") {
+			$("img#" + Object.id).attr("class", "like");
+			var unlike = $("img#un" + Object.id).attr("class");
+			var unlikeType = 0;
+			var id = Object.id.substring(4);
+			console.log("喜歡/不喜歡ID為" + id + "的資料");
+			if (unlike == "unlike") {
+				unlikeType = 1;
+				$("img#un" + Object.id).attr("class", "unlikeauto");
+			}
+
+			$.ajax({
+				url : "/admin/performance/like",
+				type : "POST",
+				data : {
+					"id" : id,
+					"unlikeType" : unlikeType
+				},
+				success : function(data) {
+					var likes = data.likes;
+					var unlikes = data.unlikes;
+					$("span#like" + data.id).html(likes);
+					$("span#unlike" + data.id).html(unlikes);
+				}
+
+			});
+		}else{
+			var id = Object.id.substring(4);
+			$.ajax({
+				url : "/admin/performance/like",
+				type : "POST",
+				data : {
+					"id" : id,
+					"unlikeType" : 2,
+				},
+				success : function(data) {
+					var likes = data.likes;
+					var unlikes = data.unlikes;
+					$("span#like" + data.id).html(likes);
+					$("span#unlike" + data.id).html(unlikes);
+					$("img#" + Object.id).attr("class", "likeauto");
+				}
+			});
+		}
+	}
+
+	function unlike(Object) {
+		if(Object.className == "unlikeauto"){
+			$("img#" + Object.id).attr("class", "unlike");
+			var like = Object.id.substring(2);
+			var likeType = 0 ;
+			var id = Object.id.substring(6);
+			var likenew = $("img#" + like).attr("class");
+			if (likenew == "like") {
+				likeType=1;
+				$("img#" + like).attr("class", "likeauto");
+			}
+			
+			$.ajax({
+				url : "/admin/performance/unlike",
+				type : "POST",
+				data : {
+					"id" : id,
+					"likeType" : likeType
+				},
+				success : function(data) {
+					var likes = data.likes;
+					var unlikes = data.unlikes;
+					$("span#like" + data.id).html(likes);
+					$("span#unlike" + data.id).html(unlikes);
+				}
+			});
+		}else{				
+			var id = Object.id.substring(6);
+			$.ajax({
+				url : "/admin/performance/unlike",
+				type : "POST",
+				data : {
+					"id" : id,
+					"likeType" : 2,
+				},
+				success : function(data) {
+					var likes = data.likes;
+					var unlikes = data.unlikes;
+					$("span#like" + data.id).html(likes);
+					$("span#unlike" + data.id).html(unlikes);
+					$("img#" + Object.id).attr("class", "unlikeauto");
+				}
+			});
+		}
+	}
 	
 	
 	$.ajax({

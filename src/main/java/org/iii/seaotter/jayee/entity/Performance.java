@@ -35,5 +35,9 @@ public class Performance {
 	private Long activityId;
 	@Column(name="views")
 	private Long views;
+	@Column(name="likes")
+	private Long likes;
+	@Column(name="unlikes")
+	private Long unlikes;
 
 }
