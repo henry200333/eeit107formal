@@ -121,6 +121,7 @@ public class AdminActivityController {
 				if (!StringUtils.isEmpty(userInput)) {
 					where = cb.and(cb.like(root.get("name"), "%" + userInput + "%"));
 					where = cb.or(where,cb.like(root.get("artist"), "%" + userInput +"%"));
+					where = cb.or(where,cb.like(root.get("description"), "%" + userInput +"%"));
 				}
 				return where;
 			}
