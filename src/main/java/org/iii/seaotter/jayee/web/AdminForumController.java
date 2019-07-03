@@ -116,7 +116,7 @@ public class AdminForumController {
 	public GridResponse <Forum> query(@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size,
 			@RequestParam(value="userName", defaultValue="") String userName,
 			@RequestParam(value="comment", defaultValue="") String comment) {
-		org.iii.seaotter.jayee.common.GridResponse<Forum> gridResponse = new org.iii.seaotter.jayee.common.GridResponse<Forum>();
+		GridResponse<Forum> gridResponse = new GridResponse<Forum>();
 		
 		Pageable pageable = PageRequest.of(page-1, size);
 		Specification<Forum> specification = new Specification<Forum>() {
@@ -144,6 +144,7 @@ public class AdminForumController {
 		gridResponse.setRows(result.getContent());
 		gridResponse.setPage(page);
 		gridResponse.setTotal(result.getTotalPages());
+		gridResponse.setRecords(result.getTotalElements());
 		return gridResponse;
 	};
 	
