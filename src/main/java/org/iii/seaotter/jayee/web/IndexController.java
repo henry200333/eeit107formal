@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.common.ArticleType;
+import org.iii.seaotter.jayee.common.ForumBoard;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.Forum;
-import org.iii.seaotter.jayee.entity.Forum.Board;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
@@ -103,7 +103,7 @@ public class IndexController {
 	
 	@GetMapping("/fitComments/{board}/{refId}")
 	@ResponseBody
-	public List<Forum> fitComment(@PathVariable Board board, @PathVariable Long refId) {
+	public List<Forum> fitComment(@PathVariable ForumBoard board, @PathVariable Long refId) {
 		return forumService.selectByBoardAndRefId(board,refId);
 	}
 	

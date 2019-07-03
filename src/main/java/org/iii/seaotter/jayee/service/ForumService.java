@@ -6,10 +6,9 @@ import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
+import org.iii.seaotter.jayee.common.ForumBoard;
 import org.iii.seaotter.jayee.dao.ForumDao;
-import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Forum;
-import org.iii.seaotter.jayee.entity.Forum.Board;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -59,7 +58,7 @@ public class ForumService {
 	public void deleteById(Long id) {
 		forumDao.deleteById(id);
 	}
-	public List<Forum> selectByBoardAndRefId(Board board, Long refId){
+	public List<Forum> selectByBoardAndRefId(ForumBoard board, Long refId){
 		return forumDao.findByBoardAndRefId(board, refId);
 	}
 

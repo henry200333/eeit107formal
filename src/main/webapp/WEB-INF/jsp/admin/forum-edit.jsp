@@ -60,14 +60,14 @@
 
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="Board">Board:</label> <select id="board"
-									name="board">
+								<label for="forumBoard">ForumBoard:</label> <select id="forumBoard"
+									name="forumBoard">
 									<option value="Activity"
-										${forumParam.board=='Activity'?'selected':''}>Activity</option>
+										${forumParam.forumBoard=='Activity'?'selected':''}>Activity</option>
 									<option value="Article"
-										${forumParam.board=='Article'?'selected':''}>Article</option>
+										${forumParam.forumBoard=='Article'?'selected':''}>Article</option>
 									<option value="Performance"
-										${forumParam.board=='Performance'?'selected':''}>Performance</option>
+										${forumParam.forumBoard=='Performance'?'selected':''}>Performance</option>
 								</select>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
