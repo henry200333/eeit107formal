@@ -71,7 +71,7 @@
 								Article</h6>
 						</div>
 						<div id="articleList" class="card-body">
-								<table id="articleGrid" ></table>
+								<table id="articleGrid"></table>
 								<div id="pager"></div>
 						</div>
 					</div>
@@ -103,12 +103,14 @@
         styleUI : 'Bootstrap4',
         iconSet : "fontAwesome",
         colModel: [
-			{ name: 'id', label: 'ID', width: 30 },
+			{ name: 'id', index: 'id', label: 'ID', width: 30 },
 			{ name: 'name', label: 'Article_Title', width: 80 },
 			{ name: 'content', label: 'Content'},
-			{ name: 'articleType', label: 'Article_Type', width: 40 },
-			{ name: 'refId', label: 'REF_ID', width: 30 },
-			{ name: 'count', label: 'Views', width: 30 }
+			{ name: 'articleType', label: 'Article_Type', width: 30 },
+			{ name: 'refId', label: 'REF_ID', width: 20 },
+			{ name: 'count', label: 'Views', width: 20 },
+			{ name: 'edit', label: 'EDIT', width: 20, formatter: editBT },
+			{ name: 'delete', label: 'DELE', width: 20, formatter: deleBT }
 		],
         prmNames: {search: null, nd: null},
         pager: '#pager',
@@ -120,9 +122,47 @@
         rowList: [5, 10, 20, 50],
         sortname: 'id',
         sortorder: "asc",
-        viewrecords: true,
+        viewrecords: true
+//         altRows : true
     });
-	
+	 
+	 function editBT(cellvalue, options, rowObject) {
+			return "<button type='button' id='"
+					+ rowObject.id
+					+ "'onclick='editId(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button>";
+		}
+		function deleBT(cellvalue, options, rowObject) {
+			return "<button type='button' id='"
+					+ rowObject.id
+					+ "'onclick='deleId(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i>"
+		}
+		function editId(Object) {
+			$(location).attr('href', '/admin/article/edit?id=' + Object.id);
+		}
+
+		function deleId(Object) {
+			var msg = "您真的確定要刪除文章ID：" + Object.id + "的文章？"; 
+			 if (confirm(msg)==true){
+				$.ajax({
+					url : '/admin/article/delete',
+					type : "DELETE",
+					contentType : 'application/json;charset=UTF-8',
+					dataType : "json",
+					data: '{"id":"' + Object.id + '"}',
+					success : function(res) {
+						if (res.type == 'SUCCESS'){
+							alert("您刪除了一筆文章名稱：\n" + res.data.name + "\n的文章！");
+							$(location).attr('href', '/admin/article/list');
+						} else {
+							alert("文章名稱：\n" + res.data.name + "\n刪除錯誤！\n請重新搜尋最新文章資料！");
+						}
+					},
+					error : function(res) {
+						alert("文章名稱：\n" + res.data.name + "\n刪除錯誤！\n請重新搜尋最新文章資料！");
+					}
+				})
+			 }
+		}
 		$("#searchBT").click(function(){
 			$('#articleGrid').jqGrid("clearGridData") ;
 			$('#articleGrid').jqGrid('setGridParam',{url: '/admin/article/query?name=' + $('#search').val() }).trigger("reloadGrid");

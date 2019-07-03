@@ -129,8 +129,8 @@
 				width : 5
 			}, //設定第一個欄位為id，並且index設成id為到時候ajax回server side連結時使用的parameter。並且設定為不可做排序。
 			{
-				name : 'board',
-				index : 'board',
+				name : 'forumBoard',
+				index : 'forumBoard',
 				width : 20
 			}, {
 				name : 'refId',

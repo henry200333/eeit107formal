@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import org.iii.seaotter.jayee.common.ForumBoard;
+
 import lombok.Data;
 
 /**
@@ -25,9 +27,9 @@ public class Forum {
 	@Column(name="id")
 	private Long id;
 	
-	@Column(name="board")
+	@Column(name="forumBoard")
 	@Enumerated(EnumType.STRING)
-	private Board board;
+	private ForumBoard forumBoard;
 	
 	@Column(name="ref_id")
 	private Long refId;
@@ -51,18 +53,4 @@ public class Forum {
 	@Column(name="dislike_count")
 	private Integer dislikeCount;
 
-
-	public enum Board {
-		Article, Activity, Performance;
-		
-		public static boolean contains(String string) {
-			for(Board board:Board.values()) {
-				if(board.name().equals(string)) {
-					return true;
-				};
-			}
-			return false;
-		}
-		
-	}
 }

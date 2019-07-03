@@ -11,19 +11,16 @@ import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
-import org.iii.seaotter.jayee.common.ArticleType;
+import org.iii.seaotter.jayee.common.ForumBoard;
 import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.common.Message;
-import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Forum;
-import org.iii.seaotter.jayee.entity.Forum.Board;
 import org.iii.seaotter.jayee.service.ForumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -72,7 +69,7 @@ public class AdminForumController {
 		if (forum.getComment() == null || forum.getComment().trim() == "") {
 			messages.add(new Message("comment", "請輸入內容"));
 		}
-		if (forum.getBoard() == null || !Board.contains(forum.getBoard().name())) {
+		if (forum.getForumBoard() == null || !ForumBoard.contains(forum.getForumBoard().name())) {
 			messages.add(new Message("board", "請選擇"));
 		}
 		if (!messages.isEmpty()) {
