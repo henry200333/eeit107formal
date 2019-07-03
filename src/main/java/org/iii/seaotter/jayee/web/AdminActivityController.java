@@ -126,7 +126,9 @@ public class AdminActivityController {
 		Page<Activity> result=activityService.getAll(specification, pageable);
 		gridResponse.setRows(result.getContent());
 		gridResponse.setPage(page);
+		//setTotal總頁數
 		gridResponse.setTotal(result.getTotalPages());
+		//setRecords總比數
 		gridResponse.setRecords(result.getTotalElements());
 		return gridResponse;
 	}

@@ -53,7 +53,8 @@
 				            </div>
 				            <div class="col-sm-3 mb-3 mb-sm-0">
 					            <div class="input-group">
-					              <input id="userInput" name="userInput" type="text" class="form-control border-0 small" placeholder="搜尋活動..." aria-label="Search" aria-describedby="basic-addon2">
+					              <input id="userInput" name="userInput" type="text" class="form-control border-0 small" 
+					              placeholder="搜尋活動或表演者..." aria-label="Search" aria-describedby="basic-addon2">
 					              <div class="input-group-append">
 					                <button id="searchBT" class="btn btn-primary" type="button">
 					                  <i class="fas fa-search fa-sm"></i>
@@ -132,17 +133,17 @@
 		        mtype: 'GET',
 		        styleUI : 'Bootstrap4',
 		    	colModel :[ //從這邊開始要設定的就是跟欄位本身有關係的設定了.....
-		    		{name:'id', index:'id', sortable: false,width: 5}, //設定第一個欄位為id，並且index設成id為到時候ajax回server side連結時使用的parameter。並且設定為不可做排序。
-		    		{name:'name', index:'name', width: 10},
-		    		{name:'artist', index:'artist', width: 10},	
-		    		{name:'description', index:'description', width: 25},
-		    		{name:'beginTime', index:'beginTime', width: 15},
-		    		{name:'endTime', index:'endTime', width: 15},
-		    		{name:'awesomeNum', index:'awesomeNum', width: 10,align:'right'},
-		    		{name:'badNum', index:'badNum', width: 10,align:'right'}, //設定第二個欄位為name，並且設定寬度為120px。寬度沒設定的話，預設為150(值會再經jqGrid再運算過)<a href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:colmodel_options" target="_blank"> colModel屬性說明</a>
-		    		{name:'coverImage', index:'coverImage', width: 10}, //設定url欄位，這邊是故意設定靠右對齊
-		    		{name:'edit', width:10, formatter:editBT},
-		    		{name:'delete', width:10, formatter:deleteBT}
+		    		{name:'id', index:'id',label:'編號', sortable: false,width: 5}, //設定第一個欄位為id，並且index設成id為到時候ajax回server side連結時使用的parameter。並且設定為不可做排序。
+		    		{name:'name', index:'name',label:'活動名稱', width: 10},
+		    		{name:'artist', index:'artist',label:'表演者', width: 10},	
+		    		{name:'description', index:'description',label:'活動描述', width: 25},
+		    		{name:'beginTime', index:'beginTime',label:'開始時間', width: 15},
+		    		{name:'endTime', index:'endTime',label:'結束時間', width: 15},
+		    		{name:'awesomeNum', index:'awesomeNum',label:'點讚數', width: 10,align:'right'},
+		    		{name:'badNum', index:'badNum',label:'倒讚數', width: 10,align:'right'}, //設定第二個欄位為name，並且設定寬度為120px。寬度沒設定的話，預設為150(值會再經jqGrid再運算過)<a href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:colmodel_options" target="_blank"> colModel屬性說明</a>
+		    		{name:'coverImage', index:'coverImage',label:'活動圖片', width: 10,align:'right'}, //設定url欄位，這邊是故意設定靠右對齊
+		    		{name:'edit', width:10,label:'編輯', formatter:editBT},
+		    		{name:'delete', width:10,label:'刪除', formatter:deleteBT}
 		    		],
 		        prmNames: {search: null, nd: null},
 		        pager: '#pager',
@@ -210,6 +211,22 @@
 		});
 		
 		
+		<!--按Enter搜尋 起始-->
+		$("#userInput").bind("keypress", {}, keypressInBox);
+		function keypressInBox(e) {
+		var code = (e.keyCode ? e.keyCode : e.which);
+		if (code == 13) { //Enter keycode 
+		e.preventDefault();
+		$("#searchBT").click();  
+		}
+		};
+		<!--按Enter搜尋 尾-->
+		
+		
+		
+		
+		
+	
 		
 		
 		
