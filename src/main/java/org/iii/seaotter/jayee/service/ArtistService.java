@@ -54,6 +54,7 @@ public class ArtistService {
 	}
 
 	public static void saveImage(MultipartFile imageFile) throws Exception {
+		
 		URL R = This.class.getResource("/");
 		String decoded = URLDecoder.decode(R.getFile(), "UTF-8");
 		if (decoded.startsWith("/")) {
@@ -61,9 +62,11 @@ public class ArtistService {
 		}
 		decoded = decoded.replace("target", "src");
 		decoded = decoded.replace("classes", "main");
-		decoded += "/webapp/resources/user-image/";
+		decoded += "webapp/resources/user-image/";
 		Path path = Paths.get(decoded + imageFile.getOriginalFilename());
 		Files.write(path, imageFile.getBytes());
 	}
+	
+	
 
 }

@@ -1,7 +1,11 @@
 package org.iii.seaotter.jayee.web;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
@@ -26,6 +30,9 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/admin/artist")
 public class AdminArtistController {
+	
+	@Autowired
+	ServletContext context;
 
 	@Autowired
 	private ArtistService artistService;
@@ -99,9 +106,9 @@ public class AdminArtistController {
 	}
 
 	@PostMapping("/uploadImage")
-	public String upload(@RequestParam("imageFile") MultipartFile imageFile) {
+	public String upload(@RequestParam("imageFile") MultipartFile imageFile,HttpServletRequest request) throws IOException {
 		String returnValue = "/admin/artist-list";
-		try {
+		try {		
 			ArtistService.saveImage(imageFile);
 		} catch (Exception e) {
 			e.printStackTrace();
