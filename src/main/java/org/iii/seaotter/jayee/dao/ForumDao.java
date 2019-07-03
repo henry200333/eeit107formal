@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface ForumDao extends JpaRepository<Forum, Long>, JpaSpecificationExecutor<Forum>  {
 
-	List<Forum> findByBoardAndRefId(ForumBoard board, Long refId);
+	List<Forum> findByForumBoardAndRefId(ForumBoard forumboard, Long refId);
 
 }

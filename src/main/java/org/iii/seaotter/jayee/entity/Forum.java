@@ -27,7 +27,7 @@ public class Forum {
 	@Column(name="id")
 	private Long id;
 	
-	@Column(name="forumBoard")
+	@Column(name="forum_board")
 	@Enumerated(EnumType.STRING)
 	private ForumBoard forumBoard;
 	

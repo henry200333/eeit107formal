@@ -24,13 +24,11 @@ public class ForumService {
 	
 	@Transactional(readOnly = true)
 	public List<Forum> getAll(){
-		//forumDao.findAll(spec, pageable);
 		return forumDao.findAll();
 		
 	}
 	
 	public Page<Forum> getAll(Specification<Forum> specification, Pageable pageable){
-		//forumDao.findAll(spec, pageable);
 		return forumDao.findAll(specification,pageable);
 		
 	}
@@ -58,8 +56,8 @@ public class ForumService {
 	public void deleteById(Long id) {
 		forumDao.deleteById(id);
 	}
-	public List<Forum> selectByBoardAndRefId(ForumBoard board, Long refId){
-		return forumDao.findByBoardAndRefId(board, refId);
+	public List<Forum> selectByBoardAndRefId(ForumBoard forumboard, Long refId){
+		return forumDao.findByForumBoardAndRefId(forumboard, refId);
 	}
 
 }
