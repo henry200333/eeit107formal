@@ -69,7 +69,7 @@
 								<label for="type">TYPE:</label>
 								<div class=" input-group">
 									<input type="text" id="type" name="type" class="form-control form-control-user"
-										value="${articleParam.type}" readonly="readonly" style="background-color: white;pointer-events: none;">
+										value="${articleParam.articleType}" readonly="readonly" style="background-color: white;pointer-events: none;">
 									<div class="input-group-append">
 										<button type="button" class="btn btn-secondary dropdown-toggle"
 											type="button" id="dropdownMenuButton" data-toggle="dropdown"
