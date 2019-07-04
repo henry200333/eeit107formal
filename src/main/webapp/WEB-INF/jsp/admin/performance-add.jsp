@@ -47,7 +47,6 @@
 					<hr>
 
 					<form id="form" class="user">
-						<input type="hidden" name="id" id="id">
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
 								<label for="context">FILE TITLE:</label><input type="text"
@@ -156,6 +155,9 @@
 						}
 					});
 				});
-	</script>
+	
+
+</script>
+
 </body>
 </html>

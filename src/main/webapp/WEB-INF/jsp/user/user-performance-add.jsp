@@ -1,5 +1,7 @@
+<%@page import="org.springframework.web.servlet.ModelAndView"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,27 +41,28 @@
 							<div class="row">
 								<span class="req-input"> <span class="input-status"
 									data-toggle="tooltip" data-placement="top"
-									title="Input The Title Of Performance."> </span> <input
+									title="Input The Title Of Performance."> </span>
+								 <input name='title' id='title1'
 									type="text" data-min-length="8" placeholder="Title">
 								</span>
 							</div>
 							<div class="row">
 								<span class="req-input message-box"><span
 									class="input-status" data-toggle="tooltip" data-placement="top"
-									title="Include The Introduction Of Performance."> </span> <textarea
+									title="Include The Introduction Of Performance."> </span> <textarea name='introduction' id='introduction1'
 										type="textarea" data-min-length="10" placeholder="Introduction"></textarea>
 							</div>
 							<div class="row">
 								<span class="req-input"> <span class="input-status"
 									data-toggle="tooltip" data-placement="top"
-									title="Input The YoutubeURL Of Performance."> </span> <input
+									title="Input The YoutubeURL Of Performance."> </span> <input name='url' id='url1'
 									type="text" data-min-length="8" placeholder="URL">
 								</span>
 							</div>
 							<div class="row">
 								<span class="req-input"> <span class="input-status"
 									data-toggle="tooltip" data-placement="top"
-									title="Select The Associated Activity."> </span> <input
+									title="Select The Associated Activity."> </span> <input name='activityId' id='activityId1'
 									type="text" placeholder="Activity">
 								</span>
 							</div>							
@@ -80,11 +83,10 @@
 $("#add").click(function(){
 	var count = $("form").size();
 	var newForm = "";
-	newForm+= "<div class='col-md-4' id="+(count+1)+"><form id='form"+(count+1)+"'><div id='contact-form' class='form-container' data-form-container style='border-radius:15px;'><div class='row'><div class='form-title'><span style='margin-left:70px;'>Performance "+(count+1)+"</span></div></div><div class='input-container'><div class='row'><span class='req-input'><span class='input-status' data-toggle='tooltip' data-placement='top'	title='Input The Title Of Performance.'></span><input	type='text' data-min-length='8' placeholder='Title'></span></div>";
-	newForm+="<div class='row'><span class='req-input message-box'><span	class='input-status' data-toggle='tooltip' data-placement='top'	title='Include The Introduction Of Performance.'></span><textarea	type='textarea' data-min-length='10' placeholder='Introduction'></textarea></div>";
-	newForm+="<div class='row'><span class='req-input'><span class='input-status' data-toggle='tooltip' data-placement='top' title='Input The YoutubeURL Of Performance.'></span><input	type='text' data-min-length='8' placeholder='URL'></span></div>";
-	newForm+="<div class='row'><span class='req-input'><span class='input-status' data-toggle='tooltip' data-placement='top' title='Select The Associated Activity.'> </span> <input	type='text' placeholder='Activity'></span></div></div></div></form></div>";			
-	console.log(newForm);
+	newForm+= "<div class='col-md-4' id="+(count+1)+"><form id='form"+(count+1)+"'><div id='contact-form' class='form-container' data-form-container style='border-radius:15px;'><div class='row'><div class='form-title'><span style='margin-left:70px;'>Performance "+(count+1)+"</span></div></div><div class='input-container'><div class='row'><span class='req-input'><span class='input-status' data-toggle='tooltip' data-placement='top'	title='Input The Title Of Performance.'></span><input	type='text' data-min-length='8' placeholder='Title' name='title' id='title"+(count+1)+"'></span></div>";
+	newForm+="<div class='row'><span class='req-input message-box'><span	class='input-status' data-toggle='tooltip' data-placement='top'	title='Include The Introduction Of Performance.'></span><textarea name='introduction' id='introduction"+(count+1)+"'	type='textarea' data-min-length='10' placeholder='Introduction'></textarea></div>";
+	newForm+="<div class='row'><span class='req-input'><span class='input-status' data-toggle='tooltip' data-placement='top' title='Input The YoutubeURL Of Performance.'></span><input	type='text' data-min-length='8' placeholder='URL' name='url' id='url"+(count+1)+"'></span></div>";
+	newForm+="<div class='row'><span class='req-input'><span class='input-status' data-toggle='tooltip' data-placement='top' title='Select The Associated Activity.'> </span> <input	type='text' placeholder='Activity' name='activityId' id='activityId"+(count+1)+"'></span></div></div></div></form></div>";			
 	$("#btns").before(newForm);
 })
 
@@ -94,7 +96,103 @@ $("#remove").click(function(){
 	else $("#"+count).remove();
 })
 
+$("#insert").click(function(){
+	var count = $("form").size();
+	alert(count);
+	var flag=true;
+	for(var i=1;i<=count;i++){
+		var title = $("input#title"+i);
+		var introduction = $("textarea#introduction"+i);
+		var url = $("input#url"+i);
+		var activityId = $("input#activityId"+i);
+		if(title.val()==""){
+			title.css("background-color","#ffd2d2");
+			flag=false;
+		}else{
+			title.css("background-color","white");
+		}
+		if(introduction.val()==""){
+			introduction.css("background-color","#ffd2d2");
+			flag=false;
+		}else{
+			introduction.css("background-color","white");
+		}
+		if(url.val()==""){
+			url.css("background-color","#ffd2d2");
+			flag=false;
+		}else{
+			url.css("background-color","white");
+		}
+		if(activityId.val()==""){
+			activityId.css("background-color","#ffd2d2");
+			flag=false;
+		}else{
+			activityId.css("background-color","white");
+		}
+		
+		
+	}
+	if(flag){
+		
+		for(var i=1;i<=count;i++){
+			var o = {};
+			var a = $("#form"+i).serializeArray();
+			$.each(a, function() {
+	            if (o[this.name]) {
+	                if (!o[this.name].push) {
+	                    o[this.name] = [o[this.name]];
+	                }
+	                o[this.name].push(this.value || '');
+	            } else {
+	                o[this.name] = this.value || '';
+	            }
+	        });
+			var data = JSON.stringify(o);
+			$.ajax({				
+				url : "/user/performance/insert",
+				type : "POST",
+				contentType : "application/json",
+				dataType : "json",
+ 				data : data,
+				success : function(result) {
+					if (result.type == "SUCCESS") {
+							
+					} else if (result.type == "ERROR") {
+						alert("新增資料"+i+"失敗，請檢查輸入");
+						var messages = result.messages;
+						$("span.check").remove();
+						$.each(messages, function(index, value) {
+							console.log(value);
+							$("#" + value.title)
+									.after(
+											"<span class='check'>"
+													+ value.content
+													+ "</span>");
+						})
+					}
 
+				}
+			});
+		}
+	}
+	
+})
+
+$.fn.serializeObject = function() {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return JSON.stringify(o);
+    };
 </script>
 </body>
 </html>

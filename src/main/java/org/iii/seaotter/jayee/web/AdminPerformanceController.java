@@ -4,16 +4,29 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
+import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.common.Message;
 import org.iii.seaotter.jayee.entity.Activity;
+import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,8 +61,35 @@ public class AdminPerformanceController {
 
 	@GetMapping("/query")
 	@ResponseBody // 轉成JSON
-	public List<Performance> query() {
-		return performanceSurvice.getAll();
+	public GridResponse <Performance> query(@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size,
+			@RequestParam(value="title", defaultValue="") String title,
+			@RequestParam(value="sidx") String sidx,
+			@RequestParam(value="sord") String sord)  {
+		GridResponse<Performance> gridResponse = new GridResponse<Performance>();
+		Sort sort=new Sort(Sort.Direction.ASC,sidx);
+		if("desc".equalsIgnoreCase(sord)){
+			sort=new Sort(Sort.Direction.DESC,sidx);
+		}
+		Pageable pageable = PageRequest.of(page-1, size,sort);
+		Specification<Performance> spec = new Specification<Performance>() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Predicate toPredicate(Root<Performance> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Predicate where = cb.conjunction();	
+				if (!StringUtils.isEmpty(title)) {
+					where = cb.and(cb.like(root.get("title"), "%" + title + "%"));
+				}		
+				return where;
+			}
+		};
+		Page<Performance> result = performanceSurvice.getAll(spec, pageable);
+		System.out.println(result);
+		gridResponse.setRows(result.getContent());
+		gridResponse.setPage(page);
+		gridResponse.setTotal(result.getTotalPages());
+		gridResponse.setRecords(result.getTotalElements());
+		return gridResponse;
 	}
 
 	@RequestMapping("/add")
@@ -190,6 +230,8 @@ public class AdminPerformanceController {
 			return result;
 		}
 		performance.setViews(0L);
+		performance.setLikes(0L);
+		performance.setUnlikes(0L);
 		result.setType(AjaxResponseType.SUCCESS);
 		result.setData(performanceSurvice.insert(performance));
 		return result;

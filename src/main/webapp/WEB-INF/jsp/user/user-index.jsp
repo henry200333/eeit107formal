@@ -288,7 +288,7 @@ var sortBy = function (filed, rev, primer) {
 
 
 	$.ajax({
-		url:"/user/performancetop",
+		url:"/user/performance/top",
 		type:"GET",
 		success: function(data){
 			var txt="";	
@@ -297,14 +297,13 @@ var sortBy = function (filed, rev, primer) {
 			console.log(data);		
 			//https://www.youtube.com/embed/Lhel0tzHE08
 			//https://www.youtube.com/watch?v=Lhel0tzHE08
-			
-				var head =data['url'].substring(0,24);
-				var back = data['url'].substring(32,43);
+				var head =data.data['url'].substring(0,24);
+				var back = data.data['url'].substring(32,43);
 				console.log(head+"embed/"+back);
-				console.log(data['title'] + ",點閱="+ data['views']);
+				console.log(data.data['title'] + ",點閱="+ data.data['views']);
 				txt= "<iframe  src='"+ head+"embed/"+back +"' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='m8' id='frame'></iframe>";
-				title="<div  class='m9'><span style='font-size:18px;'>"+data['title']+"</span><br><button type='button' style='margin-left:40px;'onclick='views("+data['id']+")'>點閱率++</button><br><span style='margin-left:300px;'>點閱率   :</span><span id='view'>"+data['views'] +"</span></div><br>";
-				like = "<div class='likearea'><img class='likeauto' id='like"+data['id']+"' onclick='like(this)'><span id='like"+data['id']+"'>"+data['likes']+"</span><img class='unlikeauto' id='unlike"+ data['id']+"' onclick='unlike(this)'><span id='unlike"+data['id']+"'>"+data['unlikes']+"</span><div><br><br><br>"
+				title="<div  class='m9'><span style='font-size:18px;'>"+data.data['title']+"</span><br><button type='button' style='margin-left:40px;'onclick='views("+data.data['id']+")'>點閱率++</button><br><span style='margin-left:300px;'>點閱率   :</span><span id='view'>"+data.data['views'] +"</span></div><br>";
+				like = "<div class='likearea'><img class='likeauto' id='like"+data.data['id']+"' onclick='like(this)'><span id='like"+data.data['id']+"'>"+data.data['likes']+"</span><img class='unlikeauto' id='unlike"+ data.data['id']+"' onclick='unlike(this)'><span id='unlike"+data.data['id']+"'>"+data.data['unlikes']+"</span><div><br><br>"
 				
 			$("#iframeWrapper").append(txt);
 			$("#iframeWrapper").append("<br>");

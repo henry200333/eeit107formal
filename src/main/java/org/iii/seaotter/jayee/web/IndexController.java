@@ -68,14 +68,7 @@ public class IndexController {
 		return artistService.getNameByFanNumberTop5();
 	}
 	
-	@GetMapping("/performanceTop")
-	@ResponseBody
-	public AjaxResponse<Performance> performanceTop() {
-		AjaxResponse<Performance> res = new AjaxResponse<>();
-		res.setType(AjaxResponseType.SUCCESS);
-		res.setData(performanceService.getTopByOrderByViewsDesc());
-		return res;
-	}
+
 	
 	@GetMapping("/articleWithPerformanceTop")
 	@ResponseBody
