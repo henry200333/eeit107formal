@@ -71,7 +71,7 @@
 							<h6 class="m-0 font-weight-bold text-primary">List of
 								Activity</h6>
 						</div>
-						<div class="card-body">
+						<div id="" class="card-body">
 <!-- 			ajax版 塞資料處				<div class="table-responsive"></div> -->
 
 						<table id="activityGrid"
@@ -125,7 +125,7 @@
 		
 		
 		<!-- jqGrid版 抓資料 -->
-		
+		$(function(){
 		 $("#activityGrid").jqGrid({
 		        url: '/admin/activity/query',
 		        datatype: 'json',
@@ -140,13 +140,13 @@
 		    		{name:'endTime', index:'endTime',label:'結束時間', width: 15},
 		    		{name:'awesomeNum', index:'awesomeNum',label:'點讚數', width: 10,align:'right'},
 		    		{name:'badNum', index:'badNum',label:'倒讚數', width: 10,align:'right'}, //設定第二個欄位為name，並且設定寬度為120px。寬度沒設定的話，預設為150(值會再經jqGrid再運算過)<a href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:colmodel_options" target="_blank"> colModel屬性說明</a>
-		    		{name:'edit', width:10,label:'編輯', formatter:editBT},
-		    		{name:'delete', width:10,label:'刪除', formatter:deleteBT}
+		    		{name:'edit', width:10,label:'編輯', sortable : false, formatter:editBT},
+		    		{name:'delete', width:10,label:'刪除', sortable : false, formatter:deleteBT}
 		    		],
 		        prmNames: {search: null, nd: null},
 		        pager: '#pager',
 		        page: 1,
-		        autowidth: true,
+		        autowidth:false,
 		        shrinkToFit: true,
 		        height: 'auto',
 		        rowNum: 3,
@@ -155,7 +155,9 @@
 		        sortorder: "asc",
 		        viewrecords: true, 
 		        iconSet:'fontAwesome',
-		        
+		        loadComplete: function () {
+		            reSizejqGridWidth();
+		        }
 		    });
 			
 		 function editBT (cellvalue, options, rowObject) {
@@ -220,6 +222,27 @@
 		}
 		};
 		<!--按Enter搜尋 尾-->
+		
+		
+		
+		<!-- 響應式網頁測試   128跟242加一個function{}把整個script內的程式碼包住     158~160增加loadComplete參數    149 autowidth改false -->
+		
+			const grid_selector = "#activityGrid"; 
+			const $grid = jQuery(grid_selector);
+			    function reSizejqGridWidth()
+			    { 
+			        //重新抓jqGrid容器的新width
+			        let newWidth = $grid.closest(".ui-jqgrid").parent().width();
+			        //是否縮齊column(相當於shrinkToFit)
+			        let shrinkToFit = true;
+			        $grid.jqGrid("setGridWidth", newWidth, shrinkToFit);
+			    };
+			    $(window).on("resize", reSizejqGridWidth);
+		
+		});
+			    
+		
+		<!-- 響應式網頁測試 -->
 		
 		
 		

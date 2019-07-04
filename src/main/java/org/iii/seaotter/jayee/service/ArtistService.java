@@ -65,9 +65,9 @@ public class ArtistService {
 		}
 		decoded = decoded.replace("target", "src");
 		decoded = decoded.replace("classes", "main");
-		decoded += "webapp/resources/user-image/";
-		Path path = Paths.get(decoded + imageFile.getOriginalFilename());
-		Files.write(path, imageFile.getBytes());
+		decoded += "webapp/resources/profile_image/";
+		Files.write(Paths.get(decoded + imageFile.getOriginalFilename()), imageFile.getBytes());
+		
 	}
 
 	public Page<Artist> getAll(Specification<Artist> specification, Pageable pageable) {

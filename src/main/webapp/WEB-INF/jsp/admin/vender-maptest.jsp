@@ -8,14 +8,11 @@
 <script src="/resources/admin-bootstrap/vendor/jquery/jquery.min.js"></script>
 <script
 	src="/resources/admin-bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 <!-- Core plugin JavaScript-->
 <script
 	src="/resources/admin-bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
-
 <!-- Custom scripts for all pages-->
 <script src="/resources/admin-bootstrap/js/sb-admin-2.min.js"></script>
-
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4fmDiIyJ9mPTKGL7iIVPvB5Igfo54eMk&callback=initMap"
 	async defer></script>
@@ -99,11 +96,16 @@ html, body {
 // 				alert(event.latLng.lat())
 				
 // 				alert(getDistance(self.getPosition().lat(), self.getPosition().lng(),event.latLng.lat(),event.latLng.lng()));		
-						
-
-					window.setTimeout(function() {
-						addmarker(map);
-					}, 100);
+							
+							
+							window.setTimeout(function() {
+								clearmarker();			
+					}, 500);
+				
+							window.setTimeout(function() {
+								addmarker(map);
+							}, 500);
+					
 
 	
 			});
@@ -116,6 +118,7 @@ html, body {
 						map.panTo(event.latLng);
 					}, 500);
 			
+				
 			});	
 			addmarker(map);
 			
@@ -169,49 +172,62 @@ html, body {
 		
 		
 		
-		
+		var markersdata =[];
+		var markers =[];
 		
 		function addmarker(map){
+	
 			 gp = map.getBounds();
 // 			 alert(gp.getNorthEast());
 // 			 alert(gp.getSouthWest());
 // 			latabs=getabslat(self.getPosition(),200);
 // 			lngabs=getabslng(self.getPosition(),200);
-			maxlat=gp.getSouthWest().lat()+(gp.getNorthEast().lat()-gp.getSouthWest().lat())*0.8;
-			minlat=gp.getSouthWest().lat()+(gp.getNorthEast().lat()-gp.getSouthWest().lat())*0.2;
-			maxlng=gp.getSouthWest().lng()+(gp.getNorthEast().lng()-gp.getSouthWest().lng())*0.8;
-			minlng=gp.getSouthWest().lng()+(gp.getNorthEast().lng()-gp.getSouthWest().lng())*0.2;	
+
+
+			var maxlat=gp.getSouthWest().lat()+(gp.getNorthEast().lat()-gp.getSouthWest().lat())*0.8;
+			var minlat=gp.getSouthWest().lat()+(gp.getNorthEast().lat()-gp.getSouthWest().lat())*0.2;
+			var maxlng=gp.getSouthWest().lng()+(gp.getNorthEast().lng()-gp.getSouthWest().lng())*0.8;
+			var minlng=gp.getSouthWest().lng()+(gp.getNorthEast().lng()-gp.getSouthWest().lng())*0.2;	
 	$.ajax({
 			url :  "/admin/vender/map?page=1&rows=20&maxlat="+maxlat+"&minlat="+minlat+"&maxlng="+maxlng+"&minlng="+minlng,
 			type : "POST",
 			success : function(data) {
+// 				alert(data)
 				$.each(data,function(key, obj) {
-					 marker = new google.maps.Marker({
-						position : {
-							lat : 	obj['lat'],
-							lng : obj['lng']
-						},
-						map : map,
-						icon : {
-							path : google.maps.SymbolPath.CIRCLE,
-							scale : 8.5,
-							fillColor : "#F99",
-							fillOpacity : 0.8,
-							strokeWeight : 1
-						}
-					});
-				
-					 attachSecretMessage(marker,obj['name']);
-					 
+			 markers[key] = new google.maps.Marker({
+					position : {
+						lat : obj['lat'],
+						lng : obj['lng']
+					},
+					map : map,
+					icon : {
+						path : google.maps.SymbolPath.CIRCLE,
+						scale : 8.5,
+						fillColor : "#F99",
+						fillOpacity : 0.8,
+						strokeWeight : 1
+					}
+				});
 			
-					 
-					 
-					 
+				 attachSecretMessage(markers[key],obj['name']);
 				});
 				
 				
-			}
+			},
+
 		})}
+		
+		
+		function clearmarker(){
+			for (var i = 0; i < markers.length; i++) {
+			    if(markers[i]){
+			      markers[i].setMap(null);
+			    }
+			  }
+			  markers = [];
+		}
+
+		
 		
 	$("#click").click(function(){
 // 		alert($("#address").val())

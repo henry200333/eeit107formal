@@ -13,12 +13,14 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.iii.seaotter.jayee.common.GridResponse;
+import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Vender;
 import org.iii.seaotter.jayee.service.VenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -70,17 +72,24 @@ public class AdminVenderController {
 	@RequestMapping("/query")
 	@ResponseBody
 	public GridResponse<Vender> query(@RequestParam(value="name", defaultValue="") String name,
-			@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size){
-
-		Pageable pageable=PageRequest.of(page-1, size);
-		GridResponse<Vender> grid =new GridResponse<>();
+			@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size,
+			@RequestParam(value="sidx") String sidx,
+			@RequestParam(value="sord") String sord){
+		GridResponse<Vender> grid=new GridResponse<Vender>();
+		Sort sort=new Sort(Sort.Direction.ASC,sidx);
+		if("desc".equalsIgnoreCase(sord)){
+			sort=new Sort(Sort.Direction.DESC,sidx);
+		}
+		Pageable pageable=PageRequest.of(page-1, size,sort);
+		
+		
 		Specification<Vender> specification =new Specification<Vender>() {
 			private static final long serialVersionUID = 1L;	
 			@Override
 			public Predicate toPredicate(Root<Vender> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				Predicate predicate=cb.conjunction();
 				if(!StringUtils.isEmpty(name)) {
-				
+				                                                                                                                                     
 					predicate=cb.and(cb.like(root.get("name"), "%"+name+"%"));
 
 				}				
@@ -115,12 +124,12 @@ public class AdminVenderController {
 					
 					predicate = cb.and(cb.between(root.get("lng"), minlng,  maxlng));
 				}
-					
+		
 				return predicate;
 			}
 		};
 		
-		
+		System.out.println(venderService.getAll(specification,pageable).getContent().size());	
 		return venderService.getAll(specification,pageable).getContent();
 	}
 	

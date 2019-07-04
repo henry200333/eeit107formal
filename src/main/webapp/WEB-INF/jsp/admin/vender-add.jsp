@@ -7,7 +7,9 @@
 
 <!-- header -->
 <jsp:include page="header.jsp"></jsp:include>
-
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4fmDiIyJ9mPTKGL7iIVPvB5Igfo54eMk"
+	async defer></script>
 <body id="page-top">
 
 	<!-- Page Wrapper -->
@@ -81,6 +83,13 @@
 									placeholder="phone" value="${param.phone}"><span
 									style="color: red" id="phonecheck" class="check"></span>
 							</div>
+							<div><input type="text"
+									class="form-control form-control-user" id="lat" name="lat"
+									placeholder="lat" value="" style="display: none"></div>
+									
+							<div><input type="text"
+									class="form-control form-control-user" id="lng" name="lng"
+									placeholder="lng" value="" style="display: none"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 						</div>
 						<div class="btn btn-primary btn-user btn-block" id="submit">
@@ -153,10 +162,34 @@
 		});
 		$("#address").blur(function(){
 			var re=/.+/;
-			if(!re.test($("#address").val()))
-			$("#addresscheck").html("請輸入地址");
-			else
-				$("#addresscheck").html("");
+			if(!re.test($("#address").val())){
+				$("#addresscheck").html("請輸入地址");
+				$("#lat").val(null);
+				$("#lng").val(null);
+			}
+	
+			else{
+				var geocoder = new google.maps.Geocoder();
+				geocoder.geocode({
+				        'address':$("#address").val(),
+				    }, function (results, status) {
+				        if (status == google.maps.GeocoderStatus.OK) {
+				        	
+						$("#lat").val(results[0].geometry.location.lat());
+						$("#lng").val(results[0].geometry.location.lng());
+			    		$("#addresscheck").html("");
+				    }else{	    	
+				    	$("#addresscheck").html("請輸入正確地址");
+				    	$("#lat").val(null);
+						$("#lng").val(null);
+				    }
+				        
+				});	
+				
+			}
+				
+				
+				
 		});
 		$("#maxPeople").blur(function(){
 			var re=/\d+/;
@@ -178,7 +211,15 @@
 // 			alert("aaa");
 			$("#addvender")[0].reset();
 	})
+
+
 		
+
+	
+	
+	
+	
+	
 	});
 </script>
 </html>
