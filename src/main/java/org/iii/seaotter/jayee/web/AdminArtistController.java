@@ -66,12 +66,13 @@ public class AdminArtistController {
 	@GetMapping("/query")
 	@ResponseBody
 	public GridResponse<Artist> query(@RequestParam(value = "page") Integer page,
-			@RequestParam(value = "rows") Integer size, @RequestParam(value = "searchBar", defaultValue = "") String searchBar,@RequestParam(value="sidx") String sidx,
-			@RequestParam(value="sord") String sord) {
+			@RequestParam(value = "rows") Integer size,
+			@RequestParam(value = "searchBar", defaultValue = "") String searchBar,
+			@RequestParam(value = "sidx") String sidx, @RequestParam(value = "sord") String sord) {
 		GridResponse<Artist> gridResponse = new GridResponse<Artist>();
-		Sort sort=new Sort(Sort.Direction.ASC,sidx);
-		if("desc".equalsIgnoreCase(sord)){
-			sort=new Sort(Sort.Direction.DESC,sidx);
+		Sort sort = new Sort(Sort.Direction.ASC, sidx);
+		if ("desc".equalsIgnoreCase(sord)) {
+			sort = new Sort(Sort.Direction.DESC, sidx);
 		}
 		Pageable pageable = PageRequest.of(page - 1, size, sort);
 		Specification<Artist> specification = new Specification<Artist>() {

@@ -3,7 +3,6 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <!-- header -->
 <jsp:include page="header.jsp"></jsp:include>
 <!-- Load basic css of Grid -->
@@ -72,7 +71,7 @@
 					</div>
 					<form method="post" action="/admin/artist/uploadImage" enctype="multipart/form-data">
 					<input type="file" name="imageFile" id="imageFile" accept="image/gif, image/jpeg, image/png" />
-					<div id="previewDiv"></div>
+					<div id="previewDiv" class="previewDiv"></div>
 					<input type="submit" value="Upload" />
 					</form>
 				</div>
@@ -172,7 +171,7 @@
 			}
 		}
 		$("#imageFile").change(function(){
-			$("#previewDiv").html("<img id='PreviewPic' src='#' style='width:180px;height:180px' />");
+			$("#previewDiv").html("<img id='PreviewPic' src='#' />");
 			readURL(this);
 			});
 		
