@@ -53,7 +53,7 @@
 							<div class="col-sm-6 mb-3 mb-sm-0">
 								<label for="name">NAME:</label> <input type="text"
 									class="form-control form-control-user" id="name" name="name"
-									placeholder="NAME" value="${param.name}"><span
+									placeholder="NAME" value="${venderparam.name}"><span
 									style="color: red" id="namecheck" class="check"></span>
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0"></div>
@@ -62,7 +62,7 @@
 							<div class="col-sm-9 mb-3 mb-sm-0">
 								<label for="address">ADDRESS:</label> <input type="text"
 									class="form-control form-control-user" id="address"
-									name="address" placeholder="ADDRESS" value="${param.address}"><span
+									name="address" placeholder="ADDRESS" value="${venderparam.address}"><span
 									style="color: red" id="addresscheck" class="check"></span>
 							</div>
 						</div>
@@ -71,14 +71,14 @@
 								<label for="maxPeople">MAXPEOPLE:</label> <input type="text"
 									class="form-control form-control-user" id="maxPeople"
 									name="maxPeople" placeholder="maxPeople"
-									value="${param.maxPeople}"><span style="color: red"
+									value="${venderparam.maxPeople}"><span style="color: red"
 									id="maxPeoplecheck" class="check"></span>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="phone">PHONE:</label> <input type="text"
 									class="form-control form-control-user" id="phone" name="phone"
-									placeholder="phone" value="${param.phone}"><span
+									placeholder="phone" value="${venderparam.phone}"><span
 									style="color: red" id="phonecheck" class="check"></span>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>

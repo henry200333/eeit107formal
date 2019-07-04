@@ -1,9 +1,6 @@
 package org.iii.seaotter.jayee.service;
 
-import java.util.List;
-
 import org.iii.seaotter.jayee.dao.VenderDao;
-import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Vender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,4 +31,8 @@ public class VenderService {
 	public Vender edit(Vender vender) {	
 		return venderDao.save(vender);
 	}
+	
+	public Vender getById(long id) {
+		return venderDao.getOne(id);
+	};
 }
