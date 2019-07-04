@@ -121,7 +121,6 @@
 			sortable:true,
 			sortorder:'asc',
 			viewrecords:true,
-			altRows : true
 		});
 		
 		$("#searchBT").click(function(){
