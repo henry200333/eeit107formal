@@ -47,12 +47,12 @@
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="board">Board:</label> <select id="board"
-									name="board" class="form-control">
+								<label for="forumBoard">ForumBoard:</label> <select id="forumBoard"
+									name="forumBoard" class="form-control">
 									<option value="Article">Article</option>
 									<option value="Activity">Activity</option>
 									<option value="Performance">Performance</option>
-								</select> <span class="errorMessage" id="eBoard" style="color: red"></span>
+								</select>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">

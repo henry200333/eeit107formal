@@ -1,5 +1,7 @@
 package org.iii.seaotter.jayee.web;
 
+import java.util.List;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -9,7 +11,9 @@ import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Activity;
+import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.service.ActivityService;
+import org.iii.seaotter.jayee.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,6 +40,8 @@ public class AdminActivityController {
 	
 	@Autowired
 	private ActivityService activityService;
+	@Autowired
+	private ArtistService artistService;
 	
 	
 	@RequestMapping("/list")
@@ -99,6 +105,14 @@ public class AdminActivityController {
 //		return activity;
 //	}
 	
+	@RequestMapping("/artist")
+	@ResponseBody
+	public List<Artist> getArtist(){
+		List<Artist> artist =artistService.getAll();
+		return artist;
+	}
+	
+	
 	
 	
 	@RequestMapping("/query")
@@ -126,7 +140,9 @@ public class AdminActivityController {
 		Page<Activity> result=activityService.getAll(specification, pageable);
 		gridResponse.setRows(result.getContent());
 		gridResponse.setPage(page);
+		//setTotal總頁數
 		gridResponse.setTotal(result.getTotalPages());
+		//setRecords總比數
 		gridResponse.setRecords(result.getTotalElements());
 		return gridResponse;
 	}
