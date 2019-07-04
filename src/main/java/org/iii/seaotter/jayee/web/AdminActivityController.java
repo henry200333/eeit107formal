@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -119,11 +120,15 @@ public class AdminActivityController {
 	@ResponseBody
 	public GridResponse<Activity> query(@RequestParam(value="userInput", defaultValue="") String userInput,
 								@RequestParam(value="page") Integer page, 
-								@RequestParam(value="rows") Integer size){	
+								@RequestParam(value="rows") Integer size,
+								@RequestParam(value="sidx") String sidx,
+								@RequestParam(value="sord") String sord){	
 		GridResponse<Activity> gridResponse=new GridResponse<Activity>();
-		
-		
-		Pageable pageable = PageRequest.of(page-1, size);
+		Sort sort=new Sort(Sort.Direction.ASC,sidx);
+		if("desc".equalsIgnoreCase(sord)){
+			sort=new Sort(Sort.Direction.DESC,sidx);
+		}
+		Pageable pageable = PageRequest.of(page-1, size, sort);
 		Specification<Activity> specification = new Specification<Activity>() {
 			private static final long serialVersionUID = 1L;
 			@Override
@@ -146,6 +151,4 @@ public class AdminActivityController {
 		gridResponse.setRecords(result.getTotalElements());
 		return gridResponse;
 	}
-	
-	
 }

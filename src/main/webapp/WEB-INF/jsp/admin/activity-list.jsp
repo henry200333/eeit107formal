@@ -154,7 +154,8 @@
 		        sortname: 'id',
 		        sortorder: "asc",
 		        viewrecords: true, 
-		        iconSet:'fontAwesome'
+		        iconSet:'fontAwesome',
+		        
 		    });
 			
 		 function editBT (cellvalue, options, rowObject) {
