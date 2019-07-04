@@ -120,9 +120,10 @@
         height: 'auto',
         rowNum: 5,
         rowList: [5, 10, 20, 50],
+//         loadonce:true,
         sortname: 'id',
         sortorder: "asc",
-        viewrecords: true
+        viewrecords: true,
 //         altRows : true
     });
 	 

@@ -35,7 +35,7 @@ public class Article {
 	private String content;
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	@Column(name = "type")
+	@Column(name = "article_type")
 	private ArticleType articleType;
 	@NotNull
 	@Column(name = "ref_id")
