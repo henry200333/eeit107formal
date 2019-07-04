@@ -4,17 +4,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+
+<!-- header -->
 <jsp:include page="header.jsp"></jsp:include>
+
 <!-- Load basic css of Grid -->
 <link rel="stylesheet" type="text/css" href="/resources/jqgrid/css/ui.jqgrid-bootstrap4.css" />
 <!-- Load jquery-ui css -->
 <link rel="stylesheet" type="text/css" href="/resources/jqgrid/jquery-ui/jquery-ui.theme.min.css"/>
 
-
-
-
 <body id="page-top">
-
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -43,107 +42,128 @@
 					</div>
 
 					<!-- Add New Article Button -->
-					<a href="add" class="btn btn-primary btn-icon-split"> <span
-						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
-					</span> <span class="text">Add New vender</span>
-					</a>
+					<form class="user">
+			            <div class="form-group row">
+			            	<div class="col-sm-3 mb-3 mb-sm-0">
+					            <div class="input-group">
+					              <input id="search" name="search" type="text" class="form-control border-0 small" placeholder="Search Vender..." aria-label="Search" aria-describedby="basic-addon2">
+					              <div class="input-group-append">
+					                <button id="searchBT" class="btn btn-primary" type="button">
+					                  <i class="fas fa-search fa-sm"></i>
+					                </button>
+					              </div>
+					            </div>
+				            </div>
+				            <div class="col-sm-3 mb-3 mb-sm-0">
+				            	<a href="add" class="btn btn-primary btn-icon-split"> <span
+									class="icon text-white-50"> <i class="fas fa-file-medical"></i>
+									</span> <span class="text">Add New Vender</span>
+								</a>
+				            </div>
+			            </div>
+			        </form>
 
 					<hr>
 
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">List of Vender</h6>
+							<h6 class="m-0 font-weight-bold text-primary">List of
+								Vender</h6>
 						</div>
-						<div class="card-body">
-							<div class="table-responsive"
-								style="font-family: 'Noto Sans TC', sans-serif;"></div>
+						<div id="articleList" class="card-body">
+								<table id="venderGrid" ></table>
+								<div id="pager"></div>
 						</div>
-					
+					</div>
 
 				</div>
 				<!-- /.container-fluid -->
-				<table class="table table-bordered table-striped table-hover"
-					id="dataTable" width="100%" cellspacing="0">
 
-					<thead>
-						<tr>
-							<th>id</th>
-							<th>name</th>
-							<th>address</th>
-							<th>maxPeople</th>
-							<th>phone</th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody id="tbody"></tbody>
-				</table>
-			
-				<form id="vender" method="post">
-					<input type="text" id="id" name="id" style="display: none">
-				</form>
-					<a href="maptest" class="btn btn-primary btn-icon-split"> <span
-						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
-					</span> <span class="text">maptest</span></a>
 			</div>
 			<!-- End of Main Content -->
-		</div>
+
 			<jsp:include page="footer.jsp"></jsp:include>
 
 		</div>
 		<!-- End of Content Wrapper -->
 
 	</div>
-</body>
-<!-- End of Page Wrapper -->
-
-
+	<!-- End of Page Wrapper -->
+	
 	<!-- 	Add language package for TW-ZH -->
 	<script src="/resources/jqgrid/js/i18n/grid.locale-tw.js" type="text/javascript"></script>
 	<!-- 	Add jquery plugin -->
 	<script src="/resources/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
-<script>
-	function deleteId(Object) {
-		document.getElementById("id").value = Object.id;
-
-		// 			var a2 = $("vender").serializeObject();
-		alert($("#vender").serializeObject());
-
-		$.ajax({
-			url : '/admin/vender/delete',
-			type : "DELETE",
-			dataType : "json",
-			contentType : "application/json",
-			data : $("#vender").serializeObject(),
-			success : function(data) {
-				alert(data.id+"號資料刪除成功")
-				window.location.assign("/admin/vender/list");
-				
-			}
-		})
-
-	}
-
-	$.ajax({url : "/admin/vender/query?name=&type=&page=1&rows=20",
-				type : "POST",
+	
+	<script>
+	 $("#venderGrid").jqGrid({
+        url: '/admin/vender/query',
+        datatype: 'json',
+        mtype: 'GET',
+        styleUI : 'Bootstrap4',
+        iconSet : "fontAwesome",
+        colModel: [
+			{name:'id',index:'id',sortable:false,width:3},
+			{name:'name',index:'name',sortable:false,width:5},
+			{name:'address',index:'address',sortable:false,width:10},
+			{name:'maxPeople',index:'max_people',sortable:false,width:5},
+			{name:'phone',index:'phone',sortable:false,width:5}	,
+			{name:'edit',width:3,formatter:editbt},
+			{name:'delete',width:3,formatter:deletebt}
+		],
+        prmNames: {search: null, nd: null},
+        pager: '#pager',
+        page: 1,
+        autowidth: true,
+        shrinkToFit: true,
+        height: 'auto',
+        rowNum: 5,
+        rowList: [3, 5, 10, 20],
+        sortname: 'id',
+        sortorder: "asc",
+        viewrecords: true,
+        
+    });
+	
+		$("#searchBT").click(function(){
+			$('#venderGrid').jqGrid("clearGridData") ;
+			$('#venderGrid').jqGrid('setGridParam',{url: '/admin/vender/query?name=' + $('#search').val() }).trigger("reloadGrid");
+		});
+		
+		function editbt(cellvalue, options, rowObject){
+			return "<button type='button' id='"
+			+ rowObject.id
+			+ "'onclick='editid(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button>";
+		};
+		
+		function deletebt(cellvalue, options, rowObject){
+			return "<button type='button' id='"
+			+ rowObject.id
+			+ "'onclick='deleteid(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button>";
+		};
+		function editid(object){
+			window.location.href = "/admin/vender/edit?id=" + object.id;
+		};
+		function deleteid(object){
+			$.ajax({
+				url : '/admin/vender/delete?id='+object.id,
+				type : "DELETE",
+				dataType : "json",
+				contentType : "application/json",
 				success : function(data) {
-					var txt = "";
-					$.each(data,function(key, obj) {
-										txt += "<tr>";
-										for (i in obj) {
-										txt += "<td>" + obj[i] + "</td>";
-										}
-
-										txt += '<td><button  href="${path}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button></td>';
-										txt += '<td><button id='
-												+ obj["id"]
-												+ ' class="btn btn-danger btn-sm" onclick="deleteId(this)"><i class="fas fa-trash"></i></button></td>';
-										txt += "</tr>";
-									})
-
-					$("#tbody").append(txt);
-
+					alert(data+"號資料刪除成功")
+					window.location.assign("/admin/vender/list");
+					
+				},
+				error: function(){
+					alert("error");
 				}
 			})
-</script>
+			
+		}
+
+
+	
+	</script>
+</body>
 </html>
