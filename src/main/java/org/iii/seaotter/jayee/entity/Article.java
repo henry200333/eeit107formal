@@ -27,7 +27,7 @@ public class Article {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-	@Size(min = 2, max = 30)
+	@Size(min = 2, max = 100)
 	@Column(name = "name")
 	private String name;
 	@Lob

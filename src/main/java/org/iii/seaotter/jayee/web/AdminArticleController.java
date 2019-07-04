@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,9 +56,17 @@ public class AdminArticleController {
 
 	@RequestMapping("/query")
 	@ResponseBody // 轉成JSON
-	public GridResponse<Article> query(@RequestParam(value="name", defaultValue="") String name, @RequestParam(value="type", defaultValue="") ArticleType articleType,
-			@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size) {
-		Pageable pageable = PageRequest.of(page-1, size);
+	public GridResponse<Article> query(@RequestParam(value="name", defaultValue="") String name, 
+			@RequestParam(value="type", defaultValue="") ArticleType articleType,
+			@RequestParam(value="page") Integer page, 
+			@RequestParam(value="rows") Integer size,
+			@RequestParam(value="sidx") String sidx,
+			@RequestParam(value="sord") String sord) {
+		Sort sort=new Sort(Sort.Direction.ASC,sidx);
+		if("desc".equalsIgnoreCase(sord)){
+			sort=new Sort(Sort.Direction.DESC,sidx);
+		}
+		Pageable pageable = PageRequest.of(page-1, size, sort);
 		GridResponse<Article> gridResponse = new GridResponse<>();
 		Specification<Article> specification = new Specification<Article>() {
 			private static final long serialVersionUID = 1L;

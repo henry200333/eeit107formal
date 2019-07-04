@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -44,7 +42,8 @@ public class Activity {
 	@Column(name="artist")
 	private String artist;
 	
-	
+	//活動地點
+	@Column(name="location")
 	private String location;
 	
 	//活動描述
