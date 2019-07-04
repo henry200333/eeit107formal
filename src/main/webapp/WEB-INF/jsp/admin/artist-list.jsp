@@ -117,11 +117,10 @@
 			shrinkToFit:true,
 			height:'auto',
 			rowNum:5,
-			rowList: [5,10,20,50],
+			rowList: [5,20,50],
 			sortname:'id',
 			sortable:true,
 			sortorder:'asc',
-			loadonce:true,
 			viewrecords:true,
 			altRows : true
 		});

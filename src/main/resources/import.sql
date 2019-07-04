@@ -25,6 +25,7 @@ INSERT INTO article (name, content, type, ref_id, count) values
  ('白賊虞',30678,'高雄市'),
  ('柳川鳳',66666,'神奈川'),
  ('張添財',98765,'自由新鎮'),
+ ('張添財',32548,'鬼島'),
  ('敏敏',12345,'大都')
  
  INSERT INTO activity (name,artist,description,begin_time,end_time,awesome_Num,bad_Num) values
