@@ -12,12 +12,15 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Vender;
 import org.iii.seaotter.jayee.service.VenderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -51,9 +54,10 @@ public class AdminVenderController {
 	}
 
 	@RequestMapping("/edit")
-	public String editPage() {
-
-
+	public String editPage(@RequestParam("id")Integer id, Model model) {
+			Vender bean= venderService.getById(id);
+//			System.out.println(bean);
+			model.addAttribute("venderparam",bean);
 		return "/admin/vender-edit";
 	}
 	
@@ -65,26 +69,32 @@ public class AdminVenderController {
 	
 	@RequestMapping("/query")
 	@ResponseBody
-	public List<Vender> query(@RequestParam(value="name", defaultValue="") String name,
-			@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size){	
+	public GridResponse<Vender> query(@RequestParam(value="name", defaultValue="") String name,
+			@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size){
+
 		Pageable pageable=PageRequest.of(page-1, size);
+		GridResponse<Vender> grid =new GridResponse<>();
 		Specification<Vender> specification =new Specification<Vender>() {
 			private static final long serialVersionUID = 1L;	
 			@Override
 			public Predicate toPredicate(Root<Vender> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				Predicate predicate=cb.conjunction();
 				if(!StringUtils.isEmpty(name)) {
-					cb.and(cb.like(root.get("name"), "%"+name+"%"));
+				
+					predicate=cb.and(cb.like(root.get("name"), "%"+name+"%"));
+
 				}				
 				return predicate;
 			}
 		};
-		
-		
-		
-		return venderService.getAll(specification,pageable).getContent();
+		Page<Vender> result=venderService.getAll(specification,pageable);
+		grid.setRows(result.getContent());
+		grid.setPage(page);
+		grid.setRecords(result.getTotalElements());
+		grid.setTotal(result.getTotalPages());
+		return grid;
 	}
-	
+
 	@RequestMapping("/map")
 	@ResponseBody
 	public List<Vender> map(@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size,
@@ -178,12 +188,14 @@ public class AdminVenderController {
 	}
 	@DeleteMapping("/delete")
 	@ResponseBody
-	public Vender delete(@RequestBody Vender vender ) {
-	System.out.println("aa");
-	System.out.println(vender);
+	public Integer delete(@RequestParam("id")Integer id ) {
+		System.out.println(id);
 //System.out.println(vender);
-		venderService.delete(vender.getId());
-		return vender;
+//		Vender vender=null;
+//		vender=venderService.getById(id);
+		venderService.delete(id);
+//		System.out.println(vender);
+		return id;
 
 	}
 }
