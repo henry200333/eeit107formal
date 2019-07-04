@@ -43,7 +43,7 @@
 			            	<div class="col-sm-3 mb-3 mb-sm-0">
 					            <div class="input-group">
 					        
-					              <input id="searchBar" name="searchBar" type="text" class="form-control border-0 small" placeholder="Search Forum..." aria-label="Search" aria-describedby="basic-addon2">
+					              <input id="searchBar" name="searchBar" type="text" class="form-control border-0 small" placeholder="Search Artist..." aria-label="Search" aria-describedby="basic-addon2">
 					         
 					              <div class="input-group-append">
 					                <button id="searchBT" class="btn btn-primary" type="button">
