@@ -10,6 +10,9 @@ import java.util.List;
 import org.iii.seaotter.jayee.dao.ArtistDao;
 import org.iii.seaotter.jayee.entity.Artist;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -65,6 +68,10 @@ public class ArtistService {
 		decoded += "webapp/resources/user-image/";
 		Path path = Paths.get(decoded + imageFile.getOriginalFilename());
 		Files.write(path, imageFile.getBytes());
+	}
+
+	public Page<Artist> getAll(Specification<Artist> specification, Pageable pageable) {
+		return artistDao.findAll(specification,pageable);
 	}
 	
 	

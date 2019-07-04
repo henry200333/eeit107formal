@@ -1,18 +1,24 @@
 package org.iii.seaotter.jayee.web;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
+import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,10 +33,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.microsoft.sqlserver.jdbc.StringUtils;
+
 @Controller
 @RequestMapping("/admin/artist")
 public class AdminArtistController {
-	
+
 	@Autowired
 	ServletContext context;
 
@@ -56,8 +64,29 @@ public class AdminArtistController {
 
 	@GetMapping("/query")
 	@ResponseBody
-	public List<Artist> query() {
-		return artistService.getAll();
+	public GridResponse<Artist> query(@RequestParam(value = "page") Integer page,
+			@RequestParam(value = "rows") Integer size, @RequestParam(value = "searchBar", defaultValue = "") String searchBar) {
+		GridResponse<Artist> gridResponse = new GridResponse<Artist>();
+		Pageable pageable = PageRequest.of(page - 1, size);
+		Specification<Artist> specification = new Specification<Artist>() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Predicate toPredicate(Root<Artist> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+				Predicate where = criteriaBuilder.conjunction();
+				if (!StringUtils.isEmpty(searchBar)) {
+					where = criteriaBuilder.and(criteriaBuilder.like(root.get("name"), "%" + searchBar + "%"));
+				}
+				return where;
+			}
+		};
+		Page<Artist> result = artistService.getAll(specification, pageable);
+		System.out.println(result);
+		gridResponse.setRows(result.getContent());
+		gridResponse.setPage(page);
+		gridResponse.setTotal(result.getTotalPages());
+		gridResponse.setRecords(result.getTotalElements());
+		return gridResponse;
 	}
 
 	@PostMapping("/insert")
@@ -106,9 +135,9 @@ public class AdminArtistController {
 	}
 
 	@PostMapping("/uploadImage")
-	public String upload(@RequestParam("imageFile") MultipartFile imageFile,HttpServletRequest request) throws IOException {
+	public String upload(@RequestParam("imageFile") MultipartFile imageFile) throws IOException {
 		String returnValue = "/admin/artist-list";
-		try {		
+		try {
 			ArtistService.saveImage(imageFile);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -6,6 +6,10 @@
 
 <!-- header -->
 <jsp:include page="header.jsp"></jsp:include>
+<!-- Load basic css of Grid -->
+<link rel="stylesheet" type="text/css" href="/resources/jqgrid/css/ui.jqgrid-bootstrap4.css" />
+<!-- Load jquery-ui css -->
+<link rel="stylesheet" type="text/css" href="/resources/jqgrid/jquery-ui/jquery-ui.theme.min.css"/>
 
 <body id="page-top">
 
@@ -34,25 +38,36 @@
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
 							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
 					</div>
-
-					<!-- Add New Article Button -->
-					<a href="add" class="btn btn-primary btn-icon-split"> <span
-						class="icon text-white-50"> <i class="fas fa-file-medical"></i>
-					</span> <span class="text">Add New Artist</span>
-					</a>
-
+					<form id="searchForm" class="user">
+			            <div class="form-group row">
+			            	<div class="col-sm-3 mb-3 mb-sm-0">
+					            <div class="input-group">
+					        
+					              <input id="searchBar" name="searchBar" type="text" class="form-control border-0 small" placeholder="Search Forum..." aria-label="Search" aria-describedby="basic-addon2">
+					         
+					              <div class="input-group-append">
+					                <button id="searchBT" class="btn btn-primary" type="button">
+					                  <i class="fas fa-search fa-sm"></i>
+					                </button>
+					              </div>
+					            </div>
+				            </div>
+				            <div class="col-sm-3 mb-3 mb-sm-0">
+								<a href="add" class="btn btn-primary btn-icon-split">
+								<span class="icon text-white-50"> <i class="fas fa-file-medical"></i></span>
+								<span class="text">Add New Artist</span>
+								</a>
+							</div>
+			            </div>
+			        </form>
 					<hr>
-
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">List of Artist</h6>
 						</div>
-						<div class="card-body">
-							<div class="table-responsive">								
-								<table class="table table-bordered table-striped table-hover"
-									id="dataTable" style="width: 100%; cellspacing: 0">
-								</table>
-							</div>
+						<div id="artistList" class="card-body">
+								<table id="artistGrid" ></table>
+								<div id="pager"></div>
 						</div>
 					</div>
 					<form method="post" action="/admin/artist/uploadImage" enctype="multipart/form-data">
@@ -73,47 +88,73 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
+	
+	<!-- 	Add language package for TW-ZH -->
+	<script src="/resources/jqgrid/js/i18n/grid.locale-tw.js" type="text/javascript"></script>
+	<!-- 	Add jquery plugin -->
+	<script src="/resources/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+	
 	<script>
-		$(document).ready(function() {
-			$.ajax({
-				url : "query",
-				type : "GET",
-				success : function(data) {
-					table = "<thead><tr>";
-					column = Object.keys(data[0]);
-					for (i in column)
-						table += "<th>" +  column[i] + "</th>";
-					table += "<th>edit</th><th>delete</th></tr><thead>";
-					table += "<tbody>";
-					$.each(data,function(key, value) {
-						table += "<tr>";
-						for (i in value) {
-							table += "<td>"+ value[i]+ "</td>";
-							id = Object.values(value)[0];}
-						table += "<td><button id='"+ id+ "' type='button' onclick='edit(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button></td>";
-						table += "<td><button id='"+ id+ "' type='button' onclick='dele(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button></td>";
-						table += "</tr>"
-						})
-						table += "</tbody>"
-						$("#dataTable").append(table);
-						tableRefresh();
-						}
-					});
-			});
+		$("#artistGrid").jqGrid({
+			url: '/admin/artist/query',
+			datatype:'json',
+			mtype:'GET',
+			styleUI:'Bootstrap4',
+			iconSet:'fontAwesome',
+			colModel:[
+				{ name: 'id', label:'Id', width:5},
+				{ name: 'photo', label:'Photo', width:5},
+				{ name: 'name', label:'Name', width:30},
+				{ name: 'fanNumber', label:'FanNumber', width:30},
+				{ name: 'location', label:'Location', width: 30},
+				{ name:'edit', width:15, formatter:editBT},
+				{ name:'delete',width:15,formatter:deleteBT}
+			],
+			prmNames: {search:null, nd:null},
+			pager:'#pager',
+			page:1,
+			autowidth:true,
+			shrinkToFit:true,
+			height:'auto',
+			rowNum:5,
+			rowList: [5,10,20,50],
+			sortname:'id',
+			sortorder:'asc',
+			viewrecords:true,
+			altRows : true
+		});
+		
+		$("#searchBT").click(function(){
+			console.log(JSON.parse($("#searchForm").serializeObject()));
+			$('#artistGrid').jqGrid("clearGridData") ;
+			$('#artistGrid').jqGrid('setGridParam',{postData:JSON.parse($("#searchForm").serializeObject())}).trigger("reloadGrid");
+		});
+		
+		function editBT(cellvalue, options, rowObject) {
+			return "<button type='button' id='"
+					+ rowObject.id
+					+ "'onclick='edit(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button>";
+		}
+		
+		function deleteBT(cellvalue, options, rowObject) {
+			return "<button type='button' id='"
+					+ rowObject.id
+					+ "'onclick='dele(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i>"
+		}
+	
 		function edit(Object) {
 			$(location).attr('href', '/admin/artist/edit?id=' + Object.id);
 		}
 		function dele(Object) {
 			var r = confirm("是否刪除" + Object.id + "號Artist");
 			if (r == true) {
-				$
-						.ajax({
-							url : "delete",
-							type : "DELETE",
-							contentType : 'application/json;charset=UTF-8',
-							dataType : 'json',
-							data : '{"id":"' + Object.id + '"}',
-							success : function(response) {
+				$.ajax({
+						url : "delete",
+						type : "DELETE",
+						contentType : 'application/json;charset=UTF-8',
+						dataType : 'json',
+						data : '{"id":"' + Object.id + '"}',
+						success : function(response) {
 								if (response.type == 'SUCCESS') {
 									alert("已刪除了一筆ID為：" + response.data.id
 											+ "的Artist！");
