@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,9 +66,14 @@ public class AdminArtistController {
 	@GetMapping("/query")
 	@ResponseBody
 	public GridResponse<Artist> query(@RequestParam(value = "page") Integer page,
-			@RequestParam(value = "rows") Integer size, @RequestParam(value = "searchBar", defaultValue = "") String searchBar) {
+			@RequestParam(value = "rows") Integer size, @RequestParam(value = "searchBar", defaultValue = "") String searchBar,@RequestParam(value="sidx") String sidx,
+			@RequestParam(value="sord") String sord) {
 		GridResponse<Artist> gridResponse = new GridResponse<Artist>();
-		Pageable pageable = PageRequest.of(page - 1, size);
+		Sort sort=new Sort(Sort.Direction.ASC,sidx);
+		if("desc".equalsIgnoreCase(sord)){
+			sort=new Sort(Sort.Direction.DESC,sidx);
+		}
+		Pageable pageable = PageRequest.of(page - 1, size, sort);
 		Specification<Artist> specification = new Specification<Artist>() {
 			private static final long serialVersionUID = 1L;
 
