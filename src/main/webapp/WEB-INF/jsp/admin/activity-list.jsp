@@ -125,7 +125,7 @@
 		
 		
 		<!-- jqGrid版 抓資料 -->
-		$(function(){
+		
 		 $("#activityGrid").jqGrid({
 		        url: '/admin/activity/query',
 		        datatype: 'json',
@@ -225,7 +225,7 @@
 		
 		
 		
-		<!-- 響應式網頁測試   128跟242加一個function{}把整個script內的程式碼包住     158~160增加loadComplete參數    149 autowidth改false -->
+		<!-- 響應式網頁測試  158~160增加loadComplete參數    149 autowidth改false -->
 		
 			const grid_selector = "#activityGrid"; 
 			const $grid = jQuery(grid_selector);
@@ -239,7 +239,6 @@
 			    };
 			    $(window).on("resize", reSizejqGridWidth);
 		
-		});
 			    
 		
 		<!-- 響應式網頁測試 -->
