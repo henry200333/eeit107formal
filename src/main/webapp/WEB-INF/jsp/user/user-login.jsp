@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
-<title>Bootstrap Flat Modal Login Modal Form</title>
+<title>Login</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"
 	rel="stylesheet">
 <link rel="stylesheet"

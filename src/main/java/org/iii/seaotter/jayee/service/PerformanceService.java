@@ -7,8 +7,12 @@ import java.util.Date;
 import java.util.List;
 
 import org.iii.seaotter.jayee.dao.PerformanceDao;
+import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +26,10 @@ public class PerformanceService {
 	public List<Performance> getAll(){
 		return performanceDao.findAll();
 		
+	}
+	
+	public Page<Performance> getAll(Specification<Performance> spec, Pageable pageable){
+			return performanceDao.findAll(spec, pageable);
 	}
 	
 	public Performance getById(Long id) {
