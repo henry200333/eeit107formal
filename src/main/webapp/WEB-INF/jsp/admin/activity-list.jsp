@@ -140,8 +140,8 @@
 		    		{name:'endTime', index:'endTime',label:'結束時間', width: 15},
 		    		{name:'awesomeNum', index:'awesomeNum',label:'點讚數', width: 10,align:'right'},
 		    		{name:'badNum', index:'badNum',label:'倒讚數', width: 10,align:'right'}, //設定第二個欄位為name，並且設定寬度為120px。寬度沒設定的話，預設為150(值會再經jqGrid再運算過)<a href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:colmodel_options" target="_blank"> colModel屬性說明</a>
-		    		{name:'edit', width:10,label:'編輯', formatter:editBT},
-		    		{name:'delete', width:10,label:'刪除', formatter:deleteBT}
+		    		{name:'edit', width:10,label:'編輯', sortable : false, formatter:editBT},
+		    		{name:'delete', width:10,label:'刪除', sortable : false, formatter:deleteBT}
 		    		],
 		        prmNames: {search: null, nd: null},
 		        pager: '#pager',
