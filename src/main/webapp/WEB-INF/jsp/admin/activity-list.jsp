@@ -213,10 +213,12 @@
 		
 		
 		<!--按Enter搜尋 起始-->
+		//userInput=輸入搜尋字串的input標籤id
+		//searchBT=208行的function
 		$("#userInput").bind("keypress", keypressInBox);
 		function keypressInBox(e) {
 		var code = (e.keyCode ? e.keyCode : e.which);
-		if (code == 13) { //Enter keycode 
+		if (code == 13) { //Enter keycode=13 
 		e.preventDefault();
 		$("#searchBT").click();  
 		}
@@ -225,7 +227,7 @@
 		
 		
 		
-		<!-- 響應式網頁測試  158~160增加loadComplete參數    149 autowidth改false -->
+		<!-- 響應式網頁測試  158~160行增加loadComplete參數    149行autowidth改false 再加入以下code-->
 		
 			const grid_selector = "#activityGrid"; 
 			const $grid = jQuery(grid_selector);
