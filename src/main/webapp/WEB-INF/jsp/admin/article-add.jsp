@@ -8,6 +8,7 @@
 <!-- header -->
 <jsp:include page="header.jsp"></jsp:include>
 
+<link rel="stylesheet" href="/resources/editormd/css/editormd.css" />
 <body id="page-top">
 
 	<!-- Page Wrapper -->
@@ -53,15 +54,17 @@
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-9 mb-3 mb-sm-0">
-								<label for="content">CONTENT:</label>
-								<textarea id="content" name="content" class="form-control form-control-user"></textarea>
+								<label for="content">CONTENT(支援Markdown編輯器):</label>
+								<div id="test-editor">
+								<textarea id="content" name="content" style="display:none;"></textarea>
+								</div>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="type">TYPE:</label>
+								<label for="articleType">TYPE:</label>
 								<div class=" input-group">
-									<input type="text" id="type" name="type" class="form-control form-control-user" value="Other"
+									<input type="text" id="articleType" name="articleType" class="form-control form-control-user" value="Other"
 									 readonly="readonly" style="background-color: white;pointer-events: none;"/>
 									<div class="input-group-append">
 										<button class="btn btn-secondary dropdown-toggle"
@@ -145,6 +148,18 @@
 						$(this).attr("class", "form-control form-control-user is-invalid");
 					}
 				})
+			</script>
+			<!-- 			load markdown editor.md -->
+			<script src="/resources/editormd/editormd.min.js"></script>
+			<script src="/resources/editormd/languages/zh-tw.js"></script>
+			<script type="text/javascript">
+			    $(function() {
+			        var editor = editormd("test-editor", {
+			            width  : "100%",
+			            height : "300",
+			            path   : "/resources/editormd/lib/"
+			        });
+			    });
 			</script>
 		</div>
 		<!-- End of Content Wrapper -->

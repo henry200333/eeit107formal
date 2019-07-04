@@ -109,8 +109,8 @@
 			{ name: 'articleType', label: 'Article_Type', width: 30 },
 			{ name: 'refId', label: 'REF_ID', width: 20 },
 			{ name: 'count', label: 'Views', width: 20 },
-			{ name: 'edit', label: 'EDIT', width: 20, formatter: editBT },
-			{ name: 'delete', label: 'DELE', width: 20, formatter: deleBT }
+			{ name: 'edit', label: 'EDIT', width: 20, sortable : false, formatter: editBT },
+			{ name: 'delete', label: 'DELE', width: 20, sortable : false, formatter: deleBT }
 		],
         prmNames: {search: null, nd: null},
         pager: '#pager',
@@ -169,7 +169,16 @@
 			$('#articleGrid').jqGrid('setGridParam',{url: '/admin/article/query?name=' + $('#search').val() }).trigger("reloadGrid");
 		});
 
-
+		<!--按Enter搜尋 起始-->
+		$("#search").bind("keypress", keypressInBox);
+		function keypressInBox(e) {
+		var code = (e.keyCode ? e.keyCode : e.which);
+		if (code == 13) { //Enter keycode 
+			e.preventDefault();
+			$("#searchBT").click();  
+			}
+		};
+		<!--按Enter搜尋 尾-->
 	
 	</script>
 </body>
