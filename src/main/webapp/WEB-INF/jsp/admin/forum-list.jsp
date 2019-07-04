@@ -125,7 +125,6 @@
 			{
 				name : 'id',
 				index : 'id',
-				sortable : false,
 				width : 5
 			}, //設定第一個欄位為id，並且index設成id為到時候ajax回server side連結時使用的parameter。並且設定為不可做排序。
 			{
@@ -166,11 +165,13 @@
 			{
 				name : 'edit',
 				width : 15,
-				formatter : editBT
+				formatter : editBT,
+				sortable : false
 			}, {
 				name : 'delete',
 				width : 15,
-				formatter : deleteBT
+				formatter : deleteBT,
+				sortable : false
 			} ],
 			prmNames : {
 				search : null,

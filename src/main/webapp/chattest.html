@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" type="text/css" href="/resources/chatstyle/chatroom.css">
+</head>
+<body>
+	<label>User Name<input type='text' id='userName'></label>
+	<button type='button' id='getConn'>連線</button>
+	<br>
+	<div>
+		<div id="frame">
+			<div class='content'>
+				<div id='msgBox' class='messages'>
+					<ul>
+						<li class="replies"><p>55688</p></li>
+					</ul>
+				</div>
+			</div>
+			<div class="message-input">
+				<div class="wrap">
+					<input type='text' id='msgContent'
+						placeholder="Write your message..." /> <i
+						class="fa fa-paperclip attachment" aria-hidden="true"></i>
+					<button type='button' class="submit" id='sendMsg'>
+						<i class="fa fa-paper-plane" aria-hidden="true"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<script>
+	var ws = null;
+	$('#getConn').click(function(){
+		let userName = $('#userName').val();
+		console.log("userName = " + userName);
+			if (!userName){
+				return false;
+			}
+			let url = 'ws://localhost/chat-room/' + userName;
+			ws = new WebSocket(url);	
+			ws.onopen = function() {
+				console.log("建立連線");
+			};
+			ws.onclose = function() {
+				console.log("關閉連線");
+			};
+			ws.onmessage = function(event) {
+				console.log("訊息來了");
+				console.log(event.data);
+				$('<li class="sent"><p>' + event.data + '</p></li>').appendTo($('.messages ul'));
+			};
+		})
+		
+		$('#sendMsg').click(function(){
+			console.log("觸發");
+			ws.send($('#msgContent').val());
+		})
+		
+	</script>
+	
+	<hr>
+</body>
+</html>

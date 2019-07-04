@@ -1,0 +1,133 @@
+@charset "UTF-8";
+/*最外框*/
+
+ul{
+	margin:0;
+	padding:0;
+}
+ul li{
+	margin:0;
+	padding:0;
+}
+
+#frame .content {
+	
+	border-radius: 10px 10px 0 0px;
+    width: 340px;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    background: #E6EAEA;
+}
+
+/*要更改在div*/
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #27ae60;
+    font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+    font-size: 1em;
+    letter-spacing: 0.1px;
+    color: #32465a;
+    text-rendering: optimizeLegibility;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    -webkit-font-smoothing: antialiased;
+}
+
+/*名稱欄*/
+#frame .content .contact-profile {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background: #f5f5f5;
+}
+
+/*名稱欄照片*/
+#frame .content .contact-profile img {
+    width: 40px;
+    border-radius: 50%;
+    float: left;
+    margin: 9px 12px 0 9px;
+}
+
+/*訊息欄*/
+#frame .content .messages {
+    height: auto;
+    width: 100%;
+    min-height: 0px;
+    max-height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/*訊息體(照片文字)*/
+#frame .content .messages ul li {
+    display: inline-block;
+    clear: both;
+    float: left;
+    margin: 15px 15px 5px 15px;
+    width: calc(100% - 25px);
+    font-size: 0.9em;
+}
+
+/*文字*/
+#frame .content .messages ul li p {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 20px;
+    line-height: 130%;
+}
+
+/*發送者文字*/
+#frame .content .messages ul li.sent p {
+    background: #435f7a;
+    color: #f5f5f5;
+}
+
+/*回覆者文字*/
+#frame .content .messages ul li.replies p {
+    background: #f5f5f5;
+    float: right;
+}
+
+/*訊息照片*/
+#frame .content .messages ul li img {
+    width: 22px;
+    border-radius: 50%;
+    float: left;
+}
+
+/*發送者照片*/
+#frame .content .messages ul li.sent img {
+    margin: 6px 8px 0 0;
+}
+
+/*回覆者照片*/
+#frame .content .messages ul li.replies img {
+    float: right;
+    margin: 6px 0 0 8px;
+}
+
+/*輸入位置*/
+#frame .content .message-input .wrap input {
+    float: left;
+    border: none;
+    width: 85%;
+    padding: 11px 32px 10px 8px;
+    font-size: 0.8em;
+    color: #32465a;
+}
+
+/*輸入按鈕*/
+#frame .content .message-input .wrap button {
+    float: right;
+    border: none;
+    width: 15%;
+    padding: 10px 0;
+    cursor: pointer;
+    background: #32465a;
+    color: #f5f5f5;
+}
+
