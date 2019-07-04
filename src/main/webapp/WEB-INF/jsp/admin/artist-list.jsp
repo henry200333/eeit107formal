@@ -103,7 +103,7 @@
 			iconSet:'fontAwesome',
 			colModel:[
 				{ name: 'id', label:'Id', width:5},
-				{ name: 'photo', label:'Photo', width:5, sortable: false},
+				{ name: 'photo', label:'Photo', width:5, sortable: false, hidden:true},
 				{ name: 'name', label:'Name', width:30},
 				{ name: 'fanNumber', label:'FanNumber', width:30},
 				{ name: 'location', label:'Location', width: 30},
