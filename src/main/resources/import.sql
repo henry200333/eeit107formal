@@ -1,3 +1,14 @@
+INSERT INTO security_user(account, password, member_name) values
+('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 'admin')
+
+INSERT INTO security_role(role) values
+('ADMIN'),
+('USER')
+
+INSERT INTO user_role(user_id, role_id) values
+(1,1),
+(1,2)
+
 INSERT INTO article (name, content, article_type, ref_id, count) values
   ('EZ5音樂餐廳徵求臨時鼓手一名', '2019/8/8 將舉辦慈善表演，徵求鼓手一名，詳洽02-12345678，MR.口鳥先生', 'Vender', 1, 2),
   ('陳忻玥新專輯！衝上排行第一！', '你/妳好！ 我的名字叫忻玥(ㄒㄧㄣ ㄩㄝ、)女聲 & 吉他 & 創作Hello! I’m Vicky Chen.Singing & Playing guitar & Writing找我演出：alex@skrpresents.com', 'Performance', 1, 99),

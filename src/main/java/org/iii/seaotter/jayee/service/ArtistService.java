@@ -3,7 +3,6 @@ package org.iii.seaotter.jayee.service;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -57,7 +56,7 @@ public class ArtistService {
 	}
 
 	public static void saveImage(MultipartFile imageFile) throws Exception {
-		
+
 		URL R = This.class.getResource("/");
 		String decoded = URLDecoder.decode(R.getFile(), "UTF-8");
 		if (decoded.startsWith("/")) {
@@ -67,13 +66,11 @@ public class ArtistService {
 		decoded = decoded.replace("classes", "main");
 		decoded += "webapp/resources/profile_image/";
 		Files.write(Paths.get(decoded + imageFile.getOriginalFilename()), imageFile.getBytes());
-		
+
 	}
 
 	public Page<Artist> getAll(Specification<Artist> specification, Pageable pageable) {
-		return artistDao.findAll(specification,pageable);
+		return artistDao.findAll(specification, pageable);
 	}
-	
-	
 
 }

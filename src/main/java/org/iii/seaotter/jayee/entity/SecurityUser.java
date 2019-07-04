@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ public class SecurityUser implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private Long userId;
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "role_id") })
 	private Set<SecurityRole> roles = new HashSet<SecurityRole>();
@@ -39,20 +40,20 @@ public class SecurityUser implements UserDetails {
 	private String password;
 	@Column(name = "member_name")
 	private String memberName;
-	@Column(name = "gender")
-	private String gender;
-	@Column(name = "photo")
-	private String photo;
-	@Column(name = "id_code")
-	private String idCode;
-	@Column(name = "birth")
-	private java.util.Date birth;
-	@Column(name = "mail")
-	private String mail;
-	@Column(name = "address")
-	private String address;
-	@Column(name = "tel")
-	private String tel;
+//	@Column(name = "gender")
+//	private String gender;
+//	@Column(name = "photo")
+//	private String photo;
+//	@Column(name = "id_code")
+//	private String idCode;
+//	@Column(name = "birth")
+//	private java.util.Date birth;
+//	@Column(name = "mail")
+//	private String mail;
+//	@Column(name = "address")
+//	private String address;
+//	@Column(name = "tel")
+//	private String tel;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
