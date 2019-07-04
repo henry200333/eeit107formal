@@ -103,12 +103,12 @@
 			iconSet:'fontAwesome',
 			colModel:[
 				{ name: 'id', label:'Id', width:5},
-				{ name: 'photo', label:'Photo', width:5},
+				{ name: 'photo', label:'Photo', width:5, sortable: false},
 				{ name: 'name', label:'Name', width:30},
 				{ name: 'fanNumber', label:'FanNumber', width:30},
 				{ name: 'location', label:'Location', width: 30},
-				{ name:'edit', width:15, formatter:editBT},
-				{ name:'delete',width:15,formatter:deleteBT}
+				{ name:'edit', width:15, formatter:editBT, sortable: false},
+				{ name:'delete',width:15,formatter:deleteBT, sortable: false}
 			],
 			prmNames: {search:null, nd:null},
 			pager:'#pager',
@@ -119,7 +119,9 @@
 			rowNum:5,
 			rowList: [5,10,20,50],
 			sortname:'id',
+			sortable:true,
 			sortorder:'asc',
+			loadonce:true,
 			viewrecords:true,
 			altRows : true
 		});
