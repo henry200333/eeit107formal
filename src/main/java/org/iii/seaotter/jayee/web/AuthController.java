@@ -1,36 +1,50 @@
 package org.iii.seaotter.jayee.web;
 
+import javax.validation.Valid;
+
+import org.iii.seaotter.jayee.common.AjaxResponse;
+import org.iii.seaotter.jayee.common.AjaxResponseType;
+import org.iii.seaotter.jayee.dao.SecurityUserDao;
+import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class AuthController {
 
 	@Autowired
-	private SecurityUserService securityUserService;
-	@Autowired
-	private PasswordEncoder passwordEncorder;
+	SecurityUserService securityUserService;
 
 	@GetMapping("/login")
 	public String loginPage() {
-		System.out.println(passwordEncorder.encode("admin"));
 		return "/user/user-login";
 	}
 
-	@PostMapping("/signUp")
-	public String singUp(@RequestParam("account") String account, @RequestParam("password") String password) {
-		SecurityUser securityUser = new SecurityUser();
-		securityUser.setAccount(account);
-		securityUser.setPassword(passwordEncorder.encode(password));
-		System.out.println(securityUser);
-		securityUserService.signUp(securityUser);
-		return "/admin/artist/list";
+	@GetMapping("/registration")
+	public String showRegistrationForm() {
+		return "/user/registration";
 	}
 
+	@PostMapping("/register")
+	@ResponseBody
+	public AjaxResponse<SecurityUser> insert(@Valid @RequestBody SecurityUser securityUser, BindingResult result) {
+		System.out.println(securityUser);
+		AjaxResponse<SecurityUser> ajaxRes = new AjaxResponse<>();
+		if (result.hasErrors()) {
+			ajaxRes.setType(AjaxResponseType.ERROR);
+			return ajaxRes;
+		} else {
+			ajaxRes.setType(AjaxResponseType.SUCCESS);
+			ajaxRes.setData(securityUserService.signUp(securityUser));
+			return ajaxRes;
+		}
+	}
 }
