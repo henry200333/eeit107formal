@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -15,60 +14,108 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <link rel="stylesheet" type="text/css" href="/resources/chatstyle/chatroom.css">
+<!-- <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet' type='text/css'> -->
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+<!-- 小圖示 -->
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
 </head>
 <body>
 	<label>User Name<input type='text' id='userName'></label>
 	<button type='button' id='getConn'>連線</button>
+	<button type='button' id='closeConn'>離開連線</button>
 	<br>
 	<div>
 		<div id="frame">
 			<div class='content'>
-				<div id='msgBox' class='messages'>
-					<ul>
-						<li class="replies"><p>55688</p></li>
-					</ul>
+				<div class="contact-profile">
+					<p>Jayee地獄列車</p>
 				</div>
-			</div>
-			<div class="message-input">
+				<div id='msgBox' class='messages'>			
+					<ul >
+						<li class="replies">
+					<p>When you're backed against the wall, break the god damn thing down.</p>
+				</li>
+				<li class="replies">
+					<p>Excuses don't win championships.</p>
+				</li>
+				<li class="sent">
+					<p>Oh yeah, did Michael Jordan tell you that?</p>
+				</li>
+				<li class="replies">
+					<p>No, I told him that.</p>
+				</li>
+					</ul>
+					
+				</div>
+							<div class="message-input">
 				<div class="wrap">
 					<input type='text' id='msgContent'
-						placeholder="Write your message..." /> <i
-						class="fa fa-paperclip attachment" aria-hidden="true"></i>
+						placeholder="Write your message..." />
+<!-- 						 <i class="fa fa-paperclip attachment" aria-hidden="true"></i> -->
 					<button type='button' class="submit" id='sendMsg'>
 						<i class="fa fa-paper-plane" aria-hidden="true"></i>
 					</button>
 				</div>
 			</div>
+			</div>
+
+
 		</div>
 
 	</div>
 	<script>
 	var ws = null;
-	$('#getConn').click(function(){
-		let userName = $('#userName').val();
-		console.log("userName = " + userName);
-			if (!userName){
-				return false;
-			}
-			let url = 'ws://localhost/chat-room/' + userName;
-			ws = new WebSocket(url);	
-			ws.onopen = function() {
-				console.log("建立連線");
-			};
-			ws.onclose = function() {
-				console.log("關閉連線");
-			};
-			ws.onmessage = function(event) {
-				console.log("訊息來了");
-				console.log(event.data);
-				$('<li class="sent"><p>' + event.data + '</p></li>').appendTo($('.messages ul'));
-			};
+
+		$('#getConn').click(
+				function() {
+					let userName = $('#userName').val();
+					console.log("userName = " + userName);
+					if (!userName) {
+						return false;
+					}
+					let url = 'ws://localhost/chat-room/' + userName;
+					ws = new WebSocket(url);
+					ws.onopen = function() {
+						console.log("建立連線");
+					};
+					ws.onclose = function() {
+						console.log("關閉連線");
+					};
+					ws.onmessage = function(event) {
+						console.log("訊息來了");
+						console.log(event.data);
+						$('<li class="sent"><p>' + event.data + '</p></li>')
+								.appendTo($('.messages ul'));
+						goToBottom();
+					};
+				
+					
+				})
+				function goToBottom(){
+			$(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight }, "fast");
+			console.log($(".messages")[0].scrollHeight);
+		}
+				
+		$('#closeConn').click(function(){
+			if(confirm('確定要離開?'))
+					ws.close();
 		})
-		
-		$('#sendMsg').click(function(){
+				
+				
+		$('#sendMsg').click(function() {
 			console.log("觸發");
 			ws.send($('#msgContent').val());
+			 $('#msgContent').val("");
 		})
+		
+		$(window).on('keydown', function(e) {
+  if (e.which == 13) {
+	  ws.send($('#msgContent').val());
+	  $('#msgContent').val("");
+    return false;
+  }
+});
+		
 		
 	</script>
 	
