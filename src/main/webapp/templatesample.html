@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<!-- 小圖示 -->
+<link rel='stylesheet prefetch'
+	href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+<style>
+ul,p {
+	margin: 0;
+	padding: 0;
+}
+
+ul li {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	display: flex;
+	align-items: flex-end;
+	font-size: 1.5em;
+}
+
+.chatSquare {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	line-height: 2em;
+	margin: 15px 15px;
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: flex-end;
+}
+
+.friendList {
+	text-align: center;
+	width: 200px;
+	background-color: yellow;
+	flex-grow: 0;
+}
+
+.chatbox {
+	right: 16px;
+	bottom: 150px;
+
+	padding: 3px 3px 0 3px;
+	border-radius: 3px;
+	border: 1px solid #ddd;
+	background: #fff;
+	width: 250px;
+}
+
+.messages {
+	text-align: left;
+	height: auto;
+	width: 100%;
+	min-height: 300px;
+	max-height: 300px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	word-break: normal;
+	display:none;
+}
+
+.messages ul li {
+	display: inline-block;
+	clear: both;
+	float: left;
+	margin: 15px 15px 5px 15px;
+	width: calc(100% - 50px);
+	font-size: 0.9em;
+}
+
+.messages ul li p {
+	float: left;
+	white-space: normal;
+	word-break: break-all;
+	word-wrap: break-word;
+	padding: 10px 15px;
+	border-radius: 20px;
+	line-height: 130%;
+	background: #435f7a;
+	color: #f5f5f5;
+}
+
+.message-input{
+display:flex;
+}
+.message-input .wrap input {
+	float: left;
+	border: none;
+	width: 85%;
+	padding: 10px 0;
+	font-size: 0.8em;
+	color: #32465a;
+}
+
+.message-input .wrap button {
+
+	float: right;
+	border: none;
+	width: 15%;
+	padding: 10px 0;
+	cursor: pointer;
+	background: #32465a;
+	color: #f5f5f5;
+	
+}
+.nameBar{
+border-bottom:1px solid blue;
+}
+
+.active{
+display:block;
+}
+
+.inactive{
+background-color: yellow;
+}
+
+</style>
+
+</head>
+<body>
+	<div class='chatSquare'>
+		<div class='friendList'>好友列表</div>
+		<div class='chatbox'>
+			<div class='nameBar' id="nameBar">第一塊</div>
+			<div class='messages' id='msgbox1'>
+				<ul>
+					<li><p>ohellohellohellohellohellohellohellohellohellohello.</p></li>
+					<li><p>123</p></li>
+				</ul>
+			</div>
+			<div class="message-input" id='inputbar'>
+				<div class="wrap" >
+					<input type="text" placeholder="Write your message..." />
+					<button class="submit">
+						<i class="fa fa-paper-plane" aria-hidden="true"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class='chatbox'>第二塊</div>
+
+	</div>
+	
+	<script>
+	$("#nameBar").click(function(){
+		$("#msgbox1").toggleClass("active");
+		$("#msgbox1").toggleClass("active");
+		$("#inputbar").attr("display","block")		
+	})
+	
+	</script>
+</body>
+</html>

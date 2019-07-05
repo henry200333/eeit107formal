@@ -10,40 +10,42 @@ ul li{
 	padding:0;
 }
 
+button{
+		flex-grow:0;
+}
+
 #frame .content {
-	
 	border-radius: 10px 10px 0 0px;
-    width: 600px;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-    background: #E6EAEA;
-     align-items: center;
-    justify-content: center;
-    
+	width: 340px;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+	background: #E6EAEA;
+	flex-direction: column;
+	color: #32465a;
+	align-items: stretch;
+	letter-spacing: 0.1px;
+	 font-size: 1em;
+	   font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+	   
 }
 
 /*要更改在div*/
 body {
-/*     display: flex; */
-   
-   
-    background: #27ae60;
-    font-family: "proxima-nova", "Source Sans Pro", sans-serif;
-    font-size: 1em;
-    letter-spacing: 0.1px;
-    color: #32465a;
-    text-rendering: optimizeLegibility;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-    -webkit-font-smoothing: antialiased;
+	display: flex;
+    background: #27ae60;  
+    align-items: flex-end;
+    
 }
 
 /*名稱欄*/
 #frame .content .contact-profile {
+
     width: 100%;
     height: 60px;
     line-height: 60px;
     background: #f5f5f5;
+    
 }
 
 /*名稱欄照片*/
