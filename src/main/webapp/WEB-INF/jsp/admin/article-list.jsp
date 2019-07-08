@@ -115,16 +115,17 @@
         prmNames: {search: null, nd: null},
         pager: '#pager',
         page: 1,
-        autowidth: true,
+        autowidth: false,
         shrinkToFit: true,
         height: 'auto',
         rowNum: 5,
         rowList: [5, 10, 20, 50],
-//         loadonce:true,
         sortname: 'id',
         sortorder: "asc",
         viewrecords: true,
-//         altRows : true
+        loadComplete: function () {
+            reSizejqGridWidth();
+        }
     });
 	 
 	 function editBT(cellvalue, options, rowObject) {
@@ -179,7 +180,19 @@
 			}
 		};
 		<!--按Enter搜尋 尾-->
-	
+		<!-- 響應式網頁測試  158~160行增加loadComplete參數    149行autowidth改false 再加入以下code-->
+		const grid_selector = "#articleGrid"; 
+		const $grid = jQuery(grid_selector);
+		    function reSizejqGridWidth()
+		    { 
+		        //重新抓jqGrid容器的新width
+		        let newWidth = $grid.closest(".ui-jqgrid").parent().width();
+		        //是否縮齊column(相當於shrinkToFit)
+		        let shrinkToFit = true;
+		        $grid.jqGrid("setGridWidth", newWidth, shrinkToFit);
+		    };
+		    $(window).on("resize", reSizejqGridWidth);
+		<!-- 響應式網頁測試 -->
 	</script>
 </body>
 </html>
