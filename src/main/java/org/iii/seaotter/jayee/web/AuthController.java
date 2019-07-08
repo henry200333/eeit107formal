@@ -4,13 +4,11 @@ import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
-import org.iii.seaotter.jayee.dao.SecurityUserDao;
-import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +20,7 @@ public class AuthController {
 
 	@Autowired
 	SecurityUserService securityUserService;
-
+	
 	@GetMapping("/login")
 	public String loginPage() {
 		return "/user/user-login";

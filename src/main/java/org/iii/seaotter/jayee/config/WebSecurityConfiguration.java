@@ -1,6 +1,9 @@
 package org.iii.seaotter.jayee.config;
 
+import javax.sql.DataSource;
+
 import org.iii.seaotter.jayee.service.SecurityUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,7 +17,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
-
+	
+	@Autowired
+	private DataSource dataSource;
+	
 	@Bean
 	public UserDetailsService userDetailsService() {
 		return new SecurityUserService();
@@ -27,16 +33,39 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("admin").password("$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G").roles("ADMIN");
+		
+		auth.jdbcAuthentication().dataSource(dataSource)
+		.usersByUsernameQuery("select account, password, enabled"
+                + " from security_user where account=?")
+		.authoritiesByUsernameQuery("select account, code" 
+                + " from security_role where account=?");
+		
+//		auth.inMemoryAuthentication()
+//		.withUser("admin")
+//		.password("$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G")
+//		.roles("ADMIN");
+		
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
+//		http.authorizeRequests()
+//		.antMatchers("admin/.*").permitAll()
+//		.anyRequest().authenticated()
+//		.and()
+//		.formLogin()
+//		.loginPage("/login")
+//		.permitAll()
+//		.and()
+//		.logout()
+//		.permitAll();
+		
 		http.authorizeRequests()
 		.anyRequest().hasAnyRole("ADMIN", "USER")
 		.and().formLogin()
-		//.loginPage(loginPage)
+		//.loginPage("/login")
+		.permitAll()
 		.and().logout().permitAll()
 		.logoutSuccessUrl("/login")
 		.and().csrf().disable();

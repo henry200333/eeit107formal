@@ -72,11 +72,11 @@
 											aria-haspopup="true">請選擇TYPE</button>
 										<div class="dropdown-menu"
 											aria-labelledby="dropdownMenuButton">
-											<button type="button" class="dropdown-item"	onclick="(function(){$('#type').val('Artist')})()">Artist</button>
-											<button type="button" class="dropdown-item"	onclick="(function(){$('#type').val('Activity')})()">Activity</button>
-											<button type="button" class="dropdown-item" onclick="(function(){$('#type').val('Performance')})()">Performance</button>
-											<button type="button" class="dropdown-item" onclick="(function(){$('#type').val('Vender')})()">Vender</button>
-											<button type="button" class="dropdown-item"	onclick="(function(){$('#type').val('Other')})()">Other</button>
+											<button type="button" class="dropdown-item"	onclick="(function(){$('#articleType').val('Artist')})()">Artist</button>
+											<button type="button" class="dropdown-item"	onclick="(function(){$('#articleType').val('Activity')})()">Activity</button>
+											<button type="button" class="dropdown-item" onclick="(function(){$('#articleType').val('Performance')})()">Performance</button>
+											<button type="button" class="dropdown-item" onclick="(function(){$('#articleType').val('Vender')})()">Vender</button>
+											<button type="button" class="dropdown-item"	onclick="(function(){$('#articleType').val('Other')})()">Other</button>
 										</div>
 									</div>
 								</div>

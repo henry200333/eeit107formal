@@ -1,13 +1,8 @@
-INSERT INTO security_user(account, password, member_name) values
-('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 'admin');
+INSERT INTO security_role(account, code) values
+('admin', 'ROLE_ADMIN')
 
-INSERT INTO security_role(code) values
-('ADMIN'),
-('USER');
-
-INSERT INTO user_role(user_id, role_id) values
-(1,1),
-(1,2);
+INSERT INTO security_user(account, password, enabled) values
+('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 1);
 
 INSERT INTO article (name, content, article_type, ref_id, count) values
   ('EZ5音樂餐廳徵求臨時鼓手一名', '2019/8/8 將舉辦慈善表演，徵求鼓手一名，詳洽02-12345678，MR.口鳥先生', 'Vender', 1, 2),

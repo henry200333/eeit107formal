@@ -9,15 +9,16 @@ import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.common.Message;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.service.PerformanceService;
+import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -27,6 +28,9 @@ public class PerformanceController {
 	@Autowired
 	private PerformanceService performanceService;
 	
+	@Autowired
+	private SecurityUserService securityUserService;
+	
 	@RequestMapping("/add")
 	public String add() {
 		return "/user/user-performance-add";
@@ -35,7 +39,15 @@ public class PerformanceController {
 	@GetMapping("/top")
 	@ResponseBody
 	public AjaxResponse<Performance> performanceTop() {
-		System.out.println("top");
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
+			    .getAuthentication()
+			    .getPrincipal();
+		String user = userDetails.getUsername();
+		String password = userDetails.getPassword();
+		System.out.println(user+"---------------------");
+		System.out.println(password+"---------------------");
+		UserDetails d = securityUserService.loadUserByUsername(user);
+		System.out.println(d+"---------------------");
 		AjaxResponse<Performance> res = new AjaxResponse<>();
 		res.setType(AjaxResponseType.SUCCESS);
 		res.setData(performanceService.getTopByOrderByViewsDesc());

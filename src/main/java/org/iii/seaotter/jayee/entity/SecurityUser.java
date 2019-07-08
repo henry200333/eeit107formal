@@ -6,7 +6,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,8 +37,10 @@ public class SecurityUser implements UserDetails {
 	private String account;
 	@Column(name = "password")
 	private String password;
-	@Column(name = "member_name")
-	private String memberName;
+	@Column(name = "enabled")
+	private Boolean enabled;
+//	@Column(name = "member_name")
+//	private String memberName;
 //	@Column(name = "gender")
 //	private String gender;
 //	@Column(name = "photo")

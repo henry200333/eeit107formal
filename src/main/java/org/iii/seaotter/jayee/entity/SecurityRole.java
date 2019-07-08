@@ -9,15 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -29,12 +26,16 @@ public class SecurityRole implements GrantedAuthority {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@JsonBackReference
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "role_id")
 	private Long roleId;
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy="roles")
-		private Set<SecurityUser> users = new HashSet<SecurityUser>();
+	@Column(name = "account")
+	private String account;
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
+	private Set<SecurityUser> users = new HashSet<SecurityUser>();
 
 	@Column(name = "code")
 	private String code;
