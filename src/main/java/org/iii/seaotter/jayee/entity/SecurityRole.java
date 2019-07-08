@@ -33,9 +33,7 @@ public class SecurityRole implements GrantedAuthority {
 	@Column(name = "role_id")
 	private Long roleId;
 
-	@ManyToMany
-	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "role_id") })
+	@ManyToMany(fetch=FetchType.LAZY, mappedBy="roles")
 	private Set<SecurityUser> users = new HashSet<SecurityUser>();
 
 	@Column(name = "code")

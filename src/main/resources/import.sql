@@ -1,9 +1,11 @@
-INSERT INTO security_user(account, password, member_name) values
-('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 'admin');
+
 
 INSERT INTO security_role(code) values
 ('ADMIN'),
 ('USER');
+
+INSERT INTO security_user(account, password, member_name) values
+('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 'admin');
 
 INSERT INTO user_role(user_id, role_id) values
 (1,1),
