@@ -1,7 +1,6 @@
 package org.iii.seaotter.jayee.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.iii.seaotter.jayee.dao.LocationDao;
 import org.iii.seaotter.jayee.entity.Location;
@@ -38,6 +37,22 @@ public class LocationService {
 	}
 	public List<Location> getByLocationName(String locationName){
 		return locationDao.findByLocationNameIs(locationName);	
+	}
+	
+	public Location insert(Location entity) {
+		Location location = locationDao.save(entity);
+		return location;
+	}
+
+	public Location update(Location entity) {
+		Location location = locationDao.save(entity);
+		return location;
+	}
+
+	public void delete(Location entity) {
+		if (locationDao.findById(entity.getLocationId()) != null) {
+			locationDao.delete(entity);
+		}
 	}
 	
 	
