@@ -24,12 +24,12 @@ public class AuthController {
 	public String loginPage() {
 		return "/user/user-login";
 	}
-	
+
 	@GetMapping("/index")
 	public String indexPage() {
 		return "/user/user-index";
 	}
-	
+
 	@GetMapping("/registration")
 	public String showRegistrationForm() {
 		return "/user/registration";
