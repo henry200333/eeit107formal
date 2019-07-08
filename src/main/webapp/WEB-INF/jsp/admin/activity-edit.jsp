@@ -92,17 +92,37 @@
 									name="awesomeNum" class="form-control form-control-user"
 									value="${activityParam.awesomeNum}"  />
 						</div>
+						<div class="col-sm-3 mb-3 mb-sm-0"></div>
 						<div class="col-sm-3 mb-3 mb-sm-0">
 						<label for="badNum">Bad Num:</label> <input id="badNum" type="text"
 									name="badNum" class="form-control form-control-user"
 									value="${activityParam.badNum}"  />
 						</div>
+					
+						</div>
+						
+						<div class="form-group row">
+						<div class="col-sm-2 mb-3 mb-sm-0">
+						<label for="city">縣市:</label>
+						<select name="city" id="city"  class="form-control"></select>
+						</div>
+						<div class="col-sm-2 mb-3 mb-sm-0">
+						<label for="district">鄉鎮市區:</label>
+						<select  name="district" id="district"  class="form-control"></select>
+						</div>
+						<div class="col-sm-2 mb-3 mb-sm-0">
+						<label for="locationName">活動地點:</label>
+						<select  name="locationName" id="locationName"  class="form-control"></select>
+						</div>
 						<div class="col-sm-3 mb-3 mb-sm-0">
-						<label for="coverImage">Cover Image:</label> <input id="coverImage" type="text"
-									name="coverImage" class="form-control form-control-user"
-									placeholder="coverImage" value="${activityParam.coverImage}" />
+						<label for="address">地址:</label>
+						<input type="text"  name="address" id="address"  class="form-control" readonly="true"></select>
 						</div>
+						
+						
 						</div>
+						
+						
 						
 						
 						
@@ -178,5 +198,102 @@
 					$("#beginTime").datepicker("option", "maxDate", selectedDate)}
 		    });
 		  });
+	
+// 	$.ajax({
+// 		url:"/admin/activity/location",
+// 		type:"POST",
+// 		success: function(data){
+// 			var txt="";		
+// 			console.log(data);
+// 			$.each(data,function(index,value){
+// 				txt += 	"<option value='"+value['id']+"'>"+ value['locationName']+"</option>"			
+// 				})	
+// 			$("select").html(txt);
+// 		}
+// 	})
+	
+	 $(document).ready(function(){
+		 $.ajax({
+				url:"/admin/activity/location/city",
+				type:"POST",
+				success: function(data){
+					var txt="";		
+					console.log(data);
+					txt += '<option value="" style="display: none">請選擇縣市</option>';
+					$.each(data,function(index,value){
+						txt += 	"<option value='"+ value +"'>"+ value +"</option>"			
+						})	
+					$("#city").html(txt);
+					
+				}
+			})
+                
+                $('#city').change(function(){
+                    var CName= $('#city').val();
+                    $.ajax({
+                        type: "POST",
+                        url: '/admin/activity/location/'+ CName,
+                        cache: false,
+                        error: function(){
+                            alert('發生錯誤');
+                        },
+                        success: function(data){
+        					var txt="";		
+        					console.log(data);
+        					txt += '<option value="" style="display: none">請選擇鄉鎮市區</option>';
+        					$.each(data,function(index,value){
+        						txt += 	"<option value='"+ value +"'>"+ value +"</option>"			
+        						})	
+        					$("#district").html(txt);
+        					
+        				}
+                    });
+                });
+                $('#district').change(function(){
+                    var DisN= $('#district').val();
+                    $.ajax({
+                        type: "POST",
+                        url: '/admin/activity/location/district/'+ DisN,
+                        cache: false,
+                        error: function(){
+                            alert('Ajax request 發生錯誤');
+                        },
+                        success: function(data){
+        					var txt="";		
+        					console.log(data);
+        					txt += '<option value="" style="display: none">請選擇活動地點</option>';
+        					$.each(data,function(index,value){
+        						txt += 	"<option value='"+ value['locationName'] +"'>"+ value['locationName'] +"</option>"			
+        						})	
+        					$("#locationName").html(txt);
+        					
+        				}
+                    });
+                });
+                
+                $("#locationName").change(function(){
+                    var LN= $("#locationName").val();
+                    $.ajax({
+                        type: "POST",
+                        url: '/admin/activity/location/address/'+ LN,
+                        cache: false,
+                        error: function(){
+                            alert('發生錯誤');
+                        },
+                        success: function(data){
+                        	var txt="";		
+        					$.each(data,function(index,value){
+        						txt = value['address'];			
+        						})	
+        					$("#address").val(txt);
+        					
+        				}
+                    });
+                });
+                
+            });
+	
+	
+	
 </script>
 </html>
