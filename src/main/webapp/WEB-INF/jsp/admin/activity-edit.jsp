@@ -281,10 +281,8 @@
                             alert('發生錯誤');
                         },
                         success: function(data){
-                        	var txt="";		
-        					$.each(data,function(index,value){
-        						txt = value['address'];			
-        						})	
+                        	var txt="";
+        					alert(JSON.stringify(data));
         					$("#address").val(txt);
         					
         				}
