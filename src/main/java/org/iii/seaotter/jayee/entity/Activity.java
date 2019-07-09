@@ -35,7 +35,7 @@ public class Activity {
 	
 	//表演者編號-外鍵
 	@ManyToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "artist_id")
 	private Artist artistId;
 	
 	//表演者名稱
@@ -70,6 +70,5 @@ public class Activity {
 	@Column(name="bad_Num")
 	private Long badNum;
 			
-	
-		
+
 }

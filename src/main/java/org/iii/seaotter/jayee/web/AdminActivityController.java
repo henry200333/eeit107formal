@@ -122,6 +122,7 @@ public class AdminActivityController {
 	@RequestMapping("/query")
 	@ResponseBody
 	public GridResponse<Activity> query(@RequestParam(value="userInput", defaultValue="") String userInput,
+								@RequestParam(value="artistSearch", defaultValue="") String artistSearch,
 								@RequestParam(value="page") Integer page, 
 								@RequestParam(value="rows") Integer size,
 								@RequestParam(value="sidx") String sidx,
@@ -139,9 +140,10 @@ public class AdminActivityController {
 				Predicate where = cb.conjunction();
 				if (!StringUtils.isEmpty(userInput)) {
 					where = cb.and(cb.like(root.get("name"), "%" + userInput + "%"));
-					where = cb.or(where,cb.like(root.get("artist"), "%" + userInput +"%"));
+//					where = cb.or(where,cb.like(root.get("artist"), "%" + userInput +"%"));
 					where = cb.or(where,cb.like(root.get("description"), "%" + userInput +"%"));
 				}
+				
 				return where;
 			}
 		};

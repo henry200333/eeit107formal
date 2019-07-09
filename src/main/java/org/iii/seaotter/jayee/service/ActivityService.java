@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.iii.seaotter.jayee.dao.ActivityDao;
 import org.iii.seaotter.jayee.entity.Activity;
+import org.iii.seaotter.jayee.entity.Artist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -56,5 +57,7 @@ public class ActivityService {
 		
 	}
 	
-	
+	public List<Activity> getByArtistId(Artist artist){
+		return activityDao.findByArtistId(artist);
+	}
 }
