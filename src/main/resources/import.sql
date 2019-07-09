@@ -1,8 +1,17 @@
 INSERT INTO security_role(account, code) values
-('admin', 'ROLE_ADMIN')
+('admin', 'ROLE_ADMIN'),
+('gary', 'ROLE_USER'),
+('123', 'ROLE_ADMIN');
 
 INSERT INTO security_user(account, password, enabled) values
-('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 1);
+('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 1),
+('gary','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 1),
+('123', '$2a$10$weN4FB8uqq1jpv/7HEPBDuYMuw2xbMCBGKx3xYfWk3Da/UoVFS/7W', 1);
+
+INSERT INTO user_role(user_id, role_id) values
+(1,1),
+(2,2),
+(3,1);
 
 INSERT INTO article (name, content, article_type, ref_id, count) values
   ('EZ5音樂餐廳徵求臨時鼓手一名', '2019/8/8 將舉辦慈善表演，徵求鼓手一名，詳洽02-12345678，MR.口鳥先生', 'Vender', 1, 2),
@@ -34,22 +43,18 @@ INSERT INTO article (name, content, article_type, ref_id, count) values
  ('張添財',32548,'鬼島'),
  ('敏敏',12345,'大都')
  
- INSERT INTO activity (name,artist,description,begin_time,end_time,awesome_Num,bad_Num) values
- ('裝銅人','王世堅','裝了就硬幫幫','2019/03/28 12:03','2019/05/28 12:30',53,15),
- ('跳火圈','柯文哲','沒事就愛跳火圈','2019/02/22 23:35','2019/02/23 07:35',109,25),
- ('唱情歌','呂秀蓮','在北車唱情歌','2019/07/14 07:35','2019/07/14 17:15',77,35),
- ('打工賺錢','蔡英文','賺錢選粽痛','2019/06/27 23:35','2019/06/28 07:35',127,25),
- ('裝印地安人','郭台銘','One little two little three little indian..','2019/04/25 07:35','2019/05/01 17:15',203,35),
- ('裝銅人','王世堅','裝了就硬幫幫','2019/03/28 12:03','2019/05/28 12:30',53,15),
- ('跳火圈','柯文哲','沒事就愛跳火圈','2019/02/22 23:35','2019/02/23 07:35',109,25),
- ('唱情歌','呂秀蓮','在北車唱情歌','2019/07/14 07:35','2019/07/14 17:15',77,35),
- ('打工賺錢','蔡英文','賺錢選粽痛','2019/06/27 23:35','2019/06/28 07:35',127,25),
- ('裝印地安人','郭台銘','One little two little three little indian..','2019/04/25 07:35','2019/05/01 17:15',203,35);
+ 
 
 insert into  Vender (name,address,max_people,phone,lat,lng) values
 ('EZ5音樂餐廳','106台北市大安區安和路二段211號',50,'0227383995',25.0260149,121.550337),
 ('Music Corner角落音樂餐廳',' 104台北市中山區建國北路一段156號',40,'0225043688',25.0516328,121.5341573),
 ('LOTUS 音樂餐廳','78號長安東路二段中山區台北市10491',60,' 0223468888',25.0483426,121.5317147);
+
+insert into  job (name,job_type,job_time,detal,vender_id) values
+('誠徵鼓手一名','音樂','2019-07-15 12:00:00','經驗要求5年以上',1),
+('誠徵吉他手一名','音樂','2019-07-16 12:00:00','經驗要求5年以上',1),
+('誠徵搞笑演員一名','搞笑','2019-07-17 12:00:00','jason',1);
+
 
 INSERT INTO Location (location_name,city,district,address) values
 ('北投公園','台北市','北投區','光明路、中山路'),
@@ -117,3 +122,14 @@ INSERT INTO Location (location_name,city,district,address) values
 ('貓空纜車','台北市','文山區','新光路二段8號');
 
 
+INSERT INTO activity (name,artist,description,begin_time,end_time,awesome_Num,bad_Num,id,location_id) values
+ ('裝銅人','王世堅','裝了就硬幫幫','2019/03/28 12:03','2019/05/28 12:30',53,15,1,1),
+ ('跳火圈','柯文哲','沒事就愛跳火圈','2019/02/22 23:35','2019/02/23 07:35',109,25,2,2),
+ ('唱情歌','呂秀蓮','在北車唱情歌','2019/07/14 07:35','2019/07/14 17:15',77,35,3,3),
+ ('打工賺錢','蔡英文','賺錢選粽痛','2019/06/27 23:35','2019/06/28 07:35',127,25,4,4),
+ ('裝印地安人','郭台銘','One little two little three little indian..','2019/04/25 07:35','2019/05/01 17:15',203,35,5,5),
+ ('裝銅人','王世堅','裝了就硬幫幫','2019/03/28 12:03','2019/05/28 12:30',53,15,4,4),
+ ('跳火圈','柯文哲','沒事就愛跳火圈','2019/02/22 23:35','2019/02/23 07:35',109,25,3,3),
+ ('唱情歌','呂秀蓮','在北車唱情歌','2019/07/14 07:35','2019/07/14 17:15',77,35,2,2),
+ ('打工賺錢','蔡英文','賺錢選粽痛','2019/06/27 23:35','2019/06/28 07:35',127,25,1,1),
+ ('裝印地安人','郭台銘','One little two little three little indian..','2019/04/25 07:35','2019/05/01 17:15',203,35,2,2);
