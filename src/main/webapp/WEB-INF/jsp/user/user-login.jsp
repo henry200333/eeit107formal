@@ -287,12 +287,15 @@ outline:none
 $(".btnnew").click(function(){
 	$(".btnnew").animate({bottom:'100px'},"slow",function(){
 		var txt="";
-		txt+="<div class='inputd' style='margin:auto;'>"
-		txt+="<input type='text' class='username' placeholder='User Name'><br>";
-		txt+="<input type='text' class='password' placeholder='Password'>";
+		txt+="<form action='/login' method='post'>";
+		txt+="<div class='inputd' style='margin:auto;'>";
+		txt+="<input type='text' id='username' name='username' class='username' placeholder='User Name'><br>";
+		txt+="<input type='password' id='password' name='password' class='password' placeholder='Password'>";
 		txt+="</div><a href='' class='forget'>Froget Password?</a>";
 		txt+="<img src='/resources/user-bootstrap/img/performance/facebook.gif' class='fb' title='Login with Facebook'>";
 		txt+="<img src='/resources/user-bootstrap/img/performance/google.gif' class='gmail' title='Login with Google'></div>";
+		txt+="<input type='submit' value='Submit' />"
+		txt+="</form>"
 		$("div#login").html(txt);
 	});
 	

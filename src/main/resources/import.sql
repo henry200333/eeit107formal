@@ -1,8 +1,17 @@
 INSERT INTO security_role(account, code) values
-('admin', 'ROLE_ADMIN')
+('admin', 'ROLE_ADMIN'),
+('gary', 'ROLE_USER'),
+('123', 'ROLE_ADMIN');
 
 INSERT INTO security_user(account, password, enabled) values
-('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 1);
+('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 1),
+('gary','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 1),
+('123', '$2a$10$weN4FB8uqq1jpv/7HEPBDuYMuw2xbMCBGKx3xYfWk3Da/UoVFS/7W', 1);
+
+INSERT INTO user_role(user_id, role_id) values
+(1,1),
+(2,2),
+(3,1);
 
 INSERT INTO article (name, content, article_type, ref_id, count) values
   ('EZ5音樂餐廳徵求臨時鼓手一名', '2019/8/8 將舉辦慈善表演，徵求鼓手一名，詳洽02-12345678，MR.口鳥先生', 'Vender', 1, 2),
@@ -50,6 +59,12 @@ insert into  Vender (name,address,max_people,phone,lat,lng) values
 ('EZ5音樂餐廳','106台北市大安區安和路二段211號',50,'0227383995',25.0260149,121.550337),
 ('Music Corner角落音樂餐廳',' 104台北市中山區建國北路一段156號',40,'0225043688',25.0516328,121.5341573),
 ('LOTUS 音樂餐廳','78號長安東路二段中山區台北市10491',60,' 0223468888',25.0483426,121.5317147);
+
+insert into  job (name,job_type,job_time,detal,vender_id) values
+('誠徵鼓手一名','音樂','2019-07-15 12:00:00','經驗要求5年以上',1),
+('誠徵吉他手一名','音樂','2019-07-16 12:00:00','經驗要求5年以上',1),
+('誠徵搞笑演員一名','搞笑','2019-07-17 12:00:00','jason',1);
+
 
 INSERT INTO Location (location_name,city,district,address) values
 ('北投公園','台北市','北投區','光明路、中山路'),
