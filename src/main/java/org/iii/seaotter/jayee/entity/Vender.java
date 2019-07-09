@@ -1,5 +1,6 @@
 package org.iii.seaotter.jayee.entity;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -42,10 +44,9 @@ public class Vender {
 	@Column(name="lng")
 	private Double lng;
 	
-
-	@OneToMany(mappedBy="vender",fetch=FetchType.LAZY)
 	@JsonBackReference
-	private Set<Job> jobs;
+	@OneToMany(mappedBy="vender",fetch=FetchType.LAZY)
+	private List<Job> jobs;
 	
 	
 	

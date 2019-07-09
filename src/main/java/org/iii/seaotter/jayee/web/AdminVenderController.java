@@ -68,6 +68,8 @@ public class AdminVenderController {
 		return "/admin/vender-maptest";
 	}
 	
+
+	
 	
 	@RequestMapping("/query")
 	@ResponseBody
@@ -98,7 +100,7 @@ public class AdminVenderController {
 			}
 		};
 		Page<Vender> result=venderService.getAll(specification,pageable);
-
+		System.out.println(result.getContent().get(0).getJobs().get(1).getVender().getName());
 		grid.setRows(result.getContent());
 		grid.setPage(page);
 		grid.setRecords(result.getTotalElements());
