@@ -37,7 +37,7 @@ public class Activity {
 	
 	//表演者編號-外鍵
 	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "artist_id", nullable = false, updatable = false, insertable = true)
+	@JoinColumn(name = "artist_id", updatable = false, insertable = true)
 	private Artist artistId;
 	
 	//表演者名稱
@@ -46,7 +46,7 @@ public class Activity {
 	
 	//場地編號-外鍵
 	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="location_id", nullable = false, updatable = false, insertable = true)
+	@JoinColumn(name="location_id", updatable = false, insertable = true)
 	private Location locationId;
 	
 	

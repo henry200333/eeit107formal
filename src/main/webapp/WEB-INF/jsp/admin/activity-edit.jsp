@@ -281,9 +281,7 @@
                             alert('發生錯誤');
                         },
                         success: function(data){
-                        	var txt="";
-        					alert(JSON.stringify(data));
-        					$("#address").val(txt);
+        					$("#address").val(data[0]['address']);
         					
         				}
                     });
