@@ -81,7 +81,10 @@
 									placeholder="phone" value="${venderparam.phone}"><span
 									style="color: red" id="phonecheck" class="check"></span>
 							</div>
-							<div class="col-sm-3 mb-3 mb-sm-0"></div>
+							<div class="col-sm-3 mb-3 mb-sm-0">
+							</div>
+						</div>
+						<div class="form-group row">
 						</div>
 						<div class="btn btn-primary btn-user btn-block" id="submit">
 						<label  >submit</label></div>

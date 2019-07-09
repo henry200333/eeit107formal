@@ -51,6 +51,12 @@ insert into  Vender (name,address,max_people,phone,lat,lng) values
 ('Music Corner角落音樂餐廳',' 104台北市中山區建國北路一段156號',40,'0225043688',25.0516328,121.5341573),
 ('LOTUS 音樂餐廳','78號長安東路二段中山區台北市10491',60,' 0223468888',25.0483426,121.5317147);
 
+insert into  job (name,job_type,job_time,detal,vender_id) values
+('誠徵鼓手一名','音樂','2019-07-15 12:00:00','經驗要求5年以上',1),
+('誠徵吉他手一名','音樂','2019-07-16 12:00:00','經驗要求5年以上',1),
+('誠徵搞笑演員一名','搞笑','2019-07-17 12:00:00','jason',1),
+
+
 INSERT INTO Location (location_name,city,district,address) values
 ('北投公園','台北市','北投區','光明路、中山路'),
 ('捷運北投站','台北市','北投區','光明路1號'),
