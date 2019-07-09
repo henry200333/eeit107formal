@@ -44,9 +44,7 @@ public class Vender {
 	@Column(name="lng")
 	private Double lng;
 	
-	@JsonBackReference
-	@OneToMany(mappedBy="vender",fetch=FetchType.LAZY)
-	private List<Job> jobs;
+
 	
 	
 	
