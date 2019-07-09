@@ -281,11 +281,7 @@
                             alert('發生錯誤');
                         },
                         success: function(data){
-                        	var txt="";		
-        					$.each(data,function(index,value){
-        						txt = value['address'];			
-        						})	
-        					$("#address").val(txt);
+        					$("#address").val(data[0]['address']);
         					
         				}
                     });
