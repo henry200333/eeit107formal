@@ -12,8 +12,10 @@ import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Artist;
+import org.iii.seaotter.jayee.entity.Location;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArtistService;
+import org.iii.seaotter.jayee.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -43,7 +45,8 @@ public class AdminActivityController {
 	private ActivityService activityService;
 	@Autowired
 	private ArtistService artistService;
-	
+	@Autowired
+	private LocationService locationService;
 	
 	@RequestMapping("/list")
 	public String listPage(Model model) {	
@@ -151,4 +154,35 @@ public class AdminActivityController {
 		gridResponse.setRecords(result.getTotalElements());
 		return gridResponse;
 	}
+	
+	@RequestMapping("/location")
+	@ResponseBody
+	public List<Location> getLocation(){
+		return locationService.getAll();
+	}
+	@RequestMapping("/location/city")
+	@ResponseBody
+	public List<String> getDistinctCity(){
+		return locationService.getDistinctCity();
+	}
+	
+	
+	@RequestMapping("/location/{city}")
+	@ResponseBody
+	public List<String> getDistinctDistrictByCity(@PathVariable String city){
+		return locationService.getDistinctDistrictByCity(city);
+	}
+	@RequestMapping("/location/district/{district}")
+	@ResponseBody
+	public List<Location> getByDistrict(@PathVariable String district){
+		return locationService.getByDistrict(district);
+	}
+	@RequestMapping("/location/address/{locationName}")
+	@ResponseBody
+	public List<Location> getByLocationName(@PathVariable String locationName){
+		return locationService.getByLocationName(locationName);
+	}
+
+	
+	
 }

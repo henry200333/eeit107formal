@@ -68,6 +68,8 @@ public class AdminVenderController {
 		return "/admin/vender-maptest";
 	}
 	
+
+	
 	
 	@RequestMapping("/query")
 	@ResponseBody
@@ -75,6 +77,7 @@ public class AdminVenderController {
 			@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size,
 			@RequestParam(value="sidx") String sidx,
 			@RequestParam(value="sord") String sord){
+		System.out.println("aa");
 		GridResponse<Vender> grid=new GridResponse<Vender>();
 		Sort sort=new Sort(Sort.Direction.ASC,sidx);
 		if("desc".equalsIgnoreCase(sord)){
@@ -97,6 +100,7 @@ public class AdminVenderController {
 			}
 		};
 		Page<Vender> result=venderService.getAll(specification,pageable);
+		System.out.println(result.getContent().get(0).getJobs().get(1).getVender().getName());
 		grid.setRows(result.getContent());
 		grid.setPage(page);
 		grid.setRecords(result.getTotalElements());

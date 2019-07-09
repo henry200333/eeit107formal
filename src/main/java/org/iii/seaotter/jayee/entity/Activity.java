@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -32,19 +34,19 @@ public class Activity {
 	private String name;
 	
 	//表演者編號-外鍵
-//	@ManyToOne
-//	@JoinColumn(name = "artist_id")
-//	@JsonBackReference
-	@Column(name = "artist_id")
-	private Long artistId;
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private Artist artistId;
 	
 	//表演者名稱
 	@Column(name="artist")
 	private String artist;
 	
-	//活動地點
-	@Column(name="location")
-	private String location;
+	//場地編號-外鍵
+	@ManyToOne
+	@JoinColumn(name="location_id")
+	private Location locationId;
+	
 	
 	//活動描述
 	@Column(name="description")
