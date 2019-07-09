@@ -22,11 +22,6 @@ public class AuthController {
 
 	@GetMapping("/login")
 	public String loginPage() {
-		return "/user/indextest";
-	}
-
-	@GetMapping("/index")
-	public String indexPage() {
 		return "/user/index";
 	}
 
