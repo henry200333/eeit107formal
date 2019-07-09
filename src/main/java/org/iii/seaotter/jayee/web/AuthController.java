@@ -7,7 +7,6 @@ import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,10 +19,15 @@ public class AuthController {
 
 	@Autowired
 	SecurityUserService securityUserService;
-	
+
 	@GetMapping("/login")
 	public String loginPage() {
 		return "/user/user-login";
+	}
+
+	@GetMapping("/index")
+	public String indexPage() {
+		return "/user/user-index";
 	}
 
 	@GetMapping("/registration")
