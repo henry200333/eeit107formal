@@ -1,9 +1,7 @@
 package org.iii.seaotter.jayee.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,8 +34,8 @@ public class Activity {
 	private String name;
 	
 	//表演者編號-外鍵
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "artist_id", updatable = false, insertable = true)
+	@ManyToOne
+	@JoinColumn(name = "id")
 	private Artist artistId;
 	
 	//表演者名稱
@@ -45,8 +43,8 @@ public class Activity {
 	private String artist;
 	
 	//場地編號-外鍵
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="location_id", updatable = false, insertable = true)
+	@ManyToOne
+	@JoinColumn(name="location_id")
 	private Location locationId;
 	
 	
