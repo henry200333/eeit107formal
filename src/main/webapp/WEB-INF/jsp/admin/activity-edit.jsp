@@ -36,7 +36,7 @@
 					</div>
 
 					<!-- Return to Activity -->
-					<a href="list" class="btn btn-info btn-icon-split"> <span
+					<a href="/admin/activity/list" class="btn btn-info btn-icon-split"> <span
 						class="icon text-white-50"> <i class="fas fa-reply"></i>
 					</span> <span class="text">Return to Activity</span>
 					</a>
