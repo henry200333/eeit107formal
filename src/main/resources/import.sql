@@ -63,7 +63,7 @@ insert into  Vender (name,address,max_people,phone,lat,lng) values
 insert into  job (name,job_type,job_time,detal,vender_id) values
 ('誠徵鼓手一名','音樂','2019-07-15 12:00:00','經驗要求5年以上',1),
 ('誠徵吉他手一名','音樂','2019-07-16 12:00:00','經驗要求5年以上',1),
-('誠徵搞笑演員一名','搞笑','2019-07-17 12:00:00','jason',1),
+('誠徵搞笑演員一名','搞笑','2019-07-17 12:00:00','jason',1);
 
 
 INSERT INTO Location (location_name,city,district,address) values

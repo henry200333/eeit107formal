@@ -53,7 +53,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.anyRequest().hasAnyRole("ADMIN", "USER")
 		.and()
 		.formLogin()
-		.loginPage("/login")
+//		.loginPage("/login")
 		.failureUrl("/login")
 		.defaultSuccessUrl("/admin/artist/list")
 		.permitAll()
