@@ -4667,9 +4667,27 @@ img.wp-smiley, img.emoji {
 						</form>
 					</div>
 				</div>
+
 				<div class="tab-pane" id="divi">
 					<div class="sh-login-popup-content">
-						<p id="reg_passmail">Registration is closed.</p>
+					<form name="registerform" id="registerform"
+							action="/register"
+							method="post">
+							<p class="login-username">
+								<label for="register_account">Email Address</label> <input
+									type="email" name="register_account" id="register_account" class="input" value=""
+									size="20" />
+							</p>
+							<p class="login-password">
+								<label for="register_password">Password</label> <input type="password"
+									name="register_password" id="register_password" class="input" value="" size="20" />
+							</p>
+							<p class="login-submit">
+								<input type="submit" name="wp-submit" id="wp-submit"
+									class="button button-primary" value="Register" />
+							</p>
+						</form>
+<!-- 						<p id="reg_passmail">Registration is closed.</p> -->
 					</div>
 				</div>
 			</div>
