@@ -66,9 +66,9 @@ public class PerformanceService {
 		return result;
 	}
 	
-	public void delete(Performance entity) {
-		if(performanceDao.findById(entity.getId())!=null) {
-			performanceDao.delete(entity);
+	public void deleteById(Long id) {
+		if(performanceDao.findById(id)!=null) {
+			performanceDao.deleteById(id);
 			
 		}
 	

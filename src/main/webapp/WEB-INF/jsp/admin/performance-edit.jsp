@@ -49,6 +49,9 @@
 					<form id="form" class="user"
 						action="/admin/performance/update" method="POST">
 						<input type="hidden" id="id" name="id" value="${performance.id}" />
+						<input type="hidden" id="views" name="views" value="${performance.views}" />
+						<input type="hidden" id="likes" name="likes" value="${performance.likes}" />
+						<input type="hidden" id="unlikes" name="unlikes" value="${performance.unlikes}" />
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
 							<label for="context">Title:</label>

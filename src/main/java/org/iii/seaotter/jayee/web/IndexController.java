@@ -51,10 +51,6 @@ public class IndexController {
 		return "/user/user-index";
 	}
 	
-	@RequestMapping("/login")
-	public String login() {
-		return "/user/user-login";
-	}
 	
 	@RequestMapping("/performancetop")
 	@ResponseBody
