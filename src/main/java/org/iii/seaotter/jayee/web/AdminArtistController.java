@@ -1,6 +1,7 @@
 package org.iii.seaotter.jayee.web;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -11,8 +12,11 @@ import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
+import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.common.GridResponse;
+import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Artist;
+import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,6 +49,9 @@ public class AdminArtistController {
 
 	@Autowired
 	private ArtistService artistService;
+
+	@Autowired
+	private ArticleService articleService;
 
 	@RequestMapping("/list")
 	public String listPage(Model model) {
@@ -134,6 +141,14 @@ public class AdminArtistController {
 			artistService.delete(artist);
 			ajaxRes.setType(AjaxResponseType.SUCCESS);
 			ajaxRes.setData(artist);
+			//begin of cascade.delete article
+			List<Article> articleList = articleService.getByRefIdAndType(artist.getId(), ArticleType.Artist);
+			if(articleList != null && articleList.size() != 0) {
+				for (Article article : articleList) {
+					articleService.delete(article);
+				}
+			}
+			//end of cascade.delete article
 		} else {
 			ajaxRes.setType(AjaxResponseType.ERROR);
 		}
