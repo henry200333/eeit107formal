@@ -40,15 +40,10 @@ public class IndexController {
 	@Autowired
 	private PerformanceService performanceService;
 	
+	
 	@RequestMapping("/index")
-	public String index(HttpServletRequest request) {
-		
-		String username  = request.getParameter("username");
-		if("SeaOtter".equals(username))
-			return "redirect:/admin/artist/list";
-		
-		else
-		return "/user/user-index";
+	public String indextest() {
+		return "/user/index";
 	}
 	
 	

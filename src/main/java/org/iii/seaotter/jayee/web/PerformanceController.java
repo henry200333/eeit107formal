@@ -111,8 +111,4 @@ public class PerformanceController {
 		return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	}
 	
-	@RequestMapping("/indextest")
-	public String indextest() {
-		return "/user/indextest";
-	}
 }

@@ -22,7 +22,7 @@ public class AuthController {
 
 	@GetMapping("/login")
 	public String loginPage() {
-		return "/user/login";
+		return "/user/indextest";
 	}
 
 	@GetMapping("/index")
