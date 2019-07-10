@@ -103,12 +103,14 @@ public class AdminActivityController {
 	public AjaxResponse<Activity> delete(@PathVariable Long id) {
 		AjaxResponse<Activity> aJaxResp=new AjaxResponse<>();		
 		activityService.deleteById(id);
+		//begin of cascade.delete article
 		List<Article> articleList = articleService.getByRefIdAndType(id, ArticleType.Activity);
 		if(articleList != null && articleList.size() != 0) {
 			for (Article article : articleList) {
 				articleService.delete(article);
 			}
 		}
+		//end of cascade.delete article
 			aJaxResp.setType(AjaxResponseType.SUCCESS);
 		return aJaxResp;
 	}
