@@ -113,16 +113,28 @@
 	<script src="/resources/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
 
 	</div>
+	<button type="button" id='t0709'>click123</button>
 	<!-- End of Page Wrapper -->
 	<script>
+	
+		$("#t0709").click(function(){
+			alert(123);
+			$.ajax({
+				url : "/admin/forum/happy",
+				type : "GET",
+				contentType : "application/json",
+			})
+
+		})
+	
+
 		$("#forumGrid").jqGrid({
 			iconSet : "fontAwesome",
 			url : '/admin/forum/query',
 			datatype : 'json',
 			mtype : 'GET',
 			styleUI : 'Bootstrap4',
-			colModel : [
-			{
+			colModel : [ {
 				name : 'id',
 				index : 'id',
 				width : 5
@@ -155,8 +167,7 @@
 				name : 'likeCount',
 				index : 'likeCount',
 				width : 15
-			},
-			{
+			}, {
 				name : 'dislikeCount',
 				index : 'dislikeCount',
 				width : 15,
@@ -219,14 +230,14 @@
 				}
 			})
 		}
-	
-		$("#searchBT").click(function(){
+
+		$("#searchBT").click(function() {
 			console.log(JSON.parse($("#searchForm").serializeObject()));
-			$('#forumGrid').jqGrid("clearGridData") ;
-			$('#forumGrid').jqGrid('setGridParam',{postData:JSON.parse($("#searchForm").serializeObject())}).trigger("reloadGrid");
+			$('#forumGrid').jqGrid("clearGridData");
+			$('#forumGrid').jqGrid('setGridParam', {
+				postData : JSON.parse($("#searchForm").serializeObject())
+			}).trigger("reloadGrid");
 		});
-		
-		
 
 		// 		$("#searchButton").click(function() {
 		// 			$.ajax({				

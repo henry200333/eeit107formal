@@ -193,7 +193,7 @@ body {
 		<div class="chatbox">
 			<div class="nameBar" id='nameBar'>
 				<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-				<p>Apple</p>
+				<p>Banana</p>
 			</div>
 			<div class='messages' id='msgbox1'>
 				<ul>
@@ -235,23 +235,20 @@ body {
         var urlPrefix ='ws://localhost/chat-room/';
         var ws = null;
         $(function(){
-            var username = "banana";
+            var username = "apple";
             var url = urlPrefix + username;
             ws = new WebSocket(url);
             ws.onopen = function () {
                 console.log("建立 websocket 连接...");
             };
             ws.onmessage = function(event){
-            	
                 var txt = "";
                 txt += '<li class="replies"><img src="http://emilcarlsson.se/assets/harveyspecter.png" alt=""/><p>';
                 txt += event.data;
                 txt += '</p></li>';
-                
                 $('#msgbox1 ul').append(txt);
-                console.log(55688778);
-               
                 $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, "fast");
+                
             };
             ws.onclose = function(){
                  console.log("关闭 websocket 连接...");
@@ -260,22 +257,27 @@ body {
         
         function newMessage() {
         	message = $("#message-input").val();
-        	 var txt = "";
-             txt += '<li class="replies"><img src="http://emilcarlsson.se/assets/harveyspecter.png" alt=""/><p>';
-             txt += message;
-             txt += '</p></li>';
-             $('#msgbox1 ul').append(txt);
-        	$('#message-input').val(null); //清空輸入;
+
+        	$('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
+        	$('.message-input input').val(null); //清空輸入;
+        	$('.contact.active .preview').html('<span>You: </span>' + message);
         	$(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, "fast");
         };
+        //客户端发送消息到服务器
+        $('#btn_send_all').click(function(){
+            var msg = $('#in_room_msg').val();
+            if(ws){
+                ws.send(msg);
+            }
+        });
 
         $("#sendMsg").click(function() {
-           var sender = "banana";
-           var receive = "apple";
-           var message = $("#message-input").val();         
+           var sender = banana;
+           var receive = apple;
+            var message = $("#in_point_message").val();
            $.get("/chat-room/"+sender+"/to/"+receive+"?message="+message,function() {
+              alert("发送成功...")
            })
-           newMessage();
         })
 
     })
