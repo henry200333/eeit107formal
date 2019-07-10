@@ -11,6 +11,7 @@ import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -28,8 +29,6 @@ public class PerformanceController {
 	@Autowired
 	private PerformanceService performanceService;
 	
-	@Autowired
-	private SecurityUserService securityUserService;
 	
 	@RequestMapping("/add")
 	public String add() {
@@ -39,15 +38,15 @@ public class PerformanceController {
 	@GetMapping("/top")
 	@ResponseBody
 	public AjaxResponse<Performance> performanceTop() {
-		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
-			    .getAuthentication()
-			    .getPrincipal();
-		String user = userDetails.getUsername();
-		String password = userDetails.getPassword();
-		System.out.println(user+"---------------------");
-		System.out.println(password+"---------------------");
-		UserDetails d = securityUserService.loadUserByUsername(user);
-		System.out.println(d+"---------------------");
+//		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
+//			    .getAuthentication()
+//			    .getPrincipal();
+//		String user = userDetails.getUsername();
+//		String password = userDetails.getPassword();
+//		System.out.println(user+"---------------------");
+//		System.out.println(password+"---------------------");
+//		UserDetails d = securityUserService.loadUserByUsername(user);
+//		System.out.println(d+"---------------------");
 		AjaxResponse<Performance> res = new AjaxResponse<>();
 		res.setType(AjaxResponseType.SUCCESS);
 		res.setData(performanceService.getTopByOrderByViewsDesc());
@@ -104,5 +103,16 @@ public class PerformanceController {
 		result.setData(performanceService.insert(performance));
 		return result;
 
+	}
+	
+	@RequestMapping("/userinf")
+	@ResponseBody
+	public Object getCurrenyUser() {
+		return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	}
+	
+	@RequestMapping("/indextest")
+	public String indextest() {
+		return "/user/indextest";
 	}
 }
