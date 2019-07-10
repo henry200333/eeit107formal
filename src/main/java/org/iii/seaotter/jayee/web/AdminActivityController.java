@@ -9,11 +9,14 @@ import javax.persistence.criteria.Root;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
+import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Activity;
+import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.Location;
 import org.iii.seaotter.jayee.service.ActivityService;
+import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.ArtistService;
 import org.iii.seaotter.jayee.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +50,8 @@ public class AdminActivityController {
 	private ArtistService artistService;
 	@Autowired
 	private LocationService locationService;
+	@Autowired
+	private ArticleService articleService;
 	
 	@RequestMapping("/list")
 	public String listPage(Model model) {	
@@ -98,6 +103,14 @@ public class AdminActivityController {
 	public AjaxResponse<Activity> delete(@PathVariable Long id) {
 		AjaxResponse<Activity> aJaxResp=new AjaxResponse<>();		
 		activityService.deleteById(id);
+		//begin of cascade.delete article
+		List<Article> articleList = articleService.getByRefIdAndType(id, ArticleType.Activity);
+		if(articleList != null && articleList.size() != 0) {
+			for (Article article : articleList) {
+				articleService.delete(article);
+			}
+		}
+		//end of cascade.delete article
 			aJaxResp.setType(AjaxResponseType.SUCCESS);
 		return aJaxResp;
 	}
@@ -122,6 +135,7 @@ public class AdminActivityController {
 	@RequestMapping("/query")
 	@ResponseBody
 	public GridResponse<Activity> query(@RequestParam(value="userInput", defaultValue="") String userInput,
+								@RequestParam(value="artistSearch", defaultValue="") String artistSearch,
 								@RequestParam(value="page") Integer page, 
 								@RequestParam(value="rows") Integer size,
 								@RequestParam(value="sidx") String sidx,
@@ -139,9 +153,10 @@ public class AdminActivityController {
 				Predicate where = cb.conjunction();
 				if (!StringUtils.isEmpty(userInput)) {
 					where = cb.and(cb.like(root.get("name"), "%" + userInput + "%"));
-					where = cb.or(where,cb.like(root.get("artist"), "%" + userInput +"%"));
+//					where = cb.or(where,cb.like(root.get("artist"), "%" + userInput +"%"));
 					where = cb.or(where,cb.like(root.get("description"), "%" + userInput +"%"));
 				}
+				
 				return where;
 			}
 		};

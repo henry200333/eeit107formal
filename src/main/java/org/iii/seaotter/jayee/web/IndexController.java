@@ -2,8 +2,6 @@ package org.iii.seaotter.jayee.web;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.common.ArticleType;
@@ -40,21 +38,12 @@ public class IndexController {
 	@Autowired
 	private PerformanceService performanceService;
 	
-	@RequestMapping("/index")
-	public String index(HttpServletRequest request) {
-		
-		String username  = request.getParameter("username");
-		if("SeaOtter".equals(username))
-			return "redirect:/admin/artist/list";
-		
-		else
-		return "/user/user-index";
-	}
 	
-	@RequestMapping("/login")
-	public String login() {
-		return "/user/user-login";
-	}
+//	@RequestMapping("/index")
+//	public String indextest() {
+//		return "/user/index";
+//	}
+	
 	
 	@RequestMapping("/performancetop")
 	@ResponseBody
@@ -72,8 +61,8 @@ public class IndexController {
 	
 	@GetMapping("/articleWithPerformanceTop")
 	@ResponseBody
-	public AjaxResponse<Article> articleTop() {
-		AjaxResponse<Article> res = new AjaxResponse<>();
+	public AjaxResponse<List<Article>> articleTop() {
+		AjaxResponse<List<Article>> res = new AjaxResponse<>();
 		res.setType(AjaxResponseType.SUCCESS);
 		res.setData(articleService.getByRefIdAndType(performanceService.getTopByOrderByViewsDesc().getId(), ArticleType.Performance));
 		return res;

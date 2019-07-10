@@ -125,16 +125,16 @@
 		$("#submit").click(function() {
 			console.log($("#addvender").serializeObject());
 			alert($("#addvender").serializeObject())
-			var dat = $("#addvender").serializeArray();
-			var a = [];
-			var o = {};
-				alert(JSON.stringify(dat));
-			$.each(dat, function(i, filed) {
-				o[filed.name] = filed.value;
-			});
-			a.push(o);
-			var a2 = JSON.stringify(a);
-			console.log(a2);
+// 			var dat = $("#addvender").serializeArray();
+// 			var a = [];
+// 			var o = {};
+// 				alert(JSON.stringify(dat));
+// 			$.each(dat, function(i, filed) {
+// 				o[filed.name] = filed.value;
+// 			});
+// 			a.push(o);
+// 			var a2 = JSON.stringify(a);
+// 			console.log(a2);
 			$.ajax({
 				url : "insert",
 				type : "POST",
@@ -151,7 +151,7 @@
 						window.location.assign("/admin/vender/list");
 				}
 			})
-			return false;
+// 			return false;
 		})
 		$("#name").blur(function(){
 			var re=/.+/;

@@ -11,12 +11,14 @@ import javax.persistence.criteria.Root;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
+import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.common.Message;
 import org.iii.seaotter.jayee.entity.Activity;
-import org.iii.seaotter.jayee.entity.Forum;
+import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.service.ActivityService;
+import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,8 +29,10 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,6 +49,8 @@ public class AdminPerformanceController {
 
 	@Autowired
 	private ActivityService activityService;
+	@Autowired
+	private ArticleService articleService;
 
 	@RequestMapping("/list")
 	public String listPage(Model model) {
@@ -53,11 +59,6 @@ public class AdminPerformanceController {
 
 	}
 	
-	@RequestMapping("/test")
-	public String test() {
-		return "/admin/test";
-
-	}
 
 	@GetMapping("/query")
 	@ResponseBody // 轉成JSON
@@ -106,20 +107,8 @@ public class AdminPerformanceController {
 		return activityService.getAll();
 
 	}
-	//測試JPA id>=2
-	@RequestMapping("/test2")
-	@ResponseBody
-	public List<Performance> test2() {
-		
-		return performanceSurvice.test(2L);
-
-	}
 
 
-	@RequestMapping("/index")
-	public String index() {		
-		return "/admin/index";
-	}
 	
 	@RequestMapping("/search")
 	@ResponseBody
@@ -152,12 +141,6 @@ public class AdminPerformanceController {
 		return searchResult;
 	}
 
-//	@RequestMapping("/index")
-//	public String index() {
-//		
-//		return "/admin/index";
-//
-//	}
 
 	
 	//增加點閱率
@@ -176,11 +159,9 @@ public class AdminPerformanceController {
 
 	}
 	
-	@RequestMapping("/edit")
-	public String editPage(@ModelAttribute("performance") Performance performance, Model model) {
-		System.out.println("edit");
-		System.out.println(performance);
-		performance = performanceSurvice.getById(performance.getId());
+	@RequestMapping("/edit/{id}")
+	public String editPage(@PathVariable Long id, Model model) {
+		Performance performance = performanceSurvice.getById(id);
 		model.addAttribute("performance", performance);
 		return "/admin/performance-edit";
 
@@ -300,15 +281,24 @@ public class AdminPerformanceController {
 	}
 
 
-	@PostMapping("delete")
-	public String delete(@RequestParam("id") String idget) {
-		Long id = Long.parseLong(idget);
-		Performance performance = new Performance();
-		performance.setId(id);
-		performanceSurvice.delete(performance);
-		return "redirect:/admin/performance/list";
+	@DeleteMapping("/{id}")
+	@ResponseBody
+	public AjaxResponse<Performance> delete(@PathVariable Long id) {
+		AjaxResponse<Performance> result=new AjaxResponse<>();		
+		performanceSurvice.deleteById(id);
+		//begin of cascade.delete article
+		List<Article> articleList = articleService.getByRefIdAndType(id, ArticleType.Performance);
+		if(articleList != null && articleList.size() != 0) {
+			for (Article article : articleList) {
+				articleService.delete(article);
+			}
+		}
+		//end of cascade.delete article
+		result.setType(AjaxResponseType.SUCCESS);
+		return result;
 
 	}
+	
 	
 	@PostMapping("like")
 	@ResponseBody

@@ -7,7 +7,9 @@ import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,12 +24,18 @@ public class AuthController {
 
 	@GetMapping("/login")
 	public String loginPage() {
-		return "/user/user-login";
+		return "/user/index";
 	}
 
 	@GetMapping("/index")
-	public String indexPage() {
-		return "/user/user-index";
+	public String indexPage(Authentication authentication,Model model) {
+		Object userinf = authentication.getPrincipal();
+		String user = userinf.toString();
+		int useri = user.indexOf("Username");
+		int pwdi = user.indexOf("Password");
+		String  username = user.substring(useri+10, pwdi-2);
+		model.addAttribute("user", username);
+		return "/user/index";
 	}
 
 	@GetMapping("/registration")

@@ -268,7 +268,9 @@ outline:none
 		<br>
 		<br>
 		<br>
-		<br> <button type="button" class="btnnew">LETS	GO</button></a><br>
+
+		<br> <button type="button" class="btnnew">LETS	GO</button><br>
+		
 		<!-- 	<img src="/resources/user-bootstrap/img/heart.gif" class="heart" > -->
 	</div>
 
@@ -286,17 +288,19 @@ outline:none
 <script>
 $(".btnnew").click(function(){
 	$(".btnnew").animate({bottom:'100px'},"slow",function(){
-		var txt="";
-		txt+="<form action='/login' method='post'>";
+		var txt="<form action='/login' method='POST' id='login'>";
 		txt+="<div class='inputd' style='margin:auto;'>";
 		txt+="<input type='text' id='username' name='username' class='username' placeholder='User Name'><br>";
 		txt+="<input type='password' id='password' name='password' class='password' placeholder='Password'>";
 		txt+="</div><a href='' class='forget'>Froget Password?</a>";
 		txt+="<img src='/resources/user-bootstrap/img/performance/facebook.gif' class='fb' title='Login with Facebook'>";
 		txt+="<img src='/resources/user-bootstrap/img/performance/google.gif' class='gmail' title='Login with Google'></div>";
-		txt+="<input type='submit' value='Submit' />"
-		txt+="</form>"
+		txt+="</form>";
+		
 		$("div#login").html(txt);
+		$(".btnnew").click(function(){
+			$("form#login").submit();
+		})
 	});
 	
 })

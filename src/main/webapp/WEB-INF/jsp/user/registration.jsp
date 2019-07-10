@@ -11,21 +11,12 @@
 	<form action="/register" method="POST"
 		enctype="application/x-www-form-urlencoded">
 		<div>
-			<label>firstName</label> <input type="text" id="firstName" />
+			<label for="account">account</label> <input type="text" id="account" />
 		</div>
 		<div>
-			<label>lastName</label> <input type="text" id="lastName" />
+			<label for="password">password</label> <input type="password" id="password" />
 		</div>
-		<div>
-			<label>email</label> <input type="email" id="email" />
-		</div>
-		<div>
-			<label>account</label> <input type="text" id="account" />
-		</div>
-		<div>
-			<label>password</label> <input type="password" id="password" />
-		</div>
-		<button type="submit">submit</button>
+		<button id="button" name="button" type="button">submit</button>
 	</form>
 
 	<a href="/login">login</a>
