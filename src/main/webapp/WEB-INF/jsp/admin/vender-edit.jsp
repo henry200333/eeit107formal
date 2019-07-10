@@ -66,6 +66,15 @@
 									style="color: red" id="addresscheck" class="check"></span>
 							</div>
 						</div>
+							<div class="form-group row">
+							<div class="col-sm-9 mb-3 mb-sm-0">
+								<label for="address">ADDRESS:</label> <input type="text"
+									class="form-control form-control-user" id="address"
+									name="address" placeholder="ADDRESS" value="${jobparam[2].name}"><span
+									style="color: red" id="addresscheck" class="check"></span>
+							</div>
+						</div>
+						
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="maxPeople">MAXPEOPLE:</label> <input type="text"

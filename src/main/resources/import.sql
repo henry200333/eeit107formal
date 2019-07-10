@@ -42,10 +42,10 @@ INSERT INTO article (name, content, article_type, ref_id, count) values
  
  
 
-insert into  Vender (name,address,max_people,phone,lat,lng) values
-('EZ5音樂餐廳','106台北市大安區安和路二段211號',50,'0227383995',25.0260149,121.550337),
-('Music Corner角落音樂餐廳',' 104台北市中山區建國北路一段156號',40,'0225043688',25.0516328,121.5341573),
-('LOTUS 音樂餐廳','78號長安東路二段中山區台北市10491',60,' 0223468888',25.0483426,121.5317147);
+insert into  Vender (name,city,district,address,max_people,phone,lat,lng) values
+('EZ5音樂餐廳','台北市','大安區','安和路二段211號',50,'0227383995',25.0260149,121.550337),
+('Music Corner角落音樂餐廳','台北市','中山區',' 建國北路一段156號',40,'0225043688',25.0516328,121.5341573),
+('LOTUS 音樂餐廳','台北市','中山區','長安東路二段78號',60,' 0223468888',25.0483426,121.5317147);
 
 insert into  job (name,job_type,job_time,detal,vender_id) values
 ('誠徵鼓手一名','音樂','2019-07-15 12:00:00','經驗要求5年以上',1),

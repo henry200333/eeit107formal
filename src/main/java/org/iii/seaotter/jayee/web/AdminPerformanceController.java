@@ -11,11 +11,14 @@ import javax.persistence.criteria.Root;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
+import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.common.Message;
 import org.iii.seaotter.jayee.entity.Activity;
+import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.service.ActivityService;
+import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -46,6 +49,8 @@ public class AdminPerformanceController {
 
 	@Autowired
 	private ActivityService activityService;
+	@Autowired
+	private ArticleService articleService;
 
 	@RequestMapping("/list")
 	public String listPage(Model model) {
@@ -277,9 +282,18 @@ public class AdminPerformanceController {
 
 
 	@DeleteMapping("/{id}")
+	@ResponseBody
 	public AjaxResponse<Performance> delete(@PathVariable Long id) {
 		AjaxResponse<Performance> result=new AjaxResponse<>();		
 		performanceSurvice.deleteById(id);
+		//begin of cascade.delete article
+		List<Article> articleList = articleService.getByRefIdAndType(id, ArticleType.Performance);
+		if(articleList != null && articleList.size() != 0) {
+			for (Article article : articleList) {
+				articleService.delete(article);
+			}
+		}
+		//end of cascade.delete article
 		result.setType(AjaxResponseType.SUCCESS);
 		return result;
 
