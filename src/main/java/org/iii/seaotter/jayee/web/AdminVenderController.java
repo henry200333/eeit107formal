@@ -14,7 +14,9 @@ import javax.persistence.criteria.Root;
 
 import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Activity;
+import org.iii.seaotter.jayee.entity.Job;
 import org.iii.seaotter.jayee.entity.Vender;
+import org.iii.seaotter.jayee.service.JobService;
 import org.iii.seaotter.jayee.service.VenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -41,7 +43,8 @@ public class AdminVenderController {
 	
 	@Autowired
 	private VenderService venderService;
-	
+	@Autowired
+	private JobService jobservice;
 
 	@RequestMapping("/list")
 
@@ -56,20 +59,44 @@ public class AdminVenderController {
 	}
 
 	@RequestMapping("/edit")
-	public String editPage(@RequestParam("id")Integer id, Model model) {
+	public String editPage(@RequestParam("id")Long id, Model model) {
 			Vender bean= venderService.getById(id);
+
 //			System.out.println(bean);
 			model.addAttribute("venderparam",bean);
+			model.addAttribute("jobparam",jobservice.getByVender(bean));
 		return "/admin/vender-edit";
 	}
+	
+	@RequestMapping("/venderself")
+	public String venderselfpage(@RequestParam("id")Long id, Model model) {
+		Vender bean= venderService.getById(id);
+
+//		System.out.println(bean);
+		model.addAttribute("venderparam",bean);
+		model.addAttribute("jobparam",jobservice.getByVender(bean));
+		return "/admin/vender-jobs";
+	}
+
 	
 	@RequestMapping("/maptest")
 	public String mapPage() {
 		return "/admin/vender-maptest";
 	}
 	
-
+	@RequestMapping("/jobs")
+	public String jobs() {
+		return "/admin/vender-jobs";
+	}
 	
+	@RequestMapping("/findjobs")
+	@ResponseBody
+	public List<Job> query(@RequestParam("id")Long id, Model model){
+		
+		Vender bean= venderService.getById(id);
+		System.out.println(jobservice.getByVender(bean).size());
+		return jobservice.getByVender(bean);
+	}
 	
 	@RequestMapping("/query")
 	@ResponseBody

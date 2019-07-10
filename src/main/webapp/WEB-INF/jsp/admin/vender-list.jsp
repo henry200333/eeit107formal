@@ -105,9 +105,12 @@
         colModel: [
 			{name:'id',index:'id',width:3},
 			{name:'name',index:'name',width:5},
-			{name:'address',index:'address',width:10},
+			{name:'city',index:'city',width:2},
+			{name:'district',index:'district',width:2},
+			{name:'address',index:'address',width:5},
 			{name:'maxPeople',index:'max_people',sortable:false,width:5},
 			{name:'phone',index:'phone',sortable:false,width:5}	,
+			{name:'detal',width:3,sortable:false,formatter:detalbt},
 			{name:'edit',width:3,sortable:false,formatter:editbt},
 			{name:'delete',width:3,sortable:false,formatter:deletebt}
 		],
@@ -136,7 +139,11 @@
 			+ rowObject.id
 			+ "'onclick='editid(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button>";
 		};
-		
+		function detalbt(cellvalue, options, rowObject){
+			return "<button type='button' id='"
+			+ rowObject.id
+			+ "'onclick='detalid(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button>";
+		};
 		function deletebt(cellvalue, options, rowObject){
 			return "<button type='button' id='"
 			+ rowObject.id
@@ -144,6 +151,9 @@
 		};
 		function editid(object){
 			window.location.href = "/admin/vender/edit?id=" + object.id;
+		};
+		function detalid(object){
+			window.location.href = "/admin/vender/venderself?id=" + object.id;
 		};
 		function deleteid(object){
 			$.ajax({
