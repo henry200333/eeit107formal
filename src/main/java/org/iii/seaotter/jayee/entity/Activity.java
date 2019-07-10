@@ -1,5 +1,6 @@
 package org.iii.seaotter.jayee.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,9 +35,10 @@ public class Activity {
 	private String name;
 	
 	//表演者編號-外鍵
-	@ManyToOne
-	@JoinColumn(name = "artist_id")
-	private Artist artistId;
+//	@ManyToOne
+//	@JoinColumn(name = "artist_id")
+	@Column(name="artist_id")
+	private Long artistId;
 	
 	//表演者名稱
 	@Column(name="artist")
