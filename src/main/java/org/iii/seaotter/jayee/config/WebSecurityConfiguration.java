@@ -53,6 +53,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
+<<<<<<< HEAD
 		http.authorizeRequests()
 		.antMatchers("/resources/**").permitAll()
 		.antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
@@ -67,5 +68,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.logoutSuccessUrl("/login")
 		.and()
 		.csrf().disable();
+=======
+		http.authorizeRequests().antMatchers("/resources/**").permitAll()
+		.antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
+		.antMatchers("/admin/**").hasRole("ADMIN")
+		.and().formLogin().loginPage("/login").failureUrl("/login").defaultSuccessUrl("/user/index").permitAll()
+		.and().logout().permitAll().logoutSuccessUrl("/login")
+		.and().csrf().disable();
+>>>>>>> branch 'master' of https://github.com/henry200333/eeit107formal.git
 	}
 }

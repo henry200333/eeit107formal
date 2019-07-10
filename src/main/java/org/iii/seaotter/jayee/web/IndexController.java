@@ -6,11 +6,14 @@ import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.common.ForumBoard;
+import org.iii.seaotter.jayee.config.SpringSecurityUserContext;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Performance;
+import org.iii.seaotter.jayee.entity.SecurityRole;
+import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.ArtistService;
@@ -37,12 +40,23 @@ public class IndexController {
 	private ForumService forumService;
 	@Autowired
 	private PerformanceService performanceService;
+	@Autowired
+	private SpringSecurityUserContext springSecurityUserContext;
 	
 	
-//	@RequestMapping("/index")
-//	public String indextest() {
-//		return "/user/index";
-//	}
+	@RequestMapping("/index")
+	public String index() {
+		SecurityUser user =  springSecurityUserContext.getCurrentUser();
+		String account = user.getAccount();
+		System.out.println(account);
+		return "/user/index";
+	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		
+		return "/user/login";
+	}
 	
 	
 	@RequestMapping("/performancetop")

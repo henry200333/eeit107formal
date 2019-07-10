@@ -2,9 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- Load basic css of Grid -->
-<link rel="stylesheet" type="text/css" href="/resources/jqgrid/css/ui.jqgrid-bootstrap4.css" />
+<link rel="stylesheet" type="text/css"
+	href="/resources/jqgrid/css/ui.jqgrid-bootstrap4.css" />
 <!-- Load jquery-ui css -->
-<link rel="stylesheet" type="text/css" href="/resources/jqgrid/jquery-ui/jquery-ui.theme.min.css"/>
+<link rel="stylesheet" type="text/css"
+	href="/resources/jqgrid/jquery-ui/jquery-ui.theme.min.css" />
 <!DOCTYPE html>
 <html>
 
@@ -13,23 +15,23 @@
 <style>
 .likeauto {
 	content: url("/resources/admin-bootstrap/img/likeAuto.gif");
-	width:100px;
+	width: 100px;
 }
 
 .unlikeauto {
 	content: url("/resources/admin-bootstrap/img/unlikeAuto.gif");
-	margin-top:33px;
-	width:100px;
+	margin-top: 33px;
+	width: 100px;
 }
 
-.like	{
+.like {
 	content: url("/resources/admin-bootstrap/img/like.gif");
-	width:100px;
+	width: 100px;
 }
 
-.unlike	{
+.unlike {
 	content: url("/resources/admin-bootstrap/img/unlike.gif");
-	width:100px;
+	width: 100px;
 }
 </style>
 <body id="page-top">
@@ -60,28 +62,31 @@
 							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
 					</div>
 					<form id="searchTitle" class="user">
-			            <div class="form-group row">
-			            	<div class="col-sm-3 mb-3 mb-sm-0">
-					            <div class="input-group">
-					        
-					              <input id="title" name="title" type="text" class="form-control border-0 small" placeholder="Search Title..." aria-label="Search" aria-describedby="basic-addon2">
-					         
-					              <div class="input-group-append">
-					                <button id="searchBT" class="btn btn-primary" type="button">
-					                  <i class="fas fa-search fa-sm"></i>
-					                </button>
-					              </div>
-					            </div>
-				            </div>
-				            <div class="col-sm-3 mb-3 mb-sm-0">
+						<div class="form-group row">
+							<div class="col-sm-3 mb-3 mb-sm-0">
+								<div class="input-group">
+
+									<input id="title" name="title" type="text"
+										class="form-control border-0 small"
+										placeholder="Search Title..." aria-label="Search"
+										aria-describedby="basic-addon2">
+
+									<div class="input-group-append">
+										<button id="searchBT" class="btn btn-primary" type="button">
+											<i class="fas fa-search fa-sm"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3 mb-3 mb-sm-0">
 								<a href="add" class="btn btn-primary btn-icon-split"> <span
 									class="icon text-white-50"> <i
 										class="fas fa-file-medical"></i>
 								</span> <span class="text">Add New Performance</span>
 								</a>
 							</div>
-			            </div>
-			        </form>
+						</div>
+					</form>
 					<hr>
 
 					<div class="card shadow mb-4">
@@ -95,32 +100,34 @@
 
 
 								<div id="artistList" class="card-body">
-								<table id="dataTable" ></table>
-								<div id="pager"></div>
+									<table id="dataTable"></table>
+									<div id="pager"></div>
+								</div>
+
+							</div>
 						</div>
 
-						</div>
+						<a href="/user/login"><button type="button"
+								class="btn btn-primary btn-user btn-block">請點我到登入頁面</button></a> <br>
+						<hr>
+						<!-- /.container-fluid -->
+						<!-- End of Main Content -->
+
+						<jsp:include page="footer.jsp"></jsp:include>
+
 					</div>
-
-					<a href="/user/login"><button type="button"
-							class="btn btn-primary btn-user btn-block">請點我到登入頁面</button></a> <br>
-					<hr>
-					<!-- /.container-fluid -->
-					<!-- End of Main Content -->
-
-					<jsp:include page="footer.jsp"></jsp:include>
-
+					<!-- End of Content Wrapper -->
 				</div>
-				<!-- End of Content Wrapper -->
-
+				<!-- End of Page Wrapper -->
 			</div>
-			<!-- End of Page Wrapper -->
 		</div>
 	</div>
 	<!-- 	Add language package for TW-ZH -->
-	<script src="/resources/jqgrid/js/i18n/grid.locale-tw.js" type="text/javascript"></script>
+	<script src="/resources/jqgrid/js/i18n/grid.locale-tw.js"
+		type="text/javascript"></script>
 	<!-- 	Add jquery plugin -->
-	<script src="/resources/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+	<script src="/resources/jqgrid/js/jquery.jqGrid.min.js"
+		type="text/javascript"></script>
 	<script>
 		function searchp() {
 			var search = $("#search").val();
@@ -149,7 +156,6 @@
 			})
 		}
 
-		
 		function sendId(Object) {
 			console.log("id=" + Object.id);
 			$("#send").attr("action", "/admin/performance/edit");
@@ -162,59 +168,97 @@
 			$('#send').submit();
 		}
 
-
 		$("#dataTable").jqGrid({
-			url: '/admin/performance/query',
-			datatype:'json',
-			mtype:'GET',
-			styleUI:'Bootstrap4',
-			iconSet:'fontAwesome',
-			colModel:[
-				{ name: 'id', label:'ID', width:4},
-				{ name: 'title', label:'Title', width:20, sortable: false},
-// 				{ name: 'introduction', label:'Introduction', width:25,sortable: false},
-				{ name: 'url', label:'URL', width:25,sortable: false},
-				{ name: 'updateTime', label:'UpdateTime', width: 15},
-				{ name: 'activityId', label:'ActivityId', width: 5},
-				{ name: 'views', label:'Views', width: 5},
-				{ name: 'likes', label:'Likes', width: 5},				
-				{ name: 'unlikes', label:'Unlikes', width: 5},
-				{ name:'edit', width:5, formatter:editBT, sortable: false},
-				{ name:'delete',width:5,formatter:deleteBT, sortable: false}
-			],
-			prmNames: {search:null, nd:null},
-			pager:'#pager',
-			page:1,
- 			autowidth:true,
-			shrinkToFit:true,
-			height:'auto',
-			rowNum:2,
-			rowList: [2,20,50],
-			sortname:'updateTime',
-			sortable:true,
-			sortorder:'asc',
-			viewrecords:true,
+			url : '/admin/performance/query',
+			datatype : 'json',
+			mtype : 'GET',
+			styleUI : 'Bootstrap4',
+			iconSet : 'fontAwesome',
+			colModel : [ {
+				name : 'id',
+				label : 'ID',
+				width : 4
+			}, {
+				name : 'title',
+				label : 'Title',
+				width : 20,
+				sortable : false
+			},
+			// 				{ name: 'introduction', label:'Introduction', width:25,sortable: false},
+			{
+				name : 'url',
+				label : 'URL',
+				width : 25,
+				sortable : false
+			}, {
+				name : 'updateTime',
+				label : 'UpdateTime',
+				width : 15
+			}, {
+				name : 'activityId',
+				label : 'ActivityId',
+				width : 5
+			}, {
+				name : 'views',
+				label : 'Views',
+				width : 5
+			}, {
+				name : 'likes',
+				label : 'Likes',
+				width : 5
+			}, {
+				name : 'unlikes',
+				label : 'Unlikes',
+				width : 5
+			}, {
+				name : 'edit',
+				width : 5,
+				formatter : editBT,
+				sortable : false
+			}, {
+				name : 'delete',
+				width : 5,
+				formatter : deleteBT,
+				sortable : false
+			} ],
+			prmNames : {
+				search : null,
+				nd : null
+			},
+			pager : '#pager',
+			page : 1,
+			autowidth : true,
+			shrinkToFit : true,
+			height : 'auto',
+			rowNum : 2,
+			rowList : [ 2, 20, 50 ],
+			sortname : 'updateTime',
+			sortable : true,
+			sortorder : 'asc',
+			viewrecords : true,
 			altRows : true
 		});
-		
+
 		function editBT(cellvalue, options, rowObject) {
 			return "<button type='button' id='"
 					+ rowObject.id
 					+ "'onclick='edit(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button>";
 		}
-		
+
 		function deleteBT(cellvalue, options, rowObject) {
 			return "<button type='button' id='"
 					+ rowObject.id
 					+ "'onclick='dele(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i>"
 		}
-	
-		$("#searchBT").click(function(){
+
+		$("#searchBT").click(function() {
 			console.log(JSON.parse($("#searchTitle").serializeObject()));
-			$('#dataTable').jqGrid("clearGridData") ;
-			$('#dataTable').jqGrid('setGridParam',{postData:JSON.parse($("#searchTitle").serializeObject())}).trigger("reloadGrid");
+			$('#dataTable').jqGrid("clearGridData");
+			$('#dataTable').jqGrid('setGridParam', {
+				postData : JSON.parse($("#searchTitle").serializeObject())
+			}).trigger("reloadGrid");
 		});
-		
+
 		function like(Object) {
 			if (Object.className == "likeauto") {
 				$("img#" + Object.id).attr("class", "like");
@@ -242,7 +286,7 @@
 					}
 
 				});
-			}else{
+			} else {
 				var id = Object.id.substring(4);
 				$.ajax({
 					url : "/admin/performance/like",
@@ -264,17 +308,17 @@
 		}
 
 		function unlike(Object) {
-			if(Object.className == "unlikeauto"){
+			if (Object.className == "unlikeauto") {
 				$("img#" + Object.id).attr("class", "unlike");
 				var like = Object.id.substring(2);
-				var likeType = 0 ;
+				var likeType = 0;
 				var id = Object.id.substring(6);
 				var likenew = $("img#" + like).attr("class");
 				if (likenew == "like") {
-					likeType=1;
+					likeType = 1;
 					$("img#" + like).attr("class", "likeauto");
 				}
-				
+
 				$.ajax({
 					url : "/admin/performance/unlike",
 					type : "POST",
@@ -290,7 +334,7 @@
 					}
 
 				});
-			}else{				
+			} else {
 				var id = Object.id.substring(6);
 				$.ajax({
 					url : "/admin/performance/unlike",
@@ -308,11 +352,11 @@
 					}
 
 				});
-				
+
 			}
-			
+
 		}
-		
+
 		function edit(Object) {
 			window.location.href = '/admin/performance/edit/' + Object.id;
 		}
@@ -320,7 +364,7 @@
 			var r = confirm("確定要刪除這筆ID=" + Object.id + "的資料嗎？");
 			if (r == true) {
 				$.ajax({
-					url : '/admin/performance/'+ Object.id,
+					url : '/admin/performance/' + Object.id,
 					method : 'DELETE',
 					contentType : 'application/json;charset=UTF-8',
 					dataType : 'json',
@@ -339,8 +383,6 @@
 				})
 			}
 		}
-		
 	</script>
-
 </body>
 </html>
