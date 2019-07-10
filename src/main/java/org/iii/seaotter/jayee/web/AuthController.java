@@ -21,16 +21,12 @@ public class AuthController {
 	SecurityUserService securityUserService;
 
 	@GetMapping("/login")
-<<<<<<< HEAD
 	public String loginPage() {
 		return "/user/index";
 	}
 
 	@GetMapping("/index")
 	public String indexPage() {
-=======
-	public String loginPage() {
->>>>>>> branch 'master' of https://github.com/henry200333/eeit107formal
 		return "/user/index";
 	}
 
