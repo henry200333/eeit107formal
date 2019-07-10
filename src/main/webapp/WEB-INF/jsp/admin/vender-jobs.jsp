@@ -32,7 +32,6 @@ alert("${venderparam}");
 $.ajax({url : "/admin/job/findjobs/?id=${venderparam.id}",
 			type : "POST",
 			success : function(data) {
-
 				var txt = "";
 				$.each(data,function(key, obj) {
 // 									alert(obj)
