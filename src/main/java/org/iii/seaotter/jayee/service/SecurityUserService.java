@@ -1,5 +1,7 @@
 package org.iii.seaotter.jayee.service;
 
+import java.util.Optional;
+
 import org.iii.seaotter.jayee.dao.SecurityUserDao;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,9 @@ import org.springframework.stereotype.Service;
 public class SecurityUserService implements UserDetailsService {
 
 	@Autowired
-	SecurityUserDao securityUserDao;
-
+	private SecurityUserDao securityUserDao;
+	
+	
 	@Override
 	public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
 		return securityUserDao.findByAccount(account);

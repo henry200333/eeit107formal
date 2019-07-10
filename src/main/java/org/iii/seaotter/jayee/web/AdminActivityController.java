@@ -9,11 +9,13 @@ import javax.persistence.criteria.Root;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
+import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.Location;
 import org.iii.seaotter.jayee.service.ActivityService;
+import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.ArtistService;
 import org.iii.seaotter.jayee.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,8 @@ public class AdminActivityController {
 	private ArtistService artistService;
 	@Autowired
 	private LocationService locationService;
+	@Autowired
+	private ArticleService articleService;
 	
 	@RequestMapping("/list")
 	public String listPage(Model model) {	
@@ -98,6 +102,7 @@ public class AdminActivityController {
 	public AjaxResponse<Activity> delete(@PathVariable Long id) {
 		AjaxResponse<Activity> aJaxResp=new AjaxResponse<>();		
 		activityService.deleteById(id);
+		articleService.delete(articleService.getByRefIdAndType(id, ArticleType.Activity));
 			aJaxResp.setType(AjaxResponseType.SUCCESS);
 		return aJaxResp;
 	}

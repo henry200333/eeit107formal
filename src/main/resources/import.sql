@@ -1,6 +1,6 @@
 INSERT INTO security_role(account, code) values
 ('admin', 'ROLE_ADMIN'),
-('123', 'ROLE_USER');
+('123', 'ROLE_ADMIN');
 
 INSERT INTO security_user(account, password, enabled) values
 ('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 1),
