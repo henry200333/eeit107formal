@@ -39,10 +39,10 @@ public class IndexController {
 	private PerformanceService performanceService;
 	
 	
-//	@RequestMapping("/index")
-//	public String indextest() {
-//		return "/user/index";
-//	}
+	@RequestMapping("/index")
+	public String indextest() {
+		return "/user/index";
+	}
 	
 	
 	@RequestMapping("/performancetop")

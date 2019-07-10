@@ -54,7 +54,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/resources/**").permitAll()
 		.antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
 		.antMatchers("/admin/**").hasRole("ADMIN")
-		.and().formLogin().loginPage("/login").failureUrl("/login").defaultSuccessUrl("/admin/artist/list").permitAll()
+		.and().formLogin().loginPage("/login").failureUrl("/login").defaultSuccessUrl("/user/index").permitAll()
 		.and().logout().permitAll().logoutSuccessUrl("/login")
 		.and().csrf().disable();
 	}
