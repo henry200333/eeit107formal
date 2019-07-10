@@ -2,8 +2,6 @@ package org.iii.seaotter.jayee.web;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.common.ArticleType;
@@ -63,8 +61,8 @@ public class IndexController {
 	
 	@GetMapping("/articleWithPerformanceTop")
 	@ResponseBody
-	public AjaxResponse<Article> articleTop() {
-		AjaxResponse<Article> res = new AjaxResponse<>();
+	public AjaxResponse<List<Article>> articleTop() {
+		AjaxResponse<List<Article>> res = new AjaxResponse<>();
 		res.setType(AjaxResponseType.SUCCESS);
 		res.setData(articleService.getByRefIdAndType(performanceService.getTopByOrderByViewsDesc().getId(), ArticleType.Performance));
 		return res;

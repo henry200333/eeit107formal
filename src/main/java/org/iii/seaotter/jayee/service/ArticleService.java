@@ -51,7 +51,7 @@ public class ArticleService {
 		}
 	}
 	
-	public Article getByRefIdAndType(Long refId, ArticleType type) {
+	public List<Article> getByRefIdAndType(Long refId, ArticleType type) {
 		return articleDao.findByRefIdAndArticleType(refId, type);
 	}
 	

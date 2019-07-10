@@ -12,6 +12,7 @@ import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Activity;
+import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.Location;
 import org.iii.seaotter.jayee.service.ActivityService;
@@ -102,7 +103,12 @@ public class AdminActivityController {
 	public AjaxResponse<Activity> delete(@PathVariable Long id) {
 		AjaxResponse<Activity> aJaxResp=new AjaxResponse<>();		
 		activityService.deleteById(id);
-		articleService.delete(articleService.getByRefIdAndType(id, ArticleType.Activity));
+		List<Article> articleList = articleService.getByRefIdAndType(id, ArticleType.Activity);
+		if(articleList != null && articleList.size() != 0) {
+			for (Article article : articleList) {
+				articleService.delete(article);
+			}
+		}
 			aJaxResp.setType(AjaxResponseType.SUCCESS);
 		return aJaxResp;
 	}
