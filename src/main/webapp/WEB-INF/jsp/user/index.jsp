@@ -544,12 +544,12 @@ img.wp-smiley, img.emoji {
 															class="sh-table-cell">
 															<noscript>
 																<img class="sh-standard-logo"
-																	src="//gillion.shufflehound.com/news/wp-content/uploads/sites/15/2018/11/news-logo.png"
+																	src="/resources/user-bootstrap/img/news-logo.gif"
 																	alt="Gillion News Demo" />
 															</noscript>
 															<img class="lazyload sh-standard-logo"
 																src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20%20%22%3E%3C/svg%3E'
-																data-src="//gillion.shufflehound.com/news/wp-content/uploads/sites/15/2018/11/news-logo.png"
+																data-src="/resources/user-bootstrap/img/news-logo.gif"
 																alt="Gillion News Demo" />
 															<noscript>
 																<img class="sh-sticky-logo"
