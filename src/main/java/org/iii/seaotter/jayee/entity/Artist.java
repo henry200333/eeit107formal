@@ -1,10 +1,15 @@
 package org.iii.seaotter.jayee.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -29,5 +34,9 @@ public class Artist {
 	private Long fanNumber;
 	@Column(name = "location")
 	private String location;
+	//Artist的ID關聯到Activity的artistId外鍵欄位
+	@OneToMany(mappedBy="artistId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	private Set<Activity> activitySet;
+	
 
 }

@@ -328,7 +328,7 @@
 						if (response.type == 'SUCCESS') {
 							alert("資料刪除成功！\n您刪除了一筆ID為：" + Object.id
 									+ "的資料！\n即將重新進入LIST頁面！");
-							window.location.href = "/admin/activity/list";
+							window.location.href = "/admin/performance/list";
 						} else {
 							alert("資料刪除失敗！請重新搜尋清單確保資料為最新！");
 						}

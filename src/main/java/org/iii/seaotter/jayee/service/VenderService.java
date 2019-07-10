@@ -1,5 +1,11 @@
 package org.iii.seaotter.jayee.service;
 
+
+
+
+
+import java.util.List;
+
 import org.iii.seaotter.jayee.dao.VenderDao;
 import org.iii.seaotter.jayee.entity.Vender;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +24,11 @@ public class VenderService {
 	public Page<Vender> getAll(Specification<Vender> specification, Pageable pageable) {
 		return venderDao.findAll(specification, pageable);
 		
+	}
+	
+	
+	public List<Vender> getAll(){
+		return venderDao.findAll();
 	}
 	
 	public Vender create(Vender vender) {	

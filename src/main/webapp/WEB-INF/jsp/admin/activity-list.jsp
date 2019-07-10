@@ -134,7 +134,7 @@
 		    	colModel :[ //從這邊開始要設定的就是跟欄位本身有關係的設定了.....
 		    		{name:'id', index:'id',label:'編號', sortable: false,width: 5}, //設定第一個欄位為id，並且index設成id為到時候ajax回server side連結時使用的parameter。並且設定為不可做排序。
 		    		{name:'name', index:'name',label:'活動名稱', width: 10},
-		    		{name:'artistId', index:'artist',label:'表演者', width: 10, formatter:catchArtist},	
+		    		{name:'artistId', index:'artist',label:'表演者編號', width: 10, formatter:catchArtist},	
 		    		{name:'description', index:'description',label:'活動描述', width: 25},
 		    		{name:'beginTime', index:'beginTime',label:'開始時間', width: 15},
 		    		{name:'endTime', index:'endTime',label:'結束時間', width: 15},
@@ -161,7 +161,7 @@
 		    });
 		 
 		 function catchArtist(cellvalue, options, rowObject){
-			return cellvalue['name'];
+			 return cellvalue;
 		 };
 		 
 			

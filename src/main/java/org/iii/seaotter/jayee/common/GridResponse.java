@@ -11,5 +11,4 @@ public class GridResponse <T>{
 	private Long records;  //total page numbers
 	private Integer total;  //total element numbers
 	private List<T> rows;
-
 }
