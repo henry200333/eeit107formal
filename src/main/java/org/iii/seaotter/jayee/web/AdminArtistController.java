@@ -142,7 +142,7 @@ public class AdminArtistController {
 			ajaxRes.setType(AjaxResponseType.SUCCESS);
 			ajaxRes.setData(artist);
 			//begin of cascade.delete article
-			List<Article> articleList = articleService.getByRefIdAndType(artist.getId(), ArticleType.Activity);
+			List<Article> articleList = articleService.getByRefIdAndType(artist.getId(), ArticleType.Artist);
 			if(articleList != null && articleList.size() != 0) {
 				for (Article article : articleList) {
 					articleService.delete(article);
