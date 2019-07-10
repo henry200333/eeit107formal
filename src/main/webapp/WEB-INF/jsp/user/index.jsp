@@ -7,9 +7,11 @@
 <link type="text/css" media="all"
 	href="https://gillion.shufflehound.com/news/wp-content/cache/autoptimize/15/css/autoptimize_a372b57ff7295e14ea415b7fb5c39216.css"
 	rel="stylesheet" />
-<title>Gillion News Demo &#8211; Just another Gillion Theme site</title>
+<title>JAYEE</title>
 <meta name="description"
 	content="Gillion is a powerhouse News, Magazine, Blog or Review style WordPress Theme packed with powerful, easy to use features, ready to create amazing websites. Incl 6 months support" />
+<link rel="stylesheet" media="screen"
+	href="/resources/user-bootstrap/css/indexcss.css" />
 <link rel='dns-prefetch' href='//ajax.googleapis.com' />
 <link rel='dns-prefetch' href='//gillion.shufflehound.com' />
 <link rel='dns-prefetch' href='//cdn.gillion.shufflehound.com' />
@@ -76,31 +78,7 @@ img.wp-smiley, img.emoji {
 <!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="https://gillion.shufflehound.com/news/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]-->
 <meta name="generator"
 	content="Powered by Slider Revolution 5.4.8.3 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface." />
-<style type="text/css" data-type="vc_shortcodes-custom-css">
-.vc_custom_1491409313534 {
-	padding-bottom: 15px !important;
-}
 
-.vc_custom_1547627184303 {
-	padding-top: 10px !important;
-	padding-bottom: 100px !important;
-}
-
-.vc_custom_1529334712116 {
-	margin-bottom: 0px !important;
-}
-
-.vc_custom_1543567551276 {
-	margin-bottom: 0px !important;
-}
-</style>
-<noscript>
-	<style type="text/css">
-.wpb_animate_when_almost_visible {
-	opacity: 1;
-}
-</style>
-</noscript>
 <script type="text/javascript"
 	src="https://gillion.shufflehound.com/news/wp-content/cache/autoptimize/15/js/autoptimize_e5cbe8e1ee5896daa84e7a1ce7701de4.js"></script>
 </head>
@@ -152,7 +130,7 @@ img.wp-smiley, img.emoji {
 						<div class="sh-widget-posts-slider-content">
 							<a
 								href="https://gillion.shufflehound.com/news/2017/01/31/mystery-behind-the-xbox-controller/"><h5
-									class="post-title" >
+									class="post-title">
 									Mystery Behind The Xbox Controller&nbsp;<span
 										class="post-read-later post-read-later-guest"
 										href="#login-register" data-type="add" data-id="49"><i
@@ -476,30 +454,32 @@ img.wp-smiley, img.emoji {
 			</div>
 		</header>
 		<header class="primary-desktop">
+			<!-- 		JAYEE HEADER -->
 			<div class="sh-header-top">
 				<div class="container">
 					<div class="sh-table">
-						<div class="sh-table-cell">
-							<div class="sh-nav-container">
-								<ul id="menu-topbar-navigation" class="sh-nav">
-									<li id="menu-item-573"
-										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-573"><a
-										href="http://cdn.gillion.shufflehound.com">About</a></li>
-									<li id="menu-item-574"
-										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-574"><a
-										href="http://cdn.gillion.shufflehound.com">Contacts</a></li>
-									<li id="menu-item-576"
-										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-576"><a
-										href="http://cdn.gillion.shufflehound.com">Advertise</a></li>
-									<li id="menu-item-1912"
-										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1912"><a
-										href="#">Buy theme</a></li>
-									<li id="menu-item-1913"
-										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1913"><a
-										href="#">Work for us</a></li>
-								</ul>
-							</div>
-						</div>
+						<!-- 					topbar - left -->
+						<!-- 						<div class="sh-table-cell"> -->
+						<!-- 							<div class="sh-nav-container"> -->
+						<!-- 								<ul id="menu-topbar-navigation" class="sh-nav"> -->
+						<!-- 									<li id="menu-item-573" -->
+						<!-- 										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-573"><a -->
+						<!-- 										href="http://cdn.gillion.shufflehound.com">About</a></li> -->
+						<!-- 									<li id="menu-item-574" -->
+						<!-- 										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-574"><a -->
+						<!-- 										href="http://cdn.gillion.shufflehound.com">Contacts</a></li> -->
+						<!-- 									<li id="menu-item-576" -->
+						<!-- 										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-576"><a -->
+						<!-- 										href="http://cdn.gillion.shufflehound.com">Advertise</a></li> -->
+						<!-- 									<li id="menu-item-1912" -->
+						<!-- 										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1912"><a -->
+						<!-- 										href="#">Buy theme</a></li> -->
+						<!-- 									<li id="menu-item-1913" -->
+						<!-- 										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1913"><a -->
+						<!-- 										href="#">Work for us</a></li> -->
+						<!-- 								</ul> -->
+						<!-- 							</div> -->
+						<!-- 						</div> -->
 						<div class="sh-table-cell">
 							<div class="sh-header-top-meta">
 								<div class="header-social-media">
@@ -537,6 +517,7 @@ img.wp-smiley, img.emoji {
 							<div class="sh-table-cell sh-header-logo-container">
 								<nav class="header-standard-position">
 									<div class="sh-nav-container">
+										<!-- 									JAYEE LOGO -->
 										<ul class="sh-nav sh-nav-left">
 											<li><div class="header-logo">
 													<a href="https://gillion.shufflehound.com/news/"
@@ -544,30 +525,30 @@ img.wp-smiley, img.emoji {
 															class="sh-table-cell">
 															<noscript>
 																<img class="sh-standard-logo"
-																	src="/resources/user-bootstrap/img/news-logo.gif"
+																	src="/resources/user-bootstrap/img/index/news-logo.gif"
 																	alt="Gillion News Demo" />
 															</noscript>
 															<img class="lazyload sh-standard-logo"
 																src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20%20%22%3E%3C/svg%3E'
-																data-src="/resources/user-bootstrap/img/news-logo.gif"
+																data-src="/resources/user-bootstrap/img/index/news-logo.gif"
 																alt="Gillion News Demo" />
 															<noscript>
 																<img class="sh-sticky-logo"
-																	src="//gillion.shufflehound.com/news/wp-content/uploads/sites/15/2018/11/news-logo.png"
+																	src="/resources/user-bootstrap/img/index/news-logo.gif"
 																	alt="Gillion News Demo" />
 															</noscript>
 															<img class="lazyload sh-sticky-logo"
 																src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20%20%22%3E%3C/svg%3E'
-																data-src="//gillion.shufflehound.com/news/wp-content/uploads/sites/15/2018/11/news-logo.png"
+																data-src="/resources/user-bootstrap/img/index/news-logo.gif"
 																alt="Gillion News Demo" />
 															<noscript>
 																<img class="sh-light-logo"
-																	src="//gillion.shufflehound.com/news/wp-content/uploads/sites/15/2018/11/news-logo.png"
+																	src="/resources/user-bootstrap/img/index/news-logo.gif"
 																	alt="Gillion News Demo" />
 															</noscript>
 															<img class="lazyload sh-light-logo"
 																src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20%20%22%3E%3C/svg%3E'
-																data-src="//gillion.shufflehound.com/news/wp-content/uploads/sites/15/2018/11/news-logo.png"
+																data-src="/resources/user-bootstrap/img/index/news-logo.gif"
 																alt="Gillion News Demo" />
 														</div> </a>
 												</div></li>
@@ -578,6 +559,7 @@ img.wp-smiley, img.emoji {
 						</div>
 					</div>
 				</div>
+				<!-- 				JAYEE SEARCH AND SHARE -->
 				<div class="sh-header sh-header-4 sh-sticky-header">
 					<div class="container sh-header-standard">
 						<div class="sh-table">
@@ -592,7 +574,7 @@ img.wp-smiley, img.emoji {
 												<a href="#"><div>
 														<i class="icon icon-share"></i>
 													</div> </a>
-											<ul class="sub-menu sh-nav-share-ul">
+												<ul class="sub-menu sh-nav-share-ul">
 													<li class="sh-share-item sh-share-item-facebook menu-item">
 														<a href="https://www.facebook.com/people/@/shufflehound"
 														target="_blank"> <i class="fa fa-facebook"></i>
@@ -625,6 +607,7 @@ img.wp-smiley, img.emoji {
 									</div>
 								</nav>
 							</div>
+							<!-- 							JAYEE TOPBAR -->
 							<div class="sh-table-cell">
 								<nav id="header-navigation" class="header-standard-position">
 									<div class="sh-nav-container">
@@ -632,208 +615,37 @@ img.wp-smiley, img.emoji {
 											<li id="menu-item-515"
 												class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-515"><a
 												href="/hello/">Home</a>
-											<ul class="sub-menu">
-													<li id="menu-item-1000"
-														class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1000"><a
-														href="/hello/">Gillion Showcase</a></li>
+												<ul class="sub-menu">
+													<!-- 													<li id="menu-item-1000" -->
+													<!-- 														class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1000"><a -->
+													<!-- 														href="/hello/">Gillion Showcase</a></li> -->
 												</ul></li>
 											<li id="menu-item-517"
 												class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-517"><a
-												href="#">Features</a>
-											<ul class="sub-menu">
-													<li id="menu-item-944"
-														class="menu-item menu-item-type-post_type menu-item-object-page menu-item-944"><a
-														href="https://gillion.shufflehound.com/post-content-gallery/">Content
-															Gallery</a></li>
-													<li id="menu-item-879"
-														class="menu-item menu-item-type-post_type menu-item-object-page menu-item-879"><a
-														href="https://gillion.shufflehound.com/typography/">Typography</a></li>
+												href="#">Artist</a>
+												<ul class="sub-menu">
 													<li id="menu-item-541"
 														class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-541"><a
-														href="#">Post Types</a>
-													<ul class="sub-menu">
+														href="#">${user}</a>
+														<ul class="sub-menu">
 															<li id="menu-item-2036"
 																class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2036"><a
 																href="https://gillion.shufflehound.com/2017/02/08/white-stairway-architectural-marvel/">Standard</a></li>
-															<li id="menu-item-2041"
-																class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2041"><a
-																href="https://gillion.shufflehound.com/2018/01/31/healthy-breakfast-meals-for-energy-boost/">Gallery</a></li>
-															<li id="menu-item-2034"
-																class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2034"><a
-																href="https://gillion.shufflehound.com/2018/01/31/beautiful-architecture-that-will-blow-your-mind/">Video</a></li>
-															<li id="menu-item-2038"
-																class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2038"><a
-																href="https://gillion.shufflehound.com/2017/01/02/inspiring-songs-vol-1-different-heaven-safe-and-sound/">Music</a></li>
-															<li id="menu-item-2035"
-																class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2035"><a
-																href="https://gillion.shufflehound.com/2018/01/31/quote-of-the-day-31/">Quote</a></li>
-															<li id="menu-item-2039"
-																class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2039"><a
-																href="https://gillion.shufflehound.com/2017/01/02/website-that-you-should-check-out/">Link</a></li>
-														</ul></li>
-													<li id="menu-item-556"
-														class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-556"><a
-														href="#">Post Layouts</a>
-													<ul class="sub-menu">
-															<li id="menu-item-2037"
-																class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2037"><a
-																href="https://gillion.shufflehound.com/2017/01/31/5-ways-animals-will-help-you-get-more-business/">Standard
-																	(Without Sidebar)</a></li>
-															<li id="menu-item-2042"
-																class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2042"><a
-																href="https://gillion.shufflehound.com/2017/02/09/tips-trick-every-pc-owner-have-to-know/">Standard
-																	Mini (Without Sidebar)</a></li>
-															<li id="menu-item-2043"
-																class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2043"><a
-																href="https://gillion.shufflehound.com/2017/02/01/common-port-problem-of-new-laptops/">Full
-																	Width</a></li>
-															<li id="menu-item-2046"
-																class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2046"><a
-																href="https://gillion.shufflehound.com/2017/01/31/new-coffee-place-you-have-to-visit/">Sidebar
-																	Left</a></li>
-															<li id="menu-item-2044"
-																class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2044"><a
-																href="https://gillion.shufflehound.com/2017/01/31/health-tips-and-benefits-of-healthy-lifestyle-you-should-consider/">Sidebar
-																	Right</a></li>
-														</ul></li>
-													<li id="menu-item-1043"
-														class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1043"><a
-														href="#">Post Loading</a>
-													<ul class="sub-menu">
-															<li id="menu-item-1044"
-																class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1044"><a
-																href="https://gillion.shufflehound.com/standard-pagination/">Standard
-																	Pagination</a></li>
-															<li id="menu-item-1045"
-																class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1045"><a
-																href="https://gillion.shufflehound.com/infinite-scrolling/">Infinite
-																	Scrolling</a></li>
-															<li id="menu-item-1046"
-																class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1046"><a
-																href="https://gillion.shufflehound.com/load-more-button/">&#8220;Load
-																	More&#8221; button</a></li>
-														</ul></li>
-													<li id="menu-item-516"
-														class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-516"><a
-														href="#">Reviews</a>
-													<ul class="sub-menu">
-															<li id="menu-item-2048"
-																class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2048"><a
-																href="https://gillion.shufflehound.com/2017/01/26/drone-powered-by-ai-can-detect-obstacles/">Top</a></li>
-															<li id="menu-item-2047"
-																class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2047"><a
-																href="https://gillion.shufflehound.com/2017/01/27/whatre-people-buzzing-about-your-content-should-join-the-conversation/">Left</a></li>
-															<li id="menu-item-2049"
-																class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2049"><a
-																href="https://gillion.shufflehound.com/2017/01/24/coolest-gaming-rig-with-nzxt-cooling-system/">Bottom</a></li>
-														</ul></li>
-													<li id="menu-item-902"
-														class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-902"><a
-														href="#">Headers</a>
-													<ul class="sub-menu">
-															<li id="menu-item-904"
-																class="menu-item menu-item-type-custom menu-item-object-custom menu-item-904"><a
-																href="https://gillion.shufflehound.com/header-layout/?header=header-2">Standard</a></li>
-															<li id="menu-item-903"
-																class="menu-item menu-item-type-custom menu-item-object-custom menu-item-903"><a
-																href="https://gillion.shufflehound.com/header-layout/?header=header-1">Menu
-																	Center</a></li>
-															<li id="menu-item-906"
-																class="menu-item menu-item-type-custom menu-item-object-custom menu-item-906"><a
-																href="https://gillion.shufflehound.com/header-layout/?header=header-4">Logo/menu
-																	center</a></li>
-															<li id="menu-item-905"
-																class="menu-item menu-item-type-custom menu-item-object-custom menu-item-905"><a
-																href="https://gillion.shufflehound.com/header-layout/?header=header-3">With
-																	Ad place</a></li>
-														</ul></li>
-													<li id="menu-item-548"
-														class="menu-item menu-item-type-custom menu-item-object-custom menu-item-548"><a
-														href="http://gillion.shufflehound.com/?s=Lorem+ipsum">Search
-															Results</a></li>
-													<li id="menu-item-549"
-														class="menu-item menu-item-type-custom menu-item-object-custom menu-item-549"><a
-														href="/404-page/">404 Page</a></li>
-													<li id="menu-item-851"
-														class="menu-item menu-item-type-custom menu-item-object-custom menu-item-851"><a
-														href="https://gillion.shufflehound.com/boxed-layout/">Boxed
-															Layout</a></li>
-													<li id="menu-item-1069"
-														class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1069"><a
-														href="#">Elements</a>
-													<ul class="sub-menu">
-															<li id="menu-item-1074"
-																class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1074"><a
-																href="https://gillion.shufflehound.com/elements/sliders/">Sliders</a></li>
-															<li id="menu-item-1071"
-																class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1071"><a
-																href="https://gillion.shufflehound.com/elements/posts/">Posts</a></li>
-															<li id="menu-item-1070"
-																class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1070"><a
-																href="https://gillion.shufflehound.com/elements/posts-cover/">Posts
-																	(Cover)</a></li>
-															<li id="menu-item-1073"
-																class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1073"><a
-																href="https://gillion.shufflehound.com/elements/categories/">Categories</a></li>
-															<li id="menu-item-1072"
-																class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1072"><a
-																href="https://gillion.shufflehound.com/elements/subscribe/">Subscribe</a></li>
-															<li id="menu-item-1075"
-																class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1075"><a
-																href="#"><i>Text Slider (soon)</i></a></li>
-															<li id="menu-item-1076"
-																class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1076"><a
-																href="#"><i>Image Container (soon)</i></a></li>
-															<li id="menu-item-1077"
-																class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1077"><a
-																href="#"><i>Image Gallery (soon)</i></a></li>
-															<li id="menu-item-1078"
-																class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1078"><a
-																href="#"><i>Heading, Text, Image, Button, etc
-																		(soon)</i></a></li>
 														</ul></li>
 												</ul></li>
 											<li id="menu-item-880"
 												class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-880"><a
-												href="#">Blog Styles</a>
-											<ul class="sub-menu">
+												href="#">Activity</a>
+												<ul class="sub-menu">
 													<li id="menu-item-539"
 														class="menu-item menu-item-type-post_type menu-item-object-page menu-item-539"><a
 														href="https://gillion.shufflehound.com/blog-style/masonry-style/">Masonry
 															Style</a></li>
-													<li id="menu-item-838"
-														class="menu-item menu-item-type-post_type menu-item-object-page menu-item-838"><a
-														href="https://gillion.shufflehound.com/blog-style/masonry-card-style/">Masonry
-															Card Style</a></li>
-													<li id="menu-item-540"
-														class="menu-item menu-item-type-post_type menu-item-object-page menu-item-540"><a
-														href="https://gillion.shufflehound.com/blog-style/grid-style/">Grid
-															Style</a></li>
-													<li id="menu-item-538"
-														class="menu-item menu-item-type-post_type menu-item-object-page menu-item-538"><a
-														href="https://gillion.shufflehound.com/blog-style/left-style/">Left
-															Style</a></li>
-													<li id="menu-item-537"
-														class="menu-item menu-item-type-post_type menu-item-object-page menu-item-537"><a
-														href="https://gillion.shufflehound.com/blog-style/mix-style/">Mix
-															Style</a></li>
-													<li id="menu-item-536"
-														class="menu-item menu-item-type-post_type menu-item-object-page menu-item-536"><a
-														href="https://gillion.shufflehound.com/blog-style/large-style/">Large
-															Style</a></li>
-													<li id="menu-item-836"
-														class="menu-item menu-item-type-post_type menu-item-object-page menu-item-836"><a
-														href="https://gillion.shufflehound.com/blog-style/large-title-bellow-style/">Large
-															Title Bellow Style</a></li>
-													<li id="menu-item-837"
-														class="menu-item menu-item-type-post_type menu-item-object-page menu-item-837"><a
-														href="https://gillion.shufflehound.com/blog-style/large-centered-style/">Large
-															Centered Style</a></li>
 												</ul></li>
 											<li id="menu-item-729"
 												class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-mega-menu menu-item-729 menu-item-has-children"><a
-												href="#">Mega Menu</a>
-											<ul
+												href="#">Performance</a>
+												<ul
 													class="sub-menu mega-menu-row mega-menu-dynamic-elements mega-menu-row-1">
 													<li class="menu-item"><div
 															class="row header-dynamic-categories"
@@ -1000,8 +812,8 @@ img.wp-smiley, img.emoji {
 												<div class="mega-menu-cleanup"></div></li>
 											<li id="menu-item-1167"
 												class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1167"><a
-												href="#">Shop</a>
-											<ul class="sub-menu">
+												href="#">Article</a>
+												<ul class="sub-menu">
 													<li id="menu-item-1169"
 														class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1169"><a
 														href="https://gillion.shufflehound.com/shop/">Shop
@@ -1010,25 +822,12 @@ img.wp-smiley, img.emoji {
 														class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2075"><a
 														href="https://gillion.shufflehound.com/shop1/">Shop
 															Demo</a></li>
-													<li id="menu-item-1168"
-														class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1168"><a
-														href="https://gillion.shufflehound.com/product/multi-function-30mm-1-4f-camera-lens/">Product
-															Single</a></li>
-													<li id="menu-item-1172"
-														class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1172"><a
-														href="https://gillion.shufflehound.com/my-account/">My
-															account</a></li>
-													<li id="menu-item-1170"
-														class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1170"><a
-														href="https://gillion.shufflehound.com/checkout/">Checkout</a></li>
-													<li id="menu-item-1171"
-														class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1171"><a
-														href="https://gillion.shufflehound.com/cart/">Cart</a></li>
 												</ul></li>
 										</ul>
 									</div>
 								</nav>
 							</div>
+							<!-- 							JAYEE TOPSIDEBAR -->
 							<div class="sh-table-cell sh-header-meta2-container">
 								<nav class="header-standard-position">
 									<div class="sh-nav-container">
@@ -1044,7 +843,7 @@ img.wp-smiley, img.emoji {
 														<i class="ti-bookmark"></i> <span
 															class="sh-read-later-total">0</span>
 													</div> </a>
-											<ul
+												<ul
 													class="sub-menu sh-read-later-list sh-read-later-list-init">
 													<li class="sh-read-later-item menu-item text-center">
 														<a
@@ -1101,20 +900,19 @@ img.wp-smiley, img.emoji {
 															<div class="blog-grid-small-container">
 																<div class="blog-grid-small blog-grid-item1">
 																	<div class="blog-grid-item-container blog-slider-item"
-																		style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2019/01/insta-mobile-1024x683.jpg );">
+																		style="background-image: url( /resources/user-bootstrap/img/index/ear.jpg );">
 																		<div class="blog-slider-container">
 																			<div class="blog-slider-content">
 																				<div class="blog-slider-content-details">
 																					<div class="post-categories-container">
 																						<div class="post-categories">
 																							<a
-																								href="https://gillion.shufflehound.com/news/category/health/">Health</a>
+																								href="https://gillion.shufflehound.com/news/category/health/">NEW</a>
 																						</div>
 																					</div>
 																					<a
 																						href="https://gillion.shufflehound.com/news/2019/01/15/how-much-time-on-social-networks-is-considered-healthy/"><h2
-																							class="post-title">How Much Time On Social
-																							Networks Is Considered Healthy</h2> </a>
+																							class="post-title">EAR (Li-Ronghao)</h2> </a>
 																				</div>
 																			</div>
 																		</div>
@@ -1122,20 +920,19 @@ img.wp-smiley, img.emoji {
 																</div>
 																<div class="blog-grid-small blog-grid-item2">
 																	<div class="blog-grid-item-container blog-slider-item"
-																		style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/11-1024x768.jpg );">
+																		style="background-image: url( /resources/user-bootstrap/img/index/10.jpg );">
 																		<div class="blog-slider-container">
 																			<div class="blog-slider-content">
 																				<div class="blog-slider-content-details">
 																					<div class="post-categories-container">
 																						<div class="post-categories">
 																							<a
-																								href="https://gillion.shufflehound.com/news/category/tech/">Tech</a>
+																								href="https://gillion.shufflehound.com/news/category/tech/">NEW</a>
 																						</div>
 																					</div>
 																					<a
 																						href="https://gillion.shufflehound.com/news/2019/01/15/smart-watches-that-will-want-you-spend-some-money/"><h2
-																							class="post-title">Smart Watches That Will
-																							Make You Spend Some Money</h2> </a>
+																							class="post-title">UGLY BEAUTY (Jolin)</h2> </a>
 																				</div>
 																			</div>
 																		</div>
@@ -1144,20 +941,19 @@ img.wp-smiley, img.emoji {
 															</div>
 															<div class="blog-grid-large blog-grid-item3">
 																<div class="blog-grid-item-container blog-slider-item"
-																	style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2019/01/blue-sky-girl-1024x1024.jpg );">
+																	style="background-image: url( /resources/user-bootstrap/img/index/bionic.jpg );">
 																	<div class="blog-slider-container">
 																		<div class="blog-slider-content">
 																			<div class="blog-slider-content-details">
 																				<div class="post-categories-container">
 																					<div class="post-categories">
 																						<a
-																							href="https://gillion.shufflehound.com/news/category/lifestyle/">Lifestyle</a>
+																							href="https://gillion.shufflehound.com/news/category/lifestyle/">HOT</a>
 																					</div>
 																				</div>
 																				<a
 																					href="https://gillion.shufflehound.com/news/2019/01/12/how-fashion-trend-change-the-way-you-think/"><h2
-																						class="post-title">How Fashion Trend Change
-																						The Way You Think</h2> </a>
+																						class="post-title">BE-ON-IC</h2> </a>
 																				<div class="post-meta">
 																					<div class="post-meta-content">
 																						<span class="post-auhor-date post-auhor-date-full">
@@ -1169,22 +965,21 @@ img.wp-smiley, img.emoji {
 																										srcset='https://secure.gravatar.com/avatar/f88c13d62ba761a92211e266c22dbb1f?s=56&#038;d=mm&#038;r=g 2x'
 																										class='avatar avatar-28 photo post-author-image'
 																										height='28' width='28' />
-																								</noscript>
-																								<img alt=''
+																								</noscript> <img alt=''
 																								src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2028%2028%22%3E%3C/svg%3E'
 																								data-src='https://secure.gravatar.com/avatar/f88c13d62ba761a92211e266c22dbb1f?s=28&#038;d=mm&#038;r=g'
-																								data-srcset='https://secure.gravatar.com/avatar/f88c13d62ba761a92211e266c22dbb1f?s=56&#038;d=mm&#038;r=g 2x'
+																								data-srcset='/resources/user-bootstrap/img/index/jason.png'
 																								class='lazyload avatar avatar-28 photo post-author-image'
 																								height='28' width='28' />
 																						</a> <span> <a
 																								href="https://gillion.shufflehound.com/news/author/gillionshufflehound/"
-																								class="post-author">Gillion</a></span>, <a
+																								class="post-author">Jason</a></span>, <a
 																							href="https://gillion.shufflehound.com/news/2019/01/12/how-fashion-trend-change-the-way-you-think/"
-																							class="post-date"> 6 months ago </a>
+																							class="post-date"> 6 hours ago </a>
 																						</span> <a
 																							href="https://gillion.shufflehound.com/news/2019/01/12/how-fashion-trend-change-the-way-you-think/#comments"
 																							class="post-comments"> <i
-																							class="icon icon-bubble"></i> 0
+																							class="icon icon-bubble"></i> 10
 																						</a> <span class="post-readtime"> <i
 																							class="icon icon-clock"></i> 3 min <span>read</span>
 																						</span> <span class="responsive-post-read-later">
@@ -1248,21 +1043,6 @@ img.wp-smiley, img.emoji {
 												<div class="vc_empty_space" style="height: 50px">
 													<span class="vc_empty_space_inner"></span>
 												</div>
-												<style media="screen">
-.blog-posts-fancy-y0GCXf7Yo3 .post-title :hover,
-	.blog-posts-fancy-y0GCXf7Yo3 .post-title :hover * {
-	color: #1093ea
-}
-
-.blog-posts-fancy-y0GCXf7Yo3 .post-thumbnail .post-categories a:hover,
-	.blog-posts-fancy-y0GCXf7Yo3 .post-gallery .post-categories a:hover,
-	.blog-posts-fancy-y0GCXf7Yo3 .blog-slider-item .post-categories a:hover,
-	.blog-posts-fancy-y0GCXf7Yo3 .post-style-cover .post-categories a:hover,
-	.sh-post-categories-style2 .blog-posts-fancy-y0GCXf7Yo3 .post-format-icon:hover
-	{
-	background-color: #1093ea
-}
-</style>
 												<div class="blog-posts-fancy-y0GCXf7Yo3 sh-blog-fancy">
 													<div
 														class="blog-fancy-carousel-sides slider-arrows-sides blog-style-mini2 columns4 ">
@@ -1479,25 +1259,10 @@ img.wp-smiley, img.emoji {
 									<div class="wpb_column vc_column_container vc_col-sm-8">
 										<div class="vc_column-inner ">
 											<div class="wpb_wrapper">
-												<style media="screen">
-.blog-posts-fancy-IuUWG0M1fj .post-title :hover,
-	.blog-posts-fancy-IuUWG0M1fj .post-title :hover * {
-	color: #1093ea
-}
-
-.blog-posts-fancy-IuUWG0M1fj .post-thumbnail .post-categories a:hover,
-	.blog-posts-fancy-IuUWG0M1fj .post-gallery .post-categories a:hover,
-	.blog-posts-fancy-IuUWG0M1fj .blog-slider-item .post-categories a:hover,
-	.blog-posts-fancy-IuUWG0M1fj .post-style-cover .post-categories a:hover,
-	.sh-post-categories-style2 .blog-posts-fancy-IuUWG0M1fj .post-format-icon:hover
-	{
-	background-color: #1093ea
-}
-</style>
 												<div class="blog-posts-fancy-IuUWG0M1fj sh-blog-fancy">
 													<div class="sh-blog-fancy-title-container">
 														<h2 class="sh-blog-fancy-title"
-															style="border-color: #333333;">Todays spotlight</h2>
+															style="border-color: #333333;">HOT Activities</h2>
 													</div>
 													<div
 														class="blog-fancy-carousel-title slider-arrows-sides blog-style-mini1 columns3 blog-posts-disable-carousel">
@@ -1849,22 +1614,8 @@ img.wp-smiley, img.emoji {
 												<div class="vc_empty_space" style="height: 42px">
 													<span class="vc_empty_space_inner"></span>
 												</div>
-												<style media="screen">
-.blog-posts-categories-WemDkFX85q .post-title:hover {
-	color: #1093ea
-}
-
-.blog-posts-categories-WemDkFX85q .post-thumbnail .post-categories a:hover,
-	.blog-posts-categories-WemDkFX85q .post-gallery .post-categories a:hover,
-	.blog-posts-categories-WemDkFX85q .blog-slider-item .post-categories a:hover,
-	.blog-posts-categories-WemDkFX85q .post-style-cover .post-categories a:hover,
-	.sh-post-categories-style2 .blog-posts-categories-WemDkFX85q .post-format-icon:hover
-	{
-	background-color: #1093ea
-}
-</style>
 												<div
-													class="sh-categories blog-posts-categories-WemDkFX85q sh-categories-style5">
+													class="sh-categories blog-posts-categories-y3BmPh7JMD sh-categories-style5">
 													<div class="sh-categories-tabs">
 														<div class="sh-categories-title">
 															<h2 style="border-color: #333333;">Sport &amp; Cars</h2>
@@ -1876,18 +1627,18 @@ img.wp-smiley, img.emoji {
 															<ul class="nav nav-tab sh-tabs-stying sh-heading-font"
 																role="tablist">
 																<li role="presentation" class="active"><a
-																	href="#tab-WemDkFX85q-0" role="tab" data-toggle="tab">
+																	href="#tab-y3BmPh7JMD-0" role="tab" data-toggle="tab">
 																		All </a></li>
-																<li role="presentation"><a href="#tab-WemDkFX85q-1"
+																<li role="presentation"><a href="#tab-y3BmPh7JMD-1"
 																	role="tab" data-toggle="tab"> Sport </a></li>
-																<li role="presentation"><a href="#tab-WemDkFX85q-2"
+																<li role="presentation"><a href="#tab-y3BmPh7JMD-2"
 																	role="tab" data-toggle="tab"> Cars </a></li>
 															</ul>
 														</div>
 													</div>
 													<div class="tab-content">
 														<div role="tabpanel" class="tab-pane fade in active"
-															id="tab-WemDkFX85q-0">
+															id="tab-y3BmPh7JMD-0">
 															<div class="row">
 																<div class="col-md-6 col-sm-6">
 																	<div
@@ -2186,6 +1937,8 @@ img.wp-smiley, img.emoji {
 																</div>
 															</div>
 														</div>
+
+														----------------------
 														<div role="tabpanel" class="tab-pane fade"
 															id="tab-WemDkFX85q-1">
 															<div class="row">
@@ -2195,7 +1948,7 @@ img.wp-smiley, img.emoji {
 																		<div class="post-thumbnail">
 																			<noscript>
 																				<img width="420" height="265"
-																					src="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/19-420x265.jpg"
+																					src="/resources/user-bootstrap/img/index/mv1.jpg"
 																					class="attachment-gillion-landscape-small size-gillion-landscape-small wp-post-image"
 																					alt="" />
 																			</noscript>
@@ -2656,6 +2409,8 @@ img.wp-smiley, img.emoji {
 														</div>
 													</div>
 												</div>
+
+
 												<div class="vc_empty_space" style="height: 60px">
 													<span class="vc_empty_space_inner"></span>
 												</div>
@@ -2696,8 +2451,7 @@ img.wp-smiley, img.emoji {
 																								srcset='https://secure.gravatar.com/avatar/f88c13d62ba761a92211e266c22dbb1f?s=56&#038;d=mm&#038;r=g 2x'
 																								class='avatar avatar-28 photo post-author-image'
 																								height='28' width='28' />
-																						</noscript>
-																						<img alt=''
+																						</noscript> <img alt=''
 																						src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2028%2028%22%3E%3C/svg%3E'
 																						data-src='https://secure.gravatar.com/avatar/f88c13d62ba761a92211e266c22dbb1f?s=28&#038;d=mm&#038;r=g'
 																						data-srcset='https://secure.gravatar.com/avatar/f88c13d62ba761a92211e266c22dbb1f?s=56&#038;d=mm&#038;r=g 2x'
@@ -2759,8 +2513,7 @@ img.wp-smiley, img.emoji {
 																								srcset='https://secure.gravatar.com/avatar/f88c13d62ba761a92211e266c22dbb1f?s=56&#038;d=mm&#038;r=g 2x'
 																								class='avatar avatar-28 photo post-author-image'
 																								height='28' width='28' />
-																						</noscript>
-																						<img alt=''
+																						</noscript> <img alt=''
 																						src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2028%2028%22%3E%3C/svg%3E'
 																						data-src='https://secure.gravatar.com/avatar/f88c13d62ba761a92211e266c22dbb1f?s=28&#038;d=mm&#038;r=g'
 																						data-srcset='https://secure.gravatar.com/avatar/f88c13d62ba761a92211e266c22dbb1f?s=56&#038;d=mm&#038;r=g 2x'
@@ -2823,8 +2576,7 @@ img.wp-smiley, img.emoji {
 																								srcset='https://secure.gravatar.com/avatar/f88c13d62ba761a92211e266c22dbb1f?s=56&#038;d=mm&#038;r=g 2x'
 																								class='avatar avatar-28 photo post-author-image'
 																								height='28' width='28' />
-																						</noscript>
-																						<img alt=''
+																						</noscript> <img alt=''
 																						src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2028%2028%22%3E%3C/svg%3E'
 																						data-src='https://secure.gravatar.com/avatar/f88c13d62ba761a92211e266c22dbb1f?s=28&#038;d=mm&#038;r=g'
 																						data-srcset='https://secure.gravatar.com/avatar/f88c13d62ba761a92211e266c22dbb1f?s=56&#038;d=mm&#038;r=g 2x'
@@ -3293,8 +3045,7 @@ img.wp-smiley, img.emoji {
 																	<img
 																		src="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2018/05/ban_w2.png"
 																		class="" />
-																</noscript>
-																<img
+																</noscript> <img
 																src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20%20%22%3E%3C/svg%3E'
 																data-src="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2018/05/ban_w2.png"
 																class="lazyload " />
@@ -3311,13 +3062,6 @@ img.wp-smiley, img.emoji {
 										id="138,2011,49,1530,65,1518">
 										<div class="vc_column-inner ">
 											<div class="wpb_wrapper">
-												<style media="screen">
-@media ( max-width : 1025px) {
-	.sh-empty-space-h2HdpYLIfO {
-		height: 0px !important;
-	}
-}
-</style>
 												<div
 													class="sh-empty-space vc_empty_space sh-empty-space-h2HdpYLIfO  "
 													style="height: 60px">
@@ -3672,13 +3416,6 @@ img.wp-smiley, img.emoji {
 													<div
 														class="widget-slide-arrows sh-carousel-buttons-styling"></div>
 												</div>
-												<style media="screen">
-@media ( max-width : 1025px) {
-	.sh-empty-space-93B1RuTKvb {
-		height: 0px !important;
-	}
-}
-</style>
 												<div
 													class="sh-empty-space vc_empty_space sh-empty-space-93B1RuTKvb  "
 													style="height: 40px">
@@ -3693,21 +3430,6 @@ img.wp-smiley, img.emoji {
 									<div class="wpb_column vc_column_container vc_col-sm-8">
 										<div class="vc_column-inner ">
 											<div class="wpb_wrapper">
-												<style media="screen">
-.blog-posts-QtNm2JyfnE .post-title :hover, .blog-posts-QtNm2JyfnE .post-title :hover *
-	{
-	color: #1093ea
-}
-
-.blog-posts-QtNm2JyfnE .post-thumbnail .post-categories a:hover,
-	.blog-posts-QtNm2JyfnE .post-gallery .post-categories a:hover,
-	.blog-posts-QtNm2JyfnE .blog-slider-item .post-categories a:hover,
-	.blog-posts-QtNm2JyfnE .post-style-cover .post-categories a:hover,
-	.sh-post-categories-style2 .blog-posts-QtNm2JyfnE .post-format-icon:hover
-	{
-	background-color: #1093ea
-}
-</style>
 												<div
 													class="sh-blog-fancy-title-container sh-blog-fancy-title-container-sides">
 													<h2 class="sh-blog-fancy-title"
@@ -4637,13 +4359,6 @@ img.wp-smiley, img.emoji {
 											</div>
 										</div>
 									</div>
-									<style type="text/css">
-@media ( max-width : 800px) {
-	.vc_row_1551971982 {
-		padding: 10px 0px 10px 0px !important;
-	}
-}
-</style>
 								</div>
 								<div class="sh-clear"></div>
 							</div>
@@ -4654,32 +4369,6 @@ img.wp-smiley, img.emoji {
 			<div class="sh-footer-template">
 				<div class="container">
 					<style type="text/css" data-type="vc_shortcodes-custom-css">
-.vc_custom_1547807096860 {
-	background: #242626
-		url(http://gillion.shufflehound.com/news/wp-content/uploads/sites/15/2018/11/footer-background.jpg?id=1964)
-		!important;
-	background-position: center !important;
-	background-repeat: no-repeat !important;
-	background-size: cover !important;
-}
-
-.vc_custom_1547033408288 {
-	padding-top: 0px !important;
-}
-
-.vc_custom_1547040065021 {
-	padding-top: 30px !important;
-	padding-bottom: 70px !important;
-	background-color: rgba(30, 30, 30, 0.80) !important;
-	*background-color: rgb(30, 30, 30) !important;
-}
-
-.vc_custom_1547040351307 {
-	padding-top: 10px !important;
-	padding-bottom: 10px !important;
-	background-color: rgba(35, 35, 35, 0.95) !important;
-	*background-color: rgb(35, 35, 35) !important;
-}
 </style>
 					<div data-vc-full-width="true" data-vc-full-width-init="false"
 						data-vc-stretch-content="true" data-jarallax data-speed="0.2"
@@ -4693,99 +4382,7 @@ img.wp-smiley, img.emoji {
 											<div class="vc_column-inner ">
 												<div class="wpb_wrapper"
 													style="width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto;">
-													<style media="screen">
-#sh-footer-builder-widgets-KYqIbX1yQi .widget-title,
-	#sh-footer-builder-widgets-KYqIbX1yQi h5,
-	#sh-footer-builder-widgets-KYqIbX1yQi h5.widget-title {
-	color: #ffffff
-}
 
-#sh-footer-builder-widgets-KYqIbX1yQi a,
-	#sh-footer-builder-widgets-KYqIbX1yQi .post-views,
-	#sh-footer-builder-widgets-KYqIbX1yQi li a,
-	#sh-footer-builder-widgets-KYqIbX1yQi h6,
-	#sh-footer-builder-widgets-KYqIbX1yQi .sh-widget-posts-slider-style1 h5,
-	#sh-footer-builder-widgets-KYqIbX1yQi .sh-widget-posts-slider-style1 h5 span,
-	#sh-footer-builder-widgets-KYqIbX1yQi .widget_about_us .widget-quote {
-	color: #ffffff !important;
-}
-
-#sh-footer-builder-widgets-KYqIbX1yQi,
-	#sh-footer-builder-widgets-KYqIbX1yQi .post-meta,
-	#sh-footer-builder-widgets-KYqIbX1yQi .post-meta span,
-	#sh-footer-builder-widgets-KYqIbX1yQi .sh-recent-posts-widgets-item-meta a
-	{
-	color: #e3e3e3 !important;
-}
-
-#sh-footer-builder-widgets-KYqIbX1yQi i:not (.icon-link ):not (.icon-magnifier
-	), #sh-footer-builder-widgets-KYqIbX1yQi .widget_recent_entries li:before
-	{
-	color: #f7f7f7 !important;
-}
-
-#sh-footer-builder-widgets-KYqIbX1yQi ul li,
-	#sh-footer-builder-widgets-KYqIbX1yQi ul li,
-	#sh-footer-builder-widgets-KYqIbX1yQi .widget_product_categories ul.product-categories a,
-	#sh-footer-builder-widgets-KYqIbX1yQi .sh-recent-posts-widgets .sh-recent-posts-widgets-item,
-	#sh-footer-builder-widgets-KYqIbX1yQi .sh-widget-posts-slider-style1:not
-	(:last-child ), #sh-footer-builder-widgets-KYqIbX1yQi .widget_tag_cloud a,
-	.sh-title-style2 #sh-footer-builder-widgets-KYqIbX1yQi .sh-widget-title-styling,
-	.sh-carousel-style2 #sh-footer-builder-widgets-KYqIbX1yQi .sh-carousel-buttons-styling
-	{
-	border-color: #2e2e2e;
-}
-
-.sh-title-style2 #sh-footer-builder-widgets-KYqIbX1yQi .sh-widget-title-styling h3
-	{
-	border-color: #ffffff;
-}
-
-#sh-footer-builder-widgets-KYqIbX1yQi a:hover,
-	#sh-footer-builder-widgets-KYqIbX1yQi li a:hover,
-	#sh-footer-builder-widgets-KYqIbX1yQi h6:hover {
-	color: #47c9e5 !important;
-}
-
-.sh-footer-builder-widgets {
-	position: relative;
-	margin-bottom: -25px;
-}
-
-.sh-footer-builder-widgets>div {
-	display: inline-block;
-	width: 100%;
-	vertical-align: top;
-	padding: 0 15px;
-	margin-bottom: 25px;
-	margin-right: -4px;
-}
-
-.sh-footer-builder-widgets-2columns>div {
-	width: 50%;
-}
-
-.sh-footer-builder-widgets-3columns>div {
-	width: 33.3%;
-}
-
-.sh-footer-builder-widgets-4columns>div {
-	width: 25%;
-}
-
-.sh-footer-builder-widgets-5columns>div {
-	width: 20%;
-}
-
-@media ( max-width : 900px) {
-	.sh-footer-builder-widgets>div {
-		width: 100%;
-	}
-	.sh-footer-builder-widgets>div:not (:last-child ) {
-		margin-bottom: 40px;
-	}
-}
-</style>
 													<div id="sh-footer-builder-widgets-KYqIbX1yQi"
 														class="sh-footer-builder-widgets sh-footer-builder-widgets-KYqIbX1yQi sh-footer-builder-widgets-3columns ">
 														<div id="subscribe-3"
@@ -5047,13 +4644,12 @@ img.wp-smiley, img.emoji {
 			<div class="tab-content">
 				<div class="tab-pane active" id="viens">
 					<div class="sh-login-popup-content sh-login-popup-content-login">
-						<form name="loginform" id="loginform"
-							action="/login"
+						<form name="loginform" id="loginform" action="/login"
 							method="post">
 							<p class="login-username">
 								<label for="user_login">Username or Email Address</label> <input
-									type="text" name="username" id="user_login" class="input" value=""
-									size="20" />
+									type="text" name="username" id="user_login" class="input"
+									value="" size="20" />
 							</p>
 							<p class="login-password">
 								<label for="user_pass">Password</label> <input type="password"
@@ -5066,8 +4662,7 @@ img.wp-smiley, img.emoji {
 							<p class="login-submit">
 								<input type="submit" name="wp-submit" id="wp-submit"
 									class="button button-primary" value="Log In" /> <input
-									type="hidden" name="redirect_to"
-									value="" />
+									type="hidden" name="redirect_to" value="" />
 							</p>
 						</form>
 					</div>
@@ -5080,23 +4675,8 @@ img.wp-smiley, img.emoji {
 			</div>
 		</div>
 	</div>
-	<style>
-.lazyload, .lazyloading {
-	opacity: 0;
-}
 
-.lazyloaded {
-	opacity: 1;
-	transition: opacity 300ms;
-}
-</style>
-	<noscript>
-		<style>
-.lazyload {
-	display: none;
-}
-</style>
-	</noscript>
+	<noscript></noscript>
 	<script data-noptimize="1">
 		window.lazySizesConfig = window.lazySizesConfig || {};
 		window.lazySizesConfig.loadMode = 1;
@@ -5104,512 +4684,6 @@ img.wp-smiley, img.emoji {
 	<script async data-noptimize="1"
 		src='https://gillion.shufflehound.com/news/wp-content/plugins/autoptimize/classes/external/js/lazysizes.min.js'></script>
 	<!--[if lte IE 9]> <script type='text/javascript' src='https://gillion.shufflehound.com/news/wp-content/plugins/mailchimp-for-wp/assets/js/third-party/placeholders.min.js?ver=4.5.2'></script> <![endif]-->
-	<style>
-.sh-side-demos {
-	width: 430px;
-	position: fixed;
-	z-index: 5000;
-	top: 0;
-	right: 0px;
-	bottom: 0;
-	transform: translateX(430px);
-}
-
-.sh-side-demos.open {
-	box-shadow: 0 0px 39px 10px rgba(0, 0, 0, 0.2);
-}
-
-.sh-side-demos-container {
-	top: 0;
-	left: 0;
-	right: -17px;
-	position: absolute;
-	bottom: 0;
-	overflow-y: scroll;
-	background-color: #fff;
-	background-repeat: no-repeat;
-	background-position: right top;
-}
-
-body.admin-bar .sh-side-demos-container {
-	top: 32px;
-}
-
-.sh-side-demos.open {
-	transform: translateX(0px);
-}
-
-@media ( max-width : 1400px) {
-	.sh-side-demos {
-		width: 280px;
-		transform: translateX(280px);
-	}
-	.sh-side-demos .sh-side-demos-intro {
-		max-width: none !important;
-		padding: 0 25px;
-		margin-bottom: 35px;
-		margin-top: 35px;
-	}
-	.sh-side-demos .sh-side-demos-intro h2.welcome-title {
-		font-size: 21px;
-	}
-	.sh-side-demos .sh-side-demos-intro p {
-		font-size: 13px;
-		margin-bottom: 20px;
-	}
-	.sh-side-demos .sh-side-demos-purhase {
-		line-height: 44px;
-		padding: 0 32px;
-		font-size: 11px;
-	}
-	.sh-side-demos .sh-side-demos-container-close {
-		top: 12px;
-		right: 12px;
-	}
-	.sh-side-demos .sh-side-demos-loop {
-		padding: 0 18px;
-	}
-	.sh-side-demos .sh-side-demos-item {
-		padding: 0 5px;
-		margin-bottom: 15px;
-	}
-	.sh-side-demos .sh-side-demos-item-thumbnail {
-		width: 123px;
-		height: 96px;
-		background-size: 123px;
-	}
-	.sh-side-demos .sh-side-demos-item-name {
-		font-size: 11px;
-	}
-}
-
-@media ( max-width : 600px) {
-	.sh-side-demos {
-		display: none !important;
-	}
-}
-
-body.admin-bar .sh-side-demos {
-	padding-top: 32px;
-}
-
-.sh-side-demos-intro {
-	max-width: 310px;
-	display: table;
-	margin: 0 auto;
-	margin-top: 50px;
-	margin-bottom: 45px;
-	text-align: center;
-}
-
-.sh-side-demos-intro h2.welcome-title {
-	color: #2f2f2f;
-	margin-bottom: 19px;
-	font-weight: 900;
-	font-size: 24px;
-	line-height: 100% !important;
-}
-
-.sh-side-demos-intro h2.welcome-title strong {
-	font-weight: 900;
-}
-
-.sh-side-demos-intro p {
-	color: #5b5b5b;
-	font-size: 14px;
-	line-height: 1.7;
-	margin-bottom: 25px;
-}
-
-.sh-side-demos-purhase {
-	display: table;
-	padding: 0 42px;
-	background-color: #44cd81;
-	color: #fff !important;
-	text-align: center;
-	font-weight: bold;
-	font-size: 12px;
-	transition: 0.3s all ease-in-out;
-	margin-top: 27px;
-	border-radius: 100px;
-	line-height: 54px;
-	margin: 0 auto;
-	text-transform: uppercase;
-}
-
-.sh-side-demos-purhase:hover {
-	background-color: #3db874;
-	color: #fff;
-}
-
-.sh-side-demos-loop {
-	padding: 0px 23px 0px 23px;
-}
-
-.sh-side-demos-loop-container {
-	position: relative;
-	margin: 0 -10px;
-}
-
-.sh-side-demos-item {
-	text-align: center;
-	margin-bottom: 23px;
-	width: 50%;
-	display: inline-block;
-	margin-right: -4px;
-	padding: 0 10px;
-}
-
-.sh-side-demos-item .vcg-single-image-tag {
-	width: 40px;
-	height: 40px;
-	z-index: 100;
-}
-
-.sh-side-demos-item .vcg-single-image-tag span {
-	line-height: 42px;
-	font-size: 9px;
-}
-
-.sh-side-demos-item>a>span {
-	display: block;
-	font-weight: bold;
-	text-transform: uppercase;
-	font-size: 11px;
-	color: #505050;
-	margin-top: 15px;
-}
-
-.sh-side-demos-item-name {
-	font-weight: bold;
-	margin-top: 5px;
-	font-size: 12px;
-	color: #2f2f2f;
-}
-
-.sh-side-demos-item-thumbnail {
-	position: relative;
-	width: 180px;
-	height: 140px;
-	margin: 0 auto;
-	box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.06);
-	transition: 0.3s all ease-in-out;
-	border-radius: 4px;
-	background-image:
-		url( "https://cdn.gillion.shufflehound.com/wp-content/plugins/shufflehound-showcase-framework/sidemenu/demos2.png" );
-	background-repeat: no-repeat;
-	border: 1px solid #efefef;
-}
-
-.sh-side-demos-item-thumbnail:hover, .sh-side-demos-item-thumbnail:focus
-	{
-	box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.14);
-}
-
-.sh-side-demos-item-thumbnail .post-overlay {
-	border-radius: 4px !important;
-}
-
-.sh-side-demos-buttons {
-	position: absolute;
-	top: 229px;
-	left: -70px;
-	width: 70px;
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-	box-shadow: 0 0px 25px 8px rgba(0, 0, 0, .07);
-}
-
-.sh-side-demos-pages .sh-side-demos-buttons {
-	top: 160px;
-}
-
-.sh-side-options-item:first-child {
-	border-top-left-radius: 5px;
-}
-
-.sh-side-options-item:last-child {
-	border-bottom-left-radius: 5px;
-}
-
-.sh-side-options-item {
-	display: block;
-	text-align: center;
-	margin: 0px;
-	padding: 17px 0;
-	transition: 0.3s all ease-in-out;
-	position: relative;
-	background-color: #fff;
-	cursor: pointer;
-	border-right: 1px solid #f1f1f1;
-}
-
-.sh-side-options-item:not (:last-child ) {
-	border-bottom: 1px solid #f1f1f1;
-}
-
-.sh-side-options-item i {
-	font-size: 24px;
-}
-
-.sh-side-options-item img {
-	height: 33px;
-	transition: 0.3s all ease-in-out;
-}
-
-.sh-side-options-item img.sh-side-demos-colorful {
-	position: absolute;
-	left: 18px;
-	top: 17px;
-	opacity: 0;
-}
-
-.sh-side-options-item:hover img.sh-side-demos-standard,
-	.sh-side-options-item:focus img.sh-side-demos-standard, .sh-side-demos.open .sh-side-demos-button1 img.sh-side-demos-standard
-	{
-	opacity: 0;
-}
-
-.sh-side-options-item:hover img.sh-side-demos-colorful,
-	.sh-side-options-item:focus img.sh-side-demos-colorful, .sh-side-demos.open .sh-side-demos-button1 img.sh-side-demos-colorful
-	{
-	opacity: 1;
-}
-
-.sh-side-options-item:not (:hover ):not (:focus ) {
-	color: #B9B9B9 !important;
-}
-
-.sh-side-options-item:hover .sh-side-options-hover {
-	opacity: 1;
-	transform: translateX(-100%);
-}
-
-.sh-side-options-hover {
-	position: absolute;
-	background-color: #232323;
-	color: #fff;
-	padding: 20px 26px;
-	transform: translateX(0%);
-	left: 0px;
-	top: 0;
-	bottom: 0;
-	opacity: 0;
-	transition: 0.2s all ease-in-out;
-	z-index: -100;
-	font-size: 13px;
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-}
-
-.sh-side-options-hover span {
-	padding: 0px 3px;
-}
-
-.sh-side-demos-container-close {
-	position: absolute;
-	top: 22px;
-	right: 22px;
-	cursor: pointer;
-}
-
-.sh-side-demos-container-close i {
-	color: #c5c5c5;
-	font-size: 18px;
-	transition: 0.3s all ease;
-}
-
-.sh-side-demos-container-close:hover i, .sh-side-demos-container-close:focus i
-	{
-	color: #7f7f7f;
-}
-
-img.sh-side-demos-standard {
-	
-}
-
-/* Side Icons */
-.sh-side-options-item-image, .sh-side-options-item-image-colorful {
-	width: 33px;
-	height: 33px;
-	background-image:
-		url( "https://cdn.gillion.shufflehound.com/wp-content/plugins/shufflehound-showcase-framework/sidemenu/sidemenu-icons.png" );
-	background-repeat: no-repeat;
-	background-size: 33px;
-	margin: 0 auto;
-	transition: .3s all ease-in-out;
-}
-
-.sh-side-options-item-image-colorful {
-	position: absolute;
-	left: 18px;
-	top: 17px;
-	opacity: 0;
-}
-
-.sh-side-options-item:hover .sh-side-options-item-image {
-	opacity: 0;
-}
-
-.sh-side-options-item:hover .sh-side-options-item-image-colorful {
-	opacity: 1;
-}
-
-.sh-side-demo-news {
-	background-position: 0px -2240px;
-}
-
-.sh-side-demo-magazine {
-	background-position: 0px -2100px;
-}
-
-.sh-side-demo-gizmo-news {
-	background-position: 0px -1820px;
-}
-
-.sh-side-demo-clean {
-	background-position: 0px -1960px;
-}
-
-.sh-side-demo-tech {
-	background-position: 0px -1680px;
-}
-
-.sh-side-demo-foodie {
-	background-position: 0px -1540px;
-}
-
-.sh-side-demo-lifestyle {
-	background-position: 0px -1400px;
-}
-
-.sh-side-demo-personal {
-	background-position: 0px -1260px;
-}
-
-.sh-side-demo-shop {
-	background-position: 0px -980px;
-}
-
-.sh-side-demo-fashion {
-	background-position: 0px -1120px;
-}
-
-.sh-side-demo-travel {
-	background-position: 0px -1260px;
-}
-
-.sh-side-demo-creative {
-	background-position: 0px -420px;
-}
-
-.sh-side-demo-full-width {
-	background-position: 0px -140px;
-}
-
-.sh-side-demo-background {
-	background-position: 0px -280px;
-}
-
-.sh-side-demo-boxed {
-	background-position: 0px -560px;
-}
-
-.sh-side-demo-carousel {
-	background-position: 0px -700px;
-}
-
-@media ( max-width : 1400px) {
-	.sh-side-demo-news {
-		background-position: 0px -1536px;
-	}
-	.sh-side-demo-magazine {
-		background-position: 0px -1440px;
-	}
-	.sh-side-demo-gizmo-news {
-		background-position: 0px -1248px;
-	}
-	.sh-side-demo-clean {
-		background-position: 0px -1344px;
-	}
-	.sh-side-demo-tech {
-		background-position: 0px -1152px;
-	}
-	.sh-side-demo-foodie {
-		background-position: 0px -1056px;
-	}
-	.sh-side-demo-lifestyle {
-		background-position: 0px -960px;
-	}
-	.sh-side-demo-personal {
-		background-position: 0px -864px;
-	}
-	.sh-side-demo-shop {
-		background-position: 0px -672px;
-	}
-	.sh-side-demo-fashion {
-		background-position: 0px -768px;
-	}
-	.sh-side-demo-travel {
-		background-position: 0px -864px;
-	}
-	.sh-side-demo-creative {
-		background-position: 0px -288px;
-	}
-	.sh-side-demo-full-width {
-		background-position: 0px -96px;
-	}
-	.sh-side-demo-background {
-		background-position: 0px -192px;
-	}
-	.sh-side-demo-boxed {
-		background-position: 0px -384px;
-	}
-	.sh-side-demo-carousel {
-		background-position: 0px -480px;
-	}
-}
-
-.sh-side-options-item-image-showcase {
-	background-position: 0px -0px;
-}
-
-.sh-side-options-item-image-showcase-color {
-	background-position: 0px -33px;
-}
-
-.sh-side-options-item-image-demos {
-	background-position: 0px -66px;
-}
-
-.sh-side-options-item-image-demos-color {
-	background-position: 0px -99px;
-}
-
-.sh-side-options-item-image-questions {
-	background-position: 0px -132px;
-}
-
-.sh-side-options-item-image-questions-color {
-	background-position: 0px -165px;
-}
-
-.sh-side-options-item-image-support {
-	background-position: 0px -198px;
-}
-
-.sh-side-options-item-image-support-color {
-	background-position: 0px -231px;
-}
-
-.sh-side-options-item-image-message {
-	background-position: 0px -264px;
-}
-
-.sh-side-options-item-image-message-color {
-	background-position: 0px -297px;
-}
-</style>
 	<div class="sh-side-demos sh-side-demos-pages">
 		<div class="sh-side-demos-buttons">
 			<a href="https://gillion.shufflehound.com/hello/"
@@ -5666,6 +4740,7 @@ img.sh-side-demos-standard {
 					target="blank" class="sh-side-demos-purhase sh-heading-font">Purchase
 					Theme</a>
 			</div>
+			Button Home
 			<div class="sh-side-demos-loop">
 				<div class="sh-side-demos-loop-container">
 					<div class="sh-side-demos-item">
@@ -5683,7 +4758,7 @@ img.sh-side-demos-standard {
 							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-magazine">
 							<a href="/magazine" class="post-overlay"></a>
 						</div>
-						<div class="sh-side-demos-item-name">Magazine</div>
+						<div class="sh-side-demos-item-name">Magazinesssss</div>
 					</div>
 					<div class="sh-side-demos-item">
 						<div
@@ -5794,15 +4869,6 @@ img.sh-side-demos-standard {
 			</div>
 		</div>
 	</div>
-	<style>
-.new-item {
-	right: 1px !important;
-}
-
-.sh-header-mobile-navigation .c-hamburger {
-	top: -1px !important;
-}
-</style>
 	<script>
 		(function(i, s, o, g, r, a, m) {
 			i['GoogleAnalyticsObject'] = r;
