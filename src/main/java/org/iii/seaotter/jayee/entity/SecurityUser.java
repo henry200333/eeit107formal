@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.iii.seaotter.jayee.entity.SecurityRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -29,9 +31,9 @@ public class SecurityUser implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private Long userId;
-	@ManyToMany
-	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "role_id") })
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "account") }, inverseJoinColumns = {
+			@JoinColumn(name = "code") })
 	private Set<SecurityRole> roles = new HashSet<SecurityRole>();
 	@Column(name = "account")
 	private String account;
