@@ -1,5 +1,7 @@
 package org.iii.seaotter.jayee.config;
 
+import javax.sql.DataSource;
+
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,11 +18,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-//	@Autowired
-//	private DataSource dataSource;
-
 	@Autowired
-	private SecurityUserService securityUserService;
+	private DataSource dataSource;
+
+//	@Autowired
+//	private SecurityUserService securityUserService;
 
 	@Bean
 	public UserDetailsService userDetailsService() {
@@ -35,11 +37,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		auth.userDetailsService(securityUserService);
+//		auth.userDetailsService(securityUserService);
 
-//		auth.jdbcAuthentication().dataSource(dataSource)
-//				.usersByUsernameQuery("select account, password, enabled" + " from security_user where account=?")
-//				.authoritiesByUsernameQuery("select account, code" + " from security_role where account=?");
+		auth.jdbcAuthentication().dataSource(dataSource)
+				.usersByUsernameQuery("select account, password, enabled" + " from security_user where account=?")
+				.authoritiesByUsernameQuery("select account, code" + " from security_role where account=?");
 
 //		auth.inMemoryAuthentication()
 //		.withUser("admin")
@@ -51,9 +53,19 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/resources/**").permitAll().antMatchers("/user/**")
-				.hasAnyRole("ADMIN", "USER").antMatchers("/admin/**").hasRole("ADMIN").and().formLogin()
-				.loginPage("/login").failureUrl("/login").defaultSuccessUrl("/admin/artist/list").permitAll().and()
-				.logout().permitAll().logoutSuccessUrl("/login").and().csrf().disable();
+		http.authorizeRequests()
+		.antMatchers("/resources/**").permitAll()
+		.antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
+		.antMatchers("/admin/**").hasRole("ADMIN")
+		.and()
+		.formLogin().permitAll()
+		.loginPage("/login")
+		.failureUrl("/login")
+		.defaultSuccessUrl("/admin/artist/list")
+		.and()
+		.logout().permitAll()
+		.logoutSuccessUrl("/login")
+		.and()
+		.csrf().disable();
 	}
 }
