@@ -34,6 +34,7 @@ public class Artist {
 	private Long fanNumber;
 	@Column(name = "location")
 	private String location;
+	//Artist的ID關聯到Activity的artistId外鍵欄位
 	@OneToMany(mappedBy="artistId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<Activity> activitySet;
 	
