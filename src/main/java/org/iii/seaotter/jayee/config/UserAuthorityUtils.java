@@ -15,7 +15,7 @@ public class UserAuthorityUtils {
 
 	public static Collection<? extends GrantedAuthority> createAuthorities(SecurityUser user) {
 		String username = user.getUsername();
-		if (username.contains("admin")) {
+		if ("admin".equals(username) || "123".equals(username)) {
 			return ADMIN_ROLES;
 		}
 		return USER_ROLES;
