@@ -147,7 +147,7 @@
 		function deletebt(cellvalue, options, rowObject){
 			return "<button type='button' id='"
 			+ rowObject.id
-			+ "'onclick='deleteid(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button>";
+			+ "'onclick='deleteid(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i>";
 		};
 		function editid(object){
 			window.location.href = "/admin/vender/edit?id=" + object.id;
