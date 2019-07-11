@@ -1,5 +1,9 @@
 package org.iii.seaotter.jayee.web;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.iii.seaotter.jayee.dao.SecurityRoleDao;
 import org.iii.seaotter.jayee.entity.SecurityRole;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.SecurityUserService;
@@ -18,7 +22,10 @@ public class AuthController {
 	
 	@Autowired
 	private SecurityUserService securityUserService;
-
+	
+	@Autowired
+	private SecurityRoleDao securityRoleDao;
+	
 	@GetMapping("/login")
 	public String loginPage() {
 		return "/user/index";
@@ -36,15 +43,12 @@ public class AuthController {
 				user.setPassword(password);
 				user.setEnabled(true);
 				
-				SecurityRole role = new SecurityRole();
+				Set<SecurityRole> roles = new HashSet<SecurityRole>();
+				roles.add(securityRoleDao.findByCode("ROLE_USER"));
+				user.setRoles(roles);
 				
-//				securityUserService.signUp(user);
-//				SecurityRole role = new SecurityRole();
-//				role.setAccount(account);
-//				role.setCode("ROLE_USER");
-//				Set<SecurityUser> users = new HashSet<SecurityUser>();
-//				users.add(user);
-//				role.setUsers(users);
+				securityUserService.signUp(user);
+				return "/user/index";
 			}
 		}
 		return "/user/index";
