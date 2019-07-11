@@ -25,19 +25,23 @@ public class SpringSecurityUserContext implements UserContext {
 		// TODO Auto-generated method stub
 		SecurityContext context = SecurityContextHolder.getContext();
 		Authentication auth = context.getAuthentication();
-		if (auth == null) {
+
+		if (null == auth)
 			return null;
-		}
+
 		String account = auth.getName();
 		return securityUserDao.findByAccount(account);
 	}
 
 	@Override
 	public void setCurrentUser(SecurityUser user) {
-		UserDetails userDetails = securityUserService.loadUserByUsername(user.getUsername());
+		// TODO Auto-generated method stub
+		UserDetails userDetails = securityUserService.loadUserByUsername(user.getAccount());
+
 		Authentication auth = new UsernamePasswordAuthenticationToken(userDetails, user.getPassword(),
 				userDetails.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(auth);
+
 	}
 
 }

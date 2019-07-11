@@ -1,5 +1,7 @@
 package org.iii.seaotter.jayee.config;
 
+import javax.sql.DataSource;
+
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,11 +18,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-//	@Autowired
-//	private DataSource dataSource;
-
 	@Autowired
-	private SecurityUserService securityUserService;
+	private DataSource dataSource;
+
+//	@Autowired
+//	private SecurityUserService securityUserService;
 
 	@Bean
 	public UserDetailsService userDetailsService() {
@@ -35,11 +37,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		auth.userDetailsService(securityUserService);
+//		auth.userDetailsService(securityUserService);
 
-//		auth.jdbcAuthentication().dataSource(dataSource)
-//				.usersByUsernameQuery("select account, password, enabled" + " from security_user where account=?")
-//				.authoritiesByUsernameQuery("select account, code" + " from security_role where account=?");
+		auth.jdbcAuthentication().dataSource(dataSource)
+				.usersByUsernameQuery("SELECT account, password, enabled FROM security_user WHERE account=?")
+				.authoritiesByUsernameQuery("SELECT s.account, r.code FROM security_user s JOIN user_role ur ON s.user_id = ur.user_id JOIN security_role r ON ur.role_id = r.role_id WHERE s.account=?");
 
 //		auth.inMemoryAuthentication()
 //		.withUser("admin")
@@ -51,11 +53,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/resources/**").permitAll()
-		.antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
+		http.authorizeRequests()
+		.antMatchers("/resources/**").permitAll()
+		.antMatchers("/user/**").hasRole("USER")
 		.antMatchers("/admin/**").hasRole("ADMIN")
-		.and().formLogin().loginPage("/login").failureUrl("/login").defaultSuccessUrl("/user/index").permitAll()
-		.and().logout().permitAll().logoutSuccessUrl("/login")
-		.and().csrf().disable();
+		.and()
+		.formLogin().permitAll()
+		.loginPage("/login")
+		.failureUrl("/login")
+		.defaultSuccessUrl("/user/index")
+		.and()
+		.logout().permitAll()
+		.logoutSuccessUrl("/login")
+		.and()
+		.csrf().disable();
+
 	}
 }

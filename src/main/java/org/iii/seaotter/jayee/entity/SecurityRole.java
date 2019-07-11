@@ -23,8 +23,8 @@ public class SecurityRole implements GrantedAuthority {
 	@Column(name = "role_id")
 	private Long roleId;
 
+//	@JsonBackReference
 //	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
-//	@JsonIgnore
 //	private Set<SecurityUser> users = new HashSet<SecurityUser>();
 
 	@Column(name = "code")
