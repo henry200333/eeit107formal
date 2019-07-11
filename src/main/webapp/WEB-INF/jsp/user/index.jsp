@@ -494,7 +494,9 @@ img.wp-smiley, img.emoji {
 										class="social-media-instagram"> <i class="fa fa-instagram"></i>
 									</a><a href="http://gillion.shufflehound.com" target="_blank"
 										class="social-media-pinterest"> <i class="fa fa-pinterest"></i>
-									</a><a href="#login-register"
+									</a>
+<!-- 									------------------------------------------------------------------ -->
+									<a href="#login-register"
 										class="sh-login-popup sh-login-popup-trigger">Log in</a>
 									<div class="sh-clear"></div>
 								</div>
