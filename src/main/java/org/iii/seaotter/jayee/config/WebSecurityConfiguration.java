@@ -40,8 +40,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 //		auth.userDetailsService(securityUserService);
 
 		auth.jdbcAuthentication().dataSource(dataSource)
-				.usersByUsernameQuery("select account, password, enabled" + " from security_user where account=?")
-				.authoritiesByUsernameQuery("select account, code" + " from security_role where account=?");
+				.usersByUsernameQuery("SELECT account, password, enabled FROM security_user WHERE account=?")
+				.authoritiesByUsernameQuery("SELECT s.account, r.code FROM security_user s JOIN user_role ur ON s.user_id = ur.user_id JOIN security_role r ON ur.role_id = r.role_id WHERE account=?");
 
 //		auth.inMemoryAuthentication()
 //		.withUser("admin")
@@ -55,7 +55,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests()
 		.antMatchers("/resources/**").permitAll()
-		.antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
+		.antMatchers("/user/**").hasRole("USER")
 		.antMatchers("/admin/**").hasRole("ADMIN")
 		.and()
 		.formLogin().permitAll()
