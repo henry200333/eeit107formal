@@ -16,6 +16,7 @@ import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.common.ForumBoard;
 import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.common.Message;
+import org.iii.seaotter.jayee.dao.SecurityRoleDao;
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.SecurityRole;
 import org.iii.seaotter.jayee.entity.SecurityUser;
@@ -27,6 +28,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -45,6 +47,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class AdminForumController {
 	@Autowired
 	SecurityUserService securityUserService;
+	@Autowired
+	SecurityRoleDao securityRoleDao;
 	
 	@Autowired
 	private ForumService forumService;
@@ -160,20 +164,21 @@ public class AdminForumController {
 		return gridResponse;
 	};
 	
+	@Autowired
+	private PasswordEncoder p;
+	
 	@RequestMapping("/happy")
 	public void happy123()
 	{
 		SecurityUser temp = new SecurityUser();
 		temp.setAccount("apple");
-		temp.setPassword("55688");
+		temp.setPassword(p.encode("55688"));
 		temp.setEnabled(true);
 		
 		Set<SecurityRole> tempSet = new HashSet<SecurityRole>();
 		
-		SecurityRole temp2 = new SecurityRole();
-		temp2.setCode("ROLE_USER");
-		SecurityRole temp3 = new SecurityRole();
-		temp3.setCode("ROLE_ADMIN");
+		SecurityRole temp2 = securityRoleDao.findByCode("ROLE_USER");
+		SecurityRole temp3 = securityRoleDao.findByCode("ROLE_ADMIN");
 		tempSet.add(temp2);
 		tempSet.add(temp3);
 		temp.setRoles(tempSet);

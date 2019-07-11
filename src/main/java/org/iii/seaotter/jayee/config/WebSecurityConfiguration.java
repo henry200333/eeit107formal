@@ -41,7 +41,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 		auth.jdbcAuthentication().dataSource(dataSource)
 				.usersByUsernameQuery("SELECT account, password, enabled FROM security_user WHERE account=?")
-				.authoritiesByUsernameQuery("SELECT s.account, r.code FROM security_user s JOIN user_role ur ON s.user_id = ur.user_id JOIN security_role r ON ur.role_id = r.role_id WHERE account=?");
+				.authoritiesByUsernameQuery("SELECT s.account, r.code FROM security_user s JOIN user_role ur ON s.user_id = ur.user_id JOIN security_role r ON ur.role_id = r.role_id WHERE s.account=?");
 
 //		auth.inMemoryAuthentication()
 //		.withUser("admin")

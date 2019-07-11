@@ -9,6 +9,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.websocket.RemoteEndpoint;
 import javax.websocket.Session;
 
+import org.iii.seaotter.jayee.entity.Forum;
+
+import com.google.gson.Gson;
+
 public class WebSocketUtils {
 
 	public static final Map<String, Session> ONLINE_USER_SESSIONS = new ConcurrentHashMap<>();
@@ -26,9 +30,15 @@ public class WebSocketUtils {
 			return;
 		}
 		try {
+			Forum temp = new Forum();
+			temp.setUserName("henry");
+			 Gson gson = new Gson();
+			 basic.sendText(gson.toJson(temp));
+		
 			basic.sendText(message);
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
 		}
 	}
 
