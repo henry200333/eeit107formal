@@ -1,905 +1,12 @@
 
 <!DOCTYPE html>
 <html lang="en-US">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link type="text/css" media="all"
-	href="https://gillion.shufflehound.com/news/wp-content/cache/autoptimize/15/css/autoptimize_a372b57ff7295e14ea415b7fb5c39216.css"
-	rel="stylesheet" />
-<title>Gillion News Demo &#8211; Just another Gillion Theme site</title>
-<meta name="description"
-	content="Gillion is a powerhouse News, Magazine, Blog or Review style WordPress Theme packed with powerful, easy to use features, ready to create amazing websites. Incl 6 months support" />
-<link rel='dns-prefetch' href='//ajax.googleapis.com' />
-<link rel='dns-prefetch' href='//gillion.shufflehound.com' />
-<link rel='dns-prefetch' href='//cdn.gillion.shufflehound.com' />
-<link rel='dns-prefetch' href='//fonts.googleapis.com' />
-<link rel='dns-prefetch' href='//s.w.org' />
-<link href='https://ajax.googleapis.com' rel='preconnect' />
-<link href='https://fonts.googleapis.com' rel='preconnect' />
-<link href='https://fonts.gstatic.com' crossorigin='anonymous'
-	rel='preconnect' />
-<link rel="alternate" type="application/rss+xml"
-	title="Gillion News Demo &raquo; Feed"
-	href="https://gillion.shufflehound.com/news/feed/" />
-<link rel="alternate" type="application/rss+xml"
-	title="Gillion News Demo &raquo; Comments Feed"
-	href="https://gillion.shufflehound.com/news/comments/feed/" />
-<style type="text/css">
-img.wp-smiley, img.emoji {
-	display: inline !important;
-	border: none !important;
-	box-shadow: none !important;
-	height: 1em !important;
-	width: 1em !important;
-	margin: 0 .07em !important;
-	vertical-align: -0.1em !important;
-	background: none !important;
-	padding: 0 !important;
-}
-</style>
-<style id='rs-plugin-settings-inline-css' type='text/css'>
-#rs-demo-id {
-	
-}
-</style>
-<style id='gillion-responsive-inline-css' type='text/css'></style>
-<link rel='stylesheet' id='gillion-theme-settings-css'
-	href='https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/gillion-dynamic-styles.css?ver=633709465'
-	type='text/css' media='all' />
-<link rel='stylesheet' id='gillion-fonts-css'
-	href='https://fonts.googleapis.com/css?family=Montserrat:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&#038;subset=latin'
-	type='text/css' media='all' />
-<link rel='https://api.w.org/'
-	href='https://gillion.shufflehound.com/news/wp-json/' />
-<link rel="EditURI" type="application/rsd+xml" title="RSD"
-	href="https://gillion.shufflehound.com/news/xmlrpc.php?rsd" />
-<link rel="wlwmanifest" type="application/wlwmanifest+xml"
-	href="https://gillion.shufflehound.com/news/wp-includes/wlwmanifest.xml" />
-<meta name="generator" content="WordPress 5.2.2" />
-<link rel="canonical" href="https://gillion.shufflehound.com/news/" />
-<link rel='shortlink' href='https://gillion.shufflehound.com/news/' />
-<link rel="alternate" type="application/json+oembed"
-	href="https://gillion.shufflehound.com/news/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fgillion.shufflehound.com%2Fnews%2F" />
-<link rel="alternate" type="text/xml+oembed"
-	href="https://gillion.shufflehound.com/news/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fgillion.shufflehound.com%2Fnews%2F&#038;format=xml" />
-<script>
-	window.jQuery
-			|| document
-					.write('<script src="https://gillion.shufflehound.com/news/wp-includes/js/jquery/jquery.js"><\/script>')
-</script>
-<link rel="icon" type="image/png" href="/fav.png" />
-<meta name="generator"
-	content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress." />
-<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="https://gillion.shufflehound.com/news/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]-->
-<meta name="generator"
-	content="Powered by Slider Revolution 5.4.8.3 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface." />
-<style type="text/css" data-type="vc_shortcodes-custom-css">
-.vc_custom_1491409313534 {
-	padding-bottom: 15px !important;
-}
-
-.vc_custom_1547627184303 {
-	padding-top: 10px !important;
-	padding-bottom: 100px !important;
-}
-
-.vc_custom_1529334712116 {
-	margin-bottom: 0px !important;
-}
-
-.vc_custom_1543567551276 {
-	margin-bottom: 0px !important;
-}
-</style>
-<noscript>
-	<style type="text/css">
-.wpb_animate_when_almost_visible {
-	opacity: 1;
-}
-</style>
-</noscript>
-<script type="text/javascript"
-	src="https://gillion.shufflehound.com/news/wp-content/cache/autoptimize/15/js/autoptimize_43186e7d9681ffeaa29c913578d852cc.js"></script>
-</head>
-<body
-	class="home page-template-default page page-id-674 sh-body-header-sticky sh-bookmarks-style_title sh-title-style2 sh-section-tabs-style3 sh-carousel-style2 sh-carousel-position-bottom sh-post-categories-style2 sh-review-style2 sh-meta-order-top sh-instagram-widget-columns3 sh-categories-position-image sh-media-icon-style2 sh-wc-labels-off sh-instagram-widget-with-button wpb-js-composer js-comp-ver-5.7 vc_responsive">
-	<div class="sh-header-side">
-		<div id="subscribe-2"
-			class="widget_sh_mailChimp widget_sh_mailChimp_style1 widget-item widget_subscribe">
-			<div class="sh-widget-title-styling">
-				<h3 class="widget-title">Subscribe Now</h3>
-			</div>
-			<form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-848"
-				method="post" data-id="848" data-name="Subscribe">
-				<div class="mc4wp-form-fields">
-					<p>
-						<input type="email" name="EMAIL" placeholder="Your email address"
-							required />
-					</p>
-					<p>
-						<button type="submit">Sign up</button>
-					</p>
-				</div>
-				<label style="display: none !important;">Leave this field
-					empty if you're human: <input type="text" name="_mc4wp_honeypot"
-					value="" tabindex="-1" autocomplete="off" />
-				</label><input type="hidden" name="_mc4wp_timestamp" value="1562810409" /><input
-					type="hidden" name="_mc4wp_form_id" value="848" /><input
-					type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1" />
-				<div class="mc4wp-response"></div>
-			</form>
-			<p class="widget-quote-description">* You will receive the latest
-				news and updates on your favorite celebrities!</p>
-		</div>
-		<div id="posts_slider-4"
-			class="widget_facebook widget-item widget_posts_slider">
-			<div class="widget-slide-arrows-container not-slider">
-				<div class="sh-widget-title-styling">
-					<h3 class="widget-title">Trending News</h3>
-				</div>
-			</div>
-			<div class="sh-widget-posts-slider">
-				<div class="sh-widget-posts-slider-group">
-					<div
-						class="sh-widget-posts-slider-item sh-widget-posts-slider-style1 style4">
-						<a
-							href="https://gillion.shufflehound.com/news/2017/01/31/mystery-behind-the-xbox-controller/"
-							class="sh-widget-posts-slider-thumbnail"
-							style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/25-1-80x80.jpg);"></a>
-						<div class="sh-widget-posts-slider-content">
-							<a
-								href="https://gillion.shufflehound.com/news/2017/01/31/mystery-behind-the-xbox-controller/"><h5
-									class="post-title">
-									Mystery Behind The Xbox Controller&nbsp;<span
-										class="post-read-later post-read-later-guest"
-										href="#login-register" data-type="add" data-id="49"><i
-										class="fa fa-bookmark-o"></i></span>
-								</h5> </a>
-							<div class="post-meta">
-								<div class="post-meta-content">
-									<span class="post-auhor-date"> <a
-										href="https://gillion.shufflehound.com/news/2017/01/31/mystery-behind-the-xbox-controller/"
-										class="post-date"> 2 years ago </a>
-									</span> <span class="post-readtime"> <i class="icon icon-clock"></i>
-										3 min <span>read</span>
-									</span> <span class="responsive-post-read-later"> &nbsp;<span
-										class="post-read-later post-read-later-guest"
-										href="#login-register" data-type="add" data-id="49"><i
-											class="fa fa-bookmark-o"></i></span>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="sh-widget-posts-slider-item sh-widget-posts-slider-style1 style4">
-						<a
-							href="https://gillion.shufflehound.com/news/2016/01/31/the-untapped-gold-mine-of-time-that-virtually-no-one-knows-about/"
-							class="sh-widget-posts-slider-thumbnail"
-							style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/14_2-80x80.jpg);"></a>
-						<div class="sh-widget-posts-slider-content">
-							<a
-								href="https://gillion.shufflehound.com/news/2016/01/31/the-untapped-gold-mine-of-time-that-virtually-no-one-knows-about/"><h5
-									class="post-title">
-									The Untapped Gold Mine Of Time That Virtually No One Knows
-									About&nbsp;<span class="post-read-later post-read-later-guest"
-										href="#login-register" data-type="add" data-id="51"><i
-										class="fa fa-bookmark-o"></i></span>
-								</h5> </a>
-							<div class="post-meta">
-								<div class="post-meta-content">
-									<span class="post-auhor-date"> <a
-										href="https://gillion.shufflehound.com/news/2016/01/31/the-untapped-gold-mine-of-time-that-virtually-no-one-knows-about/"
-										class="post-date"> 3 years ago </a>
-									</span> <span class="post-readtime"> <i class="icon icon-clock"></i>
-										3 min <span>read</span>
-									</span> <span class="responsive-post-read-later"> &nbsp;<span
-										class="post-read-later post-read-later-guest"
-										href="#login-register" data-type="add" data-id="51"><i
-											class="fa fa-bookmark-o"></i></span>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="sh-widget-posts-slider-item sh-widget-posts-slider-style1 style4">
-						<a
-							href="https://gillion.shufflehound.com/news/2017/01/31/5-ways-animals-will-help-you-get-more-business/"
-							class="sh-widget-posts-slider-thumbnail"
-							style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/22-80x80.jpg);"></a>
-						<div class="sh-widget-posts-slider-content">
-							<a
-								href="https://gillion.shufflehound.com/news/2017/01/31/5-ways-animals-will-help-you-get-more-business/"><h5
-									class="post-title">
-									5 Ways Animals Will Help You Get More Business&nbsp;<span
-										class="post-read-later post-read-later-guest"
-										href="#login-register" data-type="add" data-id="43"><i
-										class="fa fa-bookmark-o"></i></span>
-								</h5> </a>
-							<div class="post-meta">
-								<div class="post-meta-content">
-									<span class="post-auhor-date"> <a
-										href="https://gillion.shufflehound.com/news/2017/01/31/5-ways-animals-will-help-you-get-more-business/"
-										class="post-date"> 2 years ago </a>
-									</span> <span class="post-readtime"> <i class="icon icon-clock"></i>
-										3 min <span>read</span>
-									</span> <span class="responsive-post-read-later"> &nbsp;<span
-										class="post-read-later post-read-later-guest"
-										href="#login-register" data-type="add" data-id="43"><i
-											class="fa fa-bookmark-o"></i></span>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="sh-widget-posts-slider-item sh-widget-posts-slider-style1 style4">
-						<a
-							href="https://gillion.shufflehound.com/news/2019/01/15/pair-of-green-sneakers-style-mistake-or-victory/"
-							class="sh-widget-posts-slider-thumbnail"
-							style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/23-80x80.jpg);"></a>
-						<div class="sh-widget-posts-slider-content">
-							<a
-								href="https://gillion.shufflehound.com/news/2019/01/15/pair-of-green-sneakers-style-mistake-or-victory/"><h5
-									class="post-title">
-									Pair Of Green Sneakers, Style Mistake Or Victory?&nbsp;<span
-										class="post-read-later post-read-later-guest"
-										href="#login-register" data-type="add" data-id="45"><i
-										class="fa fa-bookmark-o"></i></span>
-								</h5> </a>
-							<div class="post-meta">
-								<div class="post-meta-content">
-									<span class="post-auhor-date"> <a
-										href="https://gillion.shufflehound.com/news/2019/01/15/pair-of-green-sneakers-style-mistake-or-victory/"
-										class="post-date"> 6 months ago </a>
-									</span> <span class="post-readtime"> <i class="icon icon-clock"></i>
-										3 min <span>read</span>
-									</span> <span class="responsive-post-read-later"> &nbsp;<span
-										class="post-read-later post-read-later-guest"
-										href="#login-register" data-type="add" data-id="45"><i
-											class="fa fa-bookmark-o"></i></span>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="sh-widget-posts-slider-item sh-widget-posts-slider-style1 style4">
-						<a
-							href="https://gillion.shufflehound.com/news/2016/01/31/interview-of-beginner-urban-style-model-blog-diva/"
-							class="sh-widget-posts-slider-thumbnail"
-							style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/24-1-80x80.jpg);"></a>
-						<div class="sh-widget-posts-slider-content">
-							<a
-								href="https://gillion.shufflehound.com/news/2016/01/31/interview-of-beginner-urban-style-model-blog-diva/"><h5
-									class="post-title">
-									Interview Of Beginner Urban Style Model &#038; Blog Diva&nbsp;<span
-										class="post-read-later post-read-later-guest"
-										href="#login-register" data-type="add" data-id="47"><i
-										class="fa fa-bookmark-o"></i></span>
-								</h5> </a>
-							<div class="post-meta">
-								<div class="post-meta-content">
-									<span class="post-auhor-date"> <a
-										href="https://gillion.shufflehound.com/news/2016/01/31/interview-of-beginner-urban-style-model-blog-diva/"
-										class="post-date"> 3 years ago </a>
-									</span> <span class="post-readtime"> <i class="icon icon-clock"></i>
-										3 min <span>read</span>
-									</span> <span class="responsive-post-read-later"> &nbsp;<span
-										class="post-read-later post-read-later-guest"
-										href="#login-register" data-type="add" data-id="47"><i
-											class="fa fa-bookmark-o"></i></span>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="sh-widget-posts-slider-item sh-widget-posts-slider-style1 style4">
-						<a
-							href="https://gillion.shufflehound.com/news/2017/01/31/orange-house-is-a-green-house-say-what/"
-							class="sh-widget-posts-slider-thumbnail"
-							style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/21-1-80x80.jpg);"></a>
-						<div class="sh-widget-posts-slider-content">
-							<a
-								href="https://gillion.shufflehound.com/news/2017/01/31/orange-house-is-a-green-house-say-what/"><h5
-									class="post-title">
-									Orange House Is A Green House. Say What?&nbsp;<span
-										class="post-read-later post-read-later-guest"
-										href="#login-register" data-type="add" data-id="41"><i
-										class="fa fa-bookmark-o"></i></span>
-								</h5> </a>
-							<div class="post-meta">
-								<div class="post-meta-content">
-									<span class="post-auhor-date"> <a
-										href="https://gillion.shufflehound.com/news/2017/01/31/orange-house-is-a-green-house-say-what/"
-										class="post-date"> 2 years ago </a>
-									</span> <span class="post-readtime"> <i class="icon icon-clock"></i>
-										3 min <span>read</span>
-									</span> <span class="responsive-post-read-later"> &nbsp;<span
-										class="post-read-later post-read-later-guest"
-										href="#login-register" data-type="add" data-id="41"><i
-											class="fa fa-bookmark-o"></i></span>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="sh-widget-posts-slider-item sh-widget-posts-slider-style1 style4">
-						<a
-							href="https://gillion.shufflehound.com/news/2019/01/15/best-portable-bluetooth-speakers-in-2018/"
-							class="sh-widget-posts-slider-thumbnail"
-							style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/10-1-80x80.jpg);"></a>
-						<div class="sh-widget-posts-slider-content">
-							<a
-								href="https://gillion.shufflehound.com/news/2019/01/15/best-portable-bluetooth-speakers-in-2018/"><h5
-									class="post-title">
-									Best Portable Bluetooth Speakers In 2018&nbsp;<span
-										class="post-read-later post-read-later-guest"
-										href="#login-register" data-type="add" data-id="65"><i
-										class="fa fa-bookmark-o"></i></span>
-								</h5> </a>
-							<div class="post-meta">
-								<div class="post-meta-content">
-									<span class="post-auhor-date"> <a
-										href="https://gillion.shufflehound.com/news/2019/01/15/best-portable-bluetooth-speakers-in-2018/"
-										class="post-date"> 6 months ago </a>
-									</span> <span class="post-readtime"> <i class="icon icon-clock"></i>
-										3 min <span>read</span>
-									</span> <span class="responsive-post-read-later"> &nbsp;<span
-										class="post-read-later post-read-later-guest"
-										href="#login-register" data-type="add" data-id="65"><i
-											class="fa fa-bookmark-o"></i></span>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="widget-slide-arrows sh-carousel-buttons-styling"></div>
-		</div>
-	</div>
+<!-- topbar -->
+<jsp:include page="topbar.jsp"></jsp:include>
 	<div class="sh-header-side-overlay"></div>
 	<div id="page-container" class="">
-		<header class="primary-mobile">
-			<div id="header-mobile" class="sh-header-mobile">
-				<div class="sh-header-mobile-navigation">
-					<div class="container">
-						<div class="sh-table">
-							<div class="sh-table-cell">
-								<nav id="header-navigation-mobile"
-									class="header-standard-position">
-									<div class="sh-nav-container">
-										<ul class="sh-nav">
-											<li><div class="sh-hamburger-menu sh-nav-dropdown">
-													<span></span> <span></span> <span></span> <span></span>
-												</div></li>
-										</ul>
-									</div>
-								</nav>
-							</div>
-							<div class="sh-table-cell sh-header-logo-container">
-								<div class="header-logo">
-									<a href="https://gillion.shufflehound.com/news/"
-										class="header-logo-container sh-table-small"><div
-											class="sh-table-cell">
-											<noscript>
-												<img class="sh-standard-logo"
-													src="//gillion.shufflehound.com/news/wp-content/uploads/sites/15/2018/11/news-logo.png"
-													alt="Gillion News Demo" />
-											</noscript>
-											<img class="lazyload sh-standard-logo"
-												src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20%20%22%3E%3C/svg%3E'
-												data-src="//gillion.shufflehound.com/news/wp-content/uploads/sites/15/2018/11/news-logo.png"
-												alt="Gillion News Demo" />
-											<noscript>
-												<img class="sh-sticky-logo"
-													src="//gillion.shufflehound.com/news/wp-content/uploads/sites/15/2018/11/news-logo.png"
-													alt="Gillion News Demo" />
-											</noscript>
-											<img class="lazyload sh-sticky-logo"
-												src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20%20%22%3E%3C/svg%3E'
-												data-src="//gillion.shufflehound.com/news/wp-content/uploads/sites/15/2018/11/news-logo.png"
-												alt="Gillion News Demo" />
-											<noscript>
-												<img class="sh-light-logo"
-													src="//gillion.shufflehound.com/news/wp-content/uploads/sites/15/2018/11/news-logo.png"
-													alt="Gillion News Demo" />
-											</noscript>
-											<img class="lazyload sh-light-logo"
-												src='data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20%20%22%3E%3C/svg%3E'
-												data-src="//gillion.shufflehound.com/news/wp-content/uploads/sites/15/2018/11/news-logo.png"
-												alt="Gillion News Demo" />
-										</div> </a>
-								</div>
-							</div>
-							<div class="sh-table-cell">
-								<nav class="header-standard-position">
-									<div class="sh-nav-container">
-										<ul class="sh-nav">
-											<li
-												class="menu-item menu-item-has-children sh-nav-readmore sh-nav-special">
-												<a
-												href="https://gillion.shufflehound.com/news/?read-it-later"><div>
-														<i class="ti-bookmark"></i> <span
-															class="sh-read-later-total">0</span>
-													</div> </a>
-											</li>
-										</ul>
-									</div>
-								</nav>
-							</div>
-						</div>
-					</div>
-				</div>
-				<nav class="sh-header-mobile-dropdown">
-					<div class="container sh-nav-container">
-						<ul class="sh-nav-mobile"></ul>
-					</div>
-					<div class="container sh-nav-container">
-						<div class="header-mobile-social-media">
-							<a href="https://www.facebook.com/people/@/shufflehound"
-								target="_blank" class="social-media-facebook"> <i
-								class="fa fa-facebook"></i>
-							</a><a href="https://twitter.com/TheShufflehound" target="_blank"
-								class="social-media-twitter"> <i class="fa fa-twitter"></i>
-							</a><a href="http://gillion.shufflehound.com" target="_blank"
-								class="social-media-gplus"> <i class="fa fa-google-plus"></i>
-							</a><a href="http://gillion.shufflehound.com" target="_blank"
-								class="social-media-instagram"> <i class="fa fa-instagram"></i>
-							</a><a href="http://gillion.shufflehound.com" target="_blank"
-								class="social-media-pinterest"> <i class="fa fa-pinterest"></i>
-							</a><a href="#login-register"
-								class="sh-login-popup sh-login-popup-trigger">Log in</a>
-							<div class="sh-clear"></div>
-						</div>
-					</div>
-					<div class="header-mobile-search">
-						<div class="container sh-nav-container">
-							<form role="search" method="get" class="header-mobile-form"
-								action="https://gillion.shufflehound.com/news/">
-								<input class="header-mobile-form-input" type="text"
-									placeholder="Search here.." value="" name="s" required />
-								<button type="submit" class="header-mobile-form-submit">
-									<i class="icon-magnifier"></i>
-								</button>
-							</form>
-						</div>
-					</div>
-				</nav>
-			</div>
-		</header>
-		<header class="primary-desktop">
-			<div class="sh-header-top">
-				<div class="container">
-					<div class="sh-table">
-						<div class="sh-table-cell">
-							<div class="sh-nav-container">
-<!-- 								<ul id="menu-topbar-navigation" class="sh-nav"> -->
-<!-- 									<li id="menu-item-573" -->
-<!-- 										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-573"><a -->
-<!-- 										href="http://cdn.gillion.shufflehound.com">About</a></li> -->
-<!-- 									<li id="menu-item-574" -->
-<!-- 										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-574"><a -->
-<!-- 										href="http://cdn.gillion.shufflehound.com">Contacts</a></li> -->
-<!-- 									<li id="menu-item-576" -->
-<!-- 										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-576"><a -->
-<!-- 										href="http://cdn.gillion.shufflehound.com">Advertise</a></li> -->
-<!-- 									<li id="menu-item-1912" -->
-<!-- 										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1912"><a -->
-<!-- 										href="#">Buy theme</a></li> -->
-<!-- 									<li id="menu-item-1913" -->
-<!-- 										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1913"><a -->
-<!-- 										href="#">Work for us</a></li> -->
-<!-- 								</ul> -->
-							</div>
-						</div>
-						<div class="sh-table-cell">
-							<div class="sh-header-top-meta">
-								<div class="header-social-media">
-									<a href="https://www.facebook.com/people/@/shufflehound"
-										target="_blank" class="social-media-facebook"> <i
-										class="fa fa-facebook"></i>
-									</a><a href="https://twitter.com/TheShufflehound" target="_blank"
-										class="social-media-twitter"> <i class="fa fa-twitter"></i>
-									</a><a href="http://gillion.shufflehound.com" target="_blank"
-										class="social-media-gplus"> <i class="fa fa-google-plus"></i>
-									</a><a href="http://gillion.shufflehound.com" target="_blank"
-										class="social-media-instagram"> <i class="fa fa-instagram"></i>
-									</a><a href="http://gillion.shufflehound.com" target="_blank"
-										class="social-media-pinterest"> <i class="fa fa-pinterest"></i>
-									</a><a href="#login-register"
-										class="sh-login-popup sh-login-popup-trigger">Log in</a>
-									<div class="sh-clear"></div>
-								</div>
-								<div class="sh-header-top-date">
-									<span class="sh-header-top-date-day">11</span> <span
-										class="sh-header-top-date-meta"> <span
-										class="sh-header-top-date-month">Jul</span> <span
-										class="sh-header-top-date-year">2019</span>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="sh-header-height sh-header-5 sh-header-4">
-				<div class="sh-header-middle">
-					<div class="container sh-header-additional">
-						<div class="sh-table">
-							<div class="sh-table-cell sh-header-logo-container">
-								<nav class="header-standard-position">
-									<div class="sh-nav-container">
-										<ul class="sh-nav sh-nav-left">
-											<li><div class="header-logo">
-													<a href="/user/index"
-														class="header-logo-container sh-table-small"><div
-															class="sh-table-cell">
-															<noscript>
-																<img class="sh-standard-logo"
-																	src="/resources/user-bootstrap/img/index/news-logo.gif"
-																	alt="Gillion News Demo" />
-															</noscript>
-															<img class="lazyload sh-standard-logo"
-																src='/resources/user-bootstrap/img/index/news-logo.gif'
-																data-src="/resources/user-bootstrap/img/index/news-logo.gif"
-																alt="Gillion News Demo" />
-															<noscript>
-																<img class="sh-sticky-logo"
-																	src="/resources/user-bootstrap/img/index/news-logo.gif"
-																	alt="Gillion News Demo" />
-															</noscript>
-															<img class="lazyload sh-sticky-logo"
-																src='/resources/user-bootstrap/img/index/news-logo.gif'
-																data-src="/resources/user-bootstrap/img/index/news-logo.gif"
-																alt="Gillion News Demo" />
-															<noscript>
-																<img class="sh-light-logo"
-																	src="/resources/user-bootstrap/img/index/news-logo.gif"
-																	alt="Gillion News Demo" />
-															</noscript>
-															<img class="lazyload sh-light-logo"
-																src='/resources/user-bootstrap/img/index/news-logo.gif'
-																data-src="/resources/user-bootstrap/img/index/news-logo.gif"
-																alt="Gillion News Demo" />
-														</div> </a>
-												</div></li>
-										</ul>
-									</div>
-								</nav>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="sh-header sh-header-4 sh-sticky-header">
-					<div class="container sh-header-standard">
-						<div class="sh-table">
-							<div class="sh-table-cell sh-header-meta1-container">
-								<nav class="header-standard-position">
-									<div class="sh-nav-container">
-										<ul class="sh-nav">
-											<li class="menu-item sh-nav-search sh-nav-special"><a
-												href="#"><i class="icon icon-magnifier"></i></a></li>
-											<li
-												class="menu-item menu-item-has-children sh-nav-share sh-nav-special">
-												<a href="#"><div>
-														<i class="icon icon-share"></i>
-													</div> </a>
-											<ul class="sub-menu sh-nav-share-ul">
-													<li class="sh-share-item sh-share-item-facebook menu-item">
-														<a href="https://www.facebook.com/people/@/shufflehound"
-														target="_blank"> <i class="fa fa-facebook"></i>
-													</a>
-													</li>
-													<li class="sh-share-item sh-share-item-twitter menu-item">
-														<a href="https://twitter.com/TheShufflehound"
-														target="_blank"> <i class="fa fa-twitter"></i>
-													</a>
-													</li>
-													<li
-														class="sh-share-item sh-share-item-googleplus menu-item">
-														<a href="http://gillion.shufflehound.com" target="_blank">
-															<i class="fa fa-google-plus"></i>
-													</a>
-													</li>
-													<li class="sh-share-item sh-share-item-instagram menu-item">
-														<a href="http://gillion.shufflehound.com" target="_blank">
-															<i class="fa fa-instagram"></i>
-													</a>
-													</li>
-													<li class="sh-share-item sh-share-item-pinterest menu-item">
-														<a href="http://gillion.shufflehound.com" target="_blank">
-															<i class="fa fa-pinterest"></i>
-													</a>
-													</li>
-												</ul>
-											</li>
-										</ul>
-									</div>
-								</nav>
-							</div>
-							<div class="sh-table-cell">
-								<nav id="header-navigation" class="header-standard-position">
-									<div class="sh-nav-container">
-										<ul id="menu-header" class="sh-nav">
-											<li id="menu-item-515"
-												class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-515"><a
-												href="/hello/">Home</a>
-											<ul class="sub-menu">
-													<li id="menu-item-1000"
-														class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1000"><a
-														href="/hello/">Gillion Showcase</a></li>
-												</ul></li>
-											<li id="menu-item-517"
-												class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-517"><a
-												href="#">Artist</a>
-											<ul class="sub-menu">
-													<li id="menu-item-541"
-														class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-541"><a
-														href="#">Post Types</a>
-													<ul class="sub-menu">
-															<li id="menu-item-2036"
-																class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2036"><a
-																href="https://gillion.shufflehound.com/2017/02/08/white-stairway-architectural-marvel/">Standard</a></li>
-														</ul></li>
-													<li id="menu-item-556"
-														class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-556"><a
-														href="#">Post Layouts</a>
-													<ul class="sub-menu">
-															<li id="menu-item-2044"
-																class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2044"><a
-																href="https://gillion.shufflehound.com/2017/01/31/health-tips-and-benefits-of-healthy-lifestyle-you-should-consider/">Sidebar
-																	Right</a></li>
-														</ul></li>
-												</ul></li>
-											<li id="menu-item-880"
-												class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-880"><a
-												href="#">Activity</a>
-											<ul class="sub-menu">
-													<li id="menu-item-837"
-														class="menu-item menu-item-type-post_type menu-item-object-page menu-item-837"><a
-														href="https://gillion.shufflehound.com/blog-style/large-centered-style/">Large
-															Centered Style</a></li>
-												</ul></li>
-											<li id="menu-item-729"
-												class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-mega-menu menu-item-729 menu-item-has-children"><a
-												href="#">Performance</a>
-											<ul
-													class="sub-menu mega-menu-row mega-menu-dynamic-elements mega-menu-row-1">
-													<li class="menu-item"><div
-															class="row header-dynamic-categories"
-															data-items-per-page="4">
-															<div class="col-md-2 header-dynamic-categories-side">
-																<ul class="nav nav-tabs nav-tabs-header-categories">
-																	<li class="active"><a
-																		href="https://gillion.shufflehound.com/news/category/tech/"
-																		data-target="#megatab-G462z9-1" data-toggle="tab"
-																		data-hover="tab">Tech</a></li>
-																	<li><a
-																		href="https://gillion.shufflehound.com/news/category/beauty/"
-																		data-target="#megatab-G462z9-2" data-toggle="tab"
-																		data-hover="tab">Beauty</a></li>
-																</ul>
-															</div>
-															<div class="col-md-10">
-																<div
-																	class="tab-content header-dynamic-categories-content not-init">
-																	<div class="header-dynamic-categories-loader">
-																		<div class="loader-item">
-																			<div class="loader loader-8"></div>
-																		</div>
-																	</div>
-																	<div class="tab-pane active" id="megatab-G462z9-1">
-																		<ul class="nav nav-tabs sh-fully-hidden">
-																			<li class="active"><a
-																				data-target="#megapage-XD8wvH-1" data-toggle="tab"></a></li>
-																			<li><a data-target="#megapage-XD8wvH-2"
-																				data-toggle="tab"></a></li>
-																		</ul>
-																		<div class="tab-content">
-																			<div class="tab-pane active" id="megapage-XD8wvH-1">
-																				<div class="post-style-header">
-																					<div class="post-item post-header-item"
-																						data-i="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/11-220x220.jpg"
-																						data-t="Smart Watches That Will Make You Spend Some Money"
-																						data-l="https://gillion.shufflehound.com/news/2019/01/15/smart-watches-that-will-want-you-spend-some-money/"
-																						data-d="6 months ago"></div>
-																					<div class="post-item post-header-item"
-																						data-i="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/10-1-220x220.jpg"
-																						data-t="Best Portable Bluetooth Speakers In 2018"
-																						data-l="https://gillion.shufflehound.com/news/2019/01/15/best-portable-bluetooth-speakers-in-2018/"
-																						data-d="6 months ago"></div>
-																					<div class="post-item post-header-item"
-																						data-i="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2019/01/matrix-220x220.jpg"
-																						data-t="Most Impressive Hacker Attack in 2018"
-																						data-l="https://gillion.shufflehound.com/news/2019/01/12/most-impressive-hacker-attack-in-2018/"
-																						data-d="6 months ago"></div>
-																					<div class="post-item post-header-item"
-																						data-i="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2019/01/camera-blue-220x220.jpg"
-																						data-t="Best Cameras To Choose From In 2019"
-																						data-l="https://gillion.shufflehound.com/news/2019/01/12/best-cameras-to-choose-from-in-2019/"
-																						data-d="6 months ago"></div>
-																				</div>
-																			</div>
-																			<div class="tab-pane" id="megapage-XD8wvH-2">
-																				<div class="post-style-header">
-																					<div class="post-item post-header-item"
-																						data-i="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/28-220x220.jpg"
-																						data-t="New Cryptocurrency That Will Kill Of Bitcoin"
-																						data-l="https://gillion.shufflehound.com/news/2018/01/31/new-cryptocurrency-that-will-kill-of-bitcoin/"
-																						data-d="1 year ago"></div>
-																					<div class="post-item post-header-item"
-																						data-i="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/w2-220x220.jpg"
-																						data-t="Tips &#038; Trick Every PC Owner Have To Know"
-																						data-l="https://gillion.shufflehound.com/news/2017/02/09/tips-trick-every-pc-owner-have-to-know/"
-																						data-d="2 years ago"></div>
-																					<div class="post-item post-header-item"
-																						data-i="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/12-1-220x220.jpg"
-																						data-t="Common Port Problem Of New Laptops"
-																						data-l="https://gillion.shufflehound.com/news/2017/02/01/common-port-problem-of-new-laptops/"
-																						data-d="2 years ago"></div>
-																					<div class="post-item post-header-item"
-																						data-i="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/25-1-220x220.jpg"
-																						data-t="Mystery Behind The Xbox Controller"
-																						data-l="https://gillion.shufflehound.com/news/2017/01/31/mystery-behind-the-xbox-controller/"
-																						data-d="2 years ago"></div>
-																				</div>
-																			</div>
-																			<div class="tab-pane" id="megapage-XD8wvH-3">
-																				<div class="post-style-header"></div>
-																			</div>
-																		</div>
-																		<div class="sh-categories-switch 2//4">
-																			<div
-																				class="tab-pagination sh-carousel-buttons-styling">
-																				<button type="button"
-																					class="tab-pagination-back slick-prev">
-																					<i class="icon icon-arrow-left-circle"></i>
-																				</button>
-																				<button type="button"
-																					class="tab-pagination-next slick-next">
-																					<i class="icon icon-arrow-right-circle"></i>
-																				</button>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="tab-pane" id="megatab-G462z9-2">
-																		<ul class="nav nav-tabs sh-fully-hidden">
-																			<li class="active"><a
-																				data-target="#megapage-HsiRtf-1" data-toggle="tab"></a></li>
-																			<li><a data-target="#megapage-HsiRtf-2"
-																				data-toggle="tab"></a></li>
-																		</ul>
-																		<div class="tab-content">
-																			<div class="tab-pane active" id="megapage-HsiRtf-1">
-																				<div class="post-style-header">
-																					<div class="post-item post-header-item"
-																						data-i="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/14-220x220.jpg"
-																						data-t="Inspiring Songs Vol.1 &#8211; Different Heaven &#8211; Safe And Sound"
-																						data-l="https://gillion.shufflehound.com/news/2017/01/02/inspiring-songs-vol-1-different-heaven-safe-and-sound/"
-																						data-d="3 years ago"></div>
-																					<div class="post-item post-header-item"
-																						data-i="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/17-1-220x220.jpg"
-																						data-t="Website that you should check out"
-																						data-l="https://gillion.shufflehound.com/news/2017/01/02/website-that-you-should-check-out/"
-																						data-d="3 years ago"></div>
-																					<div class="post-item post-header-item"
-																						data-i="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/24-1-220x220.jpg"
-																						data-t="Interview Of Beginner Urban Style Model &#038; Blog Diva"
-																						data-l="https://gillion.shufflehound.com/news/2016/01/31/interview-of-beginner-urban-style-model-blog-diva/"
-																						data-d="3 years ago"></div>
-																					<div class="post-item post-header-item"
-																						data-i="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/14_2-220x220.jpg"
-																						data-t="The Untapped Gold Mine Of Time That Virtually No One Knows About"
-																						data-l="https://gillion.shufflehound.com/news/2016/01/31/the-untapped-gold-mine-of-time-that-virtually-no-one-knows-about/"
-																						data-d="3 years ago"></div>
-																				</div>
-																			</div>
-																			<div class="tab-pane" id="megapage-HsiRtf-2">
-																				<div class="post-style-header">
-																					<div class="post-item post-header-item"
-																						data-i="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2016/01/Main_slide-220x220.jpg"
-																						data-t="Lesson 1: Basics Of Photography With Natural Lighting"
-																						data-l="https://gillion.shufflehound.com/news/2016/01/31/lesson-1-basics-of-photography-with-natural-lighting/"
-																						data-d="3 years ago"></div>
-																					<div class="post-item post-header-item"
-																						data-i="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/2-220x220.jpg"
-																						data-t="How To Find Good Spots For Nature Inspired Photo-Shoots"
-																						data-l="https://gillion.shufflehound.com/news/2016/01/25/nature-you-beautiful-how-to-find-good-spots-for-nature-inspired-photo-shoots/"
-																						data-d="3 years ago"></div>
-																				</div>
-																			</div>
-																		</div>
-																		<div class="sh-categories-switch 2//4">
-																			<div
-																				class="tab-pagination sh-carousel-buttons-styling">
-																				<button type="button"
-																					class="tab-pagination-back slick-prev">
-																					<i class="icon icon-arrow-left-circle"></i>
-																				</button>
-																				<button type="button"
-																					class="tab-pagination-next slick-next">
-																					<i class="icon icon-arrow-right-circle"></i>
-																				</button>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div></li>
-												</ul>
-												<div class="mega-menu-cleanup"></div></li>
-											<li id="menu-item-1167"
-												class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1167"><a
-												href="#">Article</a>
-											<ul class="sub-menu">
-													<li id="menu-item-1169"
-														class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1169"><a
-														href="https://gillion.shufflehound.com/shop/">Shop
-															Page</a></li>
-													<li id="menu-item-2075"
-														class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2075"><a
-														href="https://gillion.shufflehound.com/shop1/">Shop
-															Demo</a></li>
-												</ul></li>
-										</ul>
-									</div>
-								</nav>
-							</div>
-							<div class="sh-table-cell sh-header-meta2-container">
-								<nav class="header-standard-position">
-									<div class="sh-nav-container">
-										<ul class="sh-nav">
-											<li class="menu-item sh-nav-menu sh-nav-special"><a
-												href="#"> <i class="ti-bolt-alt sh-nav-menu-icon-closed"
-													data-attr-closed="ti-bolt-alt" data-attr-opened="ti-close"></i>
-											</a></li>
-											<li
-												class="menu-item menu-item-has-children sh-nav-readmore sh-nav-special">
-												<a
-												href="https://gillion.shufflehound.com/news/?read-it-later"><div>
-														<i class="ti-bookmark"></i> <span
-															class="sh-read-later-total">0</span>
-													</div> </a>
-											<ul
-													class="sub-menu sh-read-later-list sh-read-later-list-init">
-													<li class="sh-read-later-item menu-item text-center">
-														<a
-														href="https://gillion.shufflehound.com/news/?read-it-later">
-															Login to add posts to your read later list </a>
-													</li>
-												</ul>
-											</li>
-										</ul>
-									</div>
-								</nav>
-							</div>
-						</div>
-					</div>
-					<div class="sh-header-search-side">
-						<div class="sh-header-search-side-container">
-							<form method="get" class="sh-header-search-form"
-								action="https://gillion.shufflehound.com/news/">
-								<input type="text" value="" name="s"
-									class="sh-header-search-side-input"
-									placeholder="Enter a keyword to search..." />
-								<div class="sh-header-search-side-close">
-									<i class="ti-close"></i>
-								</div>
-								<div class="sh-header-search-side-icon">
-									<i class="ti-search"></i>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</header>
+		<!-- header -->
+		<jsp:include page="header.jsp"></jsp:include>		
 		<div id="wrapper" class="layout-default default-nopadding">
 			<div class="content-container">
 				<div class="container entry-content">
@@ -911,14 +18,14 @@ img.wp-smiley, img.emoji {
 										<div class="vc_column-inner ">
 											<div class="wpb_wrapper">
 												<div
-													class="sh-empty-space vc_empty_space sh-empty-space-txO7glPABk  "
+													class="sh-empty-space vc_empty_space sh-empty-space-cXbpSW2eUj  "
 													style="height: 30px">
 													<span class="vc_empty_space_inner"></span>
 												</div>
 												<div
 													class="blog-slider-container-style9 blog-slider-style12">
 													<div
-														class="blog-slider blog-slider-style9 blog-slider-style12 blog-slider-0tqTU3BAcS">
+														class="blog-slider blog-slider-style9 blog-slider-style12 blog-slider-Nhksm4M0I1">
 														<div class="blog-grid-list">
 															<div class="blog-grid-small-container">
 																<div class="blog-grid-small blog-grid-item1">
@@ -930,7 +37,7 @@ img.wp-smiley, img.emoji {
 																					<div class="post-categories-container">
 																						<div class="post-categories">
 																							<a
-																								href="https://gillion.shufflehound.com/news/category/health/">Health</a>
+																								href="/admin/performance/list">Peformance</a>
 																						</div>
 																					</div>
 																					<a
@@ -949,7 +56,7 @@ img.wp-smiley, img.emoji {
 																			<div class="blog-slider-content">
 																				<div class="blog-slider-content-details">
 																					<div class="post-categories-container">
-																						<div class="post-categories">
+																						<div class="post-categories">/resources/user-bootstrap/img/index/news-logo.gif
 																							<a
 																								href="https://gillion.shufflehound.com/news/category/tech/">Tech</a>
 																						</div>
@@ -1071,21 +178,21 @@ img.wp-smiley, img.emoji {
 													<span class="vc_empty_space_inner"></span>
 												</div>
 												<style media="screen">
-.blog-posts-fancy-WDRYAkCaJz .post-title :hover,
-	.blog-posts-fancy-WDRYAkCaJz .post-title :hover * {
+.blog-posts-fancy-DNLOApgtlI .post-title :hover,
+	.blog-posts-fancy-DNLOApgtlI .post-title :hover * {
 	color: #1093ea
 }
 
-.blog-posts-fancy-WDRYAkCaJz .post-thumbnail .post-categories a:hover,
-	.blog-posts-fancy-WDRYAkCaJz .post-gallery .post-categories a:hover,
-	.blog-posts-fancy-WDRYAkCaJz .blog-slider-item .post-categories a:hover,
-	.blog-posts-fancy-WDRYAkCaJz .post-style-cover .post-categories a:hover,
-	.sh-post-categories-style2 .blog-posts-fancy-WDRYAkCaJz .post-format-icon:hover
+.blog-posts-fancy-DNLOApgtlI .post-thumbnail .post-categories a:hover,
+	.blog-posts-fancy-DNLOApgtlI .post-gallery .post-categories a:hover,
+	.blog-posts-fancy-DNLOApgtlI .blog-slider-item .post-categories a:hover,
+	.blog-posts-fancy-DNLOApgtlI .post-style-cover .post-categories a:hover,
+	.sh-post-categories-style2 .blog-posts-fancy-DNLOApgtlI .post-format-icon:hover
 	{
 	background-color: #1093ea
 }
 </style>
-												<div class="blog-posts-fancy-WDRYAkCaJz sh-blog-fancy">
+												<div class="blog-posts-fancy-DNLOApgtlI sh-blog-fancy">
 													<div
 														class="blog-fancy-carousel-sides slider-arrows-sides blog-style-mini2 columns4 ">
 														<article id="post-47"
@@ -1302,21 +409,21 @@ img.wp-smiley, img.emoji {
 										<div class="vc_column-inner ">
 											<div class="wpb_wrapper">
 												<style media="screen">
-.blog-posts-fancy-oeZGHU9vLP .post-title :hover,
-	.blog-posts-fancy-oeZGHU9vLP .post-title :hover * {
+.blog-posts-fancy-6uNgk9J2dT .post-title :hover,
+	.blog-posts-fancy-6uNgk9J2dT .post-title :hover * {
 	color: #1093ea
 }
 
-.blog-posts-fancy-oeZGHU9vLP .post-thumbnail .post-categories a:hover,
-	.blog-posts-fancy-oeZGHU9vLP .post-gallery .post-categories a:hover,
-	.blog-posts-fancy-oeZGHU9vLP .blog-slider-item .post-categories a:hover,
-	.blog-posts-fancy-oeZGHU9vLP .post-style-cover .post-categories a:hover,
-	.sh-post-categories-style2 .blog-posts-fancy-oeZGHU9vLP .post-format-icon:hover
+.blog-posts-fancy-6uNgk9J2dT .post-thumbnail .post-categories a:hover,
+	.blog-posts-fancy-6uNgk9J2dT .post-gallery .post-categories a:hover,
+	.blog-posts-fancy-6uNgk9J2dT .blog-slider-item .post-categories a:hover,
+	.blog-posts-fancy-6uNgk9J2dT .post-style-cover .post-categories a:hover,
+	.sh-post-categories-style2 .blog-posts-fancy-6uNgk9J2dT .post-format-icon:hover
 	{
 	background-color: #1093ea
 }
 </style>
-												<div class="blog-posts-fancy-oeZGHU9vLP sh-blog-fancy">
+												<div class="blog-posts-fancy-6uNgk9J2dT sh-blog-fancy">
 													<div class="sh-blog-fancy-title-container">
 														<h2 class="sh-blog-fancy-title"
 															style="border-color: #333333;">Todays spotlight</h2>
@@ -1672,24 +779,24 @@ img.wp-smiley, img.emoji {
 													<span class="vc_empty_space_inner"></span>
 												</div>
 												<style media="screen">
-.blog-posts-categories-waNAC491Fn .post-title:hover {
+.blog-posts-categories-XKHhQIjZTE .post-title:hover {
 	color: #1093ea
 }
 
-.blog-posts-categories-waNAC491Fn .post-thumbnail .post-categories a:hover,
-	.blog-posts-categories-waNAC491Fn .post-gallery .post-categories a:hover,
-	.blog-posts-categories-waNAC491Fn .blog-slider-item .post-categories a:hover,
-	.blog-posts-categories-waNAC491Fn .post-style-cover .post-categories a:hover,
-	.sh-post-categories-style2 .blog-posts-categories-waNAC491Fn .post-format-icon:hover
+.blog-posts-categories-XKHhQIjZTE .post-thumbnail .post-categories a:hover,
+	.blog-posts-categories-XKHhQIjZTE .post-gallery .post-categories a:hover,
+	.blog-posts-categories-XKHhQIjZTE .blog-slider-item .post-categories a:hover,
+	.blog-posts-categories-XKHhQIjZTE .post-style-cover .post-categories a:hover,
+	.sh-post-categories-style2 .blog-posts-categories-XKHhQIjZTE .post-format-icon:hover
 	{
 	background-color: #1093ea
 }
 </style>
 												<div
-													class="sh-categories blog-posts-categories-waNAC491Fn sh-categories-style5">
+													class="sh-categories blog-posts-categories-XKHhQIjZTE sh-categories-style5">
 													<div class="sh-categories-tabs">
 														<div class="sh-categories-title">
-															<h2 style="border-color: #333333;">Sport &amp; Cars</h2>
+															<h2 style="border-color: #333333;">Performance</h2>
 														</div>
 														<div class="sh-categories-line" style="width: 99%;">
 															<div class="sh-categories-line-container"></div>
@@ -1698,18 +805,18 @@ img.wp-smiley, img.emoji {
 															<ul class="nav nav-tab sh-tabs-stying sh-heading-font"
 																role="tablist">
 																<li role="presentation" class="active"><a
-																	href="#tab-waNAC491Fn-0" role="tab" data-toggle="tab">
+																	href="#tab-XKHhQIjZTE-0" role="tab" data-toggle="tab">
 																		All </a></li>
-																<li role="presentation"><a href="#tab-waNAC491Fn-1"
-																	role="tab" data-toggle="tab"> Sport </a></li>
-																<li role="presentation"><a href="#tab-waNAC491Fn-2"
-																	role="tab" data-toggle="tab"> Cars </a></li>
+																<li role="presentation"><a href="#tab-XKHhQIjZTE-1"
+																	role="tab" data-toggle="tab"> Music </a></li>
+																<li role="presentation"><a href="#tab-XKHhQIjZTE-2"
+																	role="tab" data-toggle="tab"> Arts </a></li>
 															</ul>
 														</div>
 													</div>
 													<div class="tab-content">
 														<div role="tabpanel" class="tab-pane fade in active"
-															id="tab-waNAC491Fn-0">
+															id="tab-XKHhQIjZTE-0">
 															<div class="row">
 																<div class="col-md-6 col-sm-6">
 																	<div
@@ -1731,7 +838,7 @@ img.wp-smiley, img.emoji {
 																			<div class="post-categories-container">
 																				<div class="post-categories">
 																					<a
-																						href="https://gillion.shufflehound.com/news/category/sport/">Sport</a>
+																						href="https://gillion.shufflehound.com/news/category/sport/">Music</a>
 																				</div>
 																			</div>
 																		</div>
@@ -1871,7 +978,7 @@ img.wp-smiley, img.emoji {
 																			<div class="post-categories-container">
 																				<div class="post-categories">
 																					<a
-																						href="https://gillion.shufflehound.com/news/category/cars/">Cars</a>
+																						href="https://gillion.shufflehound.com/news/category/cars/">Arts</a>
 																				</div>
 																			</div>
 																		</div>
@@ -2009,7 +1116,7 @@ img.wp-smiley, img.emoji {
 															</div>
 														</div>
 														<div role="tabpanel" class="tab-pane fade"
-															id="tab-waNAC491Fn-1">
+															id="tab-XKHhQIjZTE-1">
 															<div class="row">
 																<div class="col-md-6">
 																	<div
@@ -2031,7 +1138,7 @@ img.wp-smiley, img.emoji {
 																			<div class="post-categories-container">
 																				<div class="post-categories">
 																					<a
-																						href="https://gillion.shufflehound.com/news/category/sport/">Sport</a>
+																						href="https://gillion.shufflehound.com/news/category/sport/">Music</a>
 																				</div>
 																			</div>
 																		</div>
@@ -2131,7 +1238,7 @@ img.wp-smiley, img.emoji {
 																			<div class="post-categories-container">
 																				<div class="post-categories">
 																					<a
-																						href="https://gillion.shufflehound.com/news/category/sport/">Sport</a>
+																						href="https://gillion.shufflehound.com/news/category/sport/">Music</a>
 																				</div>
 																			</div>
 																		</div>
@@ -2231,7 +1338,7 @@ img.wp-smiley, img.emoji {
 															</div>
 														</div>
 														<div role="tabpanel" class="tab-pane fade"
-															id="tab-waNAC491Fn-2">
+															id="tab-XKHhQIjZTE-2">
 															<div class="row">
 																<div class="col-md-6">
 																	<div
@@ -2253,7 +1360,7 @@ img.wp-smiley, img.emoji {
 																			<div class="post-categories-container">
 																				<div class="post-categories">
 																					<a
-																						href="https://gillion.shufflehound.com/news/category/cars/">Cars</a>
+																						href="https://gillion.shufflehound.com/news/category/cars/">Arts</a>
 																				</div>
 																			</div>
 																		</div>
@@ -2393,7 +1500,7 @@ img.wp-smiley, img.emoji {
 																			<div class="post-categories-container">
 																				<div class="post-categories">
 																					<a
-																						href="https://gillion.shufflehound.com/news/category/cars/">Cars</a>
+																						href="https://gillion.shufflehound.com/news/category/cars/">Arts</a>
 																				</div>
 																			</div>
 																		</div>
@@ -2482,7 +1589,7 @@ img.wp-smiley, img.emoji {
 													<span class="vc_empty_space_inner"></span>
 												</div>
 												<div
-													class="blog-slider  blog-slider-style3 blog-slider-style11 blog-slider-WbQVvaEi9k"
+													class="blog-slider  blog-slider-style3 blog-slider-style11 blog-slider-GI02qmZNQ5"
 													style="position: relative;">
 													<div class="blog-slider-list">
 														<div class="blog-slider-item"
@@ -2783,7 +1890,7 @@ img.wp-smiley, img.emoji {
 																		<div class="sh-widget-posts-slider-content">
 																			<a
 																				href="https://gillion.shufflehound.com/news/2019/01/15/review-of-photoshop-cc-editing-techniques/"><h5
-																					class="post-title">
+																					class="post-title" >
 																					Review Of Photoshop CC Editing Techniques&nbsp;<span
 																						class="post-read-later post-read-later-guest"
 																						href="#login-register" data-type="add"
@@ -2941,7 +2048,7 @@ img.wp-smiley, img.emoji {
 																						class="post-comments"> <i
 																						class="icon icon-bubble"></i> 1
 																					</a> <span class="post-views"> <i
-																						class="icon icon-eye"></i> 2720
+																						class="icon icon-eye"></i> 2721
 																					</span> <span class="responsive-post-read-later">
 																						&nbsp;<span
 																						class="post-read-later post-read-later-guest"
@@ -3092,7 +2199,7 @@ img.wp-smiley, img.emoji {
 																						class="post-comments"> <i
 																						class="icon icon-bubble"></i> 1
 																					</a> <span class="post-views"> <i
-																						class="icon icon-eye"></i> 1643
+																						class="icon icon-eye"></i> 1644
 																					</span> <span class="responsive-post-read-later">
 																						&nbsp;<span
 																						class="post-read-later post-read-later-guest"
@@ -3113,13 +2220,13 @@ img.wp-smiley, img.emoji {
 															<a href="">
 																<noscript>
 																	<img
-																		src="/resources/user-bootstrap/img/index/bionic.jpg"
+																		src="https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2018/05/ban_w2.png"
 																		class="" />
 																</noscript>
-																<img
-																src='/resources/user-bootstrap/img/index/bionic.jpg'
-																data-src="/resources/user-bootstrap/img/index/bionic.jpg"
-																class="lazyload " />
+<!-- 																<img -->
+<!-- 																src='/resources/user-bootstrap/img/index/news-logo.gif' -->
+<!-- 																data-src="/resources/user-bootstrap/img/index/news-logo.gif" -->
+<!-- 																class="lazyload " /> -->
 															</a>
 														</div>
 													</div>
@@ -3135,17 +2242,17 @@ img.wp-smiley, img.emoji {
 											<div class="wpb_wrapper">
 												<style media="screen">
 @media ( max-width : 1025px) {
-	.sh-empty-space-nDhAkjKYQO {
+	.sh-empty-space-sye5AofWVD {
 		height: 0px !important;
 	}
 }
 </style>
 												<div
-													class="sh-empty-space vc_empty_space sh-empty-space-nDhAkjKYQO  "
+													class="sh-empty-space vc_empty_space sh-empty-space-sye5AofWVD  "
 													style="height: 60px">
 													<span class="vc_empty_space_inner"></span>
 												</div>
-												<div class="blog-posts-fancy-hbufx2FljR sh-blog-fancy">
+												<div class="blog-posts-fancy-7ydHtwiGfX sh-blog-fancy">
 													<div class="sh-blog-fancy-title-container">
 														<h2 class="sh-blog-fancy-title">Tech &amp; Gadgets</h2>
 													</div>
@@ -3496,13 +2603,13 @@ img.wp-smiley, img.emoji {
 												</div>
 												<style media="screen">
 @media ( max-width : 1025px) {
-	.sh-empty-space-z9l4OHvN6V {
+	.sh-empty-space-vXS6QMqikI {
 		height: 0px !important;
 	}
 }
 </style>
 												<div
-													class="sh-empty-space vc_empty_space sh-empty-space-z9l4OHvN6V  "
+													class="sh-empty-space vc_empty_space sh-empty-space-vXS6QMqikI  "
 													style="height: 40px">
 													<span class="vc_empty_space_inner"></span>
 												</div>
@@ -3511,21 +2618,21 @@ img.wp-smiley, img.emoji {
 									</div>
 								</div>
 								<div
-									class="vc_row wpb_row vc_row-fluid gillion-columns-sidebar gillion-columns-sticky-sidebar vc_custom_1547627184303 vc_row_1526514175">
+									class="vc_row wpb_row vc_row-fluid gillion-columns-sidebar gillion-columns-sticky-sidebar vc_custom_1547627184303 vc_row_297344002">
 									<div class="wpb_column vc_column_container vc_col-sm-8">
 										<div class="vc_column-inner ">
 											<div class="wpb_wrapper">
 												<style media="screen">
-.blog-posts-rjhHgRY89q .post-title :hover, .blog-posts-rjhHgRY89q .post-title :hover *
+.blog-posts-9otR02ZACw .post-title :hover, .blog-posts-9otR02ZACw .post-title :hover *
 	{
 	color: #1093ea
 }
 
-.blog-posts-rjhHgRY89q .post-thumbnail .post-categories a:hover,
-	.blog-posts-rjhHgRY89q .post-gallery .post-categories a:hover,
-	.blog-posts-rjhHgRY89q .blog-slider-item .post-categories a:hover,
-	.blog-posts-rjhHgRY89q .post-style-cover .post-categories a:hover,
-	.sh-post-categories-style2 .blog-posts-rjhHgRY89q .post-format-icon:hover
+.blog-posts-9otR02ZACw .post-thumbnail .post-categories a:hover,
+	.blog-posts-9otR02ZACw .post-gallery .post-categories a:hover,
+	.blog-posts-9otR02ZACw .blog-slider-item .post-categories a:hover,
+	.blog-posts-9otR02ZACw .post-style-cover .post-categories a:hover,
+	.sh-post-categories-style2 .blog-posts-9otR02ZACw .post-format-icon:hover
 	{
 	background-color: #1093ea
 }
@@ -3535,7 +2642,7 @@ img.wp-smiley, img.emoji {
 													<h2 class="sh-blog-fancy-title"
 														style="border-color: #383838;">Newest articles</h2>
 												</div>
-												<div class="sh-blog-standard-posts blog-posts-rjhHgRY89q">
+												<div class="sh-blog-standard-posts blog-posts-9otR02ZACw">
 													<div
 														class="sh-group blog-list blog-style-grid blog-style-grid-element blog-style-columns2 blog-dividing-line-off sh-posts-description-off">
 														<article id="post-402"
@@ -3545,14 +2652,14 @@ img.wp-smiley, img.emoji {
 																	<div class="sh-ratio">
 																		<div class="sh-ratio-container">
 																			<div class="sh-ratio-content"
-																				style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/w1-420x265.jpg);"></div>
+																				style="background-image: url( /resources/user-bootstrap/img/index/bgimg.jpg);"></div>
 																		</div>
 																	</div>
 																	<a
 																		href="https://gillion.shufflehound.com/news/2019/01/15/review-of-photoshop-cc-editing-techniques/"
 																		class="post-overlay"></a>
 																	<div class="post-review-svg">
-																		<div class="sh-pie" data-score="9.0"
+																		<div class="sh-pie" data-score="9.4"
 																			data-offset="12.4">
 																			<svg width="46" height="46" class="sh-pie-svg"> <circle
 																					r="21" cx="23" cy="23" fill="transparent"
@@ -3569,15 +2676,15 @@ img.wp-smiley, img.emoji {
 																	<div class="post-categories-container">
 																		<div class="post-categories">
 																			<a
-																				href="https://gillion.shufflehound.com/news/category/photography/">Photography</a>
+																				href="https://gillion.shufflehound.com/news/category/photography/" id="article_a1"></a>
 																		</div>
 																	</div>
 																</div>
 																<div class="post-content-container">
 																	<a
 																		href="https://gillion.shufflehound.com/news/2019/01/15/review-of-photoshop-cc-editing-techniques/"
-																		class="post-title"><h2>
-																			Review Of Photoshop CC Editing Techniques&nbsp;<span
+																		class="post-title"><h2 id="article1">
+																			<span
 																				class="post-read-later post-read-later-guest"
 																				href="#login-register" data-type="add" data-id="402"><i
 																				class="fa fa-bookmark-o"></i></span>
@@ -3618,7 +2725,7 @@ img.wp-smiley, img.emoji {
 																	<div class="sh-ratio">
 																		<div class="sh-ratio-container">
 																			<div class="sh-ratio-content"
-																				style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/11-420x265.jpg);"></div>
+																				style="background-image: url( /resources/user-bootstrap/img/index/bgimg.jpg);"></div>
 																		</div>
 																	</div>
 																	<a
@@ -3627,16 +2734,15 @@ img.wp-smiley, img.emoji {
 																	<div class="post-categories-container">
 																		<div class="post-categories">
 																			<a
-																				href="https://gillion.shufflehound.com/news/category/tech/">Tech</a>
+																				href="https://gillion.shufflehound.com/news/category/tech/"  id="article_a2"></a>
 																		</div>
 																	</div>
 																</div>
 																<div class="post-content-container">
 																	<a
 																		href="https://gillion.shufflehound.com/news/2019/01/15/smart-watches-that-will-want-you-spend-some-money/"
-																		class="post-title"><h2>
-																			Smart Watches That Will Make You Spend Some
-																			Money&nbsp;<span
+																		class="post-title"><h2  id="article2">
+																			<span
 																				class="post-read-later post-read-later-guest"
 																				href="#login-register" data-type="add" data-id="75"><i
 																				class="fa fa-bookmark-o"></i></span>
@@ -3678,7 +2784,7 @@ img.wp-smiley, img.emoji {
 																	<div class="sh-ratio">
 																		<div class="sh-ratio-container">
 																			<div class="sh-ratio-content"
-																				style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2019/01/insta-mobile-420x265.jpg);"></div>
+																				style="background-image: url( /resources/user-bootstrap/img/index/bgimg.jpg);"></div>
 																		</div>
 																	</div>
 																	<a
@@ -3687,16 +2793,15 @@ img.wp-smiley, img.emoji {
 																	<div class="post-categories-container">
 																		<div class="post-categories">
 																			<a
-																				href="https://gillion.shufflehound.com/news/category/health/">Health</a>
+																				href="https://gillion.shufflehound.com/news/category/health/"  id="article_a3"></a>
 																		</div>
 																	</div>
 																</div>
 																<div class="post-content-container">
 																	<a
 																		href="https://gillion.shufflehound.com/news/2019/01/15/how-much-time-on-social-networks-is-considered-healthy/"
-																		class="post-title"><h2>
-																			How Much Time On Social Networks Is Considered
-																			Healthy&nbsp;<span
+																		class="post-title"><h2  id="article3">
+																			<span
 																				class="post-read-later post-read-later-guest"
 																				href="#login-register" data-type="add"
 																				data-id="2012"><i class="fa fa-bookmark-o"></i></span>
@@ -3738,7 +2843,7 @@ img.wp-smiley, img.emoji {
 																	<div class="sh-ratio">
 																		<div class="sh-ratio-container">
 																			<div class="sh-ratio-content"
-																				style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/10-1-420x265.jpg);"></div>
+																				style="background-image: url( /resources/user-bootstrap/img/index/bgimg.jpg);"></div>
 																		</div>
 																	</div>
 																	<a
@@ -3747,15 +2852,15 @@ img.wp-smiley, img.emoji {
 																	<div class="post-categories-container">
 																		<div class="post-categories">
 																			<a
-																				href="https://gillion.shufflehound.com/news/category/tech/">Tech</a>
+																				href="https://gillion.shufflehound.com/news/category/tech/"  id="article_a4"></a>
 																		</div>
 																	</div>
 																</div>
 																<div class="post-content-container">
 																	<a
 																		href="https://gillion.shufflehound.com/news/2019/01/15/best-portable-bluetooth-speakers-in-2018/"
-																		class="post-title"><h2>
-																			Best Portable Bluetooth Speakers In 2018&nbsp;<span
+																		class="post-title"><h2  id="article4">
+																			<span
 																				class="post-read-later post-read-later-guest"
 																				href="#login-register" data-type="add" data-id="65"><i
 																				class="fa fa-bookmark-o"></i></span>
@@ -3797,7 +2902,7 @@ img.wp-smiley, img.emoji {
 																	<div class="sh-ratio">
 																		<div class="sh-ratio-container">
 																			<div class="sh-ratio-content"
-																				style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/23-420x265.jpg);"></div>
+																				style="background-image: url( /resources/user-bootstrap/img/index/bgimg.jpg);"></div>
 																		</div>
 																	</div>
 																	<a
@@ -3806,16 +2911,15 @@ img.wp-smiley, img.emoji {
 																	<div class="post-categories-container">
 																		<div class="post-categories">
 																			<a
-																				href="https://gillion.shufflehound.com/news/category/fashion/">Fashion</a>
+																				href="https://gillion.shufflehound.com/news/category/fashion/"  id="article_a5"></a>
 																		</div>
 																	</div>
 																</div>
 																<div class="post-content-container">
 																	<a
 																		href="https://gillion.shufflehound.com/news/2019/01/15/pair-of-green-sneakers-style-mistake-or-victory/"
-																		class="post-title"><h2>
-																			Pair Of Green Sneakers, Style Mistake Or
-																			Victory?&nbsp;<span
+																		class="post-title"><h2  id="article5">
+																			<span
 																				class="post-read-later post-read-later-guest"
 																				href="#login-register" data-type="add" data-id="45"><i
 																				class="fa fa-bookmark-o"></i></span>
@@ -3857,7 +2961,7 @@ img.wp-smiley, img.emoji {
 																	<div class="sh-ratio">
 																		<div class="sh-ratio-container">
 																			<div class="sh-ratio-content"
-																				style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/19-420x265.jpg);"></div>
+																				style="background-image: url( /resources/user-bootstrap/img/index/bgimg.jpg);"></div>
 																		</div>
 																	</div>
 																	<a
@@ -3866,15 +2970,15 @@ img.wp-smiley, img.emoji {
 																	<div class="post-categories-container">
 																		<div class="post-categories">
 																			<a
-																				href="https://gillion.shufflehound.com/news/category/sport/">Sport</a>
+																				href="https://gillion.shufflehound.com/news/category/sport/"  id="article_a6"></a>
 																		</div>
 																	</div>
 																</div>
 																<div class="post-content-container">
 																	<a
 																		href="https://gillion.shufflehound.com/news/2019/01/12/how-to-start-running-like-a-pro/"
-																		class="post-title"><h2>
-																			How To Start Running Like A Pro&nbsp;<span
+																		class="post-title"><h2  id="article6">
+																			<span
 																				class="post-read-later post-read-later-guest"
 																				href="#login-register" data-type="add" data-id="63"><i
 																				class="fa fa-bookmark-o"></i></span>
@@ -3913,7 +3017,7 @@ img.wp-smiley, img.emoji {
 													<div class="sh-load-more" data-categories=""
 														data-post-style="grid" data-posts-per-page="6"
 														data-paged="2" data-offset="0"
-														data-id="blog-posts-rjhHgRY89q">Load more</div>
+														data-id="blog-posts-9otR02ZACw">Load more</div>
 												</div>
 											</div>
 										</div>
@@ -3944,7 +3048,7 @@ img.wp-smiley, img.emoji {
 																	name="_mc4wp_honeypot" value="" tabindex="-1"
 																	autocomplete="off" />
 																</label><input type="hidden" name="_mc4wp_timestamp"
-																	value="1562810410" /><input type="hidden"
+																	value="1562825033" /><input type="hidden"
 																	name="_mc4wp_form_id" value="848" /><input
 																	type="hidden" name="_mc4wp_form_element_id"
 																	value="mc4wp-form-2" />
@@ -3968,10 +3072,10 @@ img.wp-smiley, img.emoji {
 																				<ul class="nav nav-tabs sh-tabs-stying"
 																					role="tablist">
 																					<li role="presentation" class=" active"><a
-																						href="#tab-AXJCRO0avop5MBj83QzU-1" role="tab"
+																						href="#tab-gAb42kUeKLzC5VwNPHWD-1" role="tab"
 																						data-toggle="tab"> People </a></li>
 																					<li role="presentation" class=""><a
-																						href="#tab-AXJCRO0avop5MBj83QzU-2" role="tab"
+																						href="#tab-gAb42kUeKLzC5VwNPHWD-2" role="tab"
 																						data-toggle="tab"> Health </a></li>
 																				</ul>
 																			</div>
@@ -3980,7 +3084,7 @@ img.wp-smiley, img.emoji {
 																</div>
 																<div class="tab-content">
 																	<div role="tabpanel" class="tab-pane active"
-																		id="tab-AXJCRO0avop5MBj83QzU-1">
+																		id="tab-gAb42kUeKLzC5VwNPHWD-1">
 																		<div class="sh-widget-posts-slider-init">
 																			<div
 																				class="sh-widget-posts-slider-item sh-widget-posts-slider-item-large sh-widget-posts-slider-style1 sh-widget-posts-categories-item">
@@ -4207,7 +3311,7 @@ img.wp-smiley, img.emoji {
 																			class="widget-slide-arrows sh-carousel-buttons-styling"></div>
 																	</div>
 																	<div role="tabpanel" class="tab-pane"
-																		id="tab-AXJCRO0avop5MBj83QzU-2">
+																		id="tab-gAb42kUeKLzC5VwNPHWD-2">
 																		<div class="sh-widget-posts-slider-init">
 																			<div
 																				class="sh-widget-posts-slider-item sh-widget-posts-slider-item-large sh-widget-posts-slider-style1 sh-widget-posts-categories-item">
@@ -4461,7 +3565,7 @@ img.wp-smiley, img.emoji {
 									</div>
 									<style type="text/css">
 @media ( max-width : 800px) {
-	.vc_row_1526514175 {
+	.vc_row_297344002 {
 		padding: 10px 0px 10px 0px !important;
 	}
 }
@@ -4473,388 +3577,8 @@ img.wp-smiley, img.emoji {
 					</div>
 				</div>
 			</div>
-			<div class="sh-footer-template">
-				<div class="container">
-					<style type="text/css" data-type="vc_shortcodes-custom-css">
-.vc_custom_1547807096860 {
-	background: #242626
-		url(http://gillion.shufflehound.com/news/wp-content/uploads/sites/15/2018/11/footer-background.jpg?id=1964)
-		!important;
-	background-position: center !important;
-	background-repeat: no-repeat !important;
-	background-size: cover !important;
-}
-
-.vc_custom_1547033408288 {
-	padding-top: 0px !important;
-}
-
-.vc_custom_1547040065021 {
-	padding-top: 30px !important;
-	padding-bottom: 70px !important;
-	background-color: rgba(30, 30, 30, 0.80) !important;
-	*background-color: rgb(30, 30, 30) !important;
-}
-
-.vc_custom_1547040351307 {
-	padding-top: 10px !important;
-	padding-bottom: 10px !important;
-	background-color: rgba(35, 35, 35, 0.95) !important;
-	*background-color: rgb(35, 35, 35) !important;
-}
-</style>
-					<div data-vc-full-width="true" data-vc-full-width-init="false"
-						data-vc-stretch-content="true" data-jarallax data-speed="0.2"
-						class="vc_row wpb_row vc_row-fluid vc_custom_1547807096860 vc_row-has-fill jarallax">
-						<div class="wpb_column vc_column_container vc_col-sm-12">
-							<div class="vc_column-inner vc_custom_1547033408288">
-								<div class="wpb_wrapper">
-									<div
-										class="vc_row wpb_row vc_inner vc_row-fluid vc_custom_1547040065021 vc_row-has-fill">
-										<div class="wpb_column vc_column_container vc_col-sm-12">
-											<div class="vc_column-inner ">
-												<div class="wpb_wrapper"
-													style="width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto;">
-													<style media="screen">
-#sh-footer-builder-widgets-XT9p21ilB3 .widget-title,
-	#sh-footer-builder-widgets-XT9p21ilB3 h5,
-	#sh-footer-builder-widgets-XT9p21ilB3 h5.widget-title {
-	color: #ffffff
-}
-
-#sh-footer-builder-widgets-XT9p21ilB3 a,
-	#sh-footer-builder-widgets-XT9p21ilB3 .post-views,
-	#sh-footer-builder-widgets-XT9p21ilB3 li a,
-	#sh-footer-builder-widgets-XT9p21ilB3 h6,
-	#sh-footer-builder-widgets-XT9p21ilB3 .sh-widget-posts-slider-style1 h5,
-	#sh-footer-builder-widgets-XT9p21ilB3 .sh-widget-posts-slider-style1 h5 span,
-	#sh-footer-builder-widgets-XT9p21ilB3 .widget_about_us .widget-quote {
-	color: #ffffff !important;
-}
-
-#sh-footer-builder-widgets-XT9p21ilB3,
-	#sh-footer-builder-widgets-XT9p21ilB3 .post-meta,
-	#sh-footer-builder-widgets-XT9p21ilB3 .post-meta span,
-	#sh-footer-builder-widgets-XT9p21ilB3 .sh-recent-posts-widgets-item-meta a
-	{
-	color: #e3e3e3 !important;
-}
-
-#sh-footer-builder-widgets-XT9p21ilB3 i:not (.icon-link ):not (.icon-magnifier
-	), #sh-footer-builder-widgets-XT9p21ilB3 .widget_recent_entries li:before
-	{
-	color: #f7f7f7 !important;
-}
-
-#sh-footer-builder-widgets-XT9p21ilB3 ul li,
-	#sh-footer-builder-widgets-XT9p21ilB3 ul li,
-	#sh-footer-builder-widgets-XT9p21ilB3 .widget_product_categories ul.product-categories a,
-	#sh-footer-builder-widgets-XT9p21ilB3 .sh-recent-posts-widgets .sh-recent-posts-widgets-item,
-	#sh-footer-builder-widgets-XT9p21ilB3 .sh-widget-posts-slider-style1:not
-	(:last-child ), #sh-footer-builder-widgets-XT9p21ilB3 .widget_tag_cloud a,
-	.sh-title-style2 #sh-footer-builder-widgets-XT9p21ilB3 .sh-widget-title-styling,
-	.sh-carousel-style2 #sh-footer-builder-widgets-XT9p21ilB3 .sh-carousel-buttons-styling
-	{
-	border-color: #2e2e2e;
-}
-
-.sh-title-style2 #sh-footer-builder-widgets-XT9p21ilB3 .sh-widget-title-styling h3
-	{
-	border-color: #ffffff;
-}
-
-#sh-footer-builder-widgets-XT9p21ilB3 a:hover,
-	#sh-footer-builder-widgets-XT9p21ilB3 li a:hover,
-	#sh-footer-builder-widgets-XT9p21ilB3 h6:hover {
-	color: #47c9e5 !important;
-}
-
-.sh-footer-builder-widgets {
-	position: relative;
-	margin-bottom: -25px;
-}
-
-.sh-footer-builder-widgets>div {
-	display: inline-block;
-	width: 100%;
-	vertical-align: top;
-	padding: 0 15px;
-	margin-bottom: 25px;
-	margin-right: -4px;
-}
-
-.sh-footer-builder-widgets-2columns>div {
-	width: 50%;
-}
-
-.sh-footer-builder-widgets-3columns>div {
-	width: 33.3%;
-}
-
-.sh-footer-builder-widgets-4columns>div {
-	width: 25%;
-}
-
-.sh-footer-builder-widgets-5columns>div {
-	width: 20%;
-}
-
-@media ( max-width : 900px) {
-	.sh-footer-builder-widgets>div {
-		width: 100%;
-	}
-	.sh-footer-builder-widgets>div:not (:last-child ) {
-		margin-bottom: 40px;
-	}
-}
-</style>
-													<div id="sh-footer-builder-widgets-XT9p21ilB3"
-														class="sh-footer-builder-widgets sh-footer-builder-widgets-XT9p21ilB3 sh-footer-builder-widgets-3columns ">
-														<div id="subscribe-3"
-															class="widget_sh_mailChimp widget_sh_mailChimp_style2 widget-item widget_subscribe">
-															<div class="sh-widget-title-styling">
-																<h3 class="widget-title">Subscribe Now</h3>
-															</div>
-															<form id="mc4wp-form-3" class="mc4wp-form mc4wp-form-848"
-																method="post" data-id="848" data-name="Subscribe">
-																<div class="mc4wp-form-fields">
-																	<p>
-																		<input type="email" name="EMAIL"
-																			placeholder="Your email address" required />
-																	</p>
-																	<p>
-																		<button type="submit">Sign up</button>
-																	</p>
-																</div>
-																<label style="display: none !important;">Leave
-																	this field empty if you're human: <input type="text"
-																	name="_mc4wp_honeypot" value="" tabindex="-1"
-																	autocomplete="off" />
-																</label><input type="hidden" name="_mc4wp_timestamp"
-																	value="1562810410" /><input type="hidden"
-																	name="_mc4wp_form_id" value="848" /><input
-																	type="hidden" name="_mc4wp_form_element_id"
-																	value="mc4wp-form-3" />
-																<div class="mc4wp-response"></div>
-															</form>
-															<p class="widget-quote-description">* You will
-																receive the latest news and updates on your favorite
-																celebrities!</p>
-														</div>
-														<div id="posts_slider-6"
-															class="widget_facebook widget-item widget_posts_slider">
-															<div class="widget-slide-arrows-container not-slider">
-																<div class="sh-widget-title-styling">
-																	<h3 class="widget-title">Reviews</h3>
-																</div>
-															</div>
-															<div class="sh-widget-posts-slider">
-																<div class="sh-widget-posts-slider-group">
-																	<div
-																		class="sh-widget-posts-slider-item sh-widget-posts-slider-style1 style4">
-																		<a
-																			href="https://gillion.shufflehound.com/news/2019/01/15/review-of-photoshop-cc-editing-techniques/"
-																			class="sh-widget-posts-slider-thumbnail"
-																			style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/w1-80x80.jpg);"></a>
-																		<div class="sh-widget-posts-slider-content">
-																			<a
-																				href="https://gillion.shufflehound.com/news/2019/01/15/review-of-photoshop-cc-editing-techniques/"><h5
-																					class="post-title">
-																					Review Of Photoshop CC Editing Techniques&nbsp;<span
-																						class="post-read-later post-read-later-guest"
-																						href="#login-register" data-type="add"
-																						data-id="402"><i class="fa fa-bookmark-o"></i></span>
-																				</h5> </a>
-																			<div class="post-meta">
-																				<div class="post-meta-content">
-																					<span class="post-auhor-date"> <a
-																						href="https://gillion.shufflehound.com/news/2019/01/15/review-of-photoshop-cc-editing-techniques/"
-																						class="post-date"> 6 months ago </a>
-																					</span> <span class="post-readtime"> <i
-																						class="icon icon-clock"></i> 1 min <span>read</span>
-																					</span> <span class="responsive-post-read-later">
-																						&nbsp;<span
-																						class="post-read-later post-read-later-guest"
-																						href="#login-register" data-type="add"
-																						data-id="402"><i class="fa fa-bookmark-o"></i></span>
-																					</span>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																	<div
-																		class="sh-widget-posts-slider-item sh-widget-posts-slider-style1 style4">
-																		<a
-																			href="https://gillion.shufflehound.com/news/2018/02/02/1939/"
-																			class="sh-widget-posts-slider-thumbnail"
-																			style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/w0-80x80.jpg);"></a>
-																		<div class="sh-widget-posts-slider-content">
-																			<a
-																				href="https://gillion.shufflehound.com/news/2018/02/02/1939/"><h5
-																					class="post-title">
-																					Drone Powered By AI Can Detect Obstacles&nbsp;<span
-																						class="post-read-later post-read-later-guest"
-																						href="#login-register" data-type="add"
-																						data-id="1530"><i class="fa fa-bookmark-o"></i></span>
-																				</h5> </a>
-																			<div class="post-meta">
-																				<div class="post-meta-content">
-																					<span class="post-auhor-date"> <a
-																						href="https://gillion.shufflehound.com/news/2018/02/02/1939/"
-																						class="post-date"> 1 year ago </a>
-																					</span> <span class="post-readtime"> <i
-																						class="icon icon-clock"></i> 1 min <span>read</span>
-																					</span> <span class="responsive-post-read-later">
-																						&nbsp;<span
-																						class="post-read-later post-read-later-guest"
-																						href="#login-register" data-type="add"
-																						data-id="1530"><i class="fa fa-bookmark-o"></i></span>
-																					</span>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																	<div
-																		class="sh-widget-posts-slider-item sh-widget-posts-slider-style1 style4">
-																		<a
-																			href="https://gillion.shufflehound.com/news/2018/01/31/healthy-breakfast-meals-for-energy-boost/"
-																			class="sh-widget-posts-slider-thumbnail"
-																			style="background-image: url( https://cdn.gillion.shufflehound.com/wp-content/uploads/sites/15/2017/01/27-80x80.jpg);"></a>
-																		<div class="sh-widget-posts-slider-content">
-																			<a
-																				href="https://gillion.shufflehound.com/news/2018/01/31/healthy-breakfast-meals-for-energy-boost/"><h5
-																					class="post-title">
-																					Review Of Healthy Breakfast Meals For Energy
-																					Boost&nbsp;<span
-																						class="post-read-later post-read-later-guest"
-																						href="#login-register" data-type="add"
-																						data-id="61"><i class="fa fa-bookmark-o"></i></span>
-																				</h5> </a>
-																			<div class="post-meta">
-																				<div class="post-meta-content">
-																					<span class="post-auhor-date"> <a
-																						href="https://gillion.shufflehound.com/news/2018/01/31/healthy-breakfast-meals-for-energy-boost/"
-																						class="post-date"> 1 year ago </a>
-																					</span> <span class="post-readtime"> <i
-																						class="icon icon-clock"></i> 2 min <span>read</span>
-																					</span> <span class="responsive-post-read-later">
-																						&nbsp;<span
-																						class="post-read-later post-read-later-guest"
-																						href="#login-register" data-type="add"
-																						data-id="61"><i class="fa fa-bookmark-o"></i></span>
-																					</span>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<div
-																class="widget-slide-arrows sh-carousel-buttons-styling"></div>
-														</div>
-														<div id="categories-3"
-															class="widget-item widget_categories">
-															<div class="sh-widget-title-styling">
-																<h3 class="widget-title">Categories</h3>
-															</div>
-															<ul>
-																<li class="cat-item cat-item-16"><a
-																	href="https://gillion.shufflehound.com/news/category/animals/">Animals</a>
-																	(1)</li>
-																<li class="cat-item cat-item-17"><a
-																	href="https://gillion.shufflehound.com/news/category/beauty/">Beauty</a>
-																	(6)</li>
-																<li class="cat-item cat-item-18"><a
-																	href="https://gillion.shufflehound.com/news/category/business/">Business</a>
-																	(1)</li>
-																<li class="cat-item cat-item-19"><a
-																	href="https://gillion.shufflehound.com/news/category/cars/">Cars</a>
-																	(5)</li>
-																<li class="cat-item cat-item-20"><a
-																	href="https://gillion.shufflehound.com/news/category/cook/">Cook</a>
-																	(3)</li>
-																<li class="cat-item cat-item-21"><a
-																	href="https://gillion.shufflehound.com/news/category/fashion/">Fashion</a>
-																	(6)</li>
-																<li class="cat-item cat-item-22"><a
-																	href="https://gillion.shufflehound.com/news/category/food/">Food</a>
-																	(5)</li>
-																<li class="cat-item cat-item-23"><a
-																	href="https://gillion.shufflehound.com/news/category/gadgets/">Gadgets</a>
-																	(2)</li>
-																<li class="cat-item cat-item-24"><a
-																	href="https://gillion.shufflehound.com/news/category/guide/">Guide</a>
-																	(5)</li>
-																<li class="cat-item cat-item-25"><a
-																	href="https://gillion.shufflehound.com/news/category/health/">Health</a>
-																	(4)</li>
-																<li class="cat-item cat-item-26"><a
-																	href="https://gillion.shufflehound.com/news/category/lifestyle/">Lifestyle</a>
-																	(10)</li>
-																<li class="cat-item cat-item-27"><a
-																	href="https://gillion.shufflehound.com/news/category/motivation/">Motivation</a>
-																	(2)</li>
-																<li class="cat-item cat-item-28"><a
-																	href="https://gillion.shufflehound.com/news/category/music/">Music</a>
-																	(2)</li>
-																<li class="cat-item cat-item-29"><a
-																	href="https://gillion.shufflehound.com/news/category/news/">News</a>
-																	(6)</li>
-																<li class="cat-item cat-item-30"><a
-																	href="https://gillion.shufflehound.com/news/category/people/">People</a>
-																	(6)</li>
-																<li class="cat-item cat-item-31"><a
-																	href="https://gillion.shufflehound.com/news/category/photography/">Photography</a>
-																	(3)</li>
-																<li class="cat-item cat-item-32"><a
-																	href="https://gillion.shufflehound.com/news/category/places/">Places</a>
-																	(5)</li>
-																<li class="cat-item cat-item-33"><a
-																	href="https://gillion.shufflehound.com/news/category/review/">Review</a>
-																	(3)</li>
-																<li class="cat-item cat-item-34"><a
-																	href="https://gillion.shufflehound.com/news/category/sport/">Sport</a>
-																	(4)</li>
-																<li class="cat-item cat-item-35"><a
-																	href="https://gillion.shufflehound.com/news/category/style/">Style</a>
-																	(1)</li>
-																<li class="cat-item cat-item-36"><a
-																	href="https://gillion.shufflehound.com/news/category/tech/">Tech</a>
-																	(10)</li>
-																<li class="cat-item cat-item-1"><a
-																	href="https://gillion.shufflehound.com/news/category/uncategorized/">Uncategorized</a>
-																	(1)</li>
-															</ul>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div
-										class="vc_row wpb_row vc_inner vc_row-fluid vc_custom_1547040351307 vc_row-has-fill">
-										<div class="wpb_column vc_column_container vc_col-sm-12">
-											<div class="vc_column-inner ">
-												<div class="wpb_wrapper">
-													<div class="wpb_text_column wpb_content_element ">
-														<div class="wpb_wrapper">
-															<p style="text-align: center;">
-																<span style="color: #c0c0c0; font-size: 12px;">©
-																	COPYRIGHT 2018, ALL RIGHTS RESERVED</span>
-															</p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="vc_row-full-width vc_clearfix"></div>
-				</div>
-			</div>
+			<!-- footer -->
+		<jsp:include page="footer.jsp"></jsp:include>
 		</div>
 		<div class="sh-back-to-top sh-back-to-top1">
 			<i class="fa fa-angle-up"></i>
@@ -4879,7 +3603,7 @@ img.wp-smiley, img.emoji {
 							</p>
 							<p class="login-password">
 								<label for="user_pass">Password</label> <input type="password"
-									name="password" id="user_pass" class="input" value="" size="20" />
+									name="password" id="user_pwd" class="input" value="" size="20" />
 							</p>
 							<p class="login-remember">
 								<label><input name="rememberme" type="checkbox"
@@ -4889,7 +3613,7 @@ img.wp-smiley, img.emoji {
 								<input type="submit" name="wp-submit" id="wp-submit"
 									class="button button-primary" value="Log In" /> <input
 									type="hidden" name="redirect_to"
-									value="https://gillion.shufflehound.com/news/" />
+									value="login" />
 							</p>
 						</form>
 					</div>
@@ -4943,696 +3667,9 @@ img.wp-smiley, img.emoji {
 	<script async data-noptimize="1"
 		src='https://gillion.shufflehound.com/news/wp-content/plugins/autoptimize/classes/external/js/lazysizes.min.js'></script>
 	<!--[if lte IE 9]> <script type='text/javascript' src='https://gillion.shufflehound.com/news/wp-content/plugins/mailchimp-for-wp/assets/js/third-party/placeholders.min.js?ver=4.5.2'></script> <![endif]-->
-	<style>
-.sh-side-demos {
-	width: 430px;
-	position: fixed;
-	z-index: 5000;
-	top: 0;
-	right: 0px;
-	bottom: 0;
-	transform: translateX(430px);
-}
-
-.sh-side-demos.open {
-	box-shadow: 0 0px 39px 10px rgba(0, 0, 0, 0.2);
-}
-
-.sh-side-demos-container {
-	top: 0;
-	left: 0;
-	right: -17px;
-	position: absolute;
-	bottom: 0;
-	overflow-y: scroll;
-	background-color: #fff;
-	background-repeat: no-repeat;
-	background-position: right top;
-}
-
-body.admin-bar .sh-side-demos-container {
-	top: 32px;
-}
-
-.sh-side-demos.open {
-	transform: translateX(0px);
-}
-
-@media ( max-width : 1400px) {
-	.sh-side-demos {
-		width: 280px;
-		transform: translateX(280px);
-	}
-	.sh-side-demos .sh-side-demos-intro {
-		max-width: none !important;
-		padding: 0 25px;
-		margin-bottom: 35px;
-		margin-top: 35px;
-	}
-	.sh-side-demos .sh-side-demos-intro h2.welcome-title {
-		font-size: 21px;
-	}
-	.sh-side-demos .sh-side-demos-intro p {
-		font-size: 13px;
-		margin-bottom: 20px;
-	}
-	.sh-side-demos .sh-side-demos-purhase {
-		line-height: 44px;
-		padding: 0 32px;
-		font-size: 11px;
-	}
-	.sh-side-demos .sh-side-demos-container-close {
-		top: 12px;
-		right: 12px;
-	}
-	.sh-side-demos .sh-side-demos-loop {
-		padding: 0 18px;
-	}
-	.sh-side-demos .sh-side-demos-item {
-		padding: 0 5px;
-		margin-bottom: 15px;
-	}
-	.sh-side-demos .sh-side-demos-item-thumbnail {
-		width: 123px;
-		height: 96px;
-		background-size: 123px;
-	}
-	.sh-side-demos .sh-side-demos-item-name {
-		font-size: 11px;
-	}
-}
-
-@media ( max-width : 600px) {
-	.sh-side-demos {
-		display: none !important;
-	}
-}
-
-body.admin-bar .sh-side-demos {
-	padding-top: 32px;
-}
-
-.sh-side-demos-intro {
-	max-width: 310px;
-	display: table;
-	margin: 0 auto;
-	margin-top: 50px;
-	margin-bottom: 45px;
-	text-align: center;
-}
-
-.sh-side-demos-intro h2.welcome-title {
-	color: #2f2f2f;
-	margin-bottom: 19px;
-	font-weight: 900;
-	font-size: 24px;
-	line-height: 100% !important;
-}
-
-.sh-side-demos-intro h2.welcome-title strong {
-	font-weight: 900;
-}
-
-.sh-side-demos-intro p {
-	color: #5b5b5b;
-	font-size: 14px;
-	line-height: 1.7;
-	margin-bottom: 25px;
-}
-
-.sh-side-demos-purhase {
-	display: table;
-	padding: 0 42px;
-	background-color: #44cd81;
-	color: #fff !important;
-	text-align: center;
-	font-weight: bold;
-	font-size: 12px;
-	transition: 0.3s all ease-in-out;
-	margin-top: 27px;
-	border-radius: 100px;
-	line-height: 54px;
-	margin: 0 auto;
-	text-transform: uppercase;
-}
-
-.sh-side-demos-purhase:hover {
-	background-color: #3db874;
-	color: #fff;
-}
-
-.sh-side-demos-loop {
-	padding: 0px 23px 0px 23px;
-}
-
-.sh-side-demos-loop-container {
-	position: relative;
-	margin: 0 -10px;
-}
-
-.sh-side-demos-item {
-	text-align: center;
-	margin-bottom: 23px;
-	width: 50%;
-	display: inline-block;
-	margin-right: -4px;
-	padding: 0 10px;
-}
-
-.sh-side-demos-item .vcg-single-image-tag {
-	width: 40px;
-	height: 40px;
-	z-index: 100;
-}
-
-.sh-side-demos-item .vcg-single-image-tag span {
-	line-height: 42px;
-	font-size: 9px;
-}
-
-.sh-side-demos-item>a>span {
-	display: block;
-	font-weight: bold;
-	text-transform: uppercase;
-	font-size: 11px;
-	color: #505050;
-	margin-top: 15px;
-}
-
-.sh-side-demos-item-name {
-	font-weight: bold;
-	margin-top: 5px;
-	font-size: 12px;
-	color: #2f2f2f;
-}
-
-.sh-side-demos-item-thumbnail {
-	position: relative;
-	width: 180px;
-	height: 140px;
-	margin: 0 auto;
-	box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.06);
-	transition: 0.3s all ease-in-out;
-	border-radius: 4px;
-	background-image:
-		url( "https://cdn.gillion.shufflehound.com/wp-content/plugins/shufflehound-showcase-framework/sidemenu/demos2.png" );
-	background-repeat: no-repeat;
-	border: 1px solid #efefef;
-}
-
-.sh-side-demos-item-thumbnail:hover, .sh-side-demos-item-thumbnail:focus
-	{
-	box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.14);
-}
-
-.sh-side-demos-item-thumbnail .post-overlay {
-	border-radius: 4px !important;
-}
-
-.sh-side-demos-buttons {
-	position: absolute;
-	top: 229px;
-	left: -70px;
-	width: 70px;
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-	box-shadow: 0 0px 25px 8px rgba(0, 0, 0, .07);
-}
-
-.sh-side-demos-pages .sh-side-demos-buttons {
-	top: 160px;
-}
-
-.sh-side-options-item:first-child {
-	border-top-left-radius: 5px;
-}
-
-.sh-side-options-item:last-child {
-	border-bottom-left-radius: 5px;
-}
-
-.sh-side-options-item {
-	display: block;
-	text-align: center;
-	margin: 0px;
-	padding: 17px 0;
-	transition: 0.3s all ease-in-out;
-	position: relative;
-	background-color: #fff;
-	cursor: pointer;
-	border-right: 1px solid #f1f1f1;
-}
-
-.sh-side-options-item:not (:last-child ) {
-	border-bottom: 1px solid #f1f1f1;
-}
-
-.sh-side-options-item i {
-	font-size: 24px;
-}
-
-.sh-side-options-item img {
-	height: 33px;
-	transition: 0.3s all ease-in-out;
-}
-
-.sh-side-options-item img.sh-side-demos-colorful {
-	position: absolute;
-	left: 18px;
-	top: 17px;
-	opacity: 0;
-}
-
-.sh-side-options-item:hover img.sh-side-demos-standard,
-	.sh-side-options-item:focus img.sh-side-demos-standard, .sh-side-demos.open .sh-side-demos-button1 img.sh-side-demos-standard
-	{
-	opacity: 0;
-}
-
-.sh-side-options-item:hover img.sh-side-demos-colorful,
-	.sh-side-options-item:focus img.sh-side-demos-colorful, .sh-side-demos.open .sh-side-demos-button1 img.sh-side-demos-colorful
-	{
-	opacity: 1;
-}
-
-.sh-side-options-item:not (:hover ):not (:focus ) {
-	color: #B9B9B9 !important;
-}
-
-.sh-side-options-item:hover .sh-side-options-hover {
-	opacity: 1;
-	transform: translateX(-100%);
-}
-
-.sh-side-options-hover {
-	position: absolute;
-	background-color: #232323;
-	color: #fff;
-	padding: 20px 26px;
-	transform: translateX(0%);
-	left: 0px;
-	top: 0;
-	bottom: 0;
-	opacity: 0;
-	transition: 0.2s all ease-in-out;
-	z-index: -100;
-	font-size: 13px;
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-}
-
-.sh-side-options-hover span {
-	padding: 0px 3px;
-}
-
-.sh-side-demos-container-close {
-	position: absolute;
-	top: 22px;
-	right: 22px;
-	cursor: pointer;
-}
-
-.sh-side-demos-container-close i {
-	color: #c5c5c5;
-	font-size: 18px;
-	transition: 0.3s all ease;
-}
-
-.sh-side-demos-container-close:hover i, .sh-side-demos-container-close:focus i
-	{
-	color: #7f7f7f;
-}
-
-img.sh-side-demos-standard {
+		<!-- sidebar -->
+		<jsp:include page="sidebar.jsp"></jsp:include>
 	
-}
-
-/* Side Icons */
-.sh-side-options-item-image, .sh-side-options-item-image-colorful {
-	width: 33px;
-	height: 33px;
-	background-image:
-		url( "https://cdn.gillion.shufflehound.com/wp-content/plugins/shufflehound-showcase-framework/sidemenu/sidemenu-icons.png" );
-	background-repeat: no-repeat;
-	background-size: 33px;
-	margin: 0 auto;
-	transition: .3s all ease-in-out;
-}
-
-.sh-side-options-item-image-colorful {
-	position: absolute;
-	left: 18px;
-	top: 17px;
-	opacity: 0;
-}
-
-.sh-side-options-item:hover .sh-side-options-item-image {
-	opacity: 0;
-}
-
-.sh-side-options-item:hover .sh-side-options-item-image-colorful {
-	opacity: 1;
-}
-
-.sh-side-demo-news {
-	background-position: 0px -2240px;
-}
-
-.sh-side-demo-magazine {
-	background-position: 0px -2100px;
-}
-
-.sh-side-demo-gizmo-news {
-	background-position: 0px -1820px;
-}
-
-.sh-side-demo-clean {
-	background-position: 0px -1960px;
-}
-
-.sh-side-demo-tech {
-	background-position: 0px -1680px;
-}
-
-.sh-side-demo-foodie {
-	background-position: 0px -1540px;
-}
-
-.sh-side-demo-lifestyle {
-	background-position: 0px -1400px;
-}
-
-.sh-side-demo-personal {
-	background-position: 0px -1260px;
-}
-
-.sh-side-demo-shop {
-	background-position: 0px -980px;
-}
-
-.sh-side-demo-fashion {
-	background-position: 0px -1120px;
-}
-
-.sh-side-demo-travel {
-	background-position: 0px -1260px;
-}
-
-.sh-side-demo-creative {
-	background-position: 0px -420px;
-}
-
-.sh-side-demo-full-width {
-	background-position: 0px -140px;
-}
-
-.sh-side-demo-background {
-	background-position: 0px -280px;
-}
-
-.sh-side-demo-boxed {
-	background-position: 0px -560px;
-}
-
-.sh-side-demo-carousel {
-	background-position: 0px -700px;
-}
-
-@media ( max-width : 1400px) {
-	.sh-side-demo-news {
-		background-position: 0px -1536px;
-	}
-	.sh-side-demo-magazine {
-		background-position: 0px -1440px;
-	}
-	.sh-side-demo-gizmo-news {
-		background-position: 0px -1248px;
-	}
-	.sh-side-demo-clean {
-		background-position: 0px -1344px;
-	}
-	.sh-side-demo-tech {
-		background-position: 0px -1152px;
-	}
-	.sh-side-demo-foodie {
-		background-position: 0px -1056px;
-	}
-	.sh-side-demo-lifestyle {
-		background-position: 0px -960px;
-	}
-	.sh-side-demo-personal {
-		background-position: 0px -864px;
-	}
-	.sh-side-demo-shop {
-		background-position: 0px -672px;
-	}
-	.sh-side-demo-fashion {
-		background-position: 0px -768px;
-	}
-	.sh-side-demo-travel {
-		background-position: 0px -864px;
-	}
-	.sh-side-demo-creative {
-		background-position: 0px -288px;
-	}
-	.sh-side-demo-full-width {
-		background-position: 0px -96px;
-	}
-	.sh-side-demo-background {
-		background-position: 0px -192px;
-	}
-	.sh-side-demo-boxed {
-		background-position: 0px -384px;
-	}
-	.sh-side-demo-carousel {
-		background-position: 0px -480px;
-	}
-}
-
-.sh-side-options-item-image-showcase {
-	background-position: 0px -0px;
-}
-
-.sh-side-options-item-image-showcase-color {
-	background-position: 0px -33px;
-}
-
-.sh-side-options-item-image-demos {
-	background-position: 0px -66px;
-}
-
-.sh-side-options-item-image-demos-color {
-	background-position: 0px -99px;
-}
-
-.sh-side-options-item-image-questions {
-	background-position: 0px -132px;
-}
-
-.sh-side-options-item-image-questions-color {
-	background-position: 0px -165px;
-}
-
-.sh-side-options-item-image-support {
-	background-position: 0px -198px;
-}
-
-.sh-side-options-item-image-support-color {
-	background-position: 0px -231px;
-}
-
-.sh-side-options-item-image-message {
-	background-position: 0px -264px;
-}
-
-.sh-side-options-item-image-message-color {
-	background-position: 0px -297px;
-}
-</style>
-	<div class="sh-side-demos sh-side-demos-pages">
-		<div class="sh-side-demos-buttons">
-			<a href="https://gillion.shufflehound.com/hello/"
-				class="sh-side-options-item sh-accent-color"><div
-					class="sh-side-options-item-image sh-side-options-item-image-showcase"></div>
-				<div
-					class="sh-side-options-item-image-colorful sh-side-options-item-image-showcase-color"></div>
-				<div class="sh-side-options-hover">Showcase</div> </a> <a
-				class="sh-side-options-item sh-accent-color sh-side-demos-button1"><div
-					class="sh-side-options-item-image sh-side-options-item-image-demos"></div>
-				<div
-					class="sh-side-options-item-image-colorful sh-side-options-item-image-demos-color"></div>
-				<div class="sh-side-options-hover">Demos</div> </a>
-			<div class="sh-side-options-divider"></div>
-			<a href="//gillion.shufflehound.com/hello/#questions"
-				class="sh-side-options-item sh-accent-color"><div
-					class="sh-side-options-item-image sh-side-options-item-image-questions"></div>
-				<div
-					class="sh-side-options-item-image-colorful sh-side-options-item-image-questions-color"></div>
-				<div class="sh-side-options-hover">
-					Questions<span></span>/<span></span>Answers
-				</div> </a>
-			<div class="sh-side-options-divider"></div>
-			<a target="blank" href="https://support.shufflehound.com/"
-				class="sh-side-options-item sh-accent-color"><div
-					class="sh-side-options-item-image sh-side-options-item-image-support"></div>
-				<div
-					class="sh-side-options-item-image-colorful sh-side-options-item-image-support-color"></div>
-				<div class="sh-side-options-hover">
-					Get<span></span>Support
-				</div> </a>
-			<div class="sh-side-options-divider"></div>
-			<a target="blank"
-				href="https://support.shufflehound.com/pre-sale-questions/"
-				class="sh-side-options-item sh-accent-color"><div
-					class="sh-side-options-item-image sh-side-options-item-image-message"></div>
-				<div
-					class="sh-side-options-item-image-colorful sh-side-options-item-image-message-color"></div>
-				<div class="sh-side-options-hover" style="white-space: nowrap;">
-					Ask a Pre-Sale<span></span>Question
-				</div> </a>
-		</div>
-		<div class="sh-side-demos-container">
-			<div class="sh-side-demos-container-close">
-				<i class="ti-close"></i>
-			</div>
-			<div class="sh-side-demos-intro">
-				<h2 class="welcome-title sh-heading-font">Publish with style!</h2>
-				<p class="sh-heading-font">Gillion is a multi-concept WP theme
-					that lets you create blog, magazine, news, review websites & even
-					shop + it’s modular!</p>
-				<a
-					href="https://themeforest.net/item/gillion-multiconcept-blogmagazine-theme/19470306?ref=Shufflehound&license=regular&open_purchase_for_item_id=19470306&purchasable=source"
-					target="blank" class="sh-side-demos-purhase sh-heading-font">Purchase
-					Theme</a>
-			</div>
-			<div class="sh-side-demos-loop">
-				<div class="sh-side-demos-loop-container">
-					<div class="sh-side-demos-item">
-						<div
-							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-news">
-							<a href="/news" class="post-overlay"></a>
-							<div class="vcg-single-image-tag vcg-single-image-tag-new">
-								<span>NEW</span>
-							</div>
-						</div>
-						<div class="sh-side-demos-item-name">News</div>
-					</div>
-					<div class="sh-side-demos-item">
-						<div
-							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-magazine">
-							<a href="/magazine" class="post-overlay"></a>
-						</div>
-						<div class="sh-side-demos-item-name">Magazine</div>
-					</div>
-					<div class="sh-side-demos-item">
-						<div
-							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-gizmo-news">
-							<a href="/gizmo-news" class="post-overlay"></a>
-						</div>
-						<div class="sh-side-demos-item-name">Gizmo News</div>
-					</div>
-					<div class="sh-side-demos-item">
-						<div
-							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-clean">
-							<a href="/clean" class="post-overlay"></a>
-						</div>
-						<div class="sh-side-demos-item-name">Clean</div>
-					</div>
-					<div class="sh-side-demos-item">
-						<div
-							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-tech">
-							<a href="/tech" class="post-overlay"></a>
-						</div>
-						<div class="sh-side-demos-item-name">Tech</div>
-					</div>
-					<div class="sh-side-demos-item">
-						<div
-							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-foodie">
-							<a href="/foodie" class="post-overlay"></a>
-						</div>
-						<div class="sh-side-demos-item-name">Foodie</div>
-					</div>
-					<div class="sh-side-demos-item">
-						<div
-							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-lifestyle">
-							<a href="/lifestyle" class="post-overlay"></a>
-						</div>
-						<div class="sh-side-demos-item-name">Lifestyle</div>
-					</div>
-					<div class="sh-side-demos-item">
-						<div
-							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-personal">
-							<a href="/personal" class="post-overlay"></a>
-						</div>
-						<div class="sh-side-demos-item-name">Personal</div>
-					</div>
-					<div class="sh-side-demos-item">
-						<div
-							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-shop">
-							<a href="/shop1" class="post-overlay"></a>
-						</div>
-						<div class="sh-side-demos-item-name">Shop</div>
-					</div>
-					<div class="sh-side-demos-item">
-						<div
-							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-fashion">
-							<a href="/fashion" class="post-overlay"></a>
-						</div>
-						<div class="sh-side-demos-item-name">Fashion</div>
-					</div>
-					<div class="sh-side-demos-item">
-						<div
-							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-travel">
-							<a href="/travel" class="post-overlay"></a>
-						</div>
-						<div class="sh-side-demos-item-name">Travel</div>
-					</div>
-					<div class="sh-side-demos-item">
-						<div
-							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-card-style">
-							<a href="/home/card-style" class="post-overlay"></a>
-						</div>
-						<div class="sh-side-demos-item-name">Card Style</div>
-					</div>
-					<div class="sh-side-demos-item">
-						<div
-							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-creative">
-							<a href="/home/creative-slider" class="post-overlay"></a>
-						</div>
-						<div class="sh-side-demos-item-name">Creative</div>
-					</div>
-					<div class="sh-side-demos-item">
-						<div
-							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-full-width">
-							<a href="/home/full-width-slider" class="post-overlay"></a>
-						</div>
-						<div class="sh-side-demos-item-name">Full Width</div>
-					</div>
-					<div class="sh-side-demos-item">
-						<div
-							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-background">
-							<a href="/home/background-image" class="post-overlay"></a>
-						</div>
-						<div class="sh-side-demos-item-name">Background</div>
-					</div>
-					<div class="sh-side-demos-item">
-						<div
-							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-boxed">
-							<a href="/home/boxed-slider" class="post-overlay"></a>
-						</div>
-						<div class="sh-side-demos-item-name">Boxed</div>
-					</div>
-					<div class="sh-side-demos-item">
-						<div
-							class="post-thumbnail sh-side-demos-item-thumbnail sh-side-demo-carousel">
-							<a href="/home/carousel-slider" class="post-overlay"></a>
-						</div>
-						<div class="sh-side-demos-item-name">Carousel</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<style>
 .new-item {
 	right: 1px !important;
@@ -5642,6 +3679,7 @@ img.sh-side-demos-standard {
 	top: -1px !important;
 }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
 		(function(i, s, o, g, r, a, m) {
 			i['GoogleAnalyticsObject'] = r;
@@ -5657,6 +3695,20 @@ img.sh-side-demos-standard {
 
 		ga('create', 'UA-57154054-5', 'auto');
 		ga('send', 'pageview');
+		
+		$.ajax({
+			url:"/user/article/top6",
+			type:"POST",
+			success:function(data){
+				var i = 1 ;
+				$.each(data.data,function(index,value){
+						$("#article"+i).html(value.name);
+						$("#article_a"+i).html(value.articleType);
+						i++;
+					})
+				}
+						
+		});
 	</script>
 </body>
 </html>

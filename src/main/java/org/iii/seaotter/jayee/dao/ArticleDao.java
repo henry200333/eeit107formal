@@ -11,4 +11,6 @@ public interface ArticleDao extends JpaRepository<Article, Long>,JpaSpecificatio
 
 	public List<Article> findByRefIdAndArticleType(Long refId, ArticleType type);
 	public List<Article> findTop10ByOrderByCountDesc();
+	public List<Article> findTop6ByOrderByCountDesc(); 
+	
 }
