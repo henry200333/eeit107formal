@@ -1,7 +1,9 @@
 package org.iii.seaotter.jayee.web;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -15,7 +17,10 @@ import org.iii.seaotter.jayee.common.ForumBoard;
 import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.common.Message;
 import org.iii.seaotter.jayee.entity.Forum;
+import org.iii.seaotter.jayee.entity.SecurityRole;
+import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ForumService;
+import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -38,6 +43,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/admin/forum")
 public class AdminForumController {
+	@Autowired
+	SecurityUserService securityUserService;
+	
 	@Autowired
 	private ForumService forumService;
 
@@ -152,4 +160,26 @@ public class AdminForumController {
 		return gridResponse;
 	};
 	
+	@RequestMapping("/happy")
+	public void happy123()
+	{
+		SecurityUser temp = new SecurityUser();
+		temp.setAccount("apple");
+		temp.setPassword("55688");
+		temp.setEnabled(true);
+		
+		Set<SecurityRole> tempSet = new HashSet<SecurityRole>();
+		
+		SecurityRole temp2 = new SecurityRole();
+		temp2.setCode("ROLE_USER");
+		SecurityRole temp3 = new SecurityRole();
+		temp3.setCode("ROLE_ADMIN");
+		tempSet.add(temp2);
+		tempSet.add(temp3);
+		temp.setRoles(tempSet);
+		System.out.println(tempSet);
+		System.out.println(123123132);
+	
+		securityUserService.signUp(temp);	
+	}
 }

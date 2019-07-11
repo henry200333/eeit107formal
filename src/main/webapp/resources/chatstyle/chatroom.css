@@ -92,7 +92,8 @@ body {
 
 /*回覆者文字*/
 #frame .content .messages ul li.replies p {
-    background: #f5f5f5;
+    background: yellow;
+    color: #32465a;
     float: right;
 }
 

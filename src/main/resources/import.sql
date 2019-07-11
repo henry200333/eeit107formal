@@ -1,14 +1,24 @@
-INSERT INTO security_role(account, code) values
-('admin', 'ROLE_ADMIN'),
-('123', 'ROLE_ADMIN');
+INSERT INTO security_role(code) values
+('ROLE_ADMIN'),
+('ROLE_USER'),
+('ROLE_ARTIST'),
+('ROLE_VENDER');
 
 INSERT INTO security_user(account, password, enabled) values
 ('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 1),
-('123', '$2a$10$weN4FB8uqq1jpv/7HEPBDuYMuw2xbMCBGKx3xYfWk3Da/UoVFS/7W', 1);
+('123', '$2a$10$weN4FB8uqq1jpv/7HEPBDuYMuw2xbMCBGKx3xYfWk3Da/UoVFS/7W', 1),
+('user', '$2a$10$xJaTeE67wZgV5.lC.q6kMeTqf/MDt2sCPWcyQ8E/zIhm5bT42uaSO', 1),
+('artist', '$2a$10$vR3xQwR7DjhsDECsFeskP.dSZ8MS21VJ9TwK2igEyoCAAaYCXXslG', 1),
+('vender', '$2a$10$6uZShAnrFhifYtcJPQ490eZC5PDXonxyZ3zbRG5UpeYmReaDi.sxG', 1);
 
+ALTER TABLE user_role NOCHECK CONSTRAINT ALL;
 INSERT INTO user_role(user_id, role_id) values
-(1,1),
-(2,1);
+(1,1),(1,2),(1,3),(1,4),
+(2,1),(2,2),(2,3),(2,4),
+(3,2),
+(4,2),(4,3),
+(5,2),(5,4);
+ALTER TABLE user_role CHECK CONSTRAINT ALL;
 
 INSERT INTO article (name, content, article_type, ref_id, count) values
   ('EZ5音樂餐廳徵求臨時鼓手一名', '2019/8/8 將舉辦慈善表演，徵求鼓手一名，詳洽02-12345678，MR.口鳥先生', 'Vender', 1, 2),
@@ -38,7 +48,7 @@ INSERT INTO article (name, content, article_type, ref_id, count) values
  ('柳川鳳',66666,'神奈川'),
  ('張添財',98765,'自由新鎮'),
  ('張添財',32548,'鬼島'),
- ('敏敏',12345,'大都')
+ ('敏敏',12345,'大都');
  
  
 
@@ -119,14 +129,14 @@ INSERT INTO Location (location_name,city,district,address) values
 ('貓空纜車','台北市','文山區','新光路二段8號');
 
 
-INSERT INTO activity (name,artist,description,begin_time,end_time,awesome_Num,bad_Num,artist_id,location_id) values
- ('裝銅人','王世堅','裝了就硬幫幫','2019/03/28 12:03','2019/05/28 12:30',53,15,1,1),
- ('跳火圈','柯文哲','沒事就愛跳火圈','2019/02/22 23:35','2019/02/23 07:35',109,25,4,2),
- ('唱情歌','呂秀蓮','在北車唱情歌','2019/07/14 07:35','2019/07/14 17:15',77,35,4,3),
- ('打工賺錢','蔡英文','賺錢選粽痛','2019/06/27 23:35','2019/06/28 07:35',127,25,3,4),
- ('裝印地安人','郭台銘','One little two little three little indian..','2019/04/25 07:35','2019/05/01 17:15',203,35,2,5),
- ('裝銅人','王世堅','裝了就硬幫幫','2019/03/28 12:03','2019/05/28 12:30',53,15,1,4),
- ('跳火圈','柯文哲','沒事就愛跳火圈','2019/02/22 23:35','2019/02/23 07:35',109,25,3,3),
- ('唱情歌','呂秀蓮','在北車唱情歌','2019/07/14 07:35','2019/07/14 17:15',77,35,2,2),
- ('打工賺錢','蔡英文','賺錢選粽痛','2019/06/27 23:35','2019/06/28 07:35',127,25,3,1),
- ('裝印地安人','郭台銘','One little two little three little indian..','2019/04/25 07:35','2019/05/01 17:15',203,35,1,2);
+INSERT INTO activity (name,description,begin_time,end_time,awesome_Num,bad_Num,artist_id,location_id) values
+ ('裝銅人','裝了就硬幫幫','2019/03/28 12:03','2019/05/28 12:30',53,15,1,1),
+ ('跳火圈','沒事就愛跳火圈','2019/02/22 23:35','2019/02/23 07:35',109,25,4,2),
+ ('唱情歌','在北車唱情歌','2019/07/14 07:35','2019/07/14 17:15',77,35,4,3),
+ ('打工賺錢','賺錢選粽痛','2019/06/27 23:35','2019/06/28 07:35',127,25,3,4),
+ ('裝印地安人','One little two little three little indian..','2019/04/25 07:35','2019/05/01 17:15',203,35,2,5),
+ ('裝銅人','裝了就硬幫幫','2019/03/28 12:03','2019/05/28 12:30',53,15,1,4),
+ ('跳火圈','沒事就愛跳火圈','2019/02/22 23:35','2019/02/23 07:35',109,25,3,3),
+ ('唱情歌','在北車唱情歌','2019/07/14 07:35','2019/07/14 17:15',77,35,2,2),
+ ('打工賺錢','賺錢選粽痛','2019/06/27 23:35','2019/06/28 07:35',127,25,3,1),
+ ('裝印地安人','One little two little three little indian..','2019/04/25 07:35','2019/05/01 17:15',203,35,1,2);
