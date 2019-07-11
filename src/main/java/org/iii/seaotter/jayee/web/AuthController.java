@@ -36,8 +36,6 @@ public class AuthController {
 		if (null != account && null != rawPassword) {
 			if (null == securityUserService.loadUserByUsername(account)) {
 				SecurityUser user = new SecurityUser();
-				System.out.println(account);
-				System.out.println(rawPassword);
 				String password = passwordEncoder.encode(rawPassword);
 				user.setAccount(account);
 				user.setPassword(password);

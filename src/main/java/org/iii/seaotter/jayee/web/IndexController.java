@@ -7,7 +7,6 @@ import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.common.ForumBoard;
-import org.iii.seaotter.jayee.config.SpringSecurityUserContext;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Artist;
@@ -50,14 +49,14 @@ public class IndexController {
 //		SecurityUser user =  springSecurityUserContext.getCurrentUser();
 //		String account = user.getAccount();
 //		System.out.println(account);
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Collection<? extends GrantedAuthority> roles = ((UserDetails)principal).getAuthorities();
-		for (GrantedAuthority grantedAuthority : roles) {
-			if(grantedAuthority.toString().equals("ROLE_ADMIN")) {
-				return "redirect:/admin/artist/list";
-			}
-			
-		}
+//		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		Collection<? extends GrantedAuthority> roles = ((UserDetails)principal).getAuthorities();
+//		for (GrantedAuthority grantedAuthority : roles) {
+//			if(grantedAuthority.toString().equals("ROLE_ADMIN")) {
+//				return "redirect:/admin/artist/list";
+//			}
+//			
+//		}
 		
 		return "/user/index";
 	}
