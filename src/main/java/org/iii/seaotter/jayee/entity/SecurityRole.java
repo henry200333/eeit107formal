@@ -30,6 +30,7 @@ public class SecurityRole implements GrantedAuthority {
 	@Column(name = "code")
 	private String code;
 
+	@Override
 	public String getAuthority() {
 		return this.code;
 	}
