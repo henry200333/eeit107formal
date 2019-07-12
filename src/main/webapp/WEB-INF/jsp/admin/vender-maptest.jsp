@@ -92,19 +92,21 @@ html, body {
 				map : map
 			});
 			changelatlng();
-			map.addListener('center_changed', function(event) {
+			map.addListener('click', function(event) {
 // 				alert(event.latLng.lat())
 				
 // 				alert(getDistance(self.getPosition().lat(), self.getPosition().lng(),event.latLng.lat(),event.latLng.lng()));		
 							
 							
 							window.setTimeout(function() {
+						
 								clearmarker();			
-					}, 500);
+					}, 0);
 				
 							window.setTimeout(function() {
+								
 								addmarker(map);
-							}, 500);
+							}, 1);
 					
 
 	
@@ -120,7 +122,7 @@ html, body {
 			
 				
 			});	
-			addmarker(map);
+// 			addmarker(map);
 			
 
 			
@@ -200,16 +202,16 @@ html, body {
 						lng : obj['lng']
 					},
 					map : map,
-					icon : {
-						path : google.maps.SymbolPath.CIRCLE,
+					icon :{
+						url :"http://www.oxxostudio.tw/img/articles/201801/google-maps-3-marker-icon.png",
 						scale : 8.5,
 						fillColor : "#F99",
-						fillOpacity : 0.8,
+						fillOpacity : 0.1,
 						strokeWeight : 1
 					}
 				});
 			
-				 attachSecretMessage(markers[key],obj['name']);
+				 attachSecretMessage(markers[key],obj['name']+obj['address']);
 				});
 				
 				

@@ -99,41 +99,7 @@ public class AdminVenderController {
 	
 	
 	
-	@RequestMapping("/query")
-	@ResponseBody
-	public GridResponse<Vender> query(@RequestParam(value = "name", defaultValue = "") String name,
-			@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size,
-			@RequestParam(value = "sidx") String sidx, @RequestParam(value = "sord") String sord) {
-		System.out.println("aa");
-		GridResponse<Vender> grid = new GridResponse<Vender>();
-		Sort sort = new Sort(Sort.Direction.ASC, sidx);
-		if ("desc".equalsIgnoreCase(sord)) {
-			sort = new Sort(Sort.Direction.DESC, sidx);
-		}
-		Pageable pageable = PageRequest.of(page - 1, size, sort);
-
-		Specification<Vender> specification = new Specification<Vender>() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public Predicate toPredicate(Root<Vender> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				Predicate predicate = cb.conjunction();
-				if (!StringUtils.isEmpty(name)) {
-
-					predicate = cb.and(cb.like(root.get("name"), "%" + name + "%"));
-
-				}
-				return predicate;
-			}
-		};
-		Page<Vender> result = venderService.getAll(specification, pageable);
-		System.out.println(result.getContent().getClass());
-		grid.setRows(result.getContent());
-		grid.setPage(page);
-		grid.setRecords(result.getTotalElements());
-		grid.setTotal(result.getTotalPages());
-		return grid;
-	}
+	
 
 	@RequestMapping("/map")
 	@ResponseBody

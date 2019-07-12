@@ -26,7 +26,7 @@ public class AuthController {
 	@Autowired
 	private SecurityRoleDao securityRoleDao;
 	
-	@GetMapping("/login")
+	@GetMapping(value= {"/login", "/index","/"})
 	public String loginPage() {
 		return "/user/index";
 	}

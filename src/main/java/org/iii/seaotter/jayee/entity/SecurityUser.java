@@ -1,7 +1,6 @@
 package org.iii.seaotter.jayee.entity;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -90,7 +89,7 @@ public class SecurityUser implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return enabled;
 	}
 
 }
