@@ -75,7 +75,7 @@
 <!-- 			ajax版 塞資料處				<div class="table-responsive"></div> -->
 
 						<table id="activityGrid"
-								class="table table-bordered table-striped table-hover"></table>
+								class="table table-bordered table-striped table-hover" style="font-family: 'Noto Sans TC', sans-serif;"></table>
 							<div id="pager"></div>
 						</div>
 					</div>

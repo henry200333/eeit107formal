@@ -64,7 +64,7 @@
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">List of Artist</h6>
 						</div>
-						<div id="artistList" class="card-body">
+						<div id="artistList" class="card-body" style="font-family: 'Noto Sans TC', sans-serif;">
 								<table id="artistGrid" ></table>
 								<div id="pager"></div>
 						</div>

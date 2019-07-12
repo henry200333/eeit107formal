@@ -70,7 +70,7 @@
 							<h6 class="m-0 font-weight-bold text-primary">List of
 								Article</h6>
 						</div>
-						<div id="articleList" class="card-body">
+						<div id="articleList" class="card-body" style="font-family: 'Noto Sans TC', sans-serif;">
 								<table id="articleGrid"></table>
 								<div id="pager"></div>
 						</div>
