@@ -72,9 +72,9 @@
 <jsp:include page="footer.jsp"></jsp:include>
 
 <script>
-function   aa(){
-alert("${venderparam}");
-$.ajax({url : "/admin/job/findjobs/?id=${venderparam.id}",
+function   showjobs(){
+// alert("${venderparam}");  	 	
+$.ajax({url : "/admin/vender/findjobs/?id=${venderparam.id}",
 			type : "POST",
 			success : function(data) {
 				var txt = "";
@@ -90,7 +90,7 @@ $.ajax({url : "/admin/job/findjobs/?id=${venderparam.id}",
 									txt += obj.jobType;
 									txt +="</h2></div><div class='col-sm-6 mb-3 mb-sm-6'><h4 class=' h3 mb-0 text-gray-800'>薪資:";
 									txt +=obj.reward;
-									txt +="</h4></div></div><div class='col-sm-9 mb-3 mb-sm-6'><label class=' h4 mb-0 text-gray-800'>詳細內容:</label><textarea class='form-control' name='description'>";
+									txt +="</h4></div></div><div class='col-sm-9 mb-3 mb-sm-6'><label class=' h4 mb-0 text-gray-800'>詳細內容:</label><textarea class='form-control' name='description' readonly>";
 									txt +=obj.detal;
 									txt +="</textarea></div><div class='col-sm-6 mb-3 mb-sm-6'><h2 class=' h2 mb-0 text-gray-800'>表演時間:";
 									txt +=obj.jobTime;
@@ -108,7 +108,7 @@ $.ajax({url : "/admin/job/findjobs/?id=${venderparam.id}",
 }
 
 
-aa();
+showjobs();
 </script>
 
 

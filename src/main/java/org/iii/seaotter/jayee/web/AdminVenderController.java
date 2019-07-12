@@ -77,6 +77,18 @@ public class AdminVenderController {
 		return "/admin/vender-jobs";
 	}
 
+
+	
+	@RequestMapping("/findjobs")
+	@ResponseBody
+	public List<Job> query(@RequestParam("id")Long id, Model model){
+		
+		Vender bean= venderService.getById(id);
+		System.out.println(jobservice.getByVender(bean).size());
+		return jobservice.getByVender(bean);
+	}
+	
+	
 	
 	@RequestMapping("/maptest")
 	public String mapPage() {

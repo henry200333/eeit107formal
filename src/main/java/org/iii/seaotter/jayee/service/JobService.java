@@ -7,6 +7,7 @@ package org.iii.seaotter.jayee.service;
 import java.util.List;
 
 import org.iii.seaotter.jayee.dao.JobDao;
+import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.Job;
 import org.iii.seaotter.jayee.entity.Vender;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ public class JobService {
 	
 	public Job create(Job job) {	
 		return jobDao.save(job);
+
 	}
 	
 	public void delete(long id) {	
@@ -50,5 +52,10 @@ public class JobService {
 	
 	public List<Job> getByVender(Vender vender){
 		return jobDao.findByVender(vender);
+	}
+	
+	public void setjobarist(Job job,Artist artist) {
+		job.setArtist(artist);
+		jobDao.save(job);
 	}
 }

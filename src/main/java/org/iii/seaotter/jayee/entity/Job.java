@@ -1,5 +1,7 @@
 package org.iii.seaotter.jayee.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,8 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.lang.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -44,7 +50,16 @@ public class Job {
 	@JsonBackReference
 	@JoinColumn(name="vender_id", nullable=false)
 	private Vender vender;
+	
+	
+	@ManyToMany
+	@JoinTable(name = "Artist_job", joinColumns = { @JoinColumn(name = "job_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "artist_id") })
+	@JsonBackReference
+	private List<Artist>  applicationArtists;
 
-	
-	
+	@ManyToOne
+	@JsonBackReference
+	@JoinColumn(name="artist_id")
+	private Artist artist;
 }
