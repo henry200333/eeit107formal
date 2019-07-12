@@ -34,7 +34,7 @@ public class SecurityUser implements UserDetails {
 	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "role_id") })
-	private Set<SecurityRole> roles = new HashSet<SecurityRole>();
+	private Set<SecurityRole> roles;
 	@Column(name = "account")
 	private String account;
 	@Column(name = "password")
