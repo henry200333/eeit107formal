@@ -18,7 +18,6 @@ public class SecurityUserService implements UserDetailsService {
 	@Transactional
 	@Override
 	public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
-		System.out.println("hello world");
 		return securityUserDao.findByAccount(account);
 	}
 
