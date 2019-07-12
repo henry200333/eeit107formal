@@ -70,7 +70,7 @@
 							<h6 class="m-0 font-weight-bold text-primary">List of
 								SecurityUser</h6>
 						</div>
-						<div id="securityUserList" class="card-body">
+						<div id="securityUserList" class="card-body" style="text-align: center">
 								<table id="securityUserGrid"></table>
 								<div id="pager"></div>
 						</div>
@@ -103,12 +103,16 @@
         styleUI : 'Bootstrap4',
         iconSet : "fontAwesome",
         colModel: [
-			{ name: 'userId', index: 'userId', label: 'USER_ID', width: 30 },
-			{ name: 'account', label: 'ACCOUNT'},
-			{ name: 'password', label: 'PASSWORD', width: 80 },
-			{ name: 'enabled', label: 'ENABLE', width: 30 },
-			{ name: 'roles', label: 'ROLES', width: 150},
-			{ name: 'edit', label: 'EDIT', width: 20, sortable : false, formatter: editBT },
+			{ name: 'userId', index: 'userId', label: 'USER_ID', width: 15, align:'center'},
+			{ name: 'account', label: 'ACCOUNT',editable:true, width: 20, align:'center'},
+			{ name: 'password', label: 'PASSWORD', width: 15,align:'center', editable:false, sortable:false, formatter:Colpassword},
+			{ name: 'enabled', label: 'ENABLE', width: 15 ,editable:true, edittype:'checkbox', editoptions: {value:"True:False"}, align:'center', formatter: enableCheck},
+			{ name: 'roles', label: 'ADMIN', width: 15, editable:true, edittype:'checkbox', editoptions: {value:"True:False"}, align:'center', formatter: adminCheck},
+			{ name: 'roles', label: 'USER', width: 15, editable:false, edittype: 'checkbox', editoptions: {value: "True:False"}, align:'center', formatter: userCheck},
+			{ name: 'roles', label: 'ARTIST', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "True:False"}, align:'center', formatter: artistCheck},
+			{ name: 'roles', label: 'VENDER', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "True:False"}, align:'center', formatter: venderCheck},
+			{ name:'EDIT',index:'EDIT',label:'EDIT', width:15, align:'center', sortable:false},
+			{ name:'SAVE',index:'SAVE',label:'SAVE', width:15, align:'center',sortable:false}
 		],
         prmNames: {search: null, nd: null},
         pager: '#pager',
@@ -123,22 +127,78 @@
         viewrecords: true,
         loadComplete: function () {
             reSizejqGridWidth();
-        }
+        },
+      <!--增加修改、存檔button-->  
+        gridComplete: function(){
+    		var ids = jQuery("#securityUserGrid").jqGrid('getDataIDs');
+    		for(var i=0;i < ids.length;i++){
+    			var cl = ids[i];
+    			ee = "<button  type='button' class='btn btn-primary btn-sm' onclick=\"jQuery('#securityUserGrid').editRow('"+cl+"');\"  ><i class='far fa-edit'></i></button>"; 
+    			se = "<button  type='button' class='btn btn-success btn-sm' onclick=\"jQuery('#securityUserGrid').saveRow('"+cl+"');\"  ><i class='far fa-save'></i></button>"; 
+    			jQuery("#securityUserGrid").jqGrid('setRowData',ids[i],{EDIT:ee,SAVE:se});
+    		}	
+    	}
     });
 	 
-	 function editBT(cellvalue, options, rowObject) {
-			return "<button type='button' id='"
-					+ rowObject.id
-					+ "'onclick='editId(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button>";
-		}
-		function deleBT(cellvalue, options, rowObject) {
-			return "<button type='button' id='"
-					+ rowObject.id
-					+ "'onclick='deleId(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i>"
-		}
-		function editId(Object) {
-			$(location).attr('href', '/admin/securityUser/edit?id=' + Object.id);
-		}
+	 function adminCheck(cellvalue, options, rowObject) {
+		 var txt = "";
+		 for(i=0;i<rowObject.roles.length;i++){
+			 var authority = rowObject.roles[i].authority;
+			 txt += authority +"  "; 
+			 }
+		 		if(txt.indexOf('ROLE_ADMIN') > -1){
+		 			return "<input type='checkbox' id='ROLE_ADMIN' disabled='true' checked>"
+		 		}else{
+		 			return "<input type='checkbox' id='ROLE_ADMIN' disabled='true' unchecked>"
+		 		}
+		 }
+	 function userCheck(cellvalue, options, rowObject) {
+		 var txt = "";
+		 for(i=0;i<rowObject.roles.length;i++){
+			 var authority = rowObject.roles[i].authority;
+			 txt += authority +"  "; 
+			 }
+		 		if(txt.indexOf('ROLE_USER') > -1){
+		 			return "<input type='checkbox' id='ROLE_ADMIN' disabled='true' checked>"
+		 		}else{
+		 			return "<input type='checkbox' id='ROLE_ADMIN' disabled='true' unchecked>"
+		 		}
+		 }
+	 function artistCheck(cellvalue, options, rowObject) {
+		 var txt = "";
+		 for(i=0;i<rowObject.roles.length;i++){
+			 var authority = rowObject.roles[i].authority;
+			 txt += authority +"  "; 
+			 }
+		 		if(txt.indexOf('ROLE_ARTIST') > -1){
+		 			return "<input type='checkbox' id='ROLE_ADMIN' disabled='true' checked>"
+		 		}else{
+		 			return "<input type='checkbox' id='ROLE_ADMIN' disabled='true' unchecked>"
+		 		}
+		 }
+	 function venderCheck(cellvalue, options, rowObject) {
+		 var txt = "";
+		 for(i=0;i<rowObject.roles.length;i++){
+			 var authority = rowObject.roles[i].authority;
+			 txt += authority +"  "; 
+			 }
+		 		if(txt.indexOf('ROLE_VENDER') > -1){
+		 			return "<input type='checkbox' id='ROLE_ADMIN' disabled='true' checked>"
+		 		}else{
+		 			return "<input type='checkbox' id='ROLE_ADMIN' disabled='true' unchecked>"
+		 		}
+		 }
+	 function enableCheck(cellvalue, options, rowObject) {
+		 if(cellvalue==true){
+		 			return "<input type='checkbox' id='ENABLE' disabled='true' checked>"
+		 		}else{
+		 			return "<input type='checkbox' id='ENABLE' disabled='true' unchecked>"
+		 		}
+		 }
+	 function Colpassword(cellvalue, options, rowObject) {
+		 	return "<button type='button' class='btn btn-danger btn-sm'><i class='far fa-edit'></i></button>"
+		 }
+		
 
 		$("#searchBT").click(function(){
 			$('#securityUserGrid').jqGrid("clearGridData") ;
