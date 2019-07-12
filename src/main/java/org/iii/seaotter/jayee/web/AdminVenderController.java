@@ -77,6 +77,18 @@ public class AdminVenderController {
 		return "/admin/vender-jobs";
 	}
 
+
+	
+	@RequestMapping("/findjobs")
+	@ResponseBody
+	public List<Job> query(@RequestParam("id")Long id, Model model){
+		
+		Vender bean= venderService.getById(id);
+		System.out.println(jobservice.getByVender(bean).size());
+		return jobservice.getByVender(bean);
+	}
+	
+	
 	
 	@RequestMapping("/maptest")
 	public String mapPage() {
@@ -87,6 +99,7 @@ public class AdminVenderController {
 	
 	
 	
+
 	@RequestMapping("/query")
 	@ResponseBody
 	public GridResponse<Vender> query(@RequestParam(value = "name", defaultValue = "") String name,
@@ -122,6 +135,7 @@ public class AdminVenderController {
 		grid.setTotal(result.getTotalPages());
 		return grid;
 	}
+
 
 	@RequestMapping("/map")
 	@ResponseBody

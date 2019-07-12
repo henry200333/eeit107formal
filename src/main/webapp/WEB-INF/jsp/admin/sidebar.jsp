@@ -69,6 +69,18 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
+      
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Security
+      </div>
+      
+      <!-- Nav Item - User -->
+      <li id="navForum" class="nav-item">
+        <a class="nav-link" href="/admin/forum/list">
+          <i class="fas fa-fw fa-key"></i>
+          <span>User</span></a>
+      </li>
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
