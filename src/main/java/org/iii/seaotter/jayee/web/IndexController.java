@@ -46,18 +46,16 @@ public class IndexController {
 	
 	@RequestMapping("/index")
 	public String index() {
-//		SecurityUser user =  springSecurityUserContext.getCurrentUser();
-//		String account = user.getAccount();
-//		System.out.println(account);
-//		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		Collection<? extends GrantedAuthority> roles = ((UserDetails)principal).getAuthorities();
-//		for (GrantedAuthority grantedAuthority : roles) {
-//			if(grantedAuthority.toString().equals("ROLE_ADMIN")) {
-//				return "redirect:/admin/artist/list";
-//			}
-//			
-//		}
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	
+		Collection<? extends GrantedAuthority> roles = ((UserDetails)principal).getAuthorities();
 		
+		for (GrantedAuthority grantedAuthority : roles) {
+			System.out.println(grantedAuthority.getAuthority());
+			if(grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+				return "redirect:/admin/artist/list";
+			}	
+		}
 		return "/user/index";
 	}
 	
