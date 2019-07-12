@@ -83,7 +83,7 @@
 							<h6 class="m-0 font-weight-bold text-primary">List of Forum</h6>
 						</div>
 						<!-- Grid -->
-						<div id="forumList" class="card-body">
+						<div id="forumList" class="card-body" style="font-family: 'Noto Sans TC', sans-serif;">
 							<table id="forumGrid"
 								class="table table-bordered table-striped table-hover"></table>
 							<div id="pager"></div>
