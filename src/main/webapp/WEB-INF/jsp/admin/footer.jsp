@@ -29,7 +29,9 @@
 <script>
 	$(document).ready(function() {
 		var url = $(location).attr('href');
-		if (url.match('/artist') != null) {
+		if(url.match('/securityUser') != null){
+			$("#navUser").addClass("active");
+		}else if (url.match('/artist') != null) {
 			$("#navArtist").addClass("active");
 		} else if (url.match('/activity') != null) {
 			$("#navActivity").addClass("active");
@@ -62,19 +64,4 @@
         });
         return JSON.stringify(o);
     };
-</script>
-
-<!-- loading dataTable js -->
-<script>
-	 function tableRefresh() {
-		$("body").append($("<script />", {
-			  src: "/resources/admin-bootstrap/vendor/datatables/jquery.dataTables.min.js"
-			}));
-		$("body").append($("<script />", {
-			  src: "/resources/admin-bootstrap/vendor/datatables/dataTables.bootstrap4.min.js"
-			}));
-		$("body").append($("<script />", {
-			  src: "/resources/admin-bootstrap/js/demo/datatables-demo.js"
-			}));
-	};
 </script>

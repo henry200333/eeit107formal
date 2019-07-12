@@ -27,14 +27,14 @@ public class ArticleService {
 	public Page<Article> getAll(Specification<Article> specification, Pageable  pageable) {
 		return articleDao.findAll(specification,pageable);
 	}
-
+	
+	@Transactional(readOnly = true)
 	public Article getById(Long id) {
 		return articleDao.findById(id).orElse(null);
 	}
-
+	
 	public Article insert(Article entity) {
-		Article article = articleDao.save(entity);
-		return article;
+		return articleDao.save(entity);
 	}
 
 	public Article update(Article entity) {
