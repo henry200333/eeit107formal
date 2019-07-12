@@ -92,7 +92,7 @@ public class AdminVenderController {
 	public GridResponse<Vender> query(@RequestParam(value = "name", defaultValue = "") String name,
 			@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size,
 			@RequestParam(value = "sidx") String sidx, @RequestParam(value = "sord") String sord) {
-		System.out.println("aa");
+//		System.out.println("我就是口鳥");
 		GridResponse<Vender> grid = new GridResponse<Vender>();
 		Sort sort = new Sort(Sort.Direction.ASC, sidx);
 		if ("desc".equalsIgnoreCase(sord)) {
@@ -115,7 +115,7 @@ public class AdminVenderController {
 			}
 		};
 		Page<Vender> result = venderService.getAll(specification, pageable);
-		System.out.println(result.getContent().getClass());
+//		System.out.println(result.getContent().getClass());
 		grid.setRows(result.getContent());
 		grid.setPage(page);
 		grid.setRecords(result.getTotalElements());

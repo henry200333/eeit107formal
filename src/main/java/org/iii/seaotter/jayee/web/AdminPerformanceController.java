@@ -85,7 +85,7 @@ public class AdminPerformanceController {
 			}
 		};
 		Page<Performance> result = performanceSurvice.getAll(spec, pageable);
-		System.out.println(result);
+//		System.out.println(result);
 		gridResponse.setRows(result.getContent());
 		gridResponse.setPage(page);
 		gridResponse.setTotal(result.getTotalPages());

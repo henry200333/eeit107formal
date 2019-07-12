@@ -156,7 +156,7 @@ public class AdminForumController {
 			}
 		};
 		Page<Forum> result = forumService.getAll(specification, pageable);
-		System.out.println(result);
+//		System.out.println(result);
 		gridResponse.setRows(result.getContent());
 		gridResponse.setPage(page);
 		gridResponse.setTotal(result.getTotalPages());
