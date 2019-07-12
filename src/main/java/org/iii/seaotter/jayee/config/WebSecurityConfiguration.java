@@ -1,9 +1,6 @@
 package org.iii.seaotter.jayee.config;
 
-import javax.sql.DataSource;
-
 import org.iii.seaotter.jayee.service.SecurityUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,8 +15,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private DataSource dataSource;
+	
+//	
+//	@Autowired
+//	private DataSource dataSource;
 
 //	@Autowired
 //	private SecurityUserService securityUserService;
@@ -37,11 +36,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-//		auth.userDetailsService(securityUserService);
+		auth.userDetailsService(userDetailsService());
 
-		auth.jdbcAuthentication().dataSource(dataSource)
-				.usersByUsernameQuery("SELECT account, password, enabled FROM security_user WHERE account=?")
-				.authoritiesByUsernameQuery("SELECT s.account, r.code FROM security_user s JOIN user_role ur ON s.user_id = ur.user_id JOIN security_role r ON ur.role_id = r.role_id WHERE s.account=?");
+//		auth.jdbcAuthentication().dataSource(dataSource)
+//				.usersByUsernameQuery("SELECT account, password, enabled FROM security_user WHERE account=?")
+//				.authoritiesByUsernameQuery("SELECT s.account, r.code FROM security_user s JOIN user_role ur ON s.user_id = ur.user_id JOIN security_role r ON ur.role_id = r.role_id WHERE s.account=?");
 
 //		auth.inMemoryAuthentication()
 //		.withUser("admin")
@@ -61,7 +60,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.formLogin().permitAll()
 		.loginPage("/login")
 		.failureUrl("/login")
-		.defaultSuccessUrl("/admin/artist/list")
+		.defaultSuccessUrl("/user/index")
 		.and()
 		.logout().permitAll()
 		.logoutSuccessUrl("/login")

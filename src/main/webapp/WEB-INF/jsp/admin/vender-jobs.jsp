@@ -40,19 +40,13 @@
 						<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h3 class="m-0 font-weight-bold text-primary">近期職缺</h3>
-						</div>
-	
-				
-				
-					<table class="table table-bordered table-striped table-hover"
-					id="dataTable" width="100%" cellspacing="0">
+						</div></div>
+					<div id="joblist" ></div>
 
-					<tbody id="tbody"></tbody>
-				</table>
 
-					<hr>
 
-				
+
+
 
 				</div>
 				<!-- /.container-fluid -->
@@ -85,19 +79,29 @@ $.ajax({url : "/admin/job/findjobs/?id=${venderparam.id}",
 			success : function(data) {
 				var txt = "";
 				$.each(data,function(key, obj) {
-// 									alert(obj)
-									txt += "<tr>";
-									for (i in obj) {
-									txt += "<td>" + obj[i] + "</td>";
-									};
-// 									txt += '<td><button  href="${path}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button></td>';
-// 									txt += '<td><button id='
-// 											+ obj["id"]
-// 											+ ' class="btn btn-danger btn-sm" onclick="deleteId(this)"><i class="fas fa-trash"></i></button></td>';
-									txt += "</tr>";
+									txt +="<div style='border:solid;margin:10px'><div class='form-group row' style=";
+									txt +='"font-family: ';
+									txt +="'Noto Sans TC'";
+									txt +=', sans-serif;"';
+									txt +="><div class='col-sm-6 mb-3 mb-sm-6'><h2 class=' h1 mb-0 text-gray-800'>";
+									txt +=obj.name;
+									txt +="</h2></div><div class='col-sm-6 mb-3 mb-sm-0'><div class='col-sm-6 mb-3 mb-sm-6'><h2 class=' h3 mb-0 text-gray-800'>類別:";
+									
+									txt += obj.jobType;
+									txt +="</h2></div><div class='col-sm-6 mb-3 mb-sm-6'><h4 class=' h3 mb-0 text-gray-800'>薪資:";
+									txt +=obj.reward;
+									txt +="</h4></div></div><div class='col-sm-9 mb-3 mb-sm-6'><label class=' h4 mb-0 text-gray-800'>詳細內容:</label><textarea class='form-control' name='description'>";
+									txt +=obj.detal;
+									txt +="</textarea></div><div class='col-sm-6 mb-3 mb-sm-6'><h2 class=' h2 mb-0 text-gray-800'>表演時間:";
+									txt +=obj.jobTime;
+									txt +="</h2></div></div></div>";
+										
+										
+										
+										
 								})
 
-				$("#tbody").append(txt);
+				$("#joblist").append(txt);
 
 			}
 		})

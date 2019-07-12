@@ -59,5 +59,9 @@ public class ArticleService {
 		return articleDao.findTop10ByOrderByCountDesc();
 	}
 	
+	public List<Article> getTop6ByCount() {
+		return articleDao.findTop6ByOrderByCountDesc(); 
+	}
+	
 
 }

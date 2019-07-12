@@ -37,6 +37,8 @@ public class Job {
 	@Column(name="detal")
 	private String detal;
 	
+	@Column(name="reward")
+	private Integer reward;
 	
 	@ManyToOne
 	@JsonBackReference

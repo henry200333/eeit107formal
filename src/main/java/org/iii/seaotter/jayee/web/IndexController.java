@@ -1,18 +1,17 @@
 package org.iii.seaotter.jayee.web;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.common.ForumBoard;
-import org.iii.seaotter.jayee.config.SpringSecurityUserContext;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Performance;
-import org.iii.seaotter.jayee.entity.SecurityRole;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
@@ -20,6 +19,9 @@ import org.iii.seaotter.jayee.service.ArtistService;
 import org.iii.seaotter.jayee.service.ForumService;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,23 +42,25 @@ public class IndexController {
 	private ForumService forumService;
 	@Autowired
 	private PerformanceService performanceService;
-	@Autowired
-	private SpringSecurityUserContext springSecurityUserContext;
 	
 	
 	@RequestMapping("/index")
 	public String index() {
-		SecurityUser user =  springSecurityUserContext.getCurrentUser();
-		String account = user.getAccount();
-		System.out.println(account);
+//		SecurityUser user =  springSecurityUserContext.getCurrentUser();
+//		String account = user.getAccount();
+//		System.out.println(account);
+//		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		Collection<? extends GrantedAuthority> roles = ((UserDetails)principal).getAuthorities();
+//		for (GrantedAuthority grantedAuthority : roles) {
+//			if(grantedAuthority.toString().equals("ROLE_ADMIN")) {
+//				return "redirect:/admin/artist/list";
+//			}
+//			
+//		}
+		
 		return "/user/index";
 	}
 	
-	@RequestMapping("/login")
-	public String login() {
-		
-		return "/user/login";
-	}
 	
 	
 	@RequestMapping("/performancetop")
