@@ -107,12 +107,12 @@
 			{ name: 'account', label: 'ACCOUNT',editable:true, width: 20, align:'center'},
 			{ name: 'password', label: 'PASSWORD', width: 15,align:'center', editable:false, sortable:false, formatter:Colpassword},
 			{ name: 'enabled', label: 'ENABLE', width: 15 ,editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: enableCheck},
-			{ name: 'ADMIN', label: 'ADMIN', width: 15, editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: adminCheck},
-			{ name: 'USER', label: 'USER', width: 15, editable:false, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: userCheck},
-			{ name: 'ARTIST', label: 'ARTIST', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: artistCheck},
-			{ name: 'VENDER', label: 'VENDER', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: venderCheck},
-			{ name:'EDIT',index:'EDIT',label:'EDIT', width:15, align:'center', sortable:false},
-			{ name:'SAVE',index:'SAVE',label:'SAVE', width:15, align:'center',sortable:false}
+			{ name: 'ADMIN', label: 'ADMIN', width: 15, editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: AuthCheck},
+			{ name: 'USER', label: 'USER', width: 15, editable:false, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
+			{ name: 'ARTIST', label: 'ARTIST', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
+			{ name: 'VENDER', label: 'VENDER', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
+			{ name:'EDIT',index:'EDIT',label:'EDIT', width:15, align:'center', sortable:false, formatter:editBT},
+			{ name:'SAVE',index:'SAVE',label:'SAVE', width:15, align:'center',sortable:false, formatter:saveBT}
 		],
         prmNames: {search: null, nd: null},
         pager: '#pager',
@@ -127,75 +127,59 @@
         viewrecords: true,
         loadComplete: function () {
             reSizejqGridWidth();
-        },
+        }
       <!--增加修改、存檔button-->  
-        gridComplete: function(){
-    		var ids = jQuery("#securityUserGrid").jqGrid('getDataIDs');
-    		for(var i=0;i < ids.length;i++){
-    			var cl = ids[i];
-    			ee = "<button  type='button' class='btn btn-primary btn-sm' onclick=\"jQuery('#securityUserGrid').editRow('"+cl+"');\"  ><i class='far fa-edit'></i></button>"; 
-    			se = "<button  type='button' class='btn btn-success btn-sm' onclick=\"jQuery('#securityUserGrid').saveRow('"+cl+"');\"  ><i class='far fa-save'></i></button>"; 
-    			jQuery("#securityUserGrid").jqGrid('setRowData',ids[i],{EDIT:ee,SAVE:se});
-    		}	
-    	}
+//         gridComplete: function(){
+//     		var ids = jQuery("#securityUserGrid").jqGrid('getDataIDs');
+//     		for(var i=0;i < ids.length;i++){
+//     			var cl = ids[i];
+//     			ee = "<button  type='button' class='btn btn-primary btn-sm' onclick=\"jQuery('#securityUserGrid').editRow('"+cl+"');\"  ><i class='far fa-edit'></i></button>"; 
+//     			se = "<button  type='button' class='btn btn-success btn-sm' onclick=\"jQuery('#securityUserGrid').saveRow('"+cl+"');\"  ><i class='far fa-save'></i></button>"; 
+//     			jQuery("#securityUserGrid").jqGrid('setRowData',ids[i],{EDIT:ee,SAVE:se});
+//     		}	
+//     	}
     });
+	 <!--增加修改、存檔button--> 
+	 <!--權限驗證-->
+	 function AuthCheck(cellvalue, options, rowObject) {
+		 var txt = "";
+		 var oCN = options.colModel.name;
+		 for(i=0;i<rowObject.roles.length;i++){
+			 var authority = rowObject.roles[i].authority;
+			 txt += authority; 
+			 }
+		 		if(txt.indexOf(oCN) > -1){
+		 			return "<input type='checkbox' id='"+oCN+"' disabled='true' checked>"
+		 		}else{
+		 			return "<input type='checkbox' id='"+oCN+"' disabled='true' unchecked>"
+		 		}
+		 }
+	 <!--權限驗證-->
 	 
-	 function adminCheck(cellvalue, options, rowObject) {
-		 var txt = "";
-		 for(i=0;i<rowObject.roles.length;i++){
-			 var authority = rowObject.roles[i].authority;
-			 txt += authority +"  "; 
-			 }
-		 		if(txt.indexOf('ROLE_ADMIN') > -1){
-		 			return "<input type='checkbox' id='ROLE_ADMIN' disabled='true' checked>"
-		 		}else{
-		 			return "<input type='checkbox' id='ROLE_ADMIN' disabled='true' unchecked>"
-		 		}
-		 }
-	 function userCheck(cellvalue, options, rowObject) {
-		 var txt = "";
-		 for(i=0;i<rowObject.roles.length;i++){
-			 var authority = rowObject.roles[i].authority;
-			 txt += authority +"  "; 
-			 }
-		 		if(txt.indexOf('ROLE_USER') > -1){
-		 			return "<input type='checkbox' id='ROLE_USER' disabled='true' checked>"
-		 		}else{
-		 			return "<input type='checkbox' id='ROLE_USER' disabled='true' unchecked>"
-		 		}
-		 }
-	 function artistCheck(cellvalue, options, rowObject) {
-		 var txt = "";
-		 for(i=0;i<rowObject.roles.length;i++){
-			 var authority = rowObject.roles[i].authority;
-			 txt += authority +"  "; 
-			 }
-		 		if(txt.indexOf('ROLE_ARTIST') > -1){
-		 			return "<input type='checkbox' id='ROLE_ARTIST' disabled='true' checked>"
-		 		}else{
-		 			return "<input type='checkbox' id='ROLE_ARTIST' disabled='true' unchecked>"
-		 		}
-		 }
-	 function venderCheck(cellvalue, options, rowObject) {
-		 var txt = "";
-		 for(i=0;i<rowObject.roles.length;i++){
-			 var authority = rowObject.roles[i].authority;
-			 txt += authority +"  "; 
-			 }
-		 		if(txt.indexOf('ROLE_VENDER') > -1){
-		 			cellvalue = true;
-// 		 			return "<input type='checkbox' id='ROLE_VENDER' disabled='true' checked>"
-		 		}else{
-		 			cellvalue = false;
-// 		 			return "<input type='checkbox' id='ROLE_VENDER' disabled='true' unchecked>"
-		 		}
-		 		if(cellvalue==true){
-		 			return "<input type='checkbox' id='ROLE_VENDER' disabled='true' checked>"
-		 		}else{
-		 			return "<input type='checkbox' id='ROLE_VENDER' disabled='true' unchecked>"
-		 		}
-		 		
-		 }
+	 <!--button test-->
+	 function editBT (cellvalue, options, rowObject) {
+		 return "<button type='button' id='"
+			+ options.rowId
+			+ "'onclick='editId(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button>";  //返回的html即為欄位中的樣式
+		};
+	 function saveBT (cellvalue, options, rowObject) {
+		 return "<button type='button' id='"
+			+ options.rowId
+			+ "'onclick='saveId(this)' class='btn btn-success btn-sm'><i class='fas fa-save'></i></button>";
+		};
+	 
+		function editId(Object) {
+			jQuery("#securityUserGrid").jqGrid('editRow',Object.id);
+		}
+		function saveId(Object) {
+			jQuery("#securityUserGrid").jqGrid('saveRow',Object.id);
+			$("input:checkbox").attr('disabled',true);
+		}
+		<!--button test-->
+	 
+	 
+	 
+	 <!--帳號是否停權驗證-->
 	 function enableCheck(cellvalue, options, rowObject) {
 		 if(cellvalue==true){
 		 			return "<input type='checkbox' id='ENABLE' disabled='true' checked>"
@@ -203,10 +187,13 @@
 		 			return "<input type='checkbox' id='ENABLE' disabled='true' unchecked>"
 		 		}
 		 }
+	 <!--帳號是否停權驗證-->
+	 
+	 <!--密碼欄位-->
 	 function Colpassword(cellvalue, options, rowObject) {
 		 	return "<button type='button' class='btn btn-danger btn-sm'><i class='far fa-edit'></i></button>"
 		 }
-		
+	 <!--密碼欄位-->	
 
 		$("#searchBT").click(function(){
 			$('#securityUserGrid').jqGrid("clearGridData") ;

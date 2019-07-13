@@ -173,7 +173,7 @@
 		 function deleteBT (cellvalue, options, rowObject) {
 			 return "<button type='button' id='"
 				+ rowObject.id
-				+ "'onclick='deleId(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i>"
+				+ "'onclick='deleId(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i></button>"
 			};
 		
 			//cellvalue - 当前cell的值  
