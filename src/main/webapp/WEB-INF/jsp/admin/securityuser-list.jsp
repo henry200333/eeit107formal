@@ -106,11 +106,11 @@
 			{ name: 'userId', index: 'userId', label: 'USER_ID', width: 15, align:'center'},
 			{ name: 'account', label: 'ACCOUNT',editable:true, width: 20, align:'center'},
 			{ name: 'password', label: 'PASSWORD', width: 15,align:'center', editable:false, sortable:false, formatter:Colpassword},
-			{ name: 'enabled', label: 'ENABLE', width: 15 ,editable:true, edittype:'checkbox', editoptions: {value:"True:False"}, align:'center', formatter: enableCheck},
-			{ name: 'roles', label: 'ADMIN', width: 15, editable:true, edittype:'checkbox', editoptions: {value:"True:False"}, align:'center', formatter: adminCheck},
-			{ name: 'roles', label: 'USER', width: 15, editable:false, edittype: 'checkbox', editoptions: {value: "True:False"}, align:'center', formatter: userCheck},
-			{ name: 'roles', label: 'ARTIST', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "True:False"}, align:'center', formatter: artistCheck},
-			{ name: 'roles', label: 'VENDER', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "True:False"}, align:'center', formatter: venderCheck},
+			{ name: 'enabled', label: 'ENABLE', width: 15 ,editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: enableCheck},
+			{ name: 'ADMIN', label: 'ADMIN', width: 15, editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: adminCheck},
+			{ name: 'USER', label: 'USER', width: 15, editable:false, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: userCheck},
+			{ name: 'ARTIST', label: 'ARTIST', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: artistCheck},
+			{ name: 'VENDER', label: 'VENDER', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: venderCheck},
 			{ name:'EDIT',index:'EDIT',label:'EDIT', width:15, align:'center', sortable:false},
 			{ name:'SAVE',index:'SAVE',label:'SAVE', width:15, align:'center',sortable:false}
 		],
@@ -159,9 +159,9 @@
 			 txt += authority +"  "; 
 			 }
 		 		if(txt.indexOf('ROLE_USER') > -1){
-		 			return "<input type='checkbox' id='ROLE_ADMIN' disabled='true' checked>"
+		 			return "<input type='checkbox' id='ROLE_USER' disabled='true' checked>"
 		 		}else{
-		 			return "<input type='checkbox' id='ROLE_ADMIN' disabled='true' unchecked>"
+		 			return "<input type='checkbox' id='ROLE_USER' disabled='true' unchecked>"
 		 		}
 		 }
 	 function artistCheck(cellvalue, options, rowObject) {
@@ -171,9 +171,9 @@
 			 txt += authority +"  "; 
 			 }
 		 		if(txt.indexOf('ROLE_ARTIST') > -1){
-		 			return "<input type='checkbox' id='ROLE_ADMIN' disabled='true' checked>"
+		 			return "<input type='checkbox' id='ROLE_ARTIST' disabled='true' checked>"
 		 		}else{
-		 			return "<input type='checkbox' id='ROLE_ADMIN' disabled='true' unchecked>"
+		 			return "<input type='checkbox' id='ROLE_ARTIST' disabled='true' unchecked>"
 		 		}
 		 }
 	 function venderCheck(cellvalue, options, rowObject) {
@@ -183,10 +183,18 @@
 			 txt += authority +"  "; 
 			 }
 		 		if(txt.indexOf('ROLE_VENDER') > -1){
-		 			return "<input type='checkbox' id='ROLE_ADMIN' disabled='true' checked>"
+		 			cellvalue = true;
+// 		 			return "<input type='checkbox' id='ROLE_VENDER' disabled='true' checked>"
 		 		}else{
-		 			return "<input type='checkbox' id='ROLE_ADMIN' disabled='true' unchecked>"
+		 			cellvalue = false;
+// 		 			return "<input type='checkbox' id='ROLE_VENDER' disabled='true' unchecked>"
 		 		}
+		 		if(cellvalue==true){
+		 			return "<input type='checkbox' id='ROLE_VENDER' disabled='true' checked>"
+		 		}else{
+		 			return "<input type='checkbox' id='ROLE_VENDER' disabled='true' unchecked>"
+		 		}
+		 		
 		 }
 	 function enableCheck(cellvalue, options, rowObject) {
 		 if(cellvalue==true){
