@@ -22,7 +22,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -125,39 +124,43 @@ public class AdminSecurityUserController {
 	}
 	
 	//修改權限
-	@PostMapping("/editRow")
+	@RequestMapping("/editRow")
 	@ResponseBody
-	public void updateRow(
+	public AjaxResponse<SecurityUser> updateRow(
 			@RequestParam(value="userId") Long id,
 			@RequestParam(value="enabled") boolean enabled,
 			@RequestParam(value="ADMIN") boolean ADMIN,
 			@RequestParam(value="ARTIST") boolean ARTIST,
-			@RequestParam(value="VENDER") boolean VENDER,
-			@RequestParam(value="account") String account
+			@RequestParam(value="VENDER") boolean VENDER
 			) {
-		
-//		System.out.println("id: "+id+"enable: "+enabled+"ADMIN: "+ADMIN+"ARTIST: "+ARTIST+"VENDER: "+VENDER);
-		SecurityUser user=(SecurityUser)securityUserService.loadUserByUsername(account);
-//		System.out.println(user.getAuthorities().toString());
-		user.getAuthorities().clear();
-//		System.out.println(user.getAuthorities().toString());
-		Set<SecurityRole> roles = new HashSet<SecurityRole>();
-		if(true==enabled) {
-			user.setEnabled(true);
+		AjaxResponse<SecurityUser> res = new AjaxResponse<>();
+		System.out.println("id: "+id+" / enable: "+enabled+" / ADMIN: "+ADMIN+" / ARTIST: "+ARTIST+" / VENDER: "+VENDER);
+		SecurityUser user=(SecurityUser)securityUserService.getById(id);
+		if(user == null) {
+			res.setType(AjaxResponseType.ERROR);
+			return res;
 		}else {
-			user.setEnabled(false);
-		}
+			if(enabled) {
+				user.setEnabled(true);
+			}else {
+				user.setEnabled(false);
+			}
+			user.getAuthorities().clear();
+			Set<SecurityRole> roles = new HashSet<SecurityRole>();
 			roles.add(securityRoleDao.findByCode("ROLE_USER"));
-		if(true==ADMIN) 
-			roles.add(securityRoleDao.findByCode("ROLE_ADMIN"));
-		if(true==ARTIST) 
-			roles.add(securityRoleDao.findByCode("ROLE_ARTIST"));
-		if(true==VENDER) 
-			roles.add(securityRoleDao.findByCode("ROLE_VENDER"));
-		user.setRoles(roles);
+			if(ADMIN) 
+				roles.add(securityRoleDao.findByCode("ROLE_ADMIN"));
+			if(ARTIST) 
+				roles.add(securityRoleDao.findByCode("ROLE_ARTIST"));
+			if(VENDER) 
+				roles.add(securityRoleDao.findByCode("ROLE_VENDER"));
+			user.setRoles(roles);
 //		System.out.println(user.getAuthorities().toString()+"\n"+user.isEnabled());
-		securityUserService.update(user);
-		
+			securityUserService.update(user);
+			res.setType(AjaxResponseType.SUCCESS);
+			return res;
+		}
 	}
-
+	
+	
 }

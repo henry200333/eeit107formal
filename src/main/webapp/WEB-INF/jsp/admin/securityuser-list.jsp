@@ -151,12 +151,23 @@
 			 txt += authority; 
 			 }
 		 		if(txt.indexOf(oCN) > -1){
-		 			return "<input type='checkbox' id='"+rowId+"' disabled='true' checked>"
+		 			return "<input type='checkbox' name='"+rowId+"' disabled='disabled' checked>"
 		 		}else{
-		 			return "<input type='checkbox' id='"+rowId+"' disabled='true' unchecked>"
+		 			return "<input type='checkbox' name='"+rowId+"' disabled='disabled' unchecked>"
 		 		}
 		 }
 	 <!--權限驗證-->
+	 
+	 <!--帳號是否停權驗證-->
+	 function enableCheck(cellvalue, options, rowObject) {
+		 var rowId = options.rowId;
+		 if(cellvalue==true){
+		 			return "<input type='checkbox' name='"+rowId+"' disabled='disabled' checked>"
+		 		}else{
+		 			return "<input type='checkbox' name='"+rowId+"' disabled='disabled' unchecked>"
+		 		}
+		 }
+	 <!--帳號是否停權驗證-->
 	 
 	 <!--button test-->
 	 function editBT (cellvalue, options, rowObject) {
@@ -171,27 +182,50 @@
 		};
 	 
 		function editId(Object) {
-			jQuery("#securityUserGrid").jqGrid('editRow',Object.id);
+			$("input:checkbox").prop("disabled", true);
+			var inputname = "input[name|='" + Object.id + "']";
+			$(inputname).prop("disabled", false);
+	
+// 			$("#securityUserGrid").jqGrid('editRow',Object.id);
 		}
 		function saveId(Object) {
-			var userId = jQuery("#securityUserGrid").jqGrid('getCell',Object.id,'userId');
-			var account = jQuery("#securityUserGrid").jqGrid('getCell',Object.id,'account');
-			jQuery("#securityUserGrid").jqGrid('saveRow',Object.id,{url:'/admin/securityUser/editRow',"extraparam":{"userId":userId,"account":account}});
-			$("input:checkbox").attr('disabled',true);
+// 			var userId = jQuery("#securityUserGrid").jqGrid('getCell',Object.id,'userId');
+// 			var account = jQuery("#securityUserGrid").jqGrid('getCell',Object.id,'account');
+// 			jQuery("#securityUserGrid").jqGrid('saveRow',Object.id,{url:'/admin/securityUser/editRow',"extraparam":{"userId":userId,"account":account}});
+					var list = document.getElementsByName(Object.id);
+					var ENABLE = list[0].checked;
+					var ADMIN = list[1].checked;
+					var ARTIST = list[3].checked;
+					var VENDER = list[4].checked;
+					if (list[0].disabled == false){
+					$.ajax({
+						url : '/admin/securityUser/editRow',
+						method : 'GET',
+						contentType : 'application/json;charset=UTF-8',
+						dataType : 'json',
+						data : {
+							userId: Object.id,
+							enabled: ENABLE,
+							ADMIN: ADMIN,
+							ARTIST: ARTIST,
+							VENDER: VENDER
+						},
+						success : function(response) {
+							if (response.type == 'SUCCESS'){
+								var inputname = "input[name|='" + Object.id + "']";
+								$(inputname).prop('disabled',true);
+								alert("資料修改成功！");
+							} else {
+								alert("資料修改失敗！請檢查該用戶是否存在！");
+							}
+						},
+						error : function(respH) {
+							alert("資料修改失敗！該用戶不存在！");
+						}
+					})
+					}
 		}
 		<!--button test-->
-	 
-	 
-	 
-	 <!--帳號是否停權驗證-->
-	 function enableCheck(cellvalue, options, rowObject) {
-		 if(cellvalue==true){
-		 			return "<input type='checkbox' id='ENABLE' disabled='true' checked>"
-		 		}else{
-		 			return "<input type='checkbox' id='ENABLE' disabled='true' unchecked>"
-		 		}
-		 }
-	 <!--帳號是否停權驗證-->
 	 
 	 <!--密碼欄位-->
 	 function Colpassword(cellvalue, options, rowObject) {
