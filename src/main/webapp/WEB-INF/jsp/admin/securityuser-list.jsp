@@ -104,7 +104,7 @@
         iconSet : "fontAwesome",
         colModel: [
 			{ name: 'userId', index: 'userId', label: 'USER_ID', width: 15, align:'center'},
-			{ name: 'account', label: 'ACCOUNT',editable:true, width: 20, align:'center'},
+			{ name: 'account', label: 'ACCOUNT',editable:false, width: 20, align:'center'},
 			{ name: 'password', label: 'PASSWORD', width: 15,align:'center', editable:false, sortable:false, formatter:Colpassword},
 			{ name: 'enabled', label: 'ENABLE', width: 15 ,editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: enableCheck},
 			{ name: 'ADMIN', label: 'ADMIN', width: 15, editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: AuthCheck},
@@ -127,7 +127,8 @@
         viewrecords: true,
         loadComplete: function () {
             reSizejqGridWidth();
-        }
+        },
+        ajaxRowOptions:{cache:false}
       <!--增加修改、存檔button-->  
 //         gridComplete: function(){
 //     		var ids = jQuery("#securityUserGrid").jqGrid('getDataIDs');
@@ -144,14 +145,15 @@
 	 function AuthCheck(cellvalue, options, rowObject) {
 		 var txt = "";
 		 var oCN = options.colModel.name;
+		 var rowId = options.rowId;
 		 for(i=0;i<rowObject.roles.length;i++){
 			 var authority = rowObject.roles[i].authority;
 			 txt += authority; 
 			 }
 		 		if(txt.indexOf(oCN) > -1){
-		 			return "<input type='checkbox' id='"+oCN+"' disabled='true' checked>"
+		 			return "<input type='checkbox' id='"+rowId+"' disabled='true' checked>"
 		 		}else{
-		 			return "<input type='checkbox' id='"+oCN+"' disabled='true' unchecked>"
+		 			return "<input type='checkbox' id='"+rowId+"' disabled='true' unchecked>"
 		 		}
 		 }
 	 <!--權限驗證-->
@@ -172,7 +174,9 @@
 			jQuery("#securityUserGrid").jqGrid('editRow',Object.id);
 		}
 		function saveId(Object) {
-			jQuery("#securityUserGrid").jqGrid('saveRow',Object.id);
+			var userId = jQuery("#securityUserGrid").jqGrid('getCell',Object.id,'userId');
+			var account = jQuery("#securityUserGrid").jqGrid('getCell',Object.id,'account');
+			jQuery("#securityUserGrid").jqGrid('saveRow',Object.id,{url:'/admin/securityUser/editRow',"extraparam":{"userId":userId,"account":account}});
 			$("input:checkbox").attr('disabled',true);
 		}
 		<!--button test-->

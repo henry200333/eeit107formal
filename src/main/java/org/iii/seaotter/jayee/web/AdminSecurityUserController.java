@@ -1,5 +1,8 @@
 package org.iii.seaotter.jayee.web;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -9,6 +12,8 @@ import javax.validation.Valid;
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.common.GridResponse;
+import org.iii.seaotter.jayee.dao.SecurityRoleDao;
+import org.iii.seaotter.jayee.entity.SecurityRole;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +22,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -34,6 +40,9 @@ public class AdminSecurityUserController {
 
 	@Autowired
 	private SecurityUserService securityUserService;
+	
+	@Autowired
+	private SecurityRoleDao securityRoleDao;
 
 	@RequestMapping("/list")
 	public String listPage() {
@@ -113,6 +122,42 @@ public class AdminSecurityUserController {
 		ajaxRes.setData(securityUserService.update(securityUser));
 		return ajaxRes;
 
+	}
+	
+	//修改權限
+	@PostMapping("/editRow")
+	@ResponseBody
+	public void updateRow(
+			@RequestParam(value="userId") Long id,
+			@RequestParam(value="enabled") boolean enabled,
+			@RequestParam(value="ADMIN") boolean ADMIN,
+			@RequestParam(value="ARTIST") boolean ARTIST,
+			@RequestParam(value="VENDER") boolean VENDER,
+			@RequestParam(value="account") String account
+			) {
+		
+//		System.out.println("id: "+id+"enable: "+enabled+"ADMIN: "+ADMIN+"ARTIST: "+ARTIST+"VENDER: "+VENDER);
+		SecurityUser user=(SecurityUser)securityUserService.loadUserByUsername(account);
+//		System.out.println(user.getAuthorities().toString());
+		user.getAuthorities().clear();
+//		System.out.println(user.getAuthorities().toString());
+		Set<SecurityRole> roles = new HashSet<SecurityRole>();
+		if(true==enabled) {
+			user.setEnabled(true);
+		}else {
+			user.setEnabled(false);
+		}
+			roles.add(securityRoleDao.findByCode("ROLE_USER"));
+		if(true==ADMIN) 
+			roles.add(securityRoleDao.findByCode("ROLE_ADMIN"));
+		if(true==ARTIST) 
+			roles.add(securityRoleDao.findByCode("ROLE_ARTIST"));
+		if(true==VENDER) 
+			roles.add(securityRoleDao.findByCode("ROLE_VENDER"));
+		user.setRoles(roles);
+//		System.out.println(user.getAuthorities().toString()+"\n"+user.isEnabled());
+		securityUserService.update(user);
+		
 	}
 
 }
