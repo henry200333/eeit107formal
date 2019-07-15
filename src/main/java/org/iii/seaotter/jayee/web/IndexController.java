@@ -69,11 +69,11 @@ public class IndexController {
 		return performanceService.getTopByOrderByViewsDesc();
 	}
 	
-	@GetMapping("/artistsTop5")
-	@ResponseBody
-	public List<Artist> queryTop5() {
-		return artistService.getNameByFanNumberTop5();
-	}
+//	@GetMapping("/artistsTop5")
+//	@ResponseBody
+//	public List<Artist> queryTop5() {
+//		return artistService.getNameByFanNumberTop5();
+//	}
 	
 
 	

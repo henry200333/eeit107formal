@@ -24,14 +24,14 @@ public class Artist {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name = "artist_id")
 	private Long id;
-	@Column(name = "photo")
-	private String photo;
-	@Column(name = "name")
-	private String name;
-	@Column(name = "fan_number")
-	private Long fanNumber;
+	@Column(name = "artist_name")
+	private String artistName;
+	@Column(name = "week_followers")
+	private Long wFollowers;
+	@Column(name = "total_followers")
+	private Long tFollowers;
 	@Column(name = "location")
 	private String location;
 	//Artist的ID關聯到Activity的artistId外鍵欄位

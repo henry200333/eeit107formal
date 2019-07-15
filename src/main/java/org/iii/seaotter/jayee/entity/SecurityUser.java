@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -45,25 +46,32 @@ public class SecurityUser implements UserDetails {
 	private String mail;
 	@Column(name = "enabled")
 	private Boolean enabled;
+	@Column(name = "member_name")
+	private String memberName;
+	@Column(name = "gender")
+	private String gender;
+	@Column(name = "photo")
+	private String photo;
+	@Column(name = "id_code")
+	private String idCode;
+	@Column(name = "birth")
+	private java.util.Date birth;
+	@Column(name = "address")
+	private String address;
+	@Column(name = "tel")
+	private String tel;
+	@Column(name = "favorite_location")
+	private String favLocation;
+	@Column(name = "register_date")
+	private java.util.Date registerDate;
 	@JsonIgnoreProperties("friends")
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "friend", joinColumns = { @JoinColumn(name = "self_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "friend_id") })
 	private List<SecurityUser> friends;
-//	@Column(name = "member_name")
-//	private String memberName;
-//	@Column(name = "gender")
-//	private String gender;
-//	@Column(name = "photo")
-//	private String photo;
-//	@Column(name = "id_code")
-//	private String idCode;
-//	@Column(name = "birth")
-//	private java.util.Date birth;
-//	@Column(name = "address")
-//	private String address;
-//	@Column(name = "tel")
-//	private String tel;
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "artist_id")
+	private Artist artist;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
