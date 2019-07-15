@@ -44,10 +44,10 @@ public class SecurityUser implements UserDetails {
 	@Column(name = "enabled")
 	private Boolean enabled;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "friend", joinColumns = { @JoinColumn(name = "self_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "friend_id") })
-	private List<SecurityUser> friends;
+//	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	@JoinTable(name = "friend", joinColumns = { @JoinColumn(name = "self_id") }, inverseJoinColumns = {
+//			@JoinColumn(name = "friend_id") })
+//	private List<SecurityUser> friends;
 //	@Column(name = "member_name")
 //	private String memberName;
 //	@Column(name = "gender")

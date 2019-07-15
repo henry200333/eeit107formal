@@ -56,12 +56,12 @@ public class SecurityUserService implements UserDetailsService {
 		return securityUser;
 	}
 	
-	public void addfirend(SecurityUser User,SecurityUser friend) {
-		List<SecurityUser> friendlist=User.getFriends();
-		friendlist.add(friend);
-		User.setFriends(friendlist);
-		friendlist=friend.getFriends();
-		friendlist.add(User);
-		friend.setFriends(friendlist);
-	}
+//	public void addfirend(SecurityUser User,SecurityUser friend) {
+//		List<SecurityUser> friendlist=User.getFriends();
+//		friendlist.add(friend);
+//		User.setFriends(friendlist);
+//		friendlist=friend.getFriends();
+//		friendlist.add(User);
+//		friend.setFriends(friendlist);
+//	}
 }
