@@ -19,6 +19,8 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 
 @Entity
@@ -43,11 +45,11 @@ public class SecurityUser implements UserDetails {
 	private String mail;
 	@Column(name = "enabled")
 	private Boolean enabled;
-
-//	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	@JoinTable(name = "friend", joinColumns = { @JoinColumn(name = "self_id") }, inverseJoinColumns = {
-//			@JoinColumn(name = "friend_id") })
-//	private List<SecurityUser> friends;
+	@JsonIgnoreProperties("friends")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "friend", joinColumns = { @JoinColumn(name = "self_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "friend_id") })
+	private List<SecurityUser> friends;
 //	@Column(name = "member_name")
 //	private String memberName;
 //	@Column(name = "gender")
