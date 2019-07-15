@@ -46,13 +46,20 @@ public class AdminJobController {
 	
 	@RequestMapping("/findjobs")
 	@ResponseBody
-	public List<Job> query(@RequestParam("id")Long id, Model model){
+	public List<Job>findbyid(@RequestParam("id")Long id, Model model){
 		
 		Vender bean= venderService.getById(id);
 		System.out.println(jobservice.getByVender(bean).size());
 		return jobservice.getByVender(bean);
 	}
-	
+	@RequestMapping("/query")
+	@ResponseBody
+	public List<Job> query(){
+		System.out.println("aa");
+		
+		System.out.println(jobservice.getAll().size());
+		return jobservice.getAll();
+	}
 
 	
 	

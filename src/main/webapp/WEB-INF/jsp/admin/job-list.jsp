@@ -9,9 +9,11 @@
 <jsp:include page="header.jsp"></jsp:include>
 
 <!-- Load basic css of Grid -->
-<link rel="stylesheet" type="text/css" href="/resources/jqgrid/css/ui.jqgrid-bootstrap4.css" />
+<link rel="stylesheet" type="text/css"
+	href="/resources/jqgrid/css/ui.jqgrid-bootstrap4.css" />
 <!-- Load jquery-ui css -->
-<link rel="stylesheet" type="text/css" href="/resources/jqgrid/jquery-ui/jquery-ui.theme.min.css"/>
+<link rel="stylesheet" type="text/css"
+	href="/resources/jqgrid/jquery-ui/jquery-ui.theme.min.css" />
 
 <body id="page-top">
 
@@ -40,36 +42,37 @@
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
 							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
 					</div>
-
-					<!-- Add New Article Button -->
-					<form class="user">
-			            <div class="form-group row">
-			            	<div class="col-sm-3 mb-3 mb-sm-0">
-					            <div class="input-group">
-					              <input id="search" name="search" type="text" class="form-control border-0 small" placeholder="Search Jobs..." aria-label="Search" aria-describedby="basic-addon2">
-					              <div class="input-group-append">
-					                <button id="searchBT" class="btn btn-primary" type="button">
-					                  <i class="fas fa-search fa-sm"></i>
-					                </button>
-					              </div>
-					            </div>
-				            </div>
-
-			            </div>
-			        </form>
-
 					<hr>
+					<form style='border: solid; margin: 10px'>
+						<input  type='hidden' id='jobId' name='jobId' value='1'>
+						<div class='form-group row'
+							style="font-family: 'Noto Sans TC', sans-serif;">
+							<div class='col-sm-6 mb-3 mb-sm-6'>
+								<h2 class=' h1 mb-0 text-gray-800'>obj.name</h2>
+							</div>
+							<div class='col-sm-3 mb-3 mb-sm-0'>
+								<div class='col-sm-12 mb-3 mb-sm-3'  >
+									<h2 class=' h3 mb-0 text-gray-800'>類別:obj.jobType</h2>
+								</div>
+								<div class='col-sm-12 mb-3 mb-sm-3'>
+									<h4 class=' h3 mb-0 text-gray-800'>薪資:obj.reward</h4>
+								</div>
+							</div>
+							<div class='col-sm-3 mb-3 mb-sm-0'><input class='btn btn-primary btn-sm'  onclick='join(this)' value='我想參加' readonly></div>
+							<div class='col-sm-9 mb-3 mb-sm-6'>
+								<label class=' h4 mb-0 text-gray-800'>詳細內容:</label>
+								<textarea class='form-control' name='description'
+									style='resize: none'>
+					obj.detal</textarea>
+							</div>
+							<div class='col-sm-6 mb-3 mb-sm-6'>
+								<h2 class=' h2 mb-0 text-gray-800'>表演時間:obj.jobTime</h2>
+							</div>
+						</div>
+					</form>
 
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">List of
-								job</h6>
-						</div>
-						<div id="articleList" class="card-body">
-								<table id="venderGrid" ></table>
-								<div id="pager"></div>
-						</div>
-					</div>
+					<div id="joblist"></div>
+
 
 				</div>
 				<!-- /.container-fluid -->
@@ -84,92 +87,66 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
-	
+
 	<!-- 	Add language package for TW-ZH -->
-	<script src="/resources/jqgrid/js/i18n/grid.locale-tw.js" type="text/javascript"></script>
+	<script src="/resources/jqgrid/js/i18n/grid.locale-tw.js"
+		type="text/javascript"></script>
 	<!-- 	Add jquery plugin -->
-	<script src="/resources/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
-	
+	<script src="/resources/jqgrid/js/jquery.jqGrid.min.js"
+		type="text/javascript"></script>
+
 	<script>
-	 $("#venderGrid").jqGrid({
-        url: '/admin/vender/query',
-        datatype: 'json',
-        mtype: 'GET',
-        styleUI : 'Bootstrap4',
-        iconSet : "fontAwesome",
-        colModel: [
-			{name:'id',index:'id',width:3},
-			{name:'name',index:'name',width:5},
-			{name:'city',index:'city',width:2},
-			{name:'district',index:'district',width:2},
-			{name:'address',index:'address',width:5},
-			{name:'maxPeople',index:'max_people',sortable:false,width:5},
-			{name:'phone',index:'phone',sortable:false,width:5}	,
-			{name:'detal',width:3,sortable:false,formatter:detalbt},
-			{name:'edit',width:3,sortable:false,formatter:editbt},
-			{name:'delete',width:3,sortable:false,formatter:deletebt}
-		],
-        prmNames: {search: null, nd: null},
-        pager: '#pager',
-        page: 1,
-        autowidth: true,
-        shrinkToFit: true,
-        height: 'auto',
-        sortable:true,
-        rowNum: 5,
-        rowList: [2, 5, 10, 20],
-        sortname: 'id',
-        sortorder: "asc",
-        viewrecords: true,
-        
-    });
 	
-		$("#searchBT").click(function(){
-			$('#venderGrid').jqGrid("clearGridData") ;
-			$('#venderGrid').jqGrid('setGridParam',{url: '/admin/vender/query?name=' + $('#search').val() }).trigger("reloadGrid");
-		});
-		
-		function editbt(cellvalue, options, rowObject){
-			return "<button type='button' id='"
-			+ rowObject.id
-			+ "'onclick='editid(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button>";
-		};
-		function detalbt(cellvalue, options, rowObject){
-			return "<button type='button' id='"
-			+ rowObject.id
-			+ "'onclick='detalid(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button>";
-		};
-		function deletebt(cellvalue, options, rowObject){
-			return "<button type='button' id='"
-			+ rowObject.id
-			+ "'onclick='deleteid(this)' class='btn btn-danger btn-sm'><i class='fas fa-trash'></i>";
-		};
-		function editid(object){
-			window.location.href = "/admin/vender/edit?id=" + object.id;
-		};
-		function detalid(object){
-			window.location.href = "/admin/vender/venderself?id=" + object.id;
-		};
-		function deleteid(object){
-			$.ajax({
-				url : '/admin/vender/delete?id='+object.id,
-				type : "DELETE",
-				dataType : "json",
-				contentType : "application/json",
-				success : function(data) {
-					alert(data+"號資料刪除成功")
-					window.location.assign("/admin/vender/list");
-					
-				},
-				error: function(){
-					alert("error");
+	
+	function join(object){
+		$.ajax({
+			url : "/admin/securityUser/addfriend?selfId=2&friendId=3",
+			type : "GET",
+			success : function(data){
+				alert("success")
 				}
-			})
-			
+			});
+	};
+		function showjobs() {
+			// alert("${venderparam}");  	 	
+			$.ajax({
+						url : "/admin/job/query",
+						type : "POST",
+						success : function(data) {
+							var txt = "";
+							$
+									.each(
+											data,
+											function(key, obj) {
+												txt += "<form style='border:solid;margin:10px'><input  type='hidden' id='jobId' name='jobId' value='"
+												txt += obj.id;
+												txt += "'><div class='form-group row' style=";
+										txt +='"font-family: ';
+										txt +="'Noto Sans TC'";
+										txt +=', sans-serif;"';
+										txt +="><div class='col-sm-6 mb-3 mb-sm-6'><h2 class=' h1 mb-0 text-gray-800'>";
+												txt += obj.name;
+												txt += "</h2></div><div class='col-sm-6 mb-3 mb-sm-0'><div class='col-sm-6 mb-3 mb-sm-6'><h2 class=' h3 mb-0 text-gray-800'>類別:";
+
+												txt += obj.jobType;
+												txt += "</h2></div><div class='col-sm-6 mb-3 mb-sm-6'><h4 class=' h3 mb-0 text-gray-800'>薪資:";
+												txt += obj.reward;
+
+												txt += "</h4></div></div><div class='col-sm-9 mb-3 mb-sm-6'><label class=' h4 mb-0 text-gray-800'>詳細內容:</label><textarea class='form-control' name='description' style='resize:none'>";
+												txt += obj.detal;
+												txt += "</textarea></div><div class='col-sm-6 mb-3 mb-sm-6'><h2 class=' h2 mb-0 text-gray-800'>表演時間:";
+												txt += obj.jobTime;
+												txt += "</h2></div></div></form>";
+
+											})
+
+							$("#joblist").append(txt);
+
+						}
+					})
 		}
 
-
-	
+		showjobs();
 	</script>
 </body>
 </html>

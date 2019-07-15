@@ -1,6 +1,7 @@
 package org.iii.seaotter.jayee.entity;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -30,7 +31,7 @@ public class SecurityUser implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private Long userId;
-	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "role_id") })
 	private Set<SecurityRole> roles;
@@ -43,6 +44,10 @@ public class SecurityUser implements UserDetails {
 	@Column(name = "enabled")
 	private Boolean enabled;
 
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "friend", joinColumns = { @JoinColumn(name = "self_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "friend_id") })
+	private List<SecurityUser> friends;
 //	@Column(name = "member_name")
 //	private String memberName;
 //	@Column(name = "gender")

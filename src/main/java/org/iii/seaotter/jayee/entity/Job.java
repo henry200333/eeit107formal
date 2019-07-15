@@ -1,7 +1,6 @@
 package org.iii.seaotter.jayee.entity;
 
-import java.util.List;
-
+import java.util.List;import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -46,19 +45,15 @@ public class Job {
 	@Column(name="reward")
 	private Integer reward;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JsonBackReference
 	@JoinColumn(name="vender_id", nullable=false)
 	private Vender vender;
 	
 	
-	@ManyToMany
-	@JoinTable(name = "Artist_job", joinColumns = { @JoinColumn(name = "job_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "artist_id") })
-	@JsonBackReference
-	private List<Artist>  applicationArtists;
 
-	@ManyToOne
+
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JsonBackReference
 	@JoinColumn(name="artist_id")
 	private Artist artist;

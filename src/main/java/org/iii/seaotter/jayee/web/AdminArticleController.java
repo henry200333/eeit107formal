@@ -94,7 +94,6 @@ public class AdminArticleController {
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResponse<Article> insert(@Valid @RequestBody Article article, BindingResult result) {
-		System.out.println(article);
 		AjaxResponse<Article> ajaxRes = new AjaxResponse<>();
 		if (result.hasErrors()) {
 			ajaxRes.setType(AjaxResponseType.ERROR);
@@ -108,7 +107,6 @@ public class AdminArticleController {
 	@PutMapping("/edit")
 	@ResponseBody
 	public AjaxResponse<Article> update(@Valid @RequestBody Article article, BindingResult result) {
-		System.out.println(article);
 		AjaxResponse<Article> ajaxRes = new AjaxResponse<>();
 		if (result.hasErrors()) {
 			ajaxRes.setType(AjaxResponseType.ERROR);
@@ -123,7 +121,6 @@ public class AdminArticleController {
 	@DeleteMapping("/delete")
 	@ResponseBody
 	public AjaxResponse<Article> delete(@RequestBody Article article) {
-		System.out.println(article);
 		AjaxResponse<Article> ajaxRes = new AjaxResponse<>();
 		article = articleService.getById(article.getId());
 		if (article != null) {

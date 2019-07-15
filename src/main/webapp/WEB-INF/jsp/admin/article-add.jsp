@@ -46,14 +46,14 @@
 
 					<form id="form1" name="form1" class="user" autocomplete="off">
 						<div class="form-group row">
-							<div class="col-sm-9 mb-3 mb-sm-0">
+							<div class="col-sm-10 mb-3 mb-sm-0">
 								<label for="name">NAME:</label> <input id="name" name="name"
 									class="form-control form-control-user" placeholder="NAME" />
 								<small class="form-text text-muted">NAME最少2個字元，最大30個字元</small>
 							</div>
 						</div>
 						<div class="form-group row">
-							<div class="col-sm-9 mb-3 mb-sm-0">
+							<div class="col-sm-10 mb-3 mb-sm-0">
 								<label for="content">CONTENT(支援Markdown編輯器):</label>
 								<div id="test-editor">
 								<textarea id="content" name="content" style="display:none;"></textarea>
@@ -61,7 +61,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<div class="col-sm-3 mb-3 mb-sm-0">
+							<div class="col-sm-4 mb-3 mb-sm-0">
 								<label for="articleType">TYPE:</label>
 								<div class=" input-group">
 									<input type="text" id="articleType" name="articleType" class="form-control form-control-user" value="Other"
@@ -82,13 +82,18 @@
 								</div>
 								<div></div>
 							</div>
-							<div class="col-sm-6 mb-3 mb-sm-0">
+							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="refId">REF_ID:</label> <input id="refId"
 									name="refId" class="form-control form-control-user"
 									placeholder="REF_ID" />
 								<small class="form-text text-muted">REF_ID必須為數字</small>
 							</div>
-
+							<div class="col-sm-3 mb-3 mb-sm-0">
+								<label for="count">VIEWS:</label>
+								<input id="count" name="count" class="form-control form-control-user"
+									placeholder="VIEWS" value="${articleParam.count}" />
+								<small class="form-text text-muted">VIEWS必須為數字</small>
+							</div>
 						</div>
 						<button type="button" id="goToInsert"
 							class="btn btn-primary btn-user btn-block">
@@ -148,6 +153,14 @@
 						$(this).attr("class", "form-control form-control-user is-invalid");
 					}
 				})
+				$("#count").blur(function(){
+					var input = $(this).val();
+					if(input.length != 0 && !isNaN(input)){
+						$(this).attr("class", "form-control form-control-user is-valid")
+					} else {
+						$(this).attr("class", "form-control form-control-user is-invalid");
+					}
+				})
 			</script>
 			<!-- 			load markdown editor.md -->
 			<script src="/resources/editormd/editormd.min.js"></script>
@@ -156,7 +169,7 @@
 			    $(function() {
 			        var editor = editormd("test-editor", {
 			            width  : "100%",
-			            height : "300",
+			            height : "700",
 			            path   : "/resources/editormd/lib/"
 			        });
 			    });

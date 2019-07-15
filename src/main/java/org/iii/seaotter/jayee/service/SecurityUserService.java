@@ -1,5 +1,7 @@
 package org.iii.seaotter.jayee.service;
 
+import java.util.List;
+
 import org.iii.seaotter.jayee.dao.SecurityUserDao;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,4 +56,12 @@ public class SecurityUserService implements UserDetailsService {
 		return securityUser;
 	}
 	
+	public void addfirend(SecurityUser User,SecurityUser friend) {
+		List<SecurityUser> friendlist=User.getFriends();
+		friendlist.add(friend);
+		User.setFriends(friendlist);
+		friendlist=friend.getFriends();
+		friendlist.add(User);
+		friend.setFriends(friendlist);
+	}
 }

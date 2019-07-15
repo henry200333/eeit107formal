@@ -123,6 +123,17 @@ public class AdminSecurityUserController {
 
 	}
 	
+	//新增朋友
+	@RequestMapping("/addfriend")
+	@ResponseBody
+	public void addfriend(
+			@RequestParam(value="selfId") long selfId,
+			@RequestParam(value="friendId") long friendId){
+		SecurityUser self=securityUserService.getById(selfId);
+		SecurityUser friend=securityUserService.getById(friendId);
+		securityUserService.addfirend(self, friend);
+	}
+	
 	//修改權限
 	@RequestMapping("/editRow")
 	@ResponseBody
