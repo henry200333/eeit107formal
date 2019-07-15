@@ -12,11 +12,13 @@ import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Performance;
+import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.ArtistService;
 import org.iii.seaotter.jayee.service.ForumService;
 import org.iii.seaotter.jayee.service.PerformanceService;
+import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -41,6 +43,8 @@ public class IndexController {
 	private ForumService forumService;
 	@Autowired
 	private PerformanceService performanceService;
+	@Autowired
+	private SecurityUserService securityUserService;
 	
 	
 	@RequestMapping("/index")
@@ -102,6 +106,13 @@ public class IndexController {
 	public List<Forum> fitComment(@PathVariable ForumBoard board, @PathVariable Long refId) {
 		return forumService.selectByBoardAndRefId(board,refId);
 	}
+	
+	@GetMapping("/findUserBean/{userAccount}")
+	@ResponseBody
+	public SecurityUser findUserBean(@PathVariable String userAccount) {
+		return securityUserService.findUserBean(userAccount);
+	}
+	
 	
 	
 }

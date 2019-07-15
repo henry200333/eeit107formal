@@ -24,6 +24,11 @@ public class SecurityUserService implements UserDetailsService {
 		return securityUserDao.findByAccount(account);
 	}
 	
+	public  SecurityUser findUserBean(String account) throws UsernameNotFoundException {
+		//getFriends
+		return securityUserDao.findByAccount(account);
+	}
+	
 	@Transactional(readOnly=true)
 	public Page<SecurityUser> getAll(Specification<SecurityUser> specification, Pageable  pageable){
 		return securityUserDao.findAll(specification, pageable);
