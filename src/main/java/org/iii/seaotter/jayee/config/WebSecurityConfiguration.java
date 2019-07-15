@@ -66,7 +66,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.defaultSuccessUrl("/index")
 		.and()
 		.logout().permitAll()
+		.deleteCookies("JSESSIONID")
 		.logoutSuccessUrl("/login?logout")
+		.and()
+		.rememberMe().key("HenryLeo")
 		.and()
 		.csrf().disable();
 

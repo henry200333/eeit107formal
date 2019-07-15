@@ -42,6 +42,7 @@ public class SecurityUser implements UserDetails {
 	private String mail;
 	@Column(name = "enabled")
 	private Boolean enabled;
+
 //	@Column(name = "member_name")
 //	private String memberName;
 //	@Column(name = "gender")
