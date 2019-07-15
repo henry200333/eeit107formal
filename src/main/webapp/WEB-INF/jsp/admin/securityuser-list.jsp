@@ -195,6 +195,7 @@
 					var list = document.getElementsByName(Object.id);
 					var ENABLE = list[0].checked;
 					var ADMIN = list[1].checked;
+					var USER = list[2].checked;
 					var ARTIST = list[3].checked;
 					var VENDER = list[4].checked;
 					if (list[0].disabled == false){
@@ -207,6 +208,7 @@
 							userId: Object.id,
 							enabled: ENABLE,
 							ADMIN: ADMIN,
+							USER: USER,
 							ARTIST: ARTIST,
 							VENDER: VENDER
 						},
