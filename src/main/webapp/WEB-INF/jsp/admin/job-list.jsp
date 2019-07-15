@@ -99,8 +99,14 @@
 	
 	
 	function join(object){
-		alert(object)
-	}
+		$.ajax({
+			url : "/admin/securityUser/addfriend?selfId=2&friendId=3",
+			type : "GET",
+			success : function(data){
+				alert("success")
+				}
+			});
+	};
 		function showjobs() {
 			// alert("${venderparam}");  	 	
 			$.ajax({

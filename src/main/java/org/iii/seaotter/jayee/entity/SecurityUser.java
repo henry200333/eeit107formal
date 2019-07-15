@@ -1,6 +1,7 @@
 package org.iii.seaotter.jayee.entity;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -46,7 +47,7 @@ public class SecurityUser implements UserDetails {
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "friend", joinColumns = { @JoinColumn(name = "self_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "friend_id") })
-	private Set<SecurityUser> friends;
+	private List<SecurityUser> friends;
 //	@Column(name = "member_name")
 //	private String memberName;
 //	@Column(name = "gender")
