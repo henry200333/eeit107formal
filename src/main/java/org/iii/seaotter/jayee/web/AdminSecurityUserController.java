@@ -130,11 +130,12 @@ public class AdminSecurityUserController {
 			@RequestParam(value="userId") Long id,
 			@RequestParam(value="enabled") boolean enabled,
 			@RequestParam(value="ADMIN") boolean ADMIN,
+			@RequestParam(value="USER") boolean USER,
 			@RequestParam(value="ARTIST") boolean ARTIST,
 			@RequestParam(value="VENDER") boolean VENDER
 			) {
 		AjaxResponse<SecurityUser> res = new AjaxResponse<>();
-		System.out.println("id: "+id+" / enable: "+enabled+" / ADMIN: "+ADMIN+" / ARTIST: "+ARTIST+" / VENDER: "+VENDER);
+		System.out.println("id: " + id + " / enable: " + enabled + " / ADMIN: " + ADMIN + " / USER: " + USER + " / ARTIST: "+ARTIST+" / VENDER: "+VENDER);
 		SecurityUser user=(SecurityUser)securityUserService.getById(id);
 		if(user == null) {
 			res.setType(AjaxResponseType.ERROR);
@@ -150,6 +151,8 @@ public class AdminSecurityUserController {
 			roles.add(securityRoleDao.findByCode("ROLE_USER"));
 			if(ADMIN) 
 				roles.add(securityRoleDao.findByCode("ROLE_ADMIN"));
+			if(USER) 
+				roles.add(securityRoleDao.findByCode("ROLE_USER"));
 			if(ARTIST) 
 				roles.add(securityRoleDao.findByCode("ROLE_ARTIST"));
 			if(VENDER) 
