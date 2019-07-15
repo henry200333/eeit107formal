@@ -36,19 +36,24 @@ public class AuthController {
 
 	@RequestMapping("/index")
 	public String index() {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if (!(principal.toString().equals("anonymousUser"))) {
-			Collection<? extends GrantedAuthority> roles = ((UserDetails) principal).getAuthorities();
-
-			for (GrantedAuthority grantedAuthority : roles) {
-				if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
-					return "redirect:/admin/artist/list";
-				}
-				return "index";
-			}
-		}
 		return "index";
 	}
+	
+//	@RequestMapping("/index")
+//	public String index() {
+//		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		if (!(principal.toString().equals("anonymousUser"))) {
+//			Collection<? extends GrantedAuthority> roles = ((UserDetails) principal).getAuthorities();
+//
+//			for (GrantedAuthority grantedAuthority : roles) {
+//				if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+//					return "redirect:/admin/artist/list";
+//				}
+//				return "index";
+//			}
+//		}
+//		return "index";
+//	}
 
 	@GetMapping("/login")
 	public String signin() {
