@@ -1,6 +1,5 @@
 package org.iii.seaotter.jayee.web;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,9 +11,6 @@ import org.iii.seaotter.jayee.entity.SecurityRole;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,22 +34,6 @@ public class AuthController {
 	public String index() {
 		return "index";
 	}
-	
-//	@RequestMapping("/index")
-//	public String index() {
-//		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		if (!(principal.toString().equals("anonymousUser"))) {
-//			Collection<? extends GrantedAuthority> roles = ((UserDetails) principal).getAuthorities();
-//
-//			for (GrantedAuthority grantedAuthority : roles) {
-//				if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
-//					return "redirect:/admin/artist/list";
-//				}
-//				return "index";
-//			}
-//		}
-//		return "index";
-//	}
 
 	@GetMapping("/login")
 	public String signin() {
@@ -64,17 +44,12 @@ public class AuthController {
 	public String signup() {
 		return "signup";
 	}
-	
+
 	@GetMapping("/logout")
 	public String signout(HttpServletRequest req) throws ServletException {
 		req.logout();
 		return "redirect:/";
 	}
-	
-//	@GetMapping(value= {"/login", "/index","/"})
-//	public String loginPage() {
-//		return "/user/index";
-//	}
 
 	@PostMapping("/register")
 	public String register(@RequestParam("username") String account, @RequestParam("password") String rawPassword,

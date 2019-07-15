@@ -7,5 +7,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 public interface SecurityUserDao extends JpaRepository<SecurityUser, Long>,JpaSpecificationExecutor<SecurityUser> {
 
 	public SecurityUser findByAccount(String account);
-
+	
+	public SecurityUser findByMail(String mail);
+	
 }

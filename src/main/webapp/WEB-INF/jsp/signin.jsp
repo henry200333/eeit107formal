@@ -9,14 +9,18 @@
 </head>
 <body>
 	<c:if test="{not empty error}">
-			<div class="padding20">${error}</div>
+		<div class="padding20">${error}</div>
+	</c:if>
+	<c:if test="{not empty logout}">
+		<div class="padding20">${logout}</div>
 	</c:if>
 	<form action="/login" method="POST">
 		<label for="username"> Username or email address</label><br> <input
-			type="text" name="username" autofocus="autofocus"><br> <label
+			type="text" name="username" autofocus="autofocus" value="admin"><br> <label
 			for="password">Password</label> <a href="">Forgot password?</a> <br>
-		<input type="password" name="password"> <input type="submit"
-			value="Sign in">
+		<input type="password" name="password" value="admin"><input type="checkbox">Remember
+		me <br> <input type="submit" value="Sign in">
 	</form>
+	<a href="javascript:history.back()">back</a>
 </body>
 </html>

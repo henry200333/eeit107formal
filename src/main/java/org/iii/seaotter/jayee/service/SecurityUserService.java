@@ -21,7 +21,10 @@ public class SecurityUserService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
-		return securityUserDao.findByAccount(account);
+		if (securityUserDao.findByAccount(account) != null)
+			return securityUserDao.findByAccount(account);
+		else
+			return securityUserDao.findByMail(account);
 	}
 	
 	public  SecurityUser findUserBean(String account) throws UsernameNotFoundException {
