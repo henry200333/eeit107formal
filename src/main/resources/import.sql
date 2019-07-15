@@ -4,12 +4,12 @@ INSERT INTO security_role(code) values
 ('ROLE_ARTIST'),
 ('ROLE_VENDER');
 
-INSERT INTO security_user(account, password, enabled) values
-('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 1),
-('123', '$2a$10$weN4FB8uqq1jpv/7HEPBDuYMuw2xbMCBGKx3xYfWk3Da/UoVFS/7W', 1),
-('user', '$2a$10$xJaTeE67wZgV5.lC.q6kMeTqf/MDt2sCPWcyQ8E/zIhm5bT42uaSO', 1),
-('artist', '$2a$10$vR3xQwR7DjhsDECsFeskP.dSZ8MS21VJ9TwK2igEyoCAAaYCXXslG', 1),
-('vender', '$2a$10$6uZShAnrFhifYtcJPQ490eZC5PDXonxyZ3zbRG5UpeYmReaDi.sxG', 1);
+INSERT INTO security_user(account, password, mail, enabled) values
+('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 'admin@admin', 1),
+('123', '$2a$10$weN4FB8uqq1jpv/7HEPBDuYMuw2xbMCBGKx3xYfWk3Da/UoVFS/7W', '', 1),
+('user', '$2a$10$xJaTeE67wZgV5.lC.q6kMeTqf/MDt2sCPWcyQ8E/zIhm5bT42uaSO', '', 1),
+('artist', '$2a$10$vR3xQwR7DjhsDECsFeskP.dSZ8MS21VJ9TwK2igEyoCAAaYCXXslG', '', 1),
+('vender', '$2a$10$6uZShAnrFhifYtcJPQ490eZC5PDXonxyZ3zbRG5UpeYmReaDi.sxG', '', 1);
 
 ALTER TABLE user_role NOCHECK CONSTRAINT ALL;
 INSERT INTO user_role(user_id, role_id) values
