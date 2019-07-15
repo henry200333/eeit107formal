@@ -38,6 +38,8 @@ public class SecurityUser implements UserDetails {
 	private String account;
 	@Column(name = "password")
 	private String password;
+	@Column(name = "mail")
+	private String mail;
 	@Column(name = "enabled")
 	private Boolean enabled;
 //	@Column(name = "member_name")
@@ -50,8 +52,6 @@ public class SecurityUser implements UserDetails {
 //	private String idCode;
 //	@Column(name = "birth")
 //	private java.util.Date birth;
-//	@Column(name = "mail")
-//	private String mail;
 //	@Column(name = "address")
 //	private String address;
 //	@Column(name = "tel")
