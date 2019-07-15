@@ -37,6 +37,9 @@ public class Artist {
 	//Artist的ID關聯到Activity的artistId外鍵欄位
 	@OneToMany(mappedBy="artistId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<Activity> activitySet;
+	//Artist的ID關聯到Performance的artistId外鍵欄位
+	@OneToMany(mappedBy="partistId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	private Set<Performance> performanceSet;
 	
 
 }

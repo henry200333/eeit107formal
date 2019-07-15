@@ -4,11 +4,14 @@ package org.iii.seaotter.jayee.service;
 
 
 
+import java.util.Date;
 import java.util.List;
 
+import org.iii.seaotter.jayee.dao.JobApplicationDao;
 import org.iii.seaotter.jayee.dao.JobDao;
 import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.Job;
+import org.iii.seaotter.jayee.entity.JobApplication;
 import org.iii.seaotter.jayee.entity.Vender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,6 +24,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class JobService {
 	@Autowired
 	private JobDao jobDao;
+	@Autowired
+	private JobApplicationDao jobApplicationDao;
 	
 	@Transactional(readOnly = true)
 	public Page<Job> getAll(Specification<Job> specification, Pageable pageable) {
@@ -57,5 +62,13 @@ public class JobService {
 	public void setjobarist(Job job,Artist artist) {
 		job.setArtist(artist);
 		jobDao.save(job);
+	}
+	
+	public void saveApplication(Artist artist , Job job) {
+		JobApplication application=new JobApplication();
+		application.setArtist(artist);
+		application.setJob(job);
+		application.setApplicationTime(new Date());
+		jobApplicationDao.save(application);
 	}
 }

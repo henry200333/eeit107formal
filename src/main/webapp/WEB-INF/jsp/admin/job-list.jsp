@@ -2,6 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 
@@ -43,34 +45,38 @@
 							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
 					</div>
 					<hr>
-					<form style='border: solid; margin: 10px'>
-						<input  type='hidden' id='jobId' name='jobId' value='1'>
+					<form style='border: solid; margin: 10px' id='job1'>
 						<div class='form-group row'
 							style="font-family: 'Noto Sans TC', sans-serif;">
 							<div class='col-sm-6 mb-3 mb-sm-6'>
 								<h2 class=' h1 mb-0 text-gray-800'>obj.name</h2>
 							</div>
 							<div class='col-sm-3 mb-3 mb-sm-0'>
-								<div class='col-sm-12 mb-3 mb-sm-3'  >
+								<div class='col-sm-12 mb-3 mb-sm-3'>
 									<h2 class=' h3 mb-0 text-gray-800'>類別:obj.jobType</h2>
 								</div>
 								<div class='col-sm-12 mb-3 mb-sm-3'>
 									<h4 class=' h3 mb-0 text-gray-800'>薪資:obj.reward</h4>
 								</div>
 							</div>
-							<div class='col-sm-3 mb-3 mb-sm-0'><input class='btn btn-primary btn-sm'  onclick='join(this)' value='我想參加' readonly></div>
+							<div class='col-sm-3 mb-3 mb-sm-0'>
+								<input class='btn btn-primary btn-sm' id='1'
+									onclick='join(this)' value='我想參加' readonly>
+							</div>
 							<div class='col-sm-9 mb-3 mb-sm-6'>
 								<label class=' h4 mb-0 text-gray-800'>詳細內容:</label>
 								<textarea class='form-control' name='description'
-									style='resize: none'>
-					obj.detal</textarea>
+									style='resize: none'>obj.detal</textarea>
 							</div>
 							<div class='col-sm-6 mb-3 mb-sm-6'>
 								<h2 class=' h2 mb-0 text-gray-800'>表演時間:obj.jobTime</h2>
 							</div>
 						</div>
 					</form>
-
+					
+				<input hidden="hidden" value="<sec:authentication property="name" />" id="username">
+					
+					
 					<div id="joblist"></div>
 
 
@@ -96,17 +102,21 @@
 		type="text/javascript"></script>
 
 	<script>
+
 	
+		function join(object) {
 	
-	function join(object){
-		$.ajax({
-			url : "/admin/securityUser/addfriend?selfId=2&friendId=3",
-			type : "GET",
-			success : function(data){
-				alert("success")
+			
+			$.ajax({
+				url : "/admin/job/addapplication?jobid="+object.id+"&username="+$("#username").val(),
+				type : "GET",
+				success : function(data){
+					alert("success")
 				}
 			});
-	};
+		};
+		
+	
 		function showjobs() {
 			// alert("${venderparam}");  	 	
 			$.ajax({
@@ -114,10 +124,7 @@
 						type : "POST",
 						success : function(data) {
 							var txt = "";
-							$
-									.each(
-											data,
-											function(key, obj) {
+							$.each(data,function(key, obj) {
 												txt += "<form style='border:solid;margin:10px'><input  type='hidden' id='jobId' name='jobId' value='"
 												txt += obj.id;
 												txt += "'><div class='form-group row' style=";

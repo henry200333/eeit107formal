@@ -263,36 +263,36 @@
 
 			<div class="row" style="margin-top: 30px;">
 				<div class="col-4">
-					<iframe width="100%" height="240px;"
+					<iframe width="100%" height="240px;" id="url1"
 						src="https://www.youtube.com/embed/VVDsJKzbYcM" frameborder="0"
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 						allowfullscreen></iframe>
-					<div style="margin-top: 10px;">
-						<p style="line-height: 10px;">影片標題</p>
-						<p style="line-height: 10px;">發布者</p>
-						<p style="line-height: 10px;">觀看人數 & 發布時間</p>
+					<div style="margin-top: 10px;" id="performance1">
+						<p style="line-height: 10px;" id='p1'></p>
+						<p style="line-height: 10px;" id='p2'></p>
+						<p style="line-height: 10px;" id='p3'></p>
 					</div>
 				</div>
 				<div class="col-4">
-					<iframe width="100%" height="240px"
+					<iframe width="100%" height="240px" id="url2"
 						src="https://www.youtube.com/embed/VVDsJKzbYcM" frameborder="0"
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 						allowfullscreen></iframe>
-					<div style="margin-top: 10px;">
-						<p style="line-height: 10px;">影片標題</p>
-						<p style="line-height: 10px;">發布者</p>
-						<p style="line-height: 10px;">觀看人數 & 發布時間</p>
+					<div style="margin-top: 10px;" id="performance2">
+						<p style="line-height: 10px;" id='p1'></p>
+						<p style="line-height: 10px;" id='p2'></p>
+						<p style="line-height: 10px;" id='p3'></p>
 					</div>
 				</div>
 				<div class="col-4">
-					<iframe width="100%" height="240px"
+					<iframe width="100%" height="240px" id="url3"
 						src="https://www.youtube.com/embed/VVDsJKzbYcM" frameborder="0"
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 						allowfullscreen></iframe>
-					<div style="margin-top: 10px;">
-						<p style="line-height: 10px;">影片標題</p>
-						<p style="line-height: 10px;">發布者</p>
-						<p style="line-height: 10px;">觀看人數 & 發布時間</p>
+					<div style="margin-top: 10px;" id="performance3">
+						<p style="line-height: 10px;" id='p1'></p>
+						<p style="line-height: 10px;" id='p2'></p>
+						<p style="line-height: 10px;" id='p3'></p>
 					</div>
 				</div>
 			</div>
@@ -429,5 +429,25 @@
 				</div>
 		</footer>
 	</div>
+	<script>
+	$.ajax({
+		url:"/index/performancetop",
+		type:"GET",
+		success: function(data){
+			$.each(data,function(index,value){
+				var p = index;
+				var count = value['url'].indexOf("=");
+				var url = value['url'].substring(count+1);
+				$("#url"+(p+1)).attr('src','https://www.youtube.com/embed/'+url);
+				$("#performance"+(p+1)).children("#p1").html(value['title']);
+				$("#performance"+(p+1)).children("#p2").html(value['username']);
+				$("#performance"+(p+1)).children("#p3").html(value['views']+"觀看，"+value['updateTime']+"發布");
+			})
+		},
+		error:function(){
+			alert("error");
+		}
+	})
+	</script>
 </body>
 </html>
