@@ -286,7 +286,6 @@ iframe:hover {
 .snip1543 {
   background-color: #fff;
   color: #ffffff;
-  font-family: 'Source Sans Pro', sans-serif;
   font-size: 16px;
   margin: 10px;
 /*   max-width: 500px; */
@@ -381,7 +380,7 @@ iframe:hover {
 }
 
 .snip1543 h3 {
-  font-family: 'Teko', sans-serif;
+
   font-size: 36px;
   font-weight: 700;
   line-height: 1em;
