@@ -102,10 +102,16 @@ alex@skrpresents.com', 'Performance', 1, 99, GETDATE()),
  (2, 1,'Activity', '永和金城武', '不要再冒充我了！', '2019/05/28 20:00:27'),
  (2, 1,'Article', '大中天', '以前你偶爾聽，現在你應該天天聽', '2006/03/04 13:14:55'),
  (2, 1,'Article', '大平台', '我已經買了zzZ', '2019/05/28 20:00:27'); 
- INSERT INTO performance (title,introduction,youtube_url,update_time,activity_id,views,likes,unlikes,username) values
- ('陳忻玥 Vicky Chen -【入土之前】','陳祈玥入土之前完整MV','https://www.youtube.com/watch?v=GfWkG4qedoE','2019/05/25 17:12:05',1,3000,200,10,'桑源雅沂'),
- ('A-Lin《有一種悲傷 A Kind of Sorrow》','ALIN最新歌曲有一種悲傷','https://www.youtube.com/watch?v=BRcudpJzy1I','2019/05/28 19:10:35',2,2150,180,5,'白賊虞'),
- ('G.E.M.【再見 GOODBYE】鄧紫棋','鄧紫棋發燒歌曲再見，讓您聆聽','https://www.youtube.com/watch?v=Lhel0tzHE08','2019/05/28 21:05:46',3,1100,10,0,'柳川鳳');
+ 
+ INSERT INTO performance (title,introduction,youtube_url,update_time,activity_id,views,likes,unlikes,partist_id,username) values
+ ('陳忻玥 Vicky Chen -【入土之前】','陳祈玥入土之前完整MV','https://www.youtube.com/watch?v=GfWkG4qedoE','2019/05/25 17:12:05',1,3000,200,10,1,'桑源雅沂'),
+ ('A-Lin《有一種悲傷 A Kind of Sorrow》','ALIN最新歌曲有一種悲傷','https://www.youtube.com/watch?v=BRcudpJzy1I','2019/05/28 19:10:35',2,2150,180,5,2,'白賊虞'),
+ ('G.E.M.【再見 GOODBYE】鄧紫棋','鄧紫棋發燒歌曲再見，讓您聆聽','https://www.youtube.com/watch?v=Lhel0tzHE08','2019/05/18 21:05:46',3,160,20,1,3,'柳川鳳'),
+ ('下午悠閒練習畫圖','休閒畫畫影片','https://www.youtube.com/watch?v=MHLjKQdfTb8','2019/05/30 17:45:52',1,100,70,1,3,'柳川鳳'),
+ ('這群人 畢業後要幹嘛','讓你笑點大開，這群人又來了!!','https://www.youtube.com/watch?v=2pC8Jk2FDO4','2019/05/29 02:15:16',2,1912,30,5,4,'張添財'),
+ ('輪到你了SP','日本熱門懸疑劇輪到你了，女主角居然死掉了','https://www.youtube.com/watch?v=TBjykqBrhMg','2019/06/18 17:34:36',3,1100,75,46,3,'柳川鳳'),
+ ('超級可愛的柴犬','可愛的柴犬讓你融化','https://www.youtube.com/watch?v=TxgYs4_29KI','2019/06/19 11:45:01',1,151100,7890,10,6,'敏敏'),
+ ('阿滴開始健身了','瘦巴巴的阿滴居然開始健身了，究竟會怎麼樣呢','https://www.youtube.com/watch?v=SF8s3jVmiAs','2019/06/27 22:15:23',2,6400,590,17,3,'柳川鳳');
  							
 insert into  Vender (name,city,district,address,max_people,phone,lat,lng) values
 ('EZ5音樂餐廳','台北市','大安區','安和路二段211號',50,'0227383995',25.0260149,121.550337),
@@ -276,11 +282,11 @@ INSERT INTO activity (name,artist,description,begin_time,end_time,awesome_Num,ba
  ('唱情歌','張添財','在北車唱情歌','2019/07/14 07:35','2019/07/14 17:15',77,35,4,3),
  ('打工賺錢','柳川鳳','賺錢選粽痛','2019/06/27 23:35','2019/06/28 07:35',127,25,3,4),
  ('裝印地安人','白賊虞','One little two little three little indian..','2019/04/25 07:35','2019/05/01 17:15',203,35,2,5),
- ('裝銅人','桑源雅沂','裝了就硬幫幫','2019/03/28 12:03','2019/05/28 12:30',53,15,1,4),
- ('跳火圈','柳川鳳','沒事就愛跳火圈','2019/02/22 23:35','2019/02/23 07:35',109,25,3,3),
- ('唱情歌','白賊虞','在北車唱情歌','2019/07/14 07:35','2019/07/14 17:15',77,35,2,2),
- ('打工賺錢','柳川鳳','賺錢選粽痛','2019/06/27 23:35','2019/06/28 07:35',127,25,3,1),
- ('裝印地安人','桑源雅沂','One little two little three little indian..','2019/04/25 07:35','2019/05/01 17:15',203,35,1,2);
+ ('裝銅人','桑源雅沂','裝了就硬幫幫','2019/03/28 12:03','2019/05/28 12:30',1,15,1,4),
+ ('跳火圈','柳川鳳','沒事就愛跳火圈','2019/02/22 23:35','2019/02/23 07:35',2,25,3,3),
+ ('唱情歌','白賊虞','在北車唱情歌','2019/07/14 07:35','2019/07/14 17:15',3,35,2,2),
+ ('打工賺錢','柳川鳳','賺錢選粽痛','2019/06/27 23:35','2019/06/28 07:35',4,25,3,1),
+ ('裝印地安人','桑源雅沂','One little two little three little indian..','2019/04/25 07:35','2019/05/01 17:15',5,35,1,2);
  
  
 ALTER TABLE friend NOCHECK CONSTRAINT ALL;

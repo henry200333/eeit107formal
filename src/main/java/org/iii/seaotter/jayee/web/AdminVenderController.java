@@ -105,7 +105,8 @@ public class AdminVenderController {
 	public GridResponse<Vender> query(@RequestParam(value = "name", defaultValue = "") String name,
 			@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size,
 			@RequestParam(value = "sidx") String sidx, @RequestParam(value = "sord") String sord) {
-//		System.out.println("我就是口鳥");
+		
+		System.out.println(sidx);
 		GridResponse<Vender> grid = new GridResponse<Vender>();
 		Sort sort = new Sort(Sort.Direction.ASC, sidx);
 		if ("desc".equalsIgnoreCase(sord)) {
