@@ -446,7 +446,7 @@
 				var url = value['url'].substring(count+1);
 				$("#url"+(p+1)).attr('src','https://www.youtube.com/embed/'+url);
 				$(".per"+(p+1)).click(function(){
-					window.location.href='/login';
+					window.location.href=value['url'];
 				});
 				$("#performance"+(p+1)).children("#p1").html(value['title']);
 				$("#performance"+(p+1)).children("#p2").html(value['username']);
