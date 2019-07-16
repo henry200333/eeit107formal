@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
@@ -49,6 +50,7 @@ public class SecurityUser implements UserDetails {
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "friend", joinColumns = { @JoinColumn(name = "self_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "friend_id") })
+	@JsonBackReference
 	private List<SecurityUser> friends;
 //	@Column(name = "member_name")
 //	private String memberName;
