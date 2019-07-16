@@ -144,8 +144,8 @@
 						<div
 							style="position: absolute; margin-left: 280px; z-index: 2; top: 20px; display: none; border-left: 180px solid transparent; width: 450px; height: 0; border-bottom: 219px solid #ff7575"
 							id="acts1">
-							<span style="color: white"> <br> <br>活動名稱 <br>發布人
-								<br>時間 <br>參加人數
+							<span style="color: white" id='actTop1'> 
+							
 							</span>
 						</div>
 						<img src="/resources/user-bootstrap/img/index/act1.gif"
@@ -155,8 +155,8 @@
 						<div
 							style="position: absolute; margin-left: 280px; z-index: 2; top: 260px; display: none; border-left: 180px solid transparent; width: 450px; height: 0; border-bottom: 219px solid #66b3ff"
 							id="acts2">
-							<span style="color: white"> <br> <br>活動名稱 <br>發布人
-								<br>時間 <br>參加人數
+							<span style="color: white" id='actTop2'> 
+							
 							</span>
 						</div>
 						<img src="/resources/user-bootstrap/img/index/act1.gif"
@@ -166,8 +166,8 @@
 						<div
 							style="position: absolute; margin-left: 280px; z-index: 2; top: 500px; display: none; border-left: 180px solid transparent; width: 450px; height: 0; border-bottom: 219px solid #a6a6d2"
 							id="acts3">
-							<span style="color: white"> <br> <br>活動名稱 <br>發布人
-								<br>時間 <br>參加人數
+							<span style="color: white" id='actTop3'> 
+							
 							</span>
 						</div>
 						<img src="/resources/user-bootstrap/img/index/act1.gif"
@@ -449,13 +449,19 @@
 		}
 	})
 	$.ajax({
-		url:"/user/index/activityTop3",
+		url:"/index/activityTop3",
 		type:"GET",
 		success: function(data){
 			txt1="<div style='position: relative' id='activity'><div style='position: absolute; margin-left: 280px; z-index: 2; top: 20px; display: none; border-left: 180px solid transparent; width: 450px; height: 0; border-bottom: 219px solid #ff7575' id='acts1'><span style='color: white'>"; 
 			txt2="<img src='/resources/user-bootstrap/img/index/act1.gif' width='100%' style='position: absolute; top: 20px;' id='act1'></div>";
 			$.each(data,function(index,value){
 				pictureNum = value['id'];
+				txt3 = "<br> <br>活動名稱：　"+value['name']+"<br>發布人：　"
+										+value['artist']+"<br>時間："+value['beginTime']+" 至　"+value['endTime']+"<br>參加人數：　"+value['awesomeNum'];
+				$("#actTop"+(index+1)).append(txt3);
+				
+// 				<br> <br>活動名稱 <br>發布人
+// 				<br>時間 <br>參加人數
 				
 			})
 		},
