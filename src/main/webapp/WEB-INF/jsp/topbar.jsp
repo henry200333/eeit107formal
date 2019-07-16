@@ -31,7 +31,7 @@
 					通知 <span class="badge badge-warning">9</span> <span class="sr-only">unread
 						messages</span>
 				</button>
-				<img src="img/article.jpg" width="45px">
+				<img src="/resources/user-bootstrap/img/index/<sec:authentication		property="name" />.png" width="45px">
 				<span style="color: white; margin-right: 40px; margin-left: 20px"><sec:authentication
 						property="name" /></span>
 				<a href="/logout"><button class="btn btn-danger my-2 my-sm-0"
@@ -39,7 +39,7 @@
 
 			</sec:authorize>
 			<sec:authorize access="hasRole('ADMIN')">
-    	<a href="/admin/artist/list">back end</a>
+    	<a href="/admin/artist/list" class="btn btn-warning">後台</a>
 			</sec:authorize>
 
 		</div>
