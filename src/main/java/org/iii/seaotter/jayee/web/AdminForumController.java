@@ -62,6 +62,16 @@ public class AdminForumController {
 	public String addPage() {
 		return "/admin/forum-add";
 	}
+	
+	@RequestMapping("/haha0716")
+	public String haha123(){
+		return "/admin/test0716";
+	}
+	@RequestMapping("/haha0717")
+	public String haha456(){
+		return "/admin/test0717";
+	}
+	
 
 	@RequestMapping("/edit/{id}")
 	public String editPage(@PathVariable Long id, Model model) {
@@ -164,27 +174,7 @@ public class AdminForumController {
 		return gridResponse;
 	};
 	
-	@Autowired
-	private PasswordEncoder p;
 	
-	@RequestMapping("/happy")
-	public void happy123()
-	{
-		SecurityUser temp = new SecurityUser();
-		temp.setAccount("apple");
-		temp.setPassword(p.encode("55688"));
-		temp.setEnabled(true);
-		
-		Set<SecurityRole> tempSet = new HashSet<SecurityRole>();
-		
-		SecurityRole temp2 = securityRoleDao.findByCode("ROLE_USER");
-		SecurityRole temp3 = securityRoleDao.findByCode("ROLE_ADMIN");
-		tempSet.add(temp2);
-		tempSet.add(temp3);
-		temp.setRoles(tempSet);
-		System.out.println(tempSet);
-		System.out.println(123123132);
 	
-		securityUserService.signUp(temp);	
-	}
+
 }
