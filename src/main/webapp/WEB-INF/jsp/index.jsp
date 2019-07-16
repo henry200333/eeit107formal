@@ -131,7 +131,7 @@
 						class="fab fa-hotjar"></i>熱門活動</span>
 				</div>
 
-				<div class="col-4" style="margin-top: 40px;">
+				<div class="col-4" style="margin-top: 40px; padding-left: 0;">
 					<span
 						style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold"><i class="fas fa-star"></i>熱門文章</span>
 				</div>
@@ -189,9 +189,9 @@
 				</script>
 				<div class="col-4" style="height: 700px; margin-top: 28px;">
 					<div class="row" style="height: 120px; border: 1px,black,solid;">
-						<div class="col-4">
-							<img src="/resources/user-bootstrap/img/index/article.jpg"
-								width="100%" style="margin-top: 12px; border-radius: 10px">
+						<div id="articleImg1" class="col-4">
+<!-- 							<img id="articleImg1" src="/resources/user-bootstrap/img/index/article.jpg" -->
+<!-- 								width="100%" height="80%" style="margin-top: 12px; border-radius: 10px"> -->
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop1" style="font-size: 19px"></p>
@@ -199,9 +199,9 @@
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
-						<div class="col-4">
-							<img src="/resources/user-bootstrap/img/index/article.jpg"
-								width="100%" style="margin-top: 12px; border-radius: 10px">
+						<div id="articleImg2" class="col-4">
+<!-- 							<img id="articleImg2" src="/resources/user-bootstrap/img/index/article.jpg" -->
+<!-- 								width="100%" height="80%" style="margin-top: 12px; border-radius: 10px"> -->
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop2" style="font-size: 19px"></p>
@@ -209,9 +209,9 @@
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
-						<div class="col-4">
-							<img src="/resources/user-bootstrap/img/index/article.jpg"
-								width="100%" style="margin-top: 12px; border-radius: 10px">
+						<div id="articleImg3" class="col-4">
+<!-- 							<img id="articleImg3" src="/resources/user-bootstrap/img/index/article.jpg" -->
+<!-- 								width="100%" style="margin-top: 12px; border-radius: 10px"> -->
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop3" style="font-size: 19px"></p>
@@ -219,9 +219,9 @@
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
-						<div class="col-4">
-							<img src="/resources/user-bootstrap/img/index/article.jpg"
-								width="100%" style="margin-top: 12px; border-radius: 10px">
+						<div id="articleImg4" class="col-4">
+<!-- 							<img id="articleImg4" src="/resources/user-bootstrap/img/index/article.jpg" -->
+<!-- 								width="100%" height="80%" style="margin-top: 12px; border-radius: 10px"> -->
 						</div>
 						<div class="col-8" style="margin-top: 10px;"
 							style="margin-top:10px;">
@@ -230,9 +230,9 @@
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
-						<div class="col-4">
-							<img src="/resources/user-bootstrap/img/index/article.jpg"
-								width="100%" style="margin-top: 12px; border-radius: 10px">
+						<div id="articleImg5" class="col-4">
+<!-- 							<img  id="articleImg5" src="/resources/user-bootstrap/img/index/article.jpg" -->
+<!-- 								width="100%" height="80%" style="margin-top: 12px; border-radius: 10px"> -->
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop5" style="font-size: 19px"></p>
@@ -240,9 +240,7 @@
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
-						<div class="col-4">
-							<img src="/resources/user-bootstrap/img/index/article.jpg"
-								width="100%" style="margin-top: 12px; border-radius: 10px">
+						<div id="articleImg6" class="col-4" style="margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 10px; background-image:url('https://i.imgur.com/31rorUq.jpg'); background-size: cover; background-position: center;">
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop6" style="font-size: 19px"></p>
@@ -486,9 +484,21 @@
 		success: function(res){
 			if(res.type == "SUCCESS"){
 				var data = res.data;
-				var articlediv = "#articleTop";
+				var articleTop = "#articleTop";
+				var articleImg = "#articleImg";
 				for(var i = 0; i < data.length; i++){
-					$(articlediv + (i + 1)).append(data[i].name);
+					var content = data[i].content;
+					$(articleTop + (i + 1)).append(data[i].name);
+					$(articleTop + (i + 1)).attr('id', 'article' + data[i].id);
+					var start = content.indexOf('](http');
+					var end = content.indexOf('.jpg');
+					if(start != -1 && end != -1){
+						var url = content.substring(start + 2, end + 4);
+						console.log(url);
+						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 10px; background-image:url('" + url + "'); background-size: cover; background-position: center;");
+					} else {
+						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 10px; background-image:url('/resources/user-bootstrap/img/index/article.jpg'); background-size: cover; background-position: center;");
+					}
 				}
 			}
 		}
