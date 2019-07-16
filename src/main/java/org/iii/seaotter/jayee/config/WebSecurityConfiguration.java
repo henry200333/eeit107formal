@@ -3,6 +3,7 @@ package org.iii.seaotter.jayee.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -35,11 +36,18 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
+	
+	@Override
+	@Bean
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+	    return super.authenticationManagerBean();
+	}
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		auth.userDetailsService(securityUserService);
+		auth.parentAuthenticationManager(authenticationManagerBean())
+			.userDetailsService(securityUserService);
 
 //		auth.jdbcAuthentication().dataSource(dataSource)
 //				.usersByUsernameQuery("SELECT account, password, enabled FROM security_user WHERE account=?")
@@ -66,7 +74,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.defaultSuccessUrl("/index")
 		.and()
 		.logout().permitAll()
+		.deleteCookies("JSESSIONID")
 		.logoutSuccessUrl("/login?logout")
+		.and()
+		.rememberMe().key("HenryLeo")
 		.and()
 		.csrf().disable();
 

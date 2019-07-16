@@ -20,6 +20,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 
@@ -45,7 +46,7 @@ public class SecurityUser implements UserDetails {
 	private String mail;
 	@Column(name = "enabled")
 	private Boolean enabled;
-
+	@JsonIgnoreProperties("friends")
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "friend", joinColumns = { @JoinColumn(name = "self_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "friend_id") })

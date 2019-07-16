@@ -55,10 +55,10 @@
 					            </div>
 				            </div>
 				            <div class="col-sm-3 mb-3 mb-sm-0">
-				            	<a href="add" class="btn btn-primary btn-icon-split"> <span
+				            	<button onclick="add" class="btn btn-primary btn-icon-split"> <span
 									class="icon text-white-50"> <i class="fas fa-file-medical"></i>
 									</span> <span class="text">Add New Article</span>
-								</a>
+								</button>
 				            </div>
 			            </div>
 			        </form>

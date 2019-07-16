@@ -15,11 +15,23 @@
 		<div class="padding20">${logout}</div>
 	</c:if>
 	<form action="/login" method="POST">
-		<label for="username"> Username or email address</label><br> <input
-			type="text" name="username" autofocus="autofocus" value="admin"><br> <label
-			for="password">Password</label> <a href="">Forgot password?</a> <br>
-		<input type="password" name="password" value="admin"><input type="checkbox">Remember
-		me <br> <input type="submit" value="Sign in">
+		<table>
+			<tr>
+				<td><label for="username"> Username or email address</label></td>
+				<td><input type="text" name="username" autofocus="autofocus"
+					value=""></td>
+			</tr>
+			<tr>
+				<td><label for="password">Password</label><a href="">Forgot
+						password?</a></td>
+				<td><input type="password" name="password" value=""><input
+					type="checkbox" name="remember-me">Remember me</td>
+			</tr>
+			<tr>
+				<td><input type="reset" value="Clear"></td>
+				<td><input type="submit" value="Sign in"></td>
+			</tr>
+		</table>
 	</form>
 	<a href="javascript:history.back()">back</a>
 </body>

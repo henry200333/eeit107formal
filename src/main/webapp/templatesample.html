@@ -177,6 +177,23 @@ body {
 	display:block;
 }
 
+
+
+.canceal1{
+	background-color:white;
+	border:none;
+	float:right;
+	font-size:25px;
+	display:inline;
+}
+
+.canceal2:hover{
+	background-color:gray;
+}
+
+
+
+
 </style>
 
 </head>
@@ -190,10 +207,11 @@ body {
 			</div>
 		</div>
 
-		<div class="chatbox">
+		<div class="chatbox" id="1">
 			<div class="nameBar" id='nameBar'>
 				<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-				<p>Apple</p>
+				<p style="display:inline">Apple</p>
+				<button class="canceal1" id="canceal1">x</button>
 			</div>
 			<div class='messages' id='msgbox1'>
 				<ul>
@@ -224,10 +242,15 @@ body {
 		$("#nameBar").click(function() {
 			$("#msgbox1").toggleClass("active");
 			$("#test558").toggleClass("active");
+			
 		})
 
 		$("#friendList").click(function() {
 			$("#myfriends").toggleClass("normalActive");
+		})
+		
+		$("#canceal1").click(function(){
+			$("div#1").hide();
 		})
 			
 		

@@ -276,9 +276,10 @@ INSERT INTO activity (name,description,begin_time,end_time,awesome_Num,bad_Num,a
  ('裝印地安人','One little two little three little indian..','2019/04/25 07:35','2019/05/01 17:15',203,35,1,2);
  
  
- 
+ALTER TABLE friend NOCHECK CONSTRAINT ALL;
 INSERT INTO friend (self_id , friend_id) values
 (1,2),
 (2,1),
 (1,3),
 (3,1);
+ALTER TABLE friend CHECK CONSTRAINT ALL;
