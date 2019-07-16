@@ -20,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +36,13 @@ public class AuthController {
 
 	@Autowired
 	private SecurityRoleDao securityRoleDao;
-
+	
+	@GetMapping("/{username}")
+	public String userPage(@PathVariable String username) {
+		System.out.println(username);
+		return "/user/userpage";
+	}
+	
 	@RequestMapping("/index")
 	public String index() {
 		return "index";

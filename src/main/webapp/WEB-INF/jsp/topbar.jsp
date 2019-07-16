@@ -41,7 +41,17 @@
 			<sec:authorize access="hasRole('ADMIN')">
     	<a href="/admin/artist/list" class="btn btn-warning">後台</a>
 			</sec:authorize>
+			<sec:authorize access="hasRole('ARTIST')">
+			<input id="account" hidden="hidden" name="account" value="<sec:authentication property="name" />">
+			<button class="btn btn-info"id="bt" type="button" onclick='userpage()'>個人頁面</button>\
+			<script>
+			function userpage() {
+				var a = $("#username").val()
+				window.location.href = '/' + a;
+			}
 
+			</script>
+			</sec:authorize>
 		</div>
 	</nav>
 	
