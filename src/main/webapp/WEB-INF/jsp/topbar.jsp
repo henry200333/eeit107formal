@@ -39,7 +39,7 @@
 
 			</sec:authorize>
 			<sec:authorize access="hasRole('ADMIN')">
-    	<a href="/admin/artist/list">back end</a>
+    	<a href="/admin/artist/list" class="btn btn-warning">後台</a>
 			</sec:authorize>
 
 		</div>
