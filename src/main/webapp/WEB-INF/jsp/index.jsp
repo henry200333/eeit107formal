@@ -142,7 +142,7 @@
 				<div class="col-8" style="margin-top: 20px;">
 					<div style="position: relative; padding-right: 15px; padding-top: 12px;" id="activity">
 					<figure class="snip1543">
-  		<img src="/resources/user-bootstrap/img/index/act1.gif" alt="sample108" />
+  		<img src="/resources/user-bootstrap/img/index/act1.gif" style='border-top-right-radius:20px;border-bottom-right-radius:20px;' alt="sample108" />
 				  <figcaption>
    				 <h3 id='acth1'></h3>
     		<p id='actp1'></p>
@@ -152,7 +152,7 @@
 					</div>
 					<div style="position: relative; padding-right: 15px; padding-top: 12px;" id="activity">
 						<figure class="snip1543">
-  		<img src="/resources/user-bootstrap/img/index/act1.gif" alt="sample108" />
+  		<img src="/resources/user-bootstrap/img/index/act1.gif" style='border-top-right-radius:20px;border-bottom-right-radius:20px;' alt="sample108" />
 				  <figcaption>
    				 <h3 id='acth2'></h3>
     		<p id='actp2'></p>
@@ -162,7 +162,7 @@
 					</div>
 					<div style="position: relative; padding-right: 15px; padding-top: 12px;" id="activity">
 						<figure class="snip1543">
-  		<img src="/resources/user-bootstrap/img/index/act1.gif" alt="sample108" />
+  		<img src="/resources/user-bootstrap/img/index/act1.gif" style='border-top-right-radius:20px;border-bottom-right-radius:20px;' alt="sample108" />
 				  <figcaption>
    				 <h3 id='acth3'></h3>
     		<p id='actp3'></p>
