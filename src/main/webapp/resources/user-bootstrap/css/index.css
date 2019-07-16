@@ -1,7 +1,7 @@
 .bar {
     border-bottom: 5px solid white;
     background-color:white;
-    font-size:30px;
+    font-size:20px;
 }
 
 .bar2{
@@ -91,6 +91,18 @@ body {
 .img {
     border-radius: 25px;
     padding: 10px;
+}
+
+.artwalls1{
+	font-size: 20px; 
+	font-weight: bold; 
+	padding-left: 30px;
+	line-height:40px;
+}
+
+.artwalls2{
+	font-size: 14px; 
+	padding-left: 30px;
 }
 
 #headernav {

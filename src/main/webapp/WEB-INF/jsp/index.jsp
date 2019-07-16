@@ -14,7 +14,7 @@
 			<div class="row">
 				<div class="col-12" style="margin-top: 10px;">
 					<span
-						style="font-size: 40px; border-bottom: 3px solid black; font-weight: bold">
+						style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold">
 						<i class="fas fa-trophy"></i> 本週熱門藝人
 					</span>
 				</div>
@@ -81,36 +81,36 @@
 				<div class="col-3">
 					<img src="/resources/user-bootstrap/img/index/artist1.jpg"
 						style="display: inline" width="40%"> <span
-						style="font-size: 25px; font-weight: bold; padding-left: 30px;">artist1</span>
-					<br> <span style="font-size: 14px; padding-left: 45px;">500,000人追蹤</span>
+						class="artwalls1">artist1</span>
+					<br> <span class="artwalls2">500,000人追蹤</span>
 				</div>
 
 				<div class="col-3">
 					<img src="/resources/user-bootstrap/img/index/artist2.gif"
 						style="display: inline" width="40%"> <span
-						style="font-size: 25px; font-weight: bold; padding-left: 30px;">artist2</span>
-					<br> <span style="font-size: 14px; padding-left: 45px;">700,000人追蹤</span>
+						class="artwalls1">artist2</span>
+					<br> <span class="artwalls2">700,000人追蹤</span>
 
 				</div>
 				<div class="col-3">
 					<img src="/resources/user-bootstrap/img/index/artist3.jpg"
 						style="display: inline" width="40%"> <span
-						style="font-size: 25px; font-weight: bold; padding-left: 30px;">artist3</span>
-					<br> <span style="font-size: 14px; padding-left: 45px;">100,000人追蹤</span>
+						class="artwalls1">artist3</span>
+					<br> <span class="artwalls2">100,000人追蹤</span>
 
 				</div>
 				<div class="col-3">
 					<img src="/resources/user-bootstrap/img/index/artist4.jpg"
 						style="display: inline" width="40%"> <span
-						style="font-size: 25px; font-weight: bold; padding-left: 30px;">artist4</span>
-					<br> <span style="font-size: 14px; padding-left: 45px;">200,000人追蹤</span>
+						class="artwalls1">artist4</span>
+					<br> <span class="artwalls2">200,000人追蹤</span>
 
 				</div>
 				<div class="col-3">
 					<img src="/resources/user-bootstrap/img/index/artist5.jpg"
 						style="display: inline" width="40%"> <span
-						style="font-size: 25px; font-weight: bold; padding-left: 30px;">artist5</span>
-					<br> <span style="font-size: 14px; padding-left: 45px;">500,000人追蹤</span>
+						class="artwalls1">artist5</span>
+					<br> <span class="artwalls2">500,000人追蹤</span>
 
 				</div>
 			</div>
@@ -127,13 +127,13 @@
 			<div class="row">
 				<div class="col-8" style="margin-top: 40px;">
 					<span
-						style="font-size: 40px; border-bottom: 3px solid black; font-weight: bold;"><i
+						style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold;"><i
 						class="fab fa-hotjar"></i>熱門活動</span>
 				</div>
 
 				<div class="col-4" style="margin-top: 40px;">
 					<span
-						style="font-size: 40px; border-bottom: 3px solid black; font-weight: bold"><i class="fas fa-star"></i>熱門文章</span>
+						style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold"><i class="fas fa-star"></i>熱門文章</span>
 				</div>
 			</div>
 
@@ -196,7 +196,7 @@
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop1" style="font-size: 19px"></p>
-							<p style="font-size: 10px">留言數 按讚人數</p>
+							<span style="font-size: 14px"><i class="far fa-comment-dots"></i>  1750    </span><span style="font-size: 14px;margin-left:15px"><i class="fas fa-heart" style="margin-left:15px;"></i>   45123</span>
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
@@ -206,7 +206,7 @@
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop2" style="font-size: 19px"></p>
-							<p style="font-size: 10px">留言數 按讚人數</p>
+							<span style="font-size: 14px"><i class="far fa-comment-dots"></i>  315    </span><span style="font-size: 14px;margin-left:15px"><i class="fas fa-heart" style="margin-left:15px;"></i>   7701</span>
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
@@ -216,7 +216,7 @@
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop3" style="font-size: 19px"></p>
-							<p style="font-size: 10px">留言數 按讚人數</p>
+							<p style="font-size: 14px"><i class="far fa-comment-dots"></i>  189    <i class="fas fa-heart" style="margin-left:15px;"></i>   512</p>
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
@@ -227,7 +227,7 @@
 						<div class="col-8" style="margin-top: 10px;"
 							style="margin-top:10px;">
 							<p id="articleTop4" style="font-size: 19px"></p>
-							<p style="font-size: 10px">留言數 按讚人數</p>
+							<span style="font-size: 14px"><i class="far fa-comment-dots"></i>  115    </span><span style="font-size: 14px;margin-left:15px"><i class="fas fa-heart" style="margin-left:15px;"></i>   189</span>
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
@@ -237,7 +237,7 @@
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop5" style="font-size: 19px"></p>
-							<p style="font-size: 10px">留言數 按讚人數</p>
+							<span style="font-size: 14px"><i class="far fa-comment-dots"></i>  1    </span><span style="font-size: 14px;margin-left:15px"><i class="fas fa-heart" style="margin-left:15px;"></i>   10</span>
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
@@ -247,7 +247,7 @@
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop6" style="font-size: 19px"></p>
-							<p style="font-size: 10px">留言數 按讚人數</p>
+							<span style="font-size: 14px"><i class="far fa-comment-dots"></i>  125    </span><span style="font-size: 14px;margin-left:15px"><i class="fas fa-heart" style="margin-left:15px;"></i>   33</span>
 							<a class="btn btn-primary" href="" style="float: right">看更多</a>
 						</div>
 					</div>
@@ -257,7 +257,7 @@
 			<div class="row">
 				<div class="col-12" style="margin-top: 40px;">
 					<span
-						style="border-bottom: 3px solid black; font-size: 40px; font-weight: bold;"><i class="fab fa-youtube"></i>本週熱門表演</span>
+						style="border-bottom: 3px solid black; font-size: 30px; font-weight: bold;"><i class="fab fa-youtube"></i>本週熱門表演</span>
 				</div>
 			</div>
 
@@ -432,7 +432,7 @@
 	<script>
 	$.ajax({
 		url:"/index/performancetop",
-		type:"GET",
+		type:"POST",
 		success: function(data){
 			$.each(data,function(index,value){
 				var p = index;
