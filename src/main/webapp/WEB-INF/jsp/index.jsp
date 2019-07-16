@@ -436,12 +436,17 @@
 		success: function(data){
 			$.each(data,function(index,value){
 				var p = index;
+				var time = Date.parse(value['updateTime']);
+				var today = new Date();
+				var timehaha = today-time;
+				var timeresult  = timehaha/60/60/24/1000;
 				var count = value['url'].indexOf("=");
 				var url = value['url'].substring(count+1);
 				$("#url"+(p+1)).attr('src','https://www.youtube.com/embed/'+url);
 				$("#performance"+(p+1)).children("#p1").html(value['title']);
 				$("#performance"+(p+1)).children("#p2").html(value['username']);
-				$("#performance"+(p+1)).children("#p3").html(value['views']+"觀看，"+value['updateTime']+"發布");
+				$("#performance"+(p+1)).children("#p3").html(value['views']+"觀看，"+parseInt(timeresult)+"前發布");
+				
 			})
 		},
 		error:function(){
