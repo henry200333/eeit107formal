@@ -431,7 +431,7 @@
 	</div>
 	<script>
 	$.ajax({
-		url:"/user/index/performancetop",
+		url:"/index/performancetop",
 		type:"GET",
 		success: function(data){
 			$.each(data,function(index,value){

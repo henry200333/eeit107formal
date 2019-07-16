@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/user/index")
+@RequestMapping("/index")
 public class IndexController {
 	
 	@Autowired
@@ -65,11 +65,11 @@ public class IndexController {
 		return performanceService.getTop3ByOrderByViewsDesc();
 	}
 	
-	@GetMapping("/artistsTop5")
-	@ResponseBody
-	public List<Artist> queryTop5() {
-		return artistService.getNameByFanNumberTop5();
-	}
+//	@GetMapping("/artistsTop5")
+//	@ResponseBody
+//	public List<Artist> queryTop5() {
+//		return artistService.getNameByFanNumberTop5();
+//	}
 	
 
 	

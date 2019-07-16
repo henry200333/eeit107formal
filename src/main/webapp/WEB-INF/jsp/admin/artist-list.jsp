@@ -72,6 +72,8 @@
 					<form method="post" action="/admin/artist/uploadImage" enctype="multipart/form-data">
 					<input type="file" name="imageFile" id="imageFile" accept="image/gif, image/jpeg, image/png" />
 					<div id="previewDiv" class="previewDiv"></div>
+					<input value="<sec:authentication
+						property='name' />" type="hidden" name="username">
 					<input type="submit" value="Upload" />
 					</form>
 				</div>

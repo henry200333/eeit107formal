@@ -29,10 +29,10 @@ public class ArtistService {
 		return artistDao.findAll();
 	}
 
-	@Transactional(readOnly = true)
-	public List<Artist> getNameByFanNumberTop5() {
-		return artistDao.findTop5ByOrderByFanNumberDesc();
-	}
+//	@Transactional(readOnly = true)
+//	public List<Artist> getNameByFanNumberTop5() {
+//		return artistDao.findTop5ByOrderByFanNumberDesc();
+//	}
 
 	public Artist getById(Long id) {
 		return artistDao.findById(id).orElse(null);
