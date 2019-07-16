@@ -140,7 +140,7 @@
 			<!-- 300:1000 -->
 			<div class="row">
 				<div class="col-8" style="margin-top: 20px;">
-					<div style="position: relative" id="activity">
+					<div style="position: relative; padding-right: 15px; padding-top: 12px;" id="activity">
 					<figure class="snip1543">
   		<img src="/resources/user-bootstrap/img/index/act1.gif" alt="sample108" />
 				  <figcaption>
@@ -150,7 +150,7 @@
  					 <a href="#"></a>
 					</figure>
 					</div>
-					<div style="position: relative" id="activity">
+					<div style="position: relative; padding-right: 15px; padding-top: 12px;" id="activity">
 						<figure class="snip1543">
   		<img src="/resources/user-bootstrap/img/index/act1.gif" alt="sample108" />
 				  <figcaption>
@@ -160,7 +160,7 @@
  					 <a href="#"></a>
 					</figure>
 					</div>
-					<div style="position: relative" id="activity">
+					<div style="position: relative; padding-right: 15px; padding-top: 12px;" id="activity">
 						<figure class="snip1543">
   		<img src="/resources/user-bootstrap/img/index/act1.gif" alt="sample108" />
 				  <figcaption>
@@ -444,7 +444,7 @@
 				var url = value['url'].substring(count+1);
 				$("#url"+(p+1)).attr('src','https://www.youtube.com/embed/'+url);
 				$(".per"+(p+1)).click(function(){
-					window.location.href='/login';
+					window.location.href=value['url'];
 				});
 				$("#performance"+(p+1)).children("#p1").html(value['title']);
 				$("#performance"+(p+1)).children("#p2").html(value['username']);
