@@ -12,4 +12,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 public interface JobApplicationDao extends JpaRepository<JobApplication, Long>,JpaSpecificationExecutor<JobApplication> {
 	public List<JobApplication> findByArtist(Artist artist);
 	public List<JobApplication> findByJob(Job job);
+	public JobApplication findByArtistAndJob(Artist artist,Job job);
 }

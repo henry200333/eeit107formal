@@ -8,21 +8,15 @@
 <html>
 
 <!-- header -->
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="../header.jsp"></jsp:include>
 
-<!-- Load basic css of Grid -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/jqgrid/css/ui.jqgrid-bootstrap4.css" />
-<!-- Load jquery-ui css -->
-<link rel="stylesheet" type="text/css"
-	href="/resources/jqgrid/jquery-ui/jquery-ui.theme.min.css" />
-
+	<!-- Topbar -->
+				<jsp:include page="../topbar.jsp"></jsp:include>
 <body id="page-top">
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
-		<jsp:include page="sidebar.jsp"></jsp:include>
 
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
@@ -30,8 +24,7 @@
 			<!-- Main Content -->
 			<div id="content">
 
-				<!-- Topbar -->
-				<jsp:include page="topbar.jsp"></jsp:include>
+			
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
@@ -86,7 +79,7 @@
 			</div>
 			<!-- End of Main Content -->
 
-			<jsp:include page="footer.jsp"></jsp:include>
+<%-- 			<jsp:include page="../admin/footer.jsp"></jsp:include> --%>
 
 		</div>
 		<!-- End of Content Wrapper -->
@@ -94,12 +87,6 @@
 	</div>
 	<!-- End of Page Wrapper -->
 
-	<!-- 	Add language package for TW-ZH -->
-	<script src="/resources/jqgrid/js/i18n/grid.locale-tw.js"
-		type="text/javascript"></script>
-	<!-- 	Add jquery plugin -->
-	<script src="/resources/jqgrid/js/jquery.jqGrid.min.js"
-		type="text/javascript"></script>
 
 	<script>
 
@@ -108,27 +95,25 @@
 	
 			
 			$.ajax({
-				url : "/admin/job/addapplication?jobid="+object.id+"&username="+$("#username").val(),
+				url : "/user/job/addapplication?jobid="+object.id+"&username="+$("#username").val(),
 				type : "GET",
 				success : function(data){
-					alert("success")
+					alert(data.mes)
 				}
 			});
 		};
 		
 	
 		function showjobs() {
-			// alert("${venderparam}");  	
-
+			// alert("${venderparam}");  	 	
+				
 			$.ajax({
-						url : "/admin/job/query",
-						type : "POST",
-
+						url : "/user/job/query?page=2",
+						type : "GET",
 						success : function(data) {
-
 							var txt = "";
-							$.each(data,function(key, obj) {
-												txt += "<form style='border:solid;margin:10px'><div class='form-group row' style=";
+							$.each(data.rows,function(key, obj) {
+												txt += "<form style='border:solid;margin:10px;padding:10px' ><div class='form-group row' style=";
 										txt +='"font-family: ';
 										txt +="'Noto Sans TC'";
 										txt +=', sans-serif;"';
