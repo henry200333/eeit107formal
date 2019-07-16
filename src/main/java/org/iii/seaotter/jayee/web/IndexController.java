@@ -82,12 +82,12 @@ public class IndexController {
 		return res;
 	}
 	
-	@GetMapping("/articleTop10")
+	@GetMapping("/articleTop6")
 	@ResponseBody
-	public AjaxResponse<List<Article>> articleTop10() {
+	public AjaxResponse<List<Article>> articleTop6() {
 		AjaxResponse<List<Article>> res = new AjaxResponse<>();
 		res.setType(AjaxResponseType.SUCCESS);
-		res.setData(articleService.getTop10ByCount());
+		res.setData(articleService.getTop6ByCount());
 		return res;
 	}
 	

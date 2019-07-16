@@ -189,13 +189,13 @@
 					})
 				</script>
 				<div class="col-4" style="height: 700px; margin-top: 28px;">
-					<div class="row" style="height: 120px;">
+					<div class="row" style="height: 120px; border: 1px,black,solid;">
 						<div class="col-4">
 							<img src="/resources/user-bootstrap/img/index/article.jpg"
 								width="100%" style="margin-top: 12px; border-radius: 10px">
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
-							<p style="font-size: 25px">文章標題</p>
+							<p id="articleTop1" style="font-size: 19px"></p>
 							<p style="font-size: 10px">留言數 按讚人數</p>
 						</div>
 					</div>
@@ -205,7 +205,7 @@
 								width="100%" style="margin-top: 12px; border-radius: 10px">
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
-							<p style="font-size: 25px">文章標題不知道可以不可以打很</p>
+							<p id="articleTop2" style="font-size: 19px"></p>
 							<p style="font-size: 10px">留言數 按讚人數</p>
 						</div>
 					</div>
@@ -215,7 +215,7 @@
 								width="100%" style="margin-top: 12px; border-radius: 10px">
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
-							<p style="font-size: 25px">文章標題</p>
+							<p id="articleTop3" style="font-size: 19px"></p>
 							<p style="font-size: 10px">留言數 按讚人數</p>
 						</div>
 					</div>
@@ -226,7 +226,7 @@
 						</div>
 						<div class="col-8" style="margin-top: 10px;"
 							style="margin-top:10px;">
-							<p style="font-size: 25px">文章標題</p>
+							<p id="articleTop4" style="font-size: 19px"></p>
 							<p style="font-size: 10px">留言數 按讚人數</p>
 						</div>
 					</div>
@@ -236,7 +236,7 @@
 								width="100%" style="margin-top: 12px; border-radius: 10px">
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
-							<p style="font-size: 25px">文章標題</p>
+							<p id="articleTop5" style="font-size: 19px"></p>
 							<p style="font-size: 10px">留言數 按讚人數</p>
 						</div>
 					</div>
@@ -246,7 +246,7 @@
 								width="100%" style="margin-top: 12px; border-radius: 10px">
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
-							<p style="font-size: 25px">文章標題</p>
+							<p id="articleTop6" style="font-size: 19px"></p>
 							<p style="font-size: 10px">留言數 按讚人數</p>
 							<a class="btn btn-primary" href="" style="float: right">看更多</a>
 						</div>
@@ -470,6 +470,20 @@
 		}
 	})
 	
+	//獲取articleTop6並放入對應的DIV
+	$.ajax({
+		url:"/index/articleTop6",
+		type:"GET",
+		success: function(res){
+			if(res.type == "SUCCESS"){
+				var data = res.data;
+				var articlediv = "#articleTop";
+				for(var i = 0; i < data.length; i++){
+					$(articlediv + (i + 1)).append(data[i].name);
+				}
+			}
+		}
+	})
 	
 	</script>
 </body>
