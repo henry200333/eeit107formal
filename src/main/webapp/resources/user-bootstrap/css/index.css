@@ -81,7 +81,7 @@
 
 body {
     font-family: '微軟正黑體';
-    background-image: url(img/div.gif);
+    background-image: url(/resources/user-bootstrap/img/index/div.gif);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -263,7 +263,7 @@ body {
 }
 
 .bigdiv {
-    background: url(img/bigdiv.gif) no-repeat fixed top;
+    background: url(/resources/user-bootstrap/img/index/bigdiv.gif) no-repeat fixed top;
 }
 
 iframe:hover {

@@ -1,6 +1,5 @@
 package org.iii.seaotter.jayee.web;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
@@ -20,9 +19,6 @@ import org.iii.seaotter.jayee.service.ForumService;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/user/index")
 public class IndexController {
 	
 	@Autowired
@@ -65,8 +61,8 @@ public class IndexController {
 	
 	@RequestMapping("/performancetop")
 	@ResponseBody
-	public Performance performancetop1() {
-		return performanceService.getTopByOrderByViewsDesc();
+	public List<Performance> performancetop3() {
+		return performanceService.getTop3ByOrderByViewsDesc();
 	}
 	
 	@GetMapping("/artistsTop5")

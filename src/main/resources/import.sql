@@ -84,19 +84,22 @@ alex@skrpresents.com', 'Performance', 1, 99, GETDATE()),
  (2, 1,'Activity', '永和金城武', '不要再冒充我了！', '2019/05/28 20:00:27'),
  (2, 1,'Article', '大中天', '以前你偶爾聽，現在你應該天天聽', '2006/03/04 13:14:55'),
  (2, 1,'Article', '大平台', '我已經買了zzZ', '2019/05/28 20:00:27'); 
- INSERT INTO performance (title,introduction,youtube_url,update_time,activity_id,views,likes,unlikes) values
- ('陳忻玥 Vicky Chen -【入土之前】','陳祈玥入土之前完整MV','https://www.youtube.com/watch?v=GfWkG4qedoE','2019/05/25 17:12:05',1,3000,200,10),
- ('A-Lin《有一種悲傷 A Kind of Sorrow》','ALIN最新歌曲有一種悲傷','https://www.youtube.com/watch?v=BRcudpJzy1I','2019/05/28 19:10:35',2,2150,180,5),
- ('G.E.M.【再見 GOODBYE】鄧紫棋','鄧紫棋發燒歌曲再見，讓您聆聽','https://www.youtube.com/watch?v=Lhel0tzHE08','2019/05/28 21:05:46',3,1100,10,0);
- 							
  
- INSERT INTO artist(name,fan_number,location) VALUES
+  INSERT INTO artist(name,fan_number,location) VALUES
  ('桑源雅沂',86520,'東京'),
  ('白賊虞',30678,'高雄市'),
  ('柳川鳳',66666,'神奈川'),
  ('張添財',98765,'自由新鎮'),
  ('張添財',32548,'鬼島'),
  ('敏敏',12345,'大都');
+ 
+ INSERT INTO performance (title,introduction,youtube_url,update_time,activity_id,views,likes,unlikes,partist_id,username) values
+ ('陳忻玥 Vicky Chen -【入土之前】','陳祈玥入土之前完整MV','https://www.youtube.com/watch?v=GfWkG4qedoE','2019/05/25 17:12:05',1,3000,200,10,1,'桑源雅沂'),
+ ('A-Lin《有一種悲傷 A Kind of Sorrow》','ALIN最新歌曲有一種悲傷','https://www.youtube.com/watch?v=BRcudpJzy1I','2019/05/28 19:10:35',2,2150,180,5,2,'白賊虞'),
+ ('G.E.M.【再見 GOODBYE】鄧紫棋','鄧紫棋發燒歌曲再見，讓您聆聽','https://www.youtube.com/watch?v=Lhel0tzHE08','2019/05/28 21:05:46',3,1100,10,0,3,'柳川鳳');
+ 							
+ 
+
  
  
 

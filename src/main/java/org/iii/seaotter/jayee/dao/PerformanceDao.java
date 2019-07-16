@@ -14,4 +14,5 @@ public interface PerformanceDao extends JpaRepository<Performance,Long>,JpaSpeci
 //	List<Performance> findAllOrderByViews();
 	
 	public Performance findTopByOrderByViewsDesc();
+	public List<Performance> findTop3ByOrderByViewsDesc();
 }

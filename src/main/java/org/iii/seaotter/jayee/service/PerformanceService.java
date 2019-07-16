@@ -82,4 +82,8 @@ public class PerformanceService {
 	public Performance getTopByOrderByViewsDesc() {
 		return performanceDao.findTopByOrderByViewsDesc();
 	}
+	
+	public List<Performance> getTop3ByOrderByViewsDesc() {
+		return performanceDao.findTop3ByOrderByViewsDesc();
+	}
 }
