@@ -64,4 +64,8 @@ public class SecurityUserService implements UserDetailsService {
 		friendlist.add(User);
 		friend.setFriends(friendlist);
 	}
+	
+	public SecurityUser getByUserName(String userName) {
+		return securityUserDao.findByAccount(userName);
+	}
 }
