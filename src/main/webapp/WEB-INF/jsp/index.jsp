@@ -141,41 +141,35 @@
 			<div class="row">
 				<div class="col-8" style="margin-top: 20px;">
 					<div style="position: relative" id="activity">
-						<div
-							style="position: absolute; margin-left: 280px; z-index: 2; top: 20px; display: none; border-left: 180px solid transparent; width: 450px; height: 0; border-bottom: 219px solid #ff7575"
-							id="acts1">
-							<span style="color: white" id='actTop1'> 
-							
-							</span>
-						</div>
-						<img src="/resources/user-bootstrap/img/index/act1.gif"
-							width="100%" style="position: absolute; top: 20px;" id="act1">
+					<figure class="snip1543">
+  		<img src="/resources/user-bootstrap/img/index/act1.gif" alt="sample108" />
+				  <figcaption>
+   				 <h3 id='acth1'></h3>
+    		<p id='actp1'></p>
+  					</figcaption>
+ 					 <a href="#"></a>
+					</figure>
 					</div>
 					<div style="position: relative" id="activity">
-						<div
-							style="position: absolute; margin-left: 280px; z-index: 2; top: 260px; display: none; border-left: 180px solid transparent; width: 450px; height: 0; border-bottom: 219px solid #66b3ff"
-							id="acts2">
-							<span style="color: white" id='actTop2'> 
-							
-							</span>
-						</div>
-						<img src="/resources/user-bootstrap/img/index/act1.gif"
-							width="100%" style="position: absolute; top: 260px;" id="act2">
+						<figure class="snip1543">
+  		<img src="/resources/user-bootstrap/img/index/act1.gif" alt="sample108" />
+				  <figcaption>
+   				 <h3 id='acth2'></h3>
+    		<p id='actp2'></p>
+  					</figcaption>
+ 					 <a href="#"></a>
+					</figure>
 					</div>
 					<div style="position: relative" id="activity">
-						<div
-							style="position: absolute; margin-left: 280px; z-index: 2; top: 500px; display: none; border-left: 180px solid transparent; width: 450px; height: 0; border-bottom: 219px solid #a6a6d2"
-							id="acts3">
-							<span style="color: white" id='actTop3'> 
-							
-							</span>
-						</div>
-						<img src="/resources/user-bootstrap/img/index/act1.gif"
-							width="100%" style="position: absolute; top: 500px;" id="act3">
+						<figure class="snip1543">
+  		<img src="/resources/user-bootstrap/img/index/act1.gif" alt="sample108" />
+				  <figcaption>
+   				 <h3 id='acth3'></h3>
+    		<p id='actp3'></p>
+  					</figcaption>
+ 					 <a href="#"></a>
+					</figure>
 					</div>
-
-
-
 				</div>
 				<script>
 					$("#act1").hover(function() {
@@ -187,6 +181,11 @@
 					$("#act3").hover(function() {
 						$("#acts3").fadeToggle(300)
 					})
+					$(".hover").mouseleave(
+  				function() {
+    				$(this).removeClass("hover");
+  					}
+				);
 				</script>
 				<div class="col-4" style="height: 700px; margin-top: 28px;">
 					<div class="row" style="height: 120px; border: 1px,black,solid;">
@@ -467,10 +466,9 @@
 			txt2="<img src='/resources/user-bootstrap/img/index/act1.gif' width='100%' style='position: absolute; top: 20px;' id='act1'></div>";
 			$.each(data,function(index,value){
 				pictureNum = value['id'];
-				txt3 = "<br> <br>活動名稱：　"+value['name']+"<br>發布人：　"
-										+value['artist']+"<br>時間："+value['beginTime']+" 至　"+value['endTime']+"<br>參加人數：　"+value['awesomeNum'];
-				$("#actTop"+(index+1)).append(txt3);
-				
+				txt3 = "<br>發布人："+value['artist']+"<br>時間："+value['beginTime']+" 至 <br>　　　"+value['endTime']+"<br>參加人數："+value['awesomeNum'];
+				$("#acth"+(index+1)).append(value['name']);
+				$("#actp"+(index+1)).append(txt3);
 // 				<br> <br>活動名稱 <br>發布人
 // 				<br>時間 <br>參加人數
 				
