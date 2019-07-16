@@ -1,3 +1,79 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<header>
+	<nav class="navbar navbar-expand-md navbar-light bg-light"
+		style="margin-top: 70px;">
+		<div class="mx-auto order-0">
+			<div class="btn-group">
+				<button type="button" class="btn bar" id="topbar1"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-home"></i> 首頁
+				</button>
+				<button type="button" class="btn bar2" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"></button>
+				<div class="dropdown-menu" id="homebar">
+					<a class="dropdown-item" href="#" id="topbar">關於街藝</a>
+				</div>
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn bar" id="topbar2"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-street-view"></i> 藝人
+				</button>
+				<button type="button" class="btn bar2" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"></button>
+				<div class="dropdown-menu" id="artistbar">
+					<a class="dropdown-item" href="#">關於藝人</a>
+				</div>
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn bar" id="topbar3"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-glass-cheers"></i> 活動
+				</button>
+				<button type="button" class="btn bar2" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"></button>
+				<div class="dropdown-menu" id="activitybar">
+					<a class="dropdown-item" href="#">關於活動</a>
+				</div>
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn bar" id="topbar4"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fab fa-youtube"></i> 表演
+				</button>
+				<button type="button" class="btn bar2" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"></button>
+				<div class="dropdown-menu" id="performancebar">
+					<a class="dropdown-item" href="#">關於表演</a>
+				</div>
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn bar" id="topbar5"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="far fa-newspaper"></i> 文章
+				</button>
+				<button type="button" class="btn bar2" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"></button>
+				<div class="dropdown-menu" id="articlebar">
+					<a class="dropdown-item" href="#">關於文章</a>
+				</div>
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn bar" id="topbar6"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-hands-helping"></i> 廠商
+				</button>
+				<button type="button" class="btn bar2" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"></button>
+				<div class="dropdown-menu" id="venderbar">
+					<a class="dropdown-item" href="#">關於廠商</a>
+				</div>
+			</div>
+
+		</div>
+	</nav>
+</header>
 <head>
 <meta charset="UTF-8">
 <title>index</title>

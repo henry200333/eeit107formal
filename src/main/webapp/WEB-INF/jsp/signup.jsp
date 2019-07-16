@@ -38,6 +38,7 @@
 <!--===============================================================================================-->
 </head>
 <body>
+<jsp:include page="topbar.jsp"></jsp:include>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
