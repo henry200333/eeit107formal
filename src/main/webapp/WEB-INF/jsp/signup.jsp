@@ -55,9 +55,8 @@
 
 					<div class="wrap-input100 validate-input m-b-16"
 						data-validate="Please enter Email">
-						<input class="input100" type="email" name="email"
-							autofocus="autofocus" value="" placeholder="Email"> <span
-							class="focus-input100"></span>
+						<input class="input100" type="email" name="email" value=""
+							placeholder="Email"> <span class="focus-input100"></span>
 					</div>
 
 
