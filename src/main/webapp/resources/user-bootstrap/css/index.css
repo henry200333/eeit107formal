@@ -1,0 +1,271 @@
+.bar {
+    border-bottom: 5px solid white;
+    background-color:white;
+    font-size:30px;
+}
+
+.bar2{
+    background-color:white; 
+}
+
+
+#topbar1:hover {
+    transition-property: border-bottom, color;
+    transition-duration: 0.4s;
+    border-bottom: 5px solid #ff7575;
+    color: #ff7575;
+}
+
+#homebar a:hover {
+    background-color: rgb(250, 199, 199);
+}
+
+
+#topbar2:hover {
+    transition-property: border-bottom, color;
+    transition-duration: 0.3s;
+    border-bottom: 5px solid #ff9224;
+    color: #ff9224;
+}
+
+#artistbar a:hover {
+    background-color: rgba(255, 232, 157, 0.877);
+}
+
+
+#topbar3:hover {
+    transition-property: border-bottom, color;
+    transition-duration: 0.3s;
+    border-bottom: 5px solid #75b90e;
+    color: #75b90e;
+}
+
+#activitybar a:hover {
+    background-color: rgb(195, 255, 190);
+}
+
+
+#topbar4:hover {
+    transition-property: border-bottom, color;
+    transition-duration: 0.3s;
+    border-bottom: 5px solid #66b3ff;
+    color: #66b3ff;
+}
+
+#performancebar a:hover {
+    background-color: rgb(206, 239, 247);
+}
+
+
+#topbar5:hover {
+    transition-property: border-bottom, color;
+    transition-duration: 0.3s;
+    border-bottom: 5px solid #3e6af8;
+    color: #3e6af8;
+}
+
+#articlebar a:hover {
+    background-color: rgb(191, 207, 252);
+}
+
+#topbar6:hover {
+    transition-property: border-bottom, color;
+    transition-duration: 0.3s;
+    border-bottom: 5px solid rgb(177, 2, 212);
+    color: rgb(177, 2, 212);
+}
+
+#venderbar a:hover {
+    background-color: rgb(236, 189, 250);
+}
+
+body {
+    font-family: '微軟正黑體';
+    background-image: url(img/div.gif);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+.img {
+    border-radius: 25px;
+    padding: 10px;
+}
+
+#headernav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000000;
+
+}
+
+.talk {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 150px;
+    z-index: 10000;
+}
+
+
+
+.artist1 {
+    border-radius: 15px;
+    transition-property: -webkit-filter;
+    transition-duration: 0.5s;
+    -webkit-filter: brightness(1);
+}
+
+.artist1:hover {
+    transition-property: -webkit-filter;
+    transition-duration: 0.5s;
+    -webkit-filter: brightness(.7);
+
+}
+
+#activity img {
+    transition-property: -webkit-filter;
+    transition-duration: 0.5s;
+    -webkit-filter: brightness(1);
+}
+
+#activity img:hover {
+    transition-property: -webkit-filter;
+    transition-duration: 0.5s;
+    -webkit-filter: brightness(.7);
+}
+
+
+
+#activity div {
+    pointer-events: none;
+}
+
+#art {
+    display: flex;
+    overflow: hidden;
+}
+
+#art img {
+    width: 100px;
+}
+
+.talkbar {
+    background-color: white;
+    border: 2px solid rgb(189, 189, 189);
+    height: 750px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 15%;
+    z-index: 100;
+    border-radius: 15px 15px 0 0;
+}
+
+.talkbar2 {
+    background-color: white;
+    border: 2px solid rgb(189, 189, 189);
+    height: 350px;
+    position: fixed;
+    bottom: 0;
+    left: 15%;
+    width: 15%;
+    z-index: 100;
+    border-radius: 15px 15px 0 0;
+}
+
+.talkbye {
+    position: fixed;
+    bottom: 745px;
+    left: 10px;
+    width: 100px;
+    z-index: 10000;
+}
+
+.friend {
+    background-color: rgb(189, 189, 189);
+    color: white;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 20px;
+    border-radius: 14px 14px 0 0;
+}
+
+.fsearch {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 15%;
+    z-index: 100;
+    height: 50px;
+    border: 2px solid rgb(189, 189, 189);
+}
+
+.fsearch2 {
+    position: fixed;
+    bottom: 0;
+    left: 15%;
+    width: 12%;
+    z-index: 100;
+    height: 50px;
+    border: 2px solid rgb(189, 189, 189);
+}
+
+
+
+#art div p {
+    color: red;
+    white-space: nowrap;
+    padding-left: 20px;
+    margin-top: 20px;
+}
+
+#art img {
+    display: flex;
+}
+
+#art {
+    display: flex;
+    overflow: hidden;
+    height: 100px;
+}
+
+#art div {
+    display: flex;
+    width: 270px;
+
+
+}
+
+.slick-prev {
+    left: -90px;
+}
+
+.slick {
+    margin-top: 30px;
+}
+
+.slick img {
+    width: 30%;
+    float: left;
+    transition-property: border-radius;
+    transition-duration: 0.5s;
+    border-radius: 15px;
+}
+
+.slick img:hover {
+    transition-property: border-radius;
+    transition-duration: 0.5s;
+    border-radius: 50%;
+}
+
+.bigdiv {
+    background: url(img/bigdiv.gif) no-repeat fixed top;
+}
+
+iframe:hover {
+    opacity: 0.6;
+}
