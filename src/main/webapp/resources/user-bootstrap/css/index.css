@@ -281,6 +281,7 @@ body {
 iframe:hover {
     opacity: 0.6;
 }
+<<<<<<< HEAD
 /* activity */
 .snip1543 {
   background-color: #fff;
@@ -441,3 +442,41 @@ iframe:hover {
   transition-delay: 0.1s;
 }
 /* activity */
+=======
+
+.per1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    background-color: white;
+    opacity: 0;
+    z-index: 1;
+    width: 100%;
+    height: 72%;
+}
+.per2{
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    background-color: white;
+    opacity: 0;
+    z-index: 1;
+    width: 100%;
+    height: 72%;
+}
+.per3{
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    background-color: white;
+    opacity: 0;
+    z-index: 1;
+    width: 100%;
+    height: 72%;
+}
+
+img{ cursor: pointer; }
+>>>>>>> branch 'master' of https://github.com/henry200333/eeit107formal

@@ -261,18 +261,20 @@
 			</div>
 
 			<div class="row" style="margin-top: 30px;">
-				<div class="col-4">
+				<div class="col-4" style="position: relative;">
+				<div class="per1"></div>
 					<iframe width="100%" height="240px;" id="url1"
-						src="https://www.youtube.com/embed/VVDsJKzbYcM" frameborder="0"
+						src="https://www.youtube.com/embed/VVDsJKzbYcM" frameborder="0" 
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-						allowfullscreen></iframe>
+						allowfullscreen style="position: relative;"></iframe>
 					<div style="margin-top: 10px;" id="performance1">
 						<p style="line-height: 10px;" id='p1'></p>
 						<p style="line-height: 10px;" id='p2'></p>
 						<p style="line-height: 10px;" id='p3'></p>
 					</div>
 				</div>
-				<div class="col-4">
+				<div class="col-4"  style="position: relative;">
+				<div class="per2"></div>
 					<iframe width="100%" height="240px" id="url2"
 						src="https://www.youtube.com/embed/VVDsJKzbYcM" frameborder="0"
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -283,7 +285,8 @@
 						<p style="line-height: 10px;" id='p3'></p>
 					</div>
 				</div>
-				<div class="col-4">
+				<div class="col-4"  style="position: relative;">
+				<div class="per3"></div>
 					<iframe width="100%" height="240px" id="url3"
 						src="https://www.youtube.com/embed/VVDsJKzbYcM" frameborder="0"
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -442,6 +445,9 @@
 				var count = value['url'].indexOf("=");
 				var url = value['url'].substring(count+1);
 				$("#url"+(p+1)).attr('src','https://www.youtube.com/embed/'+url);
+				$(".per"+(p+1)).click(function(){
+					window.location.href='/login';
+				});
 				$("#performance"+(p+1)).children("#p1").html(value['title']);
 				$("#performance"+(p+1)).children("#p2").html(value['username']);
 				$("#performance"+(p+1)).children("#p3").html(value['views']+"觀看，"+parseInt(timeresult)+"前發布");

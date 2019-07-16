@@ -10,4 +10,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface JobDao extends JpaRepository<Job, Long>,JpaSpecificationExecutor<Job> {
 	public List<Job> findByVender(Vender vender);
+
 }
