@@ -142,7 +142,7 @@
 				<div class="col-8" style="margin-top: 20px;">
 					<div style="position: relative; padding-right: 15px; padding-top: 12px;" id="activity">
 					<figure class="snip1543">
-  		<img src="/resources/user-bootstrap/img/index/act1.gif" alt="sample108" />
+  		<img src="/resources/user-bootstrap/img/index/act1.gif" style='border-top-right-radius:20px;border-bottom-right-radius:20px;' alt="sample108" />
 				  <figcaption>
    				 <h3 id='acth1'></h3>
     		<p id='actp1'></p>
@@ -152,7 +152,7 @@
 					</div>
 					<div style="position: relative; padding-right: 15px; padding-top: 12px;" id="activity">
 						<figure class="snip1543">
-  		<img src="/resources/user-bootstrap/img/index/act1.gif" alt="sample108" />
+  		<img src="/resources/user-bootstrap/img/index/act1.gif" style='border-top-right-radius:20px;border-bottom-right-radius:20px;' alt="sample108" />
 				  <figcaption>
    				 <h3 id='acth2'></h3>
     		<p id='actp2'></p>
@@ -162,7 +162,7 @@
 					</div>
 					<div style="position: relative; padding-right: 15px; padding-top: 12px;" id="activity">
 						<figure class="snip1543">
-  		<img src="/resources/user-bootstrap/img/index/act1.gif" alt="sample108" />
+  		<img src="/resources/user-bootstrap/img/index/act1.gif" style='border-top-right-radius:20px;border-bottom-right-radius:20px;' alt="sample108" />
 				  <figcaption>
    				 <h3 id='acth3'></h3>
     		<p id='actp3'></p>
@@ -190,8 +190,6 @@
 				<div class="col-4" style="height: 700px; margin-top: 28px;">
 					<div class="row" style="height: 120px; border: 1px,black,solid;">
 						<div id="articleImg1" class="col-4">
-<!-- 							<img id="articleImg1" src="/resources/user-bootstrap/img/index/article.jpg" -->
-<!-- 								width="100%" height="80%" style="margin-top: 12px; border-radius: 10px"> -->
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop1" style="font-size: 19px"></p>
@@ -200,8 +198,6 @@
 					</div>
 					<div class="row" style="height: 120px;">
 						<div id="articleImg2" class="col-4">
-<!-- 							<img id="articleImg2" src="/resources/user-bootstrap/img/index/article.jpg" -->
-<!-- 								width="100%" height="80%" style="margin-top: 12px; border-radius: 10px"> -->
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop2" style="font-size: 19px"></p>
@@ -210,8 +206,6 @@
 					</div>
 					<div class="row" style="height: 120px;">
 						<div id="articleImg3" class="col-4">
-<!-- 							<img id="articleImg3" src="/resources/user-bootstrap/img/index/article.jpg" -->
-<!-- 								width="100%" style="margin-top: 12px; border-radius: 10px"> -->
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop3" style="font-size: 19px"></p>
@@ -220,8 +214,6 @@
 					</div>
 					<div class="row" style="height: 120px;">
 						<div id="articleImg4" class="col-4">
-<!-- 							<img id="articleImg4" src="/resources/user-bootstrap/img/index/article.jpg" -->
-<!-- 								width="100%" height="80%" style="margin-top: 12px; border-radius: 10px"> -->
 						</div>
 						<div class="col-8" style="margin-top: 10px;"
 							style="margin-top:10px;">
@@ -231,8 +223,6 @@
 					</div>
 					<div class="row" style="height: 120px;">
 						<div id="articleImg5" class="col-4">
-<!-- 							<img  id="articleImg5" src="/resources/user-bootstrap/img/index/article.jpg" -->
-<!-- 								width="100%" height="80%" style="margin-top: 12px; border-radius: 10px"> -->
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop5" style="font-size: 19px"></p>
@@ -495,9 +485,9 @@
 					if(start != -1 && end != -1){
 						var url = content.substring(start + 2, end + 4);
 						console.log(url);
-						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 10px; background-image:url('" + url + "'); background-size: cover; background-position: center;");
+						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 10px; background-image:url('" + url + "'); background-size: cover; background-position: center; cursor: pointer;");
 					} else {
-						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 10px; background-image:url('/resources/user-bootstrap/img/index/article.jpg'); background-size: cover; background-position: center;");
+						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 10px; background-image:url('/resources/user-bootstrap/img/index/article.jpg'); background-size: cover; background-position: center; cursor: pointer;");
 					}
 				}
 			}
