@@ -66,9 +66,21 @@ public class JobService {
 	
 	public void saveApplication(Artist artist , Job job) {
 		JobApplication application=new JobApplication();
+		System.out.println(artist.getId());
+		System.out.println(job.getId());
 		application.setArtist(artist);
 		application.setJob(job);
 		application.setApplicationTime(new Date());
 		jobApplicationDao.save(application);
 	}
+	
+	public Boolean checkApplication(Artist artist , Job job) {
+		if(jobApplicationDao.findByArtistAndJob(artist, job)!=null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	
 }

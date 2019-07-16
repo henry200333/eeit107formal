@@ -131,7 +131,7 @@
 						class="fab fa-hotjar"></i>熱門活動</span>
 				</div>
 
-				<div class="col-4" style="margin-top: 40px;">
+				<div class="col-4" style="margin-top: 40px; padding-left: 0;">
 					<span
 						style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold"><i class="fas fa-star"></i>熱門文章</span>
 				</div>
@@ -140,42 +140,36 @@
 			<!-- 300:1000 -->
 			<div class="row">
 				<div class="col-8" style="margin-top: 20px;">
-					<div style="position: relative" id="activity">
-						<div
-							style="position: absolute; margin-left: 280px; z-index: 2; top: 20px; display: none; border-left: 180px solid transparent; width: 450px; height: 0; border-bottom: 219px solid #ff7575"
-							id="acts1">
-							<span style="color: white" id='actTop1'> 
-							
-							</span>
-						</div>
-						<img src="/resources/user-bootstrap/img/index/act1.gif"
-							width="100%" style="position: absolute; top: 20px;" id="act1">
+					<div style="position: relative; padding-right: 15px; padding-top: 12px;" id="activity">
+					<figure class="snip1543">
+  		<img src="/resources/user-bootstrap/img/index/act1.gif" style='border-top-right-radius:20px;border-bottom-right-radius:20px;' alt="sample108" />
+				  <figcaption>
+   				 <h3 id='acth1'></h3>
+    		<p id='actp1'></p>
+  					</figcaption>
+ 					 <a href="#"></a>
+					</figure>
 					</div>
-					<div style="position: relative" id="activity">
-						<div
-							style="position: absolute; margin-left: 280px; z-index: 2; top: 260px; display: none; border-left: 180px solid transparent; width: 450px; height: 0; border-bottom: 219px solid #66b3ff"
-							id="acts2">
-							<span style="color: white" id='actTop2'> 
-							
-							</span>
-						</div>
-						<img src="/resources/user-bootstrap/img/index/act1.gif"
-							width="100%" style="position: absolute; top: 260px;" id="act2">
+					<div style="position: relative; padding-right: 15px; padding-top: 12px;" id="activity">
+						<figure class="snip1543">
+  		<img src="/resources/user-bootstrap/img/index/act1.gif" style='border-top-right-radius:20px;border-bottom-right-radius:20px;' alt="sample108" />
+				  <figcaption>
+   				 <h3 id='acth2'></h3>
+    		<p id='actp2'></p>
+  					</figcaption>
+ 					 <a href="#"></a>
+					</figure>
 					</div>
-					<div style="position: relative" id="activity">
-						<div
-							style="position: absolute; margin-left: 280px; z-index: 2; top: 500px; display: none; border-left: 180px solid transparent; width: 450px; height: 0; border-bottom: 219px solid #a6a6d2"
-							id="acts3">
-							<span style="color: white" id='actTop3'> 
-							
-							</span>
-						</div>
-						<img src="/resources/user-bootstrap/img/index/act1.gif"
-							width="100%" style="position: absolute; top: 500px;" id="act3">
+					<div style="position: relative; padding-right: 15px; padding-top: 12px;" id="activity">
+						<figure class="snip1543">
+  		<img src="/resources/user-bootstrap/img/index/act1.gif" style='border-top-right-radius:20px;border-bottom-right-radius:20px;' alt="sample108" />
+				  <figcaption>
+   				 <h3 id='acth3'></h3>
+    		<p id='actp3'></p>
+  					</figcaption>
+ 					 <a href="#"></a>
+					</figure>
 					</div>
-
-
-
 				</div>
 				<script>
 					$("#act1").hover(function() {
@@ -187,12 +181,17 @@
 					$("#act3").hover(function() {
 						$("#acts3").fadeToggle(300)
 					})
+					$(".hover").mouseleave(
+  				function() {
+    				$(this).removeClass("hover");
+  					}
+				);
 				</script>
 				<div class="col-4" style="height: 700px; margin-top: 28px;">
 					<div class="row" style="height: 120px; border: 1px,black,solid;">
-						<div class="col-4">
-							<img src="/resources/user-bootstrap/img/index/article.jpg"
-								width="100%" style="margin-top: 12px; border-radius: 10px">
+						<div id="articleImg1" class="col-4">
+<!-- 							<img id="articleImg1" src="/resources/user-bootstrap/img/index/article.jpg" -->
+<!-- 								width="100%" height="80%" style="margin-top: 12px; border-radius: 10px"> -->
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop1" style="font-size: 19px"></p>
@@ -200,9 +199,9 @@
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
-						<div class="col-4">
-							<img src="/resources/user-bootstrap/img/index/article.jpg"
-								width="100%" style="margin-top: 12px; border-radius: 10px">
+						<div id="articleImg2" class="col-4">
+<!-- 							<img id="articleImg2" src="/resources/user-bootstrap/img/index/article.jpg" -->
+<!-- 								width="100%" height="80%" style="margin-top: 12px; border-radius: 10px"> -->
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop2" style="font-size: 19px"></p>
@@ -210,9 +209,9 @@
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
-						<div class="col-4">
-							<img src="/resources/user-bootstrap/img/index/article.jpg"
-								width="100%" style="margin-top: 12px; border-radius: 10px">
+						<div id="articleImg3" class="col-4">
+<!-- 							<img id="articleImg3" src="/resources/user-bootstrap/img/index/article.jpg" -->
+<!-- 								width="100%" style="margin-top: 12px; border-radius: 10px"> -->
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop3" style="font-size: 19px"></p>
@@ -220,9 +219,9 @@
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
-						<div class="col-4">
-							<img src="/resources/user-bootstrap/img/index/article.jpg"
-								width="100%" style="margin-top: 12px; border-radius: 10px">
+						<div id="articleImg4" class="col-4">
+<!-- 							<img id="articleImg4" src="/resources/user-bootstrap/img/index/article.jpg" -->
+<!-- 								width="100%" height="80%" style="margin-top: 12px; border-radius: 10px"> -->
 						</div>
 						<div class="col-8" style="margin-top: 10px;"
 							style="margin-top:10px;">
@@ -231,9 +230,9 @@
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
-						<div class="col-4">
-							<img src="/resources/user-bootstrap/img/index/article.jpg"
-								width="100%" style="margin-top: 12px; border-radius: 10px">
+						<div id="articleImg5" class="col-4">
+<!-- 							<img  id="articleImg5" src="/resources/user-bootstrap/img/index/article.jpg" -->
+<!-- 								width="100%" height="80%" style="margin-top: 12px; border-radius: 10px"> -->
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop5" style="font-size: 19px"></p>
@@ -241,9 +240,7 @@
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
-						<div class="col-4">
-							<img src="/resources/user-bootstrap/img/index/article.jpg"
-								width="100%" style="margin-top: 12px; border-radius: 10px">
+						<div id="articleImg6" class="col-4" style="margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 10px; background-image:url('https://i.imgur.com/31rorUq.jpg'); background-size: cover; background-position: center;">
 						</div>
 						<div class="col-8" style="margin-top: 10px;">
 							<p id="articleTop6" style="font-size: 19px"></p>
@@ -262,18 +259,20 @@
 			</div>
 
 			<div class="row" style="margin-top: 30px;">
-				<div class="col-4">
+				<div class="col-4" style="position: relative;">
+				<div class="per1"></div>
 					<iframe width="100%" height="240px;" id="url1"
-						src="https://www.youtube.com/embed/VVDsJKzbYcM" frameborder="0"
+						src="https://www.youtube.com/embed/VVDsJKzbYcM" frameborder="0" 
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-						allowfullscreen></iframe>
+						allowfullscreen style="position: relative;"></iframe>
 					<div style="margin-top: 10px;" id="performance1">
 						<p style="line-height: 10px;" id='p1'></p>
 						<p style="line-height: 10px;" id='p2'></p>
 						<p style="line-height: 10px;" id='p3'></p>
 					</div>
 				</div>
-				<div class="col-4">
+				<div class="col-4"  style="position: relative;">
+				<div class="per2"></div>
 					<iframe width="100%" height="240px" id="url2"
 						src="https://www.youtube.com/embed/VVDsJKzbYcM" frameborder="0"
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -284,7 +283,8 @@
 						<p style="line-height: 10px;" id='p3'></p>
 					</div>
 				</div>
-				<div class="col-4">
+				<div class="col-4"  style="position: relative;">
+				<div class="per3"></div>
 					<iframe width="100%" height="240px" id="url3"
 						src="https://www.youtube.com/embed/VVDsJKzbYcM" frameborder="0"
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -443,6 +443,9 @@
 				var count = value['url'].indexOf("=");
 				var url = value['url'].substring(count+1);
 				$("#url"+(p+1)).attr('src','https://www.youtube.com/embed/'+url);
+				$(".per"+(p+1)).click(function(){
+					window.location.href=value['url'];
+				});
 				$("#performance"+(p+1)).children("#p1").html(value['title']);
 				$("#performance"+(p+1)).children("#p2").html(value['username']);
 				$("#performance"+(p+1)).children("#p3").html(value['views']+"觀看，"+parseInt(timeresult)+"前發布");
@@ -461,10 +464,9 @@
 			txt2="<img src='/resources/user-bootstrap/img/index/act1.gif' width='100%' style='position: absolute; top: 20px;' id='act1'></div>";
 			$.each(data,function(index,value){
 				pictureNum = value['id'];
-				txt3 = "<br> <br>活動名稱：　"+value['name']+"<br>發布人：　"
-										+value['artist']+"<br>時間："+value['beginTime']+" 至　"+value['endTime']+"<br>參加人數：　"+value['awesomeNum'];
-				$("#actTop"+(index+1)).append(txt3);
-				
+				txt3 = "<br>發布人："+value['artist']+"<br>時間："+value['beginTime']+" 至 <br>　　　"+value['endTime']+"<br>參加人數："+value['awesomeNum'];
+				$("#acth"+(index+1)).append(value['name']);
+				$("#actp"+(index+1)).append(txt3);
 // 				<br> <br>活動名稱 <br>發布人
 // 				<br>時間 <br>參加人數
 				
@@ -482,9 +484,21 @@
 		success: function(res){
 			if(res.type == "SUCCESS"){
 				var data = res.data;
-				var articlediv = "#articleTop";
+				var articleTop = "#articleTop";
+				var articleImg = "#articleImg";
 				for(var i = 0; i < data.length; i++){
-					$(articlediv + (i + 1)).append(data[i].name);
+					var content = data[i].content;
+					$(articleTop + (i + 1)).append(data[i].name);
+					$(articleTop + (i + 1)).attr('id', 'article' + data[i].id);
+					var start = content.indexOf('](http');
+					var end = content.indexOf('.jpg');
+					if(start != -1 && end != -1){
+						var url = content.substring(start + 2, end + 4);
+						console.log(url);
+						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 10px; background-image:url('" + url + "'); background-size: cover; background-position: center;");
+					} else {
+						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 10px; background-image:url('/resources/user-bootstrap/img/index/article.jpg'); background-size: cover; background-position: center;");
+					}
 				}
 			}
 		}
