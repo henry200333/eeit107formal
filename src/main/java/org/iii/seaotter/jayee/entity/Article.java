@@ -33,7 +33,7 @@ public class Article {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-	@Size(min = 2, max = 100)
+	@Size(min = 2, max = 60)
 	@Column(name = "name")
 	private String name;
 	@Lob
