@@ -34,7 +34,9 @@ INSERT INTO user_role(user_id, role_id) values
 (5,2),(5,3),
 (6,2),(6,3),
 (7,2),(7,3),
-(8,2),(8,3);
+(8,2),(8,3),
+(9,2),
+(10,2);
 ALTER TABLE user_role CHECK CONSTRAINT ALL;
 
 
