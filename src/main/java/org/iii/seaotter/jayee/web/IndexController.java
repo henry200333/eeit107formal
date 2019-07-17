@@ -126,8 +126,8 @@ public class IndexController {
 	
 	@GetMapping("/artistTop5")
 	@ResponseBody
-	public List<Artist> getTop5(){
-		return artistService.getTop5();
+	public List<SecurityUser> getTop5(){
+		return securityUserService.getTop5();
 	}
 	
 	

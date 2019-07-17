@@ -61,6 +61,8 @@ public class SecurityUser implements UserDetails {
 	private java.util.Date registerDate;
 	@Column(name = "introduction")
 	private String introduction;
+	@Column(name = "followers")
+	private Long followers;
 	@Column(name = "enabled")
 	private Boolean enabled;
 	

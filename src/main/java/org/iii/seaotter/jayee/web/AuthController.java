@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.iii.seaotter.jayee.dao.SecurityRoleDao;
-import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.SecurityRole;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ArtistService;
@@ -47,9 +46,6 @@ public class AuthController {
 		System.out.println(username);
 		SecurityUser user = securityUserService.getByUserName(username);
 		model.addAttribute("userParam", user);
-		Artist artist = user.getArtist();
-		if (artist != null)
-			model.addAttribute("artistParam", artist);
 		return "/user/userpage";
 	}
 	
@@ -58,9 +54,6 @@ public class AuthController {
 		System.out.println(username);
 		SecurityUser user = securityUserService.getByUserName(username);
 		model.addAttribute("userParam", user);
-		Artist artist = user.getArtist();
-		if (artist != null)
-			model.addAttribute("artistParam", artist);
 		return "/user/edit";
 	}
 	

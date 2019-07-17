@@ -23,20 +23,20 @@
 			<!-- 500:500 -->
 			<div class="row" style="text-align: center; margin-top: 1em;">
 				<div class="col-3" style="padding: 0 0 0 15px">
-					<img src="/resources/user-bootstrap/img/index/artist1.jpg"
-						width="100%" class="artist1"> <img
-						src="/resources/user-bootstrap/img/index/artist3.jpg" width="100%"
-						style="margin-top: 10px" class="artist1">
+					<a id="artistlink1" href=""><img src=""
+						width="100%" class="artist1"></a> <a id="artistlink3" href=""><img
+						src="" width="100%"
+						style="margin-top: 10px" class="artist3"></a>
 				</div>
 				<div class="col-6" style="padding: 0 10px 0">
-					<img src="/resources/user-bootstrap/img/index/artist2.gif"
-						width="100%" class="artist1">
+					<a id="artistlink2" href=""><img src=""
+						width="100%" class="artist2"></a>
 				</div>
 				<div class="col-3" style="padding: 0 15px 0 0">
-					<img src="/resources/user-bootstrap/img/index/artist4.jpg"
-						width="100%" class="artist1"> <img
-						src="/resources/user-bootstrap/img/index/artist5.jpg" width="100%"
-						style="margin-top: 10px" class="artist1">
+					<a id="artistlink4" href=""><img src=""
+						width="100%" class="artist4"></a> <a id="artistlink5" href=""><img
+						src="" width="100%"
+						style="margin-top: 10px" class="artist5"></a>
 				</div>
 			</div>
 
@@ -79,36 +79,36 @@
 
 			<div class="slick">
 				<div class="col-3">
-					<img src="/resources/user-bootstrap/img/index/artist1.jpg"
-						style="display: inline" width="40%"> <span
+					<a id="artistlink1" href=""><img src=""
+						style="display: inline" width="40%" id="artistPic1"></a> <span
 						class="artwalls1 artname1" ></span>
 					<br> <span class="artwalls2 follow1" ></span>
 				</div>
 
 				<div class="col-3">
-					<img src="/resources/user-bootstrap/img/index/artist2.gif"
-						style="display: inline" width="40%"> <span
+					<a id="artistlink" href=""><img src=""
+						style="display: inline" width="40%" id="artistPic2"></a> <span
 						class="artwalls1 artname2"></span>
 					<br> <span class="artwalls2 follow2"></span>
 
 				</div>
 				<div class="col-3">
-					<img src="/resources/user-bootstrap/img/index/artist3.jpg"
-						style="display: inline" width="40%"> <span
+					<a id="artistlink3" href=""><img src=""
+						style="display: inline" width="40%" id="artistPic3"></a> <span
 						class="artwalls1 artname3" ></span>
 					<br> <span class="artwalls2 follow3" ></span>
 
 				</div>
 				<div class="col-3">
-					<img src="/resources/user-bootstrap/img/index/artist4.jpg"
-						style="display: inline" width="40%"> <span
+					<a id="artistlink4" href=""><img src=""
+						style="display: inline" width="40%" id="artistPic4"></a> <span
 						class="artwalls1 artname4"></span>
 					<br> <span class="artwalls2 follow4"></span>
 
 				</div>
 				<div class="col-3">
-					<img src="/resources/user-bootstrap/img/index/artist5.jpg"
-						style="display: inline" width="40%"> <span
+					<a id="artistlink5" href=""><img src=""
+						style="display: inline" width="40%" id="artistPic5"></a> <span
 						class="artwalls1 artname5" ></span>
 					<br> <span class="artwalls2 follow5"></span>
 
@@ -448,8 +448,11 @@
 		success: function(data){
 			$.each(data,function(index,value){
 				var count = index+1;
-				$(".artname"+count).html(value['artistName']);
-				$(".follow"+count).html(value['totalFollowers']);
+				$(".artist"+count).attr('src',value['photo']);
+				$("#artistPic"+count).attr('src',value['photo']);
+				$("#artistlink"+count).attr('href','/'+value['account']);
+				$(".artname"+count).html(value['displayName']);
+				$(".follow"+count).html(value['followers']);
 			})
 		}
 	});

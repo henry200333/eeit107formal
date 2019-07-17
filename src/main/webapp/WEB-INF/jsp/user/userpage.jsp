@@ -47,12 +47,12 @@
 		<div class="container" style="margin-top: 70px;">
 		<div style="border: 5px #FFAC55 solid;"><img src="${userParam.photo }"></div>
 		<div style="border: 5px #FFAC55 solid;">
-			姓名:${artistParam.artistName }</div>
+			姓名:${userParam.displayName }</div>
 		<div style="border: 5px #FFAC55 solid;">
 			關於我:${userParam.introduction }</div>
 
 		<div style="border: 5px #FFAC55 solid;">
-			追蹤中:</div>
+			追蹤人數:${userParam.followers }</div>
 		<div style="border: 5px #FFAC55 solid;">
 			表演:</div>
 		<div style="border: 5px #FFAC55 solid;">

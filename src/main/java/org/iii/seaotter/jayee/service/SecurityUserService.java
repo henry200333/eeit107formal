@@ -3,6 +3,7 @@ package org.iii.seaotter.jayee.service;
 import java.util.List;
 
 import org.iii.seaotter.jayee.dao.SecurityUserDao;
+import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -61,5 +62,9 @@ public class SecurityUserService implements UserDetailsService {
 	public SecurityUser getByUserName(String userName) {
 		return securityUserDao.findByAccount(userName);
 	}
-
+	
+	public List<SecurityUser> getTop5(){
+		return securityUserDao.findTop5ByOrderByFollowersDesc();
+	}
+	
 }
