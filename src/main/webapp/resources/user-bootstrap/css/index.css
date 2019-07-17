@@ -479,3 +479,40 @@ iframe:hover {
 
 img{ cursor: pointer; }
 
+.articleblock{
+  -webkit-animation:scaledown 0.2s linear;
+  -moz-animation:scaledown 0.2s linear;
+  animation:scaledown 0.2s linear;
+  transform-origin:50% 50%;
+  animation-fill-mode: forwards;
+}
+
+.articleblock:hover{
+   z-index:100;
+  -webkit-animation:scale 0.2s linear;
+  -moz-animation:scale 0.2s linear;
+  animation:scale 0.2s linear;
+  transform-origin:50% 50%;
+  animation-fill-mode: forwards;
+}
+
+@keyframes scale{
+  0%{
+    transform:scale(1.0);
+  }
+  100%{
+    transform:scale(1.1);
+    -webkit-box-shadow: 10px 10px 60px 10px rgba(0,0,0,0.1);
+	-moz-box-shadow: 10px 10px 60px 10px rgba(0,0,0,0.1);
+	box-shadow: 10px 10px 60px 10px rgba(0,0,0,0.1);
+  }
+}
+
+@keyframes scaledown{
+  0%{
+    transform:scale(1.1);
+  }
+   100%{
+    transform:scale(1.0);
+  }
+}
