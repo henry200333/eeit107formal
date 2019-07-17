@@ -72,5 +72,9 @@ public class ArtistService {
 	public Page<Artist> getAll(Specification<Artist> specification, Pageable pageable) {
 		return artistDao.findAll(specification, pageable);
 	}
+	
+	public List<Artist> getTop5(){
+		return artistDao.findTop5ByOrderByTotalFollowers();
+	}
 
 }
