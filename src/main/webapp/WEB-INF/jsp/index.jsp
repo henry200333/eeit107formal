@@ -300,7 +300,7 @@
 								style="color: white; font-size: 20px; border-bottom: 2px solid white; padding: 0px 50px;">訂閱街藝</span>
 							<br> <br> <input type="email" size="26"
 								placeholder="Email@" style="line-height: 30px;">
-							<buttun type="buttun" class="btn btn-danger">訂閱</buttun>
+							<button type="button" class="btn btn-danger">訂閱</button>
 						</div>
 						<div class="col-4" style="margin-top: 20px">
 							<span
