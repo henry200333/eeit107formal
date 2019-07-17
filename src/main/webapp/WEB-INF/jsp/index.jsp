@@ -191,51 +191,51 @@
 					<div class="row" style="height: 120px; border: 1px,black,solid;">
 						<div id="articleImg1" class="col-4">
 						</div>
-						<div class="col-8" style="margin-top: 10px;">
-							<p id="articleTop1" style="font-size: 19px"></p>
-							<span style="font-size: 14px"><i class="far fa-comment-dots"></i>  1750    </span><span style="font-size: 14px;margin-left:15px"><i class="fas fa-heart" style="margin-left:15px;"></i>   45123</span>
+						<div class="col-8" style="margin-top: 10px; position:relative;">
+							<p id="articleTop1" style="font-size: 19px; position: absolute; top: 5px""></p>
+							<span style="font-size: 14px; position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 1750<i id="articleView1" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
 						<div id="articleImg2" class="col-4">
 						</div>
-						<div class="col-8" style="margin-top: 10px;">
-							<p id="articleTop2" style="font-size: 19px"></p>
-							<span style="font-size: 14px"><i class="far fa-comment-dots"></i>  315    </span><span style="font-size: 14px;margin-left:15px"><i class="fas fa-heart" style="margin-left:15px;"></i>   7701</span>
+						<div class="col-8" style="margin-top: 10px; position:relative;">
+							<p id="articleTop2" style="font-size: 19px; position: absolute; top: 5px""></p>
+							<span style="font-size: 14px; position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 315<i id="articleView2" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
 						<div id="articleImg3" class="col-4">
 						</div>
-						<div class="col-8" style="margin-top: 10px;">
-							<p id="articleTop3" style="font-size: 19px"></p>
-							<p style="font-size: 14px"><i class="far fa-comment-dots"></i>  189    <i class="fas fa-heart" style="margin-left:15px;"></i>   512</p>
+						<div class="col-8" style="margin-top: 10px; position:relative;">
+							<p id="articleTop3" style="font-size: 19px; position: absolute; top: 5px""></p>
+							<span style="font-size: 14px; position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 189<i id="articleView3" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
 						<div id="articleImg4" class="col-4">
 						</div>
-						<div class="col-8" style="margin-top: 10px;"
+						<div class="col-8" style="margin-top: 10px; position:relative;"
 							style="margin-top:10px;">
-							<p id="articleTop4" style="font-size: 19px"></p>
-							<span style="font-size: 14px"><i class="far fa-comment-dots"></i>  115    </span><span style="font-size: 14px;margin-left:15px"><i class="fas fa-heart" style="margin-left:15px;"></i>   189</span>
+							<p id="articleTop4" style="font-size: 19px; position: absolute; top: 5px""></p>
+							<span style="font-size: 14px; position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 115<i id="articleView4" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
 						<div id="articleImg5" class="col-4">
 						</div>
-						<div class="col-8" style="margin-top: 10px;">
-							<p id="articleTop5" style="font-size: 19px"></p>
-							<span style="font-size: 14px"><i class="far fa-comment-dots"></i>  1    </span><span style="font-size: 14px;margin-left:15px"><i class="fas fa-heart" style="margin-left:15px;"></i>   10</span>
+						<div class="col-8" style="margin-top: 10px; position:relative;">
+							<p id="articleTop5" style="font-size: 19px; position: absolute; top: 5px""></p>
+							<span style="font-size: 14px;  position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 1<i id="articleView5" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
 					<div class="row" style="height: 120px;">
-						<div id="articleImg6" class="col-4" style="margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 10px; background-image:url('https://i.imgur.com/31rorUq.jpg'); background-size: cover; background-position: center;">
+						<div id="articleImg6" class="col-4">
 						</div>
-						<div class="col-8" style="margin-top: 10px;">
-							<p id="articleTop6" style="font-size: 19px"></p>
-							<span style="font-size: 14px"><i class="far fa-comment-dots"></i>  125    </span><span style="font-size: 14px;margin-left:15px"><i class="fas fa-heart" style="margin-left:15px;"></i>   33</span>
-							<a class="btn btn-primary" href="" style="float: right">看更多</a>
+						<div class="col-8" style="margin-top: 10px; position:relative;">
+							<p id="articleTop6" style="font-size: 19px; position: absolute; top: 5px"></p>
+							<span style="font-size: 14px;  position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 125<i id="articleView6" class="fas fa-eye" style="margin-left:15px;"></i></span>
+							<a class="btn btn-primary" href="" style="position: absolute; bottom: 0; margin-left: 170px;">看更多</a>
 						</div>
 					</div>
 				</div>
@@ -398,7 +398,7 @@
 		}
 	})
 	
-	//獲取articleTop6並放入對應的DIV
+	//獲取articleTop6並放入對應的DIV及IMG
 	$.ajax({
 		url:"/index/articleTop6",
 		type:"GET",
@@ -407,18 +407,35 @@
 				var data = res.data;
 				var articleTop = "#articleTop";
 				var articleImg = "#articleImg";
+				var articleView = "#articleView";
 				for(var i = 0; i < data.length; i++){
 					var content = data[i].content;
-					$(articleTop + (i + 1)).append(data[i].name);
-					$(articleTop + (i + 1)).attr('id', 'article' + data[i].id);
+					$(articleTop + (i + 1)).append(data[i].name); //加入文章名稱
+					$(articleView + (i + 1)).after(" " + data[i].count); //加入文章觀看次數
+					$(articleTop + (i + 1)).attr('id', 'article' + data[i].id); //修改div的id為文章id
 					var start = content.indexOf('](http');
 					var end = content.indexOf('.jpg');
+					var endpng = content.indexOf('.png');
+					var endgif = content.indexOf('.gif');
+					if(end != -1 && endpng != -1){
+						if(end > endpng){
+							end = endpng;
+						}
+					}else if(end == -1 && endpng != -1){
+						end = endpng;
+					}
+					if(end != -1 && endgif != -1){
+						if(end > endgif){
+							end = endgif;
+						}
+					}else if(end == -1 && endgif != -1){
+						end = endgif;
+					}
 					if(start != -1 && end != -1){
 						var url = content.substring(start + 2, end + 4);
-						console.log(url);
-						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 10px; background-image:url('" + url + "'); background-size: cover; background-position: center; cursor: pointer;");
+						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 15px; background-image:url('" + url + "'); background-size: cover; background-position: center; cursor: pointer;");
 					} else {
-						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 10px; background-image:url('/resources/user-bootstrap/img/index/article.jpg'); background-size: cover; background-position: center; cursor: pointer;");
+						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 15px; background-image:url('/resources/user-bootstrap/img/index/article.jpg'); background-size: cover; background-position: center; cursor: pointer;");
 					}
 				}
 			}
