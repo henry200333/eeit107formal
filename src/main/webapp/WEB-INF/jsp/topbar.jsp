@@ -28,8 +28,7 @@
 			<sec:authorize access="isAuthenticated()">
 				<button type="button" class="btn btn-dark"
 					style="margin-right: 20px;">
-					通知 <span class="badge badge-warning">9</span> <span class="sr-only">unread
-						messages</span>
+					通知 <span class="badge badge-warning">9</span> 
 				</button>
 				<img src="/resources/profile_image/<sec:authentication		property="name" />.jpg" width="45px">
 				<span style="color: white; margin-right: 40px; margin-left: 20px"><sec:authentication
@@ -37,7 +36,7 @@
 			<sec:authorize access="hasAnyRole('USER', 'ARTIST')">
 <%-- 			<input id="account" hidden="hidden" name="account" value="<sec:authentication property="name" />"> --%>
 			<button class="btn btn-info" id="<sec:authentication property='name' />" type="button" onclick="userpage(this)">個人頁面</button>
-				<button class="btn btn-info" id="<sec:authentication property='name' />" type="button" onclick="edit(this)">帳號設定</button>
+				<button class="btn btn-info"  style="margin-left:20px" id="<sec:authentication property='name' />" type="button" onclick="edit(this)">帳號設定</button>
 				<a href="/logout"><button class="btn btn-danger my-2 my-sm-0"
 						type="submit"  style="margin-left:20px">登出</button></a>
 			<script>
@@ -50,7 +49,7 @@
 			</script>
 			</sec:authorize>	
 			<sec:authorize access="hasRole('ADMIN')">
-    		<a href="/admin/artist/list" class="btn btn-warning">後台</a>
+    		<a href="/admin/artist/list" class="btn btn-warning"><i class="fas fa-cog"></i></a>
 			</sec:authorize>
 			
 			</sec:authorize>

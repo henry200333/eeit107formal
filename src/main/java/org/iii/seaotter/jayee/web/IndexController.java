@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/index")
 public class IndexController {
 	
 	@Autowired
@@ -59,7 +58,10 @@ public class IndexController {
 //		return "/user/index";
 //	}
 	
-	
+	@RequestMapping("/article")
+	public String articleListPage() {
+		return "/user/article-list";
+	}
 	
 	@RequestMapping("/performancetop")
 	@ResponseBody
