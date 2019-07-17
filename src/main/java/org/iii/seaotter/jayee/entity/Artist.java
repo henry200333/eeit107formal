@@ -25,15 +25,13 @@ public class Artist {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "artist_id")
-	private Long id;
+	private Long artistId;
 	@Column(name = "artist_name")
 	private String artistName;
 	@Column(name = "week_followers")
 	private Long wFollowers;
 	@Column(name = "total_followers")
 	private Long tFollowers;
-	@Column(name = "location")
-	private String location;
 	//Artist的ID關聯到Activity的artistId外鍵欄位
 	@OneToMany(mappedBy="artistId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<Activity> activitySet;

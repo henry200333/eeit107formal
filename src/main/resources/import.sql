@@ -4,9 +4,25 @@ INSERT INTO security_role(code) values
 ('ROLE_ARTIST'),
 ('ROLE_VENDER');
 
-INSERT INTO security_user(account, password, mail, enabled) values
-('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 'admin@admin', 1),
-('123', '$2a$10$weN4FB8uqq1jpv/7HEPBDuYMuw2xbMCBGKx3xYfWk3Da/UoVFS/7W', '', 1);
+ INSERT INTO artist(artist_name, week_followers, total_followers) VALUES
+ ('桑源雅沂',12345,86520),
+ ('白賊虞',5486,30678),
+ ('柳川鳳',6478,66666),
+ ('張添財',5543,98765),
+ ('王芯營',1251,32548),
+ ('敏敏',1542,12345);
+
+ INSERT INTO security_user(account, password, display_name, member_name, gender, mail, birth, address, tel, favorite_location, register_date, introduction, enabled, artist_id) values
+('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 'ADMIN_BOT', 'Mr.Admin', 'male', 'admin@admin', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im admin',  1, null),
+('123', '$2a$10$weN4FB8uqq1jpv/7HEPBDuYMuw2xbMCBGKx3xYfWk3Da/UoVFS/7W', '112233', 'OneTwoThree', 'male', '123@123', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im 123',  1, null),
+('artist001', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','上原亞衣', '劉長軒', 'female', 'Liu0807@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Liu',  1, 1),
+('artist002', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','白小瑜', '李承宇', 'male', 'Lee0708@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Lee',  1,2),
+('artist003', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','流川楓', '吳帆祥', 'male', 'Wu0102@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Wu',  1,3),
+('artist004', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','張阿財', '陳品堯', 'male', 'Chen0604@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Chen',  1,4),
+('artist005', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','王新營', '彭璿哲', 'male', 'Peng0911@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Peng',  1,5),
+('artist006', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','趙敏', '李宜鳴', 'male', 'Min1211@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Min',  1,6),
+('user001', '$2a$10$IB/9GXt3Gmm/tcIsd43Km.OAP9PvDYgFd5xOyrpefY.IsbVE/w7UK','User001','Pro User','female','user@gmail.com','1989/01/01','台北市萬華區','0912345678','高雄市','2019/06/30','hi,im user', 1,null),
+('deaduser', '$2a$10$ovBda/JPk8ZBNpfyqp7CZukgEFmon.kW/yLbdGciQhPd09CxNXdY2','No show','Cant see','femail','death@gmail.com','1989/01/01','台北市大安區','0912345678','新竹市','2019/01/01','should never see this',0,null);
 
 
 ALTER TABLE user_role NOCHECK CONSTRAINT ALL;
@@ -18,24 +34,11 @@ INSERT INTO user_role(user_id, role_id) values
 (5,2),(5,3),
 (6,2),(6,3),
 (7,2),(7,3),
-(8,2),(8,3);
+(8,2),(8,3),
+(9,2),
+(10,2);
 ALTER TABLE user_role CHECK CONSTRAINT ALL;
 
- INSERT INTO artist(artist_name, week_followers, total_followers, location) VALUES
- ('桑源雅沂',12345,86520,'東京'),
- ('白賊虞',5486,30678,'高雄市'),
- ('柳川鳳',6478,66666,'神奈川'),
- ('張添財',5543,98765,'自由新鎮'),
- ('王芯營',1251,32548,'社子島'),
- ('敏敏',1542,12345,'大都');
-
- INSERT INTO security_user(account, password, mail, enabled, artist_id) values
-('test001', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','',1,1),
-('test002', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','',1,2),
-('test003', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','',1,3),
-('test004', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','',1,4),
-('test005', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','',1,5),
-('test006', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','',1,6);
 
  
 INSERT INTO article (name, content, article_type, ref_id, count, announce) values

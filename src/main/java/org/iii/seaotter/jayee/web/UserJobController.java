@@ -35,6 +35,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -61,13 +62,9 @@ public class UserJobController {
 		return "/user/job-list";
 	}
 	
-	@RequestMapping("/application/list/{username}")
-	public String userJobPage(@PathVariable("username") String user) {
-		Artist artist=securityUserService.getByUserName(user).getArtist();
-		if(artist==null) {
-			return"/user/job-list";
-		}
-		return"/user/artist-application-list";
+	@RequestMapping("/application/list")
+	public String userJobPage() {
+		return "/user/artist-application-list";
 	}
 	
 	@RequestMapping("/findjobs")

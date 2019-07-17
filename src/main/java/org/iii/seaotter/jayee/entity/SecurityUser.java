@@ -35,27 +35,20 @@ public class SecurityUser implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private Long userId;
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonBackReference
-	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "role_id") })
-	private Set<SecurityRole> roles;
 	@Column(name = "account")
 	private String account;
 	@Column(name = "password")
 	private String password;
-	@Column(name = "mail")
-	private String mail;
-	@Column(name = "enabled")
-	private Boolean enabled;
+	@Column(name="display_name")
+	private String displayName;
 	@Column(name = "member_name")
 	private String memberName;
-	@Column(name = "gender")
-	private String gender;
 	@Column(name = "photo")
 	private String photo;
-	@Column(name = "id_code")
-	private String idCode;
+	@Column(name = "gender")
+	private String gender;
+	@Column(name = "mail")
+	private String mail;
 	@Column(name = "birth")
 	private java.util.Date birth;
 	@Column(name = "address")
@@ -66,6 +59,16 @@ public class SecurityUser implements UserDetails {
 	private String favLocation;
 	@Column(name = "register_date")
 	private java.util.Date registerDate;
+	@Column(name = "introduction")
+	private String introduction;
+	@Column(name = "enabled")
+	private Boolean enabled;
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonBackReference
+	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "role_id") })
+	private Set<SecurityRole> roles;
 	@JsonIgnoreProperties("friends")
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "friend", joinColumns = { @JoinColumn(name = "self_id") }, inverseJoinColumns = {
