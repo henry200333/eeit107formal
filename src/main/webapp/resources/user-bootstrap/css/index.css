@@ -114,9 +114,6 @@ body {
 }
 
 .talk {
-    position: fixed;
-    bottom: 0;
-    left: 0;
     width: 150px;
     z-index: 10000;
 }
@@ -164,34 +161,46 @@ body {
     width: 100px;
 }
 
-.talkbar {
-    background-color: white;
-    border: 2px solid rgb(189, 189, 189);
-    height: 750px;
-    position: fixed;
+#talkfield{
+	position: fixed;
     bottom: 0;
     left: 0;
-    width: 15%;
+    display:flex;
+  align-items:flex-end;
     z-index: 100;
+}
+#talk{
+	display:flex;
+	 flex-direction:column;
+    align-items: flex-start;
+}
+
+.talkbar {
+	display:flex;
+	flex-direction:column;
+    background-color: white;
+    border: 2px solid rgb(189, 189, 189);
+    
+    width: 240px;
     border-radius: 15px 15px 0 0;
 }
+
+.talkbar .row{
+	text-align:center
+}
+
 
 .talkbar2 {
     background-color: white;
     border: 2px solid rgb(189, 189, 189);
-    height: 350px;
-    position: fixed;
-    bottom: 0;
-    left: 15%;
-    width: 15%;
+    height: 385px; 
+    width: 300px;
     z-index: 100;
     border-radius: 15px 15px 0 0;
 }
 
 .talkbye {
-    position: fixed;
-    bottom: 745px;
-    left: 10px;
+   
     width: 100px;
     z-index: 10000;
 }
@@ -205,22 +214,125 @@ body {
     padding-left: 20px;
     border-radius: 14px 14px 0 0;
 }
+.friend p{
+	display:inline;
+}
+.talkclose{
+	background-color:white;
+	border:none;
+	float:right;
+	font-size:25px;
+	display:inline;
+}
+
+.messages ul, p {
+	margin: 0;
+	padding: 0;
+}
+
+.messages li {
+    display: inline-block;
+}
+.messages ul{
+    white-space: nowrap;
+    width: 300px;
+}
+
+.messages ul li {
+	margin: 0;
+	padding: 0;
+}
+
+.messages {
+	text-align: left;
+	height: auto;
+	width: 100%;
+	min-height: 300px;
+	max-height: 300px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	word-break: normal;
+}
+.messages img{
+	width: 35px;
+	border-radius: 50%;
+	float: right;
+	margin-bottom: 5px;
+	margin-right:24px;
+}
+
+.messages li.replies img {
+	float: left;
+	margin: 6px 5px 5px 8px;
+}
+
+.messages ul li {
+	display: inline-block;
+	float: left;
+	width: calc(100% - 15px);
+	font-size: 0.9em;
+	margin-left: 10px;
+}
+
+.messages ul li p {
+	float: right;
+	white-space: normal;
+	word-break: break-all;
+	word-wrap: break-word;
+	padding: 10px 15px;
+	margin:3px 0;
+	border-radius: 20px;
+	width: 180px;
+	background: #435f7a;
+	color: #f5f5f5;
+	font-size: 18px;
+	line-height: 1.3em;
+	background: #435f7a;
+}
+
+.messages ul li.replies p {
+	display: inline-block;
+	float:left;
+	font-size: 0.9em;
+		background: #e4e2cf;
+	color: #32465a;
+}
+
+
+.message-input {
+	border: 1px solid black;
+}
+
+.message-input input {
+	float: left;
+	border: none;
+	width: 85%;
+	padding: 10px 0;
+	font-size: 0.8em;
+	color: #32465a;
+}
+
+.message-input button {
+	float: right;
+	border: none;
+	width: 15%;
+	padding: 10px 0;
+	cursor: pointer;
+	background: #32465a;
+	color: #f5f5f5;
+	float: right;
+}
 
 .fsearch {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 15%;
-    z-index: 100;
     height: 50px;
     border: 2px solid rgb(189, 189, 189);
+    width:100%;
+ 
 }
 
 .fsearch2 {
-    position: fixed;
-    bottom: 0;
     left: 15%;
-    width: 12%;
+    width: 100%;
     z-index: 100;
     height: 50px;
     border: 2px solid rgb(189, 189, 189);
@@ -479,3 +591,40 @@ iframe:hover {
 
 img{ cursor: pointer; }
 
+.articleblock{
+  -webkit-animation:scaledown 0.2s linear;
+  -moz-animation:scaledown 0.2s linear;
+  animation:scaledown 0.2s linear;
+  transform-origin:50% 50%;
+  animation-fill-mode: forwards;
+}
+
+.articleblock:hover{
+   z-index:100;
+  -webkit-animation:scale 0.2s linear;
+  -moz-animation:scale 0.2s linear;
+  animation:scale 0.2s linear;
+  transform-origin:50% 50%;
+  animation-fill-mode: forwards;
+}
+
+@keyframes scale{
+  0%{
+    transform:scale(1.0);
+  }
+  100%{
+    transform:scale(1.1);
+    -webkit-box-shadow: 10px 10px 60px 10px rgba(0,0,0,0.1);
+	-moz-box-shadow: 10px 10px 60px 10px rgba(0,0,0,0.1);
+	box-shadow: 10px 10px 60px 10px rgba(0,0,0,0.1);
+  }
+}
+
+@keyframes scaledown{
+  0%{
+    transform:scale(1.1);
+  }
+   100%{
+    transform:scale(1.0);
+  }
+}
