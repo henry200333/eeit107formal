@@ -34,16 +34,19 @@
 				<img src="/resources/user-bootstrap/img/index/<sec:authentication		property="name" />.png" width="45px">
 				<span style="color: white; margin-right: 40px; margin-left: 20px"><sec:authentication
 						property="name" /></span>
-				<a href="/logout"><button class="btn btn-danger my-2 my-sm-0"
-						type="submit">登出</button></a>
-
-			</sec:authorize>
-			<sec:authorize access="hasRole('ADMIN')">
-    	<a href="/admin/artist/list" class="btn btn-warning">後台</a>
-			</sec:authorize>
 			<sec:authorize access="hasRole('ARTIST')">
 			<input id="account" hidden="hidden" name="account" value="<sec:authentication property="name" />">
-			<button class="btn btn-info"id="bt" type="button" onclick='userpage()'>個人頁面</button>\
+			<button class="btn btn-info"id="bt" type="button">個人頁面</button>
+				<a href="/logout"><button class="btn btn-danger my-2 my-sm-0"
+						type="submit"  style="margin-left:20px">登出</button></a>
+
+			</sec:authorize>
+			
+			
+			<sec:authorize access="hasRole('ADMIN')">
+    		<a href="/admin/artist/list" class="btn btn-warning">後台</a>
+			</sec:authorize>
+			
 			<script>
 			function userpage() {
 				var a = $("#username").val()
