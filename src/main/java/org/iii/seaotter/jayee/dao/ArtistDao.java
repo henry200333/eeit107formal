@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface ArtistDao extends JpaRepository<Artist,Long>, JpaSpecificationExecutor<Artist>{
 	
-
+	public List<Artist> findTop5ByOrderByTotalFollowers();
 
 }

@@ -81,36 +81,36 @@
 				<div class="col-3">
 					<img src="/resources/user-bootstrap/img/index/artist1.jpg"
 						style="display: inline" width="40%"> <span
-						class="artwalls1">artist1</span>
-					<br> <span class="artwalls2">500,000人追蹤</span>
+						class="artwalls1 artname1" ></span>
+					<br> <span class="artwalls2 follow1" ></span>
 				</div>
 
 				<div class="col-3">
 					<img src="/resources/user-bootstrap/img/index/artist2.gif"
 						style="display: inline" width="40%"> <span
-						class="artwalls1">artist2</span>
-					<br> <span class="artwalls2">700,000人追蹤</span>
+						class="artwalls1 artname2"></span>
+					<br> <span class="artwalls2 follow2"></span>
 
 				</div>
 				<div class="col-3">
 					<img src="/resources/user-bootstrap/img/index/artist3.jpg"
 						style="display: inline" width="40%"> <span
-						class="artwalls1">artist3</span>
-					<br> <span class="artwalls2">100,000人追蹤</span>
+						class="artwalls1 artname3" ></span>
+					<br> <span class="artwalls2 follow3" ></span>
 
 				</div>
 				<div class="col-3">
 					<img src="/resources/user-bootstrap/img/index/artist4.jpg"
 						style="display: inline" width="40%"> <span
-						class="artwalls1">artist4</span>
-					<br> <span class="artwalls2">200,000人追蹤</span>
+						class="artwalls1 artname4"></span>
+					<br> <span class="artwalls2 follow4"></span>
 
 				</div>
 				<div class="col-3">
 					<img src="/resources/user-bootstrap/img/index/artist5.jpg"
 						style="display: inline" width="40%"> <span
-						class="artwalls1">artist5</span>
-					<br> <span class="artwalls2">500,000人追蹤</span>
+						class="artwalls1 artname5" ></span>
+					<br> <span class="artwalls2 follow5"></span>
 
 				</div>
 			</div>
@@ -441,6 +441,18 @@
 			}
 		}
 	})
+	
+	$.ajax({
+		url:"/index/artistTop5",
+		type:"GET",
+		success: function(data){
+			$.each(data,function(index,value){
+				var count = index+1;
+				$(".artname"+count).html(value['artistName']);
+				$(".follow"+count).html(value['totalFollowers']);
+			})
+		}
+	});
 	
 	</script>
 </body>
