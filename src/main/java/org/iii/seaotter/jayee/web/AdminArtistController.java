@@ -16,8 +16,10 @@ import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Artist;
+import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.ArtistService;
+import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -52,7 +54,10 @@ public class AdminArtistController {
 
 	@Autowired
 	private ArticleService articleService;
-
+	
+	@Autowired
+	private SecurityUserService securityUserService;
+	
 	@RequestMapping("/list")
 	public String listPage(Model model) {
 		return "/admin/artist-list";
@@ -156,14 +161,19 @@ public class AdminArtistController {
 	}
 
 	@PostMapping("/uploadImage")
-	public String upload(@RequestParam("imageFile") MultipartFile imageFile) throws IOException {
+	public String upload(@RequestParam("imageFile") MultipartFile imageFile,@RequestParam("username")String username) throws IOException {
+		System.out.println(username);
 		String returnValue = "/admin/artist-list";
 		try {
-			ArtistService.saveImage(imageFile);
+			ArtistService.saveImage(imageFile,username);
 		} catch (Exception e) {
 			e.printStackTrace();
 			returnValue = "error";
 		}
+		SecurityUser user = securityUserService.getByUserName(username);
+		String photo = "/resources/profile_image/" + username + ".jpg";
+		user.setPhoto(photo);
+		securityUserService.update(user);
 		return returnValue;
 	}
 }

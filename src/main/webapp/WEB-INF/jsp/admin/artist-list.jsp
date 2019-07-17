@@ -1,6 +1,8 @@
 <%@page import="org.springframework.web.servlet.ModelAndView"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>  
 <!DOCTYPE html>
 <html>
 <!-- header -->
@@ -72,8 +74,7 @@
 					<form method="post" action="/admin/artist/uploadImage" enctype="multipart/form-data">
 					<input type="file" name="imageFile" id="imageFile" accept="image/gif, image/jpeg, image/png" />
 					<div id="previewDiv" class="previewDiv"></div>
-					<input value="<sec:authentication
-						property='name' />" type="hidden" name="username">
+					<input type="text" hidden="hidden" name="username" id="username" value="<security:authentication property="principal.account"/>"/>
 					<input type="submit" value="Upload" />
 					</form>
 				</div>
