@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <header>
 	<nav class="navbar navbar-expand-md navbar-light bg-light"
-		style="margin-top: 70px;">
+		style="padding-top: 70px;">
 		<div class="mx-auto order-0">
 			<div class="btn-group">
 				<button type="button" class="btn bar" id="topbar1"
@@ -56,7 +56,7 @@
 				<button type="button" class="btn bar2" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"></button>
 				<div class="dropdown-menu" id="articlebar">
-					<a class="dropdown-item" href="#">關於文章</a>
+					<a class="dropdown-item" href="article">關於文章</a>
 				</div>
 			</div>
 			<div class="btn-group">

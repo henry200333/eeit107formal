@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.iii.seaotter.jayee.common.ArticleType;
-import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Data;
@@ -48,7 +48,7 @@ public class Article {
 	private Long refId;
 	@Column(name = "count")
 	private Long count;
-	@CreatedDate
+	@LastModifiedDate
 	@Column(name = "announce")
 	private Date announce;
 }

@@ -81,36 +81,36 @@
 				<div class="col-3">
 					<img src="/resources/user-bootstrap/img/index/artist1.jpg"
 						style="display: inline" width="40%"> <span
-						class="artwalls1">artist1</span>
-					<br> <span class="artwalls2">500,000人追蹤</span>
+						class="artwalls1 artname1" ></span>
+					<br> <span class="artwalls2 follow1" ></span>
 				</div>
 
 				<div class="col-3">
 					<img src="/resources/user-bootstrap/img/index/artist2.gif"
 						style="display: inline" width="40%"> <span
-						class="artwalls1">artist2</span>
-					<br> <span class="artwalls2">700,000人追蹤</span>
+						class="artwalls1 artname2"></span>
+					<br> <span class="artwalls2 follow2"></span>
 
 				</div>
 				<div class="col-3">
 					<img src="/resources/user-bootstrap/img/index/artist3.jpg"
 						style="display: inline" width="40%"> <span
-						class="artwalls1">artist3</span>
-					<br> <span class="artwalls2">100,000人追蹤</span>
+						class="artwalls1 artname3" ></span>
+					<br> <span class="artwalls2 follow3" ></span>
 
 				</div>
 				<div class="col-3">
 					<img src="/resources/user-bootstrap/img/index/artist4.jpg"
 						style="display: inline" width="40%"> <span
-						class="artwalls1">artist4</span>
-					<br> <span class="artwalls2">200,000人追蹤</span>
+						class="artwalls1 artname4"></span>
+					<br> <span class="artwalls2 follow4"></span>
 
 				</div>
 				<div class="col-3">
 					<img src="/resources/user-bootstrap/img/index/artist5.jpg"
 						style="display: inline" width="40%"> <span
-						class="artwalls1">artist5</span>
-					<br> <span class="artwalls2">500,000人追蹤</span>
+						class="artwalls1 artname5" ></span>
+					<br> <span class="artwalls2 follow5"></span>
 
 				</div>
 			</div>
@@ -352,7 +352,7 @@
 	</div>
 	<script>
 	$.ajax({
-		url:"/index/performancetop",
+		url:"/performancetop",
 		type:"POST",
 		success: function(data){
 			$.each(data,function(index,value){
@@ -365,7 +365,7 @@
 				var url = value['url'].substring(count+1);
 				$("#url"+(p+1)).attr('src','https://www.youtube.com/embed/'+url);
 				$(".per"+(p+1)).click(function(){
-					window.location.href="/index/performanceview/"+value['id'];
+					window.location.href="/performanceview/"+value['id'];
 				});
 				$("#performance"+(p+1)).children("#p1").html(value['title']);
 				$("#performance"+(p+1)).children("#p2").html(value['username']);
@@ -378,7 +378,7 @@
 		}
 	})
 	$.ajax({
-		url:"/index/activityTop3",
+		url:"/activityTop3",
 		type:"GET",
 		success: function(data){
 			txt1="<div style='position: relative' id='activity'><div style='position: absolute; margin-left: 280px; z-index: 2; top: 20px; display: none; border-left: 180px solid transparent; width: 450px; height: 0; border-bottom: 219px solid #ff7575' id='acts1'><span style='color: white'>"; 
@@ -400,7 +400,7 @@
 	
 	//獲取articleTop6並放入對應的DIV及IMG
 	$.ajax({
-		url:"/index/articleTop6",
+		url:"/articleTop6",
 		type:"GET",
 		success: function(res){
 			if(res.type == "SUCCESS"){
@@ -441,6 +441,18 @@
 			}
 		}
 	})
+	
+	$.ajax({
+		url:"/artistTop5",
+		type:"GET",
+		success: function(data){
+			$.each(data,function(index,value){
+				var count = index+1;
+				$(".artname"+count).html(value['artistName']);
+				$(".follow"+count).html(value['totalFollowers']);
+			})
+		}
+	});
 	
 	</script>
 </body>

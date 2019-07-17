@@ -50,7 +50,6 @@ public class Job {
 	
 	
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JsonBackReference
 	@JoinColumn(name="vender_id", nullable=false)
 	private Vender vender;
 	

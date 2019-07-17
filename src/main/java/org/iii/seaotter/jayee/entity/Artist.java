@@ -1,5 +1,6 @@
 package org.iii.seaotter.jayee.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -31,11 +38,15 @@ public class Artist {
 	@Column(name = "week_followers")
 	private Long wFollowers;
 	@Column(name = "total_followers")
-	private Long tFollowers;
+	private Long totalFollowers;
 	//Artist的ID關聯到Activity的artistId外鍵欄位
-	@OneToMany(mappedBy="artistId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JsonIgnore
+	@OneToMany(mappedBy="artistId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)	
 	private Set<Activity> activitySet;
+	
+	
 	//Artist的ID關聯到Performance的artistId外鍵欄位
+	@JsonIgnore
 	@OneToMany(mappedBy="partistId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<Performance> performanceSet;
 	

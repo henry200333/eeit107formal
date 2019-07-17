@@ -45,13 +45,12 @@
 <body>
 	<jsp:include page="../topbar.jsp"></jsp:include>
 		<div class="container" style="margin-top: 70px;">
-		<div style="border: 5px #FFAC55 solid;">photo</div>
+		<div style="border: 5px #FFAC55 solid;"><img src="${userParam.photo }"></div>
 		<div style="border: 5px #FFAC55 solid;">
 			姓名:${artistParam.artistName }</div>
 		<div style="border: 5px #FFAC55 solid;">
 			關於我:${userParam.introduction }</div>
-<!-- 		<div style="border: 5px #FFAC55 solid;"> -->
-<%-- 			粉絲:${artistParam.tFollowers }</div> --%>
+
 		<div style="border: 5px #FFAC55 solid;">
 			追蹤中:</div>
 		<div style="border: 5px #FFAC55 solid;">

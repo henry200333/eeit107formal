@@ -81,11 +81,11 @@
 
 body {
     font-family: '微軟正黑體';
-/*     background-image: url(/resources/user-bootstrap/img/index/div.gif); */
-/*     background-repeat: no-repeat; */
-/*     background-attachment: fixed; */
-/*     background-position: center; */
-/*     background-size: cover; */
+    background-image: url(/resources/user-bootstrap/img/index/bigdiv.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom;
+    background-size: cover;
 }
 
 .img {
@@ -275,7 +275,7 @@ body {
 }
 
 /* .bigdiv { */
-/*     background: url(/resources/user-bootstrap/img/index/bigdiv.gif) no-repeat fixed top; */
+/*     background: url(/resources/user-bootstrap/img/index/bigdiv.gif) no-repeat fixed bottom; */
 /* } */
 
 

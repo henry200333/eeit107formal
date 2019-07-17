@@ -288,7 +288,7 @@
 	</script>
 	
 	<!-- 	右邊載入 -->
-	
+	<br><br><br><br>
 	<footer>
 		<jsp:include page="../footer.jsp"></jsp:include>
 	</footer>

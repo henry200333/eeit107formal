@@ -75,7 +75,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.and()
 		.logout().permitAll()
 		.deleteCookies("JSESSIONID")
-		.logoutSuccessUrl("/login?logout")
+		.logoutSuccessUrl("/index")
 		.and()
 		.rememberMe().key("HenryLeo")
 		.and()

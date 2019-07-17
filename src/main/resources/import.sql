@@ -12,17 +12,17 @@ INSERT INTO security_role(code) values
  ('王芯營',1251,32548),
  ('敏敏',1542,12345);
 
- INSERT INTO security_user(account, password, display_name, member_name, gender, mail, birth, address, tel, favorite_location, register_date, introduction, enabled, artist_id) values
-('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 'ADMIN_BOT', 'Mr.Admin', 'male', 'admin@admin', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im admin',  1, null),
-('123', '$2a$10$weN4FB8uqq1jpv/7HEPBDuYMuw2xbMCBGKx3xYfWk3Da/UoVFS/7W', '112233', 'OneTwoThree', 'male', '123@123', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im 123',  1, null),
-('artist001', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','上原亞衣', '劉長軒', 'female', 'Liu0807@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Liu',  1, 1),
-('artist002', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','白小瑜', '李承宇', 'male', 'Lee0708@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Lee',  1,2),
-('artist003', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','流川楓', '吳帆祥', 'male', 'Wu0102@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Wu',  1,3),
-('artist004', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','張阿財', '陳品堯', 'male', 'Chen0604@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Chen',  1,4),
-('artist005', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','王新營', '彭璿哲', 'male', 'Peng0911@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Peng',  1,5),
-('artist006', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','趙敏', '李宜鳴', 'male', 'Min1211@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Min',  1,6),
-('user001', '$2a$10$IB/9GXt3Gmm/tcIsd43Km.OAP9PvDYgFd5xOyrpefY.IsbVE/w7UK','User001','Pro User','female','user@gmail.com','1989/01/01','台北市萬華區','0912345678','高雄市','2019/06/30','hi,im user', 1,null),
-('deaduser', '$2a$10$ovBda/JPk8ZBNpfyqp7CZukgEFmon.kW/yLbdGciQhPd09CxNXdY2','No show','Cant see','femail','death@gmail.com','1989/01/01','台北市大安區','0912345678','新竹市','2019/01/01','should never see this',0,null);
+ INSERT INTO security_user(account, password, display_name, member_name, photo, gender, mail, birth, address, tel, favorite_location, register_date, introduction, enabled, artist_id) values
+('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 'ADMIN_BOT', 'Mr.Admin', '/resources/profile_image/admin.jpg', 'male', 'admin@admin', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im admin',  1, null),
+('123', '$2a$10$weN4FB8uqq1jpv/7HEPBDuYMuw2xbMCBGKx3xYfWk3Da/UoVFS/7W', '112233', 'OneTwoThree', '/resources/profile_image/123.jpg', 'male', '123@123', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im 123',  1, null),
+('artist001', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','上原亞衣', '劉長軒', '/resources/profile_image/artist001.jpg', 'female', 'Liu0807@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Liu',  1, 1),
+('artist002', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','白小瑜', '李承宇', '/resources/profile_image/artist002.jpg', 'male', 'Lee0708@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Lee',  1,2),
+('artist003', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','流川楓', '吳帆祥', '/resources/profile_image/artist003.jpg', 'male', 'Wu0102@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Wu',  1,3),
+('artist004', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','張阿財', '陳品堯', '/resources/profile_image/artist004.jpg', 'male', 'Chen0604@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Chen',  1,4),
+('artist005', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','王新營', '彭璿哲', '/resources/profile_image/artist005.jpg', 'male', 'Peng0911@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Peng',  1,5),
+('artist006', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','趙敏', '李宜鳴', '/resources/profile_image/artist006.jpg', 'male', 'Min1211@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Min',  1,6),
+('user001', '$2a$10$IB/9GXt3Gmm/tcIsd43Km.OAP9PvDYgFd5xOyrpefY.IsbVE/w7UK','User001','Pro User',  '/resources/profile_image/user001.jpg', 'female','user@gmail.com','1989/01/01','台北市萬華區','0912345678','高雄市','2019/06/30','hi,im user', 1,null),
+('deaduser', '$2a$10$ovBda/JPk8ZBNpfyqp7CZukgEFmon.kW/yLbdGciQhPd09CxNXdY2','No show','Cant see', '/resources/profile_image/deaduser.jpg', 'femail','death@gmail.com','1989/01/01','台北市大安區','0912345678','新竹市','2019/01/01','should never see this',0,null);
 
 
 ALTER TABLE user_role NOCHECK CONSTRAINT ALL;
@@ -34,7 +34,9 @@ INSERT INTO user_role(user_id, role_id) values
 (5,2),(5,3),
 (6,2),(6,3),
 (7,2),(7,3),
-(8,2),(8,3);
+(8,2),(8,3),
+(9,2),
+(10,2);
 ALTER TABLE user_role CHECK CONSTRAINT ALL;
 
 
@@ -48,14 +50,14 @@ INSERT INTO article (name, content, article_type, ref_id, count, announce) value
 ### 工作環境
 ![](http://www.ez5.com.tw/new/images/pic_brief.jpg)
 ### 薪資待遇
-以時計酬，詳情面議', 'Vender', 1, 2, GETDATE()),
+以時計酬，詳情面議', 'Vender', 1, 2, '2019-07-11 19:20:55'),
 ('陳忻玥新專輯！衝上排行第一！', '# 陳忻玥新專輯！
 ### 個人簡介
 你/妳好！ 我的名字叫忻玥(ㄒㄧㄣ ㄩㄝ、)女聲 & 吉他 & 創作
 Hello! I’m Vicky Chen.Singing & Playing guitar & Writing
 ### 找我演出
 alex@skrpresents.com
-![](https://i.kfs.io/artist/global/10012811,0v1/fit/300x300.jpg)', 'Performance', 1, 99, GETDATE()),
+![](https://i.kfs.io/artist/global/10012811,0v1/fit/300x300.jpg)', 'Performance', 1, 99, '2019-07-12 19:20:55'),
 ('白賊虞表示：發財', '# ~~發大財~~ 發財
 ------------
 ##### 路人A：
@@ -72,18 +74,18 @@ alex@skrpresents.com
 
 ------------
 
-![](https://i.imgur.com/31rorUq.jpg)', 'Artist', 2, 5, GETDATE()),
+![](https://i.imgur.com/31rorUq.jpg)', 'Artist', 2, 5, '2019-07-13 19:20:55'),
 ('柳川鳳在球場上穿梭自如', '# 柳川鳳在湖南對湘北的校際大展身手
 ![](http://b.zol-img.com.cn/desk/bizhi/image/1/960x600/1348714169293.jpg)
 ### 球場上旁若無人，穿梭自如
 彷彿沒有模組間物體碰撞一般的移動。
 ### 怎麼辦到的？
 更多自由移動機會？
-#### 立即充值！', 'Artist', 3, 10, GETDATE()),
+#### 立即充值！', 'Artist', 3, 10, '2019-07-14 19:20:55'),
 ('《比悲傷更悲傷的故事》 催淚破億音樂裡藏的小彩蛋你發現了嗎？', '# 《比悲傷更悲傷的故事》 催淚破億音樂裡藏的小彩蛋你發現了嗎？
 ------------
 #### 	　　由劉以豪（飾K）及陳意涵（飾Cream）主演的《比悲傷更悲傷的故事》改編自爆紅韓國電影，講述一對戀人相愛卻無法在一起的故事，浪漫催淚的劇情設定讓電影一出來便引起廣大關注，在台上映短短 9 天票房便破億，成為今年最快破億國片！
-#### 	　　除了堅強卡司及動人劇情，音樂在其中更扮演著催化觀眾入戲的重要角色之一，電影原聲帶由知名製作人陳建騏及配樂家羅恩妮共同合作，將歡樂亦憂傷的歌曲旋律貫穿劇情，連帶讓觀眾深陷故事人物的情緒裡。', 'Performance', 2, 1, GETDATE()),
+#### 	　　除了堅強卡司及動人劇情，音樂在其中更扮演著催化觀眾入戲的重要角色之一，電影原聲帶由知名製作人陳建騏及配樂家羅恩妮共同合作，將歡樂亦憂傷的歌曲旋律貫穿劇情，連帶讓觀眾深陷故事人物的情緒裡。', 'Performance', 2, 1, '2019-07-15 19:20:55'),
 ('GEM新歌《新的心跳》：舊事已過都變成新的', '# GEM新歌《新的心跳》
 
 ------------
@@ -92,13 +94,13 @@ alex@skrpresents.com
 #### 	　　近日，基督徒歌手鄧紫棋發佈了新歌《新的心跳》MV，動感十足的歌曲著滲透濃濃的勵志信息。歌詞「我們死而復活......舊事已過都變成新的」出自《聖經》，流露信仰味道。
 #### 	　　鄧紫棋在MV中扮演一個被校園欺凌的乖乖女，《新的心跳》寓意新的生命幫助她走出了欺凌陰影，MV中除了鄧紫棋，還有另外兩位主角，一個是帶著假肢的舞者，一個是對跳水很膽怯女孩。
 #### 	　　她們都有被嘲笑，冷嘲熱諷的經歷。但是在努力不懈的練習下，假肢女孩舞出了美麗的舞蹈，跳水女孩展現了完美的跳躍。
-#### 	　　MV進行到尾聲，小個子的鄧紫棋勇敢推開曾經欺凌自己的人，並回頭報以燦爛的笑臉。', 'Performance', 3, 3, GETDATE()),
+#### 	　　MV進行到尾聲，小個子的鄧紫棋勇敢推開曾經欺凌自己的人，並回頭報以燦爛的笑臉。', 'Performance', 3, 3, '2019-07-16 19:20:55'),
 ('間諜小狗', ' # 間諜小狗
 ### 製作團隊將間諜小狗投放至野狗群中
 #### 	　　間諜小狗能不能在第一次接觸被認定為同伴？
 ### 演員評價
 #### 	　　想不到郭董也很有戲劇天分~~ ，在新的動物頻道中，郭董飾演間諜小狗，演技逼真，吃草認真
-![](http://img.komicolle.org/2019-05/15578732626695.png)', 'Activity', 5, 4, GETDATE());
+![](http://img.komicolle.org/2019-05/15578732626695.png)', 'Activity', 5, 4, '2019-07-17 19:20:55');
  
  insert into forum (ref_id, ref_comment_id, forum_board, user_name, comment, comment_date) values
  (1, 0,'Performance', '薔薔4', '大家好我是薔薔4', '2019/05/25 18:13:21'),

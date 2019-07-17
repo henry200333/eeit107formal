@@ -55,7 +55,7 @@ public class ArtistService {
 			artistDao.delete(entity);
 	}
 
-	public static void saveImage(MultipartFile imageFile) throws Exception {
+	public static void saveImage(MultipartFile imageFile, String username) throws Exception {
 
 		URL R = This.class.getResource("/");
 		String decoded = URLDecoder.decode(R.getFile(), "UTF-8");
@@ -65,12 +65,16 @@ public class ArtistService {
 		decoded = decoded.replace("target", "src");
 		decoded = decoded.replace("classes", "main");
 		decoded += "webapp/resources/profile_image/";
-		Files.write(Paths.get(decoded + imageFile.getOriginalFilename()), imageFile.getBytes());
+		Files.write(Paths.get(decoded + username + ".jpg"), imageFile.getBytes());
 
 	}
 
 	public Page<Artist> getAll(Specification<Artist> specification, Pageable pageable) {
 		return artistDao.findAll(specification, pageable);
+	}
+	
+	public List<Artist> getTop5(){
+		return artistDao.findTop5ByOrderByTotalFollowers();
 	}
 
 }

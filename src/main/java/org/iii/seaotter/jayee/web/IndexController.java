@@ -1,7 +1,6 @@
 package org.iii.seaotter.jayee.web;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
@@ -10,6 +9,7 @@ import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.common.ForumBoard;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
+import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.entity.SecurityUser;
@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/index")
 public class IndexController {
 	
 	@Autowired
@@ -59,7 +58,10 @@ public class IndexController {
 //		return "/user/index";
 //	}
 	
-	
+	@RequestMapping("/article")
+	public String articleListPage() {
+		return "/user/article-list";
+	}
 	
 	@RequestMapping("/performancetop")
 	@ResponseBody
@@ -120,6 +122,12 @@ public class IndexController {
 	@ResponseBody
 	public SecurityUser findUserBean(@PathVariable String userAccount) {
 		return securityUserService.findUserBean(userAccount);
+	}
+	
+	@GetMapping("/artistTop5")
+	@ResponseBody
+	public List<Artist> getTop5(){
+		return artistService.getTop5();
 	}
 	
 	
