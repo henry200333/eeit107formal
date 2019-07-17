@@ -64,7 +64,26 @@
 	<!-- End of Page Wrapper -->
 
 <script>
+function showjobs() {
 
+	$.ajax({
+				url : "/user/job/finduserapplication/"+$("#username").val(),
+				type : "GET",
+				dataType : "json",
+				contentType : "application/json",
+				success : function(data) {	
+					alert(data);
+					$.each(data,function(key, obj) {
+						console.log(obj)
+					})
+				}
+			})
+
+			
+}
+  
+
+showjobs();
 </script>
 </body>
 </html>
