@@ -287,7 +287,7 @@
 				</div>
 			</div>
 		</div>
-		
+		<jsp:include page="chat.jsp"></jsp:include>	
 		<!-- Footer -->
 
 		<footer class="page-footer font-small blue" style="margin-top: 30px;">
@@ -345,7 +345,7 @@
 					</div>
 				</div>
 			</div>
-	<jsp:include page="chat.jsp"></jsp:include>
+
 	<jsp:include page="footer.jsp"></jsp:include>
 	
 		</footer>
@@ -365,7 +365,7 @@
 				var url = value['url'].substring(count+1);
 				$("#url"+(p+1)).attr('src','https://www.youtube.com/embed/'+url);
 				$(".per"+(p+1)).click(function(){
-					window.location.href=value['url'];
+					window.location.href="/index/performanceview/"+value['id'];
 				});
 				$("#performance"+(p+1)).children("#p1").html(value['title']);
 				$("#performance"+(p+1)).children("#p2").html(value['username']);
