@@ -352,7 +352,7 @@
 	</div>
 	<script>
 	$.ajax({
-		url:"/index/performancetop",
+		url:"/performancetop",
 		type:"POST",
 		success: function(data){
 			$.each(data,function(index,value){
@@ -365,7 +365,7 @@
 				var url = value['url'].substring(count+1);
 				$("#url"+(p+1)).attr('src','https://www.youtube.com/embed/'+url);
 				$(".per"+(p+1)).click(function(){
-					window.location.href="/index/performanceview/"+value['id'];
+					window.location.href="/performanceview/"+value['id'];
 				});
 				$("#performance"+(p+1)).children("#p1").html(value['title']);
 				$("#performance"+(p+1)).children("#p2").html(value['username']);
@@ -378,7 +378,7 @@
 		}
 	})
 	$.ajax({
-		url:"/index/activityTop3",
+		url:"/activityTop3",
 		type:"GET",
 		success: function(data){
 			txt1="<div style='position: relative' id='activity'><div style='position: absolute; margin-left: 280px; z-index: 2; top: 20px; display: none; border-left: 180px solid transparent; width: 450px; height: 0; border-bottom: 219px solid #ff7575' id='acts1'><span style='color: white'>"; 
@@ -400,7 +400,7 @@
 	
 	//獲取articleTop6並放入對應的DIV及IMG
 	$.ajax({
-		url:"/index/articleTop6",
+		url:"/articleTop6",
 		type:"GET",
 		success: function(res){
 			if(res.type == "SUCCESS"){
@@ -443,7 +443,7 @@
 	})
 	
 	$.ajax({
-		url:"/index/artistTop5",
+		url:"/artistTop5",
 		type:"GET",
 		success: function(data){
 			$.each(data,function(index,value){
