@@ -82,5 +82,11 @@ public class JobService {
 		}
 	}
 	
+	public List<JobApplication> getByArtist(Artist artist){
+		return jobApplicationDao.findByArtist(artist);
+	}
+	
+	
+	
 	
 }

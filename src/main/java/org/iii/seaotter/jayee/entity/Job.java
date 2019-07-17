@@ -45,10 +45,16 @@ public class Job {
 	@Column(name="reward")
 	private Integer reward;
 	
+	@Column(name="vender_name")
+	private String venderName;
+	
+	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JsonBackReference
 	@JoinColumn(name="vender_id", nullable=false)
 	private Vender vender;
+	
+	
 	
 	
 

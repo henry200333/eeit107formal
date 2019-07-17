@@ -65,6 +65,7 @@ public class SecurityUser implements UserDetails {
 	private Boolean enabled;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonBackReference
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "role_id") })
 	private Set<SecurityRole> roles;
@@ -75,6 +76,7 @@ public class SecurityUser implements UserDetails {
 	@JsonBackReference
 	private List<SecurityUser> friends;
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonBackReference
 	@JoinColumn(name = "artist_id")
 	private Artist artist;
 
