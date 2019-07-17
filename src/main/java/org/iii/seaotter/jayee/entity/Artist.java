@@ -31,7 +31,7 @@ public class Artist {
 	@Column(name = "week_followers")
 	private Long wFollowers;
 	@Column(name = "total_followers")
-	private Long tFollowers;
+	private Long totalFollowers;
 	//Artist的ID關聯到Activity的artistId外鍵欄位
 	@OneToMany(mappedBy="artistId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<Activity> activitySet;
