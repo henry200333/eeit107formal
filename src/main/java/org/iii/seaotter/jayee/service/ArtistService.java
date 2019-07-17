@@ -44,14 +44,14 @@ public class ArtistService {
 
 	public Artist update(Artist entity) {
 		Artist artist = null;
-		if (artistDao.findById(entity.getId()) != null) {
+		if (artistDao.findById(entity.getArtistId()) != null) {
 			artist = artistDao.save(entity);
 		}
 		return artist;
 	}
 
 	public void delete(Artist entity) {
-		if (artistDao.findById(entity.getId()) != null)
+		if (artistDao.findById(entity.getArtistId()) != null)
 			artistDao.delete(entity);
 	}
 

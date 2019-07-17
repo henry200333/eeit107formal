@@ -34,26 +34,25 @@
 				<img src="/resources/user-bootstrap/img/index/<sec:authentication		property="name" />.png" width="45px">
 				<span style="color: white; margin-right: 40px; margin-left: 20px"><sec:authentication
 						property="name" /></span>
-			<sec:authorize access="hasRole('ARTIST')">
-			<input id="account" hidden="hidden" name="account" value="<sec:authentication property="name" />">
-			<button class="btn btn-info"id="bt" type="button">個人頁面</button>
+			<sec:authorize access="hasAnyRole('USER', 'ARTIST')">
+<%-- 			<input id="account" hidden="hidden" name="account" value="<sec:authentication property="name" />"> --%>
+			<button class="btn btn-info" id="<sec:authentication property='name' />" type="button" onclick="userpage(this)">個人頁面</button>
+				<button class="btn btn-info" id="<sec:authentication property='name' />" type="button" onclick="edit(this)">帳號設定</button>
 				<a href="/logout"><button class="btn btn-danger my-2 my-sm-0"
 						type="submit"  style="margin-left:20px">登出</button></a>
-
-			</sec:authorize>
-			
-			
+			<script>
+			function userpage(Object) {
+				window.location.href = '/' + Object.id;
+			}
+			function edit(Object) {
+				window.location.href = '/edit/' + Object.id;
+			}
+			</script>
+			</sec:authorize>	
 			<sec:authorize access="hasRole('ADMIN')">
     		<a href="/admin/artist/list" class="btn btn-warning">後台</a>
 			</sec:authorize>
 			
-			<script>
-			function userpage() {
-				var a = $("#username").val()
-				window.location.href = '/' + a;
-			}
-
-			</script>
 			</sec:authorize>
 		</div>
 	</nav>
