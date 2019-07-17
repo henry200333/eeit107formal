@@ -42,6 +42,8 @@ public class Performance {
 	private Long unlikes;
 	@Column(name="username")
 	private String username;
+	@Column(name="gerne")
+	private String performanceGerne;
 	@JoinColumn(name="partist_id")
 	private Long partistId;
 }

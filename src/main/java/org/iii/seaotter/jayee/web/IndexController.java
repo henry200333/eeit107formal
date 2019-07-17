@@ -20,6 +20,7 @@ import org.iii.seaotter.jayee.service.PerformanceService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,6 +66,16 @@ public class IndexController {
 		return performanceService.getTop3ByOrderByViewsDesc();
 	}
 	
+	@GetMapping("/performanceview/{id}")
+	public String view(@PathVariable Long id,Model model) {
+		Performance performance = performanceService.getById(id);
+		String url = performance.getUrl();
+		String urlShort = url.substring(32);
+		performance.setUrl(urlShort);
+		model.addAttribute("performance",performance);
+		return "/user/performance-view";
+	}
+	
 //	@GetMapping("/artistsTop5")
 //	@ResponseBody
 //	public List<Artist> queryTop5() {
@@ -98,7 +109,6 @@ public class IndexController {
 	}
 	
 	@GetMapping("/fitComments/{board}/{refId}")
-	@ResponseBody
 	public List<Forum> fitComment(@PathVariable ForumBoard board, @PathVariable Long refId) {
 		return forumService.selectByBoardAndRefId(board,refId);
 	}
