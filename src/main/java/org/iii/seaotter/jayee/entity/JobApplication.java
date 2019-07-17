@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
 
 @Entity
@@ -23,6 +25,7 @@ public class JobApplication {
 	private Long id;
 
 	@ManyToOne(cascade=CascadeType.ALL)
+	@JsonBackReference
 	@JoinColumn(name="artist_id", nullable=false)
 	private Artist artist;
 	
