@@ -38,29 +38,62 @@
 	src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="/resources/user-bootstrap/js/all.js"></script>
 <meta charset="UTF-8">
-<title>${userParam.account }</title>
+<title>基本資料</title>
 <style>
 </style>
 </head>
 <body>
 	<jsp:include page="../topbar.jsp"></jsp:include>
-		<div class="container" style="margin-top: 70px;">
-		<div style="border: 5px #FFAC55 solid;">photo</div>
-		<div style="border: 5px #FFAC55 solid;">
-			姓名:${artistParam.artistName }</div>
-		<div style="border: 5px #FFAC55 solid;">
-			關於我:${userParam.introduction }</div>
-<!-- 		<div style="border: 5px #FFAC55 solid;"> -->
-<%-- 			粉絲:${artistParam.tFollowers }</div> --%>
-		<div style="border: 5px #FFAC55 solid;">
-			追蹤中:</div>
-		<div style="border: 5px #FFAC55 solid;">
-			表演:</div>
-		<div style="border: 5px #FFAC55 solid;">
-			文章:</div>
-		<div style="border: 5px #FFAC55 solid;">
-			影片:</div>
+	<sec:authorize access="hasAnyRole('USER', 'ARTIST')">
 
+		<div class="container" style="margin-top: 70px;">
+			<form>
+				<div>
+					<label for="displayName">顯示名稱</label> <input id="displayName" required="required" type="text"
+						value="${userParam.displayName }">
+				</div>
+
+				<div>
+					<label>頭像</label>
+				</div>
+
+				<div>
+					<label for="memberName">真實姓名</label> <input id="memberName" type="text"
+						value="${userParam.memberName }">
+				</div>
+
+				<div>
+					<label>性別</label>
+					<label>
+                    <input type="radio" name="gender" id="gender" value="male" required="required">男
+                	</label>
+                	<label>
+                    <input type="radio" name="gender" id="gender" value="female">女
+                	</label>
+                	<label>
+                    <input type="radio" name="gender" id="gender" value="other">其他
+                	</label>
+				</div>
+
+				<div>
+					<label for="mail">電子郵件</label> <input id="mail" type="email" value="${userParam.mail }">
+				</div>
+
+				<div>
+					<label>生日</label>
+				</div>
+
+				<div>
+					<label for="address">住址</label> <input id="address" type="text" value="${userParam.address }">
+				</div>
+
+				<div>
+					<label for="introduction">介紹</label> <input id="introduction" type="text"
+						value="${userParam.introduction }">
+				</div>
+			</form>
 		</div>
+	</sec:authorize>
+
 </body>
 </html>

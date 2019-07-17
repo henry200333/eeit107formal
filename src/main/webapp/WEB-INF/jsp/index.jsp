@@ -188,7 +188,7 @@
 				);
 				</script>
 				<div class="col-4" style="height: 700px; margin-top: 28px;">
-					<div class="row" style="height: 120px; border: 1px,black,solid;">
+					<div class="row articleblock" style="height: 120px; cursor: pointer;">
 						<div id="articleImg1" class="col-4">
 						</div>
 						<div class="col-8" style="margin-top: 10px; position:relative;">
@@ -196,7 +196,7 @@
 							<span style="font-size: 14px; position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 1750<i id="articleView1" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
-					<div class="row" style="height: 120px;">
+					<div class="row articleblock" style="height: 120px; cursor: pointer;">
 						<div id="articleImg2" class="col-4">
 						</div>
 						<div class="col-8" style="margin-top: 10px; position:relative;">
@@ -204,7 +204,7 @@
 							<span style="font-size: 14px; position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 315<i id="articleView2" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
-					<div class="row" style="height: 120px;">
+					<div class="row articleblock" style="height: 120px; cursor: pointer;">
 						<div id="articleImg3" class="col-4">
 						</div>
 						<div class="col-8" style="margin-top: 10px; position:relative;">
@@ -212,7 +212,7 @@
 							<span style="font-size: 14px; position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 189<i id="articleView3" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
-					<div class="row" style="height: 120px;">
+					<div class="row articleblock" style="height: 120px; cursor: pointer;">
 						<div id="articleImg4" class="col-4">
 						</div>
 						<div class="col-8" style="margin-top: 10px; position:relative;"
@@ -221,7 +221,7 @@
 							<span style="font-size: 14px; position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 115<i id="articleView4" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
-					<div class="row" style="height: 120px;">
+					<div class="row articleblock" style="height: 120px; cursor: pointer;">
 						<div id="articleImg5" class="col-4">
 						</div>
 						<div class="col-8" style="margin-top: 10px; position:relative;">
@@ -229,7 +229,7 @@
 							<span style="font-size: 14px;  position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 1<i id="articleView5" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
-					<div class="row" style="height: 120px;">
+					<div class="row articleblock" style="height: 120px; cursor: pointer;">
 						<div id="articleImg6" class="col-4">
 						</div>
 						<div class="col-8" style="margin-top: 10px; position:relative;">
@@ -433,9 +433,9 @@
 					}
 					if(start != -1 && end != -1){
 						var url = content.substring(start + 2, end + 4);
-						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 15px; background-image:url('" + url + "'); background-size: cover; background-position: center; cursor: pointer;");
+						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 15px; background-image:url('" + url + "'); background-size: cover; background-position: center;");
 					} else {
-						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 15px; background-image:url('/resources/user-bootstrap/img/index/article.jpg'); background-size: cover; background-position: center; cursor: pointer;");
+						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 15px; background-image:url('/resources/user-bootstrap/img/index/article.jpg'); background-size: cover; background-position: center;");
 					}
 				}
 			}
