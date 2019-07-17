@@ -7,4 +7,6 @@
 		<a class="navbar-brand" href="#"
 			style="margin: auto; font-size: 15px;">© 2019 Copyright Jayee.com</a>
 	</div>
+	
+	
 </nav>
