@@ -66,7 +66,7 @@ public class JobService {
 	
 	public void saveApplication(Artist artist , Job job) {
 		JobApplication application=new JobApplication();
-		System.out.println(artist.getId());
+		System.out.println(artist.getArtistId());
 		System.out.println(job.getId());
 		application.setArtist(artist);
 		application.setJob(job);

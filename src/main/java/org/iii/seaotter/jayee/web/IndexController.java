@@ -1,5 +1,7 @@
 package org.iii.seaotter.jayee.web;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
@@ -8,7 +10,6 @@ import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.common.ForumBoard;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
-import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.entity.SecurityUser;
@@ -72,7 +73,9 @@ public class IndexController {
 		String url = performance.getUrl();
 		String urlShort = url.substring(32);
 		performance.setUrl(urlShort);
+		String time = new SimpleDateFormat("yyyy年MM月dd日").format(performance.getUpdateTime());
 		model.addAttribute("performance",performance);
+		model.addAttribute("time",time);
 		return "/user/performance-view";
 	}
 	

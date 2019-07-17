@@ -65,7 +65,7 @@ public class AdminArtistController {
 
 	@RequestMapping("/edit")
 	public String editPage(@ModelAttribute("artist") Artist artist, Model model) {
-		artist = artistService.getById(artist.getId());
+		artist = artistService.getById(artist.getArtistId());
 		model.addAttribute("artistParam", artist);
 		return "/admin/artist-edit";
 	}
@@ -136,13 +136,13 @@ public class AdminArtistController {
 	public AjaxResponse<Artist> delete(@RequestBody Artist artist) {
 		System.out.println(artist);
 		AjaxResponse<Artist> ajaxRes = new AjaxResponse<>();
-		artist = artistService.getById(artist.getId());
+		artist = artistService.getById(artist.getArtistId());
 		if (null != artist) {
 			artistService.delete(artist);
 			ajaxRes.setType(AjaxResponseType.SUCCESS);
 			ajaxRes.setData(artist);
 			//begin of cascade.delete article
-			List<Article> articleList = articleService.getByRefIdAndType(artist.getId(), ArticleType.Artist);
+			List<Article> articleList = articleService.getByRefIdAndType(artist.getArtistId(), ArticleType.Artist);
 			if(articleList != null && articleList.size() != 0) {
 				for (Article article : articleList) {
 					articleService.delete(article);
