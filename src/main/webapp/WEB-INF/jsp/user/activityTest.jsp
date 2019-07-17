@@ -145,7 +145,7 @@ function showjobs() {
 						 		var txt6 ="";
 								txt1="<div class='col-lg-6 mb-4'><div class='card h-100'><a href='#'><img class='card-img-top' src='/resources/user-bootstrap/img/activity/activity";
 						 		//加圖片處
-						 		txt2=".jpg' alt='' style='height:300px;width:550px;border-radius:20px'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
+						 		txt2=".jpg' name='pictureName' style='height:300px;width:550px;border-radius:20px'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
 						 		//加活動名稱區
 						 		txt3="</a></h4><p class='card-text'>";
 						 		//加文章區
@@ -236,6 +236,15 @@ function showPageList(){
 }
 
 showjobs();
+
+
+$("image[name='pictureName']").hover(function handlerIn(){
+	$(this).css('opacity',0.5);
+	alert("111");
+}, function handlerOut(){
+	$(this).css('opacity',1);
+});
+
 
 
 </script>

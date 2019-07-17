@@ -172,20 +172,20 @@
 					</div>
 				</div>
 				<script>
-					$("#act1").hover(function() {
-						$("#acts1").fadeToggle(300)
-					})
-					$("#act2").hover(function() {
-						$("#acts2").fadeToggle(300)
-					})
-					$("#act3").hover(function() {
-						$("#acts3").fadeToggle(300)
-					})
-					$(".hover").mouseleave(
-  				function() {
-    				$(this).removeClass("hover");
-  					}
-				);
+// 					$("#act1").hover(function() {
+// 						$("#acts1").fadeToggle(300)
+// 					})
+// 					$("#act2").hover(function() {
+// 						$("#acts2").fadeToggle(300)
+// 					})
+// 					$("#act3").hover(function() {
+// 						$("#acts3").fadeToggle(300)
+// 					})
+// 					$(".hover").mouseleave(
+//   				function() {
+//     				$(this).removeClass("hover");
+//   					}
+// 				);
 				</script>
 				<div class="col-4" style="height: 700px; margin-top: 28px;">
 					<div class="row articleblock" style="height: 120px; cursor: pointer;">
