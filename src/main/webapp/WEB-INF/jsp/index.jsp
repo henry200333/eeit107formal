@@ -398,7 +398,7 @@
 		}
 	})
 	
-	//獲取articleTop6並放入對應的DIV
+	//獲取articleTop6並放入對應的DIV及IMG
 	$.ajax({
 		url:"/index/articleTop6",
 		type:"GET",
@@ -413,12 +413,27 @@
 					$(articleTop + (i + 1)).attr('id', 'article' + data[i].id);
 					var start = content.indexOf('](http');
 					var end = content.indexOf('.jpg');
+					var endpng = content.indexOf('.png');
+					var endgif = content.indexOf('.gif');
+					if(end != -1 && endpng != -1){
+						if(end > endpng){
+							end = endpng;
+						}
+					}else if(end == -1 && endpng != -1){
+						end = endpng;
+					}
+					if(end != -1 && endgif != -1){
+						if(end > endgif){
+							end = endgif;
+						}
+					}else if(end == -1 && endgif != -1){
+						end = endgif;
+					}
 					if(start != -1 && end != -1){
 						var url = content.substring(start + 2, end + 4);
-						console.log(url);
-						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 10px; background-image:url('" + url + "'); background-size: cover; background-position: center; cursor: pointer;");
+						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 15px; background-image:url('" + url + "'); background-size: cover; background-position: center; cursor: pointer;");
 					} else {
-						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 10px; background-image:url('/resources/user-bootstrap/img/index/article.jpg'); background-size: cover; background-position: center; cursor: pointer;");
+						$(articleImg + (i + 1)).attr('style', "margin-top: 12px; padding-left: 15px; padding-right: 15px; border-radius: 15px; background-image:url('/resources/user-bootstrap/img/index/article.jpg'); background-size: cover; background-position: center; cursor: pointer;");
 					}
 				}
 			}

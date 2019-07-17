@@ -53,7 +53,8 @@ INSERT INTO article (name, content, article_type, ref_id, count, announce) value
 你/妳好！ 我的名字叫忻玥(ㄒㄧㄣ ㄩㄝ、)女聲 & 吉他 & 創作
 Hello! I’m Vicky Chen.Singing & Playing guitar & Writing
 ### 找我演出
-alex@skrpresents.com', 'Performance', 1, 99, GETDATE()),
+alex@skrpresents.com
+![](https://i.kfs.io/artist/global/10012811,0v1/fit/300x300.jpg)', 'Performance', 1, 99, GETDATE()),
 ('白賊虞表示：發財', '# ~~發大財~~ 發財
 ------------
 ##### 路人A：
@@ -72,6 +73,7 @@ alex@skrpresents.com', 'Performance', 1, 99, GETDATE()),
 
 ![](https://i.imgur.com/31rorUq.jpg)', 'Artist', 2, 5, GETDATE()),
 ('柳川鳳在球場上穿梭自如', '# 柳川鳳在湖南對湘北的校際大展身手
+![](https://i1.kknews.cc/SIG=3ri4ka3/288r00038r686nqq78ps.jpg)
 ### 球場上旁若無人，穿梭自如
 彷彿沒有模組間物體碰撞一般的移動。
 ### 怎麼辦到的？
@@ -85,6 +87,7 @@ alex@skrpresents.com', 'Performance', 1, 99, GETDATE()),
 
 ------------
 
+![](https://d.rimg.com.tw/s2/c/35/58/21706230390104_189_m.jpg)
 #### 	　　近日，基督徒歌手鄧紫棋發佈了新歌《新的心跳》MV，動感十足的歌曲著滲透濃濃的勵志信息。歌詞「我們死而復活......舊事已過都變成新的」出自《聖經》，流露信仰味道。
 #### 	　　鄧紫棋在MV中扮演一個被校園欺凌的乖乖女，《新的心跳》寓意新的生命幫助她走出了欺凌陰影，MV中除了鄧紫棋，還有另外兩位主角，一個是帶著假肢的舞者，一個是對跳水很膽怯女孩。
 #### 	　　她們都有被嘲笑，冷嘲熱諷的經歷。但是在努力不懈的練習下，假肢女孩舞出了美麗的舞蹈，跳水女孩展現了完美的跳躍。
@@ -93,7 +96,8 @@ alex@skrpresents.com', 'Performance', 1, 99, GETDATE()),
 ### 製作團隊將間諜小狗投放至野狗群中
 #### 	　　間諜小狗能不能在第一次接觸被認定為同伴？
 ### 演員評價
-#### 	　　想不到郭董也很有戲劇天分~~ ，在新的動物頻道中，郭董飾演間諜小狗，演技逼真，吃草認真', 'Activity', 5, 4, GETDATE());
+#### 	　　想不到郭董也很有戲劇天分~~ ，在新的動物頻道中，郭董飾演間諜小狗，演技逼真，吃草認真
+![](http://img.komicolle.org/2019-05/15578732626695.png)', 'Activity', 5, 4, GETDATE());
  
  insert into forum (ref_id, ref_comment_id, forum_board, user_name, comment, comment_date) values
  (1, 0,'Performance', '薔薔4', '大家好我是薔薔4', '2019/05/25 18:13:21'),
