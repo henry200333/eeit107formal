@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <header>
 	<nav class="navbar navbar-expand-md navbar-light bg-light"
-		style="margin-top: 70px;">
+		style="padding-top: 70px;">
 		<div class="mx-auto order-0">
 			<div class="btn-group">
 				<button type="button" class="btn bar" id="topbar1"
