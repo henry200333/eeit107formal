@@ -39,10 +39,10 @@ public class Artist {
 	private Long wFollowers;
 	@Column(name = "total_followers")
 	private Long totalFollowers;
-	//Artist的ID關聯到Activity的artistId外鍵欄位
-	@JsonIgnore
-	@OneToMany(mappedBy="artistId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)	
-	private Set<Activity> activitySet;
+	//Artist的ID關聯到Activity的artistId外鍵欄位  ==>已轉移至SecurityUser
+//	@JsonIgnore
+//	@OneToMany(mappedBy="artistId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)	
+//	private Set<Activity> activitySet;
 	
 	
 	//Artist的ID關聯到Performance的artistId外鍵欄位
