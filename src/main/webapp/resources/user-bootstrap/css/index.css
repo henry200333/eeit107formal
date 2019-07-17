@@ -1,7 +1,7 @@
 .bar {
     border-bottom: 5px solid white;
     background-color:white;
-    font-size:20px;
+    font-size:20px;z
 }
 
 .bar2{
@@ -278,9 +278,6 @@ body {
 /*     background: url(/resources/user-bootstrap/img/index/bigdiv.gif) no-repeat fixed top; */
 /* } */
 
-iframe:hover {
-    opacity: 0.6;
-}
 
 /* activity */
 .snip1543 {

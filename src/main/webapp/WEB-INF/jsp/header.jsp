@@ -76,7 +76,7 @@
 </header>
 <head>
 <meta charset="UTF-8">
-<title>index</title>
+<title>JAYEE</title>
 <link
 	href="https://fonts.googleapis.com/css?family=Pacifico|Rock+Salt&display=swap"
 	rel="stylesheet">
@@ -108,4 +108,6 @@
 <script type="text/javascript"
 	src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="/resources/user-bootstrap/js/all.js"></script>
+<script src="//cdn.jsdelivr.net/jquery.color-animation/1/mainfile"></script>
+
 </head>
