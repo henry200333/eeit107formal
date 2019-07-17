@@ -31,7 +31,7 @@
 					通知 <span class="badge badge-warning">9</span> <span class="sr-only">unread
 						messages</span>
 				</button>
-				<img src="/resources/user-bootstrap/img/index/<sec:authentication		property="name" />.png" width="45px">
+				<img src="/resources/profile_image/<sec:authentication		property="name" />.jpg" width="45px">
 				<span style="color: white; margin-right: 40px; margin-left: 20px"><sec:authentication
 						property="name" /></span>
 			<sec:authorize access="hasAnyRole('USER', 'ARTIST')">

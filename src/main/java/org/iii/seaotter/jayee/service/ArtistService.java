@@ -55,7 +55,7 @@ public class ArtistService {
 			artistDao.delete(entity);
 	}
 
-	public static void saveImage(MultipartFile imageFile) throws Exception {
+	public static void saveImage(MultipartFile imageFile, String username) throws Exception {
 
 		URL R = This.class.getResource("/");
 		String decoded = URLDecoder.decode(R.getFile(), "UTF-8");
@@ -65,7 +65,7 @@ public class ArtistService {
 		decoded = decoded.replace("target", "src");
 		decoded = decoded.replace("classes", "main");
 		decoded += "webapp/resources/profile_image/";
-		Files.write(Paths.get(decoded + imageFile.getOriginalFilename()), imageFile.getBytes());
+		Files.write(Paths.get(decoded + username + ".jpg"), imageFile.getBytes());
 
 	}
 
