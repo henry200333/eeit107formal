@@ -22,9 +22,9 @@
   </h1>
   </div>
   <div style="margin-left: 800px;">
-  <div class="input-group">
-<input type="text" class="form-control border-0 small" placeholder="搜尋活動..." aria-label="Search" aria-describedby="basic-addon2">
-  <button id="searchBT" class="btn btn-primary" type="button">
+  <div class="input-group" style='margin-top:10px'>
+<input type="text" class="form-control border-0 small" placeholder="搜尋活動...">
+  <button id="searchBT" class="btn btn-info" type="button">
 					                  <i class="fas fa-search fa-sm"></i>
 					                </button>
   </div>
@@ -143,9 +143,9 @@ function showjobs() {
 							type : "GET",
 							success : function(data) {
 						 		var txt6 ="";
-								txt1="<div class='col-lg-6 mb-4'><div class='card h-100'><a href='#'><img class='card-img-top' src='/resources/user-bootstrap/img/activity/activity";
+								txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='#'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 						 		//加圖片處
-						 		txt2=".jpg' name='pictureName' style='height:300px;width:550px;border-radius:20px'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
+						 		txt2=".jpg' style='height:100%;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
 						 		//加活動名稱區
 						 		txt3="</a></h4><p class='card-text'>";
 						 		//加文章區
@@ -236,15 +236,6 @@ function showPageList(){
 }
 
 showjobs();
-
-
-$("image[name='pictureName']").hover(function handlerIn(){
-	$(this).css('opacity',0.5);
-	alert("111");
-}, function handlerOut(){
-	$(this).css('opacity',1);
-});
-
 
 
 </script>
