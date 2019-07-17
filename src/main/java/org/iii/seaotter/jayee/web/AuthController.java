@@ -1,5 +1,6 @@
 package org.iii.seaotter.jayee.web;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import org.iii.seaotter.jayee.dao.SecurityRoleDao;
 import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.SecurityRole;
 import org.iii.seaotter.jayee.entity.SecurityUser;
+import org.iii.seaotter.jayee.service.ArtistService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class AuthController {
@@ -124,5 +127,22 @@ public class AuthController {
 		Authentication authenticatedUser = authenticationManager.authenticate(token);
 
 		SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
+	}
+	
+	@PostMapping("/uploadPhoto")
+	public String upload(@RequestParam("imageFile") MultipartFile imageFile,@RequestParam("username")String username) throws IOException {
+		System.out.println(username);
+		String returnValue = "/index";
+		try {
+			ArtistService.saveImage(imageFile,username);
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnValue = "error";
+		}
+		SecurityUser user = securityUserService.getByUserName(username);
+		String photo = "/resources/profile_image/" + username + ".jpg";
+		user.setPhoto(photo);
+		securityUserService.update(user);
+		return returnValue;
 	}
 }
