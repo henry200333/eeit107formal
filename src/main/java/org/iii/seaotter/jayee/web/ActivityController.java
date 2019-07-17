@@ -9,6 +9,7 @@ import javax.persistence.criteria.Root;
 
 import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Activity;
+import org.iii.seaotter.jayee.entity.Job;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,11 +46,31 @@ public class ActivityController {
 	
 	@RequestMapping("/query")
 	@ResponseBody
-	public List<Activity> query(){	
-		List<Activity> activity=activityService.getAll();
-		System.out.println(activity);
-		return activity;
+	public GridResponse<Activity> query(@RequestParam(value = "page") Integer page) {
+		String sidx="name";
+		Integer size = 6;
+		GridResponse<Activity> grid = new GridResponse<Activity>();
+		Sort sort = new Sort(Sort.Direction.DESC, sidx);
+		Pageable pageable = PageRequest.of(page - 1, size, sort);
+
+		Specification<Activity> specification = new Specification<Activity>() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Predicate toPredicate(Root<Activity> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Predicate predicate = cb.conjunction();
+			
+				return predicate;
+			}
+		};
+		Page<Activity> result = activityService.getAll(specification, pageable);
+		grid.setRows(result.getContent());
+		grid.setPage(page);
+		grid.setRecords(result.getTotalElements());
+		grid.setTotal(result.getTotalPages());
+		return grid;
 	}
+	
 	
 	@RequestMapping("/query123")
 	@ResponseBody
