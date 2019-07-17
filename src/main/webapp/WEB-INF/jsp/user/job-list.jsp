@@ -33,8 +33,8 @@
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">List of Jobs</h1>
-<%-- 						href="/<sec:authentication property="name" />" --%>
-						<a  id="applicationPage" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">申請紀錄</a>
+						
+						<a href="/user/job/application/list" id="applicationPage" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">申請紀錄</a>
 					</div>
 					<hr>
 					<!-- 					<form style='border: solid; margin: 10px' id='job1'> -->
@@ -70,7 +70,7 @@
 					<!-- 						</div> -->
 					<!-- 					</form> -->
 
-					<input hidden="hidden" name="username"
+					<input hidden="hidden" name="userName"
 						value="<sec:authentication property="name" />" id="username">
 
 
@@ -87,7 +87,8 @@
 							onclick='nextPage()' > >> </label>
 					</div>
 					<div style='text-align: center'>
-					<input id="pageSearch" style="width:2%;text-align:center" value="" onchange="pageSearch(this)">
+					<p>搜尋頁數
+					<input id="pageSearch" style="width:2%;text-align:center" value="" onchange="pageSearch(this)"></p>
 					</div>
 					
 					</div>
@@ -108,14 +109,7 @@
 		<script>
 			var page = 1;
 			var total = 1;
-			$("#applicationPage").click(function(){
-				alert($("#username").serializeObject())
-// 				$.ajax({
-// 					url:"/application/list"
-// 					data:
-// 				})
-				
-			})
+	
 			
 			
 			function pageSearch(object){
@@ -273,4 +267,6 @@
 			
 		</script>
 </body>
+<!-- footer -->
+<jsp:include page="../footer.jsp"></jsp:include>
 </html>
