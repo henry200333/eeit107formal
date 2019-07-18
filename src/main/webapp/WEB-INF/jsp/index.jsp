@@ -259,6 +259,7 @@
 						<p style="line-height: 30px;font-weight:bold " id='p1'></p>
 						<p style="line-height: 20px;font-size:14px" id='p2'></p>
 						<p style="line-height: 20px;font-size:14px" id='p3'></p>
+						<p style="line-height: 20px;font-size:14px;float:right" id='p4'></p>
 					</div>
 				</div>
 				<div class="col-4"  style="position: relative;">
@@ -271,6 +272,7 @@
 						<p style="line-height: 30px;font-weight:bold " id='p1'></p>
 						<p style="line-height: 20px;font-size:14px" id='p2'></p>
 						<p style="line-height: 20px;font-size:14px" id='p3'></p>
+						<p style="line-height: 20px;font-size:14px;float:right" id='p4'></p>
 					</div>
 				</div>
 				<div class="col-4"  style="position: relative;">
@@ -283,6 +285,7 @@
 						<p style="line-height: 30px;font-weight:bold" id='p1'></p>
 						<p style="line-height: 20px;font-size:14px" id='p2'></p>
 						<p style="line-height: 20px;font-size:14px" id='p3'></p>
+						<p style="line-height: 20px;font-size:14px;float:right" id='p4'></p>
 					</div>
 				</div>
 			</div>
@@ -369,7 +372,8 @@
 				});
 				$("#performance"+(p+1)).children("#p1").html(value['title']);
 				$("#performance"+(p+1)).children("#p2").html(value['username']);
-				$("#performance"+(p+1)).children("#p3").html(value['views']+"觀看，"+parseInt(timeresult)+"前發布");
+				$("#performance"+(p+1)).children("#p3").html(value['views']+"觀看"+parseInt(timeresult)+"  天前發布");
+				$("#performance"+(p+1)).children("#p4").html(parseInt(timeresult)+"  天前發布");
 				
 			})
 		},
