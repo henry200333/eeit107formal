@@ -46,9 +46,9 @@ public class Artist {
 	
 	
 	//Artist的ID關聯到Performance的artistId外鍵欄位
-	@JsonIgnore
-	@OneToMany(mappedBy="partistId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-	private Set<Performance> performanceSet;
+//	@JsonIgnore
+//	@OneToMany(mappedBy="partistId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+//	private Set<Performance> performanceSet;
 	
 
 }

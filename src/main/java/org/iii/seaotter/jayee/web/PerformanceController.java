@@ -83,7 +83,7 @@ public class PerformanceController {
 		}
 		performance.setViews(0L);
 		performance.setLikes(0L);
-		performance.setUnlikes(0L);
+		performance.setDislikes(0L);
 		result.setType(AjaxResponseType.SUCCESS);
 		result.setData(performanceService.insert(performance));
 		return result;

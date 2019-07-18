@@ -21,7 +21,7 @@
 			</div>
 
 			<!-- 500:500 -->
-			<div class="row" style="text-align: center; margin-top: 1em;">
+			<div class="row" style="text-align: center; margin-top: 1em;" id="artists">
 				<div class="col-3" style="padding: 0 0 0 15px">
 					<a id="artistlink1" href=""><img src=""
 						width="100%" class="artist1"></a> <a id="artistlink3" href=""><img
@@ -80,35 +80,35 @@
 			<div class="slick">
 				<div class="col-3">
 					<a id="artistlink1" href=""><img src=""
-						style="display: inline" width="40%" id="artistPic1"></a> <span
+						style="display: inline" width="40%" class="artistPic1"></a> <span
 						class="artwalls1 artname1" ></span>
 					<br> <span class="artwalls2 follow1" ></span>
 				</div>
 
 				<div class="col-3">
 					<a id="artistlink" href=""><img src=""
-						style="display: inline" width="40%" id="artistPic2"></a> <span
+						style="display: inline" width="40%" class="artistPic2"></a> <span
 						class="artwalls1 artname2"></span>
 					<br> <span class="artwalls2 follow2"></span>
 
 				</div>
 				<div class="col-3">
 					<a id="artistlink3" href=""><img src=""
-						style="display: inline" width="40%" id="artistPic3"></a> <span
+						style="display: inline" width="40%" class="artistPic3"></a> <span
 						class="artwalls1 artname3" ></span>
 					<br> <span class="artwalls2 follow3" ></span>
 
 				</div>
 				<div class="col-3">
 					<a id="artistlink4" href=""><img src=""
-						style="display: inline" width="40%" id="artistPic4"></a> <span
+						style="display: inline" width="40%" class="artistPic4"></a> <span
 						class="artwalls1 artname4"></span>
 					<br> <span class="artwalls2 follow4"></span>
 
 				</div>
 				<div class="col-3">
 					<a id="artistlink5" href=""><img src=""
-						style="display: inline" width="40%" id="artistPic5"></a> <span
+						style="display: inline" width="40%" class="artistPic5"></a> <span
 						class="artwalls1 artname5" ></span>
 					<br> <span class="artwalls2 follow5"></span>
 
@@ -250,39 +250,42 @@
 
 			<div class="row" style="margin-top: 30px;">
 				<div class="col-4" style="position: relative;">
-				<div class="per1"></div>
+				<div class="per" id="per1"></div>
 					<iframe width="100%" height="240px;" id="url1"
 						src="https://www.youtube.com/embed/VVDsJKzbYcM" frameborder="0" 
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 						allowfullscreen style="position: relative;"></iframe>
 					<div style="margin-top: 10px;" id="performance1">
-						<p style="line-height: 10px;" id='p1'></p>
-						<p style="line-height: 10px;" id='p2'></p>
-						<p style="line-height: 10px;" id='p3'></p>
+						<p style="line-height: 30px;font-weight:bold " id='p1'></p>
+						<p style="line-height: 20px;font-size:14px" id='p2'></p>
+						<p style="line-height: 20px;font-size:14px" id='p3'></p>
+						<p style="line-height: 20px;font-size:14px;float:right" id='p4'></p>
 					</div>
 				</div>
 				<div class="col-4"  style="position: relative;">
-				<div class="per2"></div>
+				<div class="per"  id="per2"></div>
 					<iframe width="100%" height="240px" id="url2"
 						src="https://www.youtube.com/embed/VVDsJKzbYcM" frameborder="0"
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 						allowfullscreen></iframe>
 					<div style="margin-top: 10px;" id="performance2">
-						<p style="line-height: 10px;" id='p1'></p>
-						<p style="line-height: 10px;" id='p2'></p>
-						<p style="line-height: 10px;" id='p3'></p>
+						<p style="line-height: 30px;font-weight:bold " id='p1'></p>
+						<p style="line-height: 20px;font-size:14px" id='p2'></p>
+						<p style="line-height: 20px;font-size:14px" id='p3'></p>
+						<p style="line-height: 20px;font-size:14px;float:right" id='p4'></p>
 					</div>
 				</div>
 				<div class="col-4"  style="position: relative;">
-				<div class="per3"></div>
+				<div class="per"  id="per1"></div>
 					<iframe width="100%" height="240px" id="url3"
 						src="https://www.youtube.com/embed/VVDsJKzbYcM" frameborder="0"
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 						allowfullscreen></iframe>
 					<div style="margin-top: 10px;" id="performance3">
-						<p style="line-height: 10px;" id='p1'></p>
-						<p style="line-height: 10px;" id='p2'></p>
-						<p style="line-height: 10px;" id='p3'></p>
+						<p style="line-height: 30px;font-weight:bold" id='p1'></p>
+						<p style="line-height: 20px;font-size:14px" id='p2'></p>
+						<p style="line-height: 20px;font-size:14px" id='p3'></p>
+						<p style="line-height: 20px;font-size:14px;float:right" id='p4'></p>
 					</div>
 				</div>
 			</div>
@@ -364,12 +367,13 @@
 				var count = value['url'].indexOf("=");
 				var url = value['url'].substring(count+1);
 				$("#url"+(p+1)).attr('src','https://www.youtube.com/embed/'+url);
-				$(".per"+(p+1)).click(function(){
+				$("#per"+(p+1)).click(function(){
 					window.location.href="/performanceview/"+value['id'];
 				});
 				$("#performance"+(p+1)).children("#p1").html(value['title']);
 				$("#performance"+(p+1)).children("#p2").html(value['username']);
-				$("#performance"+(p+1)).children("#p3").html(value['views']+"觀看，"+parseInt(timeresult)+"前發布");
+				$("#performance"+(p+1)).children("#p3").html(value['views']+"觀看"+parseInt(timeresult)+"  天前發布");
+				$("#performance"+(p+1)).children("#p4").html(parseInt(timeresult)+"  天前發布");
 				
 			})
 		},
@@ -449,10 +453,10 @@
 			$.each(data,function(index,value){
 				var count = index+1;
 				$(".artist"+count).attr('src',value['photo']);
-				$("#artistPic"+count).attr('src',value['photo']);
+				$(".artistPic"+count).attr('src',value['photo']);
 				$("#artistlink"+count).attr('href','/'+value['account']);
 				$(".artname"+count).html(value['displayName']);
-				$(".follow"+count).html(value['followers']);
+				$(".follow"+count).html(value['followers']+"人追蹤");
 			})
 		}
 	});

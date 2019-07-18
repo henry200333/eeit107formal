@@ -12,6 +12,7 @@ import org.iii.seaotter.jayee.dao.JobDao;
 import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.Job;
 import org.iii.seaotter.jayee.entity.JobApplication;
+import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.entity.Vender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -59,31 +60,31 @@ public class JobService {
 		return jobDao.findByVender(vender);
 	}
 	
-	public void setjobarist(Job job,Artist artist) {
-		job.setArtist(artist);
+	public void setjobarist(Job job,SecurityUser user) {
+		job.setUser(user);
 		jobDao.save(job);
 	}
 	
-	public void saveApplication(Artist artist , Job job) {
+	public void saveApplication(SecurityUser user, Job job) {
 		JobApplication application=new JobApplication();
-		System.out.println(artist.getArtistId());
+		System.out.println(user.getUserId());
 		System.out.println(job.getId());
-		application.setArtist(artist);
+		application.setUser(user);
 		application.setJob(job);
 		application.setApplicationTime(new Date());
 		jobApplicationDao.save(application);
 	}
 	
-	public Boolean checkApplication(Artist artist , Job job) {
-		if(jobApplicationDao.findByArtistAndJob(artist, job)!=null) {
+	public Boolean checkApplication(SecurityUser user , Job job) {
+		if(jobApplicationDao.findByUserAndJob(user, job)!=null) {
 			return true;
 		}else {
 			return false;
 		}
 	}
 	
-	public List<JobApplication> getByArtist(Artist artist){
-		return jobApplicationDao.findByArtist(artist);
+	public List<JobApplication> getByUser(SecurityUser user ){
+		return jobApplicationDao.findByUser(user);
 	}
 	
 	

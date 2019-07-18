@@ -212,7 +212,7 @@ public class AdminPerformanceController {
 		}
 		performance.setViews(0L);
 		performance.setLikes(0L);
-		performance.setUnlikes(0L);
+		performance.setDislikes(0L);
 		result.setType(AjaxResponseType.SUCCESS);
 		result.setData(performanceSurvice.insert(performance));
 		return result;
@@ -305,7 +305,7 @@ public class AdminPerformanceController {
 	public Performance like(@RequestParam("id")Long id,@RequestParam("unlikeType") int unlikeType) {
 		Performance performance = performanceSurvice.getById(id);
 		Long likes = performance.getLikes();
-		Long unlikes = performance.getUnlikes();
+		Long unlikes = performance.getDislikes();
 		if(unlikeType==0) {
 			likes++;
 			performance.setLikes(likes);
@@ -314,7 +314,7 @@ public class AdminPerformanceController {
 			likes++;
 			unlikes--;
 			performance.setLikes(likes);
-			performance.setUnlikes(unlikes);
+			performance.setDislikes(unlikes);
 		}else if(unlikeType==2) {
 			likes--;
 			performance.setLikes(likes);
@@ -329,19 +329,19 @@ public class AdminPerformanceController {
 		System.out.println("unlike");
 		Performance performance = performanceSurvice.getById(id);
 		Long likes = performance.getLikes();
-		Long unlikes = performance.getUnlikes();		
+		Long unlikes = performance.getDislikes();		
 		if(likeType==0) {
 			unlikes++;
-			performance.setUnlikes(unlikes);
+			performance.setDislikes(unlikes);
 		}
 		else if(likeType==1) {
 			unlikes++;
 			likes--;
-			performance.setUnlikes(unlikes);
+			performance.setDislikes(unlikes);
 			performance.setLikes(likes);
 		}else if(likeType==2) {
 			unlikes--;
-			performance.setUnlikes(unlikes);
+			performance.setDislikes(unlikes);
 		}
 		performanceSurvice.update(performance);
 		return performance;

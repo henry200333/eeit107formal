@@ -79,9 +79,9 @@ public class UserJobController {
 	
 	@RequestMapping("/finduserapplication/{username}")
 	@ResponseBody
-	public List<JobApplication> findByUserId(@PathVariable("username") String user){
-		Artist artist=securityUserService.getByUserName(user).getArtist();
-		return jobservice.getByArtist(artist);
+	public List<JobApplication> findByUserId(@PathVariable("username") String username){
+		SecurityUser user=securityUserService.getByUserName(username);
+		return jobservice.getByUser(user);
 	}
 	
 	
@@ -98,7 +98,7 @@ public class UserJobController {
 	@ResponseBody
 	public GridResponse<Job> query(@RequestParam(value = "page") Integer page) {
 		String sidx="jobTime";
-		Integer size = 3;
+		Integer size = 6;
 		GridResponse<Job> grid = new GridResponse<Job>();
 		Sort sort = new Sort(Sort.Direction.DESC, sidx);
 		Pageable pageable = PageRequest.of(page - 1, size, sort);
@@ -132,17 +132,16 @@ public class UserJobController {
 		
 		Map<String, String> message=new HashMap<>();
 		SecurityUser user=securityUserService.getByUserName(userName);
-		Artist artist =user.getArtist();
 		Job job=jobservice.getById(jobid);
 		if(user.getArtist()==null) {
 			message.put("mes", "未具有申請資格");
 			return message;
 		}
-		if(jobservice.checkApplication(artist, job)) {
+		if(jobservice.checkApplication(user, job)) {
 			System.out.println("已申請");
 			message.put("mes", "你已經申請了");
 		}else {
-			jobservice.saveApplication(artist,job);
+			jobservice.saveApplication(user,job);
 			message.put("mes", "申請成功");
 		}
 		

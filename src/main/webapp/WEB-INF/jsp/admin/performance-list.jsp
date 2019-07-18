@@ -207,8 +207,8 @@
 				label : 'Likes',
 				width : 5
 			}, {
-				name : 'unlikes',
-				label : 'Unlikes',
+				name : 'dislikes',
+				label : 'dislikes',
 				width : 5
 			}, {
 				name : 'edit',

@@ -26,8 +26,8 @@ public class JobApplication {
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JsonBackReference
-	@JoinColumn(name="artist_id", nullable=false)
-	private Artist artist;
+	@JoinColumn(name="user_id", nullable=false)
+	private SecurityUser user;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="job_id", nullable=false)
