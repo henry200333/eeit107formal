@@ -1,6 +1,7 @@
 package org.iii.seaotter.jayee.web;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.List;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
@@ -23,7 +24,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -61,24 +61,7 @@ public class IndexController {
 		return "/user/article-list";
 	}
 	
-	@RequestMapping("/performancetop")
-	@ResponseBody
-	public List<Performance> performancetop3() {
-		return performanceService.getTop3ByOrderByViewsDesc();
-	}
-	
-	@GetMapping("/performanceview/{id}")
-	public String view(@PathVariable Long id,Model model) {
-		Performance performance = performanceService.getById(id);
-		String url = performance.getUrl();
-		String urlShort = url.substring(32);
-		performance.setUrl(urlShort);
-		String time = new SimpleDateFormat("yyyy年MM月dd日").format(performance.getUpdateTime());
-		model.addAttribute("performance",performance);
-		model.addAttribute("time",time);
-		return "/user/performance-view";
-	}
-	
+		
 //	@GetMapping("/artistsTop5")
 //	@ResponseBody
 //	public List<Artist> queryTop5() {
@@ -128,6 +111,32 @@ public class IndexController {
 		return securityUserService.getTop5();
 	}
 	
+	@RequestMapping("/performancetop")
+	@ResponseBody
+	public List<Performance> performancetop3() {
+		return performanceService.getTop3ByOrderByViewsDesc();
+	}
+	
+	@GetMapping("/performanceview/{id}")
+	public String view(@PathVariable Long id,Model model) {
+		Performance performance = performanceService.getById(id);
+		String url = performance.getUrl();
+		String urlShort = url.substring(32);
+		Long actId = performance.getActivityId();
+		Activity activity = activityService.getById(actId);
+		String actName = activity.getName();
+		performance.setUrl(urlShort);
+		String time = new SimpleDateFormat("yyyy年MM月dd日").format(performance.getUpdateTime());
+		model.addAttribute("performance",performance);
+		model.addAttribute("time",time);
+		String actBeginTime = new SimpleDateFormat("yyyy年MM月dd日").format(activity.getBeginTime());
+		String actEndTime = new SimpleDateFormat("yyyy年MM月dd日").format(activity.getBeginTime());
+		model.addAttribute("activity",activity);
+		model.addAttribute("begin",actBeginTime);
+		model.addAttribute("end",actEndTime);		
+		return "/user/performance-view";
+	}
+	
 	@RequestMapping("/pviewplus/{id}")
 	@ResponseBody
 	public void viewplus(@PathVariable("id") Long id, Model model) {
@@ -138,5 +147,14 @@ public class IndexController {
 		performance.setViews(views);
 		performanceService.update(performance);
 		}
+	
+	@RequestMapping("/performanceSide")
+	@ResponseBody
+	public List<Performance> getAll(){
+		System.out.println("all");
+		List<Performance> list = performanceService.getAll();
+		Collections.shuffle(list);
+		return list;
+	}
 	
 }

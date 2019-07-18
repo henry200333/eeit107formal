@@ -66,8 +66,11 @@ public class Activity {
 	private Long awesomeNum;
 	
 	//活動倒讚數
-	@Column(name="bad_Num")
-	private Long badNum;
+//	@Column(name="bad_Num")
+//	private Long badNum;
+	
+	@Column(name="perf_type")
+	private String perfType;
 			
 
 }
