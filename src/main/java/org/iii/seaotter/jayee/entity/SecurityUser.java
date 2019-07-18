@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,6 +22,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
@@ -79,6 +81,14 @@ public class SecurityUser implements UserDetails {
 	@JsonBackReference
 	@JoinColumn(name = "artist_id")
 	private Artist artist;
+	
+	
+	//Artist的ID關聯到Activity的artistId外鍵欄位
+	@JsonIgnore
+	@OneToMany(mappedBy="artistId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)	
+	private Set<Activity> activitySet;
+	
+	
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
