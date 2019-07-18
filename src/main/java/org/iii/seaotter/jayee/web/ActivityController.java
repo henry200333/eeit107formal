@@ -47,7 +47,7 @@ public class ActivityController {
 	@RequestMapping("/query")
 	@ResponseBody
 	public GridResponse<Activity> query(@RequestParam(value = "page") Integer page) {
-		String sidx="name";
+		String sidx="beginTime";
 		Integer size = 6;
 		GridResponse<Activity> grid = new GridResponse<Activity>();
 		Sort sort = new Sort(Sort.Direction.DESC, sidx);

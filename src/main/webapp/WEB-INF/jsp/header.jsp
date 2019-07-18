@@ -34,7 +34,7 @@
 				<button type="button" class="btn bar2" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"></button>
 				<div class="dropdown-menu" id="activitybar">
-					<a class="dropdown-item" href="#">關於活動</a>
+					<a class="dropdown-item" href="/user/activity/list">關於活動</a>
 				</div>
 			</div>
 			<div class="btn-group">
