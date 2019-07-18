@@ -203,7 +203,12 @@
 						<span class="artist">${performance.username}</span><br> <span
 							class="time">${time}</span><br> <span class="introduction">${performance.introduction}</span><br>
 						<span>________________________________________________________</span><br>
-						<span>關聯活動 ${performance.activityId}</span>
+						<div class="row" style="margin-top:15px;" >
+						<div class="col-2" ><img src="/resources/user-bootstrap/img/performance/dog.jpg" width="100%" style="border-radius:50%"></div>
+						<div class="col-10" style="margin-top:10px;padding-left:0"><span style="font-size:16px;font-weight:bold;">${activity.name}</span><br>
+						<span style="line-height:10px;font-size:12px;">${begin} - ${end}</span></div>
+						
+						</div>
 					</div>
 					<div class="col-2">
 						<button type="button" class="btn btn-danger">
@@ -226,66 +231,98 @@
 						allowfullscreen></iframe>
 				</div>
 				<div class="col-5" style="margin-top: 50px;padding-left:0">
-				<span style="font-weight:bold;font-size:15px;">陳忻玥 Vicky Chen -【入土之前】</span><br>
-				<span style="font-size:12px;">桑源雅沂</span><br>
-				<span  style="font-size:12px;">3000 觀看</span>
+				<span style="font-weight:bold;font-size:15px;" id="ft1"></span><br>
+				<span style="font-size:12px;"  id="fn1"></span><span style="font-size:12px;color:blue;float:right"  id="fg1"></span><br>
+				<span  style="font-size:12px;" id="fv1"></span>
 				</div>
 				</div>
 				<div class="row">
 				<div class="col-7" style="margin-top: 10px;">
-					<div class="f1"></div>
-					<iframe width="100%" height="98px" id="f1" style="border-radius:5px;"
-						src="https://www.youtube.com/embed/Lhel0tzHE08"  frameborder="0"
+					<div class="f2"></div>
+					<iframe width="100%" height="98px" id="f2" style="border-radius:5px;"
+						src="https://www.youtube.com/embed/GfWkG4qedoE"  frameborder="0"
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
 						allowfullscreen></iframe>
 				</div>
 				<div class="col-5" style="margin-top: 10px;padding-left:0">
-				<span style="font-weight:bold;font-size:15px;">G.E.M.【再見 GOODBYE】鄧紫棋</span><br>
-				<span style="font-size:12px;">柳川鳳</span><br>
-				<span  style="font-size:12px;">160 觀看</span>
+				<span style="font-weight:bold;font-size:15px;" id="ft2"></span><br>
+				<span style="font-size:12px;"  id="fn2"></span><span style="font-size:12px;color:blue;float:right"  id="fg2"></span><br>
+				<span  style="font-size:12px;" id="fv2"></span>
 				</div>
 				</div>
 				<div class="row">
 				<div class="col-7" style="margin-top: 10px;">
-					<div class="f1"></div>
-					<iframe width="100%" height="98px" id="f1" style="border-radius:5px;"
-						src="https://www.youtube.com/embed/2pC8Jk2FDO4"  frameborder="0"
+				<div class="f3"></div>
+					<iframe width="100%" height="98px" id="f3" style="border-radius:5px;"
+						src="https://www.youtube.com/embed/GfWkG4qedoE"  frameborder="0"
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
 						allowfullscreen></iframe>
 				</div>
 				<div class="col-5" style="margin-top: 10px;padding-left:0">
-				<span style="font-weight:bold;font-size:15px;">這群人 畢業後要幹嘛</span><br>
-				<span style="font-size:12px;">張添財</span><br>
-				<span  style="font-size:12px;">1912 觀看</span>
+				<span style="font-weight:bold;font-size:15px;" id="ft3"></span><br>
+				<span style="font-size:12px;"  id="fn3"></span><span style="font-size:12px;color:blue;float:right"  id="fg3"></span><br>
+				<span  style="font-size:12px;" id="fv3"></span>
 				</div>
 				</div>
 				<div class="row">
 				<div class="col-7" style="margin-top: 10px;">
-					<div class="f1"></div>
-					<iframe width="100%" height="98px" id="f1" style="border-radius:5px;"
-						src="https://www.youtube.com/embed/TxgYs4_29KI"  frameborder="0"
+				<div class="f4"></div>
+					<iframe width="100%" height="98px" id="f4" style="border-radius:5px;"
+						src="https://www.youtube.com/embed/GfWkG4qedoE"  frameborder="0"
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
 						allowfullscreen></iframe>
 				</div>
-				<div class="col-5" style="margin-top: 10px;padding-left:0">				
-				<span style="font-weight:bold;font-size:15px;">超級可愛的柴犬</span><br>
-				<span style="font-size:12px;">敏敏</span><br>
-				<span  style="font-size:12px;">151100  觀看</span></div>
+				<div class="col-5" style="margin-top: 10px;padding-left:0">
+				<span style="font-weight:bold;font-size:15px;" id="ft4"></span><br>
+				<span style="font-size:12px;"  id="fn4"></span><span style="font-size:12px;color:blue;float:right"  id="fg4"></span><br>
+				<span  style="font-size:12px;" id="fv4"></span>
 				</div>
-			</div>
+				</div>
+				<div class="row">
+				<div class="col-7" style="margin-top: 10px;">
+				<div class="f5"></div>
+					<iframe width="100%" height="98px" id="f5" style="border-radius:5px;"
+						src="https://www.youtube.com/embed/GfWkG4qedoE"  frameborder="0"
+						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+						allowfullscreen></iframe>
+				</div>
+				<div class="col-5" style="margin-top: 10px;padding-left:0">
+				<span style="font-weight:bold;font-size:15px;" id="ft5"></span><br>
+				<span style="font-size:12px;"  id="fn5"></span><span style="font-size:12px;color:blue;float:right"  id="fg5"></span><br>
+				<span  style="font-size:12px;" id="fv5"></span>
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-7" style="margin-top: 10px;">
+				<div class="f6"></div>
+					<iframe width="100%" height="98px" id="f6" style="border-radius:5px;"
+						src="https://www.youtube.com/embed/GfWkG4qedoE"  frameborder="0"
+						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+						allowfullscreen></iframe>
+				</div>
+				<div class="col-5" style="margin-top: 10px;padding-left:0">
+				<span style="font-weight:bold;font-size:15px;" id="ft6"></span><br>
+				<span style="font-size:12px;"  id="fn6"></span><span style="font-size:12px;color:blue;float:right"  id="fg6"></span><br>
+				<span  style="font-size:12px;" id="fv6"></span>
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-7" style="margin-top: 10px;">
+				<div class="f7"></div>
+					<iframe width="100%" height="98px" id="f7" style="border-radius:5px;"
+						src="https://www.youtube.com/embed/GfWkG4qedoE"  frameborder="0"
+						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+						allowfullscreen></iframe>
+				</div>
+				<div class="col-5" style="margin-top: 10px;padding-left:0">
+				<span style="font-weight:bold;font-size:15px;" id="ft7"></span><br>
+				<span style="font-size:12px;"  id="fn7"></span><span style="font-size:12px;color:blue;float:right"  id="fg7"></span><br>
+				<span  style="font-size:12px;" id="fv7"></span>
+				</div>
+				</div>
 		</div>
 	</div>
-	<script>
-	var src =$("#f1").attr('src'); 
-		$(".f1").hover(function(){
-			
-			$("#f1").attr('src',src+"?autoplay=1");
-		},function(){
-			$("#f1").attr('src',src);
-		})
-	
-	
-	</script>
+	</div>
 	
 	<!-- 	右邊載入 -->
 	<br><br><br><br>
@@ -293,6 +330,31 @@
 		<jsp:include page="../footer.jsp"></jsp:include>
 	</footer>
 	<script>
+	
+// 	旁邊的推薦影片清單
+	$.ajax({
+		url:"/performanceSide",
+		type:"POST",
+		success:function(data){
+			console.log(data);
+			var count=1;
+			var thispid = $("#thisp").val();
+			$.each(data,function(index,value){
+				if(value['id']!=thispid && count<=7){
+					var url= value['url'].substring(32);
+					$("#f" +count).attr('src','https://www.youtube.com/embed/'+url);
+					$("#ft"+count).html(value['title']);
+					$("#fn"+count).html(value['username']);
+					$("#fg"+count).html("# " +value['performanceGerne']);
+					$("#fv"+count).html(value['views']);
+					count++;
+				}
+				
+			})
+		}
+	})
+	
+// 	10秒鐘後才增加點閱率
 	window.setTimeout(function(){$.ajax({
 		url:"/pviewplus/"+$("#thisp").val(),
 		type:"POST",

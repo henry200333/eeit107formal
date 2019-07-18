@@ -3,7 +3,7 @@ package org.iii.seaotter.jayee.web;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
-
+ 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;

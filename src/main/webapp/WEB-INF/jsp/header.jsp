@@ -12,7 +12,7 @@
 				<button type="button" class="btn bar2" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"></button>
 				<div class="dropdown-menu" id="homebar">
-					<a class="dropdown-item" href="#" id="topbar">關於街藝</a>
+					<a class="dropdown-item" href="/index" id="topbar">街藝</a>
 				</div>
 			</div>
 			<div class="btn-group">
@@ -34,7 +34,7 @@
 				<button type="button" class="btn bar2" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"></button>
 				<div class="dropdown-menu" id="activitybar">
-					<a class="dropdown-item" href="#">關於活動</a>
+					<a class="dropdown-item" href="/user/activity/list">關於活動</a>
 				</div>
 			</div>
 			<div class="btn-group">
@@ -45,7 +45,7 @@
 				<button type="button" class="btn bar2" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"></button>
 				<div class="dropdown-menu" id="performancebar">
-					<a class="dropdown-item" href="#">關於表演</a>
+					<a class="dropdown-item" href="/performance">表演列表</a>
 				</div>
 			</div>
 			<div class="btn-group">
@@ -56,7 +56,7 @@
 				<button type="button" class="btn bar2" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"></button>
 				<div class="dropdown-menu" id="articlebar">
-					<a class="dropdown-item" href="article">關於文章</a>
+					<a class="dropdown-item" href="/article">關於文章</a>
 				</div>
 			</div>
 			<div class="btn-group">
@@ -67,7 +67,7 @@
 				<button type="button" class="btn bar2" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"></button>
 				<div class="dropdown-menu" id="venderbar">
-					<a class="dropdown-item" href="#">關於廠商</a>
+					<a class="dropdown-item" href="/user/job/list">關於廠商</a>
 				</div>
 			</div>
 
