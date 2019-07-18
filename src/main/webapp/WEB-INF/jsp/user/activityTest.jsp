@@ -7,6 +7,9 @@
 <html>
 <jsp:include page="../header.jsp"></jsp:include>
 <jsp:include page="../topbar.jsp"></jsp:include>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />	
+<link rel="stylesheet" href="/resources/admin-bootstrap/css/jquery-ui-timepicker-addon.css">
+
 <body>
 		
 		<div class="container">
@@ -15,21 +18,75 @@
 
   <!-- Page Heading -->
   
-  <form class=""  style=" margin-bottom: 20px;">
-  <div style="position: absolute;">
-  <h1 class="">活動頁面
-   
-  </h1>
+  
+  <div style="position: relative;">
+  <h1 class="">搜尋活動頁面
+  </h1><hr>
   </div>
-  <div style="margin-left: 800px;">
-  <div class="input-group" style='margin-top:10px'>
-<input type="text" class="form-control border-0 small" placeholder="搜尋活動...">
-  <button id="searchBT" class="btn btn-info" type="button">
-					                  <i class="fas fa-search fa-sm"></i>
-					                </button>
+  <form class=""  style="margin-bottom: 20px;" id='searchForm' >
+  <div class="row" style='border-radius:20px;background-color:black'>
+  <div class='col-2'>   
+  <span style='padding-right:20px'>演出類型:</span>
+ <div class="custom-control custom-checkbox" style='padding-right:20px;padding-top:5px'>
+    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+    <label class="custom-control-label" for="customCheck">表演藝術</label>
+  </div>
+ <div class="custom-control custom-checkbox" style='padding-right:20px;padding-top:5px'>
+    <input type="checkbox" class="custom-control-input" id="customCheck2" name="example2">
+    <label class="custom-control-label" for="customCheck2">視覺藝術</label>
+  </div>
+	<div class="custom-control custom-checkbox" style='padding-right:20px;padding-top:5px'>
+    <input type="checkbox" class="custom-control-input" id="customCheck3" name="example3">
+    <label class="custom-control-label" for="customCheck3">創意藝術</label>
   </div>
   </div>
   
+  <div class='col-3' style='width:250px;margin-right:20px'>
+  <span>演出地點:</span> 
+  <select name="city" class="custom-select">
+    <option selected>縣市</option>
+    <option value="fiat">台北市</option>
+    <option value="audi">新北市</option>
+  </select>
+  <select name="district" class="custom-select" disabled="disabled">
+    <option selected>鄉鎮市區</option>
+    <option value="volvo">Volvo</option>
+    <option value="fiat">Fiat</option>
+    <option value="audi">Audi</option>
+  </select>
+  <select name="address" class="custom-select" disabled="disabled">
+    <option selected>活動場地</option>
+    <option value="volvo">Volvo</option>
+    <option value="fiat">Fiat</option>
+    <option value="audi">Audi</option>
+  </select>
+  </div>
+  
+  <div class='col-3' style='width:250px;margin-right:20px'>
+   <span>演出期間:</span> 
+    <div class="input-group mb-3">
+  		<div class="input-group-prepend">
+      		<span class="input-group-text">起</span>
+   		</div>
+  		<input type="text" class="form-control" id="beginTime"  autocomplete="none">
+  	</div>
+   	<div class="input-group mb-3">
+  		<div class="input-group-prepend">
+      		<span class="input-group-text">迄</span>
+   		</div>
+  		<input type="text" class="form-control" id="endTime"  autocomplete="none">
+  	</div>
+  </div>
+  
+  
+  </div>
+
+  <div>
+  <div class="input-group" style='margin-top:10px'>
+	<input type="text" class="form-control border-0 small" placeholder="搜尋活動名稱或演出者..." name="example4">
+  	<button id="searchBT" class="btn btn-info" type="button"><i class="fas fa-search fa-sm"></i></button>
+  </div>
+  </div> 
   </form>
   <hr>
   <div class="row" id="dataBody">
@@ -46,7 +103,30 @@
 <!-- /.container -->	
 
 
+<script>
+$("#searchBT").click(function(){
+	console.log(JSON.parse($("#searchForm").serializeObject()));
+	
+});
 
+$(function() {
+    $( "#beginTime" ).datetimepicker({
+        showButtonPanel: true,
+        dateFormat:'yy-mm-dd',
+        timeFormat: "HH:mm:ss",
+        onClose: function(selectedDate) {
+			$("#endTime").datepicker("option", "minDate", selectedDate)}
+    });
+    $( "#endTime" ).datetimepicker({
+        showButtonPanel: true,
+        dateFormat:'yy-mm-dd',
+        timeFormat: "HH:mm:ss",
+        onClose: function(selectedDate) {
+			$("#beginTime").datepicker("option", "maxDate", selectedDate)}
+    });
+  });
+
+</script>
 		
 		
 		
@@ -135,6 +215,8 @@
 	
 
 </body>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script type="text/javascript" src="/resources/admin-bootstrap/js/jquery-ui-timepicker-addon.js"></script>
 <script>
 var page  =1;
 var total =1;
@@ -145,13 +227,13 @@ function showjobs() {
 						 		var txt6 ="";
 								txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='#'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 						 		//加圖片處
-						 		txt2=".jpg' style='height:100%;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
+						 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
 						 		//加活動名稱區
 						 		txt3="</a></h4><p class='card-text'>";
 						 		//加文章區
 						 		txt4="</p></div></div></div>";
 						 		$.each(data.rows,function(index,value){
-						 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + "放文章處" +txt4;
+						 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +txt4;
 						 			txt6 += txt5;
 						 		 })
 								total= parseInt(data.total);
