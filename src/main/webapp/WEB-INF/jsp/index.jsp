@@ -235,7 +235,7 @@
 						<div class="col-8" style="margin-top: 10px; position:relative;">
 							<p id="articleTop6" style="font-size: 19px; position: absolute; top: 5px"></p>
 							<span style="font-size: 14px;  position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 125<i id="articleView6" class="fas fa-eye" style="margin-left:15px;"></i></span>
-							<a class="btn btn-primary" href="" style="position: absolute; bottom: 0; margin-left: 170px;">看更多</a>
+							<a class="btn btn-primary" href="/article" style="position: absolute; bottom: 0; margin-left: 170px;">看更多</a>
 						</div>
 					</div>
 				</div>
@@ -440,7 +440,7 @@
 				}
 			}
 		}
-	})
+	});
 	
 	$.ajax({
 		url:"/artistTop5",
