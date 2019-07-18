@@ -27,7 +27,7 @@
 
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div class="container">
 
 					<!-- Page Heading -->
 					<div
@@ -171,24 +171,27 @@
 					var count=0;
 					var start;
 					var end;
-					if((page-3)<1){
+					if((page-2)<1){
 					start= parseInt(1);
-					end=parseInt(7);
-					}else if((page+3)>total){
-						start= parseInt(total-7);
+					end=parseInt(5);
+					}else if((page+2)>total){
+						start= parseInt(total-5);
 						end=parseInt(total);
 					}else{
-						start= parseInt(page-3);
-						end=parseInt(page+3);
+						start= parseInt(page-2);
+						end=parseInt(page+2);
 					}
-					if((page-3)>1){
-						txt += "<label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm' onclick='changePage(this)' title='"+1+"'>"+1+"</label>...";		
+					if((page-2)>1){
+						txt += "<label class='d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm' onclick='changePage(this)' title='"+1+"'>"+1+"</label>";		
 					}
 					for(i=start;i<=end;i++){
+						if(page==i)
+							txt += "<label class='d-none d-sm-inline-block btn btn-sm btn-success shadow-sm' onclick='changePage(this)' title='"+i+"'>"+i+"</label>";			
+						else
 						txt += "<label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm' onclick='changePage(this)' title='"+i+"'>"+i+"</label>";		
 					}
-					if(page+3<total){
-						txt += "...<label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm' onclick='changePage(this)' title='"+total+"'>"+total+"</label>";		
+					if(page+2<total){
+						txt += "<label class='d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm' onclick='changePage(this)' title='"+total+"'>"+total+"</label>";		
 					}
 				
 					
@@ -211,9 +214,9 @@
 								$.each(
 												data.rows,
 												function(key, obj) {
-													txt += "<form class='col-sm-4 mb-0 mb-sm-0' style='padding: 5px;background:white'><div style='border: solid'><div class='col-sm-6 mb-3 mb-sm-3'><h2 class=' h2 mb-0 text-gray-800'>"
+													txt += "<form class='col-sm-4 mb-0 mb-sm-0' style='padding: 5px;background:white'><div style='border: solid'><div class='col-sm-12 mb-3 mb-sm-3'><h2 class=' h3 mb-0 text-gray-800'>"
 													txt += obj.name;
-													txt += "</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>店家:</label><h2 class=' h3 mb-0 text-gray-800'>";
+													txt += "</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>店家:</label><h2 class=' h4 mb-0 text-gray-800'>";
 													txt += obj.venderName;
 													txt += "</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><div class='row'><div class='col-sm-6 mb-6 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>類別:</label><h2 class=' h4 mb-0 text-gray-800'>";
 													txt += obj.jobType;

@@ -25,7 +25,6 @@ public class JobApplication {
 	private Long id;
 
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JsonBackReference
 	@JoinColumn(name="user_id", nullable=false)
 	private SecurityUser user;
 	
@@ -35,4 +34,7 @@ public class JobApplication {
 
 	@Column(name="application_time")
 	private java.util.Date applicationTime;
+	
+	@Column(name="status")
+	private String status;
 }
