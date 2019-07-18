@@ -90,6 +90,11 @@ public class SecurityUser implements UserDetails {
 	@OneToMany(mappedBy="useraId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)	
 	private Set<Activity> activitySet;
 	
+	//User的ID關聯到Activity的artistId外鍵欄位
+	@JsonIgnore
+	@OneToMany(mappedBy="userpId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)	
+	private Set<Performance> performanceSet;
+	
 	
 
 	@Override

@@ -128,7 +128,7 @@
 							</div>
 							<div class="col-4 dislikediv">
 								<span id="dislike"><i class="fas fa-heart-broken dislike"></i>
-									${performance.unlikes}</span>
+									${performance.dislikes}</span>
 							</div>
 						</div>
 						<!-- 						喜歡的JS -->
@@ -196,7 +196,7 @@
 				<div class="row">
 					<div class="col-1">
 						<img
-							src="/resources/user-bootstrap/img/performance/${performance.partistId}.jpg"
+							src="/resources/user-bootstrap/img/performance/${performance.userpId}.jpg"
 							class="photo">
 					</div>
 					<div class="col-9" style="padding-top: 5px;">

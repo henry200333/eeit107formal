@@ -110,15 +110,15 @@ alex@skrpresents.com
  (2, 1,'Article', '大中天', '以前你偶爾聽，現在你應該天天聽', '2006/03/04 13:14:55'),
  (2, 1,'Article', '大平台', '我已經買了zzZ', '2019/05/28 20:00:27'); 
  
- INSERT INTO performance (title,introduction,youtube_url,update_time,activity_id,views,likes,unlikes,partist_id,username,gerne) values
- ('陳忻玥 Vicky Chen -【入土之前】','陳祈玥入土之前完整MV','https://www.youtube.com/watch?v=GfWkG4qedoE','2019/05/25 17:12:05',1,3000,200,10,1,'桑源雅沂','音樂'),
- ('A-Lin《有一種悲傷 A Kind of Sorrow》','ALIN最新歌曲有一種悲傷','https://www.youtube.com/watch?v=BRcudpJzy1I','2019/05/28 19:10:35',2,2150,180,5,2,'白賊虞','音樂'),
- ('G.E.M.【再見 GOODBYE】鄧紫棋','鄧紫棋發燒歌曲再見，讓您聆聽','https://www.youtube.com/watch?v=Lhel0tzHE08','2019/05/18 21:05:46',3,160,20,1,3,'柳川鳳','音樂'),
- ('下午悠閒練習畫圖','休閒畫畫影片','https://www.youtube.com/watch?v=MHLjKQdfTb8','2019/05/30 17:45:52',1,100,70,1,3,'柳川鳳','繪圖'),
- ('這群人 畢業後要幹嘛','讓你笑點大開，這群人又來了!!','https://www.youtube.com/watch?v=2pC8Jk2FDO4','2019/05/29 02:15:16',2,1912,30,5,4,'張添財','日常'),
- ('輪到你了SP','日本熱門懸疑劇輪到你了，女主角居然死掉了','https://www.youtube.com/watch?v=TBjykqBrhMg','2019/06/18 17:34:36',3,1100,75,46,3,'柳川鳳','影集'),
- ('超級可愛的柴犬','可愛的柴犬讓你融化','https://www.youtube.com/watch?v=TxgYs4_29KI','2019/06/19 11:45:01',1,151100,7890,10,6,'敏敏','日常'),
- ('阿滴開始健身了','瘦巴巴的阿滴居然開始健身了，究竟會怎麼樣呢','https://www.youtube.com/watch?v=SF8s3jVmiAs','2019/06/27 22:15:23',2,6400,590,17,3,'柳川鳳','日常');
+ INSERT INTO performance (title,introduction,youtube_url,update_time,activity_id,views,likes,dislikes,userp_id,username,gerne) values
+ ('陳忻玥 Vicky Chen -【入土之前】','陳祈玥入土之前完整MV','https://www.youtube.com/watch?v=GfWkG4qedoE','2019/05/25 17:12:05',1,3000,200,10,3,'桑源雅沂','音樂'),
+ ('A-Lin《有一種悲傷 A Kind of Sorrow》','ALIN最新歌曲有一種悲傷','https://www.youtube.com/watch?v=BRcudpJzy1I','2019/05/28 19:10:35',2,2150,180,5,4,'白賊虞','音樂'),
+ ('G.E.M.【再見 GOODBYE】鄧紫棋','鄧紫棋發燒歌曲再見，讓您聆聽','https://www.youtube.com/watch?v=Lhel0tzHE08','2019/05/18 21:05:46',3,160,20,1,5,'柳川鳳','音樂'),
+ ('下午悠閒練習畫圖','休閒畫畫影片','https://www.youtube.com/watch?v=MHLjKQdfTb8','2019/05/30 17:45:52',1,100,70,1,5,'柳川鳳','繪圖'),
+ ('這群人 畢業後要幹嘛','讓你笑點大開，這群人又來了!!','https://www.youtube.com/watch?v=2pC8Jk2FDO4','2019/05/29 02:15:16',2,1912,30,5,6,'張添財','日常'),
+ ('輪到你了SP','日本熱門懸疑劇輪到你了，女主角居然死掉了','https://www.youtube.com/watch?v=TBjykqBrhMg','2019/06/18 17:34:36',3,1100,75,46,5,'柳川鳳','影集'),
+ ('超級可愛的柴犬','可愛的柴犬讓你融化','https://www.youtube.com/watch?v=TxgYs4_29KI','2019/06/19 11:45:01',1,151100,7890,10,8,'敏敏','日常'),
+ ('阿滴開始健身了','瘦巴巴的阿滴居然開始健身了，究竟會怎麼樣呢','https://www.youtube.com/watch?v=SF8s3jVmiAs','2019/06/27 22:15:23',2,6400,590,17,5,'柳川鳳','日常');
  							
 insert into  Vender (name,city,district,address,max_people,phone,lat,lng) values
 ('EZ5音樂餐廳','台北市','大安區','安和路二段211號',50,'0227383995',25.0260149,121.550337),

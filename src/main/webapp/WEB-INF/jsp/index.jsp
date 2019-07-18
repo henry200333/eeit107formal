@@ -21,7 +21,7 @@
 			</div>
 
 			<!-- 500:500 -->
-			<div class="row" style="text-align: center; margin-top: 1em;">
+			<div class="row" style="text-align: center; margin-top: 1em;" id="artists">
 				<div class="col-3" style="padding: 0 0 0 15px">
 					<a id="artistlink1" href=""><img src=""
 						width="100%" class="artist1"></a> <a id="artistlink3" href=""><img
@@ -80,35 +80,35 @@
 			<div class="slick">
 				<div class="col-3">
 					<a id="artistlink1" href=""><img src=""
-						style="display: inline" width="40%" id="artistPic1"></a> <span
+						style="display: inline" width="40%" class="artistPic1"></a> <span
 						class="artwalls1 artname1" ></span>
 					<br> <span class="artwalls2 follow1" ></span>
 				</div>
 
 				<div class="col-3">
 					<a id="artistlink" href=""><img src=""
-						style="display: inline" width="40%" id="artistPic2"></a> <span
+						style="display: inline" width="40%" class="artistPic2"></a> <span
 						class="artwalls1 artname2"></span>
 					<br> <span class="artwalls2 follow2"></span>
 
 				</div>
 				<div class="col-3">
 					<a id="artistlink3" href=""><img src=""
-						style="display: inline" width="40%" id="artistPic3"></a> <span
+						style="display: inline" width="40%" class="artistPic3"></a> <span
 						class="artwalls1 artname3" ></span>
 					<br> <span class="artwalls2 follow3" ></span>
 
 				</div>
 				<div class="col-3">
 					<a id="artistlink4" href=""><img src=""
-						style="display: inline" width="40%" id="artistPic4"></a> <span
+						style="display: inline" width="40%" class="artistPic4"></a> <span
 						class="artwalls1 artname4"></span>
 					<br> <span class="artwalls2 follow4"></span>
 
 				</div>
 				<div class="col-3">
 					<a id="artistlink5" href=""><img src=""
-						style="display: inline" width="40%" id="artistPic5"></a> <span
+						style="display: inline" width="40%" class="artistPic5"></a> <span
 						class="artwalls1 artname5" ></span>
 					<br> <span class="artwalls2 follow5"></span>
 
@@ -449,10 +449,10 @@
 			$.each(data,function(index,value){
 				var count = index+1;
 				$(".artist"+count).attr('src',value['photo']);
-				$("#artistPic"+count).attr('src',value['photo']);
+				$(".artistPic"+count).attr('src',value['photo']);
 				$("#artistlink"+count).attr('href','/'+value['account']);
 				$(".artname"+count).html(value['displayName']);
-				$(".follow"+count).html(value['followers']);
+				$(".follow"+count).html(value['followers']+"人追蹤");
 			})
 		}
 	});

@@ -38,12 +38,12 @@ public class Performance {
 	private Long views;
 	@Column(name="likes")
 	private Long likes;
-	@Column(name="unlikes")
-	private Long unlikes;
+	@Column(name="dislikes")
+	private Long dislikes;
 	@Column(name="username")
 	private String username;
 	@Column(name="gerne")
 	private String performanceGerne;
-	@JoinColumn(name="partist_id")
-	private Long partistId;
+	@JoinColumn(name="userp_id")
+	private Long userpId;
 }
