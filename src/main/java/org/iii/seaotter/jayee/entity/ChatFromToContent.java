@@ -3,8 +3,9 @@ package org.iii.seaotter.jayee.entity;
 import lombok.Data;
 
 @Data
-public class Temp0716 {
+public class ChatFromToContent {
 private String to;
 private String from;
+private String userDisplayName;
 private String content;
 }

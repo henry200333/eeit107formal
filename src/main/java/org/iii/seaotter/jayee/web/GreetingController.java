@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.iii.seaotter.jayee.entity.SecurityUser;
-import org.iii.seaotter.jayee.entity.Temp0716;
+import org.iii.seaotter.jayee.entity.ChatFromToContent;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Header;
@@ -47,7 +47,7 @@ public class GreetingController {
     
     @MessageMapping("/chat")
     @SendTo("/topic/greetings")
-    public Temp0716 send(Temp0716 text) throws Exception {
+    public ChatFromToContent send(ChatFromToContent text) throws Exception {
     
         return text;
     }
@@ -66,12 +66,13 @@ public class GreetingController {
     
     @MessageMapping("/secured/room") 
     public void sendSpecific(
-      @Payload Temp0716 msg, 
+      @Payload ChatFromToContent msg, 
       Principal user, 
       @Header("simpSessionId") String sessionId) throws Exception { 
-          System.out.println(msg);
-       
-          template.convertAndSend("/app/chat/single/"+msg.getTo(), msg.getContent());
+          System.out.println(msg);   
+          
+          template.convertAndSend("/app/chat/single/"+msg.getTo(), msg);
+          template.convertAndSend("/app/chat/single/"+msg.getFrom(), msg);
     }
     
     @GetMapping("/findmyfriends")
