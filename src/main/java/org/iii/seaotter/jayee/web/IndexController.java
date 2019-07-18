@@ -122,10 +122,18 @@ public class IndexController {
 		Performance performance = performanceService.getById(id);
 		String url = performance.getUrl();
 		String urlShort = url.substring(32);
+		Long actId = performance.getActivityId();
+		Activity activity = activityService.getById(actId);
+		String actName = activity.getName();
 		performance.setUrl(urlShort);
 		String time = new SimpleDateFormat("yyyy年MM月dd日").format(performance.getUpdateTime());
 		model.addAttribute("performance",performance);
 		model.addAttribute("time",time);
+		String actBeginTime = new SimpleDateFormat("yyyy年MM月dd日").format(activity.getBeginTime());
+		String actEndTime = new SimpleDateFormat("yyyy年MM月dd日").format(activity.getBeginTime());
+		model.addAttribute("activity",activity);
+		model.addAttribute("begin",actBeginTime);
+		model.addAttribute("end",actEndTime);		
 		return "/user/performance-view";
 	}
 	

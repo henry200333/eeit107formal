@@ -203,7 +203,12 @@
 						<span class="artist">${performance.username}</span><br> <span
 							class="time">${time}</span><br> <span class="introduction">${performance.introduction}</span><br>
 						<span>________________________________________________________</span><br>
-						<span>關聯活動 ${performance.activityId}</span>
+						<div class="row" style="margin-top:15px;" >
+						<div class="col-2" ><img src="/resources/user-bootstrap/img/performance/dog.jpg" width="100%" style="border-radius:50%"></div>
+						<div class="col-10" style="margin-top:10px;padding-left:0"><span style="font-size:16px;font-weight:bold;">${activity.name}</span><br>
+						<span style="line-height:10px;font-size:12px;">${begin} - ${end}</span></div>
+						
+						</div>
 					</div>
 					<div class="col-2">
 						<button type="button" class="btn btn-danger">
@@ -316,6 +321,7 @@
 				</div>
 				</div>
 		</div>
+	</div>
 	</div>
 	
 	<!-- 	右邊載入 -->
