@@ -31,60 +31,63 @@
 
 					<!-- Page Heading -->
 					<div
-						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">List of Jobs</h1>
-						
+						class="d-sm-flex align-items-center justify-content-between mb-6">
+						<div class='col-sm-11 mb-3 mb-sm-6' style="text-align:center">
+						<h1 class="text-info">List of Jobs</h1>
+						</div>
 						<a href="/user/job/application/list" id="applicationPage" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">申請紀錄</a>
 					</div>
 					<hr>
-					<!-- 					<form style='border: solid; margin: 10px' id='job1'> -->
-					<!-- 						<div class='form-group row' -->
-					<!-- 							style="font-family: 'Noto Sans TC', sans-serif;"> -->
-
-					<!-- 							<div class='col-sm-3 mb-3 mb-sm-6'> -->
-					<!-- 								<h2 class=' h1 mb-0 text-gray-800'>obj.name</h2> -->
-					<!-- 							</div>	 -->
-					<!-- 								<div class='col-sm-3 mb-3 mb-sm-6'> -->
-					<!-- 								<h2 class=' h1 mb-0 text-gray-800'>obj.vendername</h2> -->
-					<!-- 							</div> -->
-					<!-- 							<div class='col-sm-3 mb-3 mb-sm-0'> -->
-					<!-- 								<div class='col-sm-12 mb-3 mb-sm-3'> -->
-					<!-- 									<h2 class=' h3 mb-0 text-gray-800'>類別:obj.jobType</h2> -->
-					<!-- 								</div> -->
-					<!-- 								<div class='col-sm-12 mb-3 mb-sm-3'> -->
-					<!-- 									<h4 class=' h3 mb-0 text-gray-800'>薪資:obj.reward</h4> -->
-					<!-- 								</div> -->
-					<!-- 							</div> -->
-					<!-- 							<div class='col-sm-3 mb-3 mb-sm-0'> -->
-					<!-- 								<input class='btn btn-primary btn-sm' id='1' -->
-					<!-- 									onclick='join(this)' value='我想參加' readonly> -->
-					<!-- 							</div> -->
-					<!-- 							<div class='col-sm-9 mb-3 mb-sm-6'> -->
-					<!-- 								<label class=' h4 mb-0 text-gray-800'>詳細內容:</label> -->
-					<!-- 								<textarea class='form-control' name='description' -->
-					<!-- 									style='resize: none'>obj.detal</textarea> -->
-					<!-- 							</div> -->
-					<!-- 							<div class='col-sm-6 mb-3 mb-sm-6'> -->
-					<!-- 								<h2 class=' h2 mb-0 text-gray-800'>表演時間:obj.jobTime</h2> -->
-					<!-- 							</div> -->
-					<!-- 						</div> -->
-					<!-- 					</form> -->
+	<!-- 				<form class='col-sm-4 mb-3 mb-sm-6' style='border: solid; margin: 10px;background:white' id='job1'> -->
+	
+	<!-- 												<div class='col-sm-0 mb-3 mb-sm-3'> -->
+	<!-- 													<h2 class=' h2 mb-0 text-gray-800'>obj.name</h2> -->
+	<!-- 												</div>	 -->
+	<!-- 													<div class='col-sm-0 mb-3 mb-sm-3'> -->
+	<!-- 													<h2 class=' h3 mb-0 text-gray-800'>店家:obj.vendername</h2> -->
+	<!-- 												</div> -->
+	<!-- 													<div class='row'> -->
+	<!-- 													<div class='col-sm-6 mb-3 mb-sm-3'> -->
+	<!-- 													<label class=' h4 mb-0 text-gray-800'>類別:</label> -->
+	<!-- 														<h2 class=' h4 mb-0 text-gray-800'>obj.jobType</h2> -->
+	<!-- 													</div> -->
+	<!-- 													<div class='col-sm-6 mb-3 mb-sm-3'> -->
+	<!-- 													<label class=' h4 mb-0 text-gray-800'>薪資:</label> -->
+	<!-- 														<h4 class=' h4 mb-0 text-gray-800'>obj.reward</h4> -->
+	<!-- 													</div> -->
+	<!-- 											</div> -->
+												
+	<!-- 												<div class='col-sm-9 mb-3 mb-sm-6'> -->
+	<!-- 													<label class=' h4 mb-0 text-gray-800'>詳細內容:</label> -->
+	<!-- 													<textarea class='form-control' name='description' -->
+	<!-- 														style='resize: none'>obj.detal</textarea> -->
+	<!-- 												</div> -->
+	<!-- 												<div class='col-sm-0 mb-3 mb-sm-6'> -->
+	<!-- 													<h2 class=' h4 mb-0 text-gray-800'>表演時間:obj.jobTime</h2> -->
+	<!-- 												</div> -->
+	<!-- 												<div style='text-align:center'> -->
+	<!-- 													<input class='btn btn-primary btn-sm' id='1' -->
+	<!-- 														onclick='join(this)' value='我想參加' readonly> -->
+	<!-- 												</div> -->
+	<!-- 										</form>		 -->
 
 					<input hidden="hidden" name="userName"
 						value="<sec:authentication property="name" />" id="username">
 
 
-					<div id="joblist"></div>
+					<div id="joblist" class="row">
+							 
+					</div>
 
 					<div id="page" style='text-align: center'>
-						<label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm'
-							onclick='prevPage()' > << </label>
-							 <label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm'
-							onclick='changePage(this)' title='1'>1</label> 
-							<label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm'
-							onclick='changePage(this)' title='2'>2</label>
-							 <label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm'
-							onclick='nextPage()' > >> </label>
+<!-- 						<label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm' -->
+<!-- 							onclick='prevPage()' > << </label> -->
+<!-- 							 <label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm' -->
+<!-- 							onclick='changePage(this)' title='1'>1</label>  -->
+<!-- 							<label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm' -->
+<!-- 							onclick='changePage(this)' title='2'>2</label> -->
+<!-- 							 <label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm' -->
+<!-- 							onclick='nextPage()' > >> </label> -->
 					</div>
 					<div style='text-align: center'>
 					<p>搜尋頁數
@@ -208,45 +211,38 @@
 								$.each(
 												data.rows,
 												function(key, obj) {
-													txt += "<form style='border:solid;margin:10px;padding:10px' ><div class='form-group row' style=";
-										txt +='"font-family: ';
-										txt +="'Noto Sans TC'";
-										txt +=', sans-serif;"';
-										txt +="><div class='col-sm-2 mb-3 mb-sm-6'><h2 class=' h2 mb-0 text-gray-800'>";
+													txt += "<form class='col-sm-4 mb-0 mb-sm-0' style='padding: 5px;background:white'><div style='border: solid'><div class='col-sm-6 mb-3 mb-sm-3'><h2 class=' h2 mb-0 text-gray-800'>"
 													txt += obj.name;
-													txt += "</h2></div><div class='col-sm-4 mb-3 mb-sm-6'><h2 class=' h2 mb-0 text-gray-800'>"
+													txt += "</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>店家:</label><h2 class=' h3 mb-0 text-gray-800'>";
 													txt += obj.venderName;
-													txt += "</h2></div><div class='col-sm-3 mb-3 mb-sm-0'><div class='col-sm-6 mb-3 mb-sm-6'><h2 class=' h3 mb-0 text-gray-800'>類別:";
-
+													txt += "</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><div class='row'><div class='col-sm-6 mb-6 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>類別:</label><h2 class=' h4 mb-0 text-gray-800'>";
 													txt += obj.jobType;
-													txt += "</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><h4 class=' h3 mb-0 text-gray-800'>薪資:";
+													txt += "</h2></div><div class='col-sm-6 mb-3 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>薪資:</label><h4 class=' h4 mb-0 text-gray-800'>";
 													txt += obj.reward;
 
-													txt += "</h4></div></div><div class='col-sm-3 mb-3 mb-sm-0'><input class='btn btn-primary btn-sm' id='";
-													txt += obj.id
-													txt += "'onclick='join(this)' value='我想參加' readonly></div><div class='col-sm-9 mb-3 mb-sm-6'><label class=' h4 mb-0 text-gray-800'>詳細內容:</label><textarea class='form-control' name='description' style='resize: none' readonly>"
+													txt += "</h4></div></div></div><div class='col-sm-9 mb-3 mb-sm-6'><label class=' h4 mb-0 text-gray-800'>詳細內容:</label><textarea class='form-control' name='description'style='resize: none' readonly>";
 													txt += obj.detal;
-													txt += "</textarea></div><div class='col-sm-6 mb-3 mb-sm-6'><h2 class=' h2 mb-0 text-gray-800'>表演時間:";
+													txt += "</textarea></div><div class='col-sm-0 mb-3 mb-sm-6' style='text-align:right;margin-right:5%'><h2 class=' h4 mb-0 text-gray-800'>表演時間:"
 													txt += obj.jobTime;
-													txt += "</h2></div></div></form>";
-
-													/*				<form style='border: solid; margin: 10px'><div class='form-group row'style=
-												"font-family: 
-													'Noto Sans TC'
-													, sans-serif;"
-													><div class='col-sm-6 mb-3 mb-sm-6'><h2 class=' h1 mb-0 text-gray-800'>
-															obj.name
-															</h2></div><div class='col-sm-3 mb-3 mb-sm-0'><div class='col-sm-12 mb-3 mb-sm-3'><h2 class=' h3 mb-0 text-gray-800'>類別:
-																obj.jobType
-																</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><h4 class=' h3 mb-0 text-gray-800'>薪資:
-																	obj.reward
-																	</h4></div></div><div class='col-sm-3 mb-3 mb-sm-0'><input class='btn btn-primary btn-sm' id='
-																	obj.id
-																	'onclick='join(this)' value='我想參加' readonly></div><div class='col-sm-9 mb-3 mb-sm-6'><label class=' h4 mb-0 text-gray-800'>詳細內容:</label><textarea class='form-control' name='description' style='resize: none'>
-																	obj.detal
-																	</textarea></div><div class='col-sm-6 mb-3 mb-sm-6'><h2 class=' h2 mb-0 text-gray-800'>表演時間:
-																	obj.jobTime
-																	</h2></div></div></form>  */
+													txt += "</h2></div><div style='text-align:center'><input class='btn btn-primary btn-sm' id='";
+													txt += obj.id;
+													txt += "'onclick='join(this)' value='我想參加' readonly></div></div></form>";
+													/*
+													<form class='col-sm-4 mb-3 mb-sm-6' style='border: solid; margin: 10px;background:white'><div class='col-sm-0 mb-3 mb-sm-3'><h2 class=' h2 mb-0 text-gray-800'>
+													obj.name
+													</h2></div><div class='col-sm-0 mb-3 mb-sm-3'><h2 class=' h3 mb-0 text-gray-800'>店家:
+														obj.vendername
+														</h2></div><div class='row'><div class='col-sm-6 mb-3 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>類別:</label><h2 class=' h4 mb-0 text-gray-800'>
+														obj.jobType
+														</h2></div><div class='col-sm-6 mb-3 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>薪資:</label><h4 class=' h4 mb-0 text-gray-800'>
+														obj.reward
+														</h4></div></div><div class='col-sm-9 mb-3 mb-sm-6'><label class=' h4 mb-0 text-gray-800'>詳細內容:</label><textarea class='form-control' name='description'style='resize: none' readonly>
+														obj.detal
+														</textarea></div><div class='col-sm-0 mb-3 mb-sm-6'><h2 class=' h4 mb-0 text-gray-800'>表演時間:
+															obj.jobTime
+															</h2></div><div style='text-align:center'><input class='btn btn-primary btn-sm' id='
+															1
+															'onclick='join(this)' value='我想參加' readonly></div></form>	 */
 
 												})
 												total= parseInt(data.total);
