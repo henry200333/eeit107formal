@@ -9,13 +9,11 @@ import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.common.ForumBoard;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
-import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
-import org.iii.seaotter.jayee.service.ArtistService;
 import org.iii.seaotter.jayee.service.ForumService;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
@@ -25,13 +23,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class IndexController {
 	
-	@Autowired
-	private ArtistService artistService;
+
 	@Autowired
 	private ArticleService articleService;
 	@Autowired
@@ -130,6 +128,15 @@ public class IndexController {
 		return securityUserService.getTop5();
 	}
 	
-	
+	@RequestMapping("/pviewplus/{id}")
+	@ResponseBody
+	public void viewplus(@PathVariable("id") Long id, Model model) {
+		System.out.println(id);
+		Performance performance = performanceService.getById(id);
+		Long views = performance.getViews();
+		views ++;
+		performance.setViews(views);
+		performanceService.update(performance);
+		}
 	
 }

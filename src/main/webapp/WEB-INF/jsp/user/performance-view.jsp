@@ -292,6 +292,16 @@
 	<footer>
 		<jsp:include page="../footer.jsp"></jsp:include>
 	</footer>
+	<script>
+	window.setTimeout(function(){$.ajax({
+		url:"/pviewplus/"+$("#thisp").val(),
+		type:"POST",
+		success:function(){
+			console.log("viewplus");
+		}
+	})},10000)
+	
+	</script>
 
 </body>
 </html>
