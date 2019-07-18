@@ -85,9 +85,9 @@ public class SecurityUser implements UserDetails {
 	private Artist artist;
 	
 	
-	//Artist的ID關聯到Activity的artistId外鍵欄位
+	//User的ID關聯到Activity的artistId外鍵欄位
 	@JsonIgnore
-	@OneToMany(mappedBy="artistId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)	
+	@OneToMany(mappedBy="useraId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)	
 	private Set<Activity> activitySet;
 	
 	

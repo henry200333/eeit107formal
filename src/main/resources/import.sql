@@ -283,7 +283,7 @@ INSERT INTO Location (location_name,city,district,address) values
 ('瑞芳分局旁區民廣場','新北市','瑞芳區','明燈路三段25號');
 
 
-INSERT INTO activity (name,artist,description,begin_time,end_time,awesome_Num,bad_Num,artist_id,location_id) values
+INSERT INTO activity (name,artist,description,begin_time,end_time,awesome_Num,bad_Num,usera_id,location_id) values
  ('裝銅人','桑源雅沂','裝了就硬幫幫','2019/03/28 12:03','2019/05/28 12:30',53,15,1,1),
  ('跳火圈','張添財','沒事就愛跳火圈','2019/02/22 23:35','2019/02/23 07:35',109,25,4,2),
  ('唱情歌','張添財','在北車唱情歌','2019/07/14 07:35','2019/07/14 17:15',77,35,4,3),

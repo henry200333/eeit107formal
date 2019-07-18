@@ -34,8 +34,8 @@ public class Activity {
 	private String name;
 	
 	//表演者編號-外鍵
-	@JoinColumn(name="artist_id")
-	private Long artistId;
+	@JoinColumn(name="usera_id")
+	private Long useraId;
 	
 	//表演者名稱
 	@Column(name="artist")
