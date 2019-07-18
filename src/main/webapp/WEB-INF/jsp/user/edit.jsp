@@ -52,7 +52,7 @@
 				<form method="post" action="/uploadPhoto"
 					enctype="multipart/form-data">
 					<div id="previewDiv" class="previewDiv">
-					<img src="${userParam.photo }" />
+					<img width="25%" src="${userParam.photo }" />
 					</div>
 					<input type="file" name="imageFile" id="imageFile"
 						accept="image/gif, image/jpeg, image/png" />
