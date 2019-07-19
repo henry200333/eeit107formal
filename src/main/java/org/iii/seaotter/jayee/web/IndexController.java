@@ -43,20 +43,10 @@ public class IndexController {
 	@Autowired
 	private SecurityUserService securityUserService;
 	
-	
-//	@RequestMapping("/index")
-//	public String index() {
-//		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//	
-//		Collection<? extends GrantedAuthority> roles = ((UserDetails)principal).getAuthorities();
-//		
-//		for (GrantedAuthority grantedAuthority : roles) {
-//			if(grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
-//				return "redirect:/admin/artist/list";
-//			}	
-//		}
-//		return "/user/index";
-//	}
+	@RequestMapping("/index")
+	public String index() {
+		return "index";
+	}
 	
 	@RequestMapping("/article")
 	public String articleListPage() {
