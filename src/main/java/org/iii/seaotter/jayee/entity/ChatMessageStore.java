@@ -18,7 +18,7 @@ public class ChatMessageStore {
 	@Column(name="id")
 	private Long id;
 	private String sender;
-	private String to;
+	private String receiver;
 	private String userDisplayName;
 	private String content;
 	private java.util.Date messageTime;

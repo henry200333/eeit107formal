@@ -71,7 +71,7 @@ public class GreetingController {
       @Header("simpSessionId") String sessionId) throws Exception { 
           System.out.println(msg);   
           
-          template.convertAndSend("/app/chat/single/"+msg.getTo(), msg);
+          template.convertAndSend("/app/chat/single/"+msg.getReceiver(), msg);
           template.convertAndSend("/app/chat/single/"+msg.getSender(), msg);
     }
     
