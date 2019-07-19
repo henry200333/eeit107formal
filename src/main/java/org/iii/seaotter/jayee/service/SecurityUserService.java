@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -57,8 +58,6 @@ public class SecurityUserService implements UserDetailsService {
 		return securityUser;
 	}
 	
-
-	
 	public SecurityUser getByUserName(String userName) {
 		return securityUserDao.findByAccount(userName);
 	}
@@ -67,4 +66,9 @@ public class SecurityUserService implements UserDetailsService {
 		return securityUserDao.findTop5ByOrderByFollowersDesc();
 	}
 	
+	public static boolean hasRole (String roleName)
+	{
+	    return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
+	            .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(roleName));
+	}
 }

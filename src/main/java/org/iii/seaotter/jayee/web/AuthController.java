@@ -41,9 +41,6 @@ public class AuthController {
 	@Autowired
 	private SecurityRoleDao securityRoleDao;
 
-	
-
-
 	@GetMapping("/login")
 	public String signin() {
 		return "signin";
