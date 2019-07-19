@@ -2,8 +2,10 @@ package org.iii.seaotter.jayee.web;
 
 import java.io.IOException;
 
+import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.entity.SearchUser;
 import org.iii.seaotter.jayee.entity.SecurityUser;
+import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.ArtistService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.BeanUtils;
@@ -18,19 +20,23 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class SecurityUserController {
-	
+
 	@Autowired
 	private SecurityUserService securityUserService;
-	
+
+	@Autowired
+	private ArticleService articleService;
+
 	@RequestMapping("/{username}")
 	public String userPage(@PathVariable String username, Model model) {
 		SearchUser user = new SearchUser();
 		SecurityUser source = securityUserService.getByUserName(username);
 		BeanUtils.copyProperties(source, user);
 		model.addAttribute("userParam", user);
+		model.addAttribute("articleParam", articleService.getByRefIdAndType(source.getUserId(), ArticleType.Artist));
 		return "/user/userpage";
 	}
-	
+
 	@RequestMapping("/edit/{username}")
 	public String edit(@PathVariable String username, Model model) {
 		System.out.println(username);
@@ -38,13 +44,14 @@ public class SecurityUserController {
 		model.addAttribute("userParam", user);
 		return "/user/edit";
 	}
-	
+
 	@PostMapping("/uploadPhoto")
-	public String upload(@RequestParam("imageFile") MultipartFile imageFile,@RequestParam("username")String username) throws IOException {
+	public String upload(@RequestParam("imageFile") MultipartFile imageFile, @RequestParam("username") String username)
+			throws IOException {
 		System.out.println(username);
 		String returnValue = "/index";
 		try {
-			ArtistService.saveImage(imageFile,username);
+			ArtistService.saveImage(imageFile, username);
 		} catch (Exception e) {
 			e.printStackTrace();
 			returnValue = "error";
