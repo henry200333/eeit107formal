@@ -203,7 +203,6 @@
 									var pid = $("#thisp").val();
 									var dislikeType= 0;
 									var dislike= $("#dd").attr("class");
-									var username=$("#thisuser").val();
 									var like =  $("#ld").attr("class");
 									if(dislike=="col-4 dislikedivclick"){
 										dislikeType=1;
@@ -215,7 +214,7 @@
 										url:"/user/performance/like",
 										type:"POST",
 										data:{"id":pid,
-											"username":username,
+											"username":user,
 											"dislikeType":dislikeType	
 										},
 										success:function(data){
@@ -246,7 +245,6 @@
 									var likeType= 0;
 									var like= $("#ld").attr("class");
 									var dislike=$("#dd").attr("class");
-									var username=$("#thisuser").val();
 									if(like=="col-4 likedivclick"){
 										likeType=1;
 									}
@@ -258,6 +256,7 @@
 											url:"/user/performance/dislike",
 											type:"POST",
 											data:{"id":pid,
+												"username":user,
 												"likeType":likeType	
 											},
 											success:function(data){

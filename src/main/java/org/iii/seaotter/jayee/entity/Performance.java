@@ -58,7 +58,7 @@ public class Performance {
 	//dislike
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonBackReference
-	@JoinTable(name = "user_pdislike", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "p_id") })
+	@JoinTable(name = "user_pdislike", joinColumns = { @JoinColumn(name = "p_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "user_id") })
 	private List<SecurityUser> dislikeuser;
 }

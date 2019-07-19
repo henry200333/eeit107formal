@@ -322,7 +322,6 @@ INSERT INTO activity (name,artist,description,begin_time,end_time,perf_type,awes
  ('打工賺錢','柳川鳳','賺錢選粽痛','2019/06/27 23:35','2019/06/28 07:35','視覺藝術',4,3,1),
  ('裝印地安人','桑源雅沂','One little two little three little indian..','2019/04/25 07:35','2019/05/01 17:15','視覺藝術',5,1,2);
  
- 
 ALTER TABLE friend NOCHECK CONSTRAINT ALL;
 INSERT INTO friend (self_id , friend_id) values
 (1,2),

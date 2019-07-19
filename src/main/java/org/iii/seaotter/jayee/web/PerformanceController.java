@@ -101,7 +101,7 @@ public class PerformanceController {
 	@PostMapping("like")
 	@ResponseBody
 	public Performance like(@RequestParam("id")Long id,@RequestParam("dislikeType") int dislikeType,@RequestParam("username") String username) {
-		System.out.println(username);
+		
 		SecurityUser user = SecurityUserService.getByUserName(username);
 		List<Performance> plikelist = user.getPlikes();
 		Performance performance = performanceService.getById(id);
@@ -123,12 +123,15 @@ public class PerformanceController {
 			user.setPlikes(plikelist);
 			SecurityUserService.update(user);
 			List<SecurityUser> dislikeuser = performance.getDislikeuser();
-			int size = dislikeuser.size();
-			for(int i =0;i<size;i++) {
+			for(int i =0;i<dislikeuser.size();i++) {
 				SecurityUser s = dislikeuser.get(i);
 				if(s.getUserId()==user.getUserId()) {
-					plikelist.remove(s);
+					dislikeuser.remove(s);
+					i--;
 				}
+				performance.setDislikeuser(dislikeuser);
+				performanceService.update(performance);
+				
 			}
 		}else if(dislikeType==2) {
 			likes--;
@@ -147,25 +150,53 @@ public class PerformanceController {
 	
 	@PostMapping("dislike")
 	@ResponseBody
-	public Performance unlike(@RequestParam("id")Long id,@RequestParam("likeType")int likeType) {
+	public Performance unlike(@RequestParam("id")Long id,@RequestParam("likeType")int likeType,@RequestParam("username") String username) {
+		SecurityUser user = SecurityUserService.getByUserName(username);
 		Performance performance = performanceService.getById(id);
 		Long likes = performance.getLikes();
-		Long dislikes = performance.getDislikes();		
+		Long dislikes = performance.getDislikes();
+		List<SecurityUser> userpdislike = performance.getDislikeuser();
 		if(likeType==0) {
 			dislikes++;
 			performance.setDislikes(dislikes);
+			userpdislike = performance.getDislikeuser();
+			userpdislike.add(user);
+			performance.setDislikeuser(userpdislike);
 		}
 		else if(likeType==1) {
 			dislikes++;
 			likes--;
 			performance.setDislikes(dislikes);
 			performance.setLikes(likes);
+			userpdislike.add(user);
+			performance.setDislikeuser(userpdislike);
+			performanceService.update(performance);
+			List<Performance> plikelist = user.getPlikes();
+			for(int i=0;i<plikelist.size();i++) {
+				Performance p = plikelist.get(i);
+				if(p.getId()==id) {
+					plikelist.remove(p);
+					i--;
+				}
+				
+				user.setPlikes(plikelist);
+				SecurityUserService.update(user);
+			}
 		}else if(likeType==2) {
 			dislikes--;
 			performance.setDislikes(dislikes);
+			for(int i =0;i<userpdislike.size();i++) {
+				SecurityUser s = userpdislike.get(i);
+				if(s.getUserId()==user.getUserId()) {
+					userpdislike.remove(s);
+					i--;
+				}
+				performance.setDislikeuser(userpdislike);
+				performanceService.update(performance);
 		}
+		
+	}
 		performanceService.update(performance);
 		return performance;
 	}
-	
 }
