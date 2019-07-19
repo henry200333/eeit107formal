@@ -59,17 +59,12 @@ public class IndexController {
 //		}
 //		return "/user/index";
 //	}
-	
-	
-	
-		
+
 //	@GetMapping("/artistsTop5") 
 //	@ResponseBody
 //	public List<Artist> queryTop5() {
 //		return artistService.getNameByFanNumberTop5();
 //	}
-	
-
 	
 	@GetMapping("/articleWithPerformanceTop")
 	@ResponseBody
