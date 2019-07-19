@@ -25,69 +25,18 @@
   </div>
   <form class=""  style="margin-bottom: 20px;" id='searchForm' >
   <div class="row" style='border-radius:20px'>
-  <div class='col-2'>   
-  <span style='padding-right:20px'>演出類型:</span>
- <div class="custom-control custom-checkbox" style='padding-right:20px;padding-top:5px'>
-    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
-    <label class="custom-control-label" for="customCheck">表演藝術</label>
-  </div>
- <div class="custom-control custom-checkbox" style='padding-right:20px;padding-top:5px'>
-    <input type="checkbox" class="custom-control-input" id="customCheck2" name="example2">
-    <label class="custom-control-label" for="customCheck2">視覺藝術</label>
-  </div>
-	<div class="custom-control custom-checkbox" style='padding-right:20px;padding-top:5px'>
-    <input type="checkbox" class="custom-control-input" id="customCheck3" name="example3">
-    <label class="custom-control-label" for="customCheck3">創意藝術</label>
-  </div>
-  </div>
-  
-  <div class='col-3' style='width:250px;margin-right:20px'>
-  <span>演出地點:</span> 
-  <select name="city" class="custom-select">
-    <option selected>縣市</option>
-    <option value="fiat">台北市</option>
-    <option value="audi">新北市</option>
-  </select>
-  <select name="district" class="custom-select" disabled="disabled">
-    <option selected>鄉鎮市區</option>
-    <option value="volvo">Volvo</option>
-    <option value="fiat">Fiat</option>
-    <option value="audi">Audi</option>
-  </select>
-  <select name="address" class="custom-select" disabled="disabled">
-    <option selected>活動場地</option>
-    <option value="volvo">Volvo</option>
-    <option value="fiat">Fiat</option>
-    <option value="audi">Audi</option>
-  </select>
-  </div>
-  
-  <div class='col-3' style='width:250px;margin-right:20px'>
-   <span>演出期間:</span> 
-    <div class="input-group mb-3">
-  		<div class="input-group-prepend">
-      		<span class="input-group-text">起</span>
-   		</div>
-  		<input type="text" class="form-control" id="beginTime"  autocomplete="none">
-  	</div>
-   	<div class="input-group mb-3">
-  		<div class="input-group-prepend">
-      		<span class="input-group-text">迄</span>
-   		</div>
-  		<input type="text" class="form-control" id="endTime"  autocomplete="none">
-  	</div>
-  </div>
-  
-  
-  </div>
-
-  <div>
-  <div class="input-group mb-3" style='margin-top:10px;'>
-	<input type="text" class="form-control border-0 small" placeholder="搜尋活動名稱或演出者..." name="example4">
+  <div class='col-12'>  
+   <div class="input-group mb-3" style='margin-top:10px;width:300px'>
+	<input type="text" class="form-control border-0 small" placeholder="搜尋活動名稱或演出者..." name="find" id='userInput' autocomplete="off">
   	<button id="searchBT" class="btn btn-info" type="button"><i class="fas fa-search fa-sm"></i></button>
-  </div>
   </div> 
-  </form>
+   <button type="button" class="btn" value='all' onclick='type11(this)'>全選</button>
+<button type="button" class="btn btn-primary" value='perf' onclick='type11(this)' name='表演藝術' >表演藝術</button>
+<button type="button" class="btn btn-success" value='look' onclick='type11(this)' name='視覺藝術'>視覺藝術</button>
+<button type="button" class="btn btn-danger" value='crea' onclick='type11(this)' name='創意藝術'>創意藝術</button>
+  </div>
+  </div>
+   </form>
   <hr>
   <div class="row" id="dataBody">
    
@@ -105,46 +54,76 @@
 
 <script>
 $("#searchBT").click(function(){
-	console.log(JSON.parse($("#searchForm").serializeObject()));
-	
+	$("#dataBody").empty();
+	var data = JSON.parse($("#searchForm").serializeObject());
+	$.ajax({
+		url : "/user/activity/query?page=" +page,
+		type : "GET",
+		data :data,
+		contentType : 'application/json;charset=UTF-8',
+		dataType : 'json',
+		success : function(res) {
+	 			var txt6 ="";
+				txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='#'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+		 		//加圖片處
+		 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
+		 		//加活動名稱區
+		 		txt3="</a></h4><p class='card-text'>";
+		 		//加文章區
+		 		txt4="</p></div></div></div>";
+		 		$.each(res.rows,function(index,value){
+		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
+		 			txt6 += txt5;
+		 		 })
+				total= parseInt(data.total);
+				$("#dataBody").append(txt6);
+		}
+	})
 });
 
-$(function() {
-    $( "#beginTime" ).datepicker({
-        showButtonPanel: true,
-        dateFormat:'yy-mm-dd',
-        onClose: function(selectedDate) {
-			$("#endTime").datepicker("option", "minDate", selectedDate)}
-    });
-    $( "#endTime" ).datepicker({
-        showButtonPanel: true,
-        dateFormat:'yy-mm-dd',
-        onClose: function(selectedDate) {
-			$("#beginTime").datepicker("option", "maxDate", selectedDate)}
-    });
-  });
+
+function type11(obj){
+	$("#dataBody").empty();
+	$.ajax({
+		url : "/user/activity/query?page="+page,
+		type : "GET",
+		data : {"actType":obj.value},
+		contentType : 'application/json;charset=UTF-8',
+		dataType : 'json',
+		success : function(res) {
+	 			var txt6 ="";
+				txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='#'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+		 		//加圖片處
+		 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
+		 		//加活動名稱區
+		 		txt3="</a></h4><p class='card-text'>";
+		 		//加文章區
+		 		txt4="</p></div></div></div>";
+		 		$.each(res.rows,function(index,value){
+		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
+		 			txt6 += txt5;
+		 		 })
+				$("#dataBody").append(txt6);
+		}
+	})
+	
+	}
+
+
+<!--按Enter搜尋 起始-->
+//userInput=輸入搜尋字串的input標籤id
+//searchBT=208行的function
+$("#userInput").bind("keypress", keypressInBox);
+function keypressInBox(e) {
+var code = (e.keyCode ? e.keyCode : e.which);
+if (code == 13) { //Enter keycode=13 
+e.preventDefault();
+$("#searchBT").click();  
+}
+};
+<!--按Enter搜尋 尾-->
 
 </script>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		</div>
 		<jsp:include page="../chat.jsp"></jsp:include>	
@@ -218,104 +197,29 @@ $(function() {
 <script>
 var page  =1;
 var total =1;
-function showjobs() {
-				$.ajax({url : "/user/activity/query?page=" + page,
-							type : "GET",
-							success : function(data) {
-						 		var txt6 ="";
-								txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='#'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
-						 		//加圖片處
-						 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
-						 		//加活動名稱區
-						 		txt3="</a></h4><p class='card-text'>";
-						 		//加文章區
-						 		txt4="</p></div></div></div>";
-						 		$.each(data.rows,function(index,value){
-						 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +txt4;
-						 			txt6 += txt5;
-						 		 })
-								total= parseInt(data.total);
-								$("#dataBody").append(txt6);
-								showPageList();
-							}
-						})
-			}
 
-function pageSearch(object){
-	if(object.value>0&&object.value<=total){
-	page=object.value;
-	showjobs();}
-	else{
-		alert("錯誤頁碼")
-	}
-}
-function prevPage() {
-	if (page == 1) {
-		alert("已經第一頁了")
-	} else {
-		page = page-1;
-		$("#dataBody").empty();
-		showjobs();
-	}
-//		alert(page)
-}
-function nextPage() {
-	
-	if (page == total) {
-		alert("這是最後一頁了")
-	} else {
-		page = page + 1;
-		$("#dataBody").empty();
-		showjobs();
-	}
-//		alert(page)
-}
-function changePage(object) {
-//		alert(object.title);
-	$("#dataBody").empty();
-	page = parseInt(object.title);
-	showjobs();
-}
+$(document).ready(function showjobs() {
+	$.ajax({url : "/user/activity/query?page="+page,
+		type : "GET",
+		success : function(data) {
+	 		var txt6 ="";
+			txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='#'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+	 		//加圖片處
+	 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
+	 		//加活動名稱區
+	 		txt3="</a></h4><p class='card-text'>";
+	 		//加文章區
+	 		txt4="</p></div></div></div>";
+	 		$.each(data.rows,function(index,value){
+	 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
+	 			txt6 += txt5;
+	 		 })
+			total= parseInt(data.total);
+			$("#dataBody").append(txt6);
+		}
+	})
+})
 
-
-function showPageList(){
-	$("#pageList").empty();
-	txt="";
-	txtLeft = "<li class='page-item'><a class='page-link' aria-label='Previous' id='left' onclick='prevPage()'><span aria-hidden='true'>&laquo;</span></a></li>";
-	txtRight = "<li class='page-item'><a class='page-link' aria-label='Next' id='right' onclick='nextPage()'><span aria-hidden='true'>&raquo;</span></a></li>";
-	if(total<=7){
-		for(i=1; i<=total;i++){
-			txt +="<li><a class='page-link'  id='now' onclick='changePage(this)' title='"+i+"'>"+i+"</a></li>";
-		}
-	}else{
-		var count=0;
-		var start;
-		var end;
-		if((page-3)<1){
-		start= parseInt(1);
-		end=parseInt(7);
-		}else if((page+3)>total){
-			start= parseInt(total-7);
-			end=parseInt(total);
-		}else{
-			start= parseInt(page-3);
-			end=parseInt(page+3);
-		}
-		if((page-3)>1){
-			txt += "<li><a class='page-link'  id='now' onclick='changePage(this)' title='"+1+"'>"+1+"</a></li>...";		
-		}
-		for(i=start;i<=end;i++){
-			txt += "<li><a class='page-link'  id='now' onclick='changePage(this)' title='"+i+"'>"+i+"</a></li>";		
-		}
-		if(page+3<total){
-			txt += "...<li><a class='page-link'  id='now' onclick='changePage(this)' title='"+total+"'>"+total+"</a></li>";		
-		}
-	}
-	txtResult = txtLeft + txt + txtRight;
-		$("#pageList").append(txtResult);
-}
-
-showjobs();
 
 
 </script>
