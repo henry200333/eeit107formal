@@ -3,7 +3,6 @@ package org.iii.seaotter.jayee.service;
 import java.util.List;
 
 import org.iii.seaotter.jayee.dao.SecurityUserDao;
-import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -71,4 +70,16 @@ public class SecurityUserService implements UserDetailsService {
 	    return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
 	            .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(roleName));
 	}
+
+	public void addfirend(SecurityUser self, SecurityUser friend) {
+		
+		List<SecurityUser> selffriends=self.getFriends();
+		 selffriends.add(friend);
+		 self.setFriends(selffriends);
+		 List<SecurityUser> friendfriends=friend.getFriends();
+		 friendfriends.add(self);
+		 self.setFriends(friendfriends);
+		 return;
+	}
+	
 }
