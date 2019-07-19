@@ -33,7 +33,7 @@
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">已申請工作</h1>
 						<a href="#"
-							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" ><i
 							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
 					</div>
 			
@@ -56,6 +56,20 @@
 	<!-- End of Page Wrapper -->
 
 <script>
+
+function cancel(object) {
+
+	$.ajax({
+		url : "/user/job/cancelapplication?jobid=" + object.id
+				+ "&username=" + $("#username").val(),
+		type : "GET",
+		success : function(data) {
+			alert(data.mes)
+		}
+	});
+};
+
+
 function showjobs() {
 
 	$.ajax({
@@ -65,6 +79,10 @@ function showjobs() {
 				contentType : "application/json",
 				success : function(data) {
 					var txt = "";
+					
+					if(data==""){
+						 txt += "<h4 class='col-sm-12 mb-0 mb-sm-0' style='text-align:center'>你沒有任何工作申請</h4>";	
+					}
 					$.each(data,function(key, obj) {
 						txt += "<form class='col-sm-4 mb-0 mb-sm-0' style='padding: 5px;background:white'><div style='border: solid'><div class='col-sm-12 mb-3 mb-sm-3'><h2 class=' h3 mb-0 text-gray-800'>"
 							txt += obj.job.name;
@@ -81,7 +99,7 @@ function showjobs() {
 							txt += obj.job.jobTime;
 							txt += "</h2></div><div style='text-align:center'><input class='btn btn-primary btn-sm' id='";
 							txt += obj.job.id;
-							txt += "'onclick='' value='取消' readonly></div></div></form>";
+							txt += "'onclick='cancel(this)' value='取消' readonly></div></div></form>";
 						
 						
 					})

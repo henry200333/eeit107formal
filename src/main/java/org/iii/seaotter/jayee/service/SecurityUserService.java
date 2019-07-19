@@ -66,5 +66,16 @@ public class SecurityUserService implements UserDetailsService {
 	public List<SecurityUser> getTop5(){
 		return securityUserDao.findTop5ByOrderByFollowersDesc();
 	}
+
+	public void addfirend(SecurityUser self, SecurityUser friend) {
+		
+		List<SecurityUser> selffriends=self.getFriends();
+		 selffriends.add(friend);
+		 self.setFriends(selffriends);
+		 List<SecurityUser> friendfriends=friend.getFriends();
+		 friendfriends.add(self);
+		 self.setFriends(friendfriends);
+		 return;
+	}
 	
 }

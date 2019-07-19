@@ -11,16 +11,12 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.websocket.server.PathParam;
 
-import org.hibernate.hql.internal.ast.tree.IsNullLogicOperatorNode;
 import org.iii.seaotter.jayee.common.GridResponse;
-import org.iii.seaotter.jayee.entity.Artist;
 import org.iii.seaotter.jayee.entity.Job;
 import org.iii.seaotter.jayee.entity.JobApplication;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.entity.Vender;
-import org.iii.seaotter.jayee.service.ArtistService;
 import org.iii.seaotter.jayee.service.JobService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.iii.seaotter.jayee.service.VenderService;
@@ -30,12 +26,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -54,8 +49,7 @@ public class UserJobController {
 	@Autowired
 	private SecurityUserService securityUserService;
 	
-	@Autowired
-	private ArtistService artistService ;
+
 	
 	@RequestMapping("/list")
 	public String jobs() {
@@ -129,25 +123,45 @@ public class UserJobController {
 	@ResponseBody
 	public Map<String, String> addapplication(@RequestParam("jobid") Long jobid ,@RequestParam("username") String userName ,Model model){
 		
-		
 		Map<String, String> message=new HashMap<>();
 		SecurityUser user=securityUserService.getByUserName(userName);
 		Job job=jobservice.getById(jobid);
-		if(user.getArtist()==null) {
+		//確定使用者是否有artist腳色
+		if(false) {
 			message.put("mes", "未具有申請資格");
 			return message;
 		}
-		if(jobservice.checkApplication(user, job)) {
+		if(jobservice.getApplication(user, job)!=null&&!jobservice.getApplication(user,job).getStatus().equals("已取消")) {
 			System.out.println("已申請");
 			message.put("mes", "你已經申請了");
 		}else {
-			jobservice.saveApplication(user,job);
+			JobApplication application=new JobApplication();
+			application.setJob(job);
+			application.setUser(user);
+			jobservice.saveApplication(application,"申請中");
 			message.put("mes", "申請成功");
 		}
 		
 		
 		
 		return message;
+	}
+	
+	@RequestMapping("/cancelapplication")
+	@ResponseBody
+	public  Map<String, String>  cancelapplication(@RequestParam("jobid") Long jobid ,@RequestParam("username") String userName ,Model model){
+		SecurityUser user=securityUserService.getByUserName(userName);
+		Job job=jobservice.getById(jobid);
+		Map<String, String> message=new HashMap<>();
+		JobApplication application  = jobservice.getApplication(user, job);
+		if(application!=null&&application.getStatus().equals("申請中")) {
+		jobservice.saveApplication(application,"取消");
+		message.put("mes", "已取消");
+		}else {
+			message.put("mes", "取消失敗，可能申請已取消或不存在");
+		}
+		return message; 
+			
 	}
 
 	
