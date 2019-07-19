@@ -73,9 +73,33 @@ public class UserJobController {
 	
 	@RequestMapping("/finduserapplication/{username}")
 	@ResponseBody
-	public List<JobApplication> findByUserId(@PathVariable("username") String username){
-		SecurityUser user=securityUserService.getByUserName(username);
-		return jobservice.getByUser(user);
+	public GridResponse<JobApplication> findByUserId(@PathVariable("username") String username,@RequestParam(value = "page") Integer page){
+		String sidx="applicationTime";
+		Integer size = 6;
+		GridResponse<JobApplication> grid = new GridResponse<JobApplication>();
+		Sort sort = new Sort(Sort.Direction.DESC, sidx);
+		Pageable pageable = PageRequest.of(page - 1, size, sort);
+		Long userId=securityUserService.getByUserName(username).getUserId();
+		Specification<JobApplication> specification = new Specification<JobApplication>() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Predicate toPredicate(Root<JobApplication> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Predicate predicate = cb.conjunction();
+				predicate = cb.and(cb.equal(root.get("user"), userId));
+				predicate = cb.and(cb.equal(root.get("status"), "申請中"));
+				return predicate;
+			}
+		};
+		Page<JobApplication> result = jobservice.getAllJobApplication(specification, pageable);
+//		System.out.println(result.getContent().getClass());
+		grid.setRows(result.getContent());
+		grid.setPage(page);
+		grid.setRecords(result.getTotalElements());
+		grid.setTotal(result.getTotalPages());
+
+		
+		return grid;
 	}
 	
 	
@@ -131,11 +155,17 @@ public class UserJobController {
 			message.put("mes", "未具有申請資格");
 			return message;
 		}
-		if(jobservice.getApplication(user, job)!=null&&!jobservice.getApplication(user,job).getStatus().equals("已取消")) {
+		if(jobservice.getApplication(user, job)!=null&&jobservice.getApplication(user,job).getStatus().equals("申請中")) {
 			System.out.println("已申請");
 			message.put("mes", "你已經申請了");
 		}else {
-			JobApplication application=new JobApplication();
+			JobApplication application;
+			if(jobservice.getApplication(user, job)==null){
+			 application=new JobApplication();}
+			else{
+				 application=jobservice.getApplication(user, job);
+				}
+			
 			application.setJob(job);
 			application.setUser(user);
 			jobservice.saveApplication(application,"申請中");

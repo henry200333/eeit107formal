@@ -309,6 +309,12 @@ body {
 	color: #32465a;
 }
 
+.messages ul li.sent p {
+	display: inline-block;
+	float:right;
+	font-size: 0.9em;
+}
+
 
 .message-input {
 	border: 1px solid black;

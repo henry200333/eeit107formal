@@ -23,8 +23,8 @@
 						placeholder="搜尋文章標題..." aria-label="Search"
 						aria-describedby="basic-addon2">
 					<div class="input-group-append articleblock">
-						<button id="searchBT" class="btn btn-primary" type="button">
-							<i class="fas fa-search fa-sm"></i>
+						<button id="searchBT" class="btn btn-secondary" type="button">
+							<i class="fas fa-search"></i>
 						</button>
 					</div>
 				</div>
@@ -56,69 +56,70 @@
 					<table id="articleGrid"></table>
 					<div id="pager"></div>
 				</div>
+				<hr>
 			</div>
 			<div class="col-3">
 				<span
 					style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold"><i
 					class="fas fa-star"></i>熱門文章</span>
 				<div class="row articleblock"
-					style="height: 120px; cursor: pointer;">
+					style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
 					<div id="articleImg1" class="col-4"></div>
 					<div class="col-8" style="margin-top: 10px; position: relative;">
 						<p id="articleTop1"
-							style="font-size: 19px; position: absolute; top: 5px""></p>
+							style="font-size: 19px; position: absolute; top: 5px"></p>
 						<span style="font-size: 14px; position: absolute; bottom: 10px;"><i
 							class="far fa-comment-dots"></i> 1750<i id="articleView1"
 							class="fas fa-eye" style="margin-left: 15px;"></i></span>
 					</div>
 				</div>
 				<div class="row articleblock"
-					style="height: 120px; cursor: pointer;">
+					style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
 					<div id="articleImg2" class="col-4"></div>
 					<div class="col-8" style="margin-top: 10px; position: relative;">
 						<p id="articleTop2"
-							style="font-size: 19px; position: absolute; top: 5px""></p>
+							style="font-size: 19px; position: absolute; top: 5px"></p>
 						<span style="font-size: 14px; position: absolute; bottom: 10px;"><i
 							class="far fa-comment-dots"></i> 315<i id="articleView2"
 							class="fas fa-eye" style="margin-left: 15px;"></i></span>
 					</div>
 				</div>
 				<div class="row articleblock"
-					style="height: 120px; cursor: pointer;">
+					style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
 					<div id="articleImg3" class="col-4"></div>
 					<div class="col-8" style="margin-top: 10px; position: relative;">
 						<p id="articleTop3"
-							style="font-size: 19px; position: absolute; top: 5px""></p>
+							style="font-size: 19px; position: absolute; top: 5px"></p>
 						<span style="font-size: 14px; position: absolute; bottom: 10px;"><i
 							class="far fa-comment-dots"></i> 189<i id="articleView3"
 							class="fas fa-eye" style="margin-left: 15px;"></i></span>
 					</div>
 				</div>
 				<div class="row articleblock"
-					style="height: 120px; cursor: pointer;">
+					style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
 					<div id="articleImg4" class="col-4"></div>
 					<div class="col-8" style="margin-top: 10px; position: relative;"
 						style="margin-top:10px;">
 						<p id="articleTop4"
-							style="font-size: 19px; position: absolute; top: 5px""></p>
+							style="font-size: 19px; position: absolute; top: 5px"></p>
 						<span style="font-size: 14px; position: absolute; bottom: 10px;"><i
 							class="far fa-comment-dots"></i> 115<i id="articleView4"
 							class="fas fa-eye" style="margin-left: 15px;"></i></span>
 					</div>
 				</div>
 				<div class="row articleblock"
-					style="height: 120px; cursor: pointer;">
+					style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
 					<div id="articleImg5" class="col-4"></div>
 					<div class="col-8" style="margin-top: 10px; position: relative;">
 						<p id="articleTop5"
-							style="font-size: 19px; position: absolute; top: 5px""></p>
+							style="font-size: 19px; position: absolute; top: 5px"></p>
 						<span style="font-size: 14px; position: absolute; bottom: 10px;"><i
 							class="far fa-comment-dots"></i> 1<i id="articleView5"
 							class="fas fa-eye" style="margin-left: 15px;"></i></span>
 					</div>
 				</div>
 				<div class="row articleblock"
-					style="height: 120px; cursor: pointer;">
+					style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
 					<div id="articleImg6" class="col-4"></div>
 					<div class="col-8" style="margin-top: 10px; position: relative;">
 						<p id="articleTop6"
@@ -128,6 +129,7 @@
 							class="fas fa-eye" style="margin-left: 15px;"></i></span>
 					</div>
 				</div>
+				<hr>
 			</div>
 		</div>
 	</div>
@@ -165,10 +167,10 @@ $("#articleGrid").jqGrid({
     autowidth: false,
     shrinkToFit: true,
     height: 'auto',
-    rowNum: 10,
-    rowList: [10, 20, 50],
-    sortname: 'id',
-    sortorder: "asc",
+    rowNum: 20,
+    rowList: [20, 50],
+    sortname: 'announce',
+    sortorder: "desc",
     viewrecords: true,
     loadComplete: function () {
         reSizejqGridWidth();
@@ -208,7 +210,7 @@ $.ajax({
 				var content = data[i].content;
 				$(articleTop + (i + 1)).append(data[i].name); //加入文章名稱
 				$(articleView + (i + 1)).after(" " + data[i].count); //加入文章觀看次數
-				$(articleTop + (i + 1)).attr('id', 'article' + data[i].id); //修改div的id為文章id
+				$(articleTop + (i + 1)).parent().parent().attr('id', 'article' + data[i].id); //修改div的id為文章id
 				var start = content.indexOf('](http');
 				var end = content.indexOf('.jpg');
 				var endpng = content.indexOf('.png');
@@ -237,6 +239,11 @@ $.ajax({
 		}
 	}
 });
+//前往指定id的article頁面開始
+function goToArticle(obj){
+	$(location).attr('href', '/article/' + obj.id.substring(7));
+};
+//前往指定id的article頁面結束
 <!-- 響應式網頁測試  158~160行增加loadComplete參數    149行autowidth改false 再加入以下code-->
 const grid_selector = "#articleGrid"; 
 const $grid = jQuery(grid_selector);

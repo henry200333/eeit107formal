@@ -188,7 +188,7 @@
 // 				);
 				</script>
 				<div class="col-4" style="height: 700px; margin-top: 28px;">
-					<div class="row articleblock" style="height: 120px; cursor: pointer;">
+					<div class="row articleblock" style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
 						<div id="articleImg1" class="col-4">
 						</div>
 						<div class="col-8" style="margin-top: 10px; position:relative;">
@@ -196,7 +196,7 @@
 							<span style="font-size: 14px; position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 1750<i id="articleView1" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
-					<div class="row articleblock" style="height: 120px; cursor: pointer;">
+					<div class="row articleblock" style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
 						<div id="articleImg2" class="col-4">
 						</div>
 						<div class="col-8" style="margin-top: 10px; position:relative;">
@@ -204,7 +204,7 @@
 							<span style="font-size: 14px; position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 315<i id="articleView2" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
-					<div class="row articleblock" style="height: 120px; cursor: pointer;">
+					<div class="row articleblock" style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
 						<div id="articleImg3" class="col-4">
 						</div>
 						<div class="col-8" style="margin-top: 10px; position:relative;">
@@ -212,7 +212,7 @@
 							<span style="font-size: 14px; position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 189<i id="articleView3" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
-					<div class="row articleblock" style="height: 120px; cursor: pointer;">
+					<div class="row articleblock" style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
 						<div id="articleImg4" class="col-4">
 						</div>
 						<div class="col-8" style="margin-top: 10px; position:relative;"
@@ -221,7 +221,7 @@
 							<span style="font-size: 14px; position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 115<i id="articleView4" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
-					<div class="row articleblock" style="height: 120px; cursor: pointer;">
+					<div class="row articleblock" style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
 						<div id="articleImg5" class="col-4">
 						</div>
 						<div class="col-8" style="margin-top: 10px; position:relative;">
@@ -229,7 +229,7 @@
 							<span style="font-size: 14px;  position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 1<i id="articleView5" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
-					<div class="row articleblock" style="height: 120px; cursor: pointer;">
+					<div class="row articleblock" style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
 						<div id="articleImg6" class="col-4">
 						</div>
 						<div class="col-8" style="margin-top: 10px; position:relative;">
@@ -416,7 +416,7 @@
 					var content = data[i].content;
 					$(articleTop + (i + 1)).append(data[i].name); //加入文章名稱
 					$(articleView + (i + 1)).after(" " + data[i].count); //加入文章觀看次數
-					$(articleTop + (i + 1)).attr('id', 'article' + data[i].id); //修改div的id為文章id
+					$(articleTop + (i + 1)).parent().parent().attr('id', 'article' + data[i].id); //修改div的id為文章id
 					var start = content.indexOf('](http');
 					var end = content.indexOf('.jpg');
 					var endpng = content.indexOf('.png');
@@ -445,7 +445,11 @@
 			}
 		}
 	});
-	
+	//前往指定id的article頁面開始
+	function goToArticle(obj){
+		$(location).attr('href', '/article/' + obj.id.substring(7));
+	};
+	//前往指定id的article頁面結束
 	$.ajax({
 		url:"/artistTop5",
 		type:"GET",
