@@ -24,7 +24,7 @@
   </h1><hr>
   </div>
   <form class=""  style="margin-bottom: 20px;" id='searchForm' >
-  <div class="row" style='border-radius:20px;background-color:black'>
+  <div class="row" style='border-radius:20px'>
   <div class='col-2'>   
   <span style='padding-right:20px'>演出類型:</span>
  <div class="custom-control custom-checkbox" style='padding-right:20px;padding-top:5px'>
@@ -82,7 +82,7 @@
   </div>
 
   <div>
-  <div class="input-group" style='margin-top:10px'>
+  <div class="input-group mb-3" style='margin-top:10px;'>
 	<input type="text" class="form-control border-0 small" placeholder="搜尋活動名稱或演出者..." name="example4">
   	<button id="searchBT" class="btn btn-info" type="button"><i class="fas fa-search fa-sm"></i></button>
   </div>
@@ -110,17 +110,15 @@ $("#searchBT").click(function(){
 });
 
 $(function() {
-    $( "#beginTime" ).datetimepicker({
+    $( "#beginTime" ).datepicker({
         showButtonPanel: true,
         dateFormat:'yy-mm-dd',
-        timeFormat: "HH:mm:ss",
         onClose: function(selectedDate) {
 			$("#endTime").datepicker("option", "minDate", selectedDate)}
     });
-    $( "#endTime" ).datetimepicker({
+    $( "#endTime" ).datepicker({
         showButtonPanel: true,
         dateFormat:'yy-mm-dd',
-        timeFormat: "HH:mm:ss",
         onClose: function(selectedDate) {
 			$("#beginTime").datepicker("option", "maxDate", selectedDate)}
     });

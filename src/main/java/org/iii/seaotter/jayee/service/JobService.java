@@ -72,6 +72,7 @@ public class JobService {
 		application.setUser(user);
 		application.setJob(job);
 		application.setApplicationTime(new Date());
+		application.setStatus("申請中");
 		jobApplicationDao.save(application);
 	}
 	
