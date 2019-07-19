@@ -72,7 +72,7 @@ public class GreetingController {
           System.out.println(msg);   
           
           template.convertAndSend("/app/chat/single/"+msg.getTo(), msg);
-          template.convertAndSend("/app/chat/single/"+msg.getFrom(), msg);
+          template.convertAndSend("/app/chat/single/"+msg.getSender(), msg);
     }
     
     @GetMapping("/findmyfriends")
@@ -91,6 +91,7 @@ public class GreetingController {
 	@ResponseBody
 	public GridResponse <ChatMessageStore> query(@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size,
 			@Payload ChatMessageStore chatMessageStore) {
+    	System.out.println(chatMessageStore);
 		GridResponse<ChatMessageStore> gridResponse = new GridResponse<ChatMessageStore>();
 		Pageable pageable = PageRequest.of(page-1, size);
 		Specification<ChatMessageStore> specification = new Specification<ChatMessageStore>() {
