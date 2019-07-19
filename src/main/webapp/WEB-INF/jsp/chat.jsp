@@ -17,12 +17,11 @@
 	</div>
 </div>
 
-		</sec:authorize>
 		
-		<script>	
-		
+<script>		
 		var userAccount = $('#userAccount').val();
 		var userDisplayName = $('#userDisplayName').val();
+	var friendListStock;	
 		
 		//登入後抓朋友
 			$.ajax({
@@ -32,6 +31,8 @@
 					dataType:'json',
 					data:{"userAccount":userAccount},
 					success:function(friendList){
+						friendListStock = friendList;
+						
 						//產生列表
 						$.each(friendList,function(idx,friend){
 							var tempFriend = $('<div>').addClass('row friendListItem').css('line-height','2em')
@@ -57,10 +58,13 @@
 					}				
 				})
 				
-		function produceChatBox(){
+		function produceChatBox(){			
 			var nowId = $(this).attr('id').substring(4);
 			var chatBoxExist = document.getElementById(nowId);
-			if(chatBoxExist) return false;
+			if(chatBoxExist) {
+				$('#'+nowId).parent().parent().show();
+				return false;
+			}
 			var chatbox = $('<div>').addClass('talkbar2')
 				.append($('<div>').addClass('friend')
 					.append($('<p>').text($(this).attr('name')))
@@ -79,34 +83,54 @@
 							
 				$('#talkfield').append(chatbox);					
 				$('.sendMessage').click(sendMessage);
+				$(".talkclose").click(function(){
+					$(this).parent().parent().hide();					
+				})
+				loadHistoryMessage1();
 		}
-		function produceChatBox2(account,friendName,messageContent){
-			var chatBoxExist = document.getElementById(account);
-			if(!chatBoxExist){
-				var chatbox = $('<div>').addClass('talkbar2')
-					.append($('<div>').addClass('friend')
-						.append($('<p>').text(friendName))
-						.append($('<button>').addClass('talkclose').html('x'))
+		
+		function produceChatBox2(msgObj){
+			var sender = msgObj.sender;
+			var receiver = msgObj.receiver;
+			var content = msgObj.content;
+			var friendName = msgObj.userDisplayName;
+			if(userAccount==sender){
+				showChatMessage1(receiver,content);
+			}else{
+				var chatBoxExist = document.getElementById(sender);
+				if(!chatBoxExist){
+					var chatbox = $('<div>').addClass('talkbar2')
+						.append($('<div>').addClass('friend')
+							.append($('<p>').text(friendName))
+							.append($('<button>').addClass('talkclose').html('x'))
+							)
+						.append($('<div>').addClass('messages').attr('id','show'+sender)
+							.append($('<ul>')
+							)	
 						)
-					.append($('<div>').addClass('messages').attr('id','show'+account)
-						.append($('<ul>')
-						)	
-					)
-					//這邊的id是使用者帳號
-					.append($('<div>').addClass('message-input')
-							.append($('<input>').attr({'type':'text','placeholder':'Write your message...'}))
-							.append($('<button>').addClass('sendMessage').attr({'id':account,'type':'button'})
-								.append($('<i>').addClass('fa fa-paper-plane')))
-					);
+						//這邊的id是使用者帳號
+						.append($('<div>').addClass('message-input')
+								.append($('<input>').attr({'type':'text','placeholder':'Write your message...'}))
+								.append($('<button>').addClass('sendMessage').attr({'id':sender,'type':'button'})
+									.append($('<i>').addClass('fa fa-paper-plane')))
+						);
 								
 					$('#talkfield').append(chatbox);					
 					$('.sendMessage').click(sendMessage);
-			}	
-			showChatMessage(account,messageContent);			
+					$(".talkclose").click(function(){
+						$(this).parent().parent().hide();						
+					})
+				}	
+				showChatMessage2(sender,content);			
+			}
 		}
 		
-		function showChatMessage(account,messageContent){
-			$('#show'+account+' ul').append($('<li>').addClass('replies').html('<p>'+messageContent+'</p>'));
+		function showChatMessage1(account,messageContent){
+			$('#show'+account+' ul').append($('<li>').addClass('sent')
+					.append($('<img>').attr('src','http://emilcarlsson.se/assets/mikeross.png')).append($('<p>').text(messageContent)));
+		}
+		function showChatMessage2(account,messageContent){
+			$('#show'+account+' ul').append($('<li>').addClass('replies').append($('<img>').attr('src','http://emilcarlsson.se/assets/mikeross.png')).append($('<p>').text(messageContent)));
 		}
 		//STOMP連線、註冊
 		
@@ -114,10 +138,11 @@
 	   	stompClient = Stomp.over(socket);
 	   	stompClient.connect({}, function (frame) {
   	    	console.log('Connected: ' + frame);
+  	    	stompClient.send('/app/imonline',{},JSON.stringify({'userAccount':userAccount}));
         //註冊私訊路徑
 	        stompClient.subscribe('/app/chat/single/'+userAccount, function (data) {
 	            msgObj = JSON.parse(data.body);
-	            produceChatBox2(msgObj.from,msgObj.userDisplayName,msgObj.content)
+	            produceChatBox2(msgObj)
 	   
         	});
     	});
@@ -127,12 +152,29 @@
 			if(stompClient){
 				var receiver = $(this).attr('id')
 				var messageContent = $(this).prev().val();
-				var messageFrame = {'to':receiver,'from':userAccount,'content':messageContent,'userDisplayName':userDisplayName}; 
+				var messageFrame = {'receiver':receiver,'sender':userAccount,'content':messageContent,'userDisplayName':userDisplayName}; 
 				stompClient.send('/app/secured/room',{},JSON.stringify(messageFrame));
 			}
 		}
 
-			
+	var page = 1;
+	var rows = 5;
+		
+	function loadHistoryMessage1(){
+		$.ajax({
+			url:'/getNewMessages',
+			type:'get',
+			data:{'page':page,'rows':rows,'sender':'admin','receiver':'123'},
+			success:function(data){
+				var historyMessages = data.rows;
+				console.log(historyMessages);
+				$.each(historyMessages,function(idx,historyMessage){
+					produceChatBox2(historyMessage);
+				})				
+				page++;
+			}				
+		})
+	}
 		//JS畫面事件處理
 		$(".talk").hover(
 		function() {
@@ -165,6 +207,8 @@
 			$(".talk").show();
 		});
 		
+	
+		
 
 //				$('#msgbox1 ul').append(($('<li>').addClass('sent')
 //						.append($('<img>').attr('src','http://emilcarlsson.se/assets/mikeross.png'))
@@ -177,3 +221,5 @@
 //			})
 			
 		</script>
+		
+			</sec:authorize>

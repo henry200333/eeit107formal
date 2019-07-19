@@ -63,15 +63,6 @@ public class AdminForumController {
 		return "/admin/forum-add";
 	}
 	
-	@RequestMapping("/haha0716")
-	public String haha123(){
-		return "/admin/test0716";
-	}
-	@RequestMapping("/haha0717")
-	public String haha456(){
-		return "/admin/test0717";
-	}
-	
 
 	@RequestMapping("/edit/{id}")
 	public String editPage(@PathVariable Long id, Model model) {

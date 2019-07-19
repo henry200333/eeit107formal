@@ -1,3 +1,7 @@
+insert into chat_message_store(content,message_time,receiver,sender,user_display_name) values
+('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('i am fine','2019-07-11 19:20:58','123','admin','112233');
+
 INSERT INTO security_role(code) values
 ('ROLE_ADMIN'),
 ('ROLE_USER'),

@@ -274,7 +274,7 @@ body {
 
 .messages li.replies img {
 	float: left;
-	margin: 6px 5px 5px 8px;
+	margin: 6px 5px 0px 8px;
 }
 
 .messages ul li {
