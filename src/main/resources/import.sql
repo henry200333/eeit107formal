@@ -1,3 +1,31 @@
+insert into chat_message_store(content,message_time,receiver,sender,user_display_name) values
+('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('i am fine','2019-07-11 19:20:58','123','admin','112233'),
+('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('i am fine','2019-07-11 19:20:58','123','admin','112233'),
+('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('i am fine','2019-07-11 19:20:58','123','admin','112233'),
+('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('i am fine','2019-07-11 19:20:58','123','admin','112233'),
+('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('i am fine','2019-07-11 19:20:58','123','admin','112233'),
+('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('i am fine','2019-07-11 19:20:58','123','admin','112233'),
+('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('i am fine','2019-07-11 19:20:58','123','admin','112233'),
+('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('i am fine','2019-07-11 19:20:58','123','admin','112233'),
+('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('i am fine','2019-07-11 19:20:58','123','admin','112233'),
+('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('i am fine','2019-07-11 19:20:58','123','admin','112233'),
+('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('i am fine','2019-07-11 19:20:58','123','admin','112233'),
+('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('i am fine','2019-07-11 19:20:58','123','admin','112233'),
+('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('i am fine','2019-07-11 19:20:58','123','admin','112233');
+
 INSERT INTO security_role(code) values
 ('ROLE_ADMIN'),
 ('ROLE_USER'),
@@ -12,17 +40,17 @@ INSERT INTO security_role(code) values
  ('王芯營',1251,32548),
  ('敏敏',1542,12345);
 
- INSERT INTO security_user(account, password, display_name, member_name, photo, gender, mail, birth, address, tel, favorite_location, register_date, introduction, enabled, followers, artist_id) values
-('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 'ADMIN_BOT', 'Mr.Admin', '/resources/profile_image/admin.jpg', 'male', 'admin@admin', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im admin',  1, 0,null),
-('123', '$2a$10$weN4FB8uqq1jpv/7HEPBDuYMuw2xbMCBGKx3xYfWk3Da/UoVFS/7W', '112233', 'OneTwoThree', '/resources/profile_image/123.jpg', 'male', '123@123', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im 123',  1, 0, null),
-('artist001', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','桑源雅沂', '劉長軒', '/resources/profile_image/artist001.jpg', 'female', 'Liu0807@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Liu',  1, 86520, 1),
-('artist002', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','白賊虞', '李承宇', '/resources/profile_image/artist002.jpg', 'male', 'Lee0708@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Lee',  1, 30678, 2),
-('artist003', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','柳川鳳', '吳帆祥', '/resources/profile_image/artist003.jpg', 'male', 'Wu0102@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Wu',  1, 66666, 3),
-('artist004', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','張添財', '陳品堯', '/resources/profile_image/artist004.jpg', 'male', 'Chen0604@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Chen',  1, 98765, 4),
-('artist005', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','王芯營', '彭璿哲', '/resources/profile_image/artist005.jpg', 'male', 'Peng0911@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Peng',  1, 32548, 5),
-('artist006', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','敏敏', '李宜鳴', '/resources/profile_image/artist006.jpg', 'male', 'Min1211@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Min',  1, 12345, 6),
-('user001', '$2a$10$IB/9GXt3Gmm/tcIsd43Km.OAP9PvDYgFd5xOyrpefY.IsbVE/w7UK','User001','Pro User',  '/resources/profile_image/user001.jpg', 'female','user@gmail.com','1989/01/01','台北市萬華區','0912345678','高雄市','2019/06/30','hi,im user', 1, 0,null),
-('deaduser', '$2a$10$ovBda/JPk8ZBNpfyqp7CZukgEFmon.kW/yLbdGciQhPd09CxNXdY2','No show','Cant see', '/resources/profile_image/deaduser.jpg', 'femail','death@gmail.com','1989/01/01','台北市大安區','0912345678','新竹市','2019/01/01','should never see this',0, 0,null);
+ INSERT INTO security_user(account, password, display_name, member_name, photo, gender, mail, birth, address, tel, favorite_location, register_date, introduction, enabled, followers) values
+('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 'ADMIN_BOT', 'Mr.Admin', '/resources/profile_image/admin.jpg', 'male', 'admin@admin', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im admin',  1, 0),
+('123', '$2a$10$weN4FB8uqq1jpv/7HEPBDuYMuw2xbMCBGKx3xYfWk3Da/UoVFS/7W', '112233', 'OneTwoThree', '/resources/profile_image/123.jpg', 'male', '123@123', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im 123',  1, 0),
+('artist001', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','桑源雅沂', '劉長軒', '/resources/profile_image/artist001.jpg', 'female', 'Liu0807@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Liu',  1, 86520),
+('artist002', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','白賊虞', '李承宇', '/resources/profile_image/artist002.jpg', 'male', 'Lee0708@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Lee',  1, 30678),
+('artist003', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','柳川鳳', '吳帆祥', '/resources/profile_image/artist003.jpg', 'male', 'Wu0102@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Wu',  1, 66666),
+('artist004', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','張添財', '陳品堯', '/resources/profile_image/artist004.jpg', 'male', 'Chen0604@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Chen',  1, 98765),
+('artist005', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','王芯營', '彭璿哲', '/resources/profile_image/artist005.jpg', 'male', 'Peng0911@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Peng',  1, 32548),
+('artist006', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','敏敏', '李宜鳴', '/resources/profile_image/artist006.jpg', 'male', 'Min1211@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Min',  1, 12345),
+('user001', '$2a$10$IB/9GXt3Gmm/tcIsd43Km.OAP9PvDYgFd5xOyrpefY.IsbVE/w7UK','User001','Pro User',  '/resources/profile_image/user001.jpg', 'female','user@gmail.com','1989/01/01','台北市萬華區','0912345678','高雄市','2019/06/30','hi,im user', 1, 0),
+('deaduser', '$2a$10$ovBda/JPk8ZBNpfyqp7CZukgEFmon.kW/yLbdGciQhPd09CxNXdY2','No show','Cant see', '/resources/profile_image/deaduser.jpg', 'femail','death@gmail.com','1989/01/01','台北市大安區','0912345678','新竹市','2019/01/01','should never see this',0, 0);
 
 
 ALTER TABLE user_role NOCHECK CONSTRAINT ALL;

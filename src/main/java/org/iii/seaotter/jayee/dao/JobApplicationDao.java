@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface JobApplicationDao extends JpaRepository<JobApplication, Long>,JpaSpecificationExecutor<JobApplication> {
-	public List<JobApplication> findByUser(SecurityUser user);
-	public List<JobApplication> findByJob(Job job);
+	public List<JobApplication> findByUserAndStatus(SecurityUser user,String status);
+	public List<JobApplication> findByJobAndStatus(Job job,String status);
 	public JobApplication findByUserAndJob(SecurityUser user,Job job);
 }

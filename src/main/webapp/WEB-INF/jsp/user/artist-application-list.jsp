@@ -33,7 +33,7 @@
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">已申請工作</h1>
 						<a href="#"
-							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" ><i
 							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
 					</div>
 			
@@ -42,7 +42,21 @@
 					
 					
 					<div id="applicationlist" class="row"></div>
-
+					
+					<div id="page" style='text-align: center'>
+<!-- 						<label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm' -->
+<!-- 							onclick='prevPage()' > << </label> -->
+<!-- 							 <label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm' -->
+<!-- 							onclick='changePage(this)' title='1'>1</label>  -->
+<!-- 							<label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm' -->
+<!-- 							onclick='changePage(this)' title='2'>2</label> -->
+<!-- 							 <label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm' -->
+<!-- 							onclick='nextPage()' > >> </label> -->
+					</div>
+					<div style='text-align: center'>
+					<p>搜尋頁數
+					<input id="pageSearch" style="width:2%;text-align:center" value="" onchange="pageSearch(this)"></p>
+					</div>
 
 				</div>
 				<!-- /.container -->
@@ -56,17 +70,122 @@
 	<!-- End of Page Wrapper -->
 
 <script>
+
+var page = 1;
+var total = 1;
+
+
+
+function pageSearch(object){
+	if(object.value>0&&object.value<=total){
+	page=object.value;
+	showjobs();}
+	else{
+		alert("錯誤頁碼")
+	}
+}
+function prevPage() {
+	if (page == 1) {
+		alert("已經第一頁了")
+	} else {
+		page = page-1;
+		showjobs();
+	}
+//		alert(page)
+}
+function nextPage() {
+	if (page == total) {
+		alert("這是最後一頁了")
+	} else {
+		page = page + 1;
+		showjobs();
+	}
+//		alert(page)
+}
+function changePage(object) {
+//		alert(object.title);
+	page = parseInt( object.title);
+	showjobs();
+}
+
+
+
+function showPageList(){
+	
+	var txt="";
+	$("#page").html(txt);
+	txt += "<label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm' onclick='prevPage()' > << </label>"
+	if(total<=9){
+		for(i=1; i<=total;i++){
+			txt += "<label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm' onclick='changePage(this)' title='"+i+"'>"+i+"</label>";		
+		}
+	}else{
+		var count=0;
+		var start;
+		var end;
+		if((page-2)<1){
+		start= parseInt(1);
+		end=parseInt(5);
+		}else if((page+2)>total){
+			start= parseInt(total-5);
+			end=parseInt(total);
+		}else{
+			start= parseInt(page-2);
+			end=parseInt(page+2);
+		}
+		if((page-2)>1){
+			txt += "<label class='d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm' onclick='changePage(this)' title='"+1+"'>"+1+"</label>";		
+		}
+		for(i=start;i<=end;i++){
+			if(page==i)
+				txt += "<label class='d-none d-sm-inline-block btn btn-sm btn-success shadow-sm' onclick='changePage(this)' title='"+i+"'>"+i+"</label>";			
+			else
+			txt += "<label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm' onclick='changePage(this)' title='"+i+"'>"+i+"</label>";		
+		}
+		if(page+2<total){
+			txt += "<label class='d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm' onclick='changePage(this)' title='"+total+"'>"+total+"</label>";		
+		}
+	
+		
+	}
+	
+	
+	
+	txt += "<label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm' onclick='nextPage()' > >> </label>"
+		$("#page").html(txt);
+}
+
+
+
+function cancel(object) {
+
+	$.ajax({
+		url : "/user/job/cancelapplication?jobid=" + object.id
+				+ "&username=" + $("#username").val(),
+		type : "GET",
+		success : function(data) {
+			alert(data.mes);
+			showjobs();
+		}
+	});
+};
+
+
 function showjobs() {
 
 	$.ajax({
-				url : "/user/job/finduserapplication/"+$("#username").val(),
+				url : "/user/job/finduserapplication/"+$("#username").val()+"?page="+page,
 				type : "GET",
 				dataType : "json",
 				contentType : "application/json",
 				success : function(data) {
 					var txt = "";
-					$.each(data,function(key, obj) {
-						txt += "<form class='col-sm-4 mb-0 mb-sm-0' style='padding: 5px;background:white'><div style='border: solid'><div class='col-sm-12 mb-3 mb-sm-3'><h2 class=' h3 mb-0 text-gray-800'>"
+					
+					if(data==""){
+						 txt += "<h4 class='col-sm-12 mb-0 mb-sm-0' style='text-align:center'>你沒有任何工作申請</h4>";	
+					}
+					$.each(data.rows,function(key, obj) {
+						txt += "<form class='col-sm-4 mb-0 mb-sm-0' style='padding: 5px;'><div style='border: solid;background:#DDDDDD'><div class='col-sm-12 mb-3 mb-sm-3'><h2 class=' h3 mb-0 text-gray-800'>"
 							txt += obj.job.name;
 							txt += "</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>店家:</label><h2 class=' h4 mb-0 text-gray-800'>";
 							txt += obj.job.venderName;
@@ -81,14 +200,16 @@ function showjobs() {
 							txt += obj.job.jobTime;
 							txt += "</h2></div><div style='text-align:center'><input class='btn btn-primary btn-sm' id='";
 							txt += obj.job.id;
-							txt += "'onclick='' value='取消' readonly></div></div></form>";
+							txt += "'onclick='cancel(this)' value='取消' readonly></div></div></form>";
 						
 						
 					})
 					$("#applicationlist").html(txt);
 				}
 			})
-
+			window.setTimeout(function() {
+				showPageList()
+		}, 50);
 			
 }
   

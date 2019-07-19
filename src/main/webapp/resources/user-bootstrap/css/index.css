@@ -274,7 +274,7 @@ body {
 
 .messages li.replies img {
 	float: left;
-	margin: 6px 5px 5px 8px;
+	margin: 6px 5px 0px 8px;
 }
 
 .messages ul li {
@@ -307,6 +307,12 @@ body {
 	font-size: 0.9em;
 		background: #e4e2cf;
 	color: #32465a;
+}
+
+.messages ul li.sent p {
+	display: inline-block;
+	float:right;
+	font-size: 0.9em;
 }
 
 
