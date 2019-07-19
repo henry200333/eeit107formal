@@ -15,7 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -79,11 +78,6 @@ public class SecurityUser implements UserDetails {
 			@JoinColumn(name = "friend_id") })
 	@JsonBackReference
 	private List<SecurityUser> friends;
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonBackReference
-	@JoinColumn(name = "artist_id")
-	private Artist artist;
-	
 	
 	//User的ID關聯到Activity的artistId外鍵欄位
 	@JsonIgnore
@@ -99,12 +93,8 @@ public class SecurityUser implements UserDetails {
 	@JsonBackReference
 	@JoinTable(name = "user_plike", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "p_id") })
-	private Set<SecurityRole> plikes;
+	private List<Performance> plikes;
 	
-	
-	
-	
-
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return roles;

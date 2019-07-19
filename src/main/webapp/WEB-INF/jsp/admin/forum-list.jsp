@@ -116,17 +116,6 @@
 	<button type="button" id='t0709'>click123</button>
 	<!-- End of Page Wrapper -->
 	<script>
-	
-		$("#t0709").click(function(){
-			alert(123);
-			$.ajax({
-				url : "/admin/forum/happy",
-				type : "GET",
-				contentType : "application/json",
-			})
-
-		})
-	
 
 		$("#forumGrid").jqGrid({
 			iconSet : "fontAwesome",

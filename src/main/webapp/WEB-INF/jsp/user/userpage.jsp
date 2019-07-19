@@ -54,11 +54,11 @@
 		<div style="border: 5px #FFAC55 solid;">
 			追蹤人數:${userParam.followers }</div>
 		<div style="border: 5px #FFAC55 solid;">
-			表演:${userParam.performanceSet }</div>
+			表演影片:${userParam.performanceSet[0].title }</div>
 		<div style="border: 5px #FFAC55 solid;">
-			文章:</div>
+			文章:${articleParam }</div>
 		<div style="border: 5px #FFAC55 solid;">
-			影片:</div>
+			活動:${userParam.activitySet }</div>
 
 		</div>
 </body>
