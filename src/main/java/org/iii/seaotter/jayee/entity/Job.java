@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.iii.seaotter.jayee.web.UserJobController;
 import org.springframework.lang.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -60,6 +61,6 @@ public class Job {
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JsonBackReference
-	@JoinColumn(name="artist_id")
-	private Artist artist;
+	@JoinColumn(name="user_id")
+	private SecurityUser user;
 }

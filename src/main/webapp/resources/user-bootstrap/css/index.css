@@ -120,14 +120,14 @@ body {
 
 
 
-.artist1 {
+#artists img {
     border-radius: 15px;
     transition-property: -webkit-filter;
     transition-duration: 0.5s;
     -webkit-filter: brightness(1);
 }
 
-.artist1:hover {
+#artists img:hover {
     transition-property: -webkit-filter;
     transition-duration: 0.5s;
     -webkit-filter: brightness(.7);
@@ -563,7 +563,7 @@ body {
 /* activity */
 
 
-.per1{
+.per{
     position: absolute;
     top: 0;
     left: 0;
@@ -572,30 +572,9 @@ body {
     opacity: 0;
     z-index: 1;
     width: 100%;
-    height: 72%;
+    height: 100%;
 }
-.per2{
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: "";
-    background-color: white;
-    opacity: 0;
-    z-index: 1;
-    width: 100%;
-    height: 72%;
-}
-.per3{
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: "";
-    background-color: white;
-    opacity: 0;
-    z-index: 1;
-    width: 100%;
-    height: 72%;
-}
+
 
 img{ cursor: pointer; }
 

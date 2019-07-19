@@ -25,9 +25,8 @@ public class JobApplication {
 	private Long id;
 
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JsonBackReference
-	@JoinColumn(name="artist_id", nullable=false)
-	private Artist artist;
+	@JoinColumn(name="user_id", nullable=false)
+	private SecurityUser user;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="job_id", nullable=false)
@@ -35,4 +34,7 @@ public class JobApplication {
 
 	@Column(name="application_time")
 	private java.util.Date applicationTime;
+	
+	@Column(name="status")
+	private String status;
 }
