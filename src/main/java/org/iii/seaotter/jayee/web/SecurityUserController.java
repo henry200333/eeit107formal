@@ -22,7 +22,6 @@ public class SecurityUserController {
 	
 	@RequestMapping("/{username}")
 	public String userPage(@PathVariable String username, Model model) {
-		System.out.println(username);
 		SecurityUser user = securityUserService.getByUserName(username);
 		model.addAttribute("userParam", user);
 		return "/user/userpage";
