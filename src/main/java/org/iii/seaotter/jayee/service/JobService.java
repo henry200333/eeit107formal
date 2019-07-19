@@ -65,27 +65,21 @@ public class JobService {
 		jobDao.save(job);
 	}
 	
-	public void saveApplication(SecurityUser user, Job job) {
-		JobApplication application=new JobApplication();
-		System.out.println(user.getUserId());
-		System.out.println(job.getId());
-		application.setUser(user);
-		application.setJob(job);
+	public void saveApplication(JobApplication application,String status) {
 		application.setApplicationTime(new Date());
-		application.setStatus("申請中");
+		application.setStatus(status);
 		jobApplicationDao.save(application);
 	}
 	
-	public Boolean checkApplication(SecurityUser user , Job job) {
-		if(jobApplicationDao.findByUserAndJob(user, job)!=null) {
-			return true;
-		}else {
-			return false;
-		}
+	
+	public JobApplication getApplication(SecurityUser user , Job job) {
+		
+		return jobApplicationDao.findByUserAndJob(user, job);
 	}
 	
 	public List<JobApplication> getByUser(SecurityUser user ){
-		return jobApplicationDao.findByUser(user);
+		String status="申請中";
+		return jobApplicationDao.findByUserAndStatus(user, status);
 	}
 	
 	
