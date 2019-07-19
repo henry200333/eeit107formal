@@ -242,7 +242,6 @@ $.ajax({
 //前往指定id的article頁面開始
 function goToArticle(obj){
 	$(location).attr('href', '/article/' + obj.id.substring(7));
-// 	alert(obj.id);
 };
 //前往指定id的article頁面結束
 <!-- 響應式網頁測試  158~160行增加loadComplete參數    149行autowidth改false 再加入以下code-->
