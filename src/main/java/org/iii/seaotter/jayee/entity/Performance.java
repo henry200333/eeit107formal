@@ -1,6 +1,6 @@
 package org.iii.seaotter.jayee.entity;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -60,5 +60,5 @@ public class Performance {
 	@JsonBackReference
 	@JoinTable(name = "user_pdislike", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "p_id") })
-	private Set<SecurityRole> dislikeuser;
+	private List<SecurityUser> dislikeuser;
 }

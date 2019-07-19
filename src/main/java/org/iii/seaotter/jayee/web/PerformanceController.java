@@ -8,19 +8,16 @@ import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.common.Message;
 import org.iii.seaotter.jayee.entity.Performance;
+import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -29,6 +26,9 @@ public class PerformanceController {
 
 	@Autowired
 	private PerformanceService performanceService;
+	
+	@Autowired
+	private SecurityUserService SecurityUserService;
 	
 	
 	@RequestMapping("/add")
@@ -97,5 +97,75 @@ public class PerformanceController {
 //		model.addAttribute("performance",performance);
 //		return "/user/performance-view";
 //	}
+	
+	@PostMapping("like")
+	@ResponseBody
+	public Performance like(@RequestParam("id")Long id,@RequestParam("dislikeType") int dislikeType,@RequestParam("username") String username) {
+		System.out.println(username);
+		SecurityUser user = SecurityUserService.getByUserName(username);
+		List<Performance> plikelist = user.getPlikes();
+		Performance performance = performanceService.getById(id);
+		Long likes = performance.getLikes();
+		Long dislikes = performance.getDislikes();
+		if(dislikeType==0) {
+			likes++;
+			performance.setLikes(likes);
+			plikelist.add(performance);
+			user.setPlikes(plikelist);
+			SecurityUserService.update(user);
+		}
+		else if(dislikeType==1) {
+			likes++;
+			dislikes--;
+			performance.setLikes(likes);
+			performance.setDislikes(dislikes);
+			plikelist.add(performance);
+			user.setPlikes(plikelist);
+			SecurityUserService.update(user);
+			List<SecurityUser> dislikeuser = performance.getDislikeuser();
+			int size = dislikeuser.size();
+			for(int i =0;i<size;i++) {
+				SecurityUser s = dislikeuser.get(i);
+				if(s.getUserId()==user.getUserId()) {
+					plikelist.remove(s);
+				}
+			}
+		}else if(dislikeType==2) {
+			likes--;
+			performance.setLikes(likes);
+			int size = plikelist.size();
+			for(int i =0;i<size;i++) {
+				Performance p = plikelist.get(i);
+				if(p.getId()==id) {
+					plikelist.remove(p);
+				}
+			}
+		}
+		performanceService.update(performance);
+		return performance;
+	}
+	
+	@PostMapping("dislike")
+	@ResponseBody
+	public Performance unlike(@RequestParam("id")Long id,@RequestParam("likeType")int likeType) {
+		Performance performance = performanceService.getById(id);
+		Long likes = performance.getLikes();
+		Long dislikes = performance.getDislikes();		
+		if(likeType==0) {
+			dislikes++;
+			performance.setDislikes(dislikes);
+		}
+		else if(likeType==1) {
+			dislikes++;
+			likes--;
+			performance.setDislikes(dislikes);
+			performance.setLikes(likes);
+		}else if(likeType==2) {
+			dislikes--;
+			performance.setDislikes(dislikes);
+		}
+		performanceService.update(performance);
+		return performance;
+	}
 	
 }
