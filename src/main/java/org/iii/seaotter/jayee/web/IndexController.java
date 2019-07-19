@@ -41,6 +41,10 @@ public class IndexController {
 	@Autowired
 	private SecurityUserService securityUserService;
 	
+	@RequestMapping("/index")
+	public String index() {
+		return "index";
+	}
 	
 //	@RequestMapping("/index")
 //	public String index() {
@@ -55,20 +59,12 @@ public class IndexController {
 //		}
 //		return "/user/index";
 //	}
-	
-	@RequestMapping("/article")
-	public String articleListPage() {
-		return "/user/article-list";
-	}
-	
-		
-//	@GetMapping("/artistsTop5")
+
+//	@GetMapping("/artistsTop5") 
 //	@ResponseBody
 //	public List<Artist> queryTop5() {
 //		return artistService.getNameByFanNumberTop5();
 //	}
-	
-
 	
 	@GetMapping("/articleWithPerformanceTop")
 	@ResponseBody

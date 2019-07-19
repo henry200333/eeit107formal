@@ -45,7 +45,7 @@
 <body>
 	<jsp:include page="../topbar.jsp"></jsp:include>
 		<div class="container" style="margin-top: 70px;">
-		<div style="border: 5px #FFAC55 solid;"><img src="${userParam.photo }"></div>
+		<div style="border: 5px #FFAC55 solid;"><img width="25%" src="${userParam.photo }"></div>
 		<div style="border: 5px #FFAC55 solid;">
 			姓名:${userParam.displayName }</div>
 		<div style="border: 5px #FFAC55 solid;">
@@ -54,7 +54,7 @@
 		<div style="border: 5px #FFAC55 solid;">
 			追蹤人數:${userParam.followers }</div>
 		<div style="border: 5px #FFAC55 solid;">
-			表演:</div>
+			表演:${userParam.performanceSet }</div>
 		<div style="border: 5px #FFAC55 solid;">
 			文章:</div>
 		<div style="border: 5px #FFAC55 solid;">

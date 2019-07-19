@@ -41,26 +41,8 @@ public class AuthController {
 	@Autowired
 	private SecurityRoleDao securityRoleDao;
 
-	@RequestMapping("/{username}")
-	public String userPage(@PathVariable String username, Model model) {
-		System.out.println(username);
-		SecurityUser user = securityUserService.getByUserName(username);
-		model.addAttribute("userParam", user);
-		return "/user/userpage";
-	}
 	
-	@RequestMapping("/edit/{username}")
-	public String edit(@PathVariable String username, Model model) {
-		System.out.println(username);
-		SecurityUser user = securityUserService.getByUserName(username);
-		model.addAttribute("userParam", user);
-		return "/user/edit";
-	}
-	
-	@RequestMapping("/index")
-	public String index() {
-		return "index";
-	}
+
 
 	@GetMapping("/login")
 	public String signin() {
@@ -122,20 +104,5 @@ public class AuthController {
 		SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
 	}
 	
-	@PostMapping("/uploadPhoto")
-	public String upload(@RequestParam("imageFile") MultipartFile imageFile,@RequestParam("username")String username) throws IOException {
-		System.out.println(username);
-		String returnValue = "/index";
-		try {
-			ArtistService.saveImage(imageFile,username);
-		} catch (Exception e) {
-			e.printStackTrace();
-			returnValue = "error";
-		}
-		SecurityUser user = securityUserService.getByUserName(username);
-		String photo = "/resources/profile_image/" + username + ".jpg";
-		user.setPhoto(photo);
-		securityUserService.update(user);
-		return returnValue;
-	}
+
 }
