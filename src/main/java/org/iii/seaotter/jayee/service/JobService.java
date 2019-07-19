@@ -81,6 +81,12 @@ public class JobService {
 		String status="申請中";
 		return jobApplicationDao.findByUserAndStatus(user, status);
 	}
+
+
+	public Page<JobApplication> getAllJobApplication(Specification<JobApplication> specification, Pageable pageable) {
+	
+		return jobApplicationDao.findAll(specification, pageable);
+	}
 	
 	
 	

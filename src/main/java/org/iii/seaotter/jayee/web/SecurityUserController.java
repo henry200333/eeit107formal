@@ -2,9 +2,11 @@ package org.iii.seaotter.jayee.web;
 
 import java.io.IOException;
 
+import org.iii.seaotter.jayee.entity.SearchUser;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ArtistService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +24,9 @@ public class SecurityUserController {
 	
 	@RequestMapping("/{username}")
 	public String userPage(@PathVariable String username, Model model) {
-		SecurityUser user = securityUserService.getByUserName(username);
+		SearchUser user = new SearchUser();
+		SecurityUser source = securityUserService.getByUserName(username);
+		BeanUtils.copyProperties(source, user);
 		model.addAttribute("userParam", user);
 		return "/user/userpage";
 	}
