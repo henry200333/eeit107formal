@@ -88,12 +88,20 @@ public class SecurityUser implements UserDetails {
 	//User的ID關聯到Activity的artistId外鍵欄位
 	@JsonIgnore
 	@OneToMany(mappedBy="useraId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)	
-	private Set<Activity> activitySet;
+	private List<Activity> activitySet;
 	
 	//User的ID關聯到Activity的artistId外鍵欄位
 	@JsonIgnore
 	@OneToMany(mappedBy="userpId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)	
-	private Set<Performance> performanceSet;
+	private List<Performance> performanceSet;
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonBackReference
+	@JoinTable(name = "user_plike", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "p_id") })
+	private Set<SecurityRole> plikes;
+	
+	
 	
 	
 

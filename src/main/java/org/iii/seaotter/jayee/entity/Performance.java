@@ -1,12 +1,20 @@
 package org.iii.seaotter.jayee.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Data;
 
@@ -22,7 +30,7 @@ public class Performance {
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="p_id")
 	private Long id;
 	@Column(name="title")
 	private String title;
@@ -46,4 +54,11 @@ public class Performance {
 	private String performanceGerne;
 	@JoinColumn(name="userp_id")
 	private Long userpId;
+	
+	//dislike
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonBackReference
+	@JoinTable(name = "user_pdislike", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "p_id") })
+	private Set<SecurityRole> dislikeuser;
 }
