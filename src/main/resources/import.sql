@@ -41,7 +41,8 @@ INSERT INTO security_role(code) values
 ('artist005', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','王芯營', '彭璿哲', '/resources/profile_image/artist005.jpg', 'male', 'Peng0911@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Peng',  1, 32548),
 ('artist006', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','敏敏', '李宜鳴', '/resources/profile_image/artist006.jpg', 'male', 'Min1211@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Min',  1, 12345),
 ('user001', '$2a$10$IB/9GXt3Gmm/tcIsd43Km.OAP9PvDYgFd5xOyrpefY.IsbVE/w7UK','User001','Pro User',  '/resources/profile_image/user001.jpg', 'female','user@gmail.com','1989/01/01','台北市萬華區','0912345678','高雄市','2019/06/30','hi,im user', 1, 0),
-('deaduser', '$2a$10$ovBda/JPk8ZBNpfyqp7CZukgEFmon.kW/yLbdGciQhPd09CxNXdY2','No show','Cant see', '/resources/profile_image/deaduser.jpg', 'femail','death@gmail.com','1989/01/01','台北市大安區','0912345678','新竹市','2019/01/01','should never see this',0, 0);
+('deaduser', '$2a$10$ovBda/JPk8ZBNpfyqp7CZukgEFmon.kW/yLbdGciQhPd09CxNXdY2','No show','Cant see', '/resources/profile_image/deaduser.jpg', 'femail','death@gmail.com','1989/01/01','台北市大安區','0912345678','新竹市','2019/01/01','should never see this',0, 0),
+('vender001', '$2a$10$IB/9GXt3Gmm/tcIsd43Km.OAP9PvDYgFd5xOyrpefY.IsbVE/w7UK','Vender001','Vuser',  '/resources/profile_image/vender001.jpg', 'male','vender@gmail.com','1959/01/01','台北市萬華區','0912345678','高雄市','2019/06/30','hi,im user', 1, 0);
 
 
 ALTER TABLE user_role NOCHECK CONSTRAINT ALL;
@@ -55,7 +56,7 @@ INSERT INTO user_role(user_id, role_id) values
 (7,2),(7,3),
 (8,2),(8,3),
 (9,2),
-(10,2);
+(10,2),(11,2),(11,4);
 ALTER TABLE user_role CHECK CONSTRAINT ALL;
 
 
@@ -133,11 +134,11 @@ alex@skrpresents.com
  ('阿滴開始健身了','瘦巴巴的阿滴居然開始健身了，究竟會怎麼樣呢','https://www.youtube.com/watch?v=SF8s3jVmiAs','2019/06/27 22:15:23',2,6400,590,17,5,'柳川鳳','視覺藝術'),
  ('暗殺教室S1 第21話','支持正版動畫，官頻廣告不略過，看好看滿才能看更多！','https://www.youtube.com/watch?v=wRs3z2Mr-uA','2019/07/18 15:15:22',7,212,71,2,7,'王芯營','視覺藝術');
  							
-insert into  Vender (name,city,district,address,max_people,phone,lat,lng) values
-('EZ5音樂餐廳','台北市','大安區','安和路二段211號',50,'0227383995',25.0260149,121.550337),
-('Music Corner角落音樂餐廳','台北市','中山區',' 建國北路一段156號',40,'0225043688',25.0516328,121.5341573),
-('LOTUS 音樂餐廳','台北市','中山區','長安東路二段78號',60,' 0223468888',25.0483426,121.5317147),
-('HOOTERS美式餐廳','台北市','松山區','長安東路二段78號',55,'0227165168','25.0532667','121.54544720000001');
+insert into  Vender (name,city,district,address,max_people,phone,lat,lng,user_id) values
+('EZ5音樂餐廳','台北市','大安區','安和路二段211號',50,'0227383995',25.0260149,121.550337,11),
+('Music Corner角落音樂餐廳','台北市','中山區',' 建國北路一段156號',40,'0225043688',25.0516328,121.5341573,null),
+('LOTUS 音樂餐廳','台北市','中山區','長安東路二段78號',60,' 0223468888',25.0483426,121.5317147,null),
+('HOOTERS美式餐廳','台北市','松山區','長安東路二段78號',55,'0227165168','25.0532667','121.54544720000001',null);
 
 insert into  job (name,job_type,job_time,detal,reward,vender_name,city,district,address,vender_id) values
 ('誠徵鼓手一名','聽覺藝術','2019-07-15 12:00:00','經驗要求5年以上',1000,'EZ5音樂餐廳','台北市','大安區','安和路二段211號',1),

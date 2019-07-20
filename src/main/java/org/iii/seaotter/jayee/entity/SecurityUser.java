@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -94,6 +95,11 @@ public class SecurityUser implements UserDetails {
 	@JoinTable(name = "user_plike", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "p_id") })
 	private List<Performance> plikes;
+	
+	
+	@OneToOne(mappedBy="user",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Vender vender;
+	
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

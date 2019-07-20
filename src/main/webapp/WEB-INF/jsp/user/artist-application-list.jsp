@@ -32,9 +32,9 @@
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">已申請工作</h1>
-						<a href="#"
+						<a href="/user/job/list"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" ><i
-							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
+							class="fas fa-reply fa-sm text-white-50"></i>返回工作頁</a>
 					</div>
 			
 					

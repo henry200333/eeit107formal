@@ -116,9 +116,6 @@ public class UserJobController {
 	public GridResponse<Job> query(@RequestParam(value = "page") Integer page,
 			@RequestParam(value = "type") String type, @RequestParam(value = "city") String city,
 			@RequestParam(value = "district") String district) {
-		System.out.println("star");
-		System.out.println(district);
-		System.out.println("end");
 		String sidx = "jobTime";
 		Integer size = 6;
 		GridResponse<Job> grid = new GridResponse<Job>();
@@ -131,25 +128,23 @@ public class UserJobController {
 			@Override
 			public Predicate toPredicate(Root<Job> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				Predicate predicate = cb.conjunction();
-				if (type == null ||  type.equals("null")  ||type.equals("全部") || type.trim().equals("")) {
-					System.out.println("type empty");
-				} else {
-					predicate = cb.and(cb.equal(root.get("jobType"), type));
-				}
 				
-
+				
 				if (city == null || city.equals("null")  || city.equals("請選擇") || city.trim().equals("")) {
-					System.out.println("city empty");
 				} else {
-					predicate = cb.and(cb.equal(root.get("city"), city));
+					System.out.println(city);
+					predicate = cb.and(predicate,cb.equal(root.get("city"), city));
 				}
-				
+				if (type == null ||  type.equals("null")  ||type.equals("全部") || type.trim().equals("")) {
+				} else {
+					System.out.println(type);
+					predicate = cb.and(predicate,cb.equal(root.get("jobType"), type));
+				}
 
 				if (district==null ||  district.equals("null")  || district.equals("請選擇") || district.trim().equals("")) {
-					System.out.println("district empty");
 				} else {
-					System.out.println(district.equals("null"));
-					predicate = cb.and(cb.equal(root.get("district"), district));
+					System.out.println(district);
+					predicate = cb.and(predicate,cb.equal(root.get("district"), district));
 				}
 				
 
@@ -176,6 +171,7 @@ public class UserJobController {
 		return locationService.getDistinctDistrictByCity(city);
 	}
 
+	@SuppressWarnings("static-access")
 	@RequestMapping("/addapplication")
 	@ResponseBody
 	public Map<String, String> addapplication(@RequestParam("jobid") Long jobid,
@@ -185,7 +181,7 @@ public class UserJobController {
 		SecurityUser user = securityUserService.getByUserName(userName);
 		Job job = jobservice.getById(jobid);
 		// 確定使用者是否有artist腳色
-		if (false) {
+		if (!securityUserService.hasRole("ROLE_ARTIST")) {
 			message.put("mes", "未具有申請資格");
 			return message;
 		}
@@ -209,6 +205,30 @@ public class UserJobController {
 
 		return message;
 	}
+	
+	@RequestMapping("/checkapplication")
+	@ResponseBody
+	public Map<String, String> checkapplication(@RequestParam("jobid") Long jobid,
+			@RequestParam("username") String userName, Model model) {
+
+		Map<String, String> message = new HashMap<>();
+		SecurityUser user = securityUserService.getByUserName(userName);
+		Job job = jobservice.getById(jobid);
+		// 確定使用者是否有artist腳色
+		if (!securityUserService.hasRole("ROLE_ARTIST")) {
+			message.put("mes", "沒資格");
+			return message;
+		}else if (jobservice.getApplication(user, job) != null
+				&& jobservice.getApplication(user, job).getStatus().equals("申請中")) {
+			message.put("mes", "申請中");
+		} else {
+			message.put("mes", "未申請");
+		}
+		return message;
+	}
+	
+	
+	
 
 	@RequestMapping("/cancelapplication")
 	@ResponseBody
