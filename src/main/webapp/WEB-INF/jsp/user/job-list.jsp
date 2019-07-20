@@ -74,7 +74,12 @@
 					<input hidden="hidden" name="userName"
 						value="<sec:authentication property="name" />" id="username">
 
-
+					<select name="YourLocation">
+　						<option value="Taipei">全部</option>
+　						<option value="Taoyuan">表演藝術</option>
+　						<option value="Hsinchu">聽覺藝術</option>
+　						<option value="Miaoli">手工藝</option>
+					</select>
 					<div id="joblist" class="row">
 							 
 					</div>

@@ -96,8 +96,9 @@ public class UserJobController {
 		grid.setRows(result.getContent());
 		grid.setPage(page);
 		grid.setRecords(result.getTotalElements());
+		System.out.println(result.getTotalElements());
 		grid.setTotal(result.getTotalPages());
-
+		System.out.println(result.getTotalPages());
 		
 		return grid;
 	}
