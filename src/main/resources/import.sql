@@ -1,29 +1,29 @@
 insert into chat_message_store(content,message_time,receiver,sender,user_display_name) values
-('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('1how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
 ('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('2how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
 ('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('3how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
 ('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('4how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
 ('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('5how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
 ('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('6how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
 ('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('7how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
 ('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('8how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
 ('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('9how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
 ('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('10how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
 ('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('11how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
 ('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('12how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
 ('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('13how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
 ('i am fine','2019-07-11 19:20:58','123','admin','112233');
 
 INSERT INTO security_role(code) values
@@ -321,7 +321,6 @@ INSERT INTO activity (name,artist,description,begin_time,end_time,perf_type,awes
  ('唱情歌','白賊虞','在北車唱情歌','2019/07/14 07:35','2019/07/14 17:15','創意藝術',3,2,2),
  ('打工賺錢','柳川鳳','賺錢選粽痛','2019/06/27 23:35','2019/06/28 07:35','視覺藝術',4,3,1),
  ('裝印地安人','桑源雅沂','One little two little three little indian..','2019/04/25 07:35','2019/05/01 17:15','視覺藝術',5,1,2);
- 
  
 ALTER TABLE friend NOCHECK CONSTRAINT ALL;
 INSERT INTO friend (self_id , friend_id) values

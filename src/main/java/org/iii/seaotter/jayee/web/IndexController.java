@@ -136,7 +136,6 @@ public class IndexController {
 	@RequestMapping("/pviewplus/{id}")
 	@ResponseBody
 	public void viewplus(@PathVariable("id") Long id, Model model) {
-		System.out.println(id);
 		Performance performance = performanceService.getById(id);
 		Long views = performance.getViews();
 		views ++;
@@ -147,7 +146,6 @@ public class IndexController {
 	@RequestMapping("/performanceSide")
 	@ResponseBody
 	public List<Performance> getAll(){
-		System.out.println("all");
 		List<Performance> list = performanceService.getAll();
 		Collections.shuffle(list);
 		return list;

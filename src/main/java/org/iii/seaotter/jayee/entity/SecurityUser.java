@@ -93,7 +93,7 @@ public class SecurityUser implements UserDetails {
 	@JsonBackReference
 	@JoinTable(name = "user_plike", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "p_id") })
-	private Set<SecurityRole> plikes;
+	private List<Performance> plikes;
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -57,6 +57,7 @@
 						$('.friendListItem').click(produceChatBox);												
 					}				
 				})
+	
 				
 		function produceChatBox(){			
 			var nowId = $(this).attr('id').substring(4);
@@ -86,16 +87,27 @@
 				$(".talkclose").click(function(){
 					$(this).parent().parent().hide();					
 				})
+				$('.messages').scroll(function(event){
+
+					if(event.target.scrollTop==0){	
+						event.target.scrollTop=1;
+						loadHistoryMessage1();					
+						console.log(event.target.scrollTop);
+					}			
+				})
+				
 				loadHistoryMessage1();
+				$(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, "fast");
 		}
 		
-		function produceChatBox2(msgObj){
+		function receiveMessage(msgObj){
 			var sender = msgObj.sender;
 			var receiver = msgObj.receiver;
 			var content = msgObj.content;
 			var friendName = msgObj.userDisplayName;
 			if(userAccount==sender){
-				showChatMessage1(receiver,content);
+				showChatMessage1(receiver,content);	
+				$("#show"+receiver).animate({ scrollTop: $(".messages")[0].scrollHeight}, "fast");
 			}else{
 				var chatBoxExist = document.getElementById(sender);
 				if(!chatBoxExist){
@@ -120,8 +132,27 @@
 					$(".talkclose").click(function(){
 						$(this).parent().parent().hide();						
 					})
-				}	
-				showChatMessage2(sender,content);			
+					loadHistoryMessage1(sender,receiver);
+				}
+
+				showChatMessage2(sender,content);
+				$("#show"+sender).animate({ scrollTop: $(".messages")[0].scrollHeight}, "fast");
+			}
+			
+		}
+		
+		function prependHistory(msgObj){
+			var sender = msgObj.sender;
+			var receiver = msgObj.receiver;
+			var content = msgObj.content;
+			var friendName = msgObj.userDisplayName;
+			if(userAccount==sender){
+				showChatMessage3(receiver,content);
+				
+			}else{
+				var chatBoxExist = document.getElementById(sender);
+				showChatMessage4(sender,content);
+				
 			}
 		}
 		
@@ -131,6 +162,14 @@
 		}
 		function showChatMessage2(account,messageContent){
 			$('#show'+account+' ul').append($('<li>').addClass('replies').append($('<img>').attr('src','http://emilcarlsson.se/assets/mikeross.png')).append($('<p>').text(messageContent)));
+		}
+		
+		function showChatMessage3(account,messageContent){
+			$('#show'+account+' ul').prepend($('<li>').addClass('sent')
+					.append($('<img>').attr('src','http://emilcarlsson.se/assets/mikeross.png')).append($('<p>').text(messageContent)));
+		}
+		function showChatMessage4(account,messageContent){
+			$('#show'+account+' ul').prepend($('<li>').addClass('replies').append($('<img>').attr('src','http://emilcarlsson.se/assets/mikeross.png')).append($('<p>').text(messageContent)));
 		}
 		//STOMP連線、註冊
 		
@@ -142,7 +181,7 @@
         //註冊私訊路徑
 	        stompClient.subscribe('/app/chat/single/'+userAccount, function (data) {
 	            msgObj = JSON.parse(data.body);
-	            produceChatBox2(msgObj)
+	            receiveMessage(msgObj)
 	   
         	});
     	});
@@ -158,23 +197,25 @@
 		}
 
 	var page = 1;
-	var rows = 5;
+	var rows = 10;
 		
-	function loadHistoryMessage1(){
+	function loadHistoryMessage1(sender,receiver){
 		$.ajax({
 			url:'/getNewMessages',
 			type:'get',
-			data:{'page':page,'rows':rows,'sender':'admin','receiver':'123'},
+			data:{'page':page,'rows':rows,'sender':sender,'receiver':receiver},
 			success:function(data){
 				var historyMessages = data.rows;
-				console.log(historyMessages);
 				$.each(historyMessages,function(idx,historyMessage){
-					produceChatBox2(historyMessage);
-				})				
+					prependHistory(historyMessage);
+				})
 				page++;
 			}				
 		})
 	}
+	
+	//滾至頂端讀取
+	
 		//JS畫面事件處理
 		$(".talk").hover(
 		function() {

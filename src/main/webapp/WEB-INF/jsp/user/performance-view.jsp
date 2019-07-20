@@ -54,10 +54,26 @@
 
 .likediv:hover {
 	cursor: pointer;
+	transition-property: border-bottom;
+	transition-duration: 0.5s;
+	border-bottom: 3px solid #2894ff;
 }
 
 .dislikediv:hover {
 	cursor: pointer;
+	transition-property: border-bottom;
+	transition-duration: 0.5s;
+	border-bottom: 3px solid #ff5151;
+}
+
+.likedivclick:hover {
+	cursor: pointer;
+
+}
+
+.dislikedivclick:hover {
+	cursor: pointer;
+
 }
 
 .likediv {
@@ -68,6 +84,8 @@
 	text-align: center;
 }
 
+
+
 .dislikediv {
 	margin-top: 80px;
 	display: inline;
@@ -77,30 +95,71 @@
 	margin-left: 10px;
 }
 
+
+
+.likedivclick {
+	margin-top: 80px;
+	display: inline;
+	border-bottom: 3px solid #2894ff;
+	padding: 5px;
+	text-align: center;
+}
+
+.likedivclick span{
+	color: #2894ff;
+}
+
+.dislikedivclick {
+	margin-top: 80px;
+	display: inline;
+	border-bottom: 3px solid #ff5151;
+	padding: 5px;
+	text-align: center;
+	margin-left: 10px;
+}
+
+.dislikedivclick span{
+	color: #ff5151;
+}
+
 .introduction {
 	margin-top: 5px;
 	font-size: 14px;
 }
 
-.f1{
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: "";
-    background-color: white;
-    opacity: 0;
-    z-index: 1;
-    width: 100%;
-    height: 95%;
+.pside {
+	position: absolute;
+	top: 0;
+	left: 0;
+	content: "";
+	background-color: white;
+	opacity: 0;
+	z-index: 1;
+	width: 170%;
+	height: 95%;
 }
 
-#f1{
--webkit-user-select: none;
+#f1 {
+	-webkit-user-select: none;
+}
+
+.act {
+	width: 100%;
+	border-radius: 50%;
+	border-radius: 50%;
+	border: 1px solid white;
+}
+
+.act:hover {
+	transition-property: border;
+	transition-duration: 0.5s;
+	border: 1px solid black;
 }
 </style>
 <body>
 	<jsp:include page="../topbar.jsp"></jsp:include>
 	<input type="hidden" value="${performance.id}" id="thisp">
+	<input type="hidden" value="<sec:authentication property='name' />" id="thisuser">
 	<div class="container">
 		<div class="row">
 			<!-- 			影片那塊(左邊) -->
@@ -122,73 +181,105 @@
 					</div>
 					<div class="col-4">
 						<div class="row">
-							<div class="col-4 likediv">
-								<span id="like"><i class="fas fa-heart like"></i>
-									${performance.likes} </span>
+							<div class="col-4 likediv" id="ld">
+								<span id="like"><i class="fas fa-heart like"></i><span id="likeshow" style="padding-left:5px;">${performance.likes} </span>
+									</span>
 							</div>
-							<div class="col-4 dislikediv">
-								<span id="dislike"><i class="fas fa-heart-broken dislike"></i>
-									${performance.dislikes}</span>
+							<div class="col-4 dislikediv" id="dd">
+								<span id="dislike"><i class="fas fa-heart-broken dislike"></i><span id="dislikeshow" style="padding-left:5px;">${performance.dislikes} </span>
+									</span>
 							</div>
 						</div>
 						<!-- 						喜歡的JS -->
 						<script>
-							$(".likediv").hover(function() {
-
-								$(".likediv").animate({
-									borderBottomColor : '#2894ff'
-								}, 300);
-								$("#like").animate({
-									"color" : '#2894ff'
-								}, 300);
-
-							}, function() {
-								$(".likediv").animate({
-									borderBottomColor : '#ffffff'
-								}, 300)
-								$("#like").animate({
-									"color" : 'black'
-								}, 300);
+							
+				// 點擊喜歡不喜歡
+							$(".likediv").click(function() {
+								var user = $("#thisuser").val();
+								if(user=="anonymousUser"){
+									var login = confirm("請先登入");
+									if(login==true){window.location.href="/login";}
+								}else{
+									var pid = $("#thisp").val();
+									var dislikeType= 0;
+									var dislike= $("#dd").attr("class");
+									var like =  $("#ld").attr("class");
+									if(dislike=="col-4 dislikedivclick"){
+										dislikeType=1;
+									}
+									if(like=="col-4 likedivclick"){
+										dislikeType=2;
+									}
+									$.ajax({
+										url:"/user/performance/like",
+										type:"POST",
+										data:{"id":pid,
+											"username":user,
+											"dislikeType":dislikeType	
+										},
+										success:function(data){
+											$("#likeshow").html(data.likes);
+											$("#dislikeshow").html(data.dislikes);
+											if(dislikeType==0){
+											$("#ld").attr('class','col-4 likedivclick');
+											}
+											if(dislikeType==1){
+												$("#dd").attr('class','col-4 dislikediv');
+												$("#ld").attr('class','col-4 likedivclick');
+											}
+											if(dislikeType==2){
+												$("#ld").attr('class','col-4 likediv');	
+											}
+										}
+									})
+								}
 							})
 
-							$(".dislikediv").hover(function() {
-
-								$(".dislikediv").animate({
-									borderBottomColor : '#ff5151'
-								}, 300);
-								$("#dislike").animate({
-									"color" : '#ff5151'
-								}, 300);
-
-							}, function() {
-								$(".dislikediv").animate({
-									borderBottomColor : '#ffffff'
-								}, 300)
-								$("#dislike").animate({
-									"color" : 'black'
-								}, 300);
-							});
-
-							$("#like").click(function() {
-
-								$(".like").animate({
-									"height" : "-=8px"
-								}, 100, function() {
-									$(".like").animate({
-										"height" : "+=8px"
-									}, 100);
-								});
+							$(".dislikediv").click(function() {
+								var user = $("#thisuser").val();
+								if(user=="anonymousUser"){
+									var login = confirm("請先登入");
+									if(login==true){window.location.href="/login";}
+								}else{
+									var pid = $("#thisp").val();
+									var likeType= 0;
+									var like= $("#ld").attr("class");
+									var dislike=$("#dd").attr("class");
+									if(like=="col-4 likedivclick"){
+										likeType=1;
+									}
+									if(dislike=="col-4 dislikedivclick"){
+										likeType=2;
+									}
+									
+										$.ajax({
+											url:"/user/performance/dislike",
+											type:"POST",
+											data:{"id":pid,
+												"username":user,
+												"likeType":likeType	
+											},
+											success:function(data){
+												$("#likeshow").html(data.likes);
+												$("#dislikeshow").html(data.dislikes);
+												if(likeType==0){
+													$("#dd").attr('class','col-4 dislikedivclick');	
+												}												
+												if(likeType==1){
+													$("#ld").attr('class','col-4 likediv');
+													$("#dd").attr('class','col-4 dislikedivclick');
+												}
+												if(likeType==2){
+													$("#dd").attr('class','col-4 dislikediv');	
+												}
+											}
+										})
+									
+								}
+								
 							})
+							
 
-							$("#dislike").click(function() {
-								$(".dislike").animate({
-									"height" : "-=8px"
-								}, 100, function() {
-									$(".dislike").animate({
-										"height" : "+=8px"
-									}, 100);
-								});
-							})
 						</script>
 					</div>
 				</div>
@@ -203,18 +294,40 @@
 						<span class="artist">${performance.username}</span><br> <span
 							class="time">${time}</span><br> <span class="introduction">${performance.introduction}</span><br>
 						<span>________________________________________________________</span><br>
-						<div class="row" style="margin-top:15px;" >
-						<div class="col-2" ><img src="/resources/user-bootstrap/img/performance/dog.jpg" width="100%" style="border-radius:50%"></div>
-						<div class="col-10" style="margin-top:10px;padding-left:0"><span style="font-size:16px;font-weight:bold;">${activity.name}</span><br>
-						<span style="line-height:10px;font-size:12px;">${begin} - ${end}</span></div>
-						
+						<div class="row" style="margin-top: 15px;">
+							<div class="col-2">
+								<img src="/resources/user-bootstrap/img/performance/dog.jpg"
+									class="act">
+							</div>
+							<div class="col-10" style="margin-top: 10px; padding-left: 0">
+								<span style="font-size: 16px; font-weight: bold;">${activity.name}</span><br>
+								<span style="line-height: 10px; font-size: 12px;">${begin}
+									- ${end}</span>
+							</div>
+
 						</div>
 					</div>
 					<div class="col-2">
-						<button type="button" class="btn btn-danger">
-							<i class="fas fa-plus" style="color: white"></i> 訂閱
+						<button type="button" class="btn btn-danger" id="sub">
+							<i class="fas fa-plus" style="color: white" id="subpic"></i><span id="subhtml">訂閱</span>
 						</button>
 					</div>
+					<script>
+					$("#sub").click(function(){
+						var user = $("#thisuser").val();
+						if(user=="anonymousUser"){
+							var login = confirm("請先登入");
+							if(login==true){window.open("/login")+(location.href).substring(7);}
+						}else{
+							var username = $(".artist").html();
+							alert("訂閱使用者"+username);
+							$("#sub").attr('class','btn btn-success');
+							$("#subpic").attr('class','fas fa-star');
+							$("#subhtml").html("已訂閱");
+						}
+						
+					})
+					</script>
 				</div>
 				<div class="row">
 					<div class="col-6"></div>
@@ -223,146 +336,181 @@
 			<!-- 			影片右邊塊(右邊) -->
 			<div class="col-4">
 				<div class="row">
-				<div class="col-7" style="margin-top: 50px;">
-				<div class="f1"></div>
-					<iframe width="100%" height="98px" id="f1" style="border-radius:5px;"
-						src="https://www.youtube.com/embed/GfWkG4qedoE"  frameborder="0"
-						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-						allowfullscreen></iframe>
-				</div>
-				<div class="col-5" style="margin-top: 50px;padding-left:0">
-				<span style="font-weight:bold;font-size:15px;" id="ft1"></span><br>
-				<span style="font-size:12px;"  id="fn1"></span><span style="font-size:12px;color:blue;float:right"  id="fg1"></span><br>
-				<span  style="font-size:12px;" id="fv1"></span>
-				</div>
-				</div>
-				<div class="row">
-				<div class="col-7" style="margin-top: 10px;">
-					<div class="f2"></div>
-					<iframe width="100%" height="98px" id="f2" style="border-radius:5px;"
-						src="https://www.youtube.com/embed/GfWkG4qedoE"  frameborder="0"
-						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-						allowfullscreen></iframe>
-				</div>
-				<div class="col-5" style="margin-top: 10px;padding-left:0">
-				<span style="font-weight:bold;font-size:15px;" id="ft2"></span><br>
-				<span style="font-size:12px;"  id="fn2"></span><span style="font-size:12px;color:blue;float:right"  id="fg2"></span><br>
-				<span  style="font-size:12px;" id="fv2"></span>
-				</div>
+					<div class="col-7" style="margin-top: 50px;">
+						<div class="pside" id="pside1"></div>
+						<iframe width="100%" height="98px" id="f1"
+							style="border-radius: 5px;"
+							src="https://www.youtube.com/embed/GfWkG4qedoE" frameborder="0"
+							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen></iframe>
+					</div>
+					<div class="col-5" style="margin-top: 50px; padding-left: 0">
+						<span style="font-weight: bold; font-size: 15px;" id="ft1"></span><br>
+						<span style="font-size: 12px;" id="fn1"></span><span
+							style="font-size: 12px; color: blue; float: right" id="fg1"></span><br>
+						<span style="font-size: 12px;" id="fv1"></span>
+					</div>
 				</div>
 				<div class="row">
-				<div class="col-7" style="margin-top: 10px;">
-				<div class="f3"></div>
-					<iframe width="100%" height="98px" id="f3" style="border-radius:5px;"
-						src="https://www.youtube.com/embed/GfWkG4qedoE"  frameborder="0"
-						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-						allowfullscreen></iframe>
-				</div>
-				<div class="col-5" style="margin-top: 10px;padding-left:0">
-				<span style="font-weight:bold;font-size:15px;" id="ft3"></span><br>
-				<span style="font-size:12px;"  id="fn3"></span><span style="font-size:12px;color:blue;float:right"  id="fg3"></span><br>
-				<span  style="font-size:12px;" id="fv3"></span>
-				</div>
-				</div>
-				<div class="row">
-				<div class="col-7" style="margin-top: 10px;">
-				<div class="f4"></div>
-					<iframe width="100%" height="98px" id="f4" style="border-radius:5px;"
-						src="https://www.youtube.com/embed/GfWkG4qedoE"  frameborder="0"
-						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-						allowfullscreen></iframe>
-				</div>
-				<div class="col-5" style="margin-top: 10px;padding-left:0">
-				<span style="font-weight:bold;font-size:15px;" id="ft4"></span><br>
-				<span style="font-size:12px;"  id="fn4"></span><span style="font-size:12px;color:blue;float:right"  id="fg4"></span><br>
-				<span  style="font-size:12px;" id="fv4"></span>
-				</div>
+					<div class="col-7" style="margin-top: 10px;">
+						<div class="pside" id="pside2"></div>
+						<iframe width="100%" height="98px" id="f2"
+							style="border-radius: 5px;"
+							src="https://www.youtube.com/embed/GfWkG4qedoE" frameborder="0"
+							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen></iframe>
+					</div>
+					<div class="col-5" style="margin-top: 10px; padding-left: 0">
+						<span style="font-weight: bold; font-size: 15px;" id="ft2"></span><br>
+						<span style="font-size: 12px;" id="fn2"></span><span
+							style="font-size: 12px; color: blue; float: right" id="fg2"></span><br>
+						<span style="font-size: 12px;" id="fv2"></span>
+					</div>
 				</div>
 				<div class="row">
-				<div class="col-7" style="margin-top: 10px;">
-				<div class="f5"></div>
-					<iframe width="100%" height="98px" id="f5" style="border-radius:5px;"
-						src="https://www.youtube.com/embed/GfWkG4qedoE"  frameborder="0"
-						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-						allowfullscreen></iframe>
-				</div>
-				<div class="col-5" style="margin-top: 10px;padding-left:0">
-				<span style="font-weight:bold;font-size:15px;" id="ft5"></span><br>
-				<span style="font-size:12px;"  id="fn5"></span><span style="font-size:12px;color:blue;float:right"  id="fg5"></span><br>
-				<span  style="font-size:12px;" id="fv5"></span>
-				</div>
-				</div>
-				<div class="row">
-				<div class="col-7" style="margin-top: 10px;">
-				<div class="f6"></div>
-					<iframe width="100%" height="98px" id="f6" style="border-radius:5px;"
-						src="https://www.youtube.com/embed/GfWkG4qedoE"  frameborder="0"
-						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-						allowfullscreen></iframe>
-				</div>
-				<div class="col-5" style="margin-top: 10px;padding-left:0">
-				<span style="font-weight:bold;font-size:15px;" id="ft6"></span><br>
-				<span style="font-size:12px;"  id="fn6"></span><span style="font-size:12px;color:blue;float:right"  id="fg6"></span><br>
-				<span  style="font-size:12px;" id="fv6"></span>
-				</div>
+					<div class="col-7" style="margin-top: 10px;">
+						<div class="pside" id="pside3"></div>
+						<iframe width="100%" height="98px" id="f3"
+							style="border-radius: 5px;"
+							src="https://www.youtube.com/embed/GfWkG4qedoE" frameborder="0"
+							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen></iframe>
+					</div>
+					<div class="col-5" style="margin-top: 10px; padding-left: 0">
+						<span style="font-weight: bold; font-size: 15px;" id="ft3"></span><br>
+						<span style="font-size: 12px;" id="fn3"></span><span
+							style="font-size: 12px; color: blue; float: right" id="fg3"></span><br>
+						<span style="font-size: 12px;" id="fv3"></span>
+					</div>
 				</div>
 				<div class="row">
-				<div class="col-7" style="margin-top: 10px;">
-				<div class="f7"></div>
-					<iframe width="100%" height="98px" id="f7" style="border-radius:5px;"
-						src="https://www.youtube.com/embed/GfWkG4qedoE"  frameborder="0"
-						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-						allowfullscreen></iframe>
+					<div class="col-7" style="margin-top: 10px;">
+						<div class="pside" id="pside4"></div>
+						<iframe width="100%" height="98px" id="f4"
+							style="border-radius: 5px;"
+							src="https://www.youtube.com/embed/GfWkG4qedoE" frameborder="0"
+							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen></iframe>
+					</div>
+					<div class="col-5" style="margin-top: 10px; padding-left: 0">
+						<span style="font-weight: bold; font-size: 15px;" id="ft4"></span><br>
+						<span style="font-size: 12px;" id="fn4"></span><span
+							style="font-size: 12px; color: blue; float: right" id="fg4"></span><br>
+						<span style="font-size: 12px;" id="fv4"></span>
+					</div>
 				</div>
-				<div class="col-5" style="margin-top: 10px;padding-left:0">
-				<span style="font-weight:bold;font-size:15px;" id="ft7"></span><br>
-				<span style="font-size:12px;"  id="fn7"></span><span style="font-size:12px;color:blue;float:right"  id="fg7"></span><br>
-				<span  style="font-size:12px;" id="fv7"></span>
+				<div class="row">
+					<div class="col-7" style="margin-top: 10px;">
+						<div class="pside" id="pside5"></div>
+						<iframe width="100%" height="98px" id="f5"
+							style="border-radius: 5px;"
+							src="https://www.youtube.com/embed/GfWkG4qedoE" frameborder="0"
+							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen></iframe>
+					</div>
+					<div class="col-5" style="margin-top: 10px; padding-left: 0">
+						<span style="font-weight: bold; font-size: 15px;" id="ft5"></span><br>
+						<span style="font-size: 12px;" id="fn5"></span><span
+							style="font-size: 12px; color: blue; float: right" id="fg5"></span><br>
+						<span style="font-size: 12px;" id="fv5"></span>
+					</div>
 				</div>
+				<div class="row">
+					<div class="col-7" style="margin-top: 10px;">
+						<div class="pside" id="pside6"></div>
+						<iframe width="100%" height="98px" id="f6"
+							style="border-radius: 5px;"
+							src="https://www.youtube.com/embed/GfWkG4qedoE" frameborder="0"
+							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen></iframe>
+					</div>
+					<div class="col-5" style="margin-top: 10px; padding-left: 0">
+						<span style="font-weight: bold; font-size: 15px;" id="ft6"></span><br>
+						<span style="font-size: 12px;" id="fn6"></span><span
+							style="font-size: 12px; color: blue; float: right" id="fg6"></span><br>
+						<span style="font-size: 12px;" id="fv6"></span>
+					</div>
 				</div>
+				<div class="row">
+					<div class="col-7" style="margin-top: 10px;">
+						<div class="pside" id="pside7"></div>
+						<iframe width="100%" height="98px" id="f7"
+							style="border-radius: 5px;"
+							src="https://www.youtube.com/embed/GfWkG4qedoE" frameborder="0"
+							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen></iframe>
+					</div>
+					<div class="col-5" style="margin-top: 10px; padding-left: 0">
+						<span style="font-weight: bold; font-size: 15px;" id="ft7"></span><br>
+						<span style="font-size: 12px;" id="fn7"></span><span
+							style="font-size: 12px; color: blue; float: right" id="fg7"></span><br>
+						<span style="font-size: 12px;" id="fv7"></span>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	</div>
-	
+
 	<!-- 	右邊載入 -->
-	<br><br><br><br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<footer>
 		<jsp:include page="../footer.jsp"></jsp:include>
 	</footer>
 	<script>
-	
-// 	旁邊的推薦影片清單
-	$.ajax({
-		url:"/performanceSide",
-		type:"POST",
-		success:function(data){
-			console.log(data);
-			var count=1;
-			var thispid = $("#thisp").val();
-			$.each(data,function(index,value){
-				if(value['id']!=thispid && count<=7){
-					var url= value['url'].substring(32);
-					$("#f" +count).attr('src','https://www.youtube.com/embed/'+url);
-					$("#ft"+count).html(value['title']);
-					$("#fn"+count).html(value['username']);
-					$("#fg"+count).html("# " +value['performanceGerne']);
-					$("#fv"+count).html(value['views']);
-					count++;
+		// 	旁邊的推薦影片清單
+		$
+				.ajax({
+					url : "/performanceSide",
+					type : "POST",
+					success : function(data) {
+						console.log(data);
+						var count = 1;
+						var thispid = $("#thisp").val();
+						$
+								.each(
+										data,
+										function(index, value) {
+											if (value['id'] != thispid
+													&& count <= 7) {
+												var url = value['url']
+														.substring(32);
+												$("#f" + count).attr(
+														'src',
+														'https://www.youtube.com/embed/'
+																+ url);
+												$("#ft" + count).html(
+														value['title']);
+												$("#fn" + count).html(
+														value['username']);
+												$("#fg" + count)
+														.html(
+																"# "
+																		+ value['performanceGerne']);
+												$("#fv" + count).html(
+														value['views']);
+												$("#pside"+count).click(function(){
+													window.location.href="/performanceview/"+value['id'];
+												})
+												count++;
+											}
+
+										})
+					}
+				})
+
+		// 	10秒鐘後才增加點閱率
+		window.setTimeout(function() {
+			$.ajax({
+				url : "/pviewplus/" + $("#thisp").val(),
+				type : "POST",
+				success : function() {
+					console.log("viewplus");
 				}
-				
 			})
-		}
-	})
-	
-// 	10秒鐘後才增加點閱率
-	window.setTimeout(function(){$.ajax({
-		url:"/pviewplus/"+$("#thisp").val(),
-		type:"POST",
-		success:function(){
-			console.log("viewplus");
-		}
-	})},10000)
-	
+		}, 10000)
 	</script>
 
 </body>
