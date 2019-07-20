@@ -9,6 +9,7 @@
 <jsp:include page="../topbar.jsp"></jsp:include>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />	
 <link rel="stylesheet" href="/resources/admin-bootstrap/css/jquery-ui-timepicker-addon.css">
+<script src="/resources/user-bootstrap/js/infinite-scroll.pkgd.min.js"></script>
 
 <body>
 		
@@ -53,11 +54,17 @@
 
 
 <script>
-$("#searchBT").click(function(){
+
+$("#searchBT").click(function searchBT(){
+	find=$("#userInput").val();
+	page=1;
+	totalPage=0;
 	$("#dataBody").empty();
-	var data = JSON.parse($("#searchForm").serializeObject());
+	var aa = JSON.parse($("#searchForm").serializeObject());
+	var bb = {'page':page,'rows':rows};
+	var data =Object.assign(aa,bb);
 	$.ajax({
-		url : "/user/activity/query?page=" +page,
+		url : "/user/activity/query",
 		type : "GET",
 		data :data,
 		contentType : 'application/json;charset=UTF-8',
@@ -75,19 +82,24 @@ $("#searchBT").click(function(){
 		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
 		 			txt6 += txt5;
 		 		 })
-				total= parseInt(data.total);
+				totalPage = res.total;
 				$("#dataBody").append(txt6);
 		}
 	})
+	page++;
 });
 
+var actType =null;
 
 function type11(obj){
+	actType=obj.value;
+	page=1;
+	totalPage=0;
 	$("#dataBody").empty();
 	$.ajax({
-		url : "/user/activity/query?page="+page,
+		url : "/user/activity/query",
 		type : "GET",
-		data : {"actType":obj.value},
+		data : {"actType":obj.value,"page":page,"rows":rows},
 		contentType : 'application/json;charset=UTF-8',
 		dataType : 'json',
 		success : function(res) {
@@ -104,9 +116,10 @@ function type11(obj){
 		 			txt6 += txt5;
 		 		 })
 				$("#dataBody").append(txt6);
+		 		totalPage = res.total;
 		}
 	})
-	
+	page++;
 	}
 
 
@@ -195,12 +208,15 @@ $("#searchBT").click();
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript" src="/resources/admin-bootstrap/js/jquery-ui-timepicker-addon.js"></script>
 <script>
-var page  =1;
-var total =1;
-
-$(document).ready(function showjobs() {
-	$.ajax({url : "/user/activity/query?page="+page,
+var page = 2;
+var rows = 4;
+var totalPage=10;
+$(document).ready(showjobs(page-1));
+function showjobs(page) {	
+	
+	$.ajax({url : "/user/activity/query",
 		type : "GET",
+		data:{'page':page,'rows':rows},
 		success : function(data) {
 	 		var txt6 ="";
 			txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='#'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
@@ -214,11 +230,56 @@ $(document).ready(function showjobs() {
 	 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
 	 			txt6 += txt5;
 	 		 })
-			total= parseInt(data.total);
 			$("#dataBody").append(txt6);
+// 	 		page++;
 		}
 	})
-})
+}
+
+var timer
+var find = $('#userInput').val();
+$(window).scroll(function(){	
+	window.clearTimeout(timer);
+	timer = window.setTimeout(
+			function(){
+				 // Returns height of browser viewport
+				  var window_height = $( window ).height();
+				  var window_scrollTop = $(window).scrollTop();
+				  // Returns height of HTML document
+				  var document_height = $( document ).height();
+				   if(window_height + window_scrollTop == document_height){
+					   if(page>totalPage){
+						   return;
+					   }else{
+						$.ajax({url : "/user/activity/query",
+							type : "GET",
+							data:{'page':page,'rows':rows,'actType':actType,'find':find},
+							success : function(data) {
+						 		var txt6 ="";
+								txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='#'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+						 		//加圖片處
+						 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
+						 		//加活動名稱區
+						 		txt3="</a></h4><p class='card-text'>";
+						 		//加文章區
+						 		txt4="</p></div></div></div>";
+						 		$.each(data.rows,function(index,value){
+						 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
+						 			txt6 += txt5;
+						 		 })
+								$("#dataBody").append(txt6);
+						 		totalPage = data.total;
+							}
+						})//ajax尾	
+						page++;
+// 						alert(page+" "+totalPage);
+				   } } //if尾
+			},300)
+}
+);
+
+
+
 
 
 
