@@ -1,7 +1,7 @@
 insert into chat_message_store(content,message_time,receiver,sender,user_display_name) values
-('1how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('1how old are you','2019-07-11 19:20:55','artist001','admin','桑源雅沂'),
 ('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('2how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
+('2how old are you','2019-07-11 19:20:55','admin','artist001','ADMIN_BOT'),
 ('i am fine','2019-07-11 19:20:58','123','admin','112233'),
 ('3how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
 ('i am fine','2019-07-11 19:20:58','123','admin','112233'),
