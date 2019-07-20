@@ -24,6 +24,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -96,26 +97,20 @@ public class GreetingController {
 		Pageable pageable = PageRequest.of(page-1, size);
 		Specification<ChatMessageStore> specification = new Specification<ChatMessageStore>() {
 			private static final long serialVersionUID = 1L;
+			private String sender = chatMessageStore.getSender();
+			private String receiver = chatMessageStore.getReceiver();
 
 			@Override
 			public Predicate toPredicate(Root<ChatMessageStore> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				Predicate where = cb.conjunction();	
-//				if (!StringUtils.isEmpty(userName)) {
-//					where = cb.and(cb.like(root.get("userName"), "%" + userName + "%"));
-//				}
-//
-//				if (!StringUtils.isEmpty(userName)) {
-//					where = cb.or(where,cb.like(root.get("comment"), "%" + userName + "%"));
-//				}
-//				
-//				if (!StringUtils.isEmpty(comment)) {
-//					where = cb.and(cb.like(root.get("comment"),"%" + comment + "%"));
-//				}
+				if (!StringUtils.isEmpty(sender)&&!StringUtils.isEmpty(receiver)){
+					where = cb.and(cb.equal(root.get("sender"),sender),cb.equal(root.get("receiver"),receiver));
+					where = cb.or(where,cb.equal(root.get("receiver"),receiver),cb.equal(root.get("sender"),sender));
+				}
 				return where;
 			}
 		};
 		Page<ChatMessageStore> result = chatMessageStoreService.getAll(specification, pageable);
-//		System.out.println(result);
 		gridResponse.setRows(result.getContent());
 		gridResponse.setPage(page);
 		gridResponse.setTotal(result.getTotalPages());
