@@ -9,6 +9,7 @@ import java.util.List;
 import org.iii.seaotter.jayee.dao.PerformanceDao;
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Performance;
+import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -85,4 +86,8 @@ public class PerformanceService {
 	public List<Performance> getTop3ByOrderByViewsDesc() {
 		return performanceDao.findTop3ByOrderByViewsDesc();
 	}
+	
+	public List<SecurityUser> findDislikeuserById(Long id){
+		return performanceDao.findDislikeuserById(id);
+	};
 }
