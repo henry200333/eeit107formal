@@ -19,9 +19,8 @@
 			<div class="col-3">
 				<div class="input-group">
 					<input id="search" name="search" type="text"
-						class="form-control border-0 small"
-						placeholder="搜尋文章標題..." aria-label="Search"
-						aria-describedby="basic-addon2">
+						class="form-control border-0 small" placeholder="搜尋文章標題..."
+						aria-label="Search" aria-describedby="basic-addon2">
 					<div class="input-group-append articleblock">
 						<button id="searchBT" class="btn btn-secondary" type="button">
 							<i class="fas fa-search"></i>
@@ -63,7 +62,8 @@
 					style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold"><i
 					class="fas fa-star"></i>熱門文章</span>
 				<div class="row articleblock"
-					style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
+					style="height: 120px; cursor: pointer;"
+					onclick="goToArticle(this);">
 					<div id="articleImg1" class="col-4"></div>
 					<div class="col-8" style="margin-top: 10px; position: relative;">
 						<p id="articleTop1"
@@ -74,7 +74,8 @@
 					</div>
 				</div>
 				<div class="row articleblock"
-					style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
+					style="height: 120px; cursor: pointer;"
+					onclick="goToArticle(this);">
 					<div id="articleImg2" class="col-4"></div>
 					<div class="col-8" style="margin-top: 10px; position: relative;">
 						<p id="articleTop2"
@@ -85,7 +86,8 @@
 					</div>
 				</div>
 				<div class="row articleblock"
-					style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
+					style="height: 120px; cursor: pointer;"
+					onclick="goToArticle(this);">
 					<div id="articleImg3" class="col-4"></div>
 					<div class="col-8" style="margin-top: 10px; position: relative;">
 						<p id="articleTop3"
@@ -96,7 +98,8 @@
 					</div>
 				</div>
 				<div class="row articleblock"
-					style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
+					style="height: 120px; cursor: pointer;"
+					onclick="goToArticle(this);">
 					<div id="articleImg4" class="col-4"></div>
 					<div class="col-8" style="margin-top: 10px; position: relative;"
 						style="margin-top:10px;">
@@ -108,7 +111,8 @@
 					</div>
 				</div>
 				<div class="row articleblock"
-					style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
+					style="height: 120px; cursor: pointer;"
+					onclick="goToArticle(this);">
 					<div id="articleImg5" class="col-4"></div>
 					<div class="col-8" style="margin-top: 10px; position: relative;">
 						<p id="articleTop5"
@@ -119,7 +123,8 @@
 					</div>
 				</div>
 				<div class="row articleblock"
-					style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
+					style="height: 120px; cursor: pointer;"
+					onclick="goToArticle(this);">
 					<div id="articleImg6" class="col-4"></div>
 					<div class="col-8" style="margin-top: 10px; position: relative;">
 						<p id="articleTop6"
@@ -133,8 +138,61 @@
 			</div>
 		</div>
 	</div>
-
+	<jsp:include page="../chat.jsp"></jsp:include>
 	<footer>
+		<div style="background-color: black; text-align: center">
+			<div class="container">
+				<div class="row">
+					<div class="col-4" style="margin-top: 20px">
+						<span
+							style="color: white; font-size: 20px; border-bottom: 2px solid white; padding: 0px 50px;">訂閱街藝</span>
+						<br> <br> <input type="email" size="26"
+							placeholder="Email@" style="line-height: 30px;">
+						<button type="button" class="btn btn-danger">訂閱</button>
+					</div>
+					<div class="col-4" style="margin-top: 20px">
+						<span
+							style="color: white; font-size: 20px; border-bottom: 2px solid white; padding: 0px 50px;">最新消息</span>
+						<div class="row"
+							style="border-bottom: 1px solid white; padding: 20px 0px;">
+							<div class="col-4" style="text-align: right">
+								<img src="/resources/user-bootstrap/img/index/artist2.gif"
+									width="80%" style="border-radius: 15px;"> <br>
+							</div>
+							<div class="col-8" style="text-align: left">
+								<a href="" class="btn btn-primary" style="font-size: 10px;">藝人</a>
+								<br> <br> <span style="color: white">藝人標題</span> <br>
+							</div>
+						</div>
+						<div class="row"
+							style="border-bottom: 1px solid white; padding: 20px 0px;">
+							<div class="col-4" style="text-align: right">
+								<img src="/resources/user-bootstrap/img/index/artist3.jpg"
+									width="80%" style="border-radius: 15px;"> <br>
+							</div>
+							<div class="col-8" style="text-align: left">
+								<a href="" class="btn btn-danger" style="font-size: 10px;">文章</a>
+								<br> <br> <span style="color: white">文章標題</span> <br>
+							</div>
+						</div>
+						<div class="row" style="padding: 20px 0px;">
+							<div class="col-4" style="text-align: right">
+								<img src="/resources/user-bootstrap/img/index/artist6.jpg"
+									width="80%" style="border-radius: 15px;"> <br>
+							</div>
+							<div class="col-8" style="text-align: left">
+								<a href="" class="btn btn-success" style="font-size: 10px;">表演</a>
+								<br> <br> <span style="color: white">表演標題</span> <br>
+							</div>
+						</div>
+					</div>
+					<div class="col-4" style="margin-top: 20px">
+						<span
+							style="color: white; font-size: 20px; border-bottom: 2px solid white; padding: 0px 50px;">最近瀏覽</span>
+					</div>
+				</div>
+			</div>
+		</div>
 		<jsp:include page="../footer.jsp"></jsp:include>
 	</footer>
 
@@ -247,6 +305,7 @@ function goToArticle(obj){
 <!-- 響應式網頁測試  158~160行增加loadComplete參數    149行autowidth改false 再加入以下code-->
 const grid_selector = "#articleGrid"; 
 const $grid = jQuery(grid_selector);
+// $(grid_selector).closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" });
     function reSizejqGridWidth()
     { 
         //重新抓jqGrid容器的新width
