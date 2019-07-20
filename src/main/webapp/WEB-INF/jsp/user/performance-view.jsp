@@ -319,11 +319,25 @@
 							var login = confirm("請先登入");
 							if(login==true){window.open("/login")+(location.href).substring(7);}
 						}else{
+							//新增好友
+							var thispid = $("#thisp").val();
+// 							$.ajax({
+// 								url:'/user/performance/addfriend',
+// 								data:{"id":thispid,
+// 									"username":user									
+// 								},
+// 								success:function(data){
+									
+// 								}
+// 							})
+							
 							var username = $(".artist").html();
 							alert("訂閱使用者"+username);
 							$("#sub").attr('class','btn btn-success');
 							$("#subpic").attr('class','fas fa-star');
 							$("#subhtml").html("已訂閱");
+							
+							
 						}
 						
 					})
@@ -466,7 +480,6 @@
 					url : "/performanceSide",
 					type : "POST",
 					success : function(data) {
-						console.log(data);
 						var count = 1;
 						var thispid = $("#thisp").val();
 						$
@@ -511,7 +524,30 @@
 				}
 			})
 		}, 10000)
+		</script>
+		
+		<sec:authorize access="isAuthenticated()">
+		<script>
+// 		檢查是否點過喜歡不喜歡
+		var user = $("#thisuser").val();
+		var pid = $("#thisp").val();
+		$.ajax({
+			url:'/user/performance/likeordislike',
+			data:{
+				"username":user,
+				"id":pid
+			},
+			type:'POST',
+			success:function(data){
+				console.log(data);
+				if(data==1){
+					$("#ld").attr('class','col-4 likedivclick');
+				}else if(data==2){
+					$("#dd").attr('class','col-4 dislikedivclick');
+				}
+			}
+		})
 	</script>
-
+</sec:authorize>
 </body>
 </html>

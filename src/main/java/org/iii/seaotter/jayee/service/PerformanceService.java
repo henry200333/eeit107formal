@@ -9,6 +9,7 @@ import java.util.List;
 import org.iii.seaotter.jayee.dao.PerformanceDao;
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Performance;
+import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -50,13 +51,16 @@ public class PerformanceService {
 		
 	}
 	
-	public boolean update(Performance entity) {
+	public boolean update(Performance entity,boolean update) {
 		boolean result = false;
-		LocalDateTime localDateTime = LocalDateTime.now();		
-		ZoneId zoneId = ZoneId.systemDefault();
-        ZonedDateTime zdt = localDateTime.atZone(zoneId);
-        Date date = Date.from(zdt.toInstant());
-		entity.setUpdateTime(date);
+		if(update) {
+			LocalDateTime localDateTime = LocalDateTime.now();		
+			ZoneId zoneId = ZoneId.systemDefault();
+	        ZonedDateTime zdt = localDateTime.atZone(zoneId);
+	        Date date = Date.from(zdt.toInstant());
+			entity.setUpdateTime(date);
+		}
+		
 		if(performanceDao.findById(entity.getId())!=null) {
 			Performance performancenew = performanceDao.save(entity);
 			if(performancenew!=null)
@@ -85,4 +89,8 @@ public class PerformanceService {
 	public List<Performance> getTop3ByOrderByViewsDesc() {
 		return performanceDao.findTop3ByOrderByViewsDesc();
 	}
+	
+	public List<SecurityUser> findDislikeuserById(Long id){
+		return performanceDao.findDislikeuserById(id);
+	};
 }

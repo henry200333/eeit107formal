@@ -154,7 +154,7 @@ public class AdminPerformanceController {
 		views ++;
 		performance.setViews(views);
 		System.out.println(performance);
-		performanceSurvice.update(performance);
+		performanceSurvice.update(performance,false);
 		return performance;
 
 	}
@@ -269,7 +269,7 @@ public class AdminPerformanceController {
 			result.setMessages(messages);
 			return result;
 		}		
-		boolean updateResult  =performanceSurvice.update(performance);
+		boolean updateResult  =performanceSurvice.update(performance,true);
 		if(updateResult) {
 			result.setType(AjaxResponseType.SUCCESS);
 			result.setData(performanceSurvice.getById(performance.getId()));
@@ -319,7 +319,7 @@ public class AdminPerformanceController {
 			likes--;
 			performance.setLikes(likes);
 		}
-		performanceSurvice.update(performance);
+		performanceSurvice.update(performance,false);
 		return performance;
 	}
 	
@@ -343,7 +343,7 @@ public class AdminPerformanceController {
 			unlikes--;
 			performance.setDislikes(unlikes);
 		}
-		performanceSurvice.update(performance);
+		performanceSurvice.update(performance,false);
 		return performance;
 	}
 }
