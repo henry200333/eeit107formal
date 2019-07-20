@@ -214,7 +214,7 @@ $("#articleGrid").jqGrid({
 		{ name: 'articleType', label: '文章類型', width: 25, align: 'center', sortable: false, formatter: articleTypeTW},
 		{ name: 'name', label: '文章標題', sortable: false, formatter: articleTitle},
 		{ name: 'count', label: '人氣', width: 25, align: 'center' },
-		{ name: 'announce', label: '最後修改時間', width: 55 }
+		{ name: 'announce', label: '發布時間', width: 55 }
 	],
     prmNames: {search: null, nd: null},
     toppager: '#topPager',
