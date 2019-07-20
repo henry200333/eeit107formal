@@ -1,5 +1,5 @@
 insert into chat_message_store(content,message_time,receiver,sender,user_display_name) values
-('我4雅伊','2019-07-11 19:20:00','admin','artist001','ADMIN_BOT'),
+('我4雅伊','2019-07-11 19:10:00','admin','artist001','ADMIN_BOT'),
 ('午餐吃什麼？','2019-07-11 19:20:00','admin','123','ADMIN_BOT'),
 ('隨便吧','2019-07-11 19:20:01','123','admin','112233'),
 ('滷肉飯','2019-07-11 19:20:02','admin','123','ADMIN_BOT'),
@@ -127,9 +127,12 @@ alex@skrpresents.com
  (2, 1,'Performance', '豬孝天', '流星雨揪團', '2006/03/04 13:14:55'),
  (2, 1,'Activity', '永和金城武', '不要再冒充我了！', '2019/05/28 20:00:27'),
  (2, 1,'Article', '大中天', '以前你偶爾聽，現在你應該天天聽', '2006/03/04 13:14:55'),
- (2, 1,'Article', '大平台', '我已經買了zzZ', '2019/05/28 20:00:27'),
- (7, 1,'Performance', '大中天', '以前你偶爾聽，現在你應該天天聽', '2006/03/04 13:14:55'),
- (7, 2,'Performance', '大平台', '我已經買了zzZ', '2019/05/28 20:00:27');
+ (2, 1,'Article', '大平台', '我已經買了zzZ', '2019/05/28 20:00:27');
+ 
+ insert into forum (ref_id, ref_comment_id, forum_board, user_name, comment, comment_date,user_photo) values
+ (7, 0,'Performance', '大中天', '好可愛', '2006/03/04 13:14:55','/resources/profile_image/artist004.jpg'),
+ (7, 1,'Performance', '大平台', '謝謝', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg');
+ 
  
  INSERT INTO performance (title,introduction,youtube_url,update_time,activity_id,views,likes,dislikes,userp_id,username,gerne) values
  ('陳忻玥 Vicky Chen -【入土之前】','陳祈玥入土之前完整MV','https://www.youtube.com/watch?v=GfWkG4qedoE','2019/05/25 17:12:05',1,3000,200,10,3,'桑源雅沂','表演藝術'),
