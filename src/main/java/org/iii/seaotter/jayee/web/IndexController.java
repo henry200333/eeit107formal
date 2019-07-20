@@ -153,7 +153,7 @@ public class IndexController {
 		Long views = performance.getViews();
 		views ++;
 		performance.setViews(views);
-		performanceService.update(performance);
+		performanceService.update(performance,false);
 		}
 	
 	@RequestMapping("/performanceall")
