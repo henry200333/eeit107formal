@@ -73,13 +73,25 @@
 
 					<input hidden="hidden" name="userName"
 						value="<sec:authentication property="name" />" id="username">
-
-					<select name="YourLocation">
-　						<option value="Taipei">全部</option>
-　						<option value="Taoyuan">表演藝術</option>
-　						<option value="Hsinchu">聽覺藝術</option>
-　						<option value="Miaoli">手工藝</option>
-					</select>
+					<label class=' h4 mb-0 text-gray-800'>查詢</label>
+						<div class="row" style="background:#DDDDDD">
+					<div class="col-sm-3 mb-3 mb-sm-0">
+					<label for="city">表演類型:</label>
+					<select name="YourLocation" id="type">
+　						<option value="全部">全部</option>
+　						<option value="表演藝術">表演藝術</option>
+　						<option value="聽覺藝術">聽覺藝術</option>
+　						<option value="手工藝術">手工藝術</option>
+					</select></div>
+					<div class="col-sm-2 mb-3 mb-sm-0">
+						<label for="city">縣市:</label>
+						<select name="city" id="city"  ></select>
+						</div>
+						<div class="col-sm-2 mb-3 mb-sm-0">
+						<label for="district">市區:</label>
+						<select  name="district" id="district" ></select>
+						</div>
+						</div>
 					<div id="joblist" class="row">
 							 
 					</div>
@@ -118,6 +130,46 @@
 			var page = 1;
 			var total = 1;
 	
+			 $.ajax({
+					url:"/user/job/location/city",
+					type:"POST",
+					success: function(data){
+						var txt="";		
+						console.log(data);
+						txt += '<option value="" style="display: none">請選擇</option>';
+						$.each(data,function(index,value){
+							txt += 	"<option value='"+ value +"'>"+ value +"</option>"			
+							})	
+						$("#city").html(txt);
+						showjobs();
+					}
+				})
+	                
+	                $('#city').change(function(){
+	                    var CName= $('#city').val();
+	                    $.ajax({
+	                        type: "POST",
+	                        url: '/user/job/location/'+ CName,
+	                        cache: false,
+	                        error: function(){
+	                            alert('發生錯誤');
+	                        },
+	                        success: function(data){
+	        					var txt="";		
+	        					console.log(data);
+	        					txt += '<option value="" style="display: none">請選擇</option>';
+	        					$.each(data,function(index,value){
+	        						txt += 	"<option value='"+ value +"'>"+ value +"</option>"			
+	        						})	
+	        					$("#district").html(txt);
+	        					 showjobs();
+	        				}
+	                    });
+	                });
+			
+			 $('#district').change(function(){
+				 showjobs();
+			 })
 			
 			
 			function pageSearch(object){
@@ -208,11 +260,17 @@
 					$("#page").html(txt);
 			}
  
+			
+			
+			$("#type").change(function(){
+				alert($("#type").val());
+				showjobs();
+			});  	 	
 			function showjobs() {
-				// alert("${venderparam}");  	 	
-
+			
+			
 				$.ajax({
-							url : "/user/job/query?page=" + page,
+							url : "/user/job/query?page=" + page+"&type="+$("#type").val()+"&city="+$("#city").val()+"&district="+$("#district").val(),
 							type : "GET",
 							success : function(data) {
 								var txt = "";
@@ -229,11 +287,15 @@
 
 													txt += "</h4></div></div></div><div class='col-sm-9 mb-3 mb-sm-6'><label class=' h4 mb-0 text-gray-800'>詳細內容:</label><textarea class='form-control' name='description'style='resize: none' readonly>";
 													txt += obj.detal;
-													txt += "</textarea></div><div class='col-sm-0 mb-3 mb-sm-6' style='text-align:right;margin-right:5%'><h2 class=' h4 mb-0 text-gray-800'>表演時間:"
-													txt += obj.jobTime;
-													txt += "</h2></div><div style='text-align:center'><input class='btn btn-primary btn-sm' id='";
+													txt += "</textarea></div><div class='col-sm-0 mb-3 mb-sm-6' style='margin-left:3%'><h2 class=' h5 mb-0 text-gray-800'>表演時間:"
+													txt += obj.jobTime;  
+													txt += "</h2></div><div class='col-sm-0 mb-3 mb-sm-6' style='margin-left:3%'><h2 class=' h5 mb-0 text-gray-800'>地址:"
+													txt += obj.vender.city+obj.vender.district+obj.vender.address;
+													txt += "</h2></div>";
+													
+													txt += "<div style='text-align:center'><input class='btn btn-primary btn-sm' id='";
 													txt += obj.id;
-													txt += "'onclick='join(this)' value='我想參加' readonly></div></div></form>";
+													txt += "'onclick='join(this)' value='參加' readonly></div></div></form>";
 													/*
 													<form class='col-sm-4 mb-3 mb-sm-6' style='border: solid; margin: 10px;background:white'><div class='col-sm-0 mb-3 mb-sm-3'><h2 class=' h2 mb-0 text-gray-800'>
 													obj.name
