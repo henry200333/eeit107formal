@@ -46,6 +46,15 @@ public class Job {
 	@Column(name="reward")
 	private Integer reward;
 	
+	@Column(name="city")
+	private String city;
+	
+	@Column(name="district")
+	private String district;
+	
+	@Column(name="address")
+	private String address;
+	
 	@Column(name="vender_name")
 	private String venderName;
 	
