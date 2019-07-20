@@ -5,6 +5,7 @@
 <sec:authorize access="isAuthenticated()">
 <input type='hidden' value="<sec:authentication property='principal.account' />" id='userAccount'>
 <input type='hidden' value="<sec:authentication property='principal.displayName' />" id='userDisplayName'>
+<input type='hidden' value="<sec:authentication property='principal.photo' />" id='userPhoto'>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <div id='talkfield'>
@@ -21,6 +22,8 @@
 <script>		
 		var userAccount = $('#userAccount').val();
 		var userDisplayName = $('#userDisplayName').val();
+		var userPhoto = $('#userPhoto').val();
+		
 	var friendListStock;	
 		
 		//登入後抓朋友
@@ -31,8 +34,7 @@
 					dataType:'json',
 					data:{"userAccount":userAccount},
 					success:function(friendList){
-						friendListStock = friendList;
-						
+						friendListStock = friendList;					
 						//產生列表
 						$.each(friendList,function(idx,friend){
 							var tempFriend = $('<div>').addClass('row friendListItem').css('line-height','2em')
@@ -91,12 +93,12 @@
 
 					if(event.target.scrollTop==0){	
 						event.target.scrollTop=1;
-						loadHistoryMessage1();					
+						loadHistoryMessage1(event.target.id.substring(4),userAccount);					
 						console.log(event.target.scrollTop);
 					}			
 				})
 				
-				loadHistoryMessage1();
+				loadHistoryMessage1($(this).attr('id').substring(4),userAccount);
 				$(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, "fast");
 		}
 		
@@ -156,20 +158,33 @@
 			}
 		}
 		
-		function showChatMessage1(account,messageContent){
+		function showChatMessage1(account,messageContent){	
 			$('#show'+account+' ul').append($('<li>').addClass('sent')
-					.append($('<img>').attr('src','http://emilcarlsson.se/assets/mikeross.png')).append($('<p>').text(messageContent)));
+					.append($('<img>').attr('src',userPhoto)).append($('<p>').text(messageContent)));
 		}
 		function showChatMessage2(account,messageContent){
-			$('#show'+account+' ul').append($('<li>').addClass('replies').append($('<img>').attr('src','http://emilcarlsson.se/assets/mikeross.png')).append($('<p>').text(messageContent)));
+			var imgOne;
+			$.each(friendListStock,function(idx,friendone){
+				if(friendone.account==account){
+					imgOne = friendone.photo;
+					alert(123);
+				}
+			})
+			$('#show'+account+' ul').append($('<li>').addClass('replies').append($('<img>').attr('src',imgOne)).append($('<p>').text(messageContent)));
 		}
 		
 		function showChatMessage3(account,messageContent){
 			$('#show'+account+' ul').prepend($('<li>').addClass('sent')
-					.append($('<img>').attr('src','http://emilcarlsson.se/assets/mikeross.png')).append($('<p>').text(messageContent)));
+					.append($('<img>').attr('src',userPhoto)).append($('<p>').text(messageContent)));
 		}
 		function showChatMessage4(account,messageContent){
-			$('#show'+account+' ul').prepend($('<li>').addClass('replies').append($('<img>').attr('src','http://emilcarlsson.se/assets/mikeross.png')).append($('<p>').text(messageContent)));
+			var imgOne;
+			$.each(friendListStock,function(idx,friendone){
+				if(friendone.account==account){
+					imgOne = friendone.photo;
+				}
+			})
+			$('#show'+account+' ul').prepend($('<li>').addClass('replies').append($('<img>').attr('src',imgOne)).append($('<p>').text(messageContent)));
 		}
 		//STOMP連線、註冊
 		
@@ -193,6 +208,7 @@
 				var messageContent = $(this).prev().val();
 				var messageFrame = {'receiver':receiver,'sender':userAccount,'content':messageContent,'userDisplayName':userDisplayName}; 
 				stompClient.send('/app/secured/room',{},JSON.stringify(messageFrame));
+				$(this).prev().val('');
 			}
 		}
 
@@ -206,6 +222,7 @@
 			data:{'page':page,'rows':rows,'sender':sender,'receiver':receiver},
 			success:function(data){
 				var historyMessages = data.rows;
+				console.log(historyMessages);
 				$.each(historyMessages,function(idx,historyMessage){
 					prependHistory(historyMessage);
 				})

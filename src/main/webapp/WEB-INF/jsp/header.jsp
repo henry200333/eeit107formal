@@ -47,7 +47,7 @@
 				<button type="button" class="btn bar2" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"></button>
 				<div class="dropdown-menu" id="performancebar">
-					<a class="dropdown-item" href="/performance">表演列表</a>
+					<a class="dropdown-item" href="/performances">表演列表</a>
 				</div>
 			</div>
 			<div class="btn-group">

@@ -1,30 +1,28 @@
 insert into chat_message_store(content,message_time,receiver,sender,user_display_name) values
-('1how old are you','2019-07-11 19:20:55','artist001','admin','桑源雅沂'),
-('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('2how old are you','2019-07-11 19:20:55','admin','artist001','ADMIN_BOT'),
-('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('3how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
-('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('4how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
-('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('5how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
-('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('6how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
-('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('7how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
-('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('8how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
-('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('9how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
-('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('10how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
-('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('11how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
-('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('12how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
-('i am fine','2019-07-11 19:20:58','123','admin','112233'),
-('13how old are you','2019-07-11 19:20:55','admin','123','ADMIN_BOT'),
-('i am fine','2019-07-11 19:20:58','123','admin','112233');
+('我4雅伊','2019-07-11 19:20:00','admin','artist001','ADMIN_BOT'),
+('午餐吃什麼？','2019-07-11 19:20:00','admin','123','ADMIN_BOT'),
+('隨便吧','2019-07-11 19:20:01','123','admin','112233'),
+('滷肉飯','2019-07-11 19:20:02','admin','123','ADMIN_BOT'),
+('有點油','2019-07-11 19:20:03','123','admin','112233'),
+('那..小火鍋嗎','2019-07-11 19:20:04','admin','123','ADMIN_BOT'),
+('很熱欸@@!','2019-07-11 19:20:05','123','admin','112233'),
+('掰掰','2019-07-11 19:20:06','admin','123','ADMIN_BOT'),
+('你生氣了噢','2019-07-11 19:20:07','123','admin','112233'),
+('沒有阿','2019-07-11 19:20:08','admin','123','ADMIN_BOT'),
+('你為什麼要生氣啊','2019-07-11 19:20:09','123','admin','112233'),
+('我沒間考慮太久，隨便吃吃','2019-07-11 19:20:10','admin','123','ADMIN_BOT'),
+('那就隨便吃阿','2019-07-11 19:20:11','123','admin','112233'),
+('牛肉麵?','2019-07-11 19:20:12','admin','123','ADMIN_BOT'),
+('你等我一下我有電話','2019-07-11 19:20:13','123','admin','112233'),
+('還沒好嗎??','2019-07-11 19:50:14','admin','123','ADMIN_BOT'),
+('啊!我朋友找我吃飯','2019-07-11 19:50:15','123','admin','112233'),
+('我在餐廳了耶','2019-07-11 19:50:16','123','admin','112233'),
+('刪好友吧^^','2019-07-11 19:50:17','admin','123','ADMIN_BOT'),
+('......','2019-07-11 19:50:18','123','admin','112233'),
+('人生短短幾個秋~','2019-07-11 19:50:19','admin','123','ADMIN_BOT'),
+('請你喝蜂蜜檸檬？','2019-07-11 19:50:20','123','admin','112233'),
+('可可可可可可可以喔','2019-07-11 19:50:21','admin','123','ADMIN_BOT'),
+('算了，手頭有點緊，還是刪吧','2019-07-11 19:50:22','123','admin','112233');
 
 INSERT INTO security_role(code) values
 ('ROLE_ADMIN'),
@@ -32,13 +30,6 @@ INSERT INTO security_role(code) values
 ('ROLE_ARTIST'),
 ('ROLE_VENDER');
 
- INSERT INTO artist(artist_name, week_followers, total_followers) VALUES
- ('桑源雅沂',12345,86520),
- ('白賊虞',5486,30678),
- ('柳川鳳',6478,66666),
- ('張添財',5543,98765),
- ('王芯營',1251,32548),
- ('敏敏',1542,12345);
 
  INSERT INTO security_user(account, password, display_name, member_name, photo, gender, mail, birth, address, tel, favorite_location, register_date, introduction, enabled, followers) values
 ('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 'ADMIN_BOT', 'Mr.Admin', '/resources/profile_image/admin.jpg', 'male', 'admin@admin', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im admin',  1, 0),
@@ -132,14 +123,15 @@ alex@skrpresents.com
  (2, 1,'Article', '大平台', '我已經買了zzZ', '2019/05/28 20:00:27'); 
  
  INSERT INTO performance (title,introduction,youtube_url,update_time,activity_id,views,likes,dislikes,userp_id,username,gerne) values
- ('陳忻玥 Vicky Chen -【入土之前】','陳祈玥入土之前完整MV','https://www.youtube.com/watch?v=GfWkG4qedoE','2019/05/25 17:12:05',1,3000,200,10,3,'桑源雅沂','音樂'),
- ('A-Lin《有一種悲傷 A Kind of Sorrow》','ALIN最新歌曲有一種悲傷','https://www.youtube.com/watch?v=BRcudpJzy1I','2019/05/28 19:10:35',2,2150,180,5,4,'白賊虞','音樂'),
- ('G.E.M.【再見 GOODBYE】鄧紫棋','鄧紫棋發燒歌曲再見，讓您聆聽','https://www.youtube.com/watch?v=Lhel0tzHE08','2019/05/18 21:05:46',3,160,20,1,5,'柳川鳳','音樂'),
- ('下午悠閒練習畫圖','休閒畫畫影片','https://www.youtube.com/watch?v=MHLjKQdfTb8','2019/05/30 17:45:52',1,100,70,1,5,'柳川鳳','繪圖'),
- ('這群人 畢業後要幹嘛','讓你笑點大開，這群人又來了!!','https://www.youtube.com/watch?v=2pC8Jk2FDO4','2019/05/29 02:15:16',2,1912,30,5,6,'張添財','日常'),
- ('輪到你了SP','日本熱門懸疑劇輪到你了，女主角居然死掉了','https://www.youtube.com/watch?v=TBjykqBrhMg','2019/06/18 17:34:36',3,1100,75,46,5,'柳川鳳','影集'),
- ('超級可愛的柴犬','可愛的柴犬讓你融化','https://www.youtube.com/watch?v=TxgYs4_29KI','2019/06/19 11:45:01',1,151100,7890,10,8,'敏敏','日常'),
- ('阿滴開始健身了','瘦巴巴的阿滴居然開始健身了，究竟會怎麼樣呢','https://www.youtube.com/watch?v=SF8s3jVmiAs','2019/06/27 22:15:23',2,6400,590,17,5,'柳川鳳','日常');
+ ('陳忻玥 Vicky Chen -【入土之前】','陳祈玥入土之前完整MV','https://www.youtube.com/watch?v=GfWkG4qedoE','2019/05/25 17:12:05',1,3000,200,10,3,'桑源雅沂','表演藝術'),
+ ('A-Lin《有一種悲傷 A Kind of Sorrow》','ALIN最新歌曲有一種悲傷','https://www.youtube.com/watch?v=BRcudpJzy1I','2019/05/28 19:10:35',2,2150,180,5,4,'白賊虞','視覺藝術'),
+ ('G.E.M.【再見 GOODBYE】鄧紫棋','鄧紫棋發燒歌曲再見，讓您聆聽','https://www.youtube.com/watch?v=Lhel0tzHE08','2019/05/18 21:05:46',3,160,20,1,5,'柳川鳳','創意藝術'),
+ ('下午悠閒練習畫圖','休閒畫畫影片','https://www.youtube.com/watch?v=MHLjKQdfTb8','2019/05/30 17:45:52',1,100,70,1,5,'柳川鳳','表演藝術'),
+ ('這群人 畢業後要幹嘛','讓你笑點大開，這群人又來了!!','https://www.youtube.com/watch?v=2pC8Jk2FDO4','2019/05/29 02:15:16',2,1912,30,5,6,'張添財','視覺藝術'),
+ ('輪到你了SP','日本熱門懸疑劇輪到你了，女主角居然死掉了','https://www.youtube.com/watch?v=TBjykqBrhMg','2019/06/18 17:34:36',3,1100,75,46,5,'柳川鳳','創意藝術'),
+ ('超級可愛的柴犬','可愛的柴犬讓你融化','https://www.youtube.com/watch?v=TxgYs4_29KI','2019/06/19 11:45:01',1,151100,7890,10,8,'敏敏','表演藝術'),
+ ('阿滴開始健身了','瘦巴巴的阿滴居然開始健身了，究竟會怎麼樣呢','https://www.youtube.com/watch?v=SF8s3jVmiAs','2019/06/27 22:15:23',2,6400,590,17,5,'柳川鳳','視覺藝術');
+ ('暗殺教室S1 第21話','支持正版動畫，官頻廣告不略過，看好看滿才能看更多！','https://www.youtube.com/watch?v=wRs3z2Mr-uA','2019/07/18 15:151:22',7,212,71,2,7,'王芯營','視覺藝術');
  							
 insert into  Vender (name,city,district,address,max_people,phone,lat,lng) values
 ('EZ5音樂餐廳','台北市','大安區','安和路二段211號',50,'0227383995',25.0260149,121.550337),

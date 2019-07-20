@@ -319,11 +319,25 @@
 							var login = confirm("請先登入");
 							if(login==true){window.open("/login")+(location.href).substring(7);}
 						}else{
+							//新增好友
+							var thispid = $("#thisp").val();
+// 							$.ajax({
+// 								url:'/user/performance/addfriend',
+// 								data:{"id":thispid,
+// 									"username":user									
+// 								},
+// 								success:function(data){
+									
+// 								}
+// 							})
+							
 							var username = $(".artist").html();
 							alert("訂閱使用者"+username);
 							$("#sub").attr('class','btn btn-success');
 							$("#subpic").attr('class','fas fa-star');
 							$("#subhtml").html("已訂閱");
+							
+							
 						}
 						
 					})
