@@ -127,7 +127,9 @@ alex@skrpresents.com
  (2, 1,'Performance', '豬孝天', '流星雨揪團', '2006/03/04 13:14:55'),
  (2, 1,'Activity', '永和金城武', '不要再冒充我了！', '2019/05/28 20:00:27'),
  (2, 1,'Article', '大中天', '以前你偶爾聽，現在你應該天天聽', '2006/03/04 13:14:55'),
- (2, 1,'Article', '大平台', '我已經買了zzZ', '2019/05/28 20:00:27'); 
+ (2, 1,'Article', '大平台', '我已經買了zzZ', '2019/05/28 20:00:27'),
+ (7, 1,'Performance', '大中天', '以前你偶爾聽，現在你應該天天聽', '2006/03/04 13:14:55'),
+ (7, 2,'Performance', '大平台', '我已經買了zzZ', '2019/05/28 20:00:27');
  
  INSERT INTO performance (title,introduction,youtube_url,update_time,activity_id,views,likes,dislikes,userp_id,username,gerne) values
  ('陳忻玥 Vicky Chen -【入土之前】','陳祈玥入土之前完整MV','https://www.youtube.com/watch?v=GfWkG4qedoE','2019/05/25 17:12:05',1,3000,200,10,3,'桑源雅沂','表演藝術'),
