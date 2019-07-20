@@ -183,7 +183,7 @@
 		$("#articletype").html("文章類型： <i class='fas fa-hands-helping'></i>廠商");
 		break;
 	case 'Other':
-		$("#articletype").html("文章類型： <i class='fas fa-question'></i>其他");
+		$("#articletype").html("文章類型： <i class='fas fa-exclamation-triangle'></i>系統公告");
 		break;
 	}
 </script>

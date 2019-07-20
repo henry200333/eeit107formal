@@ -250,7 +250,7 @@ function articleTypeTW(cellvalue, options, rowObject){
 		return "廠商";
 		break;
 	case 'Other':
-		return "其他";
+		return "系統";
 		break;
 	}
 }
