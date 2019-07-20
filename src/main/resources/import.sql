@@ -130,7 +130,7 @@ alex@skrpresents.com
  ('這群人 畢業後要幹嘛','讓你笑點大開，這群人又來了!!','https://www.youtube.com/watch?v=2pC8Jk2FDO4','2019/05/29 02:15:16',2,1912,30,5,6,'張添財','視覺藝術'),
  ('輪到你了SP','日本熱門懸疑劇輪到你了，女主角居然死掉了','https://www.youtube.com/watch?v=TBjykqBrhMg','2019/06/18 17:34:36',3,1100,75,46,5,'柳川鳳','創意藝術'),
  ('超級可愛的柴犬','可愛的柴犬讓你融化','https://www.youtube.com/watch?v=TxgYs4_29KI','2019/06/19 11:45:01',1,151100,7890,10,8,'敏敏','表演藝術'),
- ('阿滴開始健身了','瘦巴巴的阿滴居然開始健身了，究竟會怎麼樣呢','https://www.youtube.com/watch?v=SF8s3jVmiAs','2019/06/27 22:15:23',2,6400,590,17,5,'柳川鳳','視覺藝術');
+ ('阿滴開始健身了','瘦巴巴的阿滴居然開始健身了，究竟會怎麼樣呢','https://www.youtube.com/watch?v=SF8s3jVmiAs','2019/06/27 22:15:23',2,6400,590,17,5,'柳川鳳','視覺藝術'),
  ('暗殺教室S1 第21話','支持正版動畫，官頻廣告不略過，看好看滿才能看更多！','https://www.youtube.com/watch?v=wRs3z2Mr-uA','2019/07/18 15:151:22',7,212,71,2,7,'王芯營','視覺藝術');
  							
 insert into  Vender (name,city,district,address,max_people,phone,lat,lng) values
