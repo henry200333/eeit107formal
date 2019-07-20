@@ -143,7 +143,7 @@ public class PerformanceController {
 					i--;
 				}
 				performance.setDislikeuser(dislikeuser);
-				performanceService.update(performance);
+				performanceService.update(performance,false);
 				
 			}
 		}else if(dislikeType==2) {
@@ -157,7 +157,7 @@ public class PerformanceController {
 				}
 			}
 		}
-		performanceService.update(performance);
+		performanceService.update(performance,false);
 		return performance;
 	}
 	
@@ -183,7 +183,7 @@ public class PerformanceController {
 			performance.setLikes(likes);
 			userpdislike.add(user);
 			performance.setDislikeuser(userpdislike);
-			performanceService.update(performance);
+			performanceService.update(performance,false);
 			List<Performance> plikelist = user.getPlikes();
 			for(int i=0;i<plikelist.size();i++) {
 				Performance p = plikelist.get(i);
@@ -205,11 +205,11 @@ public class PerformanceController {
 					i--;
 				}
 				performance.setDislikeuser(userpdislike);
-				performanceService.update(performance);
+				performanceService.update(performance,false);
 		}
 		
 	}
-		performanceService.update(performance);
+		performanceService.update(performance,false);
 		return performance;
 	}
 	

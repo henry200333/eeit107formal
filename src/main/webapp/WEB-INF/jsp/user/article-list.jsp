@@ -211,12 +211,10 @@ $("#articleGrid").jqGrid({
     styleUI : 'Bootstrap4',
     iconSet : "fontAwesome",
     colModel: [
-// 		{ name: 'id', index: 'id', label: 'ID', width: 30 },
 		{ name: 'articleType', label: '文章類型', width: 25, align: 'center', sortable: false, formatter: articleTypeTW},
-		{ name: 'name', label: '文章標題', sortable: false},
-// 		{ name: 'refId', label: 'REF_ID', width: 20 },
+		{ name: 'name', label: '文章標題', sortable: false, formatter: articleTitle},
 		{ name: 'count', label: '人氣', width: 25, align: 'center' },
-		{ name: 'announce', label: '最後修改時間', width: 55 }
+		{ name: 'announce', label: '發布時間', width: 55 }
 	],
     prmNames: {search: null, nd: null},
     toppager: '#topPager',
@@ -250,9 +248,13 @@ function articleTypeTW(cellvalue, options, rowObject){
 		return "廠商";
 		break;
 	case 'Other':
-		return "其他";
+		return "系統";
 		break;
 	}
+}
+//articleTitle加入超連結
+function articleTitle(cellvalue, options, rowObject){
+	return '<a href="/article/' + rowObject.id + '">' + cellvalue + '</a>';
 }
 //獲取articleTop6並放入對應的DIV及IMG
 $.ajax({

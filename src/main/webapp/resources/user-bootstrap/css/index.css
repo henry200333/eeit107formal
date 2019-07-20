@@ -81,11 +81,11 @@
 
 body {
     font-family: '微軟正黑體';
-    background-image: url(/resources/user-bootstrap/img/index/bigdiv.png);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: bottom;
-    background-size: cover;
+/*     background-image: url(/resources/user-bootstrap/img/index/bigdiv.png); */
+/*     background-repeat: no-repeat; */
+/*     background-attachment: fixed; */
+/*     background-position: bottom; */
+/*     background-size: cover; */
 }
 
 .img {

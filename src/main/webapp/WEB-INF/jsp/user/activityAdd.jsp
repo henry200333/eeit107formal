@@ -55,24 +55,19 @@
   
    <div style='padding-top:20px' id="塞資料處">
    <div class='row'>
-   <div class="col-6">
-   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-smile-beam"></i>活動名稱: </span>
+   <div class="col-10">
+   <span style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-smile-beam"></i>活動名稱: </span>
    </div>
-   
-   <div class="col-6">
-   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-smile-beam"></i>地址: </span>
+   <div class="col-10">
+   <span style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-newspaper"></i>文章放這:</span>
+   <div id='article'></div>
    </div>
-    <div class="col-12">
-   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-calendar-alt"></i>活動期間:</span>
+   <div class="col-10">
+   <span style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-calendar-alt"></i>活動期間:</span>
    </div>
-   <div class="col-12">
-   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i	class="fab fa-hotjar"></i>追蹤人數:</span>
+   <div class="col-10">
+   <span style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold;"><i	class="fab fa-hotjar"></i>追蹤人數:</span>
    </div>
-   <div class="col-5" id='article'>
-   
-   </div>
- 
-   
    </div>  
    </div>
    
@@ -165,21 +160,16 @@ $.ajax({
 	contentType : 'application/json;charset=UTF-8',
 	dataType : 'json',
 	success : function(res) {
-// 			alert(JSON.stringify(res.data[0].name));
-			txt1 ="<span style='font-size: 20px; border-bottom: 3px solid black; font-weight: bold;'><i class='far fa-newspaper'></i>相關文章:<br></span>";
-	 		$.each(res.data,function(index,value){
-	 			txt2 ="<div onclick='popout(this)' style='cursor:pointer;' id='"+value.id+"'><span style='font-size: 15px; border-bottom: 1px solid black; font-weight: bold;'>"+value.name+"</span></div>";
-	 		 	txt3 = txt1+txt2;
-	 		})
+			alert(res);
+// 	 		$.each(res.rows,function(index,value){
+	 			
+// 	 		 })
 		
-			$("#article").append(txt3);
+// 			$("#article").append(txt6);
 	}
 })
 
-function popout(obj){
-	articleUrl = "/article/"+obj.id;
-	window.open (articleUrl);
-}
+
 
 
 </script>

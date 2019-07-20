@@ -32,6 +32,45 @@ color:black;
     width: 100%;
     height: 100%;
 }
+
+.per{
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    background-color: white;
+    opacity: 0;
+    z-index: 1;
+    width: 300%;
+    height: 100%;
+}
+
+.title{
+	padding-top:5px;
+	font-size:20px;
+	font-weight:bold;
+}
+
+.username{
+	padding-top:20px;
+	line-height:40px;
+	font-size:16px;
+}
+
+.viewandtime{
+	font-size:16px;
+}
+
+.int{
+	padding-top:5px;
+	font-size:13px;
+}
+
+.type{
+	padding-left:20px;
+	color:blue;
+	font-size:16px;
+}
 </style>
 <body>
 	<jsp:include page="../topbar.jsp"></jsp:include>
@@ -40,7 +79,7 @@ color:black;
 <!-- 	搜尋 -->
 	<div class="row" style="text-align:center;padding:10px;">
 		<div class="input-group" style="padding-left:400px;">
-  <input type="text" class="form-control" placeholder="   Search Performance..."   id="keyword" >
+  <input type="text" class="form-control"  id="keywords"  placeholder="   Search Performance..."    />
   <div class="input-group-append" >
   	<button class="btn btn-primary" type="button" id="type1"><i class="fas fa-music" ></i> 表演藝術</button>
     <button class="btn btn-primary" type="button" id="type2"><i class="fas fa-eye" ></i> 視覺藝術</button>
@@ -52,7 +91,7 @@ color:black;
 	</div>
 	<script>
 	var gerne = "all";
-	var keyword = $("input").val();
+	
 	$(".btn-primary").click(function(){
 		if($(this).attr('class')=="btn-danger btn"){
 			$(this).attr('class','btn-primary');
@@ -83,7 +122,7 @@ color:black;
 
 	
 	$("#searchbtn").click(function(){
-		console.log(keyword);
+		var keyword = $("#keywords").val();
 		$.ajax({
 			url:"/psearch",
 			data:{
@@ -93,14 +132,36 @@ color:black;
 			},
 		type:"POST",
 		success:function(data){
-				console.log(data);
+				$("#pdiv").empty();
+				$.each(data.rows,function(index,value){
+					var txt="";
+					var time = Date.parse(value['updateTime']);
+					var today = new Date();
+					var timehaha = today-time;
+					var timeresult  = timehaha/60/60/24/1000;
+					var url = value['url'].substring(32);
+					txt+="<div class='row'>"
+					txt+="<div class='col-4' style='position: relative'>";
+					txt+="<div class='per' id='"+value['id']+"'></div>";
+					txt+="<iframe width='100%' height='190px' src='https://www.youtube.com/embed/"+url+"' 	frameborder='0'		allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'		allowfullscreen></iframe>";
+					txt+="</div>";
+					txt+="<div class='col-8'><p class='title'>"+value['title']+"</p><img src='/resources/user-bootstrap/img/performance/"+value['userpId'] +".jpg' width='40px' style='border-radius:50%;padding-top:20px'><br><span class='username'>"+value['username']+"</span><span class='type'>#"+value['performanceGerne']+"</span><p class='viewandtime'>"+value['views']+" 觀看，"+parseInt(timeresult)+"天前發布</p><p class='int'>"+value['introduction']+"</p></div></div>";
+						$("#pdiv").append(txt);
+						$("#"+value['id']).click(function(){
+							window.location.href="/performanceview/"+value['id'];
+						});
+				})
+				
 			}
 		})
 	})
+	
+	
+
 	</script>
 	<!-- 	搜尋結束 -->
-	<div class="row" id="pdiv" style="padding-top:30px;">
-		<div class="col-12">
+	<div class="row"  style="padding-top:30px;">
+		<div class="col-12" id="pdiv">
 			<h4><i class="fas fa-music" ></i>  表演藝術</h4>
 			<div class="row" style="padding-top:10px;"> 
 				<div class="col-3" style="position: relative;padding:5px;" id="perf1">
@@ -256,6 +317,108 @@ color:black;
 				})
 			}
 		})
+		
+			$("#perfmore").click(function(){
+		$.ajax({
+			url:"/psearch",
+			data:{
+				"page":1,
+				"performanceGerne": "perf",
+				"keyword":""			
+			},
+		type:"POST",
+		success:function(data){
+				$("#pdiv").empty();
+				$.each(data.rows,function(index,value){
+					var txt="";
+					var time = Date.parse(value['updateTime']);
+					var today = new Date();
+					var timehaha = today-time;
+					var timeresult  = timehaha/60/60/24/1000;
+					var url = value['url'].substring(32);
+					txt+="<div class='row'>"
+					txt+="<div class='col-4' style='position: relative'>";
+					txt+="<div class='per' id='"+value['id']+"'></div>";
+					txt+="<iframe width='100%' height='190px' src='https://www.youtube.com/embed/"+url+"' 	frameborder='0'		allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'		allowfullscreen></iframe>";
+					txt+="</div>";
+					txt+="<div class='col-8'><p class='title'>"+value['title']+"</p><img src='/resources/user-bootstrap/img/performance/"+value['userpId'] +".jpg' width='40px' style='border-radius:50%;padding-top:20px'><br><span class='username'>"+value['username']+"</span><span class='type'>#"+value['performanceGerne']+"</span><p class='viewandtime'>"+value['views']+" 觀看，"+parseInt(timeresult)+"天前發布</p><p class='int'>"+value['introduction']+"</p></div></div>";
+						$("#pdiv").append(txt);
+						$("#"+value['id']).click(function(){
+							window.location.href="/performanceview/"+value['id'];
+						});
+				})
+				
+			}
+		})
+	})
+	
+		$("#lookmore").click(function(){
+		$.ajax({
+			url:"/psearch",
+			data:{
+				"page":1,
+				"performanceGerne": "look",
+				"keyword":""			
+			},
+		type:"POST",
+		success:function(data){
+				$("#pdiv").empty();
+				$.each(data.rows,function(index,value){
+					var txt="";
+					var time = Date.parse(value['updateTime']);
+					var today = new Date();
+					var timehaha = today-time;
+					var timeresult  = timehaha/60/60/24/1000;
+					var url = value['url'].substring(32);
+					txt+="<div class='row'>"
+					txt+="<div class='col-4' style='position: relative'>";
+					txt+="<div class='per' id='"+value['id']+"'></div>";
+					txt+="<iframe width='100%' height='190px' src='https://www.youtube.com/embed/"+url+"' 	frameborder='0'		allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'		allowfullscreen></iframe>";
+					txt+="</div>";
+					txt+="<div class='col-8'><p class='title'>"+value['title']+"</p><img src='/resources/user-bootstrap/img/performance/"+value['userpId'] +".jpg' width='40px' style='border-radius:50%;padding-top:20px'><br><span class='username'>"+value['username']+"</span><span class='type'>#"+value['performanceGerne']+"</span><p class='viewandtime'>"+value['views']+" 觀看，"+parseInt(timeresult)+"天前發布</p><p class='int'>"+value['introduction']+"</p></div></div>";
+						$("#pdiv").append(txt);
+						$("#"+value['id']).click(function(){
+							window.location.href="/performanceview/"+value['id'];
+						});
+				})
+				
+			}
+		})
+	})
+	
+		$("#creamore").click(function(){
+		$.ajax({
+			url:"/psearch",
+			data:{
+				"page":1,
+				"performanceGerne": "crea",
+				"keyword":""			
+			},
+		type:"POST",
+		success:function(data){
+				$("#pdiv").empty();
+				$.each(data.rows,function(index,value){
+					var txt="";
+					var time = Date.parse(value['updateTime']);
+					var today = new Date();
+					var timehaha = today-time;
+					var timeresult  = timehaha/60/60/24/1000;
+					var url = value['url'].substring(32);
+					txt+="<div class='row'>"
+					txt+="<div class='col-4' style='position: relative'>";
+					txt+="<div class='per' id='"+value['id']+"'></div>";
+					txt+="<iframe width='100%' height='190px' src='https://www.youtube.com/embed/"+url+"' 	frameborder='0'		allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'		allowfullscreen></iframe>";
+					txt+="</div>";
+					txt+="<div class='col-8'><p class='title'>"+value['title']+"</p><img src='/resources/user-bootstrap/img/performance/"+value['userpId'] +".jpg' width='40px' style='border-radius:50%;padding-top:20px'><br><span class='username'>"+value['username']+"</span><span class='type'>#"+value['performanceGerne']+"</span><p class='viewandtime'>"+value['views']+" 觀看，"+parseInt(timeresult)+"天前發布</p><p class='int'>"+value['introduction']+"</p></div></div>";
+						$("#pdiv").append(txt);
+						$("#"+value['id']).click(function(){
+							window.location.href="/performanceview/"+value['id'];
+						});
+				})
+				
+			}
+		})
+	})
 	</script>
 </div>
 <br><br><br>

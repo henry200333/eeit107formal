@@ -51,13 +51,16 @@ public class PerformanceService {
 		
 	}
 	
-	public boolean update(Performance entity) {
+	public boolean update(Performance entity,boolean update) {
 		boolean result = false;
-		LocalDateTime localDateTime = LocalDateTime.now();		
-		ZoneId zoneId = ZoneId.systemDefault();
-        ZonedDateTime zdt = localDateTime.atZone(zoneId);
-        Date date = Date.from(zdt.toInstant());
-		entity.setUpdateTime(date);
+		if(update) {
+			LocalDateTime localDateTime = LocalDateTime.now();		
+			ZoneId zoneId = ZoneId.systemDefault();
+	        ZonedDateTime zdt = localDateTime.atZone(zoneId);
+	        Date date = Date.from(zdt.toInstant());
+			entity.setUpdateTime(date);
+		}
+		
 		if(performanceDao.findById(entity.getId())!=null) {
 			Performance performancenew = performanceDao.save(entity);
 			if(performancenew!=null)
