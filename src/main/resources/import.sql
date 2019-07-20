@@ -1,4 +1,5 @@
 insert into chat_message_store(content,message_time,receiver,sender,user_display_name) values
+('我4雅伊','2019-07-11 19:20:00','admin','artist001','ADMIN_BOT'),
 ('午餐吃什麼？','2019-07-11 19:20:00','admin','123','ADMIN_BOT'),
 ('隨便吧','2019-07-11 19:20:01','123','admin','112233'),
 ('滷肉飯','2019-07-11 19:20:02','admin','123','ADMIN_BOT'),
