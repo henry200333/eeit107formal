@@ -91,7 +91,7 @@ alex@skrpresents.com
 
 ------------
 
-![](https://i.imgur.com/31rorUq.jpg)', 'Artist', 2, 5, '2019-07-13 19:20:55'),
+![](https://i.imgur.com/31rorUq.jpg)', 'Artist', 2, 5, '2019-07-17 12:20:55'),
 ('柳川鳳在球場上穿梭自如', '# 柳川鳳在湖南對湘北的校際賽大展身手
 ![](http://b.zol-img.com.cn/desk/bizhi/image/1/960x600/1348714169293.jpg)
 ### 球場上旁若無人，穿梭自如
@@ -114,6 +114,7 @@ alex@skrpresents.com
 #### 	　　想不到郭董也很有戲劇天分~~ ，在新的動物頻道中，郭董飾演間諜小狗，演技逼真，吃草認真
 ![](http://img.komicolle.org/2019-05/15578732626695.png)', 'Activity', 5, 4, '2019-07-17 19:20:55'),
 ('維護公告','# 系統將於2019/7/25 13:00 ~ 15:00 進行維護
+![](http://www.r-rcooling.com/wp-content/uploads/2016/07/maintenance.gif)
 ### 訊息
 #### 各位Jayee的用戶午安，為了提升網站品質，
 #### 本網將於2019/7/25 13:00 ~ 15:00 進行維護，屆時將暫時關閉伺服器，
