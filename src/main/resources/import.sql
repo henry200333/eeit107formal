@@ -30,13 +30,6 @@ INSERT INTO security_role(code) values
 ('ROLE_ARTIST'),
 ('ROLE_VENDER');
 
- INSERT INTO artist(artist_name, week_followers, total_followers) VALUES
- ('桑源雅沂',12345,86520),
- ('白賊虞',5486,30678),
- ('柳川鳳',6478,66666),
- ('張添財',5543,98765),
- ('王芯營',1251,32548),
- ('敏敏',1542,12345);
 
  INSERT INTO security_user(account, password, display_name, member_name, photo, gender, mail, birth, address, tel, favorite_location, register_date, introduction, enabled, followers) values
 ('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 'ADMIN_BOT', 'Mr.Admin', '/resources/profile_image/admin.jpg', 'male', 'admin@admin', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im admin',  1, 0),
@@ -145,6 +138,7 @@ alex@skrpresents.com
  ('輪到你了SP','日本熱門懸疑劇輪到你了，女主角居然死掉了','https://www.youtube.com/watch?v=TBjykqBrhMg','2019/06/18 17:34:36',3,1100,75,46,5,'柳川鳳','創意藝術'),
  ('超級可愛的柴犬','可愛的柴犬讓你融化','https://www.youtube.com/watch?v=TxgYs4_29KI','2019/06/19 11:45:01',1,151100,7890,10,8,'敏敏','表演藝術'),
  ('阿滴開始健身了','瘦巴巴的阿滴居然開始健身了，究竟會怎麼樣呢','https://www.youtube.com/watch?v=SF8s3jVmiAs','2019/06/27 22:15:23',2,6400,590,17,5,'柳川鳳','視覺藝術');
+ ('暗殺教室S1 第21話','支持正版動畫，官頻廣告不略過，看好看滿才能看更多！','https://www.youtube.com/watch?v=wRs3z2Mr-uA','2019/07/18 15:151:22',7,212,71,2,7,'王芯營','視覺藝術');
  							
 insert into  Vender (name,city,district,address,max_people,phone,lat,lng) values
 ('EZ5音樂餐廳','台北市','大安區','安和路二段211號',50,'0227383995',25.0260149,121.550337),
