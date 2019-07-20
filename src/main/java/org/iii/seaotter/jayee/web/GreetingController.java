@@ -102,6 +102,7 @@ public class GreetingController {
 	@ResponseBody
 	public GridResponse <ChatMessageStore> query(@RequestParam(value="page") Integer page, @RequestParam(value="rows") Integer size,
 			@Payload ChatMessageStore chatMessageStore) {
+    	System.out.println(chatMessageStore);
 		GridResponse<ChatMessageStore> gridResponse = new GridResponse<ChatMessageStore>();
 		Sort sort = new Sort(Sort.Direction.DESC,"messageTime");
 		Pageable pageable = PageRequest.of(page-1, size,sort);
@@ -122,6 +123,7 @@ public class GreetingController {
 		};
 		Page<ChatMessageStore> result = chatMessageStoreService.getAll(specification, pageable);
 		gridResponse.setRows(result.getContent());
+		System.out.println(result.getContent());
 		gridResponse.setPage(page);
 		gridResponse.setTotal(result.getTotalPages());
 		gridResponse.setRecords(result.getTotalElements());
