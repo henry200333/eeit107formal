@@ -182,7 +182,7 @@ public class IndexController {
 										@RequestParam(value="performanceGerne", defaultValue="") String performanceGerne,
 										@RequestParam(value="keyword", defaultValue="") String keyword
 			) {
-		
+		System.out.println(keyword);
 		String sidx="updateTime";
 		Integer size = 100;
 		GridResponse<Performance> grid = new GridResponse<>();
@@ -205,13 +205,13 @@ public class IndexController {
 				}
 				
 				if (!StringUtils.isEmpty(performanceGerne) && performanceGerne.equals("perf")) 
-					where = cb.and(cb.like(root.get("performanceGerne"), "表演藝術"));
+					where = cb.and(where,cb.like(root.get("performanceGerne"), "表演藝術"));
 				if (!StringUtils.isEmpty(performanceGerne) && performanceGerne.equals("look")) 
-					where = cb.and(cb.like(root.get("performanceGerne"), "視覺藝術"));
+					where = cb.and(where,cb.like(root.get("performanceGerne"), "視覺藝術"));
 				if (!StringUtils.isEmpty(performanceGerne) && performanceGerne.equals("crea")) 
-					where = cb.and(cb.like(root.get("performanceGerne"), "創意藝術"));
+					where = cb.and(where,cb.like(root.get("performanceGerne"), "創意藝術"));
 				if (!StringUtils.isEmpty(performanceGerne) && performanceGerne.equals("all")) 
-					where = cb.and(cb.like(root.get("performanceGerne"), "%"));
+					where = cb.and(where,cb.like(root.get("performanceGerne"), "%"));
 			
 			
 				return where;
