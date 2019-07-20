@@ -98,7 +98,7 @@ public class PerformanceController {
 //		return "/user/performance-view";
 //	}
 	
-	@PostMapping("like")
+	@PostMapping("/like")
 	@ResponseBody
 	public Performance like(@RequestParam("id")Long id,@RequestParam("dislikeType") int dislikeType,@RequestParam("username") String username) {
 		
@@ -148,7 +148,7 @@ public class PerformanceController {
 		return performance;
 	}
 	
-	@PostMapping("dislike")
+	@PostMapping("/dislike")
 	@ResponseBody
 	public Performance unlike(@RequestParam("id")Long id,@RequestParam("likeType")int likeType,@RequestParam("username") String username) {
 		SecurityUser user = SecurityUserService.getByUserName(username);
@@ -198,5 +198,35 @@ public class PerformanceController {
 	}
 		performanceService.update(performance);
 		return performance;
+	}
+	
+	@RequestMapping("/likeordislike")
+	@ResponseBody
+	public Integer likeordislike(@RequestParam("id")Long id,@RequestParam("username") String username) {
+		System.out.println("like");
+		SecurityUser user = SecurityUserService.getByUserName(username);
+		Long thisId = user.getUserId();
+		Performance performance = performanceService.getById(id);
+		
+		List<Performance> thisUserLikep = user.getPlikes();
+		List<SecurityUser> thisPdislikeUser = performance.getDislikeuser();
+		for(int i =0;i<thisUserLikep.size();i++) {
+			Performance p = thisUserLikep.get(i);
+			Long pid = p.getId();
+			if(pid==id) {
+				return 1 ;
+			}
+		}
+		
+		for(int i = 0;i<thisPdislikeUser.size();i++) {
+			SecurityUser  s= thisPdislikeUser.get(i);
+			Long userid = s.getUserId();
+			if(userid==thisId) {
+				return 2 ;
+			}
+			
+		}
+		return 0;
+		
 	}
 }

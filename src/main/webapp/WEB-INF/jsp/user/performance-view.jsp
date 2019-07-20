@@ -466,7 +466,6 @@
 					url : "/performanceSide",
 					type : "POST",
 					success : function(data) {
-						console.log(data);
 						var count = 1;
 						var thispid = $("#thisp").val();
 						$
@@ -511,7 +510,30 @@
 				}
 			})
 		}, 10000)
+		</script>
+		
+		<sec:authorize access="isAuthenticated()">
+		<script>
+// 		檢查是否點過喜歡不喜歡
+		var user = $("#thisuser").val();
+		var pid = $("#thisp").val();
+		$.ajax({
+			url:'/user/performance/likeordislike',
+			data:{
+				"username":user,
+				"id":pid
+			},
+			type:'POST',
+			success:function(data){
+				console.log(data);
+				if(data==1){
+					$("#ld").attr('class','col-4 likedivclick');
+				}else if(data==2){
+					$("#dd").attr('class','col-4 dislikedivclick');
+				}
+			}
+		})
 	</script>
-
+</sec:authorize>
 </body>
 </html>
