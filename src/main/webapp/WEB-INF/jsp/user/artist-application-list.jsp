@@ -115,15 +115,14 @@ function showPageList(){
 	var txt="";
 	$("#page").html(txt);
 	txt += "<label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm' onclick='prevPage()' > << </label>"
-	if(total<=9){
-		for(i=1; i<=total;i++){
-			txt += "<label class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm' onclick='changePage(this)' title='"+i+"'>"+i+"</label>";		
-		}
-	}else{
+	
 		var count=0;
 		var start;
 		var end;
-		if((page-2)<1){
+		if(total<=5){
+		start= parseInt(1);
+		end= parseInt(total);
+		}else if((page-2)<1){
 		start= parseInt(1);
 		end=parseInt(5);
 		}else if((page+2)>total){
@@ -147,7 +146,7 @@ function showPageList(){
 		}
 	
 		
-	}
+	
 	
 	
 	
@@ -204,12 +203,13 @@ function showjobs() {
 						
 						
 					})
+					total= parseInt(data.total);
 					$("#applicationlist").html(txt);
 				}
 			})
 			window.setTimeout(function() {
 				showPageList()
-		}, 50);
+		}, 100);
 			
 }
   
