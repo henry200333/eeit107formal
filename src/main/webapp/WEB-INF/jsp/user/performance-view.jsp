@@ -160,6 +160,10 @@
 	<jsp:include page="../topbar.jsp"></jsp:include>
 	<input type="hidden" value="${performance.id}" id="thisp">
 	<input type="hidden" value="<sec:authentication property='name' />" id="thisuser">
+	<sec:authorize access="isAuthenticated()">
+	<input type='hidden' value="<sec:authentication property='principal.account'/>" id='userAccount'>
+	
+	</sec:authorize>
 	<div class="container">
 		<div class="row">
 			<!-- 			影片那塊(左邊) -->
@@ -346,6 +350,59 @@
 				<div class="row">
 					<div class="col-6"></div>
 				</div>
+<!-- 				留言輸入 -->
+				
+<!-- 				留言開始 -->
+<script src='/resources/user-bootstrap/js/commentLoader.js'></script>
+				<div id='commentAppend'>
+					<div class='row'>
+						<div class='col-12'>留言們</div>
+					</div>
+					<div class='row'>
+						<div class='col-1'>照片</div>
+						<div class='col-11' id='commentId'>
+							<div class='row'>
+								<div class='col-3'>吳帆祥</div>
+								<div class='col-9'></div>
+							</div>
+							<div>
+								<div class='col-2'></div>
+								<div class='col-10'>
+									<p>內容在這兒內容在這兒內容在這兒內容在這兒內容在這兒內容在這兒
+								</div>
+							</div>
+							<div class='row'>
+								<div class='col-5'></div>
+								<div class='col-4'>1992-11-28 13:15:21</div>
+								<div class='col-3'>喜歡 不喜歡</div>
+							</div>
+							<div class='row'>
+						<div class='col-1'>照片</div>
+						<div class='col-11' id='commentId'>
+							<div class='row'>
+								<div class='col-3'>吳帆祥</div>
+								<div class='col-9'></div>
+							</div>
+							<div>
+								<div class='col-2'></div>
+								<div class='col-10'>
+									<p>內容在這兒內容在這兒內容在這兒內容在這兒內容在這兒內容在這兒
+								</div>
+							</div>
+							<div class='row'>
+								<div class='col-5'></div>
+								<div class='col-4'>1992-11-28 13:15:21</div>
+								<div class='col-3'>喜歡 不喜歡</div>
+							</div>
+						</div>	
+									
+					</div>
+						</div>	
+									
+					</div>
+				</div>
+				<!-- 				留言結束 -->
+
 			</div>
 			<!-- 			影片右邊塊(右邊) -->
 			<div class="col-4">
