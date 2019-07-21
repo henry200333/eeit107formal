@@ -225,4 +225,10 @@ public class IndexController {
 		return grid;
 	}
 	
+	@RequestMapping("/refarticle/{id}")
+	@ResponseBody
+	public List<Article> refarticle(@PathVariable(value="id") Long id){
+		return  articleService.getByRefIdAndType(id, ArticleType.Performance);
+	}
+	
 }

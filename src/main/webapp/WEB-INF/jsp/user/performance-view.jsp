@@ -307,17 +307,51 @@
 							<div class="col-10" style="margin-top: 10px; padding-left: 0">
 								<span style="font-size: 16px; font-weight: bold;">${activity.name}</span><br>
 								<span style="line-height: 10px; font-size: 12px;">${begin}
-									- ${end}</span>
+									- ${end}</span><br>
+								<span style="margin-top:15px;font-size:14px;" >關聯文章 :  </span><span id="refarticle"></span>
 							</div>
-
+					<script>
+					$.ajax({
+						url:'/refarticle/' +$("#thisp").val(),
+						type:"POST",
+						success: function(data){
+							console.log(data);
+							$.each(data,function(index,value){
+								txt="<a href='/article/"+ value['id']+"' style='font-size:14px'>"+value['name']+"   </a>"
+								$("#refarticle").append(txt);
+								
+							})
+						}
+					})
+					</script>
 						</div>
 					</div>
-					<div class="col-2">
+					<div class="col-2" id="subdiv">
 						<button type="button" class="btn btn-danger" id="sub">
-							<i class="fas fa-plus" style="color: white" id="subpic"></i><span id="subhtml">訂閱</span>
+							<i class="fas fa-plus" style="color: white" id="subpic"></i><span id="subhtml"> 訂閱</span>
 						</button>
 					</div>
 					<script>
+// 					判斷發布者與登入者是否相同
+					var thispid = $("#thisp").val();
+					var thisuser = $("#thisuser").val();
+					$.ajax({
+						url:"/user/performance/checkuser",
+						type:"POST",
+						data:{
+							"id":thispid,
+							"username":thisuser
+						},
+						success:function(data){
+							if(data==true){
+								
+								txt="<button type='button' class='btn btn-secondary' id='editp'>"
+								txt+="<i class='fas fa-cog'></i><span> 編輯</span></button>";
+								$("#subdiv").html(txt);	
+																
+							}
+						}
+					})
 					$("#sub").click(function(){
 						var user = $("#thisuser").val();
 						if(user=="anonymousUser"){
