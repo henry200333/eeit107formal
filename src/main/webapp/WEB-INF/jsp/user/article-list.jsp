@@ -28,7 +28,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-1">
+			<div class="col-7">
 				<div class="input-group-append">
 					<button id="allBT" type="button" class="btn btn-success">全部文章</button>
 					<button id="artistBT" type="button" class="btn btn-light">藝人文章</button>
