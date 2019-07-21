@@ -65,7 +65,7 @@
    
    
    <div class="col-6">
-   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-smile-beam"></i>活動詳細地址: </span>
+   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i id='mappingIcon' class="fas fa-map-marker-alt"></i>活動詳細地址: </span>
    <div class='col-11' id='addressInfo'>
    <span style="font-size: 20px; font-weight: bold;padding-left:15px">${activityParam.locationId.city}${activityParam.locationId.district}${activityParam.locationId.address}</span>
    </div>
@@ -90,7 +90,7 @@
    </div>
   
    <div class="col-6">
-   <span style="font-size: 20px;  font-weight: bold;"><i	class="fab fa-hotjar"></i>選擇活動地點:</span><br>
+   <span style="font-size: 20px;  font-weight: bold;"><i class="fas fa-map-marked-alt"></i>選擇活動地點:</span><br>
   
   
   
@@ -228,14 +228,14 @@ $.ajax({
 // 			alert(JSON.stringify(res.data[0].name));
 			if(res.type=="ERROR"){
 				txt1 ="<span style='font-size: 20px; border-bottom: 3px solid black; font-weight: bold;'><i class='far fa-newspaper'></i>相關文章:<br></span>";
-		 		txt2 ="<div id='"+${activityParam.id}+"'><span style='font-size: 20px; border-bottom: 1px solid black; font-weight: bold; color:red'>暫無文章</span></div>";
-		 		 txt3 = txt1+txt2;
+		 		txt2 ="<div id='"+${activityParam.id}+"'><span style='font-size: 20px; border-bottom: 1px solid black; font-weight: bold;'>暫無文章</span><br><a href='#'><span>點我新增<i class='fas fa-pencil-alt'></i></span></a></div>";
+		 		txt3 = txt1+txt2;
 				$("#article").append(txt3);
 			}else{
 			txt1 ="<span style='font-size: 20px; border-bottom: 3px solid black; font-weight: bold;'><i class='far fa-newspaper'></i>相關文章:<br></span>";
 	 		$.each(res.data,function(index,value){
-	 			txt2 ="<div onclick='popout(this)' style='cursor:pointer;' id='"+value.id+"'><span style='font-size: 20px; border-bottom: 1px solid black; font-weight: bold; color:red'>"+value.name+"</span></div>";
-	 		 	txt3 = txt1+txt2;
+	 			txt2 ="<div onclick='popout(this)' style='cursor:pointer;' id='"+value.id+"'><span style='font-size: 20px; border-bottom: 1px solid black; font-weight: bold; color:HotPink'>"+value.name+"</span></div>";
+	 		 	txt3 = txt1+txt2+ "<br><a href='#'><span>點我新增<i class='fas fa-pencil-alt'></i></span></a>";
 	 		})
 		
 			$("#article").append(txt3);}
@@ -299,16 +299,24 @@ $(document).ready(function(){
    					var txt="";		
    					console.log(data);
    					txt += '<option value="" style="display: none">請選擇鄉鎮市區</option>';
+   					txt5 = '<option value="" style="display: none" >請先選擇鄉鎮市區</option>';
    					$.each(data,function(index,value){
-   						txt += 	"<option value='"+ value +"'>"+ value +"</option>"			
-   						})	
+   						txt += 	"<option value='"+ value +"'>"+ value +"</option>";			
+   					})
+   					txt2 ="<span style='font-size: 20px; font-weight: bold;padding-left:15px;color:red;'>" + CName +"<i class='fas fa-pen-fancy fa-sm' style='color:Mediumslateblue;'></i>"+"</span>";
+   					$("#mappingIcon").attr("class","fas fa-spinner fa-pulse");
+   					$("#mappingIcon").attr("style","color:RoyalBlue");
+   					$("#addressInfo").empty();
+   					$("#addressInfo").append(txt2);
    					$("#district").html(txt);
+   					$("#locationName").html(txt5);
    					
    				}
                });
            });
            $('#district').change(function(){
-               var DisN= $('#district').val();
+        	   var CName= $('#city').val();
+        	   var DisN= $('#district').val();
                $.ajax({
                    type: "POST",
                    url: '/activity/location/district/'+ DisN,
@@ -322,7 +330,13 @@ $(document).ready(function(){
    					txt += '<option value="" style="display: none">請選擇活動地點</option>';
    					$.each(data,function(index,value){
    						txt += 	"<option value='"+ value['locationName'] +"'>"+ value['locationName'] +"</option>"			
-   						})	
+   						})
+   					
+   					txt2 ="<span style='font-size: 20px; font-weight: bold;padding-left:15px;color:red;'>" + CName + DisN +"<i class='fas fa-pen-fancy fa-sm' style='color:Mediumslateblue;'></i>"+"</span>";
+   					$("#mappingIcon").attr("class","fas fa-spinner fa-pulse");
+   					$("#mappingIcon").attr("style","color:RoyalBlue");
+   					$("#addressInfo").empty();
+   					$("#addressInfo").append(txt2);
    					$("#locationName").html(txt);
    					
    				}
@@ -339,7 +353,9 @@ $(document).ready(function(){
                        alert('發生錯誤');
                    },
                    success: function(data){
-                	  txt ="<span style='font-size: 20px; font-weight: bold;padding-left:15px'>" + data[0]['city']+data[0]['district']+data[0]['address'] +"</span>";
+                	  txt ="<span style='font-size: 20px; font-weight: bold;padding-left:15px'>" + data[0]['city']+data[0]['district']+data[0]['address'] +"<i class='fas fa-glass-cheers' style='color:Magenta'></i></span>";
+                	  $("#mappingIcon").attr("class","fas fa-map-marker-alt");
+                	  $("#mappingIcon").attr("style","color:black");
                 	  $("#addressInfo").empty();
                 	  $("#addressInfo").append(txt);
    					
