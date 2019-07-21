@@ -10,6 +10,7 @@
 <body>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<h1>${message }</h1>
 	<h1>將在5秒後轉導到index</h1>
 	<span id="time" style="color: red; font-size: 30px;">5</span>.....
 	<h2>seconds</h2>
