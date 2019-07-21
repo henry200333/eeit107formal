@@ -56,7 +56,11 @@
 		<div style="border: 5px #FFAC55 solid;">
 			表演影片:${userParam.performanceSet[0].title }</div>
 		<div style="border: 5px #FFAC55 solid;">
-			文章:${articleParam }</div>
+			文章:
+			<c:forEach var="article" items="${articleParam}">
+				<a href="javascript:window.open('/article/${article.id}');">${article.name}</a>
+			</c:forEach>
+		</div>
 		<div style="border: 5px #FFAC55 solid;">
 			活動:${userParam.activitySet }</div>
 
