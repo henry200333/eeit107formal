@@ -44,7 +44,11 @@ public class Vender {
 	@Column(name="max_people")
 	private Integer maxPeople;
 	@Column(name="phone")
-	private String phone; 
+	private String phone;
+	@Column(name="contact_person")
+	private String contactPerson;
+	@Column(name="introduction")
+	private String introduction;
 	@Column(name="lat")
 	private Double lat;
 	@Column(name="lng")
