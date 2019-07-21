@@ -44,7 +44,7 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<c:if test="${not empty errorMessge}">
-					<div style="color: red; font-weight: bold; margin: 30px 0px;">${errorMessge.usernameError}</div>
+					<div style="color: red; font-weight: bold; margin: 30px 0px;">${errorMessge}</div>
 				</c:if>
 				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178"
 					action="/login" method="POST" name="f">

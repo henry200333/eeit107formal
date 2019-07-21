@@ -49,8 +49,9 @@ public class AuthController {
 		if (logout != null) {
 			errorMessage = "You have been successfully logged out !!";
 		}
-		model.addAttribute("errorMessge", errorMessage);
-
+		if (errorMessage != null)
+			model.addAttribute("errorMessge", errorMessage);
+		
 		return "signin";
 	}
 
