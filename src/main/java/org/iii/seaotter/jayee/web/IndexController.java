@@ -4,10 +4,16 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.common.ForumBoard;
+import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Forum;
@@ -19,11 +25,18 @@ import org.iii.seaotter.jayee.service.ForumService;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -140,8 +153,15 @@ public class IndexController {
 		Long views = performance.getViews();
 		views ++;
 		performance.setViews(views);
-		performanceService.update(performance);
+		performanceService.update(performance,false);
 		}
+	
+	@RequestMapping("/performanceall")
+	@ResponseBody
+	public List<Performance> All(){
+		
+		return performanceService.getAll();
+	}
 	
 	@RequestMapping("/performanceSide")
 	@ResponseBody
@@ -149,6 +169,60 @@ public class IndexController {
 		List<Performance> list = performanceService.getAll();
 		Collections.shuffle(list);
 		return list;
+	}
+	
+	@RequestMapping("/performances")
+	public String performanceList() {
+		return "/user/performance-all";
+	}
+	
+	@RequestMapping("/psearch")
+	@ResponseBody
+	public GridResponse<Performance> query(@RequestParam(value = "page") Integer page,
+										@RequestParam(value="performanceGerne", defaultValue="") String performanceGerne,
+										@RequestParam(value="keyword", defaultValue="") String keyword
+			) {
+		System.out.println(keyword);
+		String sidx="updateTime";
+		Integer size = 100;
+		GridResponse<Performance> grid = new GridResponse<>();
+		Sort sort = new Sort(Sort.Direction.DESC, sidx);
+		//固定給他1
+		Pageable pageable = PageRequest.of(page - 1, size, sort);
+		
+		
+		Specification<Performance> spec = new Specification<Performance>() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Predicate toPredicate(Root<Performance> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Predicate where = cb.conjunction();
+				
+				
+				if (!StringUtils.isEmpty(keyword)) {
+					where = cb.and(cb.like(root.get("title"), "%" + keyword + "%"));
+					where = cb.or(where,cb.like(root.get("username"), "%" + keyword +"%"));
+				}
+				
+				if (!StringUtils.isEmpty(performanceGerne) && performanceGerne.equals("perf")) 
+					where = cb.and(where,cb.like(root.get("performanceGerne"), "表演藝術"));
+				if (!StringUtils.isEmpty(performanceGerne) && performanceGerne.equals("look")) 
+					where = cb.and(where,cb.like(root.get("performanceGerne"), "視覺藝術"));
+				if (!StringUtils.isEmpty(performanceGerne) && performanceGerne.equals("crea")) 
+					where = cb.and(where,cb.like(root.get("performanceGerne"), "創意藝術"));
+				if (!StringUtils.isEmpty(performanceGerne) && performanceGerne.equals("all")) 
+					where = cb.and(where,cb.like(root.get("performanceGerne"), "%"));
+			
+			
+				return where;
+			}
+		};
+		Page<Performance> result = performanceService.getAll(spec, pageable);
+		grid.setRows(result.getContent());
+		grid.setPage(page);
+		grid.setRecords(result.getTotalElements());
+		grid.setTotal(result.getTotalPages());
+		return grid;
 	}
 	
 }

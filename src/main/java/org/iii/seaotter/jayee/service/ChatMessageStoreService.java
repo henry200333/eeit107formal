@@ -20,7 +20,7 @@ public class ChatMessageStoreService {
 	}
 	
 	public Page<ChatMessageStore> getAll(Specification<ChatMessageStore> specification, Pageable pageable){
-		return chatMessageStoreDao.findAll(specification,pageable);
-		
+		return chatMessageStoreDao.findAll(specification,pageable);	
 	}
+	
 }

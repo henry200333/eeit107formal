@@ -1,7 +1,11 @@
 package org.iii.seaotter.jayee.web;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -18,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -70,10 +75,15 @@ public class GreetingController {
       @Payload ChatMessageStore msg, 
       Principal user, 
       @Header("simpSessionId") String sessionId) throws Exception { 
-          System.out.println(msg);   
-          
+   
           template.convertAndSend("/app/chat/single/"+msg.getReceiver(), msg);
           template.convertAndSend("/app/chat/single/"+msg.getSender(), msg);
+          LocalDateTime localDateTime = LocalDateTime.now();		
+  		ZoneId zoneId = ZoneId.systemDefault();
+          ZonedDateTime zdt = localDateTime.atZone(zoneId);
+          Date date = Date.from(zdt.toInstant());
+          msg.setMessageTime(date);
+       	chatMessageStoreService.recordMessage(msg);
     }
     
     @GetMapping("/findmyfriends")
@@ -94,7 +104,8 @@ public class GreetingController {
 			@Payload ChatMessageStore chatMessageStore) {
     	System.out.println(chatMessageStore);
 		GridResponse<ChatMessageStore> gridResponse = new GridResponse<ChatMessageStore>();
-		Pageable pageable = PageRequest.of(page-1, size);
+		Sort sort = new Sort(Sort.Direction.DESC,"messageTime");
+		Pageable pageable = PageRequest.of(page-1, size,sort);
 		Specification<ChatMessageStore> specification = new Specification<ChatMessageStore>() {
 			private static final long serialVersionUID = 1L;
 			private String sender = chatMessageStore.getSender();
@@ -105,13 +116,14 @@ public class GreetingController {
 				Predicate where = cb.conjunction();	
 				if (!StringUtils.isEmpty(sender)&&!StringUtils.isEmpty(receiver)){
 					where = cb.and(cb.equal(root.get("sender"),sender),cb.equal(root.get("receiver"),receiver));
-					where = cb.or(where,cb.equal(root.get("receiver"),receiver),cb.equal(root.get("sender"),sender));
+					where = cb.or(where,cb.and(cb.equal(root.get("receiver"),sender),cb.equal(root.get("sender"),receiver)));
 				}
 				return where;
 			}
 		};
 		Page<ChatMessageStore> result = chatMessageStoreService.getAll(specification, pageable);
 		gridResponse.setRows(result.getContent());
+		System.out.println(result.getContent());
 		gridResponse.setPage(page);
 		gridResponse.setTotal(result.getTotalPages());
 		gridResponse.setRecords(result.getTotalElements());

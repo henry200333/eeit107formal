@@ -52,5 +52,8 @@ public class Forum {
 	
 	@Column(name="dislike_count")
 	private Integer dislikeCount;
+	
+	@Column(name="user_photo")
+	private String userPhoto;
 
 }

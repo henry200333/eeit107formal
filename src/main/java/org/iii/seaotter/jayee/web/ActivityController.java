@@ -69,15 +69,14 @@ public class ActivityController {
 	@RequestMapping("/query")
 	@ResponseBody
 	public GridResponse<Activity> query(@RequestParam(value = "page") Integer page,
+										@RequestParam(value="rows") Integer rows,
 										@RequestParam(value="actType", defaultValue="") String actType,
 										@RequestParam(value="find", defaultValue="") String find
 			) {
-		
 		String sidx="beginTime";
-		Integer size = 100;
 		GridResponse<Activity> grid = new GridResponse<Activity>();
 		Sort sort = new Sort(Sort.Direction.DESC, sidx);
-		Pageable pageable = PageRequest.of(page - 1, size, sort);
+		Pageable pageable = PageRequest.of(page - 1, rows, sort);
 		
 		
 		Specification<Activity> specification = new Specification<Activity>() {

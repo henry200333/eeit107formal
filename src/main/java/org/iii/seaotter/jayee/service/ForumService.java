@@ -24,13 +24,15 @@ public class ForumService {
 	
 	@Transactional(readOnly = true)
 	public List<Forum> getAll(){
-		return forumDao.findAll();
-		
+		return forumDao.findAll();		
 	}
 	
 	public Page<Forum> getAll(Specification<Forum> specification, Pageable pageable){
-		return forumDao.findAll(specification,pageable);
-		
+		return forumDao.findAll(specification,pageable);	
+	}
+	
+	public List<Forum> getBoardRefIDComments(ForumBoard forumBoard, Long refId){
+		return forumDao.findByForumBoardAndRefId(forumBoard,refId);		
 	}
 	
 	public Forum create(Forum forum) {	

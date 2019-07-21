@@ -4,16 +4,29 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
+import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.common.Message;
+import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -130,7 +143,7 @@ public class PerformanceController {
 					i--;
 				}
 				performance.setDislikeuser(dislikeuser);
-				performanceService.update(performance);
+				performanceService.update(performance,false);
 				
 			}
 		}else if(dislikeType==2) {
@@ -144,7 +157,7 @@ public class PerformanceController {
 				}
 			}
 		}
-		performanceService.update(performance);
+		performanceService.update(performance,false);
 		return performance;
 	}
 	
@@ -170,7 +183,7 @@ public class PerformanceController {
 			performance.setLikes(likes);
 			userpdislike.add(user);
 			performance.setDislikeuser(userpdislike);
-			performanceService.update(performance);
+			performanceService.update(performance,false);
 			List<Performance> plikelist = user.getPlikes();
 			for(int i=0;i<plikelist.size();i++) {
 				Performance p = plikelist.get(i);
@@ -192,18 +205,17 @@ public class PerformanceController {
 					i--;
 				}
 				performance.setDislikeuser(userpdislike);
-				performanceService.update(performance);
+				performanceService.update(performance,false);
 		}
 		
 	}
-		performanceService.update(performance);
+		performanceService.update(performance,false);
 		return performance;
 	}
 	
 	@RequestMapping("/likeordislike")
 	@ResponseBody
 	public Integer likeordislike(@RequestParam("id")Long id,@RequestParam("username") String username) {
-		System.out.println("like");
 		SecurityUser user = SecurityUserService.getByUserName(username);
 		Long thisId = user.getUserId();
 		Performance performance = performanceService.getById(id);
@@ -229,4 +241,16 @@ public class PerformanceController {
 		return 0;
 		
 	}
+	
+//	@RequestMapping("/addfriend")
+//	public void addfriend(@RequestParam("id")Long id,@RequestParam("username") String username) {
+//		System.out.println("addfriend");
+//		SecurityUser thisuser = SecurityUserService.getByUserName(username);
+//		Performance performance = performanceService.getById(id);
+//		SecurityUser adduser = SecurityUserService.getById(performance.getUserpId());
+//
+//		SecurityUserService.addfirend(thisuser, adduser);
+//	}
+	
+
 }

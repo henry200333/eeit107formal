@@ -45,6 +45,8 @@ public class ArticleController {
 		Article article = articleService.getById(id);
 		if (article != null) {
 			model.addAttribute("article", article);
+			article.setCount(article.getCount() + 1);
+			articleService.update(article);
 			return "/user/article-single";
 		}
 		return "/user/article-list";
