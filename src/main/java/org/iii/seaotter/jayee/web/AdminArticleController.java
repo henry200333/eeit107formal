@@ -75,10 +75,10 @@ public class AdminArticleController {
 			public Predicate toPredicate(Root<Article> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				Predicate where = cb.conjunction();
 				if (!StringUtils.isEmpty(name)) {
-					where = cb.and(cb.like(root.get("name"), "%" + name + "%"));
+					where = cb.and(where, cb.like(root.get("name"), "%" + name + "%"));
 				}
 				if (!StringUtils.isEmpty(articleType)) {
-					where = cb.and(cb.equal(root.get("type"), articleType));
+					where = cb.and(where, cb.equal(root.get("articleType"), articleType));
 				}
 				return where;
 			}

@@ -64,7 +64,7 @@ $("#searchBT").click(function searchBT(){
 	var bb = {'page':page,'rows':rows};
 	var data =Object.assign(aa,bb);
 	$.ajax({
-		url : "/user/activity/query",
+		url : "/activity/query",
 		type : "GET",
 		data :data,
 		contentType : 'application/json;charset=UTF-8',
@@ -97,7 +97,7 @@ function type11(obj){
 	totalPage=0;
 	$("#dataBody").empty();
 	$.ajax({
-		url : "/user/activity/query",
+		url : "/activity/query",
 		type : "GET",
 		data : {"actType":obj.value,"page":page,"rows":rows},
 		contentType : 'application/json;charset=UTF-8',
@@ -214,7 +214,7 @@ var totalPage=10;
 $(document).ready(showjobs(page-1));
 function showjobs(page) {	
 	
-	$.ajax({url : "/user/activity/query",
+	$.ajax({url : "/activity/query",
 		type : "GET",
 		data:{'page':page,'rows':rows},
 		success : function(data) {
@@ -251,7 +251,7 @@ $(window).scroll(function(){
 					   if(page>totalPage){
 						   return;
 					   }else{
-						$.ajax({url : "/user/activity/query",
+						$.ajax({url : "/activity/query",
 							type : "GET",
 							data:{'page':page,'rows':rows,'actType':actType,'find':find},
 							success : function(data) {

@@ -22,6 +22,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/user/activity")
+@RequestMapping("/activity")
 public class ActivityController {
 	
 	@Autowired
@@ -44,18 +45,23 @@ public class ActivityController {
 	public String list() {
 		return "/user/activityTest";
 	}
-	@RequestMapping("/view")
-	public String view() {
+	@RequestMapping("/view/{id}")
+	public String view(@PathVariable Long id, Model model) {
+		Activity activity=activityService.getById(id);
+		model.addAttribute("activityParam", activity);
+		model.addAttribute("beginTime", activity.getBeginTime().toString().substring(0, 16));
+		model.addAttribute("endTime", activity.getEndTime().toString().substring(0, 16));
+		
 		return "/user/activityView";
 	}
 
 	@RequestMapping("/article/{id}")
 	@ResponseBody
 	public AjaxResponse<List<Article>> getArticle(@PathVariable Long id){
-		System.out.println(id);
+	
 		AjaxResponse<List<Article>> ajaxResponse=new AjaxResponse<>();
 		List<Article> article=articleService.getByRefIdAndType(id, ArticleType.Activity);
-		System.out.println(article);
+
 		if(article.isEmpty()) {
 			ajaxResponse.setType(AjaxResponseType.ERROR);
 			return ajaxResponse;

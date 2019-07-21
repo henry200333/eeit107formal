@@ -252,5 +252,16 @@ public class PerformanceController {
 //		SecurityUserService.addfirend(thisuser, adduser);
 //	}
 	
+	
+	@RequestMapping("/checkuser")
+	@ResponseBody
+	public boolean checkuser(@RequestParam("id")Long id,@RequestParam("username") String username) {
+		SecurityUser user = SecurityUserService.getByUserName(username);
+		Long thisId = user.getUserId();
+		Performance performance = performanceService.getById(id);
+		Long thispId = performance.getUserpId();
+		if(thisId==thispId)return true;
+		else return false;
+	}
 
 }
