@@ -1,15 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="/resources/admin-bootstrap/vendor/jquery/jquery.min.js"></script>
 <script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4fmDiIyJ9mPTKGL7iIVPvB5Igfo54eMk&callback=initMap" async defer></script>
+	src="/resources/admin-bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script
+	src="/resources/admin-bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="/resources/admin-bootstrap/js/sb-admin-2.min.js"></script>
 <style>
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -50,7 +57,7 @@ html, body {
 		<!-- /.container-fluid -->
 
 
-	<!-- 廠商名 -->
+		<!-- 廠商名 -->
 		<div class="d-sm-flex align-items-center justify-content-between mb-6">
 			<div class='col-sm-12 mb-3 mb-sm-6' style="text-align: center">
 				<h1 class="text">${vender.name }</h1>
@@ -59,14 +66,14 @@ html, body {
 
 
 
-	<!-- 廠商資料內容 -->
+		<!-- 廠商資料內容 -->
 		<div class='row' style='border: solid 1px silver; margin: 2%'>
 			<div class='col-sm-7 mb-0 mb-sm-0'>
 				<div class='col-sm-12 mb-0 mb-sm-0'>
 					<h4>地址:</h4>
 				</div>
-				<h6 style='padding-left: 10%'>
-					${vender.city} ${vender.district} ${vender.address}</h6>
+				<h6 style='padding-left: 10%'>${vender.city}${vender.district}
+					${vender.address}</h6>
 				<div class='col-sm-12 mb-0 mb-sm-0'>
 					<h4>關於我們:</h4>
 				</div>
@@ -79,7 +86,7 @@ html, body {
 			</div>
 			<div class='col-sm-5 mb-3 mb-sm-6' id="map" style='height: 250px'></div>
 		</div>
-	<!-- 廠商資料內容END -->
+		<!-- 廠商資料內容END -->
 
 
 
@@ -99,22 +106,11 @@ html, body {
 
 
 <script>
-$.ajax({
-	url : "/user/job/findByVender",
-	type : "POST",
-	data : ${vender.name},
-	success : function(data) {
-		alert("success")
-	}
-})
-
-
-
-	function initMap() {
+	function venderMap() {
 	var	map = new google.maps.Map(document.getElementById('map'), {
 			center : {
-				lat : 25.0282131,
-				lng : 121.5359507
+				lat : ${vender.lat},
+				lng :  ${vender.lng}
 			},
 			clickableIcons : false,
 			zoom : 17.5,
@@ -134,7 +130,32 @@ $.ajax({
 				} ]
 			} ]
 		});
+	
+	start();
+	
+	
 	}
-	initMap();
+
 </script>
+
+
+
+<script>
+function start(){
+	alert(${vender});
+// 	$.ajax({
+// 	url : "/user/job/findByVender",
+// 	type : "POST",
+// 	data : ${vender},
+// 	success : function(data) {
+// 		alert("success")
+// 	}
+// })
+};
+
+</script>
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4fmDiIyJ9mPTKGL7iIVPvB5Igfo54eMk&callback=venderMap"
+	async defer></script>
+
 </html>
