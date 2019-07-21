@@ -45,6 +45,7 @@
 				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178"
 					action="/register" method="POST">
 					<span class="login100-form-title"> Welcome to JAYEE </span>
+					<div style="color: red; font-weight: bold; margin: 30px 0px;">${errorMessages}</div>
 
 					<div class="wrap-input100 validate-input m-b-16"
 						data-validate="Please enter Username">

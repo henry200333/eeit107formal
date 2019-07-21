@@ -39,12 +39,15 @@
 <!--===============================================================================================-->
 </head>
 <body>
-<jsp:include page="topbar.jsp"></jsp:include>
+	<jsp:include page="topbar.jsp"></jsp:include>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
+				<c:if test="${not empty errorMessge}">
+					<div style="color: red; font-weight: bold; margin: 30px 0px;">${errorMessge.usernameError}</div>
+				</c:if>
 				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178"
-					action="/login" method="POST">
+					action="/login" method="POST" name="f">
 					<span class="login100-form-title"> Welcome to JAYEE </span>
 
 					<div class="wrap-input100 validate-input m-b-16"
@@ -60,7 +63,7 @@
 							placeholder="Password"> <span class="focus-input100"></span>
 					</div>
 					<div class="text-right p-t-13 p-b-23">
-					<input type="checkbox" name="remember-me">Remember me
+						<input type="checkbox" name="remember-me">Remember me
 					</div>
 					<div class="text-right p-t-13 p-b-23">
 						<span class="txt1"> Forgot </span> <a href="#" class="txt2">
@@ -79,6 +82,7 @@
 			</div>
 		</div>
 	</div>
+
 	<!--===============================================================================================-->
 	<script src="/resources/login/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->

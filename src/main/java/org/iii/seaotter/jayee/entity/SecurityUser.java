@@ -17,6 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -58,6 +59,7 @@ public class SecurityUser implements UserDetails {
 	private String tel;
 	@Column(name = "favorite_location")
 	private String favLocation;
+	@CreatedDate
 	@Column(name = "register_date")
 	private java.util.Date registerDate;
 	@Column(name = "introduction")

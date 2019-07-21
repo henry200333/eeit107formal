@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.iii.seaotter.jayee.dao.SecurityUserDao;
 import org.iii.seaotter.jayee.entity.Performance;
+import org.iii.seaotter.jayee.entity.RegisterUser;
 import org.iii.seaotter.jayee.entity.SecurityUser;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -85,6 +87,12 @@ public class SecurityUserService implements UserDetailsService {
 	
 	public List<Performance> findPlikesByUserId(Long id){
 		return securityUserDao.findPlikesByUserId(id);
+	}
+
+	public SecurityUser registerNewUserAccount(RegisterUser user) {
+		SecurityUser su = new SecurityUser();
+		BeanUtils.copyProperties(user, su);
+		return su;
 	};
 	
 }
