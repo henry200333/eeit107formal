@@ -62,7 +62,11 @@
 			</c:forEach>
 		</div>
 		<div style="border: 5px #FFAC55 solid;">
-			活動:${userParam.activitySet }</div>
+			活動:<br>
+			<c:forEach var="activity" items="${userParam.activitySet}">
+				<a href="">${activity.name}－${activity.description}</a><br>
+			</c:forEach>
+		</div>
 
 		</div>
 </body>
