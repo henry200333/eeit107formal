@@ -351,10 +351,17 @@
 					<div class="col-6"></div>
 				</div>
 <!-- 				留言輸入 -->
-				
+				<div class="row" style="margin-top:20px;margin-left:50px;">
+				<div class="col-10" >
+					<textarea cols="68" rows="3" placeholder="   留言..."  style="resize:none"></textarea>
+				</div>
+				<div class="col-1" style="padding-top:40px;">
+				 <button type="button" class="btn btn-primary" ><i class="fas fa-share"></i></button>
+				</div>
+				</div>
 <!-- 				留言開始 -->
 <script src='/resources/user-bootstrap/js/commentLoader.js'></script>
-				<div id='commentAppend'>
+				<div id='commentAppend' style="margin-top:20px;">
 					<div class='row'>
 						<div class='col-12'>留言們</div>
 					</div>
@@ -374,8 +381,10 @@
 							<div class='row'>
 								<div class='col-5'></div>
 								<div class='col-4'>1992-11-28 13:15:21</div>
-								<div class='col-3'>喜歡 不喜歡</div>
-							</div>
+								<div class='col-3'>
+									<i class="far fa-thumbs-up"></i><span>讚數</span>
+								</div>
+							</div> 
 							<div class='row'>
 						<div class='col-1'>照片</div>
 						<div class='col-11' id='commentId'>
