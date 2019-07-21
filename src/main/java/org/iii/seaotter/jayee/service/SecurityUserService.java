@@ -1,20 +1,29 @@
 package org.iii.seaotter.jayee.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import org.iii.seaotter.jayee.dao.ConfirmationTokenRepository;
+import org.iii.seaotter.jayee.dao.SecurityRoleDao;
 import org.iii.seaotter.jayee.dao.SecurityUserDao;
+import org.iii.seaotter.jayee.entity.ConfirmationToken;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.entity.RegisterUser;
+import org.iii.seaotter.jayee.entity.SecurityRole;
 import org.iii.seaotter.jayee.entity.SecurityUser;
+import org.iii.seaotter.jayee.mail.EmailSenderService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +34,18 @@ public class SecurityUserService implements UserDetailsService {
 	@Autowired
 	private SecurityUserDao securityUserDao;
 
+	@Autowired
+	private SecurityRoleDao securityRoleDao;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	private EmailSenderService emailSenderService;
+
+	@Autowired
+	private ConfirmationTokenRepository confirmationTokenRepository;
+
 	@Override
 	public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
 		if (securityUserDao.findByAccount(account) != null)
@@ -32,26 +53,26 @@ public class SecurityUserService implements UserDetailsService {
 		else
 			return securityUserDao.findByMail(account);
 	}
-	
-	public  SecurityUser findUserBean(String account) throws UsernameNotFoundException {
-		//getFriends
+
+	public SecurityUser findUserBean(String account) throws UsernameNotFoundException {
+		// getFriends
 		return securityUserDao.findByAccount(account);
 	}
-	
-	@Transactional(readOnly=true)
-	public Page<SecurityUser> getAll(Specification<SecurityUser> specification, Pageable  pageable){
+
+	@Transactional(readOnly = true)
+	public Page<SecurityUser> getAll(Specification<SecurityUser> specification, Pageable pageable) {
 		return securityUserDao.findAll(specification, pageable);
 	}
-	
-	@Transactional(readOnly=true)
+
+	@Transactional(readOnly = true)
 	public SecurityUser getById(Long id) {
 		return securityUserDao.findById(id).orElse(null);
 	}
-	
+
 	public SecurityUser signUp(SecurityUser entity) {
 		return securityUserDao.save(entity);
 	}
-	
+
 	public SecurityUser update(SecurityUser entity) {
 		SecurityUser securityUser = null;
 		if (securityUserDao.findById(entity.getUserId()) != null) {
@@ -59,33 +80,32 @@ public class SecurityUserService implements UserDetailsService {
 		}
 		return securityUser;
 	}
-	
+
 	public SecurityUser getByUserName(String userName) {
 		return securityUserDao.findByAccount(userName);
 	}
-	
-	public List<SecurityUser> getTop5(){
+
+	public List<SecurityUser> getTop5() {
 		return securityUserDao.findTop5ByOrderByFollowersDesc();
 	}
-	
-	public static boolean hasRole (String roleName)
-	{
-	    return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
-	            .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(roleName));
+
+	public static boolean hasRole(String roleName) {
+		return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
+				.anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(roleName));
 	}
 
 	public void addfirend(SecurityUser self, SecurityUser friend) {
-		
-		List<SecurityUser> selffriends=self.getFriends();
-		 selffriends.add(friend);
-		 self.setFriends(selffriends);
-		 List<SecurityUser> friendfriends=friend.getFriends();
-		 friendfriends.add(self);
-		 self.setFriends(friendfriends);
-		 return;
+
+		List<SecurityUser> selffriends = self.getFriends();
+		selffriends.add(friend);
+		self.setFriends(selffriends);
+		List<SecurityUser> friendfriends = friend.getFriends();
+		friendfriends.add(self);
+		self.setFriends(friendfriends);
+		return;
 	}
-	
-	public List<Performance> findPlikesByUserId(Long id){
+
+	public List<Performance> findPlikesByUserId(Long id) {
 		return securityUserDao.findPlikesByUserId(id);
 	}
 
@@ -94,5 +114,51 @@ public class SecurityUserService implements UserDetailsService {
 		BeanUtils.copyProperties(user, su);
 		return su;
 	};
-	
+
+	public SecurityUser findByMailIgnoreCase(String mail) {
+		return securityUserDao.findByMailIgnoreCase(mail);
+	}
+
+	public SecurityUser registerNewUserAccount(String account, String rawPassword, String mail) {
+
+		SecurityUser user = new SecurityUser();
+		user.setAccount(account);
+		user.setPassword(passwordEncoder.encode(rawPassword));
+		user.setMail(mail);
+
+		Set<SecurityRole> roles = new HashSet<SecurityRole>();
+		roles.add(securityRoleDao.findByCode("ROLE_USER"));
+		user.setRoles(roles);
+
+		return securityUserDao.save(user);
+	}
+
+	public void verifyMail(SecurityUser user) {
+		ConfirmationToken confirmationToken = new ConfirmationToken(user);
+		confirmationTokenRepository.save(confirmationToken);
+		SimpleMailMessage mailMessage = new SimpleMailMessage();
+
+		mailMessage.setTo(user.getMail());
+		mailMessage.setSubject("Complete Registration!");
+		mailMessage.setFrom("jayee20192019@outlook.com");
+		mailMessage.setText("To confirm your account, please click here : " + "http://localhost/confirm-account?token="
+				+ confirmationToken.getConfirmationToken());
+
+		emailSenderService.sendMail(mailMessage);
+	}
+
+	public String checkConfirmationToken(String confirmationToken) {
+		ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
+		if (token != null) {
+			SecurityUser user = securityUserDao.findByMailIgnoreCase(token.getUser().getMail());
+			if (!user.getEnabled()) {
+				user.setEnabled(true);
+				securityUserDao.save(user);
+				return "Congratulations! Your account has been activated and email is verified!";
+			}else
+				return "Oops!Your account has already verified!";
+		} else
+			return "Your account doesnt exist! Sign up please!";
+	}
+
 }
