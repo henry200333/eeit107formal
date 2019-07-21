@@ -88,6 +88,17 @@ public class ArticleController {
 		gridResponse.setTotal(result.getTotalPages());
 		return gridResponse;
 	}
+	
+	@RequestMapping("/add")
+	public String addArticlePage(
+			@RequestParam(name="type", defaultValue="") String articleType, 
+			@RequestParam(name="id", defaultValue="") String id, 
+			Model model) {
+		if (!"".equals(articleType) && !"".equals(id)) {
+			return "/user/article-preadd";
+		}
+		return "/user/article-add";
+	}
 
 	@RequestMapping("/top6")
 	@ResponseBody

@@ -11,7 +11,9 @@ public interface ActivityDao extends JpaRepository<Activity,Long>,JpaSpecificati
 
 	public List<Activity> findTop3ByOrderByAwesomeNumDesc();
 	
-	public List<Activity> findByUseraId(SecurityUser securityUser);
+	//public List<Activity> findByUseraId(SecurityUser securityUser);
+	public List<Activity> findByUseraId(Long userid);
+	
 	
 	
 	

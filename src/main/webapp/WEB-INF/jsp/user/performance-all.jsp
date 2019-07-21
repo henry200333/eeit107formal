@@ -92,7 +92,20 @@ color:black;
   </div>
 </div>
 	</div>
+		<input type="hidden" value="<sec:authentication property='name' />" id="thisuser">
 	<script>
+	
+	$("#newp").click(function(){
+		var user = $("#thisuser").val();
+		if(user=="anonymousUser"){
+			var login = confirm("請先登入");
+			if(login==true){window.location.href="/login";}
+		}else{
+			window.location.href="/user/performance/select";
+		}
+		
+	})
+	
 	var gerne = "all";
 	
 	$(".btn-primary").click(function(){

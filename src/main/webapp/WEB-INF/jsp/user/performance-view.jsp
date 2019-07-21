@@ -315,7 +315,7 @@
 								<span style="font-size: 16px; font-weight: bold;">${activity.name}</span><br>
 								<span style="line-height: 10px; font-size: 12px;">${begin}
 									- ${end}</span><br>
-								<span style="margin-top:15px;font-size:14px;" >關聯文章 : ${userinf.account} </span><span id="refarticle"></span>
+								<span style="margin-top:15px;font-size:14px;" >關聯文章 : </span><span id="refarticle"></span>
 							</div>
 					<script>
 					$("#actview").click(function(){
@@ -332,14 +332,14 @@
 						success: function(data){
 							console.log(data);
 							if(data['length']==0){$("#refarticle").append("<span style='font-size:14px;color:red'>目前沒有關聯文章唷!</span>");
-							$("#refarticle").append("<i class='fas fa-plus-square' id='articleadd' title='新增文章'></i>");
+							
 							}else{
 								$.each(data,function(index,value){									
 									txt="<a href='/article/"+ value['id']+"' style='font-size:14px'>"+value['name']+"   </a>"
 									$("#refarticle").append(txt);
 									
 								});
-								$("#refarticle").append("<i class='fas fa-plus-square' id='articleadd' title='新增文章'></i>");
+								
 							}
 							
 							
@@ -370,11 +370,18 @@
 								var txt="<button type='button' class='btn btn-secondary' id='editp'>"
 								txt+="<i class='fas fa-cog'></i><span> 編輯</span></button>";
 								$("#subdiv").html(txt);
+// 	-------------------------------加文章在這裡-------------------------------------------------------------------------------------------------------------------------------------------------------
+								$("#refarticle").append("<i class='fas fa-plus-square' id='articleadd' title='新增文章'></i>");
+								$("#articleadd").click(function(){
+									window.open('/article/add?user=' +thisuser+'&refid=' +thispid+"&type=Performance");
+								})
 								$("#editp").click(function(){
 									$("#ptitle").after("<i class='fas fa-pencil-alt' style='color:red'  data-toggle='modal' data-target='#titlemodel' data-whatever='@mdo'></i>");
+									
 									$(".introduction").after("  <i class='fas fa-pencil-alt' style='color:red'  data-toggle='modal' data-target='#Imodel' data-whatever='@mdo'></i>");
 									var txt2="<button type='button' class='btn btn-warning' id='editenter'>"
 										txt2+="<i class='fas fa-cog'></i><span> 完成</span></button>";
+										
 										$("#subdiv").html(txt2);
 										$("#editenter").click(function(){
 											$.ajax({

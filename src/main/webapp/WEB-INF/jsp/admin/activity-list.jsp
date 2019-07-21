@@ -132,16 +132,16 @@
 		        mtype: 'GET',
 		        styleUI : 'Bootstrap4',
 		    	colModel :[ //從這邊開始要設定的就是跟欄位本身有關係的設定了.....
-		    		{name:'id', index:'id',label:'編號', sortable: false,width: 5}, //設定第一個欄位為id，並且index設成id為到時候ajax回server side連結時使用的parameter。並且設定為不可做排序。
+		    		{name:'id', index:'id',label:'活動編號', sortable: false,width: 6}, //設定第一個欄位為id，並且index設成id為到時候ajax回server side連結時使用的parameter。並且設定為不可做排序。
 		    		{name:'name', index:'name',label:'活動名稱', width: 10},
-		    		{name:'useraId', index:'useraId',label:'發布者編號', width: 10, formatter:catchArtist},	
+		    		{name:'artist', index:'artist',label:'表演者', width: 10},	
 		    		{name:'description', index:'description',label:'活動描述', width: 25},
 		    		{name:'beginTime', index:'beginTime',label:'開始時間', width: 15},
 		    		{name:'endTime', index:'endTime',label:'結束時間', width: 15},
-		    		{name:'awesomeNum', index:'awesomeNum',label:'點讚數', width: 10,align:'right'},
-		    		{name:'badNum', index:'badNum',label:'倒讚數', width: 10,align:'right'}, //設定第二個欄位為name，並且設定寬度為120px。寬度沒設定的話，預設為150(值會再經jqGrid再運算過)<a href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:colmodel_options" target="_blank"> colModel屬性說明</a>
-		    		{name:'edit', width:10,label:'編輯', sortable : false, formatter:editBT},
-		    		{name:'delete', width:10,label:'刪除', sortable : false, formatter:deleteBT}
+		    		{name:'awesomeNum', index:'awesomeNum',label:'關注數', width: 5,align:'right'},
+		    		{name:'perfType', index:'perfType',label:'表演類型', width: 6}, //設定第二個欄位為name，並且設定寬度為120px。寬度沒設定的話，預設為150(值會再經jqGrid再運算過)<a href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:colmodel_options" target="_blank"> colModel屬性說明</a>
+		    		{name:'edit', width:8,label:'編輯', sortable : false, formatter:editBT},
+		    		{name:'delete', width:8,label:'刪除', sortable : false, formatter:deleteBT}
 		    		],
 		        prmNames: {search: null, nd: null},
 		        pager: '#pager',
@@ -149,8 +149,8 @@
 		        autowidth:false,
 		        shrinkToFit: true,
 		        height: 'auto',
-		        rowNum: 3,
-		        rowList: [3, 5, 7, 9],
+		        rowNum: 8,
+		        rowList: [8, 16, 24, 32],
 		        sortname: 'id',
 		        sortorder: "asc",
 		        viewrecords: true, 
@@ -160,9 +160,6 @@
 		        }
 		    });
 		 
-		 function catchArtist(cellvalue, options, rowObject){
-			 return cellvalue;
-		 };
 		 
 			
 		 function editBT (cellvalue, options, rowObject) {
