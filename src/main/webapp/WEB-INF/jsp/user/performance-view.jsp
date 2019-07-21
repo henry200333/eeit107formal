@@ -156,6 +156,12 @@
 	transition-duration: 0.5s;
 	border: 1px solid black;
 }
+
+#articleadd{
+	color:red;
+	cursor: pointer;
+	margin-left:10px;
+}
 </style>
 <body>
 	<jsp:include page="../topbar.jsp"></jsp:include>
@@ -317,11 +323,18 @@
 						type:"POST",
 						success: function(data){
 							console.log(data);
-							$.each(data,function(index,value){
-								txt="<a href='/article/"+ value['id']+"' style='font-size:14px'>"+value['name']+"   </a>"
-								$("#refarticle").append(txt);
-								
-							})
+							if(data['length']==0){$("#refarticle").append("<span style='font-size:14px;color:red'>目前沒有關聯文章唷!</span>");
+							$("#refarticle").append("<i class='fas fa-plus-square' id='articleadd' title='新增文章'></i>");
+							}else{
+								$.each(data,function(index,value){									
+									txt="<a href='/article/"+ value['id']+"' style='font-size:14px'>"+value['name']+"   </a>"
+									$("#refarticle").append(txt);
+									
+								});
+								$("#refarticle").append("<i class='fas fa-plus-square' id='articleadd' title='新增文章'></i>");
+							}
+							
+							
 						}
 					})
 					</script>
