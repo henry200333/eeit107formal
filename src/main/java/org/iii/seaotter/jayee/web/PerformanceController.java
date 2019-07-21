@@ -16,6 +16,7 @@ import org.iii.seaotter.jayee.common.Message;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.entity.SecurityUser;
+import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +44,9 @@ public class PerformanceController {
 	
 	@Autowired
 	private SecurityUserService SecurityUserService;
+	
+	@Autowired
+	private ActivityService activityService;
 	
 	
 	@RequestMapping("/add")
@@ -252,5 +257,44 @@ public class PerformanceController {
 //		SecurityUserService.addfirend(thisuser, adduser);
 //	}
 	
+	
+	@RequestMapping("/checkuser")
+	@ResponseBody
+	public boolean checkuser(@RequestParam("id")Long id,@RequestParam("username") String username) {
+		SecurityUser user = SecurityUserService.getByUserName(username);
+		Long thisId = user.getUserId();
+		Performance performance = performanceService.getById(id);
+		Long thispId = performance.getUserpId();
+		if(thisId==thispId)return true;
+		else return false;
+	}
+	
+	@RequestMapping("/edit/{id}")
+	public String editp(@PathVariable(value="id") Long id,Model model) {
+		Performance performance = performanceService.getById(id);
+		model.addAttribute("editp",performance);
+		String url = performance.getUrl().substring(32);
+		model.addAttribute("url",url);
+		return "/user/performance-edit";
+	}
+	
+	@RequestMapping("/aid")
+	@ResponseBody
+	public List<Activity> addAid() {
+		return activityService.getAll();
+
+	}
+	
+	@RequestMapping("/edit")
+	@ResponseBody
+	public boolean editP(@RequestParam("id")Long id,@RequestParam("title") String titlenew,@RequestParam("introduction") String introductionnew) {
+		Performance performance = performanceService.getById(id);
+		performance.setTitle(titlenew);
+		performance.setIntroduction(introductionnew);
+		
+		
+		return performanceService.update(performance, false);
+
+	}
 
 }

@@ -31,6 +31,7 @@ public class SecurityUserController {
 	public String userPage(@PathVariable String username, Model model) {
 		SearchUser user = new SearchUser();
 		SecurityUser source = securityUserService.getByUserName(username);
+		model.addAttribute("plike",source.getPlikes());
 		BeanUtils.copyProperties(source, user);
 		model.addAttribute("userParam", user);
 		model.addAttribute("articleParam", articleService.getByRefIdAndType(source.getUserId(), ArticleType.Artist));

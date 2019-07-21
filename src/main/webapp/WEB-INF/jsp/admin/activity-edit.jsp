@@ -116,7 +116,7 @@
 						</div>
 						<div class="col-sm-3 mb-3 mb-sm-0">
 						<label for="address">地址:</label>
-						<input type="text"  name="address" id="address"  class="form-control" readonly="true"></select>
+						<input type="text"  name="address" id="address"  class="form-control" readonly>
 						</div>
 						
 						

@@ -15,22 +15,22 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
   <div class="container">
-    <a class="navbar-brand" href="#" id='title'>活動詳情頁面</a>
+    <a class="navbar-brand" href="#" id='title'>活動詳情</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">活動詳情
+          <a class="nav-link" href="#">新增活動
                 <span class="sr-only">(current)</span>
               </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">編輯活動</a>
+          <a class="nav-link" href="#">編輯此活動</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/activity/list">返回查詢頁面</a>
+          <a class="nav-link" href="/activity/list">返回查詢頁面</a>
         </li>
       </ul>
     </div>
@@ -45,8 +45,8 @@
     
     
     <div class='row'>
-    <div>
-   <img src='/resources/user-bootstrap/img/activity/activity1.jpg' style='height:280px;border-radius:20px;'>
+    <div >
+   <img src='/resources/user-bootstrap/img/activity/activity${activityParam.id}.jpg' style='height:280px;border-radius:20px;width:500px'>
    </div>
    <div style='padding-left:10px'>
    <img src='/resources/user-bootstrap/img/activity/activity1.jpg' style='height:280px;border-radius:20px;'>
@@ -57,16 +57,26 @@
    <div class='row'>
    <div class="col-6">
    <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-smile-beam"></i>活動名稱: </span>
+   <span style="font-size: 20px; font-weight: bold;padding-left:15px">${activityParam.name}</span>
    </div>
    
    <div class="col-6">
-   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-smile-beam"></i>地址: </span>
+   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-smile-beam"></i>活動地點: </span>
+   <span style="font-size: 20px; font-weight: bold;padding-left:15px">${activityParam.locationId.locationName}</span>
    </div>
     <div class="col-12">
    <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-calendar-alt"></i>活動期間:</span>
+   <span style="font-size: 20px; font-weight: bold;padding-left:15px">${beginTime} 至   ${endTime}</span>
    </div>
-   <div class="col-12">
+   <div class="col-6">
+   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i	class="fab fa-hotjar"></i>表演類型:</span>
+   <span style="font-size: 20px; font-weight: bold;padding-left:15px">${activityParam.perfType}</span><br>
    <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i	class="fab fa-hotjar"></i>追蹤人數:</span>
+   <span style="font-size: 20px; font-weight: bold;padding-left:15px">${activityParam.awesomeNum}</span>
+   </div>
+   <div class="col-6">
+   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i	class="fab fa-hotjar"></i>地址:</span><br>
+   <span style="font-size: 20px; font-weight: bold;padding-left:20px">${activityParam.locationId.city}${activityParam.locationId.district}${activityParam.locationId.address}</span>
    </div>
    <div class="col-5" id='article'>
    
@@ -160,19 +170,25 @@
 
 <script>
 $.ajax({
-	url : "/user/activity/article/"+5,
+	url : "/activity/article/"+${activityParam.id},
 	type : "GET",
 	contentType : 'application/json;charset=UTF-8',
 	dataType : 'json',
 	success : function(res) {
 // 			alert(JSON.stringify(res.data[0].name));
+			if(res.type=="ERROR"){
+				txt1 ="<span style='font-size: 20px; border-bottom: 3px solid black; font-weight: bold;'><i class='far fa-newspaper'></i>相關文章:<br></span>";
+		 		txt2 ="<div id='"+${activityParam.id}+"'><span style='font-size: 20px; border-bottom: 1px solid black; font-weight: bold; color:red'>暫無文章</span></div>";
+		 		 txt3 = txt1+txt2;
+				$("#article").append(txt3);
+			}else{
 			txt1 ="<span style='font-size: 20px; border-bottom: 3px solid black; font-weight: bold;'><i class='far fa-newspaper'></i>相關文章:<br></span>";
 	 		$.each(res.data,function(index,value){
-	 			txt2 ="<div onclick='popout(this)' style='cursor:pointer;' id='"+value.id+"'><span style='font-size: 15px; border-bottom: 1px solid black; font-weight: bold;'>"+value.name+"</span></div>";
+	 			txt2 ="<div onclick='popout(this)' style='cursor:pointer;' id='"+value.id+"'><span style='font-size: 20px; border-bottom: 1px solid black; font-weight: bold; color:red'>"+value.name+"</span></div>";
 	 		 	txt3 = txt1+txt2;
 	 		})
 		
-			$("#article").append(txt3);
+			$("#article").append(txt3);}
 	}
 })
 

@@ -133,16 +133,17 @@ public class IndexController {
 		String urlShort = url.substring(32);
 		Long actId = performance.getActivityId();
 		Activity activity = activityService.getById(actId);
-		String actName = activity.getName();
 		performance.setUrl(urlShort);
 		String time = new SimpleDateFormat("yyyy年MM月dd日").format(performance.getUpdateTime());
 		model.addAttribute("performance",performance);
 		model.addAttribute("time",time);
 		String actBeginTime = new SimpleDateFormat("yyyy年MM月dd日").format(activity.getBeginTime());
 		String actEndTime = new SimpleDateFormat("yyyy年MM月dd日").format(activity.getBeginTime());
+		SecurityUser user = securityUserService.getById(performance.getUserpId());
 		model.addAttribute("activity",activity);
 		model.addAttribute("begin",actBeginTime);
-		model.addAttribute("end",actEndTime);		
+		model.addAttribute("end",actEndTime);
+		model.addAttribute("userinf",user);
 		return "/user/performance-view";
 	}
 	
@@ -223,6 +224,12 @@ public class IndexController {
 		grid.setRecords(result.getTotalElements());
 		grid.setTotal(result.getTotalPages());
 		return grid;
+	}
+	
+	@RequestMapping("/refarticle/{id}")
+	@ResponseBody
+	public List<Article> refarticle(@PathVariable(value="id") Long id){
+		return  articleService.getByRefIdAndType(id, ArticleType.Performance);
 	}
 	
 }

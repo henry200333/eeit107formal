@@ -9,7 +9,6 @@
 <jsp:include page="../topbar.jsp"></jsp:include>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />	
 <link rel="stylesheet" href="/resources/admin-bootstrap/css/jquery-ui-timepicker-addon.css">
-<script src="/resources/user-bootstrap/js/infinite-scroll.pkgd.min.js"></script>
 
 <body>
 		
@@ -64,21 +63,20 @@ $("#searchBT").click(function searchBT(){
 	var bb = {'page':page,'rows':rows};
 	var data =Object.assign(aa,bb);
 	$.ajax({
-		url : "/user/activity/query",
+		url : "/activity/query",
 		type : "GET",
 		data :data,
 		contentType : 'application/json;charset=UTF-8',
 		dataType : 'json',
 		success : function(res) {
 	 			var txt6 ="";
-				txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='#'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
-		 		//加圖片處
 		 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
 		 		//加活動名稱區
 		 		txt3="</a></h4><p class='card-text'>";
 		 		//加文章區
 		 		txt4="</p></div></div></div>";
 		 		$.each(res.rows,function(index,value){
+		 			txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
 		 			txt6 += txt5;
 		 		 })
@@ -97,21 +95,20 @@ function type11(obj){
 	totalPage=0;
 	$("#dataBody").empty();
 	$.ajax({
-		url : "/user/activity/query",
+		url : "/activity/query",
 		type : "GET",
 		data : {"actType":obj.value,"page":page,"rows":rows},
 		contentType : 'application/json;charset=UTF-8',
 		dataType : 'json',
 		success : function(res) {
 	 			var txt6 ="";
-				txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='#'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
-		 		//加圖片處
 		 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
 		 		//加活動名稱區
 		 		txt3="</a></h4><p class='card-text'>";
 		 		//加文章區
 		 		txt4="</p></div></div></div>";
 		 		$.each(res.rows,function(index,value){
+		 			txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
 		 			txt6 += txt5;
 		 		 })
@@ -214,19 +211,18 @@ var totalPage=10;
 $(document).ready(showjobs(page-1));
 function showjobs(page) {	
 	
-	$.ajax({url : "/user/activity/query",
+	$.ajax({url : "/activity/query",
 		type : "GET",
 		data:{'page':page,'rows':rows},
 		success : function(data) {
 	 		var txt6 ="";
-			txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='#'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
-	 		//加圖片處
 	 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
 	 		//加活動名稱區
 	 		txt3="</a></h4><p class='card-text'>";
 	 		//加文章區
 	 		txt4="</p></div></div></div>";
 	 		$.each(data.rows,function(index,value){
+	 			txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 	 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
 	 			txt6 += txt5;
 	 		 })
@@ -251,12 +247,12 @@ $(window).scroll(function(){
 					   if(page>totalPage){
 						   return;
 					   }else{
-						$.ajax({url : "/user/activity/query",
+						$.ajax({url : "/activity/query",
 							type : "GET",
 							data:{'page':page,'rows':rows,'actType':actType,'find':find},
 							success : function(data) {
 						 		var txt6 ="";
-								txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='#'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+								
 						 		//加圖片處
 						 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
 						 		//加活動名稱區
@@ -264,6 +260,7 @@ $(window).scroll(function(){
 						 		//加文章區
 						 		txt4="</p></div></div></div>";
 						 		$.each(data.rows,function(index,value){
+						 			txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 						 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
 						 			txt6 += txt5;
 						 		 })

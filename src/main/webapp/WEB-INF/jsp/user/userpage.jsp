@@ -40,26 +40,70 @@
 <meta charset="UTF-8">
 <title>${userParam.account }</title>
 <style>
+.title{
+	font-weight:bold;
+}
+
+.youtube{
+color:red;
+}
+
+.heart{
+color:#ffaad5;
+}
+
+.news{
+	color:#977c00;
+}
+
+.game{
+	color:#2894ff;
+}
 </style>
 </head>
 <body>
 	<jsp:include page="../topbar.jsp"></jsp:include>
-		<div class="container" style="margin-top: 70px;">
-		<div style="border: 5px #FFAC55 solid;"><img width="25%" src="${userParam.photo }"></div>
-		<div style="border: 5px #FFAC55 solid;">
-			姓名:${userParam.displayName }</div>
-		<div style="border: 5px #FFAC55 solid;">
-			關於我:${userParam.introduction }</div>
-
-		<div style="border: 5px #FFAC55 solid;">
-			追蹤人數:${userParam.followers }</div>
-		<div style="border: 5px #FFAC55 solid;">
-			表演影片:${userParam.performanceSet[0].title }</div>
-		<div style="border: 5px #FFAC55 solid;">
-			文章:${articleParam }</div>
-		<div style="border: 5px #FFAC55 solid;">
-			活動:${userParam.activitySet }</div>
-
+		<div class="container" style="margin-top: 90px;">
+		<h4 style="margin-left:20px;font-weight:bold"><i class="fas fa-user"></i>   個人頁面</h4>
+		<div class="row" style="margin-top:20px;">
+			<div class="col-3">
+				<img  src="${userParam.photo }" width="100%">
+			</div>
+			<div class="col-9" style="padding-top:10px;">
+				<h5 ><i class="fas fa-user-tag"></i>   基本資料</h5>
+				<p class="title">姓名:</p>
+				<p>${userParam.displayName }</p>
+				<hr>
+				<p class="title">追蹤人數:</p>
+				<p>${userParam.followers }</p>
+				<hr>
+				<p class="title">關於我:</p>
+				<p>${userParam.introduction }</p>
+			</div>
+		</div>
+		<div class="row" style="margin-top:20px;">
+		
+		<div class="col-12">
+			<h5><i class="fab fa-youtube youtube"></i>   我的表演</h5>
+			<c:forEach var="performance" items="${userParam.performanceSet}">
+				<a href="/performanceview/${performance.id}">${performance.title}</a>
+			</c:forEach><hr></div>
+		<div class="col-12" style="margin-top:20px;">
+			<h5><i class="fas fa-heart heart"></i>   我的最愛</h5>
+			<c:forEach var="plikes" items="${plike}">
+				<a href="/performanceview/${plikes.id}">${plikes.title}</a>
+			</c:forEach><hr></div>
+		<div class="col-12" style="margin-top:20px;">
+			<h5><i class="far fa-newspaper news"></i>    我的文章</h5>
+			<c:forEach var="article" items="${articleParam}">
+				<a href="javascript:window.open('/article/${article.id}');">${article.name}</a>
+			</c:forEach><hr></div>
+			<div class="col-12" style="margin-top:20px;">
+			<h5><i class="fas fa-gamepad game" ></i>    我的活動</h5>
+			<c:forEach var="activity" items="${userParam.activitySet}">
+				<a href="">${activity.name}－${activity.description}</a><br>
+			</c:forEach><hr></div>
+		</div>
 		</div>
 </body>
 </html>

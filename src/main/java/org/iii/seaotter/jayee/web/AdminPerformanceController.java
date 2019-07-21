@@ -95,7 +95,6 @@ public class AdminPerformanceController {
 
 	@RequestMapping("/add")
 	public String addPage(Model model) {
-		System.out.println("add");
 		return "/admin/performance-add";
 
 	}
@@ -103,7 +102,6 @@ public class AdminPerformanceController {
 	@RequestMapping("/aid")
 	@ResponseBody
 	public List<Activity> addAid() {
-		System.out.println("aid");
 		return activityService.getAll();
 
 	}
@@ -137,7 +135,6 @@ public class AdminPerformanceController {
 			if(flag)
 				searchResult.add(data);
 		}
-		System.out.println(searchResult);
 		return searchResult;
 	}
 
@@ -147,13 +144,11 @@ public class AdminPerformanceController {
 	@RequestMapping("/viewplus")
 	@ResponseBody
 	public Performance viewplus(@ModelAttribute("performance") Performance performance, Model model) {
-		System.out.println("viewplus");
 		performance = performanceSurvice.getById(performance.getId());
-		System.out.println(performance);
+
 		Long views = performance.getViews();
 		views ++;
 		performance.setViews(views);
-		System.out.println(performance);
 		performanceSurvice.update(performance,false);
 		return performance;
 
@@ -170,9 +165,7 @@ public class AdminPerformanceController {
 	@PostMapping("/insert")
 	@ResponseBody
 	public AjaxResponse<Performance> insert(@RequestBody Performance performance, Model model) {
-		System.out.println("insert");
 		// 測試是否傳到後台
-		System.out.println(performance);
 
 		// 回傳型態AjaxResponse與內部的宣告
 		AjaxResponse<Performance> result = new AjaxResponse<>();
@@ -222,9 +215,8 @@ public class AdminPerformanceController {
 	@PutMapping("/update")
 	@ResponseBody
 	public AjaxResponse<Performance> update(@RequestBody Performance performance, Model model) {
-		System.out.println("update");
+
 		// 測試是否傳到後台
-		System.out.println(performance);
 
 		// 回傳型態AjaxResponse與內部的宣告
 		AjaxResponse<Performance> result = new AjaxResponse<>();

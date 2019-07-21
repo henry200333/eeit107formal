@@ -13,8 +13,10 @@ import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
+import org.iii.seaotter.jayee.entity.Location;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
+import org.iii.seaotter.jayee.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,6 +24,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +32,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/user/activity")
+@RequestMapping("/activity")
 public class ActivityController {
 	
 	@Autowired
@@ -38,24 +41,51 @@ public class ActivityController {
 	@Autowired
 	ArticleService articleService;
 	
+	@Autowired
+	LocationService locationService;
 	
 
-	@RequestMapping("/list")
+	@RequestMapping(value= {"/list","/view"})
 	public String list() {
-		return "/user/activityTest";
+		return "/user/activityList";
 	}
-	@RequestMapping("/view")
-	public String view() {
+	
+	@RequestMapping("/edit/{id}")
+	public String editPage(@PathVariable Long id, Model model) {
+		Activity activity=activityService.getById(id);
+		model.addAttribute("activityParam", activity);
+		model.addAttribute("beginTime", activity.getBeginTime().toString().substring(0, 16));
+		model.addAttribute("endTime", activity.getEndTime().toString().substring(0, 16));
+		
+		return "/user/activityEdit";
+	}
+	@RequestMapping("/add/{id}")
+	public String addPage(@PathVariable Long id, Model model) {
+		Activity activity=activityService.getById(id);
+		model.addAttribute("activityParam", activity);
+		model.addAttribute("beginTime", activity.getBeginTime().toString().substring(0, 16));
+		model.addAttribute("endTime", activity.getEndTime().toString().substring(0, 16));
+		
+		return "/user/activityAdd";
+	}
+	
+	@RequestMapping("/view/{id}")
+	public String view(@PathVariable Long id, Model model) {
+		Activity activity=activityService.getById(id);
+		model.addAttribute("activityParam", activity);
+		model.addAttribute("beginTime", activity.getBeginTime().toString().substring(0, 16));
+		model.addAttribute("endTime", activity.getEndTime().toString().substring(0, 16));
+		
 		return "/user/activityView";
 	}
 
 	@RequestMapping("/article/{id}")
 	@ResponseBody
 	public AjaxResponse<List<Article>> getArticle(@PathVariable Long id){
-		System.out.println(id);
+	
 		AjaxResponse<List<Article>> ajaxResponse=new AjaxResponse<>();
 		List<Article> article=articleService.getByRefIdAndType(id, ArticleType.Activity);
-		System.out.println(article);
+
 		if(article.isEmpty()) {
 			ajaxResponse.setType(AjaxResponseType.ERROR);
 			return ajaxResponse;
@@ -111,6 +141,41 @@ public class ActivityController {
 		grid.setRecords(result.getTotalElements());
 		grid.setTotal(result.getTotalPages());
 		return grid;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping("/location")
+	@ResponseBody
+	public List<Location> getLocation(){
+		return locationService.getAll();
+	}
+	@RequestMapping("/location/city")
+	@ResponseBody
+	public List<String> getDistinctCity(){
+		return locationService.getDistinctCity();
+	}
+	
+	
+	@RequestMapping("/location/{city}")
+	@ResponseBody
+	public List<String> getDistinctDistrictByCity(@PathVariable String city){
+		return locationService.getDistinctDistrictByCity(city);
+	}
+	@RequestMapping("/location/district/{district}")
+	@ResponseBody
+	public List<Location> getByDistrict(@PathVariable String district){
+		return locationService.getByDistrict(district);
+	}
+	@RequestMapping("/location/address/{locationName}")
+	@ResponseBody
+	public List<Location> getByLocationName(@PathVariable String locationName){
+		return locationService.getByLocationName(locationName);
 	}
 	
 }

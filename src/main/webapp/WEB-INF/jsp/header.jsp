@@ -34,9 +34,7 @@
 				<button type="button" class="btn bar2" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"></button>
 				<div class="dropdown-menu" id="activitybar">
-					<a class="dropdown-item" href="/user/activity/list">搜尋活動頁面</a>
-					<a class="dropdown-item" href="/user/activity/view">活動詳情頁面</a>
-					<a class="dropdown-item" href="/user/activity/view">活動編輯頁面</a>
+					<a class="dropdown-item" href="/activity/list">搜尋活動頁面</a>
 				</div>
 			</div>
 			<div class="btn-group">
