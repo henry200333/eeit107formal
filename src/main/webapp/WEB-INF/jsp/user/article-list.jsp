@@ -28,23 +28,15 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-1 articleblock">
-				<button type="button" class="btn btn-success">全部文章</button>
-			</div>
-			<div class="col-1 articleblock">
-				<button type="button" class="btn btn-light">藝人文章</button>
-			</div>
-			<div class="col-1 articleblock">
-				<button type="button" class="btn btn-light">活動文章</button>
-			</div>
-			<div class="col-1 articleblock">
-				<button type="button" class="btn btn-light">表演文章</button>
-			</div>
-			<div class="col-1 articleblock">
-				<button type="button" class="btn btn-light">廠商文章</button>
-			</div>
-			<div class="col-1 articleblock">
-				<button type="button" class="btn btn-light">其他文章</button>
+			<div class="col-1">
+				<div class="input-group-append">
+					<button id="allBT" type="button" class="btn btn-success">全部文章</button>
+					<button id="artistBT" type="button" class="btn btn-light">藝人文章</button>
+					<button id="activityBT" type="button" class="btn btn-light">活動文章</button>
+					<button id="performanceBT" type="button" class="btn btn-light">表演文章</button>
+					<button id="venderBT" type="button" class="btn btn-light">廠商文章</button>
+					<button id="otherBT" type="button" class="btn btn-light">系統公告</button>
+				</div>
 			</div>
 		</div>
 		<hr>
@@ -304,6 +296,79 @@ function goToArticle(obj){
 	$(location).attr('href', '/article/' + obj.id.substring(7));
 };
 //前往指定id的article頁面結束
+// 頂端文章分類搜尋按鈕
+var articleType = "";
+$("#allBT").click(function(){
+	$(this).attr("class", "btn btn-success");
+	$("#artistBT").attr("class", "btn btn-light");
+	$("#activityBT").attr("class", "btn btn-light");
+	$("#performanceBT").attr("class", "btn btn-light");
+	$("#venderBT").attr("class", "btn btn-light");
+	$("#otherBT").attr("class", "btn btn-light");
+	articleType = "";
+	$('#articleGrid').jqGrid("clearGridData");
+	$('#articleGrid').jqGrid('setGridParam',{url: '/article/query?name=' + $('#search').val() + '&type=' + articleType}).trigger("reloadGrid");
+});
+$("#artistBT").click(function(){
+	$(this).attr("class", "btn btn-success");
+	$("#allBT").attr("class", "btn btn-light");
+	$("#activityBT").attr("class", "btn btn-light");
+	$("#performanceBT").attr("class", "btn btn-light");
+	$("#venderBT").attr("class", "btn btn-light");
+	$("#otherBT").attr("class", "btn btn-light");
+	articleType = "Artist";
+	$('#articleGrid').jqGrid("clearGridData");
+	$('#articleGrid').jqGrid('setGridParam',{url: '/article/query?name=' + $('#search').val() + '&type=' + articleType}).trigger("reloadGrid");
+});
+$("#activityBT").click(function(){
+	$(this).attr("class", "btn btn-success");
+	$("#artistBT").attr("class", "btn btn-light");
+	$("#allBT").attr("class", "btn btn-light");
+	$("#performanceBT").attr("class", "btn btn-light");
+	$("#venderBT").attr("class", "btn btn-light");
+	$("#otherBT").attr("class", "btn btn-light");
+	articleType = "Activity";
+	$('#articleGrid').jqGrid("clearGridData");
+	$('#articleGrid').jqGrid('setGridParam',{url: '/article/query?name=' + $('#search').val() + '&type=' + articleType}).trigger("reloadGrid");
+});
+$("#performanceBT").click(function(){
+	$(this).attr("class", "btn btn-success");
+	$("#artistBT").attr("class", "btn btn-light");
+	$("#activityBT").attr("class", "btn btn-light");
+	$("#allBT").attr("class", "btn btn-light");
+	$("#venderBT").attr("class", "btn btn-light");
+	$("#otherBT").attr("class", "btn btn-light");
+	articleType = "Performance";
+	$('#articleGrid').jqGrid("clearGridData");
+	$('#articleGrid').jqGrid('setGridParam',{url: '/article/query?name=' + $('#search').val() + '&type=' + articleType}).trigger("reloadGrid");
+});
+$("#venderBT").click(function(){
+	$(this).attr("class", "btn btn-success");
+	$("#artistBT").attr("class", "btn btn-light");
+	$("#activityBT").attr("class", "btn btn-light");
+	$("#performanceBT").attr("class", "btn btn-light");
+	$("#allBT").attr("class", "btn btn-light");
+	$("#otherBT").attr("class", "btn btn-light");
+	articleType = "Vender";
+	$('#articleGrid').jqGrid("clearGridData");
+	$('#articleGrid').jqGrid('setGridParam',{url: '/article/query?name=' + $('#search').val() + '&type=' + articleType}).trigger("reloadGrid");
+});
+$("#otherBT").click(function(){
+	$(this).attr("class", "btn btn-success");
+	$("#artistBT").attr("class", "btn btn-light");
+	$("#activityBT").attr("class", "btn btn-light");
+	$("#performanceBT").attr("class", "btn btn-light");
+	$("#venderBT").attr("class", "btn btn-light");
+	$("#allBT").attr("class", "btn btn-light");
+	articleType = "Other";
+	$('#articleGrid').jqGrid("clearGridData");
+	$('#articleGrid').jqGrid('setGridParam',{url: '/article/query?name=' + $('#search').val() + '&type=' + articleType}).trigger("reloadGrid");
+});
+$("#searchBT").click(function(){
+	$('#articleGrid').jqGrid("clearGridData");
+	$('#articleGrid').jqGrid('setGridParam',{url: '/article/query?name=' + $('#search').val() + '&type=' + articleType}).trigger("reloadGrid");
+});
+// 頂端文章分類搜尋按鈕
 <!-- 響應式網頁測試  158~160行增加loadComplete參數    149行autowidth改false 再加入以下code-->
 const grid_selector = "#articleGrid"; 
 const $grid = jQuery(grid_selector);
