@@ -156,6 +156,12 @@
 	transition-duration: 0.5s;
 	border: 1px solid black;
 }
+
+#articleadd{
+	color:red;
+	cursor: pointer;
+	margin-left:10px;
+}
 </style>
 <body>
 	<jsp:include page="../topbar.jsp"></jsp:include>
@@ -163,7 +169,8 @@
 	<input type="hidden" value="<sec:authentication property='name' />" id="thisuser">
 	<sec:authorize access="isAuthenticated()">
 	<input type='hidden' value="<sec:authentication property='principal.account'/>" id='userAccount'>
-	
+	<input type='hidden' value="<sec:authentication property='principal.displayName'/>" id='userDisplayName'>
+	<input type='hidden' value="<sec:authentication property='principal.photo'/>" id='userPhoto'>
 	</sec:authorize>
 	<div class="container">
 		<div class="row">
@@ -180,8 +187,8 @@
 					</div>
 
 					<div class="col-8">
-						<span class="type"># ${performance.performanceGerne}</span>
-						<h5 style="font-weight: bold; cursor: pointer;">${performance.title}</h5>
+						<span class="type"># ${performance.performanceGerne}</span><br>
+						<h5 style="font-weight: bold;display:inline" id="ptitle">${performance.title}</h5><br>
 						<span class="view">${performance.views} 次觀看</span>
 					</div>
 					<div class="col-4">
@@ -316,11 +323,18 @@
 						type:"POST",
 						success: function(data){
 							console.log(data);
-							$.each(data,function(index,value){
-								txt="<a href='/article/"+ value['id']+"' style='font-size:14px'>"+value['name']+"   </a>"
-								$("#refarticle").append(txt);
-								
-							})
+							if(data['length']==0){$("#refarticle").append("<span style='font-size:14px;color:red'>目前沒有關聯文章唷!</span>");
+							$("#refarticle").append("<i class='fas fa-plus-square' id='articleadd' title='新增文章'></i>");
+							}else{
+								$.each(data,function(index,value){									
+									txt="<a href='/article/"+ value['id']+"' style='font-size:14px'>"+value['name']+"   </a>"
+									$("#refarticle").append(txt);
+									
+								});
+								$("#refarticle").append("<i class='fas fa-plus-square' id='articleadd' title='新增文章'></i>");
+							}
+							
+							
 						}
 					})
 					</script>
@@ -332,7 +346,7 @@
 						</button>
 					</div>
 					<script>
-// 					判斷發布者與登入者是否相同
+// 					判斷發布者與登入者是否相同---------------------------------------------------------------------
 					var thispid = $("#thisp").val();
 					var thisuser = $("#thisuser").val();
 					$.ajax({
@@ -345,13 +359,39 @@
 						success:function(data){
 							if(data==true){
 								
-								txt="<button type='button' class='btn btn-secondary' id='editp'>"
+								var txt="<button type='button' class='btn btn-secondary' id='editp'>"
 								txt+="<i class='fas fa-cog'></i><span> 編輯</span></button>";
-								$("#subdiv").html(txt);	
+								$("#subdiv").html(txt);
+								$("#editp").click(function(){
+									$("#ptitle").after("<i class='fas fa-pencil-alt' style='color:red'  data-toggle='modal' data-target='#titlemodel' data-whatever='@mdo'></i>");
+									$(".introduction").after("  <i class='fas fa-pencil-alt' style='color:red'  data-toggle='modal' data-target='#Imodel' data-whatever='@mdo'></i>");
+									var txt2="<button type='button' class='btn btn-warning' id='editenter'>"
+										txt2+="<i class='fas fa-cog'></i><span> 完成</span></button>";
+										$("#subdiv").html(txt2);
+										$("#editenter").click(function(){
+											$.ajax({
+												url:'/user/performance/edit',
+												type:'POST',
+												data:{
+													"id":$("#thisp").val(),
+													"title": $("#ptitle").html(),
+													"introduction":$(".introduction").html()
+												},
+												success: function(data){
+													location.reload(); 
+												}
+												
+											})
+											
+										})
+								})
 																
 							}
 						}
 					})
+					
+					
+					
 					$("#sub").click(function(){
 						var user = $("#thisuser").val();
 						if(user=="anonymousUser"){
@@ -388,10 +428,10 @@
 <!-- 				留言輸入 -->
 				<div class="row" style="margin-top:20px;margin-left:50px;">
 				<div class="col-10" >
-					<textarea cols="68" rows="3" placeholder="   留言..."  style="resize:none"></textarea>
+					<textarea id='firstLayerComment' cols="68" rows="3" placeholder="   留言..."  style="resize:none"></textarea>
 				</div>
 				<div class="col-1" style="padding-top:40px;">
-				 <button type="button" class="btn btn-primary" ><i class="fas fa-share"></i></button>
+				 <button id='firstLayerButton' type="button" class="btn btn-primary" ><i class="fas fa-share"></i></button>
 				</div>
 				</div>
 <!-- 				留言開始 -->
@@ -399,50 +439,6 @@
 				<div id='commentAppend' style="margin-top:20px;">
 					<div class='row'>
 						<div class='col-12'>留言們</div>
-					</div>
-					<div class='row'>
-						<div class='col-1'>照片</div>
-						<div class='col-11' id='commentId'>
-							<div class='row'>
-								<div class='col-3'>吳帆祥</div>
-								<div class='col-9'></div>
-							</div>
-							<div>
-								<div class='col-2'></div>
-								<div class='col-10'>
-									<p>內容在這兒內容在這兒內容在這兒內容在這兒內容在這兒內容在這兒
-								</div>
-							</div>
-							<div class='row'>
-								<div class='col-5'></div>
-								<div class='col-4'>1992-11-28 13:15:21</div>
-								<div class='col-3'>
-									<i class="far fa-thumbs-up"></i><span>讚數</span>
-								</div>
-							</div> 
-							<div class='row'>
-						<div class='col-1'>照片</div>
-						<div class='col-11' id='commentId'>
-							<div class='row'>
-								<div class='col-3'>吳帆祥</div>
-								<div class='col-9'></div>
-							</div>
-							<div>
-								<div class='col-2'></div>
-								<div class='col-10'>
-									<p>內容在這兒內容在這兒內容在這兒內容在這兒內容在這兒內容在這兒
-								</div>
-							</div>
-							<div class='row'>
-								<div class='col-5'></div>
-								<div class='col-4'>1992-11-28 13:15:21</div>
-								<div class='col-3'>喜歡 不喜歡</div>
-							</div>
-						</div>	
-									
-					</div>
-						</div>	
-									
 					</div>
 				</div>
 				<!-- 				留言結束 -->
@@ -571,10 +567,68 @@
 	<br>
 	<br>
 	<br>
+	
+<!-- 	編輯用彈出視窗---------------------------------------------------- -->
+<div class="modal fade" id="titlemodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="ptitle" class="col-form-label">影片標題</label>
+            <input type="text" class="form-control" id="ptitlev" value="${performance.title}">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="editT" data-dismiss="modal">確認修改</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="Imodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="ptitle" class="col-form-label">影片簡介</label>
+            <input type="text" class="form-control" id="pIv" value="${performance.introduction}">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="editI" data-dismiss="modal">確認修改</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 	<footer>
 		<jsp:include page="../footer.jsp"></jsp:include>
 	</footer>
 	<script>
+		$("#editT").click(function(){
+			$("#ptitle").html($("#ptitlev").val());
+		})
+		
+		$("#editI").click(function(){
+			$(".introduction").html($("#pIv").val());
+		})
 		// 	旁邊的推薦影片清單
 		$
 				.ajax({
@@ -648,6 +702,8 @@
 				}
 			}
 		})
+		
+		
 	</script>
 </sec:authorize>
 </body>

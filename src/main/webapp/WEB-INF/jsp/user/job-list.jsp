@@ -82,7 +82,7 @@
 								<option value="全部">全部</option>
 								<option value="表演藝術">表演藝術</option>
 								<option value="聽覺藝術">聽覺藝術</option>
-								<option value="手工藝術">手工藝術</option>
+								<option value="創意工藝">創意工藝</option>
 							</select>
 						</div>
 						<div class="col-sm-2 mb-3 mb-sm-0">
@@ -271,7 +271,6 @@
 		}
 
 		$("#type").change(function() {
-			alert($("#type").val());
 			showjobs();
 		});
 		function showjobs() {
@@ -282,13 +281,16 @@
 								+ $("#district").val(),
 						type : "GET",
 						success : function(data) {
+							
 							var txt = "";
 							$.each(data.rows,function(key, obj) {
 												txt += "<form class='col-sm-4 mb-0 mb-sm-0' style='padding: 5px;background:white'><div style='border: solid;background:#DDDDDD'><div class='col-sm-12 mb-3 mb-sm-3'><h2 class=' h3 mb-0 text-gray-800'>"
 												txt += obj.name;
-												txt += "</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>店家:</label><h2 class=' h4 mb-0 text-gray-800'>";
+												txt += "</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>店家:</label><br><a href='/user/job/vender/";
+												txt += obj.vender.id;
+												txt += "'class=' h4 mb-0 text-gray-800'>";
 												txt += obj.venderName;
-												txt += "</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><div class='row'><div class='col-sm-6 mb-6 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>類別:</label><h2 class=' h4 mb-0 text-gray-800'>";
+												txt += "</a></div><div class='col-sm-12 mb-3 mb-sm-3'><div class='row'><div class='col-sm-6 mb-6 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>類別:</label><h2 class=' h4 mb-0 text-gray-800'>";
 												txt += obj.jobType;
 												txt += "</h2></div><div class='col-sm-6 mb-3 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>薪資:</label><h4 class=' h4 mb-0 text-gray-800'>";
 												txt += obj.reward;

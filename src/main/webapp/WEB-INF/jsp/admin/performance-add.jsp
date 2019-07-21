@@ -116,7 +116,7 @@
 			var txt="";		
 			console.log(data);
 			$.each(data,function(index,value){
-				txt += 	"<option value='"+value['id']+"'>"+ value['title']+"</option>"			
+				txt += 	"<option value='"+value['id']+"'>"+ value['name']+"</option>"			
 				})	
 			$("select").html(txt);
 			

@@ -30,6 +30,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -59,6 +61,14 @@ public class UserJobController {
 	public String userJobPage() {
 		return "/user/artist-application-list";
 	}
+	
+	@RequestMapping("/vender/{venderId}")
+	public String venderPage(@PathVariable(name="venderId") Long venderId, Model model) {
+		Vender vender=venderService.getById(venderId);
+		model.addAttribute("vender",vender);
+		return "/user/venderpage";
+	}
+	
 
 	@RequestMapping("/findjobs")
 	@ResponseBody
@@ -225,6 +235,12 @@ public class UserJobController {
 			message.put("mes", "未申請");
 		}
 		return message;
+	}
+	
+	@PostMapping("/findByVender")
+	@ResponseBody
+	public List<Job> findByVender(@RequestBody Vender vender, Model model){	
+		return jobservice.getByVender(vender);
 	}
 	
 	
