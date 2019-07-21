@@ -140,35 +140,14 @@
 			<!-- 300:1000 -->
 			<div class="row">
 				<div class="col-8" style="margin-top: 20px;">
-					<div style="position: relative; padding-right: 15px; padding-top: 12px;" id="activity">
-					<figure class="snip1543">
-  		<img src="/resources/user-bootstrap/img/index/act1.gif" style='border-top-right-radius:20px;border-bottom-right-radius:20px;' alt="sample108" />
-				  <figcaption>
-   				 <h3 id='acth1'></h3>
-    		<p id='actp1'></p>
-  					</figcaption>
- 					 <a href="#"></a>
-					</figure>
+					<div style="position: relative; padding-right: 15px; padding-top: 12px; height:235px" id="activity1">
+					
 					</div>
-					<div style="position: relative; padding-right: 15px; padding-top: 12px;" id="activity">
-						<figure class="snip1543">
-  		<img src="/resources/user-bootstrap/img/index/act1.gif" style='border-top-right-radius:20px;border-bottom-right-radius:20px;' alt="sample108" />
-				  <figcaption>
-   				 <h3 id='acth2'></h3>
-    		<p id='actp2'></p>
-  					</figcaption>
- 					 <a href="#"></a>
-					</figure>
+					<div style="position: relative; padding-right: 15px; padding-top: 12px; height:235px" id="activity2">
+						
 					</div>
-					<div style="position: relative; padding-right: 15px; padding-top: 12px;" id="activity">
-						<figure class="snip1543">
-  		<img src="/resources/user-bootstrap/img/index/act1.gif" style='border-top-right-radius:20px;border-bottom-right-radius:20px;' alt="sample108" />
-				  <figcaption>
-   				 <h3 id='acth3'></h3>
-    		<p id='actp3'></p>
-  					</figcaption>
- 					 <a href="#"></a>
-					</figure>
+					<div style="position: relative; padding-right: 15px; padding-top: 12px; height:235px" id="activity3">
+						
 					</div>
 				</div>
 				<script>
@@ -385,15 +364,28 @@
 		url:"/activityTop3",
 		type:"GET",
 		success: function(data){
-			txt1="<div style='position: relative' id='activity'><div style='position: absolute; margin-left: 280px; z-index: 2; top: 20px; display: none; border-left: 180px solid transparent; width: 450px; height: 0; border-bottom: 219px solid #ff7575' id='acts1'><span style='color: white'>"; 
-			txt2="<img src='/resources/user-bootstrap/img/index/act1.gif' width='100%' style='position: absolute; top: 20px;' id='act1'></div>";
 			$.each(data,function(index,value){
-				pictureNum = value['id'];
-				txt3 = "<br>發布人："+value['artist']+"<br>時間："+value['beginTime']+" 至 <br>　　　"+value['endTime']+"<br>參加人數："+value['awesomeNum'];
-				$("#acth"+(index+1)).append(value['name']);
-				$("#actp"+(index+1)).append(txt3);
+// 				pictureNum = value['id'];
+// 				txt3 = "<br>發布人："+value['artist']+"<br>時間："+value['beginTime']+" 至 <br>　　　"+value['endTime']+"<br>參加人數："+value['awesomeNum'];
+// 				txt4 = "<figure class='snip1543'><img src='/resources/user-bootstrap/img/activity/activity"+value['id']+".jpg' style='border-top-right-radius:20px;border-bottom-right-radius:20px;'/><figcaption>;"
+// 				txt5 = "</figcaption><a href='/activity/view/"+value['id']+"'></a></figure>";
+// 				$("#activity"+(index+1)).prepend(txt4);
+// 				$("#acth"+(index+1)).append(value['name']);
+// 				$("#actp"+(index+1)).append(txt3);
+// 				$("#actp"+(index+1)).after(txt5);
 // 				<br> <br>活動名稱 <br>發布人
 // 				<br>時間 <br>參加人數
+				txt1 = "<figure class='snip1543'><img src='/resources/user-bootstrap/img/activity/activity"+value['id']+".jpg' style='border-top-right-radius:20px;border-bottom-right-radius:20px;height:232px;width:755px'/><figcaption>";
+		   		txt2 = "<h3 id='acth1'>"+value['name']+"</h3>";
+		    	txt3 = "<p id='actp1'><br>發布人："+value['artist']+"<br>時間："+value['beginTime']+" 至 <br>　　　"+value['endTime']+"<br>參加人數："+value['awesomeNum']+"</p></figcaption><a href='/activity/view/"+value['id']+"'></a></figure>";
+				txt4 = txt1+txt2+txt3;
+				$("#activity"+(index+1)).append(txt4);
+				
+				
+				
+				
+				
+				
 				
 			})
 		},

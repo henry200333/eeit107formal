@@ -80,8 +80,9 @@ color:black;
 
 <!-- 	搜尋 -->
 	<div class="row" style="text-align:center;padding:10px;">
-		<div class="input-group" style="padding-left:400px;">
-  <input type="text" class="form-control"  id="keywords"  placeholder="   搜尋表演..."    />
+		<div class="input-group">
+		<button class="btn btn-info" id="newp" style="margin-right:310px;border-radius:50px;"><i class="fas fa-plus"></i>  新增影片</button>
+  <input type="text" class="form-control"  id="keywords"  placeholder="   搜尋表演..."     />
   <div class="input-group-append" >
   	<button class="btn btn-primary" type="button" id="type1"><i class="fas fa-music" ></i> 表演藝術</button>
     <button class="btn btn-primary" type="button" id="type2"><i class="fas fa-eye" ></i> 視覺藝術</button>
