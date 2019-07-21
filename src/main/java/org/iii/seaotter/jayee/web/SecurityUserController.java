@@ -49,7 +49,6 @@ public class SecurityUserController {
 	@PostMapping("/uploadPhoto")
 	public String upload(@RequestParam("imageFile") MultipartFile imageFile, @RequestParam("username") String username)
 			throws IOException {
-		System.out.println(username);
 		String returnValue = "/index";
 		try {
 			ArtistService.saveImage(imageFile, username);
