@@ -41,7 +41,7 @@
 							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
 					</div>
 
-					<!-- Add New Article Button -->
+					<!-- Add New Article Button + search name&type -->
 					<form class="user">
 			            <div class="form-group row">
 			            	<div class="col-sm-3 mb-3 mb-sm-0">
@@ -62,6 +62,19 @@
 				            </div>
 			            </div>
 			        </form>
+			        
+			        <div class="row">
+				        <div class="col-9">
+							<div class="input-group-append">
+								<button id="allBT" type="button" class="btn btn-success">ALL</button>
+								<button id="artistBT" type="button" class="btn btn-light">ARTIST</button>
+								<button id="activityBT" type="button" class="btn btn-light">ACTIVITY</button>
+								<button id="performanceBT" type="button" class="btn btn-light">PERFORMANCE</button>
+								<button id="venderBT" type="button" class="btn btn-light">VENDER</button>
+								<button id="otherBT" type="button" class="btn btn-light">OTHER</button>
+							</div>
+						</div>
+					</div>
 
 					<hr>
 
@@ -109,6 +122,7 @@
 			{ name: 'articleType', label: 'Article_Type', width: 30 },
 			{ name: 'refId', label: 'REF_ID', width: 20 },
 			{ name: 'count', label: 'VIEWS', width: 20 },
+			{ name: 'announce', label: 'CREATED_TIME', width: 45 },
 			{ name: 'edit', label: 'EDIT', width: 20, sortable : false, formatter: editBT },
 			{ name: 'delete', label: 'DELE', width: 20, sortable : false, formatter: deleBT }
 		],
@@ -165,11 +179,79 @@
 				})
 			 }
 		}
-		$("#searchBT").click(function(){
-			$('#articleGrid').jqGrid("clearGridData") ;
-			$('#articleGrid').jqGrid('setGridParam',{url: '/admin/article/query?name=' + $('#search').val() }).trigger("reloadGrid");
+		// 頂端文章分類搜尋按鈕
+		var articleType = "";
+		$("#allBT").click(function(){
+			$(this).attr("class", "btn btn-success");
+			$("#artistBT").attr("class", "btn btn-light");
+			$("#activityBT").attr("class", "btn btn-light");
+			$("#performanceBT").attr("class", "btn btn-light");
+			$("#venderBT").attr("class", "btn btn-light");
+			$("#otherBT").attr("class", "btn btn-light");
+			articleType = "";
+			$('#articleGrid').jqGrid("clearGridData");
+			$('#articleGrid').jqGrid('setGridParam',{url: '/admin/article/query?name=' + $('#search').val() + '&type=' + articleType}).trigger("reloadGrid");
 		});
-
+		$("#artistBT").click(function(){
+			$(this).attr("class", "btn btn-success");
+			$("#allBT").attr("class", "btn btn-light");
+			$("#activityBT").attr("class", "btn btn-light");
+			$("#performanceBT").attr("class", "btn btn-light");
+			$("#venderBT").attr("class", "btn btn-light");
+			$("#otherBT").attr("class", "btn btn-light");
+			articleType = "Artist";
+			$('#articleGrid').jqGrid("clearGridData");
+			$('#articleGrid').jqGrid('setGridParam',{url: '/admin/article/query?name=' + $('#search').val() + '&type=' + articleType}).trigger("reloadGrid");
+		});
+		$("#activityBT").click(function(){
+			$(this).attr("class", "btn btn-success");
+			$("#artistBT").attr("class", "btn btn-light");
+			$("#allBT").attr("class", "btn btn-light");
+			$("#performanceBT").attr("class", "btn btn-light");
+			$("#venderBT").attr("class", "btn btn-light");
+			$("#otherBT").attr("class", "btn btn-light");
+			articleType = "Activity";
+			$('#articleGrid').jqGrid("clearGridData");
+			$('#articleGrid').jqGrid('setGridParam',{url: '/admin/article/query?name=' + $('#search').val() + '&type=' + articleType}).trigger("reloadGrid");
+		});
+		$("#performanceBT").click(function(){
+			$(this).attr("class", "btn btn-success");
+			$("#artistBT").attr("class", "btn btn-light");
+			$("#activityBT").attr("class", "btn btn-light");
+			$("#allBT").attr("class", "btn btn-light");
+			$("#venderBT").attr("class", "btn btn-light");
+			$("#otherBT").attr("class", "btn btn-light");
+			articleType = "Performance";
+			$('#articleGrid').jqGrid("clearGridData");
+			$('#articleGrid').jqGrid('setGridParam',{url: '/admin/article/query?name=' + $('#search').val() + '&type=' + articleType}).trigger("reloadGrid");
+		});
+		$("#venderBT").click(function(){
+			$(this).attr("class", "btn btn-success");
+			$("#artistBT").attr("class", "btn btn-light");
+			$("#activityBT").attr("class", "btn btn-light");
+			$("#performanceBT").attr("class", "btn btn-light");
+			$("#allBT").attr("class", "btn btn-light");
+			$("#otherBT").attr("class", "btn btn-light");
+			articleType = "Vender";
+			$('#articleGrid').jqGrid("clearGridData");
+			$('#articleGrid').jqGrid('setGridParam',{url: '/article/query?name=' + $('#search').val() + '&type=' + articleType}).trigger("reloadGrid");
+		});
+		$("#otherBT").click(function(){
+			$(this).attr("class", "btn btn-success");
+			$("#artistBT").attr("class", "btn btn-light");
+			$("#activityBT").attr("class", "btn btn-light");
+			$("#performanceBT").attr("class", "btn btn-light");
+			$("#venderBT").attr("class", "btn btn-light");
+			$("#allBT").attr("class", "btn btn-light");
+			articleType = "Other";
+			$('#articleGrid').jqGrid("clearGridData");
+			$('#articleGrid').jqGrid('setGridParam',{url: '/admin/article/query?name=' + $('#search').val() + '&type=' + articleType}).trigger("reloadGrid");
+		});
+		$("#searchBT").click(function(){
+			$('#articleGrid').jqGrid("clearGridData");
+			$('#articleGrid').jqGrid('setGridParam',{url: '/admin/article/query?name=' + $('#search').val() + '&type=' + articleType}).trigger("reloadGrid");
+		});
+		// 頂端文章分類搜尋按鈕
 		<!--按Enter搜尋 起始-->
 		$("#search").bind("keypress", keypressInBox);
 		function keypressInBox(e) {

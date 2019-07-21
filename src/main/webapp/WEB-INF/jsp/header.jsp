@@ -51,14 +51,14 @@
 				</div>
 			</div>
 			<div class="btn-group">
-				<button type="button" class="btn bar" id="topbar5"
+				<button type="button" class="btn bar" id="topbar5" onclick="javascript:location.href='/article'"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="far fa-newspaper"></i> 文章
 				</button>
 				<button type="button" class="btn bar2" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"></button>
 				<div class="dropdown-menu" id="articlebar">
-					<a class="dropdown-item" href="/article">關於文章</a>
+					<a class="dropdown-item" href="/article">文章列表</a>
 				</div>
 			</div>
 			<div class="btn-group">
