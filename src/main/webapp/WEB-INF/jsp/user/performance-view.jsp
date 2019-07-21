@@ -137,6 +137,7 @@
 	z-index: 1;
 	width: 170%;
 	height: 95%;
+	cursor: pointer;
 }
 
 #f1 {
