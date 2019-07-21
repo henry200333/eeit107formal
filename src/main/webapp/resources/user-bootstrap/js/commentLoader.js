@@ -31,6 +31,7 @@ function reloadComments(){
 										.append($('<span>').css({'margin-left':'10px'}).text(performanceComment.likeCount))
 										.append($('<i>').addClass('far fa-thumbs-down'))
 										.append($('<span>').css({'margin-left':'10px'}).text(performanceComment.dislikeCount))
+										.append($('<button>').addClass('btn btn-primary').text('編輯'))
 										.append($('<span>').css({'margin-left':'20px','color':'blue'}).attr('id','reply'+performanceComment.id).text('回覆'))))
 
 				$('#commentAppend').append(commentBigDiv);
