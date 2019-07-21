@@ -98,7 +98,7 @@ public class AuthController {
 				
 		SecurityUser existingUser = securityUserDao.findByMailIgnoreCase(mail);
 		if (existingUser != null) {
-//			error code
+			return "signup";
 		}
 		
 		SecurityUser user = new SecurityUser();
