@@ -15,22 +15,22 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
   <div class="container">
-    <a class="navbar-brand" href="#" id='title'>活動詳情頁面</a>
+    <a class="navbar-brand" href="#" id='title'>活動詳情</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">活動詳情
+          <a class="nav-link" href="#">新增活動
                 <span class="sr-only">(current)</span>
               </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">編輯活動</a>
+          <a class="nav-link" href="#">編輯此活動</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/user/activity/list">返回查詢頁面</a>
+          <a class="nav-link" href="/activity/list">返回查詢頁面</a>
         </li>
       </ul>
     </div>
@@ -39,14 +39,15 @@
 
 <!-- Page Content -->
 <div class="container">
+<form id="form" name="form" class="user" autocomplete="off">
   <div class="card border-0 shadow my-5">
     <div class="card-body p-5">
     <div id='dataDiv'>
     
     
     <div class='row'>
-    <div>
-   <img src='/resources/user-bootstrap/img/activity/activity1.jpg' style='height:280px;border-radius:20px;'>
+    <div >
+   <img src='/resources/user-bootstrap/img/activity/activity${activityParam.id}.jpg' style='height:280px;border-radius:20px;width:500px'>
    </div>
    <div style='padding-left:10px'>
    <img src='/resources/user-bootstrap/img/activity/activity1.jpg' style='height:280px;border-radius:20px;'>
@@ -55,19 +56,81 @@
   
    <div style='padding-top:20px' id="塞資料處">
    <div class='row'>
-   <div class="col-10">
-   <span style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-smile-beam"></i>活動名稱: </span>
+   <div class="col-6">
+   <span style="font-size: 20px; font-weight: bold;"><i class="far fa-smile-beam"></i>活動名稱: </span>
+   <div class='col-11'>
+   <input type="text" class="form-control form-control-user" id="id" name="id"	placeholder="" value="${activityParam.name}">
    </div>
-   <div class="col-10">
-   <span style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-newspaper"></i>文章放這:</span>
-   <div id='article'></div>
    </div>
-   <div class="col-10">
-   <span style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-calendar-alt"></i>活動期間:</span>
+   
+   
+   <div class="col-6">
+   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-smile-beam"></i>活動詳細地址: </span>
+   <div class='col-11' id='addressInfo'>
+   <span style="font-size: 20px; font-weight: bold;padding-left:15px">${activityParam.locationId.city}${activityParam.locationId.district}${activityParam.locationId.address}</span>
    </div>
-   <div class="col-10">
-   <span style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold;"><i	class="fab fa-hotjar"></i>追蹤人數:</span>
    </div>
+    <div class="col-12">
+   <span style="font-size: 20px; font-weight: bold;"><i class="far fa-calendar-alt"></i>活動期間:</span>
+   <div class='input-group mb-3 col-5'>
+   <div class='input-group-prepend'>
+   <span class='input-group-text' style="font-weight: bold;padding-left:15px">起</span>
+   </div>
+   <input id="beginTime" name="beginTime" type="text"	class="form-control form-control-user" placeholder="BeginTime"	value="${activityParam.beginTime}" readonly="readonly" style="background-color:#ffffff;" />
+   </div>
+      
+  <div class='input-group mb-3 col-5'>
+   <div class='input-group-prepend'>
+   <span class='input-group-text' style="font-weight: bold;padding-left:15px">至</span>
+   </div>
+   <input id="endTime" name="endTime" type="text"	class="form-control form-control-user" placeholder="EndTime"	value="${activityParam.endTime}" readonly="readonly" style="background-color:#ffffff;" />
+   </div>
+  
+  
+   </div>
+  
+   <div class="col-6">
+   <span style="font-size: 20px;  font-weight: bold;"><i	class="fab fa-hotjar"></i>選擇活動地點:</span><br>
+  
+  
+  
+  <div class="form-group row">
+						<div class="col-sm-3 mb-3 mb-sm-0">
+						<select name="city" id="city"  class="form-control" >
+						</select>
+						</div>
+						<div class="col-sm-3 mb-3 mb-sm-0">
+						<select  name="district" id="district"  class="form-control">
+						<option selected disabled hidden='true' value='${activityParam.locationId.district}'>${activityParam.locationId.district}</option>
+						</select>
+						</div>
+						<div class="col-sm-5 mb-3 mb-sm-0">
+						<select  name="locationName" id="locationName"  class="form-control">
+						<option selected disabled hidden='true' value='${activityParam.locationId.locationName}'>${activityParam.locationId.locationName}</option>
+						</select>
+						</div>
+						
+						
+	</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   </div>
+   <div class="col-5" id='article'>
+   
+   </div>
+ 
+   
    </div>  
    </div>
    
@@ -78,6 +141,7 @@
 
     </div>
   </div>
+  </form>
 </div>
 
 
@@ -152,25 +216,138 @@
 
 
 </body>
-
+ <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script type="text/javascript" src="/resources/admin-bootstrap/js/jquery-ui-timepicker-addon.js"></script>
 <script>
 $.ajax({
-	url : "/user/activity/article/"+5,
+	url : "/activity/article/"+${activityParam.id},
 	type : "GET",
 	contentType : 'application/json;charset=UTF-8',
 	dataType : 'json',
 	success : function(res) {
-			alert(res);
-// 	 		$.each(res.rows,function(index,value){
-	 			
-// 	 		 })
+// 			alert(JSON.stringify(res.data[0].name));
+			if(res.type=="ERROR"){
+				txt1 ="<span style='font-size: 20px; border-bottom: 3px solid black; font-weight: bold;'><i class='far fa-newspaper'></i>相關文章:<br></span>";
+		 		txt2 ="<div id='"+${activityParam.id}+"'><span style='font-size: 20px; border-bottom: 1px solid black; font-weight: bold; color:red'>暫無文章</span></div>";
+		 		 txt3 = txt1+txt2;
+				$("#article").append(txt3);
+			}else{
+			txt1 ="<span style='font-size: 20px; border-bottom: 3px solid black; font-weight: bold;'><i class='far fa-newspaper'></i>相關文章:<br></span>";
+	 		$.each(res.data,function(index,value){
+	 			txt2 ="<div onclick='popout(this)' style='cursor:pointer;' id='"+value.id+"'><span style='font-size: 20px; border-bottom: 1px solid black; font-weight: bold; color:red'>"+value.name+"</span></div>";
+	 		 	txt3 = txt1+txt2;
+	 		})
 		
-// 			$("#article").append(txt6);
+			$("#article").append(txt3);}
 	}
 })
 
+function popout(obj){
+	articleUrl = "/article/"+obj.id;
+	window.open (articleUrl);
+}
 
-
+$(function() {
+    $( "#beginTime" ).datetimepicker({
+        showButtonPanel: true,
+        dateFormat:'yy-mm-dd',
+        timeFormat: "HH:mm:ss",
+        onClose: function(selectedDate) {
+			$("#endTime").datepicker("option", "minDate", selectedDate)}
+    });
+    $( "#endTime" ).datetimepicker({
+        showButtonPanel: true,
+        dateFormat:'yy-mm-dd',
+        timeFormat: "HH:mm:ss",
+        onClose: function(selectedDate) {
+			$("#beginTime").datepicker("option", "maxDate", selectedDate)}
+    });
+  });
+  
+  
+  
+  
+  
+  
+$(document).ready(function(){
+	
+	 $.ajax({
+			url:"/activity/location/city",
+			type:"POST",
+			success: function(data){
+				var txt="";		
+				console.log(data);
+				txt += "<option selected disabled hidden='true'>"+"${activityParam.locationId.city}"+"</option>";
+				$.each(data,function(index,value){
+					txt += 	"<option value='"+ value +"'>"+ value +"</option>"			
+					})	
+				$("#city").html(txt);
+				
+			}
+		})
+           
+           $('#city').change(function(){
+               var CName= $('#city').val();
+               $.ajax({
+                   type: "POST",
+                   url: '/activity/location/'+ CName,
+                   cache: false,
+                   error: function(){
+                       alert('發生錯誤');
+                   },
+                   success: function(data){
+   					var txt="";		
+   					console.log(data);
+   					txt += '<option value="" style="display: none">請選擇鄉鎮市區</option>';
+   					$.each(data,function(index,value){
+   						txt += 	"<option value='"+ value +"'>"+ value +"</option>"			
+   						})	
+   					$("#district").html(txt);
+   					
+   				}
+               });
+           });
+           $('#district').change(function(){
+               var DisN= $('#district').val();
+               $.ajax({
+                   type: "POST",
+                   url: '/activity/location/district/'+ DisN,
+                   cache: false,
+                   error: function(){
+                       alert('Ajax request 發生錯誤');
+                   },
+                   success: function(data){
+   					var txt="";		
+   					console.log(data);
+   					txt += '<option value="" style="display: none">請選擇活動地點</option>';
+   					$.each(data,function(index,value){
+   						txt += 	"<option value='"+ value['locationName'] +"'>"+ value['locationName'] +"</option>"			
+   						})	
+   					$("#locationName").html(txt);
+   					
+   				}
+               });
+           });
+           
+           $("#locationName").change(function(){
+               var LN= $("#locationName").val();
+               $.ajax({
+                   type: "POST",
+                   url: '/activity/location/address/'+ LN,
+                   cache: false,
+                   error: function(){
+                       alert('發生錯誤');
+                   },
+                   success: function(data){
+                	  txt ="<span style='font-size: 20px; font-weight: bold;padding-left:15px'>" + data[0]['city']+data[0]['district']+data[0]['address'] +"</span>";
+                	  $("#addressInfo").empty();
+                	  $("#addressInfo").append(txt);
+   					
+   				}
+               });
+           });
+           
+       });
 
 </script>
 

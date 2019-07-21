@@ -71,14 +71,13 @@ $("#searchBT").click(function searchBT(){
 		dataType : 'json',
 		success : function(res) {
 	 			var txt6 ="";
-				txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='#'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
-		 		//加圖片處
 		 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
 		 		//加活動名稱區
 		 		txt3="</a></h4><p class='card-text'>";
 		 		//加文章區
 		 		txt4="</p></div></div></div>";
 		 		$.each(res.rows,function(index,value){
+		 			txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
 		 			txt6 += txt5;
 		 		 })
@@ -104,14 +103,13 @@ function type11(obj){
 		dataType : 'json',
 		success : function(res) {
 	 			var txt6 ="";
-				txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='#'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
-		 		//加圖片處
 		 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
 		 		//加活動名稱區
 		 		txt3="</a></h4><p class='card-text'>";
 		 		//加文章區
 		 		txt4="</p></div></div></div>";
 		 		$.each(res.rows,function(index,value){
+		 			txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
 		 			txt6 += txt5;
 		 		 })
@@ -219,14 +217,13 @@ function showjobs(page) {
 		data:{'page':page,'rows':rows},
 		success : function(data) {
 	 		var txt6 ="";
-			txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='#'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
-	 		//加圖片處
 	 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
 	 		//加活動名稱區
 	 		txt3="</a></h4><p class='card-text'>";
 	 		//加文章區
 	 		txt4="</p></div></div></div>";
 	 		$.each(data.rows,function(index,value){
+	 			txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 	 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
 	 			txt6 += txt5;
 	 		 })
@@ -256,7 +253,7 @@ $(window).scroll(function(){
 							data:{'page':page,'rows':rows,'actType':actType,'find':find},
 							success : function(data) {
 						 		var txt6 ="";
-								txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='#'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+								
 						 		//加圖片處
 						 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
 						 		//加活動名稱區
@@ -264,6 +261,7 @@ $(window).scroll(function(){
 						 		//加文章區
 						 		txt4="</p></div></div></div>";
 						 		$.each(data.rows,function(index,value){
+						 			txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 						 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
 						 			txt6 += txt5;
 						 		 })
