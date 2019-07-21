@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -26,5 +27,35 @@ public class ForumController {
 		return loadComments;
 	}
 	
+	@RequestMapping("/likeButtonClick")
+	@ResponseBody
+	public Forum likeButtonClike(@RequestParam Long id, @RequestParam Long likeType) {
+		Forum forum = null;
+		if(likeType==1) {
+			forum = forumService.likePlusOne(id);
+		}else if(likeType==2) {
+			forum = forumService.likePlusOneAndDislikeMinusOne(id);
+		}	
+		return forum;
+	}
 	
+	@RequestMapping("/dislikeButtonClick")
+	@ResponseBody
+	public Forum dislikeButtonClike(@RequestParam Long id, @RequestParam Long dislikeType) {
+		Forum forum = null;
+		if(dislikeType==1) {
+			forum = forumService.dislikePlusOne(id);
+		}else if(dislikeType==2) {
+			forum = forumService.dislikePlusOneAndLikeMinusOne(id);
+		}	
+		return forum;
+	}
+	
+	@RequestMapping("/addCommentReply")
+	@ResponseBody
+	public Forum addCommentReply(Forum forum) {
+		forum = forumService.create(forum);
+		
+		return forum;
+	}
 }
