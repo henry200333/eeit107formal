@@ -281,7 +281,6 @@ public class PerformanceController {
 	@RequestMapping("/activity")
 	@ResponseBody
 	public List<Activity> addAid(@RequestParam("username") String username) {
-		System.out.println("getzct");
 		SecurityUser user = SecurityUserService.getByUserName(username);
 		return activityService.getByArtistId(user.getUserId());
 
