@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/user/job")
+@RequestMapping("/job")
 public class UserJobController {
 
 	@Autowired
@@ -64,8 +64,12 @@ public class UserJobController {
 	
 	@RequestMapping("/vender/{venderId}")
 	public String venderPage(@PathVariable(name="venderId") Long venderId, Model model) {
+		System.out.println("aaa");
 		Vender vender=venderService.getById(venderId);
+		SecurityUser user= vender.getUser();
+		vender.setUser(null);
 		model.addAttribute("vender",vender);
+		model.addAttribute("user",user);
 		return "/user/venderpage";
 	}
 	
@@ -237,9 +241,11 @@ public class UserJobController {
 		return message;
 	}
 	
-	@PostMapping("/findByVender")
+	@PostMapping(value= "/findByVender")
 	@ResponseBody
-	public List<Job> findByVender(@RequestBody Vender vender, Model model){	
+	public List<Job> findByVender(@RequestBody Long id){	
+		Vender vender=new Vender();
+		vender.setId((long)1);
 		return jobservice.getByVender(vender);
 	}
 	

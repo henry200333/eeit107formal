@@ -14,7 +14,7 @@
 		<div class="row">
 			<div class="col-11" style="text-align: right;">
 				<a href="/article" class="btn btn-info btn-icon-split articleblock">
-				 <span class="icon text-white-50"> <i class="fas fa-reply"></i></span> 
+				 <span class="icon text-white-50"><i class="fas fa-reply-all"></i></span> 
 				 <span class="text">回文章列表</span>
 				</a>
 			</div>
@@ -37,7 +37,7 @@
 		</div>
 		<div class="row">
 			<div class="col-11" style="text-align: right;">發布時間：
-				${article.announce}</div>
+				${createdDate}</div>
 		</div>
 		<hr>
 		<div class="row">
@@ -71,7 +71,7 @@
 		<div class="row">
 			<div class="col-11" style="text-align: right;">
 				<a href="/article" class="btn btn-info btn-icon-split articleblock">
-				 <span class="icon text-white-50"> <i class="fas fa-reply"></i></span> 
+				 <span class="icon text-white-50"><i class="fas fa-reply-all"></i></span> 
 				 <span class="text">回文章列表</span>
 				</a>
 			</div>

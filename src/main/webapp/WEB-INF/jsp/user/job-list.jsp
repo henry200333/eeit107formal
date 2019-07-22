@@ -35,7 +35,7 @@
 						<div class='col-sm-11 mb-3 mb-sm-6' style="text-align: center">
 							<h1 class="text-info">List of Jobs</h1>
 						</div>
-						<a href="/user/job/application/list" id="applicationPage"
+						<a href="/job/application/list" id="applicationPage"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">申請紀錄</a>
 					</div>
 					<hr>
@@ -132,7 +132,7 @@
 		var total = 1;
 
 		$.ajax({
-			url : "/user/job/location/city",
+			url : "/job/location/city",
 			type : "POST",
 			success : function(data) {
 				var txt = "";
@@ -153,7 +153,7 @@
 							$
 									.ajax({
 										type : "POST",
-										url : '/user/job/location/' + CName,
+										url : '/job/location/' + CName,
 										cache : false,
 										error : function() {
 											alert('發生錯誤');
@@ -216,7 +216,7 @@
 		function join(object) {
 
 			$.ajax({
-				url : "/user/job/addapplication?jobid=" + object.id
+				url : "/job/addapplication?jobid=" + object.id
 						+ "&username=" + $("#username").val(),
 				type : "GET",
 				success : function(data) {
@@ -275,7 +275,7 @@
 		});
 		function showjobs() {
 
-			$.ajax({url : "/user/job/query?page=" + page + "&type="
+			$.ajax({url : "/job/query?page=" + page + "&type="
 								+ $("#type").val() + "&city="
 								+ $("#city").val() + "&district="
 								+ $("#district").val(),
@@ -286,7 +286,7 @@
 							$.each(data.rows,function(key, obj) {
 												txt += "<form class='col-sm-4 mb-0 mb-sm-0' style='padding: 5px;background:white'><div style='border: solid;background:#DDDDDD'><div class='col-sm-12 mb-3 mb-sm-3'><h2 class=' h3 mb-0 text-gray-800'>"
 												txt += obj.name;
-												txt += "</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>店家:</label><br><a href='/user/job/vender/";
+												txt += "</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>店家:</label><br><a href='/job/vender/";
 												txt += obj.vender.id;
 												txt += "'class=' h4 mb-0 text-gray-800'>";
 												txt += obj.venderName;
@@ -308,7 +308,7 @@
 												txt += "</div></form>";
 
 												window.setTimeout(function() {$.ajax({
-																				url : "/user/job/checkapplication?jobid="
+																				url : "/job/checkapplication?jobid="
 																						+ obj.id
 																						+ "&username="
 																						+ $("#username").val(),

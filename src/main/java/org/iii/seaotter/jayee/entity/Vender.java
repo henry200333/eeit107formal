@@ -1,5 +1,6 @@
 package org.iii.seaotter.jayee.entity;
 
+import java.security.PrivateKey;
 import java.util.List;
 import java.util.Set;
 
@@ -53,6 +54,8 @@ public class Vender {
 	private Double lat;
 	@Column(name="lng")
 	private Double lng;
+	@Column(name="img")
+	private String img;
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	@JsonBackReference

@@ -301,5 +301,12 @@ public class PerformanceController {
 		return performanceService.update(performance, false);
 
 	}
+	
+	@RequestMapping("/padd")
+	@ResponseBody
+	public boolean padd(@RequestParam("username")String username,@RequestParam("title") String title,@RequestParam("introduction") String introduction,@RequestParam("url") String url,@RequestParam("actid")Long actid) {
+		boolean result = true;
+		return result;
+	}
 
 }

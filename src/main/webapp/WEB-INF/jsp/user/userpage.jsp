@@ -80,6 +80,7 @@ color:#ffaad5;
 		<div class="row" style="margin-top:20px;">
 			<div class="col-3">
 				<img  src="${userParam.photo }" width="100%">
+				
 			</div>
 			<div class="col-9" style="padding-top:10px;">
 				<h5 ><i class="fas fa-user-tag"></i>   基本資料</h5>
@@ -99,6 +100,10 @@ color:#ffaad5;
 				<hr>
 				<p class="title">追蹤人數:</p>
 				<p>${userParam.followers }</p>
+				<c:forEach var="p" items="${userParam.plikes }">
+				<a href="">${p.title}</a><br>
+			</c:forEach>
+				<p>${userParam.plikes }</p>
 				<hr>
 				<p class="title">關於我:</p>
 				<p>${userParam.introduction }</p>
@@ -124,7 +129,7 @@ color:#ffaad5;
 			<div class="col-12" style="margin-top:20px;">
 			<h5><i class="fas fa-gamepad game" ></i>    我的活動    <span title="新增活動" style="cursor: pointer;"><i class="far fa-plus-square"></i></span></h5>
 			<c:forEach var="activity" items="${userParam.activitySet}">
-				<a href="">${activity.name}－${activity.description}</a><br>
+				<a href="javascript:window.open('/activity/view/${activity.id}');">${activity.name}－${activity.description}</a><br>
 			</c:forEach><hr></div>
 		</div>
 		</div>
