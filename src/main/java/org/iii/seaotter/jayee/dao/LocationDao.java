@@ -15,6 +15,8 @@ public interface LocationDao extends JpaRepository<Location,Long>,JpaSpecificati
 	public List<Location> findByCityIs(String city);
 	public List<Location> findByDistrictIs(String district);
 	public List<Location> findByLocationNameIs(String locationName);
+	public List<Location> findByLocationIdIs(Long id);
+	
 	
 	
 }

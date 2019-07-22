@@ -56,40 +56,27 @@
   
    <div style='padding-top:20px' id="塞資料處">
    <div class='row'>
+   
    <div class="col-6">
-   <span style="font-size: 20px; font-weight: bold;"><i class="far fa-smile-beam"></i>活動名稱: </span>
-   <div class='col-11'>
-   <input type="text" class="form-control form-control-user" id="id" name="id"	placeholder="" value="${activityParam.name}">
+   <span style="font-size: 20px; font-weight: bold;"><i class="far fa-smile-beam"></i>表演者名: </span>
+   <div class='col-8'>
+   <input type="text" class="form-control form-control-user" id="artist" name="artist"	placeholder="" value="${activityParam.artist}" readonly>
    </div>
    </div>
-   
-   
    <div class="col-6">
    <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i id='mappingIcon' class="fas fa-map-marker-alt"></i>活動詳細地址: </span>
    <div class='col-11' id='addressInfo'>
-   <span style="font-size: 20px; font-weight: bold;padding-left:15px">${activityParam.locationId.city}${activityParam.locationId.district}${activityParam.locationId.address}</span>
+   <span style="font-size: 20px; font-weight: bold;padding-left:15px">${locationCity}${locationDistrict}${locationAddress}</span>
    </div>
    </div>
-    <div class="col-12">
-   <span style="font-size: 20px; font-weight: bold;"><i class="far fa-calendar-alt"></i>活動期間:</span>
-   <div class='input-group mb-3 col-5'>
-   <div class='input-group-prepend'>
-   <span class='input-group-text' style="font-weight: bold;padding-left:15px">起</span>
-   </div>
-   <input id="beginTime" name="beginTime" type="text"	class="form-control form-control-user" placeholder="BeginTime"	value="${activityParam.beginTime}" readonly="readonly" style="background-color:#ffffff;" />
-   </div>
-      
-  <div class='input-group mb-3 col-5'>
-   <div class='input-group-prepend'>
-   <span class='input-group-text' style="font-weight: bold;padding-left:15px">至</span>
-   </div>
-   <input id="endTime" name="endTime" type="text"	class="form-control form-control-user" placeholder="EndTime"	value="${activityParam.endTime}" readonly="readonly" style="background-color:#ffffff;" />
-   </div>
-  
-  
-   </div>
-  
    <div class="col-6">
+   <span style="font-size: 20px; font-weight: bold;"><i class="far fa-smile-beam"></i>活動名稱: </span>
+   <div class='col-8'>
+   <input type="text" class="form-control form-control-user" id="name" name="name"	placeholder="" value="${activityParam.name}">
+   </div>
+   </div>
+   
+     <div class="col-6">
    <span style="font-size: 20px;  font-weight: bold;"><i class="fas fa-map-marked-alt"></i>選擇活動地點:</span><br>
   
   
@@ -101,31 +88,69 @@
 						</div>
 						<div class="col-sm-3 mb-3 mb-sm-0">
 						<select  name="district" id="district"  class="form-control">
-						<option selected disabled hidden='true' value='${activityParam.locationId.district}'>${activityParam.locationId.district}</option>
+						<option selected  hidden='true' value='${locationDistrict}'>${locationDistrict}</option>
 						</select>
 						</div>
 						<div class="col-sm-5 mb-3 mb-sm-0">
 						<select  name="locationName" id="locationName"  class="form-control">
-						<option selected disabled hidden='true' value='${activityParam.locationId.locationName}'>${activityParam.locationId.locationName}</option>
+						<option selected  hidden='true' value='${locationLocationName}'>${locationLocationName}</option>
 						</select>
 						</div>
-						
-						
 	</div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+   </div>
+   
+   <div class="col-6">
+   <span style="font-size: 20px; font-weight: bold;"><i class="far fa-smile-beam"></i>表演類型:</span>
+   <div class='col-8'>
+	<select  name="perfType" id="perfType"  class="form-control">
+					<option selected  hidden='true' value="${activityParam.perfType}">${activityParam.perfType}</option>
+					<option value='創意藝術'>創意藝術</option>
+					<option value='視覺藝術'>視覺藝術</option>
+					<option value='表演藝術'>表演藝術</option>
+					</select>   
+   
+   </div><br>
+   <span>
+   <input type="text" class="form-control form-control-user" id="useraId" name="useraId"	placeholder="" value="${activityParam.useraId}" hidden='hidden'>
+   <input type="text" class="form-control form-control-user" id="id" name="id"	placeholder="" value="${activityParam.id}"  hidden='hidden'>
+   <input type="text" class="form-control form-control-user" id="awesomeNum" name="awesomeNum"	placeholder="" value="${activityParam.awesomeNum}"  hidden='hidden'>
+   <input type="text" class="form-control form-control-user" id="locationId" name="locationId"	placeholder="" value="${activityParam.locationId}"  hidden='hidden'>
+<%--    <input type="text" class="form-control form-control-user" id="locationId.city" name="locationId.city"	placeholder="" value="${activityParam.locationId.city}"  hidden='hidden'> --%>
+<%--    <input type="text" class="form-control form-control-user" id="locationId.district" name="locationId.district"	placeholder="" value="${activityParam.locationId.district}"  hidden='hidden'> --%>
+<%--    <input type="text" class="form-control form-control-user" id="locationId.address" name="locationId.address"	placeholder="" value="${activityParam.locationId.address}"  hidden='hidden'> --%>
+   </span>
+   
+   </div>
+   
+   
+    <div class="col-6">
+   <span style="font-size: 20px; font-weight: bold;"><i class="far fa-calendar-alt"></i>活動期間:</span>
+   <div class='input-group mb-3 col-8'>
+   <div class='input-group-prepend'>
+   <span class='input-group-text' style="font-weight: bold;padding-left:15px">起</span>
+   </div>
+   <input id="beginTime" name="beginTime" type="text"	class="form-control form-control-user" placeholder="BeginTime"	value="${activityParam.beginTime}" readonly="readonly" style="background-color:#ffffff;" />
+   </div>
+      
+  <div class='input-group mb-3 col-8'>
+   <div class='input-group-prepend'>
+   <span class='input-group-text' style="font-weight: bold;padding-left:15px">至</span>
+   </div>
+   <input id="endTime" name="endTime" type="text"	class="form-control form-control-user" placeholder="EndTime"	value="${activityParam.endTime}" readonly="readonly" style="background-color:#ffffff;" />
+   </div>
   
   
    </div>
+  
+  <div class="col-6">
+   <span style="font-size: 20px; font-weight: bold;"><i class="far fa-smile-beam"></i>活動描述: </span>
+   <div class='col-8'>
+   <textarea class="form-control form-control-user" id="description" name="description"	placeholder="" >${activityParam.description}</textarea>
+   </div>
+   </div>
+  
+  
+ 
    <div class="col-5" id='article'>
    
    </div>
@@ -141,6 +166,19 @@
 
     </div>
   </div>
+  		<button id="update" type="button"
+							class="btn btn-primary btn-user btn-block">
+							<span class="icon text-white-50"> <i
+								class="fas fa-file-import"></i>
+							</span> <span class="text"> Edit This Activity</span>
+						</button>
+
+						<button id="reset" type="button"
+							class="btn btn-danger btn-user btn-block">
+							<span class="icon text-white-50"> <i
+								class="fas fa-file-excel"></i>
+							</span> <span class="text"> Reset Input</span>
+						</button>
   </form>
 </div>
 
@@ -277,7 +315,7 @@ $(document).ready(function(){
 			success: function(data){
 				var txt="";		
 				console.log(data);
-				txt += "<option selected disabled hidden='true'>"+"${activityParam.locationId.city}"+"</option>";
+				txt += "<option selected disabled hidden='true' value='${locationCity}'>"+"${locationCity}"+"</option>";
 				$.each(data,function(index,value){
 					txt += 	"<option value='"+ value +"'>"+ value +"</option>"			
 					})	
@@ -345,6 +383,8 @@ $(document).ready(function(){
            
            $("#locationName").change(function(){
                var LN= $("#locationName").val();
+               var city1 = $("#city").val();
+               var district1 = $("#district").val();
                $.ajax({
                    type: "POST",
                    url: '/activity/location/address/'+ LN,
@@ -354,6 +394,9 @@ $(document).ready(function(){
                    },
                    success: function(data){
                 	  txt ="<span style='font-size: 20px; font-weight: bold;padding-left:15px'>" + data[0]['city']+data[0]['district']+data[0]['address'] +"<i class='fas fa-glass-cheers' style='color:Magenta'></i></span>";
+                	  txtLocationid = data[0]['locationId'];
+                	  
+                	  $("#locationId").attr("value",txtLocationid);
                 	  $("#mappingIcon").attr("class","fas fa-map-marker-alt");
                 	  $("#mappingIcon").attr("style","color:black");
                 	  $("#addressInfo").empty();
@@ -364,6 +407,31 @@ $(document).ready(function(){
            });
            
        });
+       
+       
+       
+       
+$("#update").click(
+		function() {
+			$.ajax({
+				url : '/activity/update',
+				method : 'PUT',
+				contentType : 'application/json;charset=UTF-8',
+				dataType : 'json',
+				data : $("#form").serializeObject(),
+				success : function(response) {
+					if (response.type == "SUCCESS") {
+						alert("資料修改成功！\n您修改了一筆名為："
+								+ JSON.stringify(response.data.name));
+					} else {
+						alert("資料修改失敗！請檢查輸入欄位！");
+					}
+				},
+				error : function(re) {
+					alert("資料修改失敗！請檢查輸入欄位！");
+				}
+			})
+		})
 
 </script>
 
