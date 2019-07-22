@@ -219,11 +219,10 @@ margin-top:20px;
 																	
 																})
 											})
-
 											}
-						}
+						})
 
-					})
+					
 		</script>
 
 	</div>
