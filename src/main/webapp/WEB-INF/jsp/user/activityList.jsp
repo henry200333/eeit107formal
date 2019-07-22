@@ -9,7 +9,6 @@
 <jsp:include page="../topbar.jsp"></jsp:include>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />	
 <link rel="stylesheet" href="/resources/admin-bootstrap/css/jquery-ui-timepicker-addon.css">
-<script src="/resources/user-bootstrap/js/infinite-scroll.pkgd.min.js"></script>
 
 <body>
 		

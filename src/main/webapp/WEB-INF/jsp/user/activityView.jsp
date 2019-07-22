@@ -69,6 +69,8 @@
    <span style="font-size: 20px; font-weight: bold;padding-left:15px">${beginTime} 至   ${endTime}</span>
    </div>
    <div class="col-6">
+   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i	class="fab fa-hotjar"></i>表演類型:</span>
+   <span style="font-size: 20px; font-weight: bold;padding-left:15px">${activityParam.perfType}</span><br>
    <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i	class="fab fa-hotjar"></i>追蹤人數:</span>
    <span style="font-size: 20px; font-weight: bold;padding-left:15px">${activityParam.awesomeNum}</span>
    </div>
