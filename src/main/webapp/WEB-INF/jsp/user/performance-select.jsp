@@ -35,20 +35,30 @@
 	margin: 0 10px;
 }
 
+.activity:hover{
+cursor: pointer;
+transition-property: opacity;
+	transition-duration: 0.5s;
+	opacity: 0.7;
+}
+
 .title {
 	font-size: 20px;
 	color: white;
 	font-weight: bold;
 	border-bottom:2px solid white;
+	-webkit-user-select: none;
 }
 
 .user {
 	color: white;
+	-webkit-user-select: none;
 }
 
 .time {
 	color: white;
 	font-size: 13px;
+	-webkit-user-select: none;
 }
 </style>
 <body>
@@ -81,14 +91,14 @@
 						txt+="<span class='act1'><i class='fas fa-chess-knight'></i></span><br>";
 						txt+="<br> <span class='title'>"+value['name']+"</span><br> <span	class='user'>"+value['artist']+"</span><br> <span class='time'>"+value['beginTime']+"<br>↓<br>"+value['endTime']+"</span>";
 						txt+="</div></div>";
-						
 						$("#activitys").append(txt);
-					
 					})
 				}
-
 			})
 		</script>
+		<footer>
+		<jsp:include page="../footer.jsp"></jsp:include>
+		</footer>
 	</div>
 </body>
 </html>

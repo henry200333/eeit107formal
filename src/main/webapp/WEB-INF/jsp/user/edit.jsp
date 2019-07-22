@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,26 +40,57 @@
 <meta charset="UTF-8">
 <title>基本資料</title>
 <style>
+.lab {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.value {
+	font-size: 15px;
+}
+
+.edit {
+	color: red;
+	font-size: 25px;
+	margin-left: 20px;
+	cursor: pointer;
+}
+
+.edit:hover {
+	
+}
 </style>
 </head>
 <body>
 	<jsp:include page="../topbar.jsp"></jsp:include>
 	<sec:authorize access="hasAnyRole('USER', 'ARTIST')">
 
-		<div class="container" style="margin-top: 70px;">
-
-			<div class="col-12">
-				<label style="font-size:30px;font-weight:bold">頭像</label> 
-				<form method="post" action="/uploadPhoto"
-					enctype="multipart/form-data">
-					<div id="previewDiv" class="previewDiv">
-					<img width="25%" src="${userParam.photo }" />
-					</div>
-					<input type="file" name="imageFile" id="imageFile"
-						accept="image/gif, image/jpeg, image/png" />
-					<input type="text" hidden="hidden" name="username" id="username" value="<sec:authentication		property="name" />">
-					<input type="submit" value="Upload" />
-				</form>
+		<div class="container" style="margin-top: 90px;">
+			<h4 style="margin-left: 20px; font-weight: bold">
+				<i class="fas fa-user"></i> 帳號設定
+			</h4>
+			<div class="row">
+				<div class='col-4'>
+					<label
+						style="font-size: 20px; font-weight: bold; margin-top: 20px;">頭像</label>
+						<span class="edit"><i class="fas fa-highlighter"></i></span>
+<!-- 					<form method="post" action="/uploadPhoto" -->
+<!-- 						enctype="multipart/form-data"> -->
+						<div id="previewDiv" class="previewDiv">
+							<img width="100%" src="${userParam.photo }" />
+						</div> 
+<!-- 					<input type="file" name="imageFile" id="imageFile" -->
+<!-- 						accept="image/gif, image/jpeg, image/png" /> <input type="text" -->
+<!-- 						hidden="hidden" name="username" id="username" -->
+<%-- 						value="<sec:authentication		property="name" />"> <input --%>
+<!-- 						type="submit" value="Upload" /> -->
+<!-- 					</form> -->
+				</div>
+				<div class="col-8" style="padding-top: 20px;">
+					<span class="lab" style="margin-left: 15px;">個人介紹</span><br> <span
+						class="value" id="introduction" style="margin-left: 15px;">${userParam.introduction}</span>
+						<span class="edit"><i class="fas fa-highlighter"></i></span>
+				</div>
 			</div>
 			<script>
 				$("#imageFile").change(function() {
@@ -76,46 +108,41 @@
 					}
 				}
 			</script>
-			<form>
-				<div>
-					<label for="displayName">顯示名稱</label> <input id="displayName"
-						required="required" type="text" value="${userParam.displayName }">
+			<div class="row" style="margin-top: 40px">
+				<div class="col-4">
+					<span class="lab" style="margin-left: 15px;">顯示名稱</span><br> <span
+						class="value" id="desplayName" style="margin-left: 15px;">${userParam.displayName}</span>
+					<span class="edit"><i class="fas fa-highlighter"></i></span>
 				</div>
-
-				<div>
-					<label for="memberName">真實姓名</label> <input id="memberName"
-						type="text" value="${userParam.memberName }">
+				<div class="col-4">
+					<span class="lab" style="margin-left: 15px;">真實姓名</span><br> <span
+						class="value" id="memberName" style="margin-left: 15px;">${userParam.memberName}</span>
+						<span class="edit"><i class="fas fa-highlighter"></i></span>
 				</div>
-
-				<div>
-					<label>性別</label> <label> <input type="radio" name="gender"
-						id="gender" value="male" required="required">男
-					</label> <label> <input type="radio" name="gender" id="gender"
-						value="female">女
-					</label> <label> <input type="radio" name="gender" id="gender"
-						value="other">其他
-					</label>
+				<div class="col-4">
+					<span class="lab" style="margin-left: 15px;">性別</span><br> <span
+						class="value" id="gender" style="margin-left: 15px;">${userParam.gender}</span>
+						<span class="edit"><i class="fas fa-highlighter"></i></span>
 				</div>
-
-				<div>
-					<label for="mail">電子郵件</label> <input id="mail" type="email"
-						value="${userParam.mail }">
+				<div class="col-12">
+					<hr>
 				</div>
-
-				<div>
-					<label>生日</label>
+				<div class="col-4">
+					<span class="lab" style="margin-left: 15px;">電子郵件</span><br> <span
+						class="value" id="mail" style="margin-left: 15px;">${userParam.mail}</span>
+						<span class="edit"><i class="fas fa-highlighter"></i></span>
 				</div>
-
-				<div>
-					<label for="address">住址</label> <input id="address" type="text"
-						value="${userParam.address }">
+				<div class="col-4">
+					<span class="lab" style="margin-left: 15px;">生日</span><br> <span
+						class="value" id="birth" style="margin-left: 15px;">${userParam.birth}</span>
+						<span class="edit"><i class="fas fa-highlighter"></i></span>
 				</div>
-
-				<div>
-					<label for="introduction">介紹</label> <input id="introduction"
-						type="text" value="${userParam.introduction }">
+				<div class="col-4">
+					<span class="lab" style="margin-left: 15px;">住址</span><br> <span
+						class="value" id="address" style="margin-left: 15px;">${userParam.address}</span>
+						<span class="edit"><i class="fas fa-highlighter"></i></span>
 				</div>
-			</form>
+			</div>
 		</div>
 	</sec:authorize>
 
