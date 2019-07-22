@@ -278,10 +278,18 @@ public class PerformanceController {
 		return "/user/performance-edit";
 	}
 	
-	@RequestMapping("/aid")
+	@RequestMapping("/activity")
 	@ResponseBody
-	public List<Activity> addAid() {
-		return activityService.getAll();
+	public List<Activity> addAid(@RequestParam("username") String username) {
+		System.out.println("getzct");
+		SecurityUser user = SecurityUserService.getByUserName(username);
+		return activityService.getByArtistId(user.getUserId());
+
+	}
+	
+	@RequestMapping("/select")
+	public String select() {
+		return "/user/performance-select";
 
 	}
 	
@@ -290,9 +298,7 @@ public class PerformanceController {
 	public boolean editP(@RequestParam("id")Long id,@RequestParam("title") String titlenew,@RequestParam("introduction") String introductionnew) {
 		Performance performance = performanceService.getById(id);
 		performance.setTitle(titlenew);
-		performance.setIntroduction(introductionnew);
-		
-		
+		performance.setIntroduction(introductionnew);		
 		return performanceService.update(performance, false);
 
 	}

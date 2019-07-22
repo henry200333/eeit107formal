@@ -15,7 +15,7 @@ public class SimpleEmailController {
 	@Autowired
 	private JavaMailSender sender;
 
-	@RequestMapping("/mail/simpleemail")
+//	@RequestMapping("/mail/simpleemail")
 	@ResponseBody
 	String home() {
 		try {

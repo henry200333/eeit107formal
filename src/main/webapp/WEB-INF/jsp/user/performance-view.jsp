@@ -300,7 +300,7 @@
 				<div class="row">
 					<div class="col-1">
 						<img
-							src="/resources/user-bootstrap/img/performance/${performance.userpId}.jpg"
+							src="/resources/profile_image/${userinf.account}.jpg"
 							class="photo">
 					</div>
 					<div class="col-9" style="padding-top: 5px;">
@@ -323,7 +323,7 @@
 					})
 					
 					$(".photo").click(function(){
-								window.location.href="localhsot/"+${userinf.account};
+								window.location.href="/${userinf.account}";
 							})
 					
 					$.ajax({

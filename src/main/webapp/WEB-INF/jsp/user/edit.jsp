@@ -47,8 +47,8 @@
 
 		<div class="container" style="margin-top: 70px;">
 
-			<div>
-				<label>頭像</label> 
+			<div class="col-12">
+				<label style="font-size:30px;font-weight:bold">頭像</label> 
 				<form method="post" action="/uploadPhoto"
 					enctype="multipart/form-data">
 					<div id="previewDiv" class="previewDiv">
