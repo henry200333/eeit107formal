@@ -42,7 +42,7 @@ public class SecurityUser implements UserDetails {
 	private String account;
 	@Column(name = "password")
 	private String password;
-	@Column(name="display_name")
+	@Column(name = "display_name")
 	private String displayName;
 	@Column(name = "member_name")
 	private String memberName;
@@ -69,7 +69,12 @@ public class SecurityUser implements UserDetails {
 	private Long followers;
 	@Column(name = "enabled")
 	private Boolean enabled;
-	
+
+	public SecurityUser() {
+		super();
+		this.enabled = false;
+	}
+
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonBackReference
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
@@ -81,28 +86,26 @@ public class SecurityUser implements UserDetails {
 			@JoinColumn(name = "friend_id") })
 	@JsonBackReference
 	private List<SecurityUser> friends;
-	
-	//User的ID關聯到Activity的artistId外鍵欄位
+
+	// User的ID關聯到Activity的artistId外鍵欄位
 	@JsonIgnore
-	@OneToMany(mappedBy="useraId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)	
+	@OneToMany(mappedBy = "useraId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Activity> activitySet;
-	
-	//User的ID關聯到Activity的artistId外鍵欄位
+
+	// User的ID關聯到Activity的artistId外鍵欄位
 	@JsonIgnore
-	@OneToMany(mappedBy="userpId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)	
+	@OneToMany(mappedBy = "userpId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Performance> performanceSet;
-	
+
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonBackReference
 	@JoinTable(name = "user_plike", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "p_id") })
 	private List<Performance> plikes;
-	
-	
-	@OneToOne(mappedBy="user",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Vender vender;
-	
-	
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return roles;

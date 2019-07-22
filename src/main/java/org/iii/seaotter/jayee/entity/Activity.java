@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -42,9 +41,8 @@ public class Activity {
 	private String artist;
 	
 	//場地編號-外鍵
-	@ManyToOne
 	@JoinColumn(name="location_id")
-	private Location locationId;
+	private Long locationId;
 	
 	
 	//活動描述

@@ -145,16 +145,17 @@
 }
 
 .act {
-	width: 100%;
+	width: 100px;
 	border-radius: 50%;
 	border-radius: 50%;
 	border: 1px solid white;
+	cursor: pointer;
 }
 
 .act:hover {
-	transition-property: border;
+	transition-property: opacity;
 	transition-duration: 0.5s;
-	border: 1px solid black;
+	opacity: 0.4;
 }
 
 #articleadd{
@@ -299,7 +300,7 @@
 				<div class="row">
 					<div class="col-1">
 						<img
-							src="/resources/user-bootstrap/img/performance/${performance.userpId}.jpg"
+							src="/resources/profile_image/${userinf.account}.jpg"
 							class="photo">
 					</div>
 					<div class="col-9" style="padding-top: 5px;">
@@ -308,30 +309,37 @@
 						<span>________________________________________________________</span><br>
 						<div class="row" style="margin-top: 15px;">
 							<div class="col-2">
-								<img src="/resources/user-bootstrap/img/performance/dog.jpg"
-									class="act">
+								<span style="font-size:55px;" id="actview"><i class="fas fa-gamepad act"></i></span>
 							</div>
 							<div class="col-10" style="margin-top: 10px; padding-left: 0">
 								<span style="font-size: 16px; font-weight: bold;">${activity.name}</span><br>
 								<span style="line-height: 10px; font-size: 12px;">${begin}
 									- ${end}</span><br>
-								<span style="margin-top:15px;font-size:14px;" >關聯文章 :  </span><span id="refarticle"></span>
+								<span style="margin-top:15px;font-size:14px;" >關聯文章 : </span><span id="refarticle"></span>
 							</div>
 					<script>
+					$("#actview").click(function(){
+						window.location.href="/activity/view/"+${activity.id};
+					})
+					
+					$(".photo").click(function(){
+								window.location.href="/${userinf.account}";
+							})
+					
 					$.ajax({
 						url:'/refarticle/' +$("#thisp").val(),
 						type:"POST",
 						success: function(data){
 							console.log(data);
 							if(data['length']==0){$("#refarticle").append("<span style='font-size:14px;color:red'>目前沒有關聯文章唷!</span>");
-							$("#refarticle").append("<i class='fas fa-plus-square' id='articleadd' title='新增文章'></i>");
+							
 							}else{
 								$.each(data,function(index,value){									
 									txt="<a href='/article/"+ value['id']+"' style='font-size:14px'>"+value['name']+"   </a>"
 									$("#refarticle").append(txt);
 									
 								});
-								$("#refarticle").append("<i class='fas fa-plus-square' id='articleadd' title='新增文章'></i>");
+								
 							}
 							
 							
@@ -362,11 +370,18 @@
 								var txt="<button type='button' class='btn btn-secondary' id='editp'>"
 								txt+="<i class='fas fa-cog'></i><span> 編輯</span></button>";
 								$("#subdiv").html(txt);
+// 	-------------------------------加文章在這裡-------------------------------------------------------------------------------------------------------------------------------------------------------
+								$("#refarticle").append("<i class='fas fa-plus-square' id='articleadd' title='新增文章'></i>");
+								$("#articleadd").click(function(){
+									window.open('/article/add?user=' +thisuser+'&refid=' +thispid+"&type=Performance");
+								})
 								$("#editp").click(function(){
 									$("#ptitle").after("<i class='fas fa-pencil-alt' style='color:red'  data-toggle='modal' data-target='#titlemodel' data-whatever='@mdo'></i>");
+									
 									$(".introduction").after("  <i class='fas fa-pencil-alt' style='color:red'  data-toggle='modal' data-target='#Imodel' data-whatever='@mdo'></i>");
 									var txt2="<button type='button' class='btn btn-warning' id='editenter'>"
 										txt2+="<i class='fas fa-cog'></i><span> 完成</span></button>";
+										
 										$("#subdiv").html(txt2);
 										$("#editenter").click(function(){
 											$.ajax({
@@ -426,11 +441,12 @@
 					<div class="col-6"></div>
 				</div>
 <!-- 				留言輸入 -->
-				<div class="row" style="margin-top:20px;margin-left:50px;">
+				<div class="row" style="margin-top:40px;margin-left:50px;">
 				<div class="col-10" >
-					<textarea id='firstLayerComment' cols="68" rows="3" placeholder="   留言..."  style="resize:none"></textarea>
+					<p style="font-size:18px">留言:</p>
+					<textarea id='firstLayerComment' cols="68" rows="3"   style="resize:none"></textarea>
 				</div>
-				<div class="col-1" style="padding-top:40px;">
+				<div class="col-1" style="padding-top:67px;"> 
 				 <button id='firstLayerButton' type="button" class="btn btn-primary" ><i class="fas fa-share"></i></button>
 				</div>
 				</div>

@@ -56,25 +56,31 @@
    <div style='padding-top:20px' id="塞資料處">
    <div class='row'>
    <div class="col-6">
+   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="fas fa-user"></i>表演者名: </span>
+   <span style="font-size: 20px; font-weight: bold;padding-left:15px">${activityParam.artist}</span>
+   </div>
+   <div class="col-6">
+   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-smile-beam"></i>活動地點: </span>
+   <span style="font-size: 20px; font-weight: bold;padding-left:15px">${locationLocationName}</span>
+   </div>
+   <div class="col-6">
    <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-smile-beam"></i>活動名稱: </span>
    <span style="font-size: 20px; font-weight: bold;padding-left:15px">${activityParam.name}</span>
    </div>
    
-   <div class="col-6">
-   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-smile-beam"></i>活動地點: </span>
-   <span style="font-size: 20px; font-weight: bold;padding-left:15px">${activityParam.locationId.locationName}</span>
-   </div>
     <div class="col-12">
    <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-calendar-alt"></i>活動期間:</span>
    <span style="font-size: 20px; font-weight: bold;padding-left:15px">${beginTime} 至   ${endTime}</span>
    </div>
    <div class="col-6">
+   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="fas fa-hat-wizard"></i>表演類型:</span>
+   <span style="font-size: 20px; font-weight: bold;padding-left:15px">${activityParam.perfType}</span><br>
    <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i	class="fab fa-hotjar"></i>追蹤人數:</span>
    <span style="font-size: 20px; font-weight: bold;padding-left:15px">${activityParam.awesomeNum}</span>
    </div>
    <div class="col-6">
    <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i	class="fab fa-hotjar"></i>地址:</span><br>
-   <span style="font-size: 20px; font-weight: bold;padding-left:20px">${activityParam.locationId.city}${activityParam.locationId.district}${activityParam.locationId.address}</span>
+   <span style="font-size: 20px; font-weight: bold;padding-left:20px">${locationCity}${locationDistrict}${locationAddress}</span>
    </div>
    <div class="col-5" id='article'>
    

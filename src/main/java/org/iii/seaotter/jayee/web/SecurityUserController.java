@@ -10,6 +10,7 @@ import org.iii.seaotter.jayee.service.ArtistService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,16 +32,16 @@ public class SecurityUserController {
 	public String userPage(@PathVariable String username, Model model) {
 		SearchUser user = new SearchUser();
 		SecurityUser source = securityUserService.getByUserName(username);
+		model.addAttribute("plike",source.getPlikes());
 		BeanUtils.copyProperties(source, user);
 		model.addAttribute("userParam", user);
 		model.addAttribute("articleParam", articleService.getByRefIdAndType(source.getUserId(), ArticleType.Artist));
 		return "/user/userpage";
 	}
 
-	@RequestMapping("/edit/{username}")
-	public String edit(@PathVariable String username, Model model) {
-		System.out.println(username);
-		SecurityUser user = securityUserService.getByUserName(username);
+	@RequestMapping("/settings/profile")
+	public String edit(Model model) {
+		SecurityUser user = securityUserService.getByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
 		model.addAttribute("userParam", user);
 		return "/user/edit";
 	}
@@ -48,7 +49,6 @@ public class SecurityUserController {
 	@PostMapping("/uploadPhoto")
 	public String upload(@RequestParam("imageFile") MultipartFile imageFile, @RequestParam("username") String username)
 			throws IOException {
-		System.out.println(username);
 		String returnValue = "/index";
 		try {
 			ArtistService.saveImage(imageFile, username);

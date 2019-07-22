@@ -130,11 +130,11 @@ alex@skrpresents.com
  (2, 1,'Article', '大平台', '我已經買了zzZ', '2019/05/28 20:00:27');
  
  insert into forum (ref_id, ref_comment_id, forum_board, user_name, comment, comment_date,user_photo) values
- (7, 0,'Performance', '大中天', '好可愛1', '2006/03/04 13:14:55','/resources/profile_image/artist004.jpg'),
- (7, 0,'Performance', '大中天', '好可愛2謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5', '2006/03/04 13:14:55','/resources/profile_image/artist004.jpg'),
- (7, 7,'Performance', '大平台', '謝謝3', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg'),
- (7, 8,'Performance', '大平台', '謝謝4', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg'),
- (7, 7,'Performance', '大平台', '謝謝5', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg');
+ (7, 0,'Performance', 'ADMIN_BOT', '好可愛', '2006/03/04 13:14:55','/resources/profile_image/artist004.jpg'),
+ (7, 0,'Performance', '大中天', '我覺得不行', '2006/03/04 13:14:55','/resources/profile_image/artist004.jpg'),
+ (7, 7,'Performance', '大平台', '好狗命', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg'),
+ (7, 8,'Performance', '大平台', '梗也太老了', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg'),
+ (7, 7,'Performance', 'ADMIN_BOT', 'ㄏㄏ', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg');
  
  
  INSERT INTO performance (title,introduction,youtube_url,update_time,activity_id,views,likes,dislikes,userp_id,username,gerne) values

@@ -72,6 +72,10 @@ public class AdminActivityController {
 	public String editPage(@PathVariable Long id, Model model) {
 		Activity activity=activityService.getById(id);
 		model.addAttribute("activityParam",activity);
+		model.addAttribute("locationCity", locationService.getListById((activity.getLocationId())).get(0).getCity());
+		model.addAttribute("locationDistrict", locationService.getListById((activity.getLocationId())).get(0).getDistrict());
+		model.addAttribute("locationAddress", locationService.getListById((activity.getLocationId())).get(0).getAddress());
+		model.addAttribute("locationLocationName", locationService.getListById((activity.getLocationId())).get(0).getLocationName());
 		return "/admin/activity-edit";
 
 	}
@@ -92,6 +96,7 @@ public class AdminActivityController {
 	@ResponseBody
 	public AjaxResponse<Activity> update(@RequestBody Activity activity) {
 		AjaxResponse<Activity> aJaxResp=new AjaxResponse<>();
+		System.out.println(activity.getLocationId());
 		activity=activityService.update(activity);
 		aJaxResp.setType(AjaxResponseType.SUCCESS);
 		aJaxResp.setData(activity);

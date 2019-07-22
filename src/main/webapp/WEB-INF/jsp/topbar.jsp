@@ -44,7 +44,7 @@
 				window.location.href = '/' + Object.id;
 			}
 			function edit(Object) {
-				window.location.href = '/edit/' + Object.id;
+				window.location.href = '/settings/profile';
 			}
 			</script>
 			</sec:authorize>	
