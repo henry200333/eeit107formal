@@ -23,8 +23,5 @@ public class RegisterUser{
 	@NotNull
 	@NotEmpty
 	private String mail;
-	@NotNull
-	@NotEmpty
-	private Boolean enabled;
 
 }

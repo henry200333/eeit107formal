@@ -13,6 +13,8 @@ public interface SecurityUserDao extends JpaRepository<SecurityUser, Long>,JpaSp
 	
 	public SecurityUser findByMail(String mail);
 	
+	public SecurityUser findByMailIgnoreCase(String mail);
+	
 	public List<SecurityUser> findTop5ByOrderByFollowersDesc();
 	
 	public List<Performance> findPlikesByUserId(Long id);
