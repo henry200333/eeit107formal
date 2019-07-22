@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 
+
 //想看怎麼運作可以把方法內註解取消
 @Component
 public class ScheduledTasks {
@@ -50,8 +51,8 @@ public class ScheduledTasks {
 	//可以搜尋「CronMaker」 可以依需求自動產生Cron expression
 	@Scheduled(cron = "0/1 * * * * ?")//每隔1秒執行一次
 	public void scheduleTaskWithCronExpression() {
-//		logger.info("CronTask--Execution Time--{}",dateTimeFormatter.format(LocalDateTime.now()));
-//		logger.info("Current Thread--{}", Thread.currentThread().getName());	
+		logger.info("CronTask--Execution Time--{}",dateTimeFormatter.format(LocalDateTime.now()));
+		logger.info("Current Thread--{}", Thread.currentThread().getName());	
 	};
 	
 	
