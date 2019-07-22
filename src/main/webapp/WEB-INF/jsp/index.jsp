@@ -79,36 +79,36 @@
 
 			<div class="slick">
 				<div class="col-3">
-					<a id="artistlink1" href=""><img src=""
-						style="display: inline" width="40%" class="artistPic1"></a> <span
+					<img src=""
+						style="display: inline" width="40%" class="artistPic1"> <span
 						class="artwalls1 artname1" ></span>
 					<br> <span class="artwalls2 follow1" ></span>
 				</div>
 
 				<div class="col-3">
-					<a id="artistlink" href=""><img src=""
-						style="display: inline" width="40%" class="artistPic2"></a> <span
+					<img src=""
+						style="display: inline" width="40%" class="artistPic2"> <span
 						class="artwalls1 artname2"></span>
 					<br> <span class="artwalls2 follow2"></span>
 
 				</div>
 				<div class="col-3">
-					<a id="artistlink3" href=""><img src=""
-						style="display: inline" width="40%" class="artistPic3"></a> <span
+					<img src=""
+						style="display: inline" width="40%" class="artistPic3"><span
 						class="artwalls1 artname3" ></span>
 					<br> <span class="artwalls2 follow3" ></span>
 
 				</div>
 				<div class="col-3">
-					<a id="artistlink4" href=""><img src=""
-						style="display: inline" width="40%" class="artistPic4"></a> <span
+					<img src=""
+						style="display: inline" width="40%" class="artistPic4"><span
 						class="artwalls1 artname4"></span>
 					<br> <span class="artwalls2 follow4"></span>
 
 				</div>
 				<div class="col-3">
-					<a id="artistlink5" href=""><img src=""
-						style="display: inline" width="40%" class="artistPic5"></a> <span
+					<img src=""
+						style="display: inline" width="40%" class="artistPic5"><span
 						class="artwalls1 artname5" ></span>
 					<br> <span class="artwalls2 follow5"></span>
 
@@ -450,7 +450,9 @@
 				var count = index+1;
 				$(".artist"+count).attr('src',value['photo']);
 				$(".artistPic"+count).attr('src',value['photo']);
-				$("#artistlink"+count).attr('href','/'+value['account']);
+				$(".artistPic"+count).click(function(){
+					window.location.href="/"+value['account'];
+				});
 				$(".artname"+count).html(value['displayName']);
 				$(".follow"+count).html(value['followers']+"人追蹤");
 			})
