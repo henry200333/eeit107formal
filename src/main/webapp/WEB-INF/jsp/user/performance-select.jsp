@@ -39,6 +39,7 @@
 	font-size: 20px;
 	color: white;
 	font-weight: bold;
+	border-bottom:2px solid white;
 }
 
 .user {
@@ -58,50 +59,34 @@
 		<span class="select"><i class="fas fa-mouse-pointer"></i> 選擇活動</span><br>
 
 
-		<div class="row" style="margin-top: 50px;">
-			<div class="col-3 ">
-				<div class="activity">
-					<span class="act1"><i class="fas fa-chess-knight"></i></span><br>
-					<br> <span class="title">活動名稱</span><br> <span
-						class="user">發布人</span><br> <span class="time">發布時間</span>
-				</div>
-			</div>
-			<div class="col-3 ">
-				<div class="activity">
-					<span class="act1"><i class="fas fa-chess-knight"></i></span><br>
-					<br> <span class="title">活動名稱</span><br> <span
-						class="user">發布人</span><br> <span class="time">發布時間</span>
-				</div>
-			</div>
-			<div class="col-3 ">
-				<div class="activity">
-					<span class="act1"><i class="fas fa-chess-knight"></i></span><br>
-					<br> <span class="title">活動名稱</span><br> <span
-						class="user">發布人</span><br> <span class="time">發布時間</span>
-				</div>
-			</div>
-			<div class="col-3 ">
-				<div class="activity">
-					<span class="act1"><i class="fas fa-chess-knight"></i></span><br>
-					<br> <span class="title">活動名稱</span><br> <span
-						class="user">發布人</span><br> <span class="time">發布時間</span>
-				</div>
-			</div>
+		<div class="row" style="margin-top: 50px;" id="activitys">
+			
+		
 		</div>
 
 
 		<script>
-		var username = $("#thisuser").val();
+			var username = $("#thisuser").val();
 			$.ajax({
-				url:"/user/performance/activity",
-				type:"POST",
-				data:{
-					"username": username
+				url : "/user/performance/activity",
+				type : "POST",
+				data : {
+					"username" : username
 				},
-				success:function(data){
-				console.log(data);
+				success : function(data) {
+					console.log(data);
+					$.each(data, function(index, value) {
+						var txt="<div class='col-3' style='margin-top:20px;'>";
+						txt+="<div class='activity'>"
+						txt+="<span class='act1'><i class='fas fa-chess-knight'></i></span><br>";
+						txt+="<br> <span class='title'>"+value['name']+"</span><br> <span	class='user'>"+value['artist']+"</span><br> <span class='time'>"+value['beginTime']+"<br>↓<br>"+value['endTime']+"</span>";
+						txt+="</div></div>";
+						
+						$("#activitys").append(txt);
+					
+					})
 				}
-				
+
 			})
 		</script>
 	</div>
