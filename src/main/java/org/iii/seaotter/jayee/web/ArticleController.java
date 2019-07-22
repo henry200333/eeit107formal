@@ -11,14 +11,22 @@ import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
 import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.common.GridResponse;
+import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
+import org.iii.seaotter.jayee.entity.Performance;
+import org.iii.seaotter.jayee.entity.Vender;
+import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
+import org.iii.seaotter.jayee.service.PerformanceService;
+import org.iii.seaotter.jayee.service.SecurityUserService;
+import org.iii.seaotter.jayee.service.VenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -34,6 +42,18 @@ public class ArticleController {
 
 	@Autowired
 	private ArticleService articleService;
+	
+	@Autowired
+	private SecurityUserService securityUserService;
+	
+	@Autowired
+	private ActivityService activityService;
+	
+	@Autowired
+	private PerformanceService performanceService;
+	
+	@Autowired
+	private VenderService venderService;
 
 	@RequestMapping("")
 	public String articleListPage() {
@@ -44,6 +64,7 @@ public class ArticleController {
 	public String articleSinglePage(@PathVariable(name = "articleId") Long id, Model model) {
 		Article article = articleService.getById(id);
 		if (article != null) {
+			model.addAttribute("createdDate", article.getAnnounce().toString().substring(0, 19));
 			model.addAttribute("article", article);
 			article.setCount(article.getCount() + 1);
 			articleService.update(article);
@@ -92,12 +113,49 @@ public class ArticleController {
 	@RequestMapping("/add")
 	public String addArticlePage(
 			@RequestParam(name="type", defaultValue="") String articleType, 
-			@RequestParam(name="id", defaultValue="") String id, 
+			@RequestParam(name="refid", defaultValue="0") Long refId, 
 			Model model) {
-		if (!"".equals(articleType) && !"".equals(id)) {
-			return "/user/article-preadd";
+		Long userId = securityUserService.getByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getUserId();
+		if ("".equals(articleType) || refId == 0) {
+			model.addAttribute("articleType", articleType);
+			model.addAttribute("refId", refId);
+			return "/user/article-list";
 		}
-		return "/user/article-add";
+		if ("Artist".equals(articleType)) {
+			if (refId == userId) {
+				model.addAttribute("articleType", articleType);
+				model.addAttribute("refId", refId);
+				return "/user/article-add";
+			}
+		}else if("Activity".equals(articleType)) {
+			Activity activity = activityService.getById(refId);
+			if (activity != null) {
+				if (activity.getUseraId() == userId) {
+					model.addAttribute("articleType", articleType);
+					model.addAttribute("refId", refId);
+					return "/user/article-add";
+				}
+			}
+		}else if("Performance".equals(articleType)) {
+			Performance performance = performanceService.getById(refId);
+			if (performance != null) {
+				if (performance.getUserpId() == userId) {
+					model.addAttribute("articleType", articleType);
+					model.addAttribute("refId", refId);
+					return "/user/article-add";
+				}
+			}
+		}else if("Vender".equals(articleType)) {
+			Vender vender = venderService.getById(refId);
+			if (vender != null) {
+				if (vender.getUser().getUserId() == userId) {
+					model.addAttribute("articleType", articleType);
+					model.addAttribute("refId", refId);
+					return "/user/article-add";
+				}
+			}
+		}
+		return "/user/article-list";
 	}
 
 	@RequestMapping("/top6")

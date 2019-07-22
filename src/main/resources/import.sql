@@ -61,7 +61,7 @@ ALTER TABLE user_role CHECK CONSTRAINT ALL;
 
 
  
-INSERT INTO article (name, content, article_type, ref_id, count, announce) values
+INSERT INTO article (name, content, article_type, ref_id, count, announced_user_id, announce) values
 ('EZ5音樂餐廳徵求臨時鼓手一名', '### 簡述
 2019/8/8 將於台北市EZ5音樂餐廳舉辦慈善表演，臨時需求鼓手一名，特此應徵。
 ### 聯絡方法
@@ -69,13 +69,13 @@ INSERT INTO article (name, content, article_type, ref_id, count, announce) value
 ### 工作環境
 ![](http://www.ez5.com.tw/new/images/pic_brief.jpg)
 ### 薪資待遇
-以時計酬，詳情面議', 'Vender', 1, 2, '2019-07-11 19:20:55'),
+以時計酬，詳情面議', 'Vender', 1, 2, 11, '2019-07-11 19:20:55'),
 ('陳忻玥新專輯！衝上排行第一！', '### 個人簡介
 你/妳好！ 我的名字叫忻玥(ㄒㄧㄣ ㄩㄝ、)女聲 & 吉他 & 創作
 Hello! I’m Vicky Chen.Singing & Playing guitar & Writing
 ### 找我演出
 alex@skrpresents.com
-![](https://i.kfs.io/artist/global/10012811,0v1/fit/300x300.jpg)', 'Performance', 1, 99, '2019-07-12 19:20:55'),
+![](https://i.kfs.io/artist/global/10012811,0v1/fit/300x300.jpg)', 'Performance', 1, 99, 3, '2019-07-12 19:20:55'),
 ('白賊虞表示：發財', '# ~~發大財~~ 發財
 ------------
 ##### 路人A：
@@ -92,34 +92,34 @@ alex@skrpresents.com
 
 ------------
 
-![](https://i.imgur.com/31rorUq.jpg)', 'Artist', 2, 5, '2019-07-17 12:20:55'),
+![](https://i.imgur.com/31rorUq.jpg)', 'Artist', 2, 5, 2, '2019-07-17 12:20:55'),
 ('柳川鳳在球場上穿梭自如', '# 柳川鳳在湖南對湘北的校際賽大展身手
 ![](http://b.zol-img.com.cn/desk/bizhi/image/1/960x600/1348714169293.jpg)
 ### 球場上旁若無人，穿梭自如
 彷彿沒有模組間物體碰撞一般的移動。
 ### 怎麼辦到的？
 更多自由移動機會？
-#### 立即充值！', 'Artist', 3, 10, '2019-07-14 19:20:55'),
+#### 立即充值！', 'Artist', 3, 10, 3, '2019-07-14 19:20:55'),
 ('《比悲傷更悲傷的故事》 催淚破億音樂裡藏的小彩蛋你發現了嗎？', '# 《比悲傷更悲傷的故事》 催淚破億音樂裡藏的小彩蛋你發現了嗎？
 ------------
 #### 	　　由劉以豪（飾K）及陳意涵（飾Cream）主演的《比悲傷更悲傷的故事》改編自爆紅韓國電影，講述一對戀人相愛卻無法在一起的故事，浪漫催淚的劇情設定讓電影一出來便引起廣大關注，在台上映短短 9 天票房便破億，成為今年最快破億國片！
-#### 	　　除了堅強卡司及動人劇情，音樂在其中更扮演著催化觀眾入戲的重要角色之一，電影原聲帶由知名製作人陳建騏及配樂家羅恩妮共同合作，將歡樂亦憂傷的歌曲旋律貫穿劇情，連帶讓觀眾深陷故事人物的情緒裡。', 'Performance', 2, 1, '2019-07-15 19:20:55'),
+#### 	　　除了堅強卡司及動人劇情，音樂在其中更扮演著催化觀眾入戲的重要角色之一，電影原聲帶由知名製作人陳建騏及配樂家羅恩妮共同合作，將歡樂亦憂傷的歌曲旋律貫穿劇情，連帶讓觀眾深陷故事人物的情緒裡。', 'Performance', 2, 1, 4, '2019-07-15 19:20:55'),
 ('GEM新歌《新的心跳》：舊事已過都變成新的', '![](https://i.ytimg.com/vi/-P5EtAF4TUA/hqdefault.jpg)
 #### 	　　近日，基督徒歌手鄧紫棋發佈了新歌《新的心跳》MV，動感十足的歌曲著滲透濃濃的勵志信息。歌詞「我們死而復活......舊事已過都變成新的」出自《聖經》，流露信仰味道。
 #### 	　　鄧紫棋在MV中扮演一個被校園欺凌的乖乖女，《新的心跳》寓意新的生命幫助她走出了欺凌陰影，MV中除了鄧紫棋，還有另外兩位主角，一個是帶著假肢的舞者，一個是對跳水很膽怯女孩。
 #### 	　　她們都有被嘲笑，冷嘲熱諷的經歷。但是在努力不懈的練習下，假肢女孩舞出了美麗的舞蹈，跳水女孩展現了完美的跳躍。
-#### 	　　MV進行到尾聲，小個子的鄧紫棋勇敢推開曾經欺凌自己的人，並回頭報以燦爛的笑臉。', 'Performance', 3, 3, '2019-07-16 19:20:55'),
+#### 	　　MV進行到尾聲，小個子的鄧紫棋勇敢推開曾經欺凌自己的人，並回頭報以燦爛的笑臉。', 'Performance', 3, 3, 5, '2019-07-16 19:20:55'),
 ('間諜小狗', '### 製作團隊將間諜小狗投放至野狗群中
 #### 	　　間諜小狗能不能在第一次接觸被認定為同伴？
 ### 演員評價
 #### 	　　想不到郭董也很有戲劇天分~~ ，在新的動物頻道中，郭董飾演間諜小狗，演技逼真，吃草認真
-![](http://img.komicolle.org/2019-05/15578732626695.png)', 'Activity', 5, 4, '2019-07-17 19:20:55'),
+![](http://img.komicolle.org/2019-05/15578732626695.png)', 'Activity', 5, 4, 2, '2019-07-17 19:20:55'),
 ('維護公告','# 系統將於2019/7/25 13:00 ~ 15:00 進行維護
 ![](http://www.r-rcooling.com/wp-content/uploads/2016/07/maintenance.gif)
 ### 訊息
 #### 各位Jayee的用戶午安，為了提升網站品質，
 #### 本網將於2019/7/25 13:00 ~ 15:00 進行維護，屆時將暫時關閉伺服器，
-#### 造成您的不便，我們深感抱歉。', 'Other', 0, 2, '2019-07-20 12:00:00');
+#### 造成您的不便，我們深感抱歉。', 'Other', 1, 2, 1, '2019-07-20 12:00:00');
  
  insert into forum (ref_id, ref_comment_id, forum_board, user_name, comment, comment_date) values
  (1, 0,'Performance', '薔薔4', '大家好我是薔薔4', '2019/05/25 18:13:21'),
@@ -130,11 +130,11 @@ alex@skrpresents.com
  (2, 1,'Article', '大平台', '我已經買了zzZ', '2019/05/28 20:00:27');
  
  insert into forum (ref_id, ref_comment_id, forum_board, user_name, comment, comment_date,user_photo) values
- (7, 0,'Performance', '大中天', '好可愛1', '2006/03/04 13:14:55','/resources/profile_image/artist004.jpg'),
- (7, 0,'Performance', '大中天', '好可愛2謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5謝謝5', '2006/03/04 13:14:55','/resources/profile_image/artist004.jpg'),
- (7, 7,'Performance', '大平台', '謝謝3', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg'),
- (7, 8,'Performance', '大平台', '謝謝4', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg'),
- (7, 7,'Performance', '大平台', '謝謝5', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg');
+ (7, 0,'Performance', 'ADMIN_BOT', '好可愛', '2006/03/04 13:14:55','/resources/profile_image/artist004.jpg'),
+ (7, 0,'Performance', '大中天', '我覺得不行', '2006/03/04 13:14:55','/resources/profile_image/artist004.jpg'),
+ (7, 7,'Performance', '大平台', '好狗命', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg'),
+ (7, 8,'Performance', '大平台', '梗也太老了', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg'),
+ (7, 7,'Performance', 'ADMIN_BOT', 'ㄏㄏ', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg');
  
  
  INSERT INTO performance (title,introduction,youtube_url,update_time,activity_id,views,likes,dislikes,userp_id,username,gerne) values
@@ -148,11 +148,11 @@ alex@skrpresents.com
  ('阿滴開始健身了','瘦巴巴的阿滴居然開始健身了，究竟會怎麼樣呢','https://www.youtube.com/watch?v=SF8s3jVmiAs','2019/06/27 22:15:23',2,6400,590,17,5,'柳川鳳','視覺藝術'),
  ('暗殺教室S1 第21話','支持正版動畫，官頻廣告不略過，看好看滿才能看更多！','https://www.youtube.com/watch?v=wRs3z2Mr-uA','2019/07/18 15:15:22',7,212,71,2,7,'王芯營','視覺藝術');
  							
-insert into  Vender (name,city,district,address,max_people,phone,lat,lng,user_id,contact_person,introduction) values
-('EZ5音樂餐廳','台北市','大安區','安和路二段211號',50,'0227383995',25.0260149,121.550337,11,'劉先生','在英國利物浦有一家小小的PUB，因為Beatles的駐唱而聲名大噪。而今日台北街頭也有這樣的一個地方。演唱者實力備受矚目，如果你已是EZ5一百多萬名忠實聽眾中的一員，讓我們邀請你一起進入EZ-5的世界。'),
-('Music Corner角落音樂餐廳','台北市','中山區',' 建國北路一段156號',40,'0225043688',25.0516328,121.5341573,null,'陳先生','每天都有固定Live Band演出！相關節目以店家粉絲團公告為主'),
-('LOTUS 音樂餐廳','台北市','中山區','長安東路二段78號',60,' 0223468888',25.0483426,121.5317147,null,'彭先生','2008年、兩位愛好音樂的朋友，以女性柔和的思考線條，在 【LOTUS音樂餐廳】 ，您就是演唱會的巨星，絕對有別於您以往的歌唱經驗！'),
-('HOOTERS美式餐廳','台北市','松山區','長安東路二段78號',55,'0227165168','25.0532667','121.54544720000001',null,null,null);
+insert into  Vender (name,city,district,address,max_people,phone,lat,lng,user_id,img,contact_person,introduction) values
+('EZ5音樂餐廳','台北市','大安區','安和路二段211號',50,'0227383995',25.0260149,121.550337,11,'/resources/vender_image/1.jpg','劉先生','在英國利物浦有一家小小的PUB，因為Beatles的駐唱而聲名大噪。而今日台北街頭也有這樣的一個地方。演唱者實力備受矚目，如果你已是EZ5一百多萬名忠實聽眾中的一員，讓我們邀請你一起進入EZ-5的世界。'),
+('Music Corner角落音樂餐廳','台北市','中山區',' 建國北路一段156號',40,'0225043688',25.0516328,121.5341573,null,'/resources/vender_image/2.jpg','陳先生','每天都有固定Live Band演出！相關節目以店家粉絲團公告為主'),
+('LOTUS 音樂餐廳','台北市','中山區','長安東路二段78號',60,' 0223468888',25.0483426,121.5317147,null,'/resources/vender_image/3.jpg','彭先生','2008年、兩位愛好音樂的朋友，以女性柔和的思考線條，在 【LOTUS音樂餐廳】 ，您就是演唱會的巨星，絕對有別於您以往的歌唱經驗！'),
+('HOOTERS美式餐廳','台北市','松山區','長安東路二段78號',55,'0227165168','25.0532667','121.54544720000001',null,'/resources/vender_image/4.jpg',null,null);
 
 insert into  job (name,job_type,job_time,detal,reward,vender_name,city,district,address,vender_id) values
 ('誠徵鼓手一名','聽覺藝術','2019-07-15 12:00:00','經驗要求5年以上',1000,'EZ5音樂餐廳','台北市','大安區','安和路二段211號',1),

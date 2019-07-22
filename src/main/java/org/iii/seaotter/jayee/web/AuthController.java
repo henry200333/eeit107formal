@@ -29,13 +29,13 @@ public class AuthController {
 			@RequestParam(value = "logout", required = false) String logout, Model model) {
 		String errorMessage = null;
 		if (error != null) {
-			errorMessage = "Username or Password is incorrect !!";
+			errorMessage = "帳號或密碼有誤 !!";
 		}
 		if (logout != null) {
-			errorMessage = "You have been successfully logged out !!";
+			errorMessage = "已成功登出 !!";
 		}
 		if (errorMessage != null)
-			model.addAttribute("errorMessge", errorMessage);
+			model.addAttribute("errorMessage", errorMessage);
 
 		return "signin";
 	}
@@ -50,7 +50,14 @@ public class AuthController {
 	}
 
 	@GetMapping("/register")
-	public String signup() {
+	public String signup(@RequestParam(value = "error", required = false) String error, Model model) {
+		String errorMessage = null;
+		if (error != null) {
+			errorMessage = "此信箱已註冊過，請重新輸入";
+		}
+		if (errorMessage != null) {
+			model.addAttribute("errorMessage", errorMessage);
+		}
 		return "signup";
 	}
 
@@ -60,7 +67,7 @@ public class AuthController {
 
 		SecurityUser existingUser = securityUserService.findByMailIgnoreCase(mail);
 		if (existingUser != null) {
-			return "signup";
+			return "redirect:/signup?error";
 		}
 
 		SecurityUser user = securityUserService.registerNewUserAccount(account, rawPassword, mail);

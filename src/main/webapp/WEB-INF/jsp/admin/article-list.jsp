@@ -117,14 +117,15 @@
         iconSet : "fontAwesome",
         colModel: [
 			{ name: 'id', index: 'id', label: 'ID', width: 30 },
-			{ name: 'name', label: 'Article_Title', width: 80 },
-			{ name: 'content', label: 'Content'},
-			{ name: 'articleType', label: 'Article_Type', width: 30 },
-			{ name: 'refId', label: 'REF_ID', width: 20 },
-			{ name: 'count', label: 'VIEWS', width: 20 },
-			{ name: 'announce', label: 'CREATED_TIME', width: 45 },
-			{ name: 'edit', label: 'EDIT', width: 20, sortable : false, formatter: editBT },
-			{ name: 'delete', label: 'DELE', width: 20, sortable : false, formatter: deleBT }
+			{ name: 'name', label: '文章標題', width: 80 },
+			{ name: 'content', label: '文章內容'},
+			{ name: 'articleType', label: '文章類型', width: 30 },
+			{ name: 'refId', label: '關聯ID', width: 20 },
+			{ name: 'count', label: '人氣', width: 20 },
+			{ name: 'announcedUserId', label: '文章發布者ID', width: 35 },
+			{ name: 'announce', label: '創建時間', width: 45 },
+			{ name: 'edit', label: '編輯', width: 20, sortable : false, formatter: editBT },
+			{ name: 'delete', label: '刪除', width: 20, sortable : false, formatter: deleBT }
 		],
         prmNames: {search: null, nd: null},
         pager: '#pager',
