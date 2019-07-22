@@ -11,7 +11,13 @@
 <link rel="stylesheet" href="/resources/admin-bootstrap/css/jquery-ui-timepicker-addon.css">
 
 <body>
-
+	<input type="hidden" value="${activityParam.id}" id="thisp">
+	<input type="hidden" value="<sec:authentication property='name' />" id="thisuser">
+	<sec:authorize access="isAuthenticated()">
+	<input type='hidden' value="<sec:authentication property='principal.account'/>" id='userAccount'>
+	<input type='hidden' value="<sec:authentication property='principal.displayName'/>" id='userDisplayName'>
+	<input type='hidden' value="<sec:authentication property='principal.photo'/>" id='userPhoto'>
+	</sec:authorize>
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
   <div class="container">
@@ -21,13 +27,10 @@
         </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="#">新增活動
                 <span class="sr-only">(current)</span>
               </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">編輯此活動</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/activity/list">返回查詢頁面</a>
@@ -65,7 +68,7 @@
    </div>
    <div class="col-6">
    <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-smile-beam"></i>活動名稱: </span>
-   <span style="font-size: 20px; font-weight: bold;padding-left:15px">${activityParam.name}</span>
+   <span style="font-size: 20px; font-weight: bold;padding-left:15px" id='activityName'>${activityParam.name}</span>
    </div>
    
     <div class="col-12">
@@ -82,10 +85,15 @@
    <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i	class="fab fa-hotjar"></i>地址:</span><br>
    <span style="font-size: 20px; font-weight: bold;padding-left:20px">${locationCity}${locationDistrict}${locationAddress}</span>
    </div>
-   <div class="col-5" id='article'>
+   <div class="col-6" id='article'>
    
    </div>
- 
+   <div class="col-6" id='subdiv' style='margin-top:10px'>
+   <button type="button" class="btn btn-danger" id="sub">
+		<i class="fas fa-plus" style="color: white" id="subpic"></i><span id="subhtml">追蹤活動</span>
+	</button>
+   </div>
+ 	
    
    </div>  
    </div>
@@ -201,6 +209,59 @@ function popout(obj){
 	window.open (articleUrl);
 }
 
+
+
+
+var thisaid = $("#thisp").val();
+var thisuser = $("#thisuser").val();
+$.ajax({
+	url:"/activity/checkuser",
+	type:"POST",
+	data:{
+		"id":thisaid,
+		"username":thisuser
+	},
+	success:function(data){
+		if(data==true){
+			var txt="<button type='button' class='btn btn-success' id='editp'>"
+				txt+="<i class='fas fa-edit'></i><span>編輯活動</span></button>";
+				$("#subdiv").html(txt);
+		}
+		$("#editp").click(function(){
+			window.location.href="/activity/edit/"+${activityParam.id};
+		})
+	}
+})
+
+
+	$("#sub").click(function(){
+						var user = $("#thisuser").val();
+						if(user=="anonymousUser"){
+							var login = confirm("請先登入");
+							if(login==true){window.open("/login")+(location.href).substring(7);}
+						}else{
+							//追蹤
+							var thispid = $("#thisp").val();
+// 							$.ajax({
+// 								url:'/user/performance/addfriend',
+// 								data:{"id":thispid,
+// 									"username":user									
+// 								},
+// 								success:function(data){
+									
+// 								}
+// 							})
+							
+							var activityName = $("#activityName").html();
+							alert("已追蹤活動:"+activityName);
+							$("#sub").attr('class','btn btn-success');
+							$("#subpic").attr('class','fas fa-star');
+							$("#subhtml").html("已追蹤");
+							
+							
+						}
+						
+					})
 
 </script>
 

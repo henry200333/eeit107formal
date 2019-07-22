@@ -124,7 +124,7 @@ color:#ffaad5;
 			<div class="col-12" style="margin-top:20px;">
 			<h5><i class="fas fa-gamepad game" ></i>    我的活動    <span title="新增活動" style="cursor: pointer;"><i class="far fa-plus-square"></i></span></h5>
 			<c:forEach var="activity" items="${userParam.activitySet}">
-				<a href="">${activity.name}－${activity.description}</a><br>
+				<a href="javascript:window.open('/activity/view/${activity.id}');">${activity.name}－${activity.description}</a><br>
 			</c:forEach><hr></div>
 		</div>
 		</div>

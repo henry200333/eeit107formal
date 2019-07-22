@@ -11,6 +11,26 @@
 <link rel="stylesheet" href="/resources/admin-bootstrap/css/jquery-ui-timepicker-addon.css">
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
+  <div class="container">
+    <a class="navbar-brand" href="#" id='title'>搜尋活動頁面...</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/activity/add">新增活動</a>
+        </li>
+        <li class="nav-item  active">
+          <a class="nav-link" href="#">查詢頁面
+          	<span class="sr-only">(current)</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 		
 		<div class="container">
 	<!-- Page Content -->
@@ -19,10 +39,7 @@
   <!-- Page Heading -->
   
   
-  <div style="position: relative;">
-  <h1 class="">搜尋活動頁面
-  </h1><hr>
-  </div>
+  
   <form class=""  style="margin-bottom: 20px;" id='searchForm' >
   <div class="row" style='border-radius:20px'>
   <div class='col-12'>  
@@ -76,7 +93,7 @@ $("#searchBT").click(function searchBT(){
 		 		//加文章區
 		 		txt4="</p></div></div></div>";
 		 		$.each(res.rows,function(index,value){
-		 			txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+		 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
 		 			txt6 += txt5;
 		 		 })
@@ -108,7 +125,7 @@ function type11(obj){
 		 		//加文章區
 		 		txt4="</p></div></div></div>";
 		 		$.each(res.rows,function(index,value){
-		 			txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+		 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
 		 			txt6 += txt5;
 		 		 })
@@ -206,7 +223,7 @@ $("#searchBT").click();
 <script type="text/javascript" src="/resources/admin-bootstrap/js/jquery-ui-timepicker-addon.js"></script>
 <script>
 var page = 2;
-var rows = 4;
+var rows = 6;
 var totalPage=10;
 $(document).ready(showjobs(page-1));
 function showjobs(page) {	
@@ -222,7 +239,7 @@ function showjobs(page) {
 	 		//加文章區
 	 		txt4="</p></div></div></div>";
 	 		$.each(data.rows,function(index,value){
-	 			txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+	 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 	 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
 	 			txt6 += txt5;
 	 		 })
@@ -239,11 +256,14 @@ $(window).scroll(function(){
 	timer = window.setTimeout(
 			function(){
 				 // Returns height of browser viewport
-				  var window_height = $( window ).height();
+				  var window_height = $( window ).height()*1.3;
 				  var window_scrollTop = $(window).scrollTop();
 				  // Returns height of HTML document
 				  var document_height = $( document ).height();
-				   if(window_height + window_scrollTop == document_height){
+// 				  alert(window_height);
+// 				  alert(window_scrollTop);
+// 				  alert(document_height);
+				   if(window_height + window_scrollTop >= document_height){
 					   if(page>totalPage){
 						   return;
 					   }else{
@@ -260,7 +280,7 @@ $(window).scroll(function(){
 						 		//加文章區
 						 		txt4="</p></div></div></div>";
 						 		$.each(data.rows,function(index,value){
-						 			txt1="<div class='col-lg-6 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+						 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 						 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
 						 			txt6 += txt5;
 						 		 })
