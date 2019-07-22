@@ -57,7 +57,7 @@ public class ActivityService {
 		
 	}
 	
-	public List<Activity> getByArtistId(SecurityUser securityUser){
-		return activityDao.findByUseraId(securityUser);
+	public List<Activity> getByArtistId(Long userid){
+		return activityDao.findByUseraId(userid);
 	}
 }
