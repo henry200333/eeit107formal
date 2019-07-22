@@ -3,6 +3,8 @@ package org.iii.seaotter.jayee.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.service.ForumService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,7 @@ public class ForumController {
 	ForumService forumService; 
 	
 	@RequestMapping("/iwantcomments")
-	public List<Forum> loadComment(@Payload Forum inputForum){
+	public List<Forum> loadComment(@Payload Forum inputForum,HttpSession s123){
 		List<Forum> loadComments = new ArrayList<Forum>();		
 		loadComments=forumService.getBoardRefIDComments(inputForum.getForumBoard(),inputForum.getRefId());
 		return loadComments;
@@ -54,8 +56,19 @@ public class ForumController {
 	@RequestMapping("/addCommentReply")
 	@ResponseBody
 	public Forum addCommentReply(Forum forum) {
+		System.out.println(forum);
 		forum = forumService.create(forum);
 		
+		return forum;
+	}
+	
+	@RequestMapping("/editComment")
+	@ResponseBody
+	public Forum editComment(Forum forum) {
+		Forum tempForum = forumService.getById(forum.getId());
+		tempForum.setComment(forum.getComment());
+		forum = forumService.create(tempForum);	
+		System.out.println(forum);
 		return forum;
 	}
 }
