@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sign up</title>
+<title>註冊</title>
 <!--===============================================================================================-->
 <link rel="icon" type="image/png"
 	href="/resources/login/images/icons/favicon.ico" />
@@ -38,42 +39,45 @@
 <!--===============================================================================================-->
 </head>
 <body>
-<jsp:include page="topbar.jsp"></jsp:include>
+	<jsp:include page="topbar.jsp"></jsp:include>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178"
 					action="/register" method="POST">
-					<span class="login100-form-title"> Welcome to JAYEE </span>
+					<c:if test="${not empty errorMessage}">
+						<div style="color: red; font-weight: bold; margin: 30px 0px;">${errorMessage}</div>
+					</c:if>
+					<span class="login100-form-title"> Jayee </span>
 					<div style="color: red; font-weight: bold; margin: 30px 0px;">${errorMessages}</div>
 
 					<div class="wrap-input100 validate-input m-b-16"
-						data-validate="Please enter Username">
+						data-validate="請輸入帳號">
 						<input class="input100" type="text" name="username"
-							autofocus="autofocus" value="" placeholder="Username"> <span
+							autofocus="autofocus" value="" placeholder="帳號"> <span
 							class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-16"
-						data-validate="Please enter Email">
+						data-validate="請輸入電子信箱">
 						<input class="input100" type="email" name="email" value=""
-							placeholder="Email"> <span class="focus-input100"></span>
+							placeholder="電子信箱"> <span class="focus-input100"></span>
 					</div>
 
 
 					<div class="wrap-input100 validate-input m-b-16"
-						data-validate="Please enter password">
+						data-validate="請輸入密碼">
 						<input class="input100" type="password" name="password" value=""
-							placeholder="Password"> <span class="focus-input100"></span>
+							placeholder="密碼"> <span class="focus-input100"></span>
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" type="submit">Sign up</button>
+						<button class="login100-form-btn" type="submit">註冊</button>
 					</div>
 
 					<div class="flex-col-c p-t-170 p-b-40">
-						<span class="txt1 p-b-9"> Already have an account? </span> <a
-							href="/login" class="txt3"> Sign in now </a>
+						<span class="txt1 p-b-9"> 已經擁有帳號了? </span> <a href="/login"
+							class="txt3"> 現在登入! </a>
 					</div>
 
 				</form>

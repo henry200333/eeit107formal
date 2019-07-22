@@ -21,7 +21,7 @@
 			<sec:authorize access="!isAuthenticated()">
 				<a href="/login"><button class="btn btn-primary my-2 my-sm-0"
 						type="submit" style="margin-right: 15px;">登入</button></a>
-				<a href="register"><button class="btn btn-success my-2 my-sm-0"
+				<a href="/register"><button class="btn btn-success my-2 my-sm-0"
 						type="submit">註冊</button></a>
 			</sec:authorize>
 			<!-- 			登入狀態 -->
