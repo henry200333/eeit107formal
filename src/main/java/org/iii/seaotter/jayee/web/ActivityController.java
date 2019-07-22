@@ -14,9 +14,12 @@ import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Location;
+import org.iii.seaotter.jayee.entity.Performance;
+import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.LocationService;
+import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,10 +27,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,6 +52,9 @@ public class ActivityController {
 	@Autowired
 	LocationService locationService;
 	
+	@Autowired
+	SecurityUserService securityUserService;
+	
 
 	@RequestMapping(value= {"/list","/view"})
 	public String list() {
@@ -65,13 +73,13 @@ public class ActivityController {
 		model.addAttribute("locationLocationName", locationService.getListById((activity.getLocationId())).get(0).getLocationName());
 		return "/user/activityEdit";
 	}
-	@RequestMapping("/add/{id}")
-	public String addPage(@PathVariable Long id, Model model) {
-		Activity activity=activityService.getById(id);
-		model.addAttribute("activityParam", activity);
-		model.addAttribute("beginTime", activity.getBeginTime().toString().substring(0, 16));
-		model.addAttribute("endTime", activity.getEndTime().toString().substring(0, 16));
-		
+	@RequestMapping("/add")
+	public String addPage(Model model) {
+		String userName=SecurityContextHolder.getContext().getAuthentication().getName();
+		securityUserService.getByUserName(userName).getDisplayName();
+		model.addAttribute("useraId", securityUserService.getByUserName(userName).getUserId());
+		model.addAttribute("userName", securityUserService.getByUserName(userName).getDisplayName());
+		model.addAttribute("activity", new Activity());
 		return "/user/activityAdd";
 	}
 	
@@ -113,9 +121,9 @@ public class ActivityController {
 										@RequestParam(value="actType", defaultValue="") String actType,
 										@RequestParam(value="find", defaultValue="") String find
 			) {
-		String sidx="beginTime";
+		String sidx="id";
 		GridResponse<Activity> grid = new GridResponse<Activity>();
-		Sort sort = new Sort(Sort.Direction.DESC, sidx);
+		Sort sort = new Sort(Sort.Direction.ASC, sidx);
 		Pageable pageable = PageRequest.of(page - 1, rows, sort);
 		
 		
@@ -188,6 +196,23 @@ public class ActivityController {
 		return locationService.getByLocationName(locationName);
 	}
 	
+	
+	@PutMapping("/insert")
+	@ResponseBody
+	public AjaxResponse<Activity> insert(@RequestBody Activity activity) {
+		System.out.println("即將新增資料:"+activity);
+		AjaxResponse<Activity> aJaxResp=new AjaxResponse<>();
+		activity.setAwesomeNum(0L);
+		activity=activityService.insert(activity);
+		aJaxResp.setData(activity);
+		aJaxResp.setType(AjaxResponseType.SUCCESS);
+		return aJaxResp;
+
+	}
+	
+	
+	
+	
 	@PutMapping("/update")
 	@ResponseBody
 	public AjaxResponse<Activity> update(@RequestBody Activity activity) {
@@ -198,6 +223,19 @@ public class ActivityController {
 		aJaxResp.setType(AjaxResponseType.SUCCESS);
 		aJaxResp.setData(activity);
 		return aJaxResp;
+	}
+	
+	
+	
+	@RequestMapping("/checkuser")
+	@ResponseBody
+	public boolean checkuser(@RequestParam("id")Long id,@RequestParam("username") String username) {
+		SecurityUser user = securityUserService.getByUserName(username);
+		Long thisId = user.getUserId();
+		Activity activity = activityService.getById(id);
+		Long thisaId = activity.getUseraId();
+		if(thisId==thisaId)return true;
+		else return false;
 	}
 	
 	

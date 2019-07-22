@@ -1,16 +1,25 @@
 package org.iii.seaotter.jayee.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.iii.seaotter.jayee.common.ForumBoard;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Data;
 
@@ -24,7 +33,7 @@ import lombok.Data;
 public class Forum {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="forum_id")
 	private Long id;
 	
 	@Column(name="forum_board")
@@ -55,5 +64,17 @@ public class Forum {
 	
 	@Column(name="user_photo")
 	private String userPhoto;
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonBackReference
+	@JoinTable(name = "user_forumdislike", joinColumns = { @JoinColumn(name = "forum_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "user_id") })
+	private List<SecurityUser> dislikeuser;
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonBackReference
+	@JoinTable(name = "user_forumlike", joinColumns = { @JoinColumn(name = "forum_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "user_id") })
+	private List<SecurityUser> likeuser;
 
 }

@@ -103,6 +103,20 @@ public class SecurityUser implements UserDetails {
 			@JoinColumn(name = "p_id") })
 	private List<Performance> plikes;
 
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonBackReference
+	@JoinTable(name = "user_forumlike", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "forum_id") })
+	private List<Forum> forumLikes;
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonBackReference
+	@JoinTable(name = "user_forumdislike", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "forum_id") })
+	private List<Forum> forumDislikes;
+	
+	
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Vender vender;
 

@@ -121,20 +121,20 @@ alex@skrpresents.com
 #### 本網將於2019/7/25 13:00 ~ 15:00 進行維護，屆時將暫時關閉伺服器，
 #### 造成您的不便，我們深感抱歉。', 'Other', 1, 2, 1, '2019-07-20 12:00:00');
  
- insert into forum (ref_id, ref_comment_id, forum_board, user_name, comment, comment_date) values
- (1, 0,'Performance', '薔薔4', '大家好我是薔薔4', '2019/05/25 18:13:21'),
- (2, 1,'Activity', '博恩4', '我真有那麼尷尬嗎？4', '2019/05/22 13:50:02'),
- (2, 1,'Performance', '豬孝天', '流星雨揪團', '2006/03/04 13:14:55'),
- (2, 1,'Activity', '永和金城武', '不要再冒充我了！', '2019/05/28 20:00:27'),
- (2, 1,'Article', '大中天', '以前你偶爾聽，現在你應該天天聽', '2006/03/04 13:14:55'),
- (2, 1,'Article', '大平台', '我已經買了zzZ', '2019/05/28 20:00:27');
+ insert into forum (ref_id, ref_comment_id, forum_board, user_name, comment, comment_date,like_count,dislike_count) values
+ (1, 0,'Performance', '薔薔4', '大家好我是薔薔4', '2019/05/25 18:13:21',0,0),
+ (2, 1,'Activity', '博恩4', '我真有那麼尷尬嗎？4', '2019/05/22 13:50:02',5,10),
+ (2, 1,'Performance', '豬孝天', '流星雨揪團', '2006/03/04 13:14:55',0,0),
+ (2, 1,'Activity', '永和金城武', '不要再冒充我了！', '2019/05/28 20:00:27',0,0),
+ (2, 1,'Article', '大中天', '以前你偶爾聽，現在你應該天天聽', '2006/03/04 13:14:55',0,0),
+ (2, 1,'Article', '大平台', '我已經買了zzZ', '2019/05/28 20:00:27',0,0);
  
- insert into forum (ref_id, ref_comment_id, forum_board, user_name, comment, comment_date,user_photo) values
- (7, 0,'Performance', 'ADMIN_BOT', '好可愛', '2006/03/04 13:14:55','/resources/profile_image/artist004.jpg'),
- (7, 0,'Performance', '大中天', '我覺得不行', '2006/03/04 13:14:55','/resources/profile_image/artist004.jpg'),
- (7, 7,'Performance', '大平台', '好狗命', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg'),
- (7, 8,'Performance', '大平台', '梗也太老了', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg'),
- (7, 7,'Performance', 'ADMIN_BOT', 'ㄏㄏ', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg');
+ insert into forum (ref_id, ref_comment_id, forum_board, user_name, comment, comment_date,user_photo,like_count,dislike_count) values
+ (7, 0,'Performance', 'ADMIN_BOT', '好可愛', '2006/03/04 13:14:55','/resources/profile_image/artist004.jpg',10,5),
+ (7, 0,'Performance', '大中天', '我覺得不行', '2006/03/04 13:14:55','/resources/profile_image/artist004.jpg',3,0),
+ (7, 7,'Performance', '大平台', '好狗命', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg',7,58),
+ (7, 8,'Performance', '大平台', '梗也太老了', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg',1,0),
+ (7, 7,'Performance', 'ADMIN_BOT', 'ㄏㄏ', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg',0,99);
  
  
  INSERT INTO performance (title,introduction,youtube_url,update_time,activity_id,views,likes,dislikes,userp_id,username,gerne) values

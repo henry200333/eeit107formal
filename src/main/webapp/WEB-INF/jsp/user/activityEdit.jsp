@@ -11,7 +11,13 @@
 <link rel="stylesheet" href="/resources/admin-bootstrap/css/jquery-ui-timepicker-addon.css">
 
 <body>
-
+<input type="hidden" value="${activityParam.id}" id="thisp">
+	<input type="hidden" value="<sec:authentication property='name' />" id="thisuser">
+	<sec:authorize access="isAuthenticated()">
+	<input type='hidden' value="<sec:authentication property='principal.account'/>" id='userAccount'>
+	<input type='hidden' value="<sec:authentication property='principal.displayName'/>" id='userDisplayName'>
+	<input type='hidden' value="<sec:authentication property='principal.photo'/>" id='userPhoto'>
+	</sec:authorize>
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
   <div class="container">
@@ -21,16 +27,13 @@
         </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">新增活動
+        <li class="nav-item">
+          <button class="nav-link">新增活動
                 <span class="sr-only">(current)</span>
-              </a>
+              </button>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">編輯此活動</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/activity/list">返回查詢頁面</a>
+          <button class="nav-link">返回查詢頁面</button>
         </li>
       </ul>
     </div>
@@ -257,6 +260,9 @@
  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 	<script type="text/javascript" src="/resources/admin-bootstrap/js/jquery-ui-timepicker-addon.js"></script>
 <script>
+var thisaid = $("#thisp").val();
+var thisuser = $("#thisuser").val();
+
 $.ajax({
 	url : "/activity/article/"+${activityParam.id},
 	type : "GET",
@@ -266,19 +272,22 @@ $.ajax({
 // 			alert(JSON.stringify(res.data[0].name));
 			if(res.type=="ERROR"){
 				txt1 ="<span style='font-size: 20px; border-bottom: 3px solid black; font-weight: bold;'><i class='far fa-newspaper'></i>相關文章:<br></span>";
-		 		txt2 ="<div id='"+${activityParam.id}+"'><span style='font-size: 20px; border-bottom: 1px solid black; font-weight: bold;'>暫無文章</span><br><a href='#'><span>點我新增<i class='fas fa-pencil-alt'></i></span></a></div>";
+		 		txt2 ="<div id='"+${activityParam.id}+"'><span style='font-size: 20px; border-bottom: 1px solid black; font-weight: bold;'>暫無文章</span><br><a href='/article/add?user="+thisuser+"&refid="+thisaid+"&type=Activity' id='insertArticle'><span>點我新增<i class='fas fa-pencil-alt'></i></span></a></div>";
 		 		txt3 = txt1+txt2;
 				$("#article").append(txt3);
 			}else{
 			txt1 ="<span style='font-size: 20px; border-bottom: 3px solid black; font-weight: bold;'><i class='far fa-newspaper'></i>相關文章:<br></span>";
 	 		$.each(res.data,function(index,value){
 	 			txt2 ="<div onclick='popout(this)' style='cursor:pointer;' id='"+value.id+"'><span style='font-size: 20px; border-bottom: 1px solid black; font-weight: bold; color:HotPink'>"+value.name+"</span></div>";
-	 		 	txt3 = txt1+txt2+ "<br><a href='#'><span>點我新增<i class='fas fa-pencil-alt'></i></span></a>";
+	 		 	txt3 = txt1+txt2+ "<br><a href='/article/add?user="+thisuser+"&refid="+thisaid+"&type=Activity' id='insertArticle'><span>點我新增<i class='fas fa-pencil-alt'></i></span></a>";
 	 		})
 		
 			$("#article").append(txt3);}
 	}
 })
+
+
+
 
 function popout(obj){
 	articleUrl = "/article/"+obj.id;
