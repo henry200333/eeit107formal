@@ -67,7 +67,7 @@
 				<button type="button" class="btn bar2" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"></button>
 				<div class="dropdown-menu" id="venderbar">
-					<a class="dropdown-item" href="/user/job/list">關於廠商</a>
+					<a class="dropdown-item" href="/job/list">關於廠商</a>
 				</div>
 			</div>
 

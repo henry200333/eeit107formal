@@ -9,14 +9,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="/resources/admin-bootstrap/vendor/jquery/jquery.min.js"></script>
-<script
-	src="/resources/admin-bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Core plugin JavaScript-->
-<script
-	src="/resources/admin-bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
-<!-- Custom scripts for all pages-->
-<script src="/resources/admin-bootstrap/js/sb-admin-2.min.js"></script>
 <style>
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -37,10 +29,10 @@ html, body {
 }
 </style>
 </head>
-<jsp:include page="../header.jsp"></jsp:include>
-<jsp:include page="../topbar.jsp"></jsp:include>
-<body>
 
+<body>
+	<jsp:include page="../header.jsp"></jsp:include>
+	<jsp:include page="../topbar.jsp"></jsp:include>
 
 
 
@@ -56,7 +48,9 @@ html, body {
 	<div class="container">
 		<!-- /.container-fluid -->
 
-
+		<div class='col-sm-12 mb-0 mb-sm-0'>
+			<img class='col-sm-12 mb-0 mb-sm-0' src="${vender.img}">
+		</div>
 		<!-- 廠商名 -->
 		<div class="d-sm-flex align-items-center justify-content-between mb-6">
 			<div class='col-sm-12 mb-3 mb-sm-6' style="text-align: center">
@@ -68,6 +62,7 @@ html, body {
 
 		<!-- 廠商資料內容 -->
 		<div class='row' style='border: solid 1px silver; margin: 2%'>
+
 			<div class='col-sm-7 mb-0 mb-sm-0'>
 				<div class='col-sm-12 mb-0 mb-sm-0'>
 					<h4>地址:</h4>
@@ -89,21 +84,58 @@ html, body {
 		<!-- 廠商資料內容END -->
 
 
+		<div class='row'
+			style='border: solid 1px silver; margin-left: 2%; margin-right: 2%'
+			id='joblist'>
+			<div class='col-sm-12 mb-0 mb-sm-0'>
+				<h3 style='text-align: center'>jobname</h3>
+			</div>
+			<div class='col-sm-4 mb-0 mb-sm-0'>
+				<h4>類別:obj.type</h4>
+			</div>
+			<div class='col-sm-4 mb-0 mb-sm-0'>
+				<h4>時間:obj.time</h4>
+			</div>
+			<div class='col-sm-4 mb-0 mb-sm-0'>
+				<h4>薪資:obj.reward</h4>
+			</div>
+			<div class='col-sm-12 mb-0 mb-sm-0' style='padding: 1%'>
+				<h4 style='text-align: center'>詳細內容</h4>
+				<textarea class='form-control' name='description'
+					style='resize: none; text-align: center' readonly>obj.detal</textarea>
+			</div>
+	
+			<button class='col-sm-12 mb-0 mb-sm-0' style='text-align: center'
+				onclick='showapplication(this.id)' id='1'>申請表</button>
+			<div class='col-sm-12 mb-0 mb-sm-0' id='application1' style='display:none'>
+			
+<!-- 			申請表 -->
+				<div class='row' style='margin:0% 1%'>
+				<a class='col-sm-4 mb-0 mb-sm-0' href='/obj.username'><h4>obj.name</h4></a>
+				<div class='col-sm-4 mb-0 mb-sm-0'><h4>obj.time</h4></div>
+				<div class='col-sm-2 mb-0 mb-sm-0'><button class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm'>接受</button></div>
+				<div class='col-sm-2 mb-0 mb-sm-0'><button class='d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm'>拒絕</button></div>
+				</div>
+		
 
+		</div>
 
-
+	</div>
 
 
 	</div>
 
 
-	<jsp:include page="../footer.jsp"></jsp:include>
 
 
+	<form id="venderinfo" name="vender" action="/user/job/findByVender"
+		method="POST" hidden>
+		<input id="venderId" name="id" value="${vender.id}">
+	</form>
 
 
 </body>
-
+<jsp:include page="../footer.jsp"></jsp:include>
 
 <script>
 	function venderMap() {
@@ -112,8 +144,9 @@ html, body {
 				lat : ${vender.lat},
 				lng :  ${vender.lng}
 			},
+			 draggable: false,
 			clickableIcons : false,
-			zoom : 17.5,
+			zoom : 16.5,
 			minZoom : 16,
 			maxZoom : 20,
 			disableDefaultUI : true,
@@ -142,16 +175,41 @@ html, body {
 
 <script>
 function start(){
-	alert(${vender});
-// 	$.ajax({
-// 	url : "/user/job/findByVender",
-// 	type : "POST",
-// 	data : ${vender},
-// 	success : function(data) {
-// 		alert("success")
-// 	}
-// })
+	$.ajax({
+	url :"/job/findByVender",
+	type :"post",
+	dataType : "json",
+	contentType : 'application/json;charset=utf-8',
+	data :$("#venderId").val(),
+	success : function(data) {
+		var txt = "";
+		$.each(data,function(key, obj){
+	alert(obj.name)
+		txt +="<div class='col-sm-12 mb-0 mb-sm-0'><h3 style='text-align: center'>"	
+		txt +=obj.name
+		txt +="</h3></div><div class='col-sm-4 mb-0 mb-sm-0'><h4>類別:"
+		txt +=obj.jobType
+		txt +="</h4></div><div class='col-sm-4 mb-0 mb-sm-0'><h4>時間:"	
+		txt +=obj.jobTime		
+		txt +="</h4></div><div class='col-sm-4 mb-0 mb-sm-0'><h4>薪資:";
+		txt +=obj.reward;
+		txt +="</h4></div><div class='col-sm-12 mb-0 mb-sm-0' style='padding: 1%'><h4 style='text-align: center'>詳細內容</h4><textarea class='form-control' name='description' style='resize: none; text-align: center' readonly>";	
+		txt +=obj.detal;	
+		txt +="</textarea></div><button class='col-sm-12 mb-0 mb-sm-0' style='text-align: center'onclick='showapplication(this.id)' id='";	
+		txt +=obj.id;
+		txt +="'>申請表</button><div class='col-sm-12 mb-0 mb-sm-0' id='application";
+		txt +=obj.id;
+		txt +="'style='display:none'></div>";
+		});
+		$("#joblist").html(txt)
+	}
+ })
 };
+
+function showapplication(object){
+	$("#application"+object).toggle();
+	
+}
 
 </script>
 <script

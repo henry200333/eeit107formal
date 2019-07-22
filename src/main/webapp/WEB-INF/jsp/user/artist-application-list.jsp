@@ -32,7 +32,7 @@
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">已申請工作</h1>
-						<a href="/user/job/list"
+						<a href="/job/list"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" ><i
 							class="fas fa-reply fa-sm text-white-50"></i>返回工作頁</a>
 					</div>
@@ -159,7 +159,7 @@ function showPageList(){
 function cancel(object) {
 
 	$.ajax({
-		url : "/user/job/cancelapplication?jobid=" + object.id
+		url : "/job/cancelapplication?jobid=" + object.id
 				+ "&username=" + $("#username").val(),
 		type : "GET",
 		success : function(data) {
@@ -173,7 +173,7 @@ function cancel(object) {
 function showjobs() {
 
 	$.ajax({
-				url : "/user/job/finduserapplication/"+$("#username").val()+"?page="+page,
+				url : "/job/finduserapplication/"+$("#username").val()+"?page="+page,
 				type : "GET",
 				dataType : "json",
 				contentType : "application/json",
