@@ -51,8 +51,8 @@ public class ScheduledTasks {
 	//可以搜尋「CronMaker」 可以依需求自動產生Cron expression
 	@Scheduled(cron = "0/1 * * * * ?")//每隔1秒執行一次
 	public void scheduleTaskWithCronExpression() {
-		logger.info("CronTask--Execution Time--{}",dateTimeFormatter.format(LocalDateTime.now()));
-		logger.info("Current Thread--{}", Thread.currentThread().getName());	
+//		logger.info("CronTask--Execution Time--{}",dateTimeFormatter.format(LocalDateTime.now()));
+//		logger.info("Current Thread--{}", Thread.currentThread().getName());	
 	};
 	
 	
