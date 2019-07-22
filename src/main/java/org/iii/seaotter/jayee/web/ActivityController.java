@@ -23,10 +23,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -56,7 +59,10 @@ public class ActivityController {
 		model.addAttribute("activityParam", activity);
 		model.addAttribute("beginTime", activity.getBeginTime().toString().substring(0, 16));
 		model.addAttribute("endTime", activity.getEndTime().toString().substring(0, 16));
-		
+		model.addAttribute("locationCity", locationService.getListById((activity.getLocationId())).get(0).getCity());
+		model.addAttribute("locationDistrict", locationService.getListById((activity.getLocationId())).get(0).getDistrict());
+		model.addAttribute("locationAddress", locationService.getListById((activity.getLocationId())).get(0).getAddress());
+		model.addAttribute("locationLocationName", locationService.getListById((activity.getLocationId())).get(0).getLocationName());
 		return "/user/activityEdit";
 	}
 	@RequestMapping("/add/{id}")
@@ -177,5 +183,18 @@ public class ActivityController {
 	public List<Location> getByLocationName(@PathVariable String locationName){
 		return locationService.getByLocationName(locationName);
 	}
+	
+	@PutMapping("/update")
+	@ResponseBody
+	public AjaxResponse<Activity> update(@RequestBody Activity activity) {
+		AjaxResponse<Activity> aJaxResp=new AjaxResponse<>();
+		System.out.println(activity);
+		
+		activity=activityService.update(activity);
+		aJaxResp.setType(AjaxResponseType.SUCCESS);
+		aJaxResp.setData(activity);
+		return aJaxResp;
+	}
+	
 	
 }

@@ -88,15 +88,24 @@
 						
 						<div class="form-group row">
 						<div class="col-sm-3 mb-3 mb-sm-0">
+						<label for="perfType">PerfType:</label> 
+					<select  name="perfType" id="perfType"  class="form-control">
+					<option selected  hidden='true' value="${activityParam.perfType}">${activityParam.perfType}</option>
+					<option value='創意藝術'>創意藝術</option>
+					<option value='視覺藝術'>視覺藝術</option>
+					<option value='表演藝術'>表演藝術</option>
+					</select>   
+						</div>
+						<div class="col-sm-3 mb-3 mb-sm-0">
 						<label for="awesomeNum">Awesome Num:</label> <input id="awesomeNum" type="text"
 									name="awesomeNum" class="form-control form-control-user"
 									value="${activityParam.awesomeNum}"  />
+						
 						</div>
-						<div class="col-sm-3 mb-3 mb-sm-0"></div>
 						<div class="col-sm-3 mb-3 mb-sm-0">
-						<label for="badNum">Bad Num:</label> <input id="badNum" type="text"
-									name="badNum" class="form-control form-control-user"
-									value="${activityParam.badNum}"  />
+						<label for="locationId">LocationId:</label> <input id="locationId" type="text"
+									name="locationId" class="form-control form-control-user"
+									value="${activityParam.locationId}" readonly />
 						</div>
 					
 						</div>
@@ -104,15 +113,20 @@
 						<div class="form-group row">
 						<div class="col-sm-2 mb-3 mb-sm-0">
 						<label for="city">縣市:</label>
-						<select name="city" id="city"  class="form-control"></select>
+						<select name="city" id="city"  class="form-control">
+						</select>
 						</div>
 						<div class="col-sm-2 mb-3 mb-sm-0">
 						<label for="district">鄉鎮市區:</label>
-						<select  name="district" id="district"  class="form-control"></select>
+						<select  name="district" id="district"  class="form-control">
+						<option selected  hidden='true' value='${locationDistrict}'>${locationDistrict}</option>
+						</select>
 						</div>
 						<div class="col-sm-2 mb-3 mb-sm-0">
 						<label for="locationName">活動地點:</label>
-						<select  name="locationName" id="locationName"  class="form-control"></select>
+						<select  name="locationName" id="locationName"  class="form-control">
+						<option selected  hidden='true' value='${locationLocationName}'>${locationLocationName}</option>
+						</select>
 						</div>
 						<div class="col-sm-3 mb-3 mb-sm-0">
 						<label for="address">地址:</label>
@@ -121,7 +135,7 @@
 						
 						
 						</div>
-						
+						<input type="text" class="form-control form-control-user" id="useraId" name="useraId"	placeholder="" value="${activityParam.useraId}" hidden='hidden'>
 						
 						
 						
@@ -219,7 +233,7 @@
 				success: function(data){
 					var txt="";		
 					console.log(data);
-					txt += '<option value="" style="display: none">請選擇縣市</option>';
+					txt += "<option selected disabled hidden='true' value='${locationCity}'>"+"${locationCity}"+"</option>";;
 					$.each(data,function(index,value){
 						txt += 	"<option value='"+ value +"'>"+ value +"</option>"			
 						})	
@@ -282,7 +296,7 @@
                         },
                         success: function(data){
         					$("#address").val(data[0]['address']);
-        					
+        					$("#locationId").attr("value",data[0]['locationId']);
         				}
                     });
                 });
