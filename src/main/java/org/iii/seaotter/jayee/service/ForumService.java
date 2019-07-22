@@ -40,22 +40,23 @@ public class ForumService {
 	public Forum likePlusOne(Long id) {
 		Forum forum = forumDao.findById(id).orElse(new Forum());
 		forum.setLikeCount(forum.getLikeCount()+1);	
+
 		return forumDao.save(forum);
 	}
 	public Forum dislikePlusOne(Long id) {
 		Forum forum = forumDao.findById(id).orElse(new Forum());
-		forum.setLikeCount(forum.getDislikeCount()+1);	
+		forum.setDislikeCount(forum.getDislikeCount()+1);	
 		return forumDao.save(forum);
 	}
 	public Forum likePlusOneAndDislikeMinusOne(Long id) {
 		Forum forum = forumDao.findById(id).orElse(new Forum());
 		forum.setLikeCount(forum.getLikeCount()+1);	
-		forum.setLikeCount(forum.getDislikeCount()-1);	
+		forum.setDislikeCount(forum.getDislikeCount()-1);	
 		return forumDao.save(forum);
 	}
 	public Forum dislikePlusOneAndLikeMinusOne(Long id) {
 		Forum forum = forumDao.findById(id).orElse(new Forum());
-		forum.setLikeCount(forum.getDislikeCount()+1);	
+		forum.setDislikeCount(forum.getDislikeCount()+1);	
 		forum.setLikeCount(forum.getLikeCount()-1);	
 		return forumDao.save(forum);
 	}

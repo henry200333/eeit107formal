@@ -6,7 +6,9 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.iii.seaotter.jayee.entity.Forum;
+import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ForumService;
+import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,9 @@ public class ForumController {
 	@Autowired
 	ForumService forumService; 
 	
+	@Autowired
+	SecurityUserService securityUserService;
+	
 	@RequestMapping("/iwantcomments")
 	public List<Forum> loadComment(@Payload Forum inputForum,HttpSession s123){
 		List<Forum> loadComments = new ArrayList<Forum>();		
@@ -31,25 +36,46 @@ public class ForumController {
 	
 	@RequestMapping("/likeButtonClick")
 	@ResponseBody
-	public Forum likeButtonClike(@RequestParam Long id, @RequestParam Long likeType) {
+	
+	public Forum likeButtonClike(@RequestParam Long id, @RequestParam Long likeType,@RequestParam String userName) {
+		SecurityUser user = securityUserService.getByUserName(userName);
+		 List<Forum> userLikes = user.getForumLikes();
+		 List<Forum> userDislikes = user.getForumDislikes();		 
 		Forum forum = null;
 		if(likeType==1) {
 			forum = forumService.likePlusOne(id);
+			userLikes.add(forum);
+			user.setForumLikes(userLikes);
 		}else if(likeType==2) {
 			forum = forumService.likePlusOneAndDislikeMinusOne(id);
-		}	
+			userLikes.add(forum);
+			user.setForumLikes(userLikes);
+			userDislikes.remove(forum);
+			user.setForumDislikes(userDislikes);
+		}
+		securityUserService.update(user);
 		return forum;
 	}
 	
 	@RequestMapping("/dislikeButtonClick")
 	@ResponseBody
-	public Forum dislikeButtonClike(@RequestParam Long id, @RequestParam Long dislikeType) {
-		Forum forum = null;
+	public Forum dislikeButtonClike(@RequestParam Long id, @RequestParam Long dislikeType,@RequestParam String userName) {
+		SecurityUser user = securityUserService.getByUserName(userName);
+		 List<Forum> userLikes = user.getForumLikes();
+		 List<Forum> userDislikes = user.getForumDislikes();
+		Forum forum = null;		
 		if(dislikeType==1) {
 			forum = forumService.dislikePlusOne(id);
+			userDislikes.add(forum);
+			user.setForumDislikes(userDislikes);
 		}else if(dislikeType==2) {
 			forum = forumService.dislikePlusOneAndLikeMinusOne(id);
+			userDislikes.add(forum);
+			user.setForumDislikes(userDislikes);
+			userLikes.remove(forum);
+			user.setForumLikes(userLikes);
 		}	
+		securityUserService.update(user);
 		return forum;
 	}
 	

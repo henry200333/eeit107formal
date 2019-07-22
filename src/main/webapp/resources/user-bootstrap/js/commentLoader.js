@@ -2,11 +2,12 @@ var thisPerformanceId = $('#thisp').val();
 var userAccount = $('#userAccount').val();
 var userDisplayName = $('#userDisplayName').val();
 var userPhoto = $('#userPhoto').val();
-var replyOpen = 0;
-var editOpen = 0;
+var currentOpen = 0;
 var originalComment;
 
+
 function reloadComments(){
+	currentOpen=0;	
 	$.ajax({
 		url:'/forum/iwantcomments',
 		type:'GET',
@@ -29,9 +30,9 @@ function reloadComments(){
 								.append($('<div>').addClass('col-12')
 										.append($('<p>').css({'margin-left':'14px','margin-top':'10px'}).text(performanceComment.comment))))
 								.append($('<div>').addClass('col-12').css({'padding-top':'20px'})
-										.append($('<i>').addClass('far fa-thumbs-up'))
+										.append($('<i>').addClass('far fa-thumbs-up likediv').attr('id','like'+performanceComment.id))
 										.append($('<span>').css({'margin-left':'10px'}).text(performanceComment.likeCount))
-										.append($('<i>').addClass('far fa-thumbs-down'))
+										.append($('<i>').addClass('far fa-thumbs-down dislikediv').attr('id','dislike'+performanceComment.id))
 										.append($('<span>').css({'margin-left':'10px'}).text(performanceComment.dislikeCount).attr('id','editButton'+performanceComment.id))
 										.append($('<span>').css({'margin-left':'20px','color':'blue','cursor': 'pointer'}).attr('id','reply'+performanceComment.id).text('回覆'))))
 
@@ -42,9 +43,9 @@ function reloadComments(){
 				}
 				
 				$('#reply'+performanceComment.id).click(function(){
-					if(replyOpen==0){
+					if(currentOpen==0){
 						$(this).parent().append("<input type='text' size='30' id='nowInput' style='border:none;border-bottom:2px solid blue;margin-left:20px;'><button type='button'  class='btn btn-primary' id='nowSend' name='"+performanceComment.id+"' onclick='replyComment()' style='padding:5px 10px;margin-left:5px;cursor: pointer;' ><i class='fas fa-share'></i></button><button  class='btn btn-danger' type='button' id='nowCancel' onclick='closeReply()' style='padding:5px 10px;margin-left:5px;cursor: pointer;'><i class='fas fa-times'></i></button>");
-						replyOpen=1;
+						currentOpen=1;
 					}
 				})
 				}else{
@@ -63,9 +64,9 @@ function reloadComments(){
 							.append($('<div>').addClass('col-12')
 									.append($('<p>').css({'margin-left':'14px','margin-top':'5px'}).text(performanceComment.comment))))
 							.append($('<div>').addClass('col-12').css({'padding-top':'5px'})
-									.append($('<i>').addClass('far fa-thumbs-up'))
+									.append($('<i>').addClass('far fa-thumbs-up likediv').attr('id','like'+performanceComment.id))
 									.append($('<span>').css({'margin-left':'10px'}).text(performanceComment.likeCount))
-									.append($('<i>').addClass('far fa-thumbs-down'))
+									.append($('<i>').addClass('far fa-thumbs-down dislikediv').attr('id','dislike'+performanceComment.id))
 									.append($('<span>').css({'margin-left':'10px'}).text(performanceComment.dislikeCount).attr('id','editButton'+performanceComment.id))
 									.append($('<hr>'))
 									))
@@ -76,16 +77,72 @@ function reloadComments(){
 					}
 				}
 				
+				//套like,dislike
+				$('#like'+performanceComment.id).click(function(){
+					//確認沒被點過
+					if($(this).attr('class')=='far fa-thumbs-up likediv likedivclick'){
+						return false
+					}
+					var likeId = $(this).attr('id').substring(4);
+					var likeType;
+					//dislike的class
+					var dislikeStatus = $(event.target).next().next().attr('class');
+					console.log(dislikeStatus);
+					                 
+					if(dislikeStatus=='far fa-thumbs-down dislikediv'){
+						likeType = 1;						
+					}else if(dislikeStatus=='far fa-thumbs-down dislikediv dislikedivclick'){
+						likeType = 2;
+					}				
+					$.ajax({
+						url:'/forum/likeButtonClick',
+						type:'get',
+						data:{'id':likeId,'likeType':likeType,'userName':userAccount},
+						success:function(afterLike){
+							reloadComments();
+						}					
+					})					
+				})
+				//dislike
+				$('#dislike'+performanceComment.id).click(function(){
+					//確認沒被點過
+					if($(this).attr('class')=='far fa-thumbs-down dislikediv dislikedivclick'){
+						return false
+					}			
+					var likeId = $(this).attr('id').substring(7);
+					var dislikeType;
+					//dislike的class
+					var likeStatus = $(event.target).prev().prev().attr('class');
+					console.log(likeStatus);
+					                 
+					if(likeStatus=='far fa-thumbs-up likediv'){				
+						dislikeType = 1;						
+					}else if(likeStatus=='far fa-thumbs-up likediv likedivclick'){
+						dislikeType = 2;
+					}				
+					$.ajax({
+						url:'/forum/dislikeButtonClick',
+						type:'get',
+						data:{'id':likeId,'dislikeType':dislikeType,'userName':userAccount},
+						success:function(afterdisLike){
+							reloadComments();
+						}					
+					})					
+				})
+				
 			}) //each結束
 				$('.forumEdit').click(function(event){	
-					if(editOpen==1)return false;
+					if(currentOpen==1)return false;
 					originalComment = $(this).parent().parent().prev().children().children().text()
 					var editCommentId = $(this).parent().parent().parent().attr('id').substring(5);
 					
 					$(this).parent().parent().prev().children().children().toggle();
 					$(this).parent().parent().prev().children().append("<input type='text' id='edit"+ editCommentId +"' value='"+ originalComment +"'><button type='button' onclick='sendEdit("+editCommentId+")'>送出</button><button type='button' onclick='cancelEdit("+editCommentId+")'>取消</button>")
-					editOpen=1;
-				});			
+					currentOpen=1;
+				});	
+			
+		
+			
 		}//success結束
 	})
 	
@@ -101,7 +158,6 @@ function sendEdit(id){
 		success:function(data){
 			
 			reloadComments();
-			editOpen=0;
 		}	
 	})
 	
@@ -112,7 +168,7 @@ function cancelEdit(id){
 	$(event.target).parent().children()[1].remove();
 	$(event.target).parent().children()[1].remove();
 	$(event.target).parent().children()[1].remove();
-	editOpen=0;
+	currentOpen=0;
 }
 
 
@@ -120,7 +176,7 @@ function closeReply(){
 	$('#nowInput').remove();
 	$('#nowSend').remove();
 	$('#nowCancel').remove();
-	replyOpen=0;
+	currentOpen=0;
 }
 
 function replyComment(){
@@ -145,9 +201,7 @@ function replyComment(){
 		url:'/forum/addCommentReply',
 		type:'GET',
 		data:replyCommenetData,
-		success:function(performanceComment){
-			console.log(performanceComment);
-			replyOpen=0;
+		success:function(performanceComment){	
 			reloadComments();
 		}
 		})		
@@ -175,44 +229,7 @@ $('#firstLayerButton').click(function(){
 		type:'GET',
 		data:replyData,
 		success:function(performanceComment){
-			$('#firstLayerComment').val('');
-			var commentBigDiv = $('<div>').addClass('row')
-			.append($('<div>').addClass('col-1')
-					.append($('<img>')
-							.attr('src',performanceComment.userPhoto)
-							.css({'width':'50px','border-radius':'50%','border':'1px solid white'})))										
-			.append($('<div>').addClass('col-11').attr('id','forum'+performanceComment.id)
-							.append($('<div>').addClass('col-12')
-									.append($('<span>').css({'font-weight':'bold'}).text(performanceComment.userName))
-									.append($('<span>').css({'padding':'10px','font-size':'12px'}).text(performanceComment.commentDate)))
-					.append($('<div>').addClass('row')
-							.append($('<div>').addClass('col-12')
-									.append($('<p>').css({'margin-left':'14px','margin-top':'10px'}).text(performanceComment.comment))))
-							.append($('<div>').addClass('col-12').css({'padding-top':'20px'})
-									.append($('<i>').addClass('far fa-thumbs-up'))
-									.append($('<span>').css({'margin-left':'10px'}).text(performanceComment.likeCount))
-									.append($('<i>').addClass('far fa-thumbs-down'))
-									.append($('<span>').css({'margin-left':'10px'}).text(performanceComment.dislikeCount).attr('id','editButton'+performanceComment.id))
-									.append($('<span>').css({'margin-left':'20px','color':'blue'}).attr('id','reply'+performanceComment.id).text('回覆'))))
-
-			$('#commentAppend').append(commentBigDiv);
-			if(userDisplayName==performanceComment.userName){
-				$('#editButton'+performanceComment.id).append($('<button>').addClass('btn btn-primary forumEdit').text('編輯'));
-			}
-			$('#reply'+performanceComment.id).click(function(){
-				if(replyOpen==0){
-					$(this).parent().append("<input type='text' size='30' id='nowInput' style='border:none;border-bottom:2px solid blue;margin-left:20px;'><button type='button'  class='btn btn-primary' id='nowSend' name='"+performanceComment.id+"' onclick='replyComment()' style='padding:5px 10px;margin-left:5px;cursor: pointer;' ><i class='fas fa-share'></i></button><button  class='btn btn-danger' type='button' id='nowCancel' onclick='closeReply()' style='padding:5px 10px;margin-left:5px;cursor: pointer;'><i class='fas fa-times'></i></button>");
-					replyOpen=1;
-				}
-			})
-			$('.forumEdit').click(function(event){
-				originalComment = $(this).parent().parent().prev().children().children().text()
-				var editCommentId = $(this).parent().parent().parent().attr('id').substring(5);
-				
-				$(this).parent().parent().prev().children().children().toggle();
-				$(this).parent().parent().prev().children().append("<input type='text' id='edit"+ editCommentId +"' value='"+ originalComment +"'><button type='button' onclick='sendEdit("+editCommentId+")'>送出</button><button type='button' onclick='cancelEdit("+editCommentId+")'>取消</button>")
-			});		
-			
+			reloadComments();
 			}
 		})
 
