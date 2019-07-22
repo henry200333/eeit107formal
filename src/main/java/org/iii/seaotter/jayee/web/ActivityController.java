@@ -63,15 +63,21 @@ public class ActivityController {
 	
 	@RequestMapping("/edit/{id}")
 	public String editPage(@PathVariable Long id, Model model) {
-		Activity activity=activityService.getById(id);
-		model.addAttribute("activityParam", activity);
-		model.addAttribute("beginTime", activity.getBeginTime().toString().substring(0, 16));
-		model.addAttribute("endTime", activity.getEndTime().toString().substring(0, 16));
-		model.addAttribute("locationCity", locationService.getListById((activity.getLocationId())).get(0).getCity());
-		model.addAttribute("locationDistrict", locationService.getListById((activity.getLocationId())).get(0).getDistrict());
-		model.addAttribute("locationAddress", locationService.getListById((activity.getLocationId())).get(0).getAddress());
-		model.addAttribute("locationLocationName", locationService.getListById((activity.getLocationId())).get(0).getLocationName());
-		return "/user/activityEdit";
+		String currentUser = SecurityContextHolder.getContext().getAuthentication().getName();
+		Long currentUID=securityUserService.getByUserName(currentUser).getUserId();
+		Long activityUID=activityService.getById(id).getUseraId();
+		if(currentUID.equals(activityUID)) {
+			Activity activity=activityService.getById(id);
+			model.addAttribute("activityParam", activity);
+			model.addAttribute("beginTime", activity.getBeginTime().toString().substring(0, 16));
+			model.addAttribute("endTime", activity.getEndTime().toString().substring(0, 16));
+			model.addAttribute("locationCity", locationService.getListById((activity.getLocationId())).get(0).getCity());
+			model.addAttribute("locationDistrict", locationService.getListById((activity.getLocationId())).get(0).getDistrict());
+			model.addAttribute("locationAddress", locationService.getListById((activity.getLocationId())).get(0).getAddress());
+			model.addAttribute("locationLocationName", locationService.getListById((activity.getLocationId())).get(0).getLocationName());
+			return "/user/activityEdit";
+		}else
+		return "/user/activityList";
 	}
 	@RequestMapping("/add")
 	public String addPage(Model model) {
