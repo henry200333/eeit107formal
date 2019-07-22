@@ -48,6 +48,8 @@ public class Article {
 	private Long refId;
 	@Column(name = "count")
 	private Long count;
+	@Column(name = "announced_user_id")
+	private Long announcedUserId; 
 	@CreatedDate
 	@Column(name = "announce")
 	private Date announce;

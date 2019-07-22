@@ -373,7 +373,7 @@
 // 	-------------------------------加文章在這裡-------------------------------------------------------------------------------------------------------------------------------------------------------
 								$("#refarticle").append("<i class='fas fa-plus-square' id='articleadd' title='新增文章'></i>");
 								$("#articleadd").click(function(){
-									window.open('/article/add?user=' +thisuser+'&refid=' +thispid+"&type=Performance");
+									window.open('/article/add?refid=' +thispid+"&type=Performance");
 								})
 								$("#editp").click(function(){
 									$("#ptitle").after("<i class='fas fa-pencil-alt' style='color:red'  data-toggle='modal' data-target='#titlemodel' data-whatever='@mdo'></i>");
