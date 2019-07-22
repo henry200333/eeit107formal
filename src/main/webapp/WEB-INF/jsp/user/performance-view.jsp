@@ -323,7 +323,7 @@
 					})
 					
 					$(".photo").click(function(){
-								window.location.href="/"+${userinf.account};
+								window.location.href="localhsot/"+${userinf.account};
 							})
 					
 					$.ajax({
