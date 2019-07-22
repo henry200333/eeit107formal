@@ -145,16 +145,17 @@
 }
 
 .act {
-	width: 100%;
+	width: 100px;
 	border-radius: 50%;
 	border-radius: 50%;
 	border: 1px solid white;
+	cursor: pointer;
 }
 
 .act:hover {
-	transition-property: border;
+	transition-property: opacity;
 	transition-duration: 0.5s;
-	border: 1px solid black;
+	opacity: 0.4;
 }
 
 #articleadd{
@@ -308,16 +309,23 @@
 						<span>________________________________________________________</span><br>
 						<div class="row" style="margin-top: 15px;">
 							<div class="col-2">
-								<img src="/resources/user-bootstrap/img/performance/dog.jpg"
-									class="act">
+								<span style="font-size:55px;" id="actview"><i class="fas fa-gamepad act"></i></span>
 							</div>
 							<div class="col-10" style="margin-top: 10px; padding-left: 0">
 								<span style="font-size: 16px; font-weight: bold;">${activity.name}</span><br>
 								<span style="line-height: 10px; font-size: 12px;">${begin}
 									- ${end}</span><br>
-								<span style="margin-top:15px;font-size:14px;" >關聯文章 :  </span><span id="refarticle"></span>
+								<span style="margin-top:15px;font-size:14px;" >關聯文章 : ${userinf.account} </span><span id="refarticle"></span>
 							</div>
 					<script>
+					$("#actview").click(function(){
+						window.location.href="/activity/view/"+${activity.id};
+					})
+					
+					$(".photo").click(function(){
+								window.location.href="/"+${userinf.account};
+							})
+					
 					$.ajax({
 						url:'/refarticle/' +$("#thisp").val(),
 						type:"POST",
@@ -426,11 +434,12 @@
 					<div class="col-6"></div>
 				</div>
 <!-- 				留言輸入 -->
-				<div class="row" style="margin-top:20px;margin-left:50px;">
+				<div class="row" style="margin-top:40px;margin-left:50px;">
 				<div class="col-10" >
-					<textarea id='firstLayerComment' cols="68" rows="3" placeholder="   留言..."  style="resize:none"></textarea>
+					<p style="font-size:18px">留言:</p>
+					<textarea id='firstLayerComment' cols="68" rows="3"   style="resize:none"></textarea>
 				</div>
-				<div class="col-1" style="padding-top:40px;">
+				<div class="col-1" style="padding-top:67px;"> 
 				 <button id='firstLayerButton' type="button" class="btn btn-primary" ><i class="fas fa-share"></i></button>
 				</div>
 				</div>

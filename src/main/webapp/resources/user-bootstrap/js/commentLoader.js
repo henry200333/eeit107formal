@@ -32,12 +32,12 @@ function reloadComments(){
 										.append($('<i>').addClass('far fa-thumbs-down'))
 										.append($('<span>').css({'margin-left':'10px'}).text(performanceComment.dislikeCount))
 										.append($('<button>').addClass('btn btn-primary').text('編輯'))
-										.append($('<span>').css({'margin-left':'20px','color':'blue'}).attr('id','reply'+performanceComment.id).text('回覆'))))
+										.append($('<span>').css({'margin-left':'20px','color':'blue','cursor': 'pointer'}).attr('id','reply'+performanceComment.id).text('回覆'))))
 
 				$('#commentAppend').append(commentBigDiv);
 				$('#reply'+performanceComment.id).click(function(){
 					if(replyOpen==0){
-						$(this).parent().append("<input type='text' id='nowInput'><button type='button' id='nowSend' name='"+performanceComment.id+"' onclick='replyComment()'>送出</button><button type='button' id='nowCancel' onclick='closeReply()' >取消</button>")
+						$(this).parent().append("<input type='text' size='30' id='nowInput' style='border:none;border-bottom:2px solid blue;margin-left:20px;'><button type='button'  class='btn btn-primary' id='nowSend' name='"+performanceComment.id+"' onclick='replyComment()' style='padding:5px 10px;margin-left:5px;cursor: pointer;' ><i class='fas fa-share'></i></button><button  class='btn btn-danger' type='button' id='nowCancel' onclick='closeReply()' style='padding:5px 10px;margin-left:5px;cursor: pointer;'><i class='fas fa-times'></i></button>")
 						replyOpen=1;
 					}
 				})
@@ -179,7 +179,7 @@ $('#firstLayerButton').click(function(){
 			$('#commentAppend').append(commentBigDiv);
 			$('#reply'+performanceComment.id).click(function(){
 				if(replyOpen==0){
-					$(this).parent().append("<input type='text' id='nowInput'><button type='button' id='nowSend' name='"+performanceComment.id+"' onclick='replyComment()'>送出</button><button type='button' id='nowCancel' onclick='closeReply()' >取消</button>")
+					$(this).parent().append("<input type='text' size='30' id='nowInput' style='border:none;border-bottom:2px solid blue;margin-left:20px;'><button type='button'  class='btn btn-primary' id='nowSend' name='"+performanceComment.id+"' onclick='replyComment()' style='padding:5px 10px;margin-left:5px;cursor: pointer;' ><i class='fas fa-share'></i></button><button  class='btn btn-danger' type='button' id='nowCancel' onclick='closeReply()' style='padding:5px 10px;margin-left:5px;cursor: pointer;'><i class='fas fa-times'></i></button>")
 					replyOpen=1;
 				}
 			})
