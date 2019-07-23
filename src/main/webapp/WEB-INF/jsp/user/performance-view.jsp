@@ -453,9 +453,6 @@
 <!-- 				留言開始 -->
 <script src='/resources/user-bootstrap/js/commentLoader.js'></script>
 				<div id='commentAppend' style="margin-top:20px;">
-					<div class='row'>
-						<div class='col-12'>留言們</div>
-					</div>
 				</div>
 				<!-- 				留言結束 -->
 

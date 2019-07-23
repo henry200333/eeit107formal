@@ -1,0 +1,86 @@
+@charset "UTF-8";
+.forumEditInput{
+	width:100%;
+    border:2px solid #aaa;
+    border-radius:4px;
+    margin:8px 0;
+    outline:none;
+    padding:8px;
+    box-sizing:border-box;
+    transition:.3s;
+}
+.forumEditInput:focus{
+	  border-color:dodgerBlue;
+    box-shadow:0 0 8px 0 dodgerBlue;
+}
+
+
+.likediv:hover {
+	cursor: pointer;
+	transition-property: border-bottom;
+	transition-duration: 0.5s;
+	border-bottom: 3px solid #2894ff;
+}
+
+.dislikediv:hover {
+	cursor: pointer;
+	transition-property: border-bottom;
+	transition-duration: 0.5s;
+	border-bottom: 3px solid #ff5151;
+}
+
+.likedivclick:hover {
+	cursor: pointer;
+
+}
+
+.dislikedivclick:hover {
+	cursor: pointer;
+
+}
+
+.likediv {
+
+	display: inline;
+	border-bottom: 3px solid white;
+	padding: 5px;
+	text-align: center;
+}
+
+.dislikediv {
+
+	display: inline;
+	border-bottom: 3px solid white;
+	padding: 5px;
+	text-align: center;
+	margin-left: 10px;
+}
+.likedivclick {
+
+	display: inline;
+	border-bottom: 3px solid #2894ff;
+	padding: 5px;
+	text-align: center;
+}
+
+.likedivclick span{
+	color: #2894ff;
+}
+
+.dislikedivclick {
+
+	display: inline;
+	border-bottom: 3px solid #ff5151;
+	padding: 5px;
+	text-align: center;
+	margin-left: 10px;
+}
+
+.dislikedivclick span{
+	color: #ff5151;
+}
+
+p{
+	word-wrap:break-word;
+}
+
