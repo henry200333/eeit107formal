@@ -201,9 +201,11 @@ function sendEdit(id){
 
 function cancelEdit(id){
 	$(event.target).parent().children().show();
-	$(event.target).parent().children()[1].remove();
-	$(event.target).parent().children()[1].remove();
-	$(event.target).parent().children()[1].remove();
+	var child001 = $(event.target).parent().children();
+	child001[1].remove();
+	child001[2].remove();
+	child001[3].remove();
+	child001[4].remove();
 	currentOpen=0;
 }
 
