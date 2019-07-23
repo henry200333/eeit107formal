@@ -21,11 +21,11 @@
 				</h2>
 			</div>
 		</div>
-		<form>
+		<form id="form1">
 			<div class="form-group row">
 				<div class="col-10">
 					<label for="name">文章標題：</label> <input id="name" name="name"
-						class="form-control form-control-user" placeholder="請輸入文章標題..." />
+						class="form-control" placeholder="請輸入文章標題..." />
 					<small class="form-text text-muted">文章標題最少2個字元，最大60個字元(約20個中文字)</small>
 				</div>
 			</div>
@@ -39,7 +39,12 @@
 					</div>
 				</div>
 			</div>
-		</form>
+			<div class="form-group row">
+				<div class="col-10">
+					<input id="refId" name="refId" style="display: none;" readonly="readonly" value="${refId}" />
+					<input id="articleType" name="articleType" style="display: none;" readonly="readonly" value="${articleType}" />
+				</div>
+			</div>
 		<hr>
 		<div class="row">
 			<div class="col-3"></div>
@@ -60,7 +65,8 @@
 				</button>
 			</div>
 		</div>
-
+		</form>
+		
 		<br>
 	</div>
 	<!-- 	footer開始，包含聊天 -->
@@ -135,5 +141,61 @@
 		});
 	});
 </script>
+<!-- Ajax SerializeObject Function -->
+<script>
+    $.fn.serializeObject = function() {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return JSON.stringify(o);
+    };
+</script>
+<!-- Ajax SerializeObject Function -->
+<!-- insert文章按鈕 -->
+<script>
+$("#goToInsert").click(function(){
+	if($("#name").val().length >= 2 && $("#name").val().length <= 60){
+		$.ajax({
+			url:"/article/add",
+			type:"POST",
+			contentType : 'application/json;charset=UTF-8',
+			dataType : 'json',
+			data : $("#form1").serializeObject(),
+			success: function(res){
+				if(res.type == "SUCCESS"){
+					alert("您成功新增文章名稱：\n" + res.data.name);
+					$(location).attr('href', '/article/' + res.data.id);
+				} else {
+					alert("連線逾時！\n請重新登入！");
+				}
+			}
+		});
+	}else{
+		alert('文章標題格式不正確');
+	}
+});
+</script>
+<!-- insert文章按鈕 -->
+<!-- 驗證name欄位是否符合限定 -->
+<script>
+$("#name").blur(function(){
+	var input = $(this).val();
+	if(input.length >= 2 && input.length <= 60){
+		$(this).attr("class", "form-control is-valid");
+	} else {
+		$(this).attr("class", "form-control is-invalid");
+	}
+})
+</script>
+<!-- 驗證name欄位是否符合限定 -->
 
 </html>
