@@ -43,38 +43,31 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
+				<c:if test="${not empty errorMessage}">
+					<div style="color: red; font-weight: bold; margin: 30px 0px;">${errorMessage}</div>
+				</c:if>
 				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178"
 					action="/register" method="POST">
-					<c:if test="${not empty errorMessage}">
-						<div style="color: red; font-weight: bold; margin: 30px 0px;">${errorMessage}</div>
-					</c:if>
 					<span class="login100-form-title"> Jayee </span>
-					<div style="color: red; font-weight: bold; margin: 30px 0px;">${errorMessages}</div>
-
 					<div class="wrap-input100 validate-input m-b-16"
 						data-validate="請輸入帳號">
 						<input class="input100" type="text" name="username"
 							autofocus="autofocus" value="" placeholder="帳號"> <span
 							class="focus-input100"></span>
 					</div>
-
 					<div class="wrap-input100 validate-input m-b-16"
 						data-validate="請輸入電子信箱">
 						<input class="input100" type="email" name="email" value=""
 							placeholder="電子信箱"> <span class="focus-input100"></span>
 					</div>
-
-
 					<div class="wrap-input100 validate-input m-b-16"
 						data-validate="請輸入密碼">
 						<input class="input100" type="password" name="password" value=""
 							placeholder="密碼"> <span class="focus-input100"></span>
 					</div>
-
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn" type="submit">註冊</button>
 					</div>
-
 					<div class="flex-col-c p-t-170 p-b-40">
 						<span class="txt1 p-b-9"> 已經擁有帳號了? </span> <a href="/login"
 							class="txt3"> 現在登入! </a>

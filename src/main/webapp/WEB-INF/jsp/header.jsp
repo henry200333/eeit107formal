@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <header>
 	<nav class="navbar navbar-expand-md navbar-light bg-light"
 		style="padding-top: 70px;">
@@ -46,10 +48,16 @@
 					aria-haspopup="true" aria-expanded="false"></button>
 				<div class="dropdown-menu" id="performancebar">
 					<a class="dropdown-item" href="/performances">表演列表</a>
+					<sec:authorize access="isAuthenticated()">
+						<a class="dropdown-item" href="/user/performance/select">新增表演</a>
+					</sec:authorize>
 				</div>
+
+
 			</div>
 			<div class="btn-group">
-				<button type="button" class="btn bar" id="topbar5" onclick="javascript:location.href='/article'"
+				<button type="button" class="btn bar" id="topbar5"
+					onclick="javascript:location.href='/article'"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="far fa-newspaper"></i> 文章
 				</button>

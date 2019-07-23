@@ -208,6 +208,7 @@ margin-top:20px;
 																		var total = $("iframe").length;
  																		var check = confirm("確定新增"+total+"部表演到活動["+value['name']+"]嗎");
  																		if(check){
+ 																			var flag=true;
  																			for(var j=1;j<=total;j++){
  																				var t = $("#title"+j).val();
  																				var u = $("#url"+j).val();
@@ -217,30 +218,36 @@ margin-top:20px;
  																					url:"/user/performance/padd",
  																					type:"POST",
  																					data:{
- 																						"times" : j,
  																						"username" : username,
  																						"title":t,
  																						"url":u,
  																						"introduction":i,
  																						"actid": aid
  																					},
+ 																					async: false,
  																					success:function(data){
- 																						var massage="";
- 																						if(data.type=="SUCCESS"){
- 																							$.each(data.messages,function(index,value){
- 																								massage += value['content'];
- 																							})
- 																							alert(massage);
- 																						}else{
- 																							var massage="新增失敗";
- 																							$.each(data.messages,function(index,value){
- 																								massage += value['content']+"\n";
- 																							})
- 																							alert(massage);
+ 																						
+ 																						if(data==false){
+ 																							flag=false;
+ 																							alert("第"+j+"筆資料錯誤，請檢查輸入後再試一次。");
+ 																							for(var x=1;x<j;x++){
+ 																								$.ajax({
+ 																									url:"/user/performance/paddfalse",
+ 																									type:"POST",
+ 																									async: false,
+ 																									success:function(data){
+ 																										
+ 																									}
+ 																								})
+ 																							}
+ 																							
  																						}
  																					}
  																				})
- 																				console.log(j);
+ 																			}
+ 																			if(flag){
+ 																				alert("表演資料新增成功，將回到表演列表。");
+ 																				window.location.href="/performances";
  																			}
  																		}
 																	})

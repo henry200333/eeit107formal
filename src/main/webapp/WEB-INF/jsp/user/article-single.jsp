@@ -47,19 +47,15 @@
 			</div>
 		</div>
 		<hr>
-		<div class="row">
-			<div class="col-1"></div>
-			<div class="col-3"><h3><b>留言</b></h3></div>
-		</div>
 		<div class='row'>
 		<div class="col-8">
 <!-- 				留言輸入 -->
 				<div class="row" style="margin-top:40px;margin-left:50px;">
 				<div class="col-10" >
-					<p style="font-size:18px">留言:</p>
+					<div class="col-3"><h3><b>留言</b></h3></div>
 					<textarea id='firstLayerComment' cols="68" rows="3"   style="resize:none"></textarea>
 				</div>
-				<div class="col-1" style="padding-top:67px;"> 
+				<div class="col-1" style="padding-top:80px;"> 
 				 <button id='firstLayerButton' type="button" class="btn btn-primary" ><i class="fas fa-share"></i></button>
 				</div>
 				</div>

@@ -32,7 +32,7 @@ INSERT INTO security_role(code) values
 
 
  INSERT INTO security_user(account, password, display_name, member_name, photo, gender, mail, birth, address, tel, favorite_location, register_date, introduction, enabled, followers) values
-('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 'ADMIN_BOT', 'Mr.Admin', '/resources/profile_image/admin.jpg', 'male', 'admin@admin', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im admin',  1, 0),
+('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 'ADMIN_BOT', 'Mr.Admin', '/resources/profile_image/admin.jpg', 'male', 'jasonben26@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im admin',  1, 0),
 ('123', '$2a$10$weN4FB8uqq1jpv/7HEPBDuYMuw2xbMCBGKx3xYfWk3Da/UoVFS/7W', '112233', 'OneTwoThree', '/resources/profile_image/123.jpg', 'male', '123@123', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im 123',  1, 0),
 ('artist001', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','桑源雅沂', '劉長軒', '/resources/profile_image/artist001.jpg', 'female', 'Liu0807@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Liu',  1, 86520),
 ('artist002', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','白賊虞', '李承宇', '/resources/profile_image/artist002.jpg', 'male', 'Lee0708@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Lee',  1, 30678),
@@ -154,13 +154,13 @@ insert into  Vender (name,city,district,address,max_people,phone,lat,lng,user_id
 ('LOTUS 音樂餐廳','台北市','中山區','長安東路二段78號',60,' 0223468888',25.0483426,121.5317147,null,'/resources/vender_image/3.jpg','彭先生','2008年、兩位愛好音樂的朋友，以女性柔和的思考線條，在 【LOTUS音樂餐廳】 ，您就是演唱會的巨星，絕對有別於您以往的歌唱經驗！'),
 ('HOOTERS美式餐廳','台北市','松山區','長安東路二段78號',55,'0227165168','25.0532667','121.54544720000001',null,'/resources/vender_image/4.jpg',null,null);
 
-insert into  job (name,job_type,job_time,detal,reward,vender_name,city,district,address,vender_id) values
-('誠徵鼓手一名','聽覺藝術','2019-07-15 12:00:00','經驗要求5年以上',1000,'EZ5音樂餐廳','台北市','大安區','安和路二段211號',1),
-('誠徵吉他手一名','聽覺藝術','2019-07-16 12:00:00','經驗要求5年以上',1000,'EZ5音樂餐廳','台北市','大安區','安和路二段211號',1),
-('誠徵搞笑演員一名','表演藝術','2019-07-17 12:00:00','有舞台經驗佳',1000,'EZ5音樂餐廳','台北市','大安區','安和路二段211號',1),
-('誠徵魔術師','表演藝術','2019-07-20 17:00:00','需舞台魔術表演',2000,'Music Corner角落音樂餐廳','台北市','中山區',' 建國北路一段156號',2),
-('誠徵街舞舞者','表演藝術','2019-07-19 12:00:00','經驗不限，需炒熱氣氛',3000,'LOTUS 音樂餐廳','台北市','中山區','長安東路二段78號',3),	
-('誠徵幹話王','表演藝術','2019-07-19 12:00:00','愛亂講話，不會尷尬就好',20000,'LOTUS 音樂餐廳','台北市','中山區','長安東路二段78號',3);
+insert into  job (name,job_type,job_time,detal,reward,vender_name,city,district,address,status,vender_id) values
+('誠徵鼓手一名','聽覺藝術','2019-07-15 12:00:00','經驗要求5年以上',1000,'EZ5音樂餐廳','台北市','大安區','安和路二段211號','未應聘',1),
+('誠徵吉他手一名','聽覺藝術','2019-07-16 12:00:00','經驗要求5年以上',1000,'EZ5音樂餐廳','台北市','大安區','安和路二段211號','未應聘',1),
+('誠徵搞笑演員一名','表演藝術','2019-07-17 12:00:00','有舞台經驗佳',1000,'EZ5音樂餐廳','台北市','大安區','安和路二段211號','未應聘',1),
+('誠徵魔術師','表演藝術','2019-07-20 17:00:00','需舞台魔術表演',2000,'Music Corner角落音樂餐廳','台北市','中山區',' 建國北路一段156號','未應聘',2),
+('誠徵街舞舞者','表演藝術','2019-07-19 12:00:00','經驗不限，需炒熱氣氛',3000,'LOTUS 音樂餐廳','台北市','中山區','長安東路二段78號','未應聘',3),	
+('誠徵幹話王','表演藝術','2019-07-19 12:00:00','愛亂講話，不會尷尬就好',20000,'LOTUS 音樂餐廳','台北市','中山區','長安東路二段78號','未應聘',3);
 
 INSERT INTO Location (location_name,city,district,address) values
 ('北投公園','台北市','北投區','光明路、中山路'),

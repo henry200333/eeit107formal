@@ -91,5 +91,9 @@ public class PerformanceService {
 	
 	public List<SecurityUser> findDislikeuserById(Long id){
 		return performanceDao.findDislikeuserById(id);
-	};
+	}
+	
+	public Performance findTopByOrderByIdDesc(){
+		return performanceDao.findTopByOrderByIdDesc();
+	}
 }

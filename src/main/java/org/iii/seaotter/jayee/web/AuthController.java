@@ -25,14 +25,17 @@ public class AuthController {
 	private SecurityUserService securityUserService;
 
 	@GetMapping("/login")
-	public String signin(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout, Model model) {
+	public String signInPage(@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "logout", required = false) String logout, @RequestParam(value = "reset", required = false) String reset, Model model) {
 		String errorMessage = null;
 		if (error != null) {
 			errorMessage = "帳號或密碼有誤 !!";
 		}
 		if (logout != null) {
-			errorMessage = "已成功登出 !!";
+			errorMessage = "已成功登出!!";
+		}
+		if (reset != null) {
+			errorMessage = "密碼已重新設定!!";
 		}
 		if (errorMessage != null)
 			model.addAttribute("errorMessage", errorMessage);
@@ -41,7 +44,7 @@ public class AuthController {
 	}
 
 	@GetMapping("/logout")
-	public String signout(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+	public String signOutPage(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
@@ -75,7 +78,7 @@ public class AuthController {
 
 		model.addAttribute("mail", mail);
 
-		return "successfulRegisteration";
+		return "successfulMail";
 
 	}
 
@@ -84,7 +87,44 @@ public class AuthController {
 		model.addAttribute("message", securityUserService.checkConfirmationToken(confirmationToken));
 		return "accountVerified";
 	}
+	
+	@GetMapping("/password_forgot")
+	public String forgotPasswordPage(@RequestParam(value="", required=false)String error, Model model) {
+		String errorMessage = null;
+		if (error != null) {
+			errorMessage = "您輸入的信箱有誤!";
+		}
+		if (errorMessage != null) {
+			model.addAttribute("errorMessage", errorMessage);
+		}
+		return "passwordForgot";
+	}
+	
+	@PostMapping("/password_forgot")
+	public String forgotPasswordMail(@RequestParam("mail") String mail, Model model) {
+		
+		SecurityUser existingUser = securityUserService.findByMailIgnoreCase(mail);
+		if (existingUser == null) {
+			return "redirect:/password_forgot?error";
+		}
+		securityUserService.passwordResetMail(existingUser);
+		
+		model.addAttribute("mail", mail);
 
+		return "successfulMail";
+	}
+	
+	@RequestMapping(value="/password-reset", method = { RequestMethod.GET, RequestMethod.POST })
+	public String passwordResetPage(@RequestParam("token") String passwordResetToken, Model model) {
+		model.addAttribute("user", securityUserService.checkPasswordReset(passwordResetToken));
+		return "passwordReset";
+	}
+	
+	@PostMapping("/resetPassword")
+	public String passwordreset(@RequestParam("username") String account, @RequestParam("password") String password,Model model) {
+		securityUserService.resetPassword(account, password);
+		return "redirect:/login?reset";
+	}
 //	@GetMapping("/register")
 //	public String signup() {
 //		return "signup";

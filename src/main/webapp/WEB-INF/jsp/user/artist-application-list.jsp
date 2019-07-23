@@ -12,7 +12,6 @@
 <jsp:include page="../header.jsp"></jsp:include>
 
 
-<title>Insert title here</title>
 </head>
 	<!-- Topbar -->
 <jsp:include page="../topbar.jsp"></jsp:include>
@@ -184,23 +183,27 @@ function showjobs() {
 						 txt += "<h4 class='col-sm-12 mb-0 mb-sm-0' style='text-align:center'>你沒有任何工作申請</h4>";	
 					}
 					$.each(data.rows,function(key, obj) {
-						txt += "<form class='col-sm-4 mb-0 mb-sm-0' style='padding: 5px;'><div style='border: solid;background:#DDDDDD'><div class='col-sm-12 mb-3 mb-sm-3'><h2 class=' h3 mb-0 text-gray-800'>"
+							txt += "<form class='col-sm-4 mb-0 mb-sm-0' style='padding: 5px;background:white'><div style='border: solid;background:#DDDDDD'><div class='col-sm-12 mb-3 mb-sm-3'><h2 class=' h3 mb-0 text-gray-800'>"
 							txt += obj.job.name;
-							txt += "</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>店家:</label><h2 class=' h4 mb-0 text-gray-800'>";
+							txt += "</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>店家:</label><br><a href='/job/vender/";
+							txt += obj.job.vender.id;
+							txt += "'class=' h4 mb-0 text-gray-800'>";
 							txt += obj.job.venderName;
-							txt += "</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><div class='row'><div class='col-sm-6 mb-6 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>類別:</label><h2 class=' h4 mb-0 text-gray-800'>";
-							txt += obj.job.jobType;
+							txt += "</a></div><div class='col-sm-12 mb-3 mb-sm-3'><div class='row'><div class='col-sm-6 mb-6 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>類別:</label><h2 class=' h4 mb-0 text-gray-800'>";
+							txt += obj.jobType;
 							txt += "</h2></div><div class='col-sm-6 mb-3 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>薪資:</label><h4 class=' h4 mb-0 text-gray-800'>";
 							txt += obj.job.reward;
-
 							txt += "</h4></div></div></div><div class='col-sm-9 mb-3 mb-sm-6'><label class=' h4 mb-0 text-gray-800'>詳細內容:</label><textarea class='form-control' name='description'style='resize: none' readonly>";
 							txt += obj.job.detal;
 							txt += "</textarea></div><div class='col-sm-0 mb-3 mb-sm-6' style='text-align:right;margin-right:5%'><h2 class=' h4 mb-0 text-gray-800'>表演時間:"
 							txt += obj.job.jobTime;
 							txt += "</h2></div><div style='text-align:center'><input class='btn btn-primary btn-sm' id='";
 							txt += obj.job.id;
+							if(obj.job.status=="已應聘")
+							txt += "'value='對方已接受' readonly></div></div></form>";
+							else
 							txt += "'onclick='cancel(this)' value='取消' readonly></div></div></form>";
-						
+
 						
 					})
 					total= parseInt(data.total);
