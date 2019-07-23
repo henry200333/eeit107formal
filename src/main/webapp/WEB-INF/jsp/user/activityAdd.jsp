@@ -10,6 +10,25 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />	
 <link rel="stylesheet" href="/resources/admin-bootstrap/css/jquery-ui-timepicker-addon.css">
 
+<style>
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+	height: 100%;
+	width: 1000px;
+}
+
+.body {
+	height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+</style>	
 <body>
 <input type="hidden" value="${activityParam.id}" id="thisp">
 	<input type="hidden" value="<sec:authentication property='name' />" id="thisuser">
@@ -50,11 +69,11 @@
     
     
     <div class='row'>
-    <div >
+    <div>
    <img src='/resources/user-bootstrap/img/activity/activity1.jpg' style='height:280px;border-radius:20px;width:500px'>
    </div>
-   <div style='padding-left:10px'>
-   <img src='/resources/user-bootstrap/img/activity/activity1.jpg' style='height:280px;border-radius:20px;'>
+   <div class='col-sm-6 mb-3 mb-sm-6' id="map" style='height:280px;border-radius:20px;width:500px;border-color:DarkGrey; border-style:solid;margin-left:10px'>
+
    </div>
   	</div>
   
@@ -189,6 +208,8 @@
 
 
 
+
+
 		<jsp:include page="../chat.jsp"></jsp:include>	
 		<!-- Footer -->
 
@@ -286,13 +307,75 @@ $(function() {
     });
   });
   
-  
+var	map
+var self;
+var marker;
+function initMap() {
+	map = new google.maps.Map(document.getElementById('map'), {
+			center : {
+				lat :  25.0337113,
+				lng :  121.543364
+			},
+			 draggable: true,
+			clickableIcons : false,
+			zoom : 21,
+			minZoom : 16,
+			maxZoom : 20,
+			disableDefaultUI : true,
+			styles : [ {
+				"featureType" : "poi.business",
+				"stylers" : [ {
+					"visibility" : "off"
+				} ]
+			}, {
+				"featureType" : "poi.park",
+				"elementType" : "labels.text",
+				"stylers" : [ {
+					"visibility" : "off"
+				} ]
+			} ]
+		});
+	
+	self = new google.maps.Marker({
+		position : {
+
+			lat : map.getCenter().lat(),
+			lng : map.getCenter().lng()
+		},
+		map : map
+	});
+	
+	
+	
+	
+	
+	};
+
+	function changeCenter(){
+		var geocoder = new google.maps.Geocoder();
+		geocoder.geocode({
+		        'address':$("#addressInfo").val(),
+		    }, function (results, status) {
+		        if (status == google.maps.GeocoderStatus.OK) {
+				map.setCenter(results[0].geometry.location);
+	            map.setZoom(19);
+	            self.setPosition(results[0].geometry.location);
+		    }
+		        
+		});	
+
+	};
+
+
+
+
   
   
   
   
 $(document).ready(function(){
-	
+
+// 	initMap();
 	 $.ajax({
 			url:"/activity/location/city",
 			type:"POST",
@@ -310,6 +393,7 @@ $(document).ready(function(){
            
            $('#city').change(function(){
                var CName= $('#city').val();
+               changeCenter();
                $.ajax({
                    type: "POST",
                    url: '/activity/location/'+ CName,
@@ -325,14 +409,15 @@ $(document).ready(function(){
    					$.each(data,function(index,value){
    						txt += 	"<option value='"+ value +"'>"+ value +"</option>";			
    					})
-   					txt2 ="<span style='font-size: 20px; font-weight: bold;padding-left:15px;color:red;'>" + CName +"<i class='fas fa-pen-fancy fa-sm' style='color:Mediumslateblue;'></i>"+"</span>";
+   					txt2 ="<span style='font-size: 20px; font-weight: bold;padding-left:15px;color:red;'>"+"<div id='addressForMap' style='position'>" + CName +"</div>"+"<i class='fas fa-pen-fancy fa-sm' style='color:Mediumslateblue;'></i>"+"</span>";
    					$("#mappingIcon").attr("class","fas fa-spinner fa-pulse");
    					$("#mappingIcon").attr("style","color:RoyalBlue");
    					$("#addressInfo").empty();
    					$("#addressInfo").append(txt2);
    					$("#district").html(txt);
    					$("#locationName").html(txt5);
-   					
+   					alert($("#addressForMap").html());
+   					changeCenter();
    				}
                });
            });
@@ -420,7 +505,9 @@ $("#insert").click(
 		})
 
 </script>
-
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4fmDiIyJ9mPTKGL7iIVPvB5Igfo54eMk&callback=initMap"
+	async defer></script>
 
 
 </html>

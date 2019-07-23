@@ -1,3 +1,5 @@
+$('head').append('<link rel="stylesheet" type="text/css" href="/resources/user-bootstrap/css/forumCss.css">');
+
 var thisPerformanceId = $('#thisp').val();
 var userAccount = $('#userAccount').val();
 var userDisplayName = $('#userDisplayName').val();
@@ -73,7 +75,7 @@ function reloadComments(){
 				$('#commentAppend').append(commentBigDiv);
 				
 				if(userDisplayName==performanceComment.userName){
-					$('#editButton'+performanceComment.id).append($('<button>').addClass('btn btn-primary forumEdit').text('編輯'));
+					$('#editButton'+performanceComment.id).append($('<button>').addClass('btn forumEdit').css({"background-color":"white","color":"red"}).text('編輯'));
 				}
 				
 				$('#reply'+performanceComment.id).click(function(){
@@ -107,7 +109,7 @@ function reloadComments(){
 				
 				$('#forum'+performanceComment.refCommentId).append(commentSecondDiv);
 					if(userDisplayName==performanceComment.userName){
-						$('#editButton'+performanceComment.id).append($('<button>').addClass('btn btn-primary forumEdit').text('編輯'));
+						$('#editButton'+performanceComment.id).append($('<button>').addClass('btn  forumEdit').css({"background-color":"white","color":"red"}).text('編輯'));
 					}
 				}
 				
@@ -176,7 +178,7 @@ function reloadComments(){
 					var editCommentId = $(this).parent().parent().parent().attr('id').substring(5);
 					
 					$(this).parent().parent().prev().children().children().toggle();
-					$(this).parent().parent().prev().children().append("<input type='text' id='edit"+ editCommentId +"' value='"+ originalComment +"'><button type='button' onclick='sendEdit("+editCommentId+")'>送出</button><button type='button' onclick='cancelEdit("+editCommentId+")'>取消</button>")
+					$(this).parent().parent().prev().children().append("<input class='forumEditInput' type='text' id='edit"+ editCommentId +"' value='"+ originalComment +"'><button type='button' class='btn-primary' onclick='sendEdit("+editCommentId+")'>送出</button><button type='button' class='btn-light' onclick='cancelEdit("+editCommentId+")'>取消</button><button type='button' class='btn-danger' onclick='deleteComment("+editCommentId+")'>刪除</button>")
 					currentOpen=1;
 				});	
 			refreshLikeData();
@@ -206,6 +208,17 @@ function cancelEdit(id){
 	$(event.target).parent().children()[1].remove();
 	$(event.target).parent().children()[1].remove();
 	currentOpen=0;
+}
+
+function deleteComment(id){
+	$.ajax({
+		url:'/forum/deleteComment',
+		type:'GET',
+		data:{'id':id},
+		success:function(){
+			reloadComments();
+		}
+	})	
 }
 
 
@@ -266,6 +279,7 @@ $('#firstLayerButton').click(function(){
 		type:'GET',
 		data:replyData,
 		success:function(performanceComment){
+			$('#firstLayerComment').val("");
 			reloadComments();
 			}
 		})

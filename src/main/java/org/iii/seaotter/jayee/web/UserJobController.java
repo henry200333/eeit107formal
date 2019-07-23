@@ -61,25 +61,64 @@ public class UserJobController {
 	public String userJobPage() {
 		return "/user/artist-application-list";
 	}
-	
-	@RequestMapping("/vender/{venderId}")
-	public String venderPage(@PathVariable(name="venderId") Long venderId, Model model) {
-		System.out.println("aaa");
-		Vender vender=venderService.getById(venderId);
-		SecurityUser user= vender.getUser();
-		vender.setUser(null);
-		model.addAttribute("vender",vender);
-		model.addAttribute("user",user);
-		return "/user/venderpage";
+
+	@RequestMapping("/applicationFindByJobId")
+	@ResponseBody
+	public GridResponse<JobApplication> findByJobId(@RequestBody Long jobid) {
+		String sidx = "applicationTime";
+		Integer size = 10;
+		GridResponse<JobApplication> grid = new GridResponse<JobApplication>();
+		Sort sort = new Sort(Sort.Direction.DESC, sidx);
+		Pageable pageable = PageRequest.of(0, size, sort);
+		Specification<JobApplication> specification = new Specification<JobApplication>() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Predicate toPredicate(Root<JobApplication> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Predicate predicate = cb.conjunction();
+				predicate = cb.and(predicate, cb.equal(root.get("job"), jobid));
+				predicate = cb.and(predicate, cb.equal(root.get("status"), "申請中"));
+				return predicate;
+			}
+		};
+		Page<JobApplication> result = jobservice.getAllJobApplication(specification, pageable);
+//		System.out.println(result.getContent().size());
+//		System.out.println(result.getContent().getClass());
+		grid.setRows(result.getContent());
+		grid.setPage(0);
+		grid.setRecords(result.getTotalElements());
+		grid.setTotal(result.getTotalPages());
+		return grid;
+	}
+
+	@RequestMapping("/findUserId/{userName}")
+	@ResponseBody
+	public Map<String,String> findUserId(@PathVariable("userName") String userName) {
+		Map<String, String> res = new HashMap<>();
+		Long id=securityUserService.getByUserName(userName).getUserId();
+	    res.put("userId", id.toString());
+		return res;
 	}
 	
+	
+	
+	@RequestMapping("/vender/{venderId}")
+	public String venderPage(@PathVariable(name = "venderId") Long venderId, Model model) {
+//		System.out.println("aaa");
+		Vender vender = venderService.getById(venderId);
+		SecurityUser user = vender.getUser();
+		System.out.println(user.getUserId());
+		vender.setUser(null);
+		model.addAttribute("vender", vender);
+		model.addAttribute("user", user);
+		return "/user/venderpage";
+	}
 
 	@RequestMapping("/findjobs")
 	@ResponseBody
 	public List<Job> findById(@RequestParam("id") Long id, Model model) {
-
 		Vender bean = venderService.getById(id);
-		System.out.println(jobservice.getByVender(bean).size());
+//		System.out.println(jobservice.getByVender(bean).size());
 		return jobservice.getByVender(bean);
 	}
 
@@ -99,8 +138,12 @@ public class UserJobController {
 			@Override
 			public Predicate toPredicate(Root<JobApplication> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				Predicate predicate = cb.conjunction();
-				predicate = cb.and(cb.equal(root.get("user"), userId));
-				predicate = cb.and(cb.equal(root.get("status"), "申請中"));
+				
+				
+				predicate = cb.and(predicate, cb.equal(root.get("status"), "申請中"));
+				predicate = cb.or(predicate, cb.equal(root.get("status"), "已接受"));
+				
+				predicate = cb.and(predicate, cb.equal(root.get("user"), userId));
 				return predicate;
 			}
 		};
@@ -109,9 +152,9 @@ public class UserJobController {
 		grid.setRows(result.getContent());
 		grid.setPage(page);
 		grid.setRecords(result.getTotalElements());
-		System.out.println(result.getTotalElements());
+//		System.out.println(result.getTotalElements());
 		grid.setTotal(result.getTotalPages());
-		System.out.println(result.getTotalPages());
+//		System.out.println(result.getTotalPages());
 
 		return grid;
 	}
@@ -142,25 +185,26 @@ public class UserJobController {
 			@Override
 			public Predicate toPredicate(Root<Job> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				Predicate predicate = cb.conjunction();
+
+				predicate = cb.and(predicate, cb.equal(root.get("status"), "未應聘"));
 				
-				
-				if (city == null || city.equals("null")  || city.equals("請選擇") || city.trim().equals("")) {
+				if (city == null || city.equals("null") || city.equals("請選擇") || city.trim().equals("")) {
 				} else {
-					System.out.println(city);
-					predicate = cb.and(predicate,cb.equal(root.get("city"), city));
+//					System.out.println(city);
+					predicate = cb.and(predicate, cb.equal(root.get("city"), city));
 				}
-				if (type == null ||  type.equals("null")  ||type.equals("全部") || type.trim().equals("")) {
+				if (type == null || type.equals("null") || type.equals("全部") || type.trim().equals("")) {
 				} else {
-					System.out.println(type);
-					predicate = cb.and(predicate,cb.equal(root.get("jobType"), type));
+//					System.out.println(type);
+					predicate = cb.and(predicate, cb.equal(root.get("jobType"), type));
 				}
 
-				if (district==null ||  district.equals("null")  || district.equals("請選擇") || district.trim().equals("")) {
+				if (district == null || district.equals("null") || district.equals("請選擇")
+						|| district.trim().equals("")) {
 				} else {
-					System.out.println(district);
-					predicate = cb.and(predicate,cb.equal(root.get("district"), district));
+//					System.out.println(district);
+					predicate = cb.and(predicate, cb.equal(root.get("district"), district));
 				}
-				
 
 				return predicate;
 			}
@@ -219,7 +263,7 @@ public class UserJobController {
 
 		return message;
 	}
-	
+
 	@RequestMapping("/checkapplication")
 	@ResponseBody
 	public Map<String, String> checkapplication(@RequestParam("jobid") Long jobid,
@@ -232,7 +276,7 @@ public class UserJobController {
 		if (!securityUserService.hasRole("ROLE_ARTIST")) {
 			message.put("mes", "沒資格");
 			return message;
-		}else if (jobservice.getApplication(user, job) != null
+		} else if (jobservice.getApplication(user, job) != null
 				&& jobservice.getApplication(user, job).getStatus().equals("申請中")) {
 			message.put("mes", "申請中");
 		} else {
@@ -240,17 +284,24 @@ public class UserJobController {
 		}
 		return message;
 	}
-	
-	@PostMapping(value= "/findByVender")
+
+	@PostMapping(value = "/findByVender")
 	@ResponseBody
-	public List<Job> findByVender(@RequestBody Long id){	
-		Vender vender=new Vender();
-		vender.setId((long)1);
-		return jobservice.getByVender(vender);
+	public List<Job> findByVender(@RequestBody Long id) {
+		Vender vender = new Vender();
+		vender.setId((long) id);
+		List<Job>  jobs=jobservice.getByVender(vender);
+		for(int i=0;i<jobs.size();i++) {
+			if(jobs.get(i).getUser()==null) {
+				System.out.println("aa");
+				SecurityUser user=new SecurityUser();
+				user.setDisplayName("尚未有表演者");
+				user.setAccount("job/vender/"+id);
+				jobs.get(i).setUser(user);
+			}
+		}
+		return jobs;
 	}
-	
-	
-	
 
 	@RequestMapping("/cancelapplication")
 	@ResponseBody
@@ -269,5 +320,33 @@ public class UserJobController {
 		return message;
 
 	}
+
+	@RequestMapping("/respapplication/{jobId}/{userId}/{resp}")
+	@ResponseBody
+	public Map<String, String> respapplication(@PathVariable("jobId") String jobId
+			,@PathVariable("userId") String userId,@PathVariable("resp") String resp) {
+		Long jobid= Long.parseLong(jobId.substring(3));
+		Long id=Long.parseLong(userId.substring(4));
+		SecurityUser user = securityUserService.getById(id);
+		Job job = jobservice.getById(jobid);
+		Map<String, String> message = new HashMap<>();
+		JobApplication application = jobservice.getApplication(user, job);
+		if (application != null && application.getStatus().equals("申請中")) {
+			if(resp.equals("accept")) {
+				jobservice.accept(application);
+				message.put("mes", "已聘僱");
+			}else if(resp.equals("reject")){
+				jobservice.saveApplication(application, "已拒絕");
+				message.put("mes", "已拒絕");
+			}
+		
+		} else {
+			message.put("mes", "回覆失敗");
+		}
+		return message;
+
+		}
+
+
 
 }

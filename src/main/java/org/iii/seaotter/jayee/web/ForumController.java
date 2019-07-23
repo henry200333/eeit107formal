@@ -106,6 +106,11 @@ public class ForumController {
 		return forum;
 	}
 	
+	@RequestMapping("/deleteComment")
+	public void deleteComment(@RequestParam Long id) {
+		forumService.deleteById(id);	
+	}
+	
 	@RequestMapping("/getUserLikes")
 	@ResponseBody
 	public  List<Forum> getUserData(@RequestParam String account) {	

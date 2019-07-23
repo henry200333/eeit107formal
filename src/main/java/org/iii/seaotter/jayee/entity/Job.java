@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.iii.seaotter.jayee.web.UserJobController;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -37,6 +38,7 @@ public class Job {
 	@Column(name="job_type")
 	private String jobType;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	@Column(name="job_time")
 	private java.util.Date jobTime;
 	
@@ -58,6 +60,9 @@ public class Job {
 	@Column(name="vender_name")
 	private String venderName;
 	
+	@Column(name="status")
+	private String status;
+	
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="vender_id", nullable=false)
@@ -68,8 +73,8 @@ public class Job {
 	
 
 
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JsonBackReference
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+//	@JsonBackReference
 	@JoinColumn(name="user_id")
 	private SecurityUser user;
 }

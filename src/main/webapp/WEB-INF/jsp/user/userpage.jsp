@@ -112,7 +112,7 @@ color:#ffaad5;
 		<div class="row" style="margin-top:20px;">
 		
 		<div class="col-12">
-			<h5><i class="fab fa-youtube youtube"></i>   我的表演    <span title="新增影片" style="cursor: pointer;"><i class="far fa-plus-square"></i></span></h5>
+			<h5><i class="fab fa-youtube youtube"></i>   我的表演    <span title="新增影片" style="cursor: pointer;" id="padd" ><i class="far fa-plus-square" ></i></span></h5>
 			<c:forEach var="performance" items="${userParam.performanceSet}">
 				<a href="/performanceview/${performance.id}">${performance.title}</a>
 			</c:forEach><hr></div>
@@ -122,16 +122,27 @@ color:#ffaad5;
 				<a href="/performanceview/${plikes.id}">${plikes.title}</a>
 			</c:forEach><hr></div>
 		<div class="col-12" style="margin-top:20px;">
-			<h5><i class="far fa-newspaper news"></i>    我的文章    <span title="新增文章" style="cursor: pointer;"><i class="far fa-plus-square"></i></span></h5>
+			<h5><i class="far fa-newspaper news"></i>    我的文章    <span title="新增文章" style="cursor: pointer;"  id="atadd"><i class="far fa-plus-square"></i></span></h5>
 			<c:forEach var="article" items="${articleParam}">
 				<a href="javascript:window.open('/article/${article.id}');">${article.name}</a>
 			</c:forEach><hr></div>
 			<div class="col-12" style="margin-top:20px;">
-			<h5><i class="fas fa-gamepad game" ></i>    我的活動    <span title="新增活動" style="cursor: pointer;"><i class="far fa-plus-square"></i></span></h5>
+			<h5><i class="fas fa-gamepad game" ></i>    我的活動    <span title="新增活動" style="cursor: pointer;"  id="acadd"><i class="far fa-plus-square"></i></span></h5>
 			<c:forEach var="activity" items="${userParam.activitySet}">
 				<a href="javascript:window.open('/activity/view/${activity.id}');">${activity.name}－${activity.description}</a><br>
 			</c:forEach><hr></div>
 		</div>
+		<script>
+		$("#padd").click(function(){
+			window.location.href="/user/performance/select";
+		})
+		$("#atadd").click(function(){
+			window.location.href="/activity/add";
+		})
+		$("#acadd").click(function(){
+			window.location.href="/activity/add";
+		})
+		</script>
 		</div>
 </body>
 </html>

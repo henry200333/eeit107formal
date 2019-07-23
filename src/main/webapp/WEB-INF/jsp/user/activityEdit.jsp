@@ -442,8 +442,45 @@ $("#update").click(
 			})
 		})
 
+		
+			function activityMap() {
+	var	map = new google.maps.Map(document.getElementById('map'), {
+			center : {
+				lat : ${vender.lat},
+				lng :  ${vender.lng}
+			},
+			 draggable: false,
+			clickableIcons : false,
+			zoom : 16.5,
+			minZoom : 16,
+			maxZoom : 20,
+			disableDefaultUI : true,
+			styles : [ {
+				"featureType" : "poi.business",
+				"stylers" : [ {
+					"visibility" : "off"
+				} ]
+			}, {
+				"featureType" : "poi.park",
+				"elementType" : "labels.text",
+				"stylers" : [ {
+					"visibility" : "off"
+				} ]
+			} ]
+		});
+	
+	start();
+	
+	
+	}
+		
+		
+		
+		
 </script>
 
-
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4fmDiIyJ9mPTKGL7iIVPvB5Igfo54eMk&callback=activityMap"
+	async defer></script>
 
 </html>
