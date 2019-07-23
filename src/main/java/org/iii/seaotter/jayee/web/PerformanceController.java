@@ -59,9 +59,7 @@ public class PerformanceController {
 	@PostMapping("/insert")
 	@ResponseBody
 	public AjaxResponse<Performance> insert(@RequestBody Performance performance, Model model) {
-		System.out.println("insert");
-		// 測試是否傳到後台
-		System.out.println(performance);
+
 
 		// 回傳型態AjaxResponse與內部的宣告
 		AjaxResponse<Performance> result = new AjaxResponse<>();
@@ -304,9 +302,55 @@ public class PerformanceController {
 	
 	@RequestMapping("/padd")
 	@ResponseBody
-	public boolean padd(@RequestParam("username")String username,@RequestParam("title") String title,@RequestParam("introduction") String introduction,@RequestParam("url") String url,@RequestParam("actid")Long actid) {
-		boolean result = true;
-		return result;
+	public AjaxResponse<Performance> padd(@RequestParam("times")int times,@RequestParam("username")String username,@RequestParam("title") String title,@RequestParam("introduction") String introduction,@RequestParam("url") String url,@RequestParam("actid")Long actid) {
+		AjaxResponse<Performance> padd = new AjaxResponse<>();
+		List<Message> list = new ArrayList<>();
+		
+		
+		if (title == null || title.trim().length() == 0) {
+			list.add(new Message("title錯誤","第"+times+"筆title為空"));
+		}
+				if (introduction == null || introduction.trim().length() == 0) {
+					list.add(new Message("introduction錯誤","第"+times+"筆introduction為空"));
+				}
+		if (url == null || url.trim().length() == 0) {
+			list.add(new Message("url錯誤","第"+times+"筆url為空"));
+		} else {
+			try {
+				URL checkUrl = new URL(url);
+				checkUrl.openStream();
+			} catch (Exception e) {
+				e.printStackTrace();
+				list.add(new Message("url錯誤","第"+times+"筆url為無效網址"));
+			}
+		}
+		if(!list.isEmpty()) {
+			padd.setType(AjaxResponseType.ERROR);
+			padd.setMessages(list);
+			return padd;
+		}
+		
+		else {
+			SecurityUser user = SecurityUserService.getByUserName(username);
+			Activity activity  = activityService.getById(actid);
+			Performance performancenew = new Performance();
+			performancenew.setTitle(title);
+			performancenew.setIntroduction(introduction);
+			performancenew.setUrl(url);
+			performancenew.setActivityId(actid);
+			performancenew.setViews(0L);
+			performancenew.setLikes(0L);
+			performancenew.setDislikes(0L);
+			performancenew.setUsername(user.getDisplayName());
+			performancenew.setPerformanceGerne(activity.getPerfType());
+			performancenew.setUserpId(user.getUserId());
+			performanceService.insert(performancenew);
+			padd.setType(AjaxResponseType.SUCCESS);
+			list.add(new Message("成功","第"+times+"筆資料新增成功"));
+			padd.setMessages(list);
+			return padd;
+		}
+		
 	}
 
 }

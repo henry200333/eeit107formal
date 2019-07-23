@@ -45,7 +45,6 @@ public class PerformanceService {
         ZonedDateTime zdt = localDateTime.atZone(zoneId);
         Date date = Date.from(zdt.toInstant());
 		entity.setUpdateTime(date);
-		System.out.println(entity.getUpdateTime());
 		Performance performance = performanceDao.save(entity);
 		return performance;
 		

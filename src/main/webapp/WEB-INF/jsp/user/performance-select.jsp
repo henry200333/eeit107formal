@@ -180,9 +180,9 @@ margin-top:20px;
 																	txt2 +="<button class='btn btn-danger bttt' id='del'>刪除</button>";
 																	txt2 +="<button class='btn btn-success bttt' id='enter'>確認</button></div>";
 																	$("#padd").append(txt2);
-																	$("#url"+count).blur(function(){
-																		$("#frame"+count).attr('src','https://www.youtube.com/embed/'+$("#url"+count).val().substring(32));
-																	})
+																		$("#url"+count).blur(function(){
+																			$("#frame"+count).attr('src','https://www.youtube.com/embed/'+$("#url"+count).val().substring(32));
+																		})
 																	$("#new").click(function(){
 																		var txtnew ="<div class='col-9 ddiv' id='insertdiv"+(count+1)+"'>";
 																		txtnew += "<div class='space'>";
@@ -208,17 +208,46 @@ margin-top:20px;
 																		var total = $("iframe").length;
  																		var check = confirm("確定新增"+total+"部表演到活動["+value['name']+"]嗎");
  																		if(check){
- 																			for(var i=1;i<=total;i++){
- 																				var t = $("#title"+i).val();
- 																				var u = $("#url"+i).val();
- 																				var i = $("#introduction"+i).val();
- 																				
+ 																			for(var j=1;j<=total;j++){
+ 																				var t = $("#title"+j).val();
+ 																				var u = $("#url"+j).val();
+ 																				var i = $("#introduction"+j).val();
+ 																				var aid = $("#thisact").val();
+ 																				$.ajax({
+ 																					url:"/user/performance/padd",
+ 																					type:"POST",
+ 																					data:{
+ 																						"times" : j,
+ 																						"username" : username,
+ 																						"title":t,
+ 																						"url":u,
+ 																						"introduction":i,
+ 																						"actid": aid
+ 																					},
+ 																					success:function(data){
+ 																						var massage="";
+ 																						if(data.type=="SUCCESS"){
+ 																							$.each(data.messages,function(index,value){
+ 																								massage += value['content'];
+ 																							})
+ 																							alert(massage);
+ 																						}else{
+ 																							var massage="新增失敗";
+ 																							$.each(data.messages,function(index,value){
+ 																								massage += value['content']+"\n";
+ 																							})
+ 																							alert(massage);
+ 																						}
+ 																					}
+ 																				})
+ 																				console.log(j);
  																			}
  																		}
 																	})
 																	
 																})
 											})
+// 											each結束
 											}
 						})
 
