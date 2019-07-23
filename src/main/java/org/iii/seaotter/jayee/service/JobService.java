@@ -87,6 +87,24 @@ public class JobService {
 	
 		return jobApplicationDao.findAll(specification, pageable);
 	}
+
+
+	public void accept(JobApplication application) {
+		application.setApplicationTime(new Date());
+		application.setStatus("已接受");
+		jobApplicationDao.save(application);
+		Job job= application.getJob();
+		job.setStatus("已應聘");
+		job.setUser( application.getUser());
+		jobDao.save(job);
+		
+		List<JobApplication> applications=jobApplicationDao.findByJobAndStatus(application.getJob(), "申請中");
+		for(JobApplication obj:applications) {
+			obj.setStatus("已拒絕");
+			jobApplicationDao.save(obj);
+		}
+		return;
+	}
 	
 	
 	

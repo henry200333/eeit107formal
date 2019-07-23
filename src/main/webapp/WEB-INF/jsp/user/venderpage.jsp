@@ -7,8 +7,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <style>
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -35,16 +33,6 @@ html, body {
 	<jsp:include page="../topbar.jsp"></jsp:include>
 
 
-
-
-
-
-
-
-
-
-
-
 	<div class="container">
 		<!-- /.container-fluid -->
 
@@ -54,7 +42,7 @@ html, body {
 		<!-- 廠商名 -->
 		<div class="d-sm-flex align-items-center justify-content-between mb-6">
 			<div class='col-sm-12 mb-3 mb-sm-6' style="text-align: center">
-				<h1 class="text">${vender.name }</h1>
+				<h1 class="text">${vender.name}</h1>
 			</div>
 		</div>
 
@@ -62,13 +50,23 @@ html, body {
 
 		<!-- 廠商資料內容 -->
 		<div class='row' style='border: solid 1px silver; margin: 2%'>
-
+	<div class='col-sm-12 mb-0 mb-sm-0'><br></div>
+			<div class='col-sm-5 mb-0 mb-sm-0'>
+				<div class='col-sm-12 mb-0 mb-sm-0'>
+					<h4>最大容納人數:${vender.maxPeople}</h4>
+				</div>
+			</div>
+			<div class='col-sm-5 mb-0 mb-sm-0'>
+				<div class='col-sm-12 mb-0 mb-sm-0'>
+					<h4>預約專線:${vender.phone} ${vender.contactPerson}</h4>
+				</div>
+			</div>
 			<div class='col-sm-7 mb-0 mb-sm-0'>
 				<div class='col-sm-12 mb-0 mb-sm-0'>
 					<h4>地址:</h4>
 				</div>
-				<h6 style='padding-left: 10%'>${vender.city}${vender.district}
-					${vender.address}</h6>
+				<h5 style='padding-left: 10%'>${vender.city}${vender.district}
+					${vender.address}</h5>
 				<div class='col-sm-12 mb-0 mb-sm-0'>
 					<h4>關於我們:</h4>
 				</div>
@@ -104,35 +102,49 @@ html, body {
 				<textarea class='form-control' name='description'
 					style='resize: none; text-align: center' readonly>obj.detal</textarea>
 			</div>
-	
+
 			<button class='col-sm-12 mb-0 mb-sm-0' style='text-align: center'
 				onclick='showapplication(this.id)' id='1'>申請表</button>
-			<div class='col-sm-12 mb-0 mb-sm-0' id='application1' style='display:none'>
-			
-<!-- 			申請表 -->
-				<div class='row' style='margin:0% 1%'>
-				<a class='col-sm-4 mb-0 mb-sm-0' href='/obj.username'><h4>obj.name</h4></a>
-				<div class='col-sm-4 mb-0 mb-sm-0'><h4>obj.time</h4></div>
-				<div class='col-sm-2 mb-0 mb-sm-0'><button class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm'>接受</button></div>
-				<div class='col-sm-2 mb-0 mb-sm-0'><button class='d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm'>拒絕</button></div>
+			<div class='col-sm-12 mb-0 mb-sm-0' id='application1'
+				style='display: none'>
+
+				<!-- 			申請表 -->
+				<div class='row' style='margin: 0% 1%'>
+					<a class='col-sm-4 mb-0 mb-sm-0' href='/obj.username'>
+						<h4>obj.name</h4>
+					</a>
+					<div class='col-sm-4 mb-0 mb-sm-0'>
+						<h4>obj.time</h4>
+					</div>
+					<div class='col-sm-2 mb-0 mb-sm-0'>
+						<button
+							class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm'>接受</button>
+					</div>
+					<div class='col-sm-2 mb-0 mb-sm-0'>
+						<button
+							class='d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm'>拒絕</button>
+					</div>
 				</div>
-		
+
+
+			</div>
 
 		</div>
 
-	</div>
-
 
 	</div>
 
 
 
-
+	<br>
+	<br>
+	<br>
 	<form id="venderinfo" name="vender" action="/user/job/findByVender"
 		method="POST" hidden>
 		<input id="venderId" name="id" value="${vender.id}">
 	</form>
 
+<input hidden="hidden" name="userName" value="<sec:authentication property="name" />" id="username">
 
 </body>
 <jsp:include page="../footer.jsp"></jsp:include>
@@ -174,7 +186,16 @@ html, body {
 
 
 <script>
+
+
+
+
+
+	
+
+
 function start(){
+// 	alert($("#venderId").val());
 	$.ajax({
 	url :"/job/findByVender",
 	type :"post",
@@ -184,7 +205,7 @@ function start(){
 	success : function(data) {
 		var txt = "";
 		$.each(data,function(key, obj){
-	alert(obj.name)
+// 	alert(obj.name)
 		txt +="<div class='col-sm-12 mb-0 mb-sm-0'><h3 style='text-align: center'>"	
 		txt +=obj.name
 		txt +="</h3></div><div class='col-sm-4 mb-0 mb-sm-0'><h4>類別:"
@@ -195,23 +216,122 @@ function start(){
 		txt +=obj.reward;
 		txt +="</h4></div><div class='col-sm-12 mb-0 mb-sm-0' style='padding: 1%'><h4 style='text-align: center'>詳細內容</h4><textarea class='form-control' name='description' style='resize: none; text-align: center' readonly>";	
 		txt +=obj.detal;	
-		txt +="</textarea></div><button class='col-sm-12 mb-0 mb-sm-0' style='text-align: center'onclick='showapplication(this.id)' id='";	
+		txt +="</textarea></div><button class='col-sm-12 mb-0 mb-sm-0' style='text-align: center'onclick='toggleapplication(this)' id='";	
 		txt +=obj.id;
-		txt +="'>申請表</button><div class='col-sm-12 mb-0 mb-sm-0' id='application";
+		txt +="'>申請表</button><div class='col-sm-12 mb-0 mb-sm-0' id='job";
 		txt +=obj.id;
-		txt +="'style='display:none'></div>";
+		txt +="'style='display:none'>test</div>";
 		});
 		$("#joblist").html(txt)
 	}
  })
 };
 
-function showapplication(object){
-	$("#application"+object).toggle();
+
+
+
+
+function toggleapplication(object){
+	var id=object.id;
+	
+	$.ajax({
+		url :"/job/findUserId/"+$("#username").val(),
+		type :"GET",
+		
+		success : function(data) {
+			if(data.userId==${user.userId}){			
+			$("#job"+id).toggle();
+			showapplication(id);
+			}else{
+				alert("只有廠商可以看申請名單")			
+			}
+
+		}
+	});	
+	
+	
+	
+// 	alert(${user.userId})
+	
+	
+	
+	
+};
+
+function resp(object){
+	var jobId=$(object).parent().parent().attr('id');
+// 	alert($(object).parent().parent().attr('id'))
+	var userId=$(object).parent().attr('id');
+// 	alert($(object).parent().attr('id'))
+	var resp=$(object).text();
+// 	alert($(object).text())
+	
+	
+	if(resp=='接受'){
+		resp='accept';
+	}else if(resp='拒絕'){
+		resp='reject';
+	};
+
+	
+	$.ajax({
+		url :"/job/respapplication/"+jobId+"/"+userId+"/"+resp,
+		type :"GET",
+		success : function(data) {
+			alert(data.mes)
+			window.setTimeout(function() {
+				start();
+			}, 50);	
+			
+
+		}
+	});	
+
+	
+
+	
+};
+
+
+
+
+
+function showapplication(id){
+// 	alert(id)
+	$.ajax({
+		url :"/job/applicationFindByJobId",
+		type :"post",
+		dataType : "json",
+		contentType :"application/json;charset=utf-8",
+		data :id,
+		success : function(data) {
+			var txt="";
+			$.each(data.rows,function(key, obj){
+				txt +="<div class='row' style='border: solid 1px black;margin:0% 1px' id='user"
+				txt += obj.user.userId;
+				txt +="'><a style='text-align:center;border:solid 1px silver' class='col-sm-5 mb-0 mb-sm-0' href='/";
+				txt +=obj.user.username;
+				txt +="'><h4>";
+				txt +=obj.user .displayName;
+				txt +="</h4></a><div class='col-sm-5 mb-0 mb-sm-0' style='border:solid 1px silver'><h5>";
+				txt +=obj.applicationTime;
+				txt +="</h5></div><div class='col-sm-1 mb-0 mb-sm-0' style='border:solid 1px silver'  onclick='resp(this)'><button  class='d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm'>接受</button></div><div class='col-sm-1 mb-0 mb-sm-0' style='border:solid 1px silver' onclick='resp(this)'><button class='d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm' >拒絕</button></div></div>";
+// 				alert(obj.user.username)
+	
+			})
+			$("#job"+id).html(txt);
+		}
+	});	
+	
+	
 	
 }
 
+
+
 </script>
+
+
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4fmDiIyJ9mPTKGL7iIVPvB5Igfo54eMk&callback=venderMap"
 	async defer></script>
