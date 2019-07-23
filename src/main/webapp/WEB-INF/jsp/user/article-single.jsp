@@ -13,9 +13,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-11" style="text-align: right;">
-				<a href="/article" class="btn btn-info btn-icon-split articleblock">
-				 <span class="icon text-white-50"><i class="fas fa-reply-all"></i></span> 
-				 <span class="text">回文章列表</span>
+				<a id="EditBtAnchor" href="/article" class="btn btn-info btn-icon-split articleblock">
+					<span class="icon text-white-50"><i class="fas fa-reply-all"></i></span>
+					<span class="text">回文章列表</span>
 				</a>
 			</div>
 		</div>
@@ -48,31 +48,38 @@
 		</div>
 		<hr>
 		<div class='row'>
-		<div class="col-8">
-<!-- 				留言輸入 -->
-				<div class="row" style="margin-top:40px;margin-left:50px;">
-				<div class="col-10" >
-					<div class="col-3"><h3><b>留言</b></h3></div>
-					<textarea id='firstLayerComment' cols="68" rows="3"   style="resize:none"></textarea>
+			<div class="col-8">
+				<!-- 				留言輸入 -->
+				<div class="row" style="margin-top: 40px; margin-left: 50px;">
+					<div class="col-10">
+						<div class="col-3">
+							<h3>
+								<b>留言</b>
+							</h3>
+						</div>
+						<textarea id='firstLayerComment' cols="68" rows="3"
+							style="resize: none"></textarea>
+					</div>
+					<div class="col-1" style="padding-top: 80px;">
+						<button id='firstLayerButton' type="button"
+							class="btn btn-primary">
+							<i class="fas fa-share"></i>
+						</button>
+					</div>
 				</div>
-				<div class="col-1" style="padding-top:80px;"> 
-				 <button id='firstLayerButton' type="button" class="btn btn-primary" ><i class="fas fa-share"></i></button>
-				</div>
-				</div>
-<!-- 				留言開始 -->
-<script src='/resources/user-bootstrap/js/commentLoader.js'></script>
-				<div id='commentAppend' style="margin-top:20px;">
-				</div>
-				</div>
-				</div>
-				<!-- 				留言結束 -->
-		
+				<!-- 				留言開始 -->
+				<script src='/resources/user-bootstrap/js/commentLoader.js'></script>
+				<div id='commentAppend' style="margin-top: 20px;"></div>
+			</div>
+		</div>
+		<!-- 				留言結束 -->
+
 		<!-- 回文章列表按鈕 -->
 		<div class="row">
 			<div class="col-11" style="text-align: right;">
 				<a href="/article" class="btn btn-info btn-icon-split articleblock">
-				 <span class="icon text-white-50"><i class="fas fa-reply-all"></i></span> 
-				 <span class="text">回文章列表</span>
+					<span class="icon text-white-50"><i class="fas fa-reply-all"></i></span>
+					<span class="text">回文章列表</span>
 				</a>
 			</div>
 		</div>
@@ -169,7 +176,7 @@
 <!-- 讀取英文文章類別轉換成中文 -->
 <script type="text/javascript">
 	var entype = $("#articletype").html();
-	switch(entype){
+	switch (entype) {
 	case 'Artist':
 		$("#articletype").html("文章類型： <i class='fas fa-street-view'></i>藝人");
 		break;
@@ -183,9 +190,23 @@
 		$("#articletype").html("文章類型： <i class='fas fa-hands-helping'></i>廠商");
 		break;
 	case 'Other':
-		$("#articletype").html("文章類型： <i class='fas fa-exclamation-triangle'></i>系統公告");
+		$("#articletype").html(
+				"文章類型： <i class='fas fa-exclamation-triangle'></i>系統公告");
 		break;
 	}
 </script>
 <!-- 讀取英文文章類別轉換成中文 -->
+<!-- 使用者與文章擁有者一致時寫出編輯按鈕 -->
+<script>
+	$.ajax({
+		url:"/article/articleEditBT",
+		type:"GET",
+		success: function(res){
+			if(res.type == "SUCCESS"){
+				$("#EditBtAnchor").before('<a href="/article/edit/' + res.data + '" class="btn btn-warning btn-icon-split articleblock"><span class="icon text-white-50"><i class="fas fa-edit"></i></span><span class="text-white">修改文章</span></a>');
+			}
+		}
+	});
+</script>
+<!-- 使用者與文章擁有者一致時寫出編輯按鈕 -->
 </html>
