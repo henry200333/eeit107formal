@@ -25,7 +25,7 @@
 			<div class="form-group row">
 				<div class="col-10">
 					<label for="name">文章標題：</label> <input id="name" name="name"
-						class="form-control" placeholder="請輸入文章標題..." />
+						class="form-control" maxlength="30" placeholder="請輸入文章標題..." />
 					<small class="form-text text-muted">文章標題最少2個字元，最大60個字元(約20個中文字)</small>
 				</div>
 			</div>
@@ -163,7 +163,7 @@
 <!-- insert文章按鈕 -->
 <script>
 $("#goToInsert").click(function(){
-	if($("#name").val().length >= 2 && $("#name").val().length <= 60){
+	if($("#name").val().length >= 2 && $("#name").val().length <= 30){
 		$.ajax({
 			url:"/article/add",
 			type:"POST",
@@ -189,7 +189,7 @@ $("#goToInsert").click(function(){
 <script>
 $("#name").blur(function(){
 	var input = $(this).val();
-	if(input.length >= 2 && input.length <= 60){
+	if(input.length >= 2 && input.length <= 30){
 		$(this).attr("class", "form-control is-valid");
 	} else {
 		$(this).attr("class", "form-control is-invalid");
