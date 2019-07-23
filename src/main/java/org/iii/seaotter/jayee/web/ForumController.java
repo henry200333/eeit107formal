@@ -52,7 +52,11 @@ public class ForumController {
 			user.setForumLikes(userLikes);
 			userDislikes.remove(forum);
 			user.setForumDislikes(userDislikes);
-		}
+		}else if(likeType==3) {
+			forum = forumService.likeMinusOne(id);
+			userLikes.remove(forum);
+			user.setForumLikes(userLikes);
+		}		
 		securityUserService.update(user);
 		return forum;
 	}
@@ -74,7 +78,11 @@ public class ForumController {
 			user.setForumDislikes(userDislikes);
 			userLikes.remove(forum);
 			user.setForumLikes(userLikes);
-		}	
+		}else if(dislikeType==3) {
+			forum = forumService.dislikeMinusOne(id);
+			userDislikes.remove(forum);
+			user.setForumDislikes(userDislikes);
+		}			
 		securityUserService.update(user);
 		return forum;
 	}
@@ -97,4 +105,19 @@ public class ForumController {
 		System.out.println(forum);
 		return forum;
 	}
+	
+	@RequestMapping("/getUserLikes")
+	@ResponseBody
+	public  List<Forum> getUserData(@RequestParam String account) {	
+		
+		return securityUserService.getByUserName(account).getForumLikes();
+	}
+	
+	@RequestMapping("/getUserDislikes")
+	@ResponseBody
+	public  List<Forum> getUserDislike(@RequestParam String account) {	
+		
+		return securityUserService.getByUserName(account).getForumDislikes();
+	}
+	
 }

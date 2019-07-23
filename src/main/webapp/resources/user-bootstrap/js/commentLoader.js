@@ -4,7 +4,41 @@ var userDisplayName = $('#userDisplayName').val();
 var userPhoto = $('#userPhoto').val();
 var currentOpen = 0;
 var originalComment;
+var userForumLikes;
+var userForumDislikes;
 
+
+
+function refreshLikeData(){
+	$.ajax({
+		url:'/forum/getUserLikes',
+		type:'GET',
+		data:{'account':userAccount},
+		success:function(userForumLikes){
+			$.each(userForumLikes,function(idx,forum){
+				if(forum.forumBoard=='Performance'&&forum.refId==thisPerformanceId){
+					if($('#like'+forum.id)){
+						$('#like'+forum.id).addClass('likedivclick');
+					}
+				}
+			})	
+		}
+	})
+	$.ajax({
+		url:'/forum/getUserDislikes',
+		type:'GET',
+		data:{'account':userAccount},
+		success:function(userForumDislikes){
+			$.each(userForumDislikes,function(idx,forum2){
+				if(forum2.forumBoard=='Performance'&&forum2.refId==thisPerformanceId){
+					if($('#dislike'+forum2.id)){
+						$('#dislike'+forum2.id).addClass('dislikedivclick');
+					}
+				}
+			})
+		}
+	})	
+}
 
 function reloadComments(){
 	currentOpen=0;	
@@ -79,21 +113,24 @@ function reloadComments(){
 				
 				//套like,dislike
 				$('#like'+performanceComment.id).click(function(){
+					if(!userAccount) return false;
+					var likeType;
+					var likeId = $(this).attr('id').substring(4);
 					//確認沒被點過
 					if($(this).attr('class')=='far fa-thumbs-up likediv likedivclick'){
-						return false
+						$(this).removeClass('likedivclick');
+						likeType=3;
+					}else{			
+						$(this).addClass('likedivclick');
+						//dislike的class
+						var dislikeStatus = $(event.target).next().next().attr('class');                 
+						if(dislikeStatus=='far fa-thumbs-down dislikediv'){
+							likeType = 1;						
+						}else if(dislikeStatus=='far fa-thumbs-down dislikediv dislikedivclick'){
+							$(event.target).next().next().remove('dislikedivclick');
+							likeType = 2;
+						}		
 					}
-					var likeId = $(this).attr('id').substring(4);
-					var likeType;
-					//dislike的class
-					var dislikeStatus = $(event.target).next().next().attr('class');
-					console.log(dislikeStatus);
-					                 
-					if(dislikeStatus=='far fa-thumbs-down dislikediv'){
-						likeType = 1;						
-					}else if(dislikeStatus=='far fa-thumbs-down dislikediv dislikedivclick'){
-						likeType = 2;
-					}				
 					$.ajax({
 						url:'/forum/likeButtonClick',
 						type:'get',
@@ -105,21 +142,23 @@ function reloadComments(){
 				})
 				//dislike
 				$('#dislike'+performanceComment.id).click(function(){
+					if(!userAccount) return false;
 					//確認沒被點過
-					if($(this).attr('class')=='far fa-thumbs-down dislikediv dislikedivclick'){
-						return false
-					}			
-					var likeId = $(this).attr('id').substring(7);
 					var dislikeType;
-					//dislike的class
-					var likeStatus = $(event.target).prev().prev().attr('class');
-					console.log(likeStatus);
-					                 
-					if(likeStatus=='far fa-thumbs-up likediv'){				
-						dislikeType = 1;						
-					}else if(likeStatus=='far fa-thumbs-up likediv likedivclick'){
-						dislikeType = 2;
-					}				
+					var likeId = $(this).attr('id').substring(7);
+					if($(this).attr('class')=='far fa-thumbs-down dislikediv dislikedivclick'){
+						$(this).removeClass('dislikedivclick');
+						dislikeType=3;
+					}else{	
+						$(this).addClass('dislikedivclick');
+						//dislike的class
+						var likeStatus = $(event.target).prev().prev().attr('class');						                 
+						if(likeStatus=='far fa-thumbs-up likediv'){				
+							dislikeType = 1;						
+						}else if(likeStatus=='far fa-thumbs-up likediv likedivclick'){
+							dislikeType = 2;
+						}	
+					}
 					$.ajax({
 						url:'/forum/dislikeButtonClick',
 						type:'get',
@@ -140,9 +179,7 @@ function reloadComments(){
 					$(this).parent().parent().prev().children().append("<input type='text' id='edit"+ editCommentId +"' value='"+ originalComment +"'><button type='button' onclick='sendEdit("+editCommentId+")'>送出</button><button type='button' onclick='cancelEdit("+editCommentId+")'>取消</button>")
 					currentOpen=1;
 				});	
-			
-		
-			
+			refreshLikeData();
 		}//success結束
 	})
 	

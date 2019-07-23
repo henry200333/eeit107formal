@@ -5,7 +5,6 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.iii.seaotter.jayee.common.ForumBoard;
 import org.iii.seaotter.jayee.dao.ForumDao;
@@ -40,14 +39,25 @@ public class ForumService {
 	public Forum likePlusOne(Long id) {
 		Forum forum = forumDao.findById(id).orElse(new Forum());
 		forum.setLikeCount(forum.getLikeCount()+1);	
-
 		return forumDao.save(forum);
 	}
+	public Forum likeMinusOne(Long id) {
+		Forum forum = forumDao.findById(id).orElse(new Forum());
+		forum.setLikeCount(forum.getLikeCount()-1);	
+		return forumDao.save(forum);
+	}
+	
 	public Forum dislikePlusOne(Long id) {
 		Forum forum = forumDao.findById(id).orElse(new Forum());
 		forum.setDislikeCount(forum.getDislikeCount()+1);	
 		return forumDao.save(forum);
 	}
+	public Forum dislikeMinusOne(Long id) {
+		Forum forum = forumDao.findById(id).orElse(new Forum());
+		forum.setDislikeCount(forum.getDislikeCount()-1);	
+		return forumDao.save(forum);
+	}
+	
 	public Forum likePlusOneAndDislikeMinusOne(Long id) {
 		Forum forum = forumDao.findById(id).orElse(new Forum());
 		forum.setLikeCount(forum.getLikeCount()+1);	
