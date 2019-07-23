@@ -409,7 +409,7 @@ $(document).ready(function(){
    					$.each(data,function(index,value){
    						txt += 	"<option value='"+ value +"'>"+ value +"</option>";			
    					})
-   					txt2 ="<span style='font-size: 20px; font-weight: bold;padding-left:15px;color:red;'>"+"<div id='addressForMap'>" + CName +"</div>"+"<i class='fas fa-pen-fancy fa-sm' style='color:Mediumslateblue;'></i>"+"</span>";
+   					txt2 ="<span style='font-size: 20px; font-weight: bold;padding-left:15px;color:red;'>"+"<div id='addressForMap' style='position'>" + CName +"</div>"+"<i class='fas fa-pen-fancy fa-sm' style='color:Mediumslateblue;'></i>"+"</span>";
    					$("#mappingIcon").attr("class","fas fa-spinner fa-pulse");
    					$("#mappingIcon").attr("style","color:RoyalBlue");
    					$("#addressInfo").empty();
