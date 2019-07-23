@@ -74,17 +74,17 @@
 					<label
 						style="font-size: 20px; font-weight: bold; margin-top: 20px;">頭像</label>
 						<span class="edit"><i class="fas fa-highlighter"></i></span>
-					<form method="post" action="/uploadPhoto"
-						enctype="multipart/form-data">
+<!-- 					<form method="post" action="/uploadPhoto" -->
+<!-- 						enctype="multipart/form-data"> -->
 						<div id="previewDiv" class="previewDiv">
 							<img width="100%" src="${userParam.photo }" />
 						</div> 
-					<input type="file" name="imageFile" id="imageFile"
-						accept="image/gif, image/jpeg, image/png" /> <input type="text"
-						hidden="hidden" name="username" id="username"
-						value="<sec:authentication		property="name" />"> <input
-						type="submit" value="Upload" />
-					</form>
+<!-- 					<input type="file" name="imageFile" id="imageFile" -->
+<!-- 						accept="image/gif, image/jpeg, image/png" /> <input type="text" -->
+<!-- 						hidden="hidden" name="username" id="username" -->
+<%-- 						value="<sec:authentication		property="name" />"> <input --%>
+<!-- 						type="submit" value="Upload" /> -->
+<!-- 					</form> -->
 				</div>
 				<div class="col-8" style="padding-top: 20px;">
 					<span class="lab" style="margin-left: 15px;">個人介紹</span><br> <span
