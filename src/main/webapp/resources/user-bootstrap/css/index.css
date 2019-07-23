@@ -118,6 +118,15 @@ body {
     z-index: 10000;
 }
 
+.onlineGary{
+	color:#a2a2a2000;
+	font-size: 3px;
+}
+
+.onlineGreen{
+	color:#7af460000;
+	font-size: 3px;
+}
 
 
 #artists img {

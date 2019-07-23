@@ -42,21 +42,55 @@
 
 <!-- Page Content -->
 <div class="container">
-<form id="form" name="form" class="user" autocomplete="off">
+
   <div class="card border-0 shadow my-5">
     <div class="card-body p-5">
     <div id='dataDiv'>
     
-    
+    <form method="post" action="/activity/uploadActivityPhoto" enctype="multipart/form-data">
     <div class='row'>
-    <div >
+  
+    <div  style='position:relative'> 
+    <div id='clickUpdatePhoto'>   
    <img src='/resources/user-bootstrap/img/activity/activity${activityParam.id}.jpg' style='height:280px;border-radius:20px;width:500px'>
    </div>
+   </div>
+ 
   <div class='col-sm-6 mb-3 mb-sm-6' id="map" style='height:280px;border-radius:20px;width:500px;border-color:DarkGrey; border-style:solid;margin-left:10px'>
-
    </div>
   	</div>
-  
+  	<input type="file" name="imageFile" id="imageFile"
+						accept="image/gif, image/jpeg, image/png" style='display:none' /> <input type="text"
+						hidden="hidden" name="activityId" id="activityId"
+						value="${activityParam.id}"> 
+			<input	type="submit" value="Upload" id='pictureSubmit' style='display:none' />
+  	</form>
+  	
+  	<script>
+  	$("#clickUpdatePhoto").click(function(){
+  		$("#imageFile").trigger("click");
+  	});
+  	$("#imageFile").change(function() {
+		$("#clickUpdatePhoto").html("<img src='' style='height:280px;border-radius:20px;width:500px' id='activityPic'>");
+		readURL(this);
+		$("#pictureSubmit").trigger("click");
+	});
+
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$("#activityPic").attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+  	
+  	
+  	</script>
+  	
+  	
+  <form id="form" name="form" class="user" autocomplete="off">
    <div style='padding-top:20px' id="塞資料處">
    <div class='row'>
    
@@ -161,6 +195,8 @@
    
    </div>  
    </div>
+  </form>
+  
    
 </div>
 
@@ -182,7 +218,7 @@
 								class="fas fa-file-excel"></i>
 							</span> <span class="text"> Reset Input</span>
 						</button>
-  </form>
+  
 </div>
 
 

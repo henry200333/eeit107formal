@@ -1,5 +1,6 @@
 package org.iii.seaotter.jayee.web;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -18,6 +19,7 @@ import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
+import org.iii.seaotter.jayee.service.ArtistService;
 import org.iii.seaotter.jayee.service.LocationService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/activity")
@@ -243,6 +246,23 @@ public class ActivityController {
 		if(thisId==thisaId)return true;
 		else return false;
 	}
+	
+	
+	@PostMapping("/uploadActivityPhoto")
+	public String upload(@RequestParam("imageFile") MultipartFile imageFile, @RequestParam("activityId") Long activityId)
+			throws IOException {
+		System.out.println(activityId);
+		String returnValue = "redirect:/activity/edit/"+activityId;
+		try {
+			ActivityService.saveImage(imageFile, activityId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnValue = "error";
+		}
+		return returnValue;
+	}
+	
+	
 	
 	
 }

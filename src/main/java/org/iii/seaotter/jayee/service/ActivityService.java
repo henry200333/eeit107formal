@@ -1,5 +1,9 @@
 package org.iii.seaotter.jayee.service;
 
+import java.net.URL;
+import java.net.URLDecoder;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.iii.seaotter.jayee.dao.ActivityDao;
@@ -11,6 +15,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import net.bytebuddy.asm.Advice.This;
 
 @Service
 public class ActivityService {
@@ -60,4 +67,21 @@ public class ActivityService {
 	public List<Activity> getByArtistId(Long userid){
 		return activityDao.findByUseraId(userid);
 	}
+	
+	public static void saveImage(MultipartFile imageFile, Long activityId) throws Exception {
+
+		URL R = This.class.getResource("/");
+		String decoded = URLDecoder.decode(R.getFile(), "UTF-8");
+		if (decoded.startsWith("/")) {
+			decoded = decoded.replaceFirst("/", "");
+		}
+		decoded = decoded.replace("target", "src");
+		decoded = decoded.replace("classes", "main");
+		decoded += "webapp/resources/user-bootstrap/img/activity/";
+		Files.write(Paths.get(decoded +"activity"+activityId + ".jpg"), imageFile.getBytes());
+
+	}
+	
+	
+	
 }

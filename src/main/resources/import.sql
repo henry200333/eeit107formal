@@ -42,7 +42,7 @@ INSERT INTO security_role(code) values
 ('artist006', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','敏敏', '李宜鳴', '/resources/profile_image/artist006.jpg', 'male', 'Min1211@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Min',  1, 12345),
 ('user001', '$2a$10$IB/9GXt3Gmm/tcIsd43Km.OAP9PvDYgFd5xOyrpefY.IsbVE/w7UK','User001','Pro User',  '/resources/profile_image/user001.jpg', 'female','user@gmail.com','1989/01/01','台北市萬華區','0912345678','高雄市','2019/06/30','hi,im user', 1, 0),
 ('deaduser', '$2a$10$ovBda/JPk8ZBNpfyqp7CZukgEFmon.kW/yLbdGciQhPd09CxNXdY2','No show','Cant see', '/resources/profile_image/deaduser.jpg', 'femail','death@gmail.com','1989/01/01','台北市大安區','0912345678','新竹市','2019/01/01','should never see this',0, 0),
-('vender001', '$2a$10$IB/9GXt3Gmm/tcIsd43Km.OAP9PvDYgFd5xOyrpefY.IsbVE/w7UK','Vender001','Vuser',  '/resources/profile_image/vender001.jpg', 'male','vender@gmail.com','1959/01/01','台北市萬華區','0912345678','高雄市','2019/06/30','hi,im user', 1, 0);
+('vender001', '$2a$10$Mb0bXuWtIHAEJG4LSNfYSulk7IFTQQJnaXjNz6XwyXy4.Mt96dpZO','Vender001','Vuser',  '/resources/profile_image/vender001.jpg', 'male','vender@gmail.com','1959/01/01','台北市萬華區','0912345678','高雄市','2019/06/30','hi,im user', 1, 0);
 
 
 ALTER TABLE user_role NOCHECK CONSTRAINT ALL;

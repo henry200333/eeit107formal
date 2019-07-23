@@ -451,6 +451,10 @@
 				</div>
 				</div>
 <!-- 				留言開始 -->
+<script>
+var thisBoard = 'Performance';
+var thisThemeId = $('#thisp').val();
+</script>
 <script src='/resources/user-bootstrap/js/commentLoader.js'></script>
 				<div id='commentAppend' style="margin-top:20px;">
 				</div>

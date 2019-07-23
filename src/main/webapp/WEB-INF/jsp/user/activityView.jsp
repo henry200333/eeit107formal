@@ -124,6 +124,15 @@ html, body {
     </div>
     
     <!-- 留言放這 -->
+    		<sec:authorize access="isAuthenticated()">
+	<input type='hidden' value="<sec:authentication property='principal.account'/>" id='userAccount'>
+	<input type='hidden' value="<sec:authentication property='principal.displayName'/>" id='userDisplayName'>
+	<input type='hidden' value="<sec:authentication property='principal.photo'/>" id='userPhoto'>
+	</sec:authorize>
+    <script>
+    var thisBoard = 'Activity';
+    var thisThemeId = ${activityParam.id};
+    </script>
 		<div class='row'>
 		<div class="col-8">
 <!-- 				留言輸入 -->

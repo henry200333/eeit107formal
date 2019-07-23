@@ -68,6 +68,15 @@
 					</div>
 				</div>
 				<!-- 				留言開始 -->
+					<sec:authorize access="isAuthenticated()">
+	<input type='hidden' value="<sec:authentication property='principal.account'/>" id='userAccount'>
+	<input type='hidden' value="<sec:authentication property='principal.displayName'/>" id='userDisplayName'>
+	<input type='hidden' value="<sec:authentication property='principal.photo'/>" id='userPhoto'>
+	</sec:authorize>
+<script>
+var thisBoard = 'Article';
+var thisThemeId = ${article.id};
+</script>
 				<script src='/resources/user-bootstrap/js/commentLoader.js'></script>
 				<div id='commentAppend' style="margin-top: 20px;"></div>
 			</div>
