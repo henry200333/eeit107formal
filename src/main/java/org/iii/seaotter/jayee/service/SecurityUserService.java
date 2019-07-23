@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.Set;
 
 import org.iii.seaotter.jayee.dao.ConfirmationTokenRepository;
+import org.iii.seaotter.jayee.dao.PasswordResetTokenRepository;
 import org.iii.seaotter.jayee.dao.SecurityRoleDao;
 import org.iii.seaotter.jayee.dao.SecurityUserDao;
 import org.iii.seaotter.jayee.entity.ConfirmationToken;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.entity.RegisterUser;
+import org.iii.seaotter.jayee.entity.SearchUser;
+import org.iii.seaotter.jayee.entity.PasswordResetToken;
 import org.iii.seaotter.jayee.entity.SecurityRole;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.mail.EmailSenderService;
@@ -45,7 +48,10 @@ public class SecurityUserService implements UserDetailsService {
 
 	@Autowired
 	private ConfirmationTokenRepository confirmationTokenRepository;
-
+	
+	@Autowired
+	private PasswordResetTokenRepository passwordResetTokenRepository;
+	
 	@Override
 	public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
 		if (securityUserDao.findByAccount(account) != null)
@@ -143,7 +149,6 @@ public class SecurityUserService implements UserDetailsService {
 		mailMessage.setFrom("jayee20192019@outlook.com");
 		mailMessage.setText("To confirm your account, please click here : " + "http://localhost/confirm-account?token="
 				+ confirmationToken.getConfirmationToken());
-
 		emailSenderService.sendMail(mailMessage);
 	}
 
@@ -159,6 +164,39 @@ public class SecurityUserService implements UserDetailsService {
 				return "Oops!Your account has already verified!";
 		} else
 			return "Your account doesnt exist! Sign up please!";
+	}
+
+	public void passwordResetMail(SecurityUser user) {
+		PasswordResetToken passwordResetToken = new PasswordResetToken(user);
+		passwordResetTokenRepository.save(passwordResetToken);
+		SimpleMailMessage mailMessage = new SimpleMailMessage();
+
+		mailMessage.setTo(user.getMail());
+		mailMessage.setSubject("Please reset your password!");
+		mailMessage.setFrom("jayee20192019@outlook.com");
+		mailMessage.setText("To reset your password, please click here : " + "http://localhost/password-reset?token="
+				+ passwordResetToken.getPasswordToken());
+
+		emailSenderService.sendMail(mailMessage);
+		
+	}
+	
+	public SearchUser checkPasswordReset(String passwordResetToken) {
+		PasswordResetToken token = passwordResetTokenRepository.findByPasswordToken(passwordResetToken);
+		if (token != null) {
+			SecurityUser user = securityUserDao.findByMailIgnoreCase(token.getUser().getMail());
+			SearchUser user2 = new SearchUser();
+			BeanUtils.copyProperties(user, user2);
+			return user2 ;
+		} 
+		return null;
+	}
+
+	public void resetPassword(String account, String password) {
+
+		SecurityUser user = securityUserDao.findByAccount(account);
+		user.setPassword(passwordEncoder.encode(password));
+		
 	}
 
 }

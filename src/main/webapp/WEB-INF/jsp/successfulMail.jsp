@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Registration Success</title>
+<title>郵件寄出</title>
 <!--===============================================================================================-->
 <link rel="icon" type="image/png"
 	href="/resources/login/images/icons/favicon.ico" />
@@ -43,8 +43,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<div style="color: red; font-weight: bold; margin: 30px 0px;">A
-					verification email has been sent to:${mail}</div>
+				<div style="color: red; font-weight: bold; margin: 30px 0px;">請至下列信箱確認郵件:${mail}</div>
 			</div>
 		</div>
 	</div>
