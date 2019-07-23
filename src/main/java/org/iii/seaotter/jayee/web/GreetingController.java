@@ -12,6 +12,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.websocket.OnClose;
 
 import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.ChatMessageStore;
@@ -35,10 +36,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 @Controller
 public class GreetingController {
 	
-	private static List<String> ONLINE_ACCOUNT = new ArrayList<String>(); 
+//	private static List<String> ONLINE_ACCOUNT = new ArrayList<String>(); 
 	
 	@Autowired
 	ChatMessageStoreService chatMessageStoreService; 
@@ -53,22 +56,21 @@ public class GreetingController {
         this.template = template;
     }
  
-  
-//    @MessageMapping("/message")
-//    @SendToUser("/queue/reply")
-//    public String processMessageFromClient(
-//      @Payload String message, 
-//      Principal principal) throws Exception {
-//    return gson.fromJson(message, Map.class)
-//          .get("name").toString();
+//    @MessageMapping("/offline") 
+//    public void offline(@RequestParam String userAccount) {  	
+//    	System.out.println(userAccount);
+//    	userAccount = userAccount.substring(1, userAccount.length()-1);
+//    	if(ONLINE_ACCOUNT.contains(userAccount))
+//    		ONLINE_ACCOUNT.remove(userAccount);
 //    }
-    
-    @MessageMapping("/imonline")
-    public void notifyImOnline(@RequestParam(name="userAccount") String userAccount) {
-    	//紀錄登入者
-    	if(!ONLINE_ACCOUNT.contains(userAccount))
-    		ONLINE_ACCOUNT.add(userAccount);
-    }
+//    
+//    
+//    @MessageMapping("/imonline")
+//    public void notifyImOnline(@RequestParam(name="userAccount") String userAccount) {
+//    	//紀錄登入者
+//    	if(!ONLINE_ACCOUNT.contains(userAccount))
+//    		ONLINE_ACCOUNT.add(userAccount);
+//    }
         
     @MessageMapping("/secured/room") 
     public void sendSpecific(
@@ -129,7 +131,5 @@ public class GreetingController {
 		gridResponse.setRecords(result.getTotalElements());
 		return gridResponse;
 	};
-
- 
 
 }

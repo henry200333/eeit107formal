@@ -18,11 +18,28 @@
 	</div>
 </div>
 
+
 		
-<script>		
-		var userAccount = $('#userAccount').val();
-		var userDisplayName = $('#userDisplayName').val();
-		var userPhoto = $('#userPhoto').val();
+<script>
+window.onbeforeunload = function(evt) {
+	offline();
+    // Cancel the event (if necessary)
+    evt.preventDefault();
+
+    // Google Chrome requires returnValue to be set
+//     evt.returnValue = '';
+
+    return null;
+};
+function offline(){
+	stompClient.send('/app/offline',{},JSON.stringify(userAccount));
+}
+
+
+
+var userAccount = $('#userAccount').val();
+var userDisplayName = $('#userDisplayName').val();
+var userPhoto = $('#userPhoto').val();
 		
 	var friendListStock;	
 		
@@ -46,7 +63,7 @@
 												.append($('<div>').addClass('col-6 mb-2')
 														.text(friend.displayName)
 														)
-												.append($('<div>').addClass('col-3 mb-2 displayName').html('線上')
+												.append($('<div>').addClass('col-3 mb-2 displayName').html('')
 														);
 							$('.talkbar').append(tempFriend);
 						})
@@ -71,7 +88,7 @@
 			var chatbox = $('<div>').addClass('talkbar2')
 				.append($('<div>').addClass('friend')
 					.append($('<p>').text($(this).attr('name')))
-					.append($('<button>').addClass('talkclose').html('x'))
+					.append($('<button>').addClass('talkclose btn').css({'background-color':'rgb(189, 189, 189)','font-size':'0.8em','margin':'0 0 5px 0','border-radius':'50%'}).html('x'))
 					)
 				.append($('<div>').addClass('messages').attr('id','show'+$(this).attr('id').substring(4))
 					.append($('<ul>')
@@ -193,12 +210,10 @@
         //註冊私訊路徑
 	        stompClient.subscribe('/app/chat/single/'+userAccount, function (data) {
 	            msgObj = JSON.parse(data.body);
-	            receiveMessage(msgObj)
-	   
+	            receiveMessage(msgObj)   
         	});
     	});
-		
-				
+					
 		function sendMessage(){	
 			if(stompClient){
 				var receiver = $(this).attr('id')
