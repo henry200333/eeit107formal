@@ -2,7 +2,6 @@ package org.iii.seaotter.jayee.web;
 
 import java.io.IOException;
 
-import org.iii.seaotter.jayee.common.ArticleType;
 import org.iii.seaotter.jayee.entity.SearchUser;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ArticleService;
@@ -35,7 +34,7 @@ public class SecurityUserController {
 		model.addAttribute("plike",source.getPlikes());
 		BeanUtils.copyProperties(source, user);
 		model.addAttribute("userParam", user);
-		model.addAttribute("articleParam", articleService.getByRefIdAndType(source.getUserId(), ArticleType.Artist));
+		model.addAttribute("articleParam", articleService.getByAnnouncedUserId(source.getUserId()));
 		return "/user/userpage";
 	}
 

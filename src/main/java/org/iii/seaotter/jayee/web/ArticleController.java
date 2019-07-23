@@ -6,6 +6,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
@@ -14,6 +15,7 @@ import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Performance;
+import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.entity.Vender;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
@@ -30,8 +32,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -72,6 +78,30 @@ public class ArticleController {
 		}
 		return "/user/article-list";
 	}
+	
+	@GetMapping("/articleEditBT")
+	@ResponseBody
+	public AjaxResponse<Long> editButton(@RequestHeader(name="Referer") String url){
+		AjaxResponse<Long> res = new AjaxResponse<>();
+		res.setType(AjaxResponseType.ERROR);
+		SecurityUser securityUser = securityUserService.getByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+		if (securityUser != null) {
+			Long userId = securityUser.getUserId();
+//			System.out.println("article_id = " + url.substring(25));
+			try {
+				Long articleId = Long.parseLong(url.substring(25));
+				Long announcedUserId = articleService.getById(articleId).getAnnouncedUserId();
+				if (userId != null && userId.equals(announcedUserId)) {
+					res.setType(AjaxResponseType.SUCCESS);
+					res.setData(articleId);
+				}
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+				res.setType(AjaxResponseType.ERROR);
+			}
+		}
+		return res;
+	} 
 
 	@GetMapping("/query")
 	@ResponseBody
@@ -110,7 +140,7 @@ public class ArticleController {
 		return gridResponse;
 	}
 	
-	@RequestMapping("/add")
+	@GetMapping("/add")
 	public String addArticlePage(
 			@RequestParam(name="type", defaultValue="") String articleType, 
 			@RequestParam(name="refid", defaultValue="0") Long refId, 
@@ -156,6 +186,24 @@ public class ArticleController {
 			}
 		}
 		return "/user/article-list";
+	}
+	
+	@PostMapping("/add")
+	@ResponseBody
+	public AjaxResponse<Article> insert(@Valid@RequestBody Article article, BindingResult result){
+		AjaxResponse<Article> ajaxRes = new AjaxResponse<>();
+		if (result.hasErrors()) {
+			ajaxRes.setType(AjaxResponseType.ERROR);
+			return ajaxRes;
+		}
+		article.setCount(0L);
+		Long userId = securityUserService.getByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getUserId();
+		if (userId != null) {
+			article.setAnnouncedUserId(userId);
+		}
+		ajaxRes.setType(AjaxResponseType.SUCCESS);
+		ajaxRes.setData(articleService.insert(article));
+		return ajaxRes;
 	}
 
 	@RequestMapping("/top6")
