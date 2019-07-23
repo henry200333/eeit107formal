@@ -51,21 +51,25 @@
 			<div class="col-1"></div>
 			<div class="col-3"><h3><b>留言</b></h3></div>
 		</div>
-		<div id="forunContainer1" class="row">
-			<div class="col-1"></div>
-			<div id="forumName1" class="col-2" style="text-align: right;"><b>HenryLeo</b></div>
-			<div id="forumContent1" class="col-7">頭香</div>
-		</div>
-		<div id="forunContainer2" class="row">
-			<div class="col-1"></div>
-			<div id="forumName2" class="col-2" style="text-align: right;"><b>K.Z.</b></div>
-			<div id="forumContent2" class="col-7">3樓要請大家吃雞排</div>
-		</div>
-		<div id="forunContainer3" class="row">
-			<div class="col-1"></div>
-			<div id="forumName3" class="col-2" style="text-align: right;"><b>口鳥先生</b></div>
-			<div id="forumContent1" class="col-7">頭香</div>
-		</div>
+		<div class='row'>
+		<div class="col-8">
+<!-- 				留言輸入 -->
+				<div class="row" style="margin-top:40px;margin-left:50px;">
+				<div class="col-10" >
+					<p style="font-size:18px">留言:</p>
+					<textarea id='firstLayerComment' cols="68" rows="3"   style="resize:none"></textarea>
+				</div>
+				<div class="col-1" style="padding-top:67px;"> 
+				 <button id='firstLayerButton' type="button" class="btn btn-primary" ><i class="fas fa-share"></i></button>
+				</div>
+				</div>
+<!-- 				留言開始 -->
+<script src='/resources/user-bootstrap/js/commentLoader.js'></script>
+				<div id='commentAppend' style="margin-top:20px;">
+				</div>
+				</div>
+				</div>
+				<!-- 				留言結束 -->
 		
 		<!-- 回文章列表按鈕 -->
 		<div class="row">

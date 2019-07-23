@@ -94,7 +94,6 @@
 					if(event.target.scrollTop==0){	
 						event.target.scrollTop=1;
 						loadHistoryMessage1(event.target.id.substring(4),userAccount);					
-						console.log(event.target.scrollTop);
 					}			
 				})
 				
@@ -167,7 +166,6 @@
 			$.each(friendListStock,function(idx,friendone){
 				if(friendone.account==account){
 					imgOne = friendone.photo;
-					alert(123);
 				}
 			})
 			$('#show'+account+' ul').append($('<li>').addClass('replies').append($('<img>').attr('src',imgOne)).append($('<p>').text(messageContent)));
@@ -191,7 +189,6 @@
 		var socket = new SockJS('/ilovejayee');
 	   	stompClient = Stomp.over(socket);
 	   	stompClient.connect({}, function (frame) {
-  	    	console.log('Connected: ' + frame);
   	    	stompClient.send('/app/imonline',{},JSON.stringify({'userAccount':userAccount}));
         //註冊私訊路徑
 	        stompClient.subscribe('/app/chat/single/'+userAccount, function (data) {
@@ -222,7 +219,6 @@
 			data:{'page':page,'rows':rows,'sender':sender,'receiver':receiver},
 			success:function(data){
 				var historyMessages = data.rows;
-				console.log(historyMessages);
 				$.each(historyMessages,function(idx,historyMessage){
 					prependHistory(historyMessage);
 				})
