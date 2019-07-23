@@ -162,9 +162,9 @@ html, body {
   
    </div>
   
-  <div class="col-6">
+  <div class="col-12">
    <span style="font-size: 20px; font-weight: bold;"><i class="far fa-smile-beam"></i>活動描述: </span>
-   <div class='col-8'>
+   <div class='col-12'>
    <textarea class="form-control form-control-user" id="description" name="description"	 ></textarea>
    </div>
    </div>
@@ -320,7 +320,7 @@ function initMap() {
 			clickableIcons : false,
 			zoom : 21,
 			minZoom : 16,
-			maxZoom : 20,
+			maxZoom : 21,
 			disableDefaultUI : true,
 			styles : [ {
 				"featureType" : "poi.business",
@@ -354,11 +354,11 @@ function initMap() {
 	function changeCenter(){
 		var geocoder = new google.maps.Geocoder();
 		geocoder.geocode({
-		        'address':$("#addressInfo").val(),
+		        'address':$("#addressForMap").html(),
 		    }, function (results, status) {
 		        if (status == google.maps.GeocoderStatus.OK) {
 				map.setCenter(results[0].geometry.location);
-	            map.setZoom(19);
+	            map.setZoom(15);
 	            self.setPosition(results[0].geometry.location);
 		    }
 		        
@@ -393,7 +393,7 @@ $(document).ready(function(){
            
            $('#city').change(function(){
                var CName= $('#city').val();
-               changeCenter();
+//                changeCenter();
                $.ajax({
                    type: "POST",
                    url: '/activity/location/'+ CName,
@@ -409,15 +409,17 @@ $(document).ready(function(){
    					$.each(data,function(index,value){
    						txt += 	"<option value='"+ value +"'>"+ value +"</option>";			
    					})
-   					txt2 ="<span style='font-size: 20px; font-weight: bold;padding-left:15px;color:red;'>"+"<div id='addressForMap' style='position'>" + CName +"</div>"+"<i class='fas fa-pen-fancy fa-sm' style='color:Mediumslateblue;'></i>"+"</span>";
+   					txt2 ="<span style='font-size: 20px; font-weight: bold;padding-left:15px;color:red;'>"+"<div id='addressForMap'>" + CName +"</div>"+"</span>";
    					$("#mappingIcon").attr("class","fas fa-spinner fa-pulse");
    					$("#mappingIcon").attr("style","color:RoyalBlue");
    					$("#addressInfo").empty();
    					$("#addressInfo").append(txt2);
    					$("#district").html(txt);
    					$("#locationName").html(txt5);
-   					alert($("#addressForMap").html());
-   					changeCenter();
+   					window.setTimeout(function() {
+   						changeCenter();
+					}, 50);
+   					
    				}
                });
            });
@@ -439,12 +441,15 @@ $(document).ready(function(){
    						txt += 	"<option value='"+ value['locationName'] +"'>"+ value['locationName'] +"</option>"			
    						})
    					
-   					txt2 ="<span style='font-size: 20px; font-weight: bold;padding-left:15px;color:red;'>" + CName + DisN +"<i class='fas fa-pen-fancy fa-sm' style='color:Mediumslateblue;'></i>"+"</span>";
+   					txt2 ="<span style='font-size: 20px; font-weight: bold;padding-left:15px;color:red;'>"+"<div id='addressForMap'>"+ CName + DisN +"</div>"+"</span>";
    					$("#mappingIcon").attr("class","fas fa-spinner fa-pulse");
    					$("#mappingIcon").attr("style","color:RoyalBlue");
    					$("#addressInfo").empty();
    					$("#addressInfo").append(txt2);
    					$("#locationName").html(txt);
+   					window.setTimeout(function() {
+   						changeCenter();
+					}, 50);
    					
    				}
                });
@@ -462,7 +467,7 @@ $(document).ready(function(){
                        alert('發生錯誤');
                    },
                    success: function(data){
-                	  txt ="<span style='font-size: 20px; font-weight: bold;padding-left:15px'>" + data[0]['city']+data[0]['district']+data[0]['address'] +"<i class='fas fa-glass-cheers' style='color:Magenta'></i></span>";
+                	  txt ="<span style='font-size: 20px; font-weight: bold;padding-left:15px'>" +"<div id='addressForMap'>"+ data[0]['city']+data[0]['district']+data[0]['address'] +"</div>"+"</span>";
                 	  txtLocationid = data[0]['locationId'];
                 	  
                 	  $("#locationId").attr("value",txtLocationid);
@@ -470,7 +475,9 @@ $(document).ready(function(){
                 	  $("#mappingIcon").attr("style","color:black");
                 	  $("#addressInfo").empty();
                 	  $("#addressInfo").append(txt);
-   					
+                	  window.setTimeout(function() {
+     						changeCenter();
+  					}, 50);
    				}
                });
            });

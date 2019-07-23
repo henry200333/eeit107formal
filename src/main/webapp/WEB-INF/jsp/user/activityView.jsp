@@ -9,7 +9,25 @@
 <jsp:include page="../topbar.jsp"></jsp:include>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />	
 <link rel="stylesheet" href="/resources/admin-bootstrap/css/jquery-ui-timepicker-addon.css">
+<style>
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+	height: 100%;
+	width: 1000px;
+}
 
+.body {
+	height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+</style>	
 <body>
 	<input type="hidden" value="${activityParam.id}" id="thisp">
 	<input type="hidden" value="<sec:authentication property='name' />" id="thisuser">
@@ -51,8 +69,8 @@
     <div >
    <img src='/resources/user-bootstrap/img/activity/activity${activityParam.id}.jpg' style='height:280px;border-radius:20px;width:500px'>
    </div>
-   <div style='padding-left:10px'>
-   <img src='/resources/user-bootstrap/img/activity/activity1.jpg' style='height:280px;border-radius:20px;'>
+   <div class='col-sm-6 mb-3 mb-sm-6' id="map" style='height:280px;border-radius:20px;width:500px;border-color:DarkGrey; border-style:solid;margin-left:10px'>
+
    </div>
   	</div>
   
@@ -83,7 +101,7 @@
    </div>
    <div class="col-6">
    <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i	class="fab fa-hotjar"></i>地址:</span><br>
-   <span style="font-size: 20px; font-weight: bold;padding-left:20px">${locationCity}${locationDistrict}${locationAddress}</span>
+   <span style="font-size: 20px; font-weight: bold;padding-left:20px" id='addressForMap'>${locationCity}${locationDistrict}${locationAddress}</span>
    </div>
    <div class="col-6" id='article'>
    
@@ -268,9 +286,97 @@ $.ajax({
 						}
 						
 					})
+					
+	
+	
+var geocoder, map;
+function initMap(address) {
+	var address = $("#addressForMap").text();
+    geocoder = new google.maps.Geocoder();
+    geocoder.geocode({
+        'address': address
+    }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            var myOptions = {
+                zoom: 18,
+                center: results[0].geometry.location,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            map = new google.maps.Map(document.getElementById('map'), myOptions);
 
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+        }
+    });
+}
+					
+	
+					
+					
+					
+					
+					
+// var	map
+// var self;
+// var marker;
+// function initMap() {	
+// 	map = new google.maps.Map(document.getElementById('map'), {
+// 		center : {
+// 				lat :  25.0337113,
+// 				lng :  121.543364
+// 			},
+// 			 draggable: true,
+// 			clickableIcons : false,
+// 			zoom : 21,
+// 			minZoom : 16,
+// 			maxZoom : 20,
+// 			disableDefaultUI : true,
+// 			styles : [ {
+// 				"featureType" : "poi.business",
+// 				"stylers" : [ {
+// 					"visibility" : "off"
+// 				} ]
+// 			}, {
+// 				"featureType" : "poi.park",
+// 				"elementType" : "labels.text",
+// 				"stylers" : [ {
+// 					"visibility" : "off"
+// 				} ]
+// 			} ]
+// 		});
+	
+// 	self = new google.maps.Marker({
+// 		position : {
+
+// 			lat : map.getCenter().lat(),
+// 			lng : map.getCenter().lng()
+// 		},
+// 		map : map
+// 	});
+	
+// 	};
+	
+// function changeCenter(){
+// 		var geocoder = new google.maps.Geocoder();
+// 		geocoder.geocode({
+// 		        'address':$("#addressForMap").html(),
+// 		    }, function (results, status) {
+// 		        if (status == google.maps.GeocoderStatus.OK) {
+// 				map.setCenter(results[0].geometry.location);
+// 	            map.setZoom(15);
+// 	            self.setPosition(results[0].geometry.location);
+// 		    }	        
+// 		});	
+// 	};
+
+
+// 	changeCenter();
 </script>
-
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4fmDiIyJ9mPTKGL7iIVPvB5Igfo54eMk&callback=initMap"
+	async defer></script>
 
 
 </html>

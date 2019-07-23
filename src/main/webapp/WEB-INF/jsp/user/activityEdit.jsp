@@ -52,8 +52,8 @@
     <div >
    <img src='/resources/user-bootstrap/img/activity/activity${activityParam.id}.jpg' style='height:280px;border-radius:20px;width:500px'>
    </div>
-   <div style='padding-left:10px'>
-   <img src='/resources/user-bootstrap/img/activity/activity1.jpg' style='height:280px;border-radius:20px;'>
+  <div class='col-sm-6 mb-3 mb-sm-6' id="map" style='height:280px;border-radius:20px;width:500px;border-color:DarkGrey; border-style:solid;margin-left:10px'>
+
    </div>
   	</div>
   
@@ -69,7 +69,7 @@
    <div class="col-6">
    <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i id='mappingIcon' class="fas fa-map-marker-alt"></i>活動詳細地址: </span>
    <div class='col-11' id='addressInfo'>
-   <span style="font-size: 20px; font-weight: bold;padding-left:15px">${locationCity}${locationDistrict}${locationAddress}</span>
+   <span style="font-size: 20px; font-weight: bold;padding-left:15px;position:absolute" id='addressForMap' >${locationCity}${locationDistrict}${locationAddress}</span>
    </div>
    </div>
    <div class="col-6">
@@ -262,7 +262,8 @@
 <script>
 var thisaid = $("#thisp").val();
 var thisuser = $("#thisuser").val();
-
+var self;
+var marker;
 $.ajax({
 	url : "/activity/article/"+${activityParam.id},
 	type : "GET",
@@ -333,90 +334,114 @@ $(document).ready(function(){
 			}
 		})
            
-           $('#city').change(function(){
-               var CName= $('#city').val();
-               $.ajax({
-                   type: "POST",
-                   url: '/activity/location/'+ CName,
-                   cache: false,
-                   error: function(){
-                       alert('發生錯誤');
-                   },
-                   success: function(data){
-   					var txt="";		
-   					console.log(data);
-   					txt += '<option value="" style="display: none">請選擇鄉鎮市區</option>';
-   					txt5 = '<option value="" style="display: none" >請先選擇鄉鎮市區</option>';
-   					$.each(data,function(index,value){
-   						txt += 	"<option value='"+ value +"'>"+ value +"</option>";			
-   					})
-   					txt2 ="<span style='font-size: 20px; font-weight: bold;padding-left:15px;color:red;'>" + CName +"<i class='fas fa-pen-fancy fa-sm' style='color:Mediumslateblue;'></i>"+"</span>";
-   					$("#mappingIcon").attr("class","fas fa-spinner fa-pulse");
-   					$("#mappingIcon").attr("style","color:RoyalBlue");
-   					$("#addressInfo").empty();
-   					$("#addressInfo").append(txt2);
-   					$("#district").html(txt);
-   					$("#locationName").html(txt5);
-   					
-   				}
-               });
-           });
-           $('#district').change(function(){
-        	   var CName= $('#city').val();
-        	   var DisN= $('#district').val();
-               $.ajax({
-                   type: "POST",
-                   url: '/activity/location/district/'+ DisN,
-                   cache: false,
-                   error: function(){
-                       alert('Ajax request 發生錯誤');
-                   },
-                   success: function(data){
-   					var txt="";		
-   					console.log(data);
-   					txt += '<option value="" style="display: none">請選擇活動地點</option>';
-   					$.each(data,function(index,value){
-   						txt += 	"<option value='"+ value['locationName'] +"'>"+ value['locationName'] +"</option>"			
-   						})
-   					
-   					txt2 ="<span style='font-size: 20px; font-weight: bold;padding-left:15px;color:red;'>" + CName + DisN +"<i class='fas fa-pen-fancy fa-sm' style='color:Mediumslateblue;'></i>"+"</span>";
-   					$("#mappingIcon").attr("class","fas fa-spinner fa-pulse");
-   					$("#mappingIcon").attr("style","color:RoyalBlue");
-   					$("#addressInfo").empty();
-   					$("#addressInfo").append(txt2);
-   					$("#locationName").html(txt);
-   					
-   				}
-               });
-           });
-           
-           $("#locationName").change(function(){
-               var LN= $("#locationName").val();
-               var city1 = $("#city").val();
-               var district1 = $("#district").val();
-               $.ajax({
-                   type: "POST",
-                   url: '/activity/location/address/'+ LN,
-                   cache: false,
-                   error: function(){
-                       alert('發生錯誤');
-                   },
-                   success: function(data){
-                	  txt ="<span style='font-size: 20px; font-weight: bold;padding-left:15px'>" + data[0]['city']+data[0]['district']+data[0]['address'] +"<i class='fas fa-glass-cheers' style='color:Magenta'></i></span>";
-                	  txtLocationid = data[0]['locationId'];
-                	  
-                	  $("#locationId").attr("value",txtLocationid);
-                	  $("#mappingIcon").attr("class","fas fa-map-marker-alt");
-                	  $("#mappingIcon").attr("style","color:black");
-                	  $("#addressInfo").empty();
-                	  $("#addressInfo").append(txt);
-   					
-   				}
-               });
-           });
+        $('#city').change(function(){
+            var CName= $('#city').val();
+//             changeCenter();
+            $.ajax({
+                type: "POST",
+                url: '/activity/location/'+ CName,
+                cache: false,
+                error: function(){
+                    alert('發生錯誤');
+                },
+                success: function(data){
+					var txt="";		
+					console.log(data);
+					txt += '<option value="" style="display: none">請選擇鄉鎮市區</option>';
+					txt5 = '<option value="" style="display: none" >請先選擇鄉鎮市區</option>';
+					$.each(data,function(index,value){
+						txt += 	"<option value='"+ value +"'>"+ value +"</option>";			
+					})
+					txt2 ="<span style='font-size: 20px; font-weight: bold;padding-left:15px;color:red;'>"+"<div id='addressForMap'>" + CName +"</div>"+"</span>";
+					$("#mappingIcon").attr("class","fas fa-spinner fa-pulse");
+					$("#mappingIcon").attr("style","color:RoyalBlue");
+					$("#addressInfo").empty();
+					$("#addressInfo").append(txt2);
+					$("#district").html(txt);
+					$("#locationName").html(txt5);
+					window.setTimeout(function() {
+						changeCenter();
+					}, 50);
+					
+				}
+            });
+        });
+        $('#district').change(function(){
+     	   var CName= $('#city').val();
+     	   var DisN= $('#district').val();
+            $.ajax({
+                type: "POST",
+                url: '/activity/location/district/'+ DisN,
+                cache: false,
+                error: function(){
+                    alert('Ajax request 發生錯誤');
+                },
+                success: function(data){
+					var txt="";		
+					console.log(data);
+					txt += '<option value="" style="display: none">請選擇活動地點</option>';
+					$.each(data,function(index,value){
+						txt += 	"<option value='"+ value['locationName'] +"'>"+ value['locationName'] +"</option>"			
+						})
+					
+					txt2 ="<span style='font-size: 20px; font-weight: bold;padding-left:15px;color:red;'>"+"<div id='addressForMap'>"+ CName + DisN +"</div>"+"</span>";
+					$("#mappingIcon").attr("class","fas fa-spinner fa-pulse");
+					$("#mappingIcon").attr("style","color:RoyalBlue");
+					$("#addressInfo").empty();
+					$("#addressInfo").append(txt2);
+					$("#locationName").html(txt);
+					window.setTimeout(function() {
+						changeCenter();
+					}, 50);
+					
+				}
+            });
+        });
+        
+        $("#locationName").change(function(){
+            var LN= $("#locationName").val();
+            var city1 = $("#city").val();
+            var district1 = $("#district").val();
+            $.ajax({
+                type: "POST",
+                url: '/activity/location/address/'+ LN,
+                cache: false,
+                error: function(){
+                    alert('發生錯誤');
+                },
+                success: function(data){
+             	  txt ="<span style='font-size: 20px; font-weight: bold;padding-left:15px'>" +"<div id='addressForMap'>"+ data[0]['city']+data[0]['district']+data[0]['address'] +"</div>"+"</span>";
+             	  txtLocationid = data[0]['locationId'];
+             	  
+             	  $("#locationId").attr("value",txtLocationid);
+             	  $("#mappingIcon").attr("class","fas fa-map-marker-alt");
+             	  $("#mappingIcon").attr("style","color:black");
+             	  $("#addressInfo").empty();
+             	  $("#addressInfo").append(txt);
+             	  window.setTimeout(function() {
+  						changeCenter();
+					}, 50);
+				}
+            });
+        });
            
        });
        
+       
+// function changeCenter(){
+// 	var geocoder = new google.maps.Geocoder();
+// 	geocoder.geocode({
+// 	        'address':$("#addressForMap").html(),
+// 	    }, function (results, status) {
+// 	        if (status == google.maps.GeocoderStatus.OK) {
+// 			map.setCenter(results[0].geometry.location);
+//             map.setZoom(15);
+//             self.setPosition(results[0].geometry.location);
+// 	    }
+	        
+// 	});	
+
+// };
        
        
        
@@ -443,44 +468,49 @@ $("#update").click(
 		})
 
 		
-			function activityMap() {
-	var	map = new google.maps.Map(document.getElementById('map'), {
-			center : {
-				lat : ${vender.lat},
-				lng :  ${vender.lng}
-			},
-			 draggable: false,
-			clickableIcons : false,
-			zoom : 16.5,
-			minZoom : 16,
-			maxZoom : 20,
-			disableDefaultUI : true,
-			styles : [ {
-				"featureType" : "poi.business",
-				"stylers" : [ {
-					"visibility" : "off"
-				} ]
-			}, {
-				"featureType" : "poi.park",
-				"elementType" : "labels.text",
-				"stylers" : [ {
-					"visibility" : "off"
-				} ]
-			} ]
-		});
-	
-	start();
-	
-	
-	}
+var geocoder, map, marker;
+function initMap(address) {
+	var address = $("#addressForMap").text();
+    geocoder = new google.maps.Geocoder();
+    geocoder.geocode({
+        'address': address
+    }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            var myOptions = {
+                zoom: 18,
+                center: results[0].geometry.location,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            map = new google.maps.Map(document.getElementById('map'), myOptions);
+
+             marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+        }
+    });
+}
 		
-		
+function changeCenter(){
+	var geocoder = new google.maps.Geocoder();
+	geocoder.geocode({
+	        'address':$("#addressForMap").html(),
+	    }, function (results, status) {
+	        if (status == google.maps.GeocoderStatus.OK) {
+			map.setCenter(results[0].geometry.location);
+            map.setZoom(15);
+            marker.setPosition(results[0].geometry.location);
+	    }
+	        
+	});	
+
+};		
 		
 		
 </script>
 
 <script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4fmDiIyJ9mPTKGL7iIVPvB5Igfo54eMk&callback=activityMap"
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4fmDiIyJ9mPTKGL7iIVPvB5Igfo54eMk&callback=initMap"
 	async defer></script>
 
 </html>
