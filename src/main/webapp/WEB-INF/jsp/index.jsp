@@ -296,7 +296,7 @@
 				});
 				$("#performance"+(p+1)).children("#p1").html(value['title']);
 				$("#performance"+(p+1)).children("#p2").html(value['username']);
-				$("#performance"+(p+1)).children("#p3").html(value['views']+"觀看"+parseInt(timeresult)+"  天前發布");
+				$("#performance"+(p+1)).children("#p3").html(value['views']+"觀看");
 				$("#performance"+(p+1)).children("#p4").html(parseInt(timeresult)+"  天前發布");
 				
 			})
@@ -395,6 +395,7 @@
 				var count = index+1;
 				$(".artist"+count).attr('src',value['photo']);
 				$(".artistPic"+count).attr('src',value['photo']);
+				$("#artistlink"+count).attr('href',"/"+value['account']);
 				$(".artistPic"+count).click(function(){
 					window.location.href="/"+value['account'];
 				});

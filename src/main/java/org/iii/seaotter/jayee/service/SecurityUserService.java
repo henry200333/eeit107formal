@@ -198,5 +198,8 @@ public class SecurityUserService implements UserDetailsService {
 		user.setPassword(passwordEncoder.encode(password));
 		
 	}
-
+	
+	public List<SecurityUser> getAll(){
+		return securityUserDao.findAll();
+	}
 }

@@ -19,7 +19,8 @@
 			</div>
 			<div class="btn-group">
 				<button type="button" class="btn bar" id="topbar2"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+					onclick="javascript:location.href='/artist'">
 					<i class="fas fa-street-view"></i> 藝人
 				</button>
 				<button type="button" class="btn bar2" data-toggle="dropdown"

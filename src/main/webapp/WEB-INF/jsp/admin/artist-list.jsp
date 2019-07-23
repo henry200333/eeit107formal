@@ -71,12 +71,6 @@
 								<div id="pager"></div>
 						</div>
 					</div>
-					<form method="post" action="/admin/artist/uploadImage" enctype="multipart/form-data">
-					<input type="file" name="imageFile" id="imageFile" accept="image/gif, image/jpeg, image/png" />
-					<div id="previewDiv" class="previewDiv"></div>
-					<input type="text" hidden="hidden" name="username" id="username" value="<security:authentication property="principal.account"/>"/>
-					<input type="submit" value="Upload" />
-					</form>
 				</div>
 				<!-- /.container-fluid -->
 
