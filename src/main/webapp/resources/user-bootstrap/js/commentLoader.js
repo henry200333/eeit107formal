@@ -1,6 +1,5 @@
 $('head').append('<link rel="stylesheet" type="text/css" href="/resources/user-bootstrap/css/forumCss.css">');
 
-var thisPerformanceId = $('#thisp').val();
 var userAccount = $('#userAccount').val();
 var userDisplayName = $('#userDisplayName').val();
 var userPhoto = $('#userPhoto').val();
@@ -9,8 +8,6 @@ var originalComment;
 var userForumLikes;
 var userForumDislikes;
 
-
-
 function refreshLikeData(){
 	$.ajax({
 		url:'/forum/getUserLikes',
@@ -18,7 +15,7 @@ function refreshLikeData(){
 		data:{'account':userAccount},
 		success:function(userForumLikes){
 			$.each(userForumLikes,function(idx,forum){
-				if(forum.forumBoard=='Performance'&&forum.refId==thisPerformanceId){
+				if(forum.forumBoard==thisBoard&&forum.refId==thisThemeId){
 					if($('#like'+forum.id)){
 						$('#like'+forum.id).addClass('likedivclick');
 					}
@@ -32,7 +29,7 @@ function refreshLikeData(){
 		data:{'account':userAccount},
 		success:function(userForumDislikes){
 			$.each(userForumDislikes,function(idx,forum2){
-				if(forum2.forumBoard=='Performance'&&forum2.refId==thisPerformanceId){
+				if(forum2.forumBoard==thisBoard&&forum2.refId==thisThemeId){
 					if($('#dislike'+forum2.id)){
 						$('#dislike'+forum2.id).addClass('dislikedivclick');
 					}
@@ -47,7 +44,7 @@ function reloadComments(){
 	$.ajax({
 		url:'/forum/iwantcomments',
 		type:'GET',
-		data:{'forumBoard':'Performance','refId':thisPerformanceId},
+		data:{'forumBoard':thisBoard,'refId':thisThemeId},
 		success:function(performanceComments){
 			$('#commentAppend').html('');
 			$.each(performanceComments,function(idx,performanceComment){
@@ -240,8 +237,8 @@ function replyComment(){
 	
 	var replyCommenetData = {
 			'userName':userDisplayName,
-			'forumBoard':'Performance',
-			'refId':thisPerformanceId,
+			'forumBoard':thisBoard,
+			'refId':thisThemeId,
 			'refCommentId':$(event.target).attr('name'),
 			'comment':$(event.target).prev().val(),
 			'userPhoto':userPhoto
@@ -267,8 +264,8 @@ $('#firstLayerButton').click(function(){
 		
 	var replyData = {
 			'userName':userDisplayName,
-			'forumBoard':'Performance',
-			'refId':thisPerformanceId,
+			'forumBoard':thisBoard,
+			'refId':thisThemeId,
 			'refCommentId':0,
 			'comment':$('#firstLayerComment').val(),
 			'userPhoto':userPhoto
