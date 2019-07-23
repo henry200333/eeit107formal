@@ -71,19 +71,17 @@
 			</h4>
 			<div class="row">
 				<div class='col-4'>
-					<label
+					<label 
 						style="font-size: 20px; font-weight: bold; margin-top: 20px;">頭像</label>
-						<span class="edit"><i class="fas fa-highlighter"></i></span>
+						<span class="edit" id='photoIcon'><i class="fas fa-highlighter"></i></span>
 					<form method="post" action="/uploadPhoto"
 						enctype="multipart/form-data">
 						<div id="previewDiv" class="previewDiv">
-							<img width="100%" src="${userParam.photo }" />
+							<img width="100%" src="${userParam.photo }" style='width:290px;height:353px' />
 						</div> 
-					<input type="file" name="imageFile" id="imageFile"
-						accept="image/gif, image/jpeg, image/png" /> <input type="text"
-						hidden="hidden" name="username" id="username"
-						value="<sec:authentication		property="name" />"> <input
-						type="submit" value="Upload" />
+					<input type="file" name="imageFile" id="imageFile"	accept="image/gif, image/jpeg, image/png" style='display:none' /> 
+					<input type="text"	hidden="hidden" name="username" id="username" value="<sec:authentication		property="name" />"> 
+					<input type="submit" value="Upload" style='display:none' id='photoSubmit' />
 					</form>
 				</div>
 				<div class="col-8" style="padding-top: 20px;">
@@ -93,9 +91,17 @@
 				</div>
 			</div>
 			<script>
+			$("#photoIcon").click(function(){
+		  		$("#imageFile").trigger("click");
+		  	});
+			
+			
+			
+			
 				$("#imageFile").change(function() {
-					$("#previewDiv").html("<img id='PreviewPic' src='#' />");
+					$("#previewDiv").html("<img id='PreviewPic' style='width:290px;height:353px' src='#' />");
 					readURL(this);
+					$("#photoSubmit").trigger("click");
 				});
 
 				function readURL(input) {
