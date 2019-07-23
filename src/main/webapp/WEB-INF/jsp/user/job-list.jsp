@@ -33,7 +33,7 @@
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-6">
 						<div class='col-sm-11 mb-3 mb-sm-6' style="text-align: center">
-							<h1 class="text-info">List of Jobs</h1>
+							<h1 class="text-info">工作列表</h1>
 						</div>
 						<a href="/job/application/list" id="applicationPage"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">申請紀錄</a>
