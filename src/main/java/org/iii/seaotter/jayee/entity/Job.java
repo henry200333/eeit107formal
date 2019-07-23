@@ -73,8 +73,8 @@ public class Job {
 	
 
 
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JsonBackReference
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+//	@JsonBackReference
 	@JoinColumn(name="user_id")
 	private SecurityUser user;
 }

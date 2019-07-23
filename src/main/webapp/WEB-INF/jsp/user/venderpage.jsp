@@ -205,16 +205,20 @@ function start(){
 	success : function(data) {
 		var txt = "";
 		$.each(data,function(key, obj){
-// 	alert(obj.name)
+	console.log(obj)
 		txt +="<div class='col-sm-12 mb-0 mb-sm-0'><h3 style='text-align: center'>"	
 		txt +=obj.name
-		txt +="</h3></div><div class='col-sm-4 mb-0 mb-sm-0'><h4>類別:"
+		txt +="</h3></div><div class='col-sm-3 mb-0 mb-sm-0'><h4>類別:"
 		txt +=obj.jobType
-		txt +="</h4></div><div class='col-sm-4 mb-0 mb-sm-0'><h4>時間:"	
+		txt +="</h4></div><div class='col-sm-3 mb-0 mb-sm-0'><h4>時間:"	
 		txt +=obj.jobTime		
-		txt +="</h4></div><div class='col-sm-4 mb-0 mb-sm-0'><h4>薪資:";
+		txt +="</h4></div><div class='col-sm-2 mb-0 mb-sm-0'><h4>薪資:";
 		txt +=obj.reward;
-		txt +="</h4></div><div class='col-sm-12 mb-0 mb-sm-0' style='padding: 1%'><h4 style='text-align: center'>詳細內容</h4><textarea class='form-control' name='description' style='resize: none; text-align: center' readonly>";	
+		txt +="</h4></div><div class='col-sm-4 mb-0 mb-sm-0'><h4>已定表演者:<a href='/";
+		txt +=obj.user.account;
+		txt +="'>"
+		txt +=obj.user.displayName;
+		txt +="</a></h4></div><div class='col-sm-12 mb-0 mb-sm-0' style='padding: 1%'><h4 style='text-align: center'>詳細內容</h4><textarea class='form-control' name='description' style='resize: none; text-align: center' readonly>";	
 		txt +=obj.detal;	
 		txt +="</textarea></div><button class='col-sm-12 mb-0 mb-sm-0' style='text-align: center'onclick='toggleapplication(this)' id='";	
 		txt +=obj.id;
@@ -222,7 +226,7 @@ function start(){
 		txt +=obj.id;
 		txt +="'style='display:none'>test</div>";
 		});
-		$("#joblist").html(txt)
+		$("#joblist").html(txt);
 	}
  })
 };
@@ -239,13 +243,19 @@ function toggleapplication(object){
 		type :"GET",
 		
 		success : function(data) {
-			if(data.userId==${user.userId}){			
+			var t=${user.userId};
+			if(t=="")
+			t=0;
+			if(data.userId==${user.userId})
+			{			
 			$("#job"+id).toggle();
 			showapplication(id);
 			}else{
-				alert("只有廠商可以看申請名單")			
+				alert("只有廠商可以看申請名單")
+				
 			}
-
+			
+// 			
 		}
 	});	
 	

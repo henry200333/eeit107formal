@@ -107,6 +107,7 @@ public class UserJobController {
 //		System.out.println("aaa");
 		Vender vender = venderService.getById(venderId);
 		SecurityUser user = vender.getUser();
+		System.out.println(user.getUserId());
 		vender.setUser(null);
 		model.addAttribute("vender", vender);
 		model.addAttribute("user", user);
@@ -289,7 +290,17 @@ public class UserJobController {
 	public List<Job> findByVender(@RequestBody Long id) {
 		Vender vender = new Vender();
 		vender.setId((long) id);
-		return jobservice.getByVender(vender);
+		List<Job>  jobs=jobservice.getByVender(vender);
+		for(int i=0;i<jobs.size();i++) {
+			if(jobs.get(i).getUser()==null) {
+				System.out.println("aa");
+				SecurityUser user=new SecurityUser();
+				user.setDisplayName("尚未有表演者");
+				user.setAccount("job/vender/"+id);
+				jobs.get(i).setUser(user);
+			}
+		}
+		return jobs;
 	}
 
 	@RequestMapping("/cancelapplication")
