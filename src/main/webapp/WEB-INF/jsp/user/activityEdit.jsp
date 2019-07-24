@@ -262,7 +262,7 @@ $.ajax({
 			txt1 ="<span style='font-size: 20px; border-bottom: 3px solid black; font-weight: bold;'><i class='far fa-newspaper'></i>相關文章:<br></span>";
 	 		$.each(res.data,function(index,value){
 	 			txt2 ="<div onclick='popout(this)' style='cursor:pointer;' id='"+value.id+"'><span style='font-size: 20px; border-bottom: 1px solid black; font-weight: bold; color:HotPink'>"+value.name+"</span></div>";
-	 		 	txt3 = txt1+txt2+ "<br><a href='/article/add?user="+thisuser+"&refid="+thisaid+"&type=Activity' id='insertArticle'><span>點我新增<i class='fas fa-pencil-alt'></i></span></a>";
+	 		 	txt3 = txt1+txt2+ "<br><a href='/article/add?user="+thisuser+"&refid="+thisaid+"&type=Activity' id='insertArticle' onclick='window.open(this.href,'window','width=500,height=500')'><span>點我新增<i class='fas fa-pencil-alt'></i></span></a>";
 	 		})
 		
 			$("#article").append(txt3);}
@@ -431,10 +431,10 @@ $("#update").click(
 		function() {
 			$.ajax({
 				url : '/activity/update',
-				method : 'PUT',
+				method : 'GET',
 				contentType : 'application/json;charset=UTF-8',
 				dataType : 'json',
-				data : $("#form").serializeObject(),
+				data : JSON.parse($("#form").serializeObject()),
 				success : function(response) {
 					if (response.type == "SUCCESS") {
 						alert("資料修改成功！\n您修改了一筆名為："

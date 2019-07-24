@@ -2,6 +2,7 @@ package org.iii.seaotter.jayee.web;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -15,11 +16,9 @@ import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Location;
-import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
-import org.iii.seaotter.jayee.service.ArtistService;
 import org.iii.seaotter.jayee.service.LocationService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +27,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -208,9 +205,12 @@ public class ActivityController {
 	}
 	
 	
-	@PutMapping("/insert")
+	@GetMapping("/insert")
 	@ResponseBody
-	public AjaxResponse<Activity> insert(@RequestBody Activity activity) {
+	public AjaxResponse<Activity> insert(Activity activity) {
+		String userName=SecurityContextHolder.getContext().getAuthentication().getName();
+		Long currentUserId =securityUserService.getByUserName(userName).getUserId();
+		activity.setUseraId(currentUserId);
 		System.out.println("即將新增資料:"+activity);
 		AjaxResponse<Activity> aJaxResp=new AjaxResponse<>();
 		activity.setAwesomeNum(0L);
@@ -224,9 +224,9 @@ public class ActivityController {
 	
 	
 	
-	@PutMapping("/update")
+	@GetMapping("/update")
 	@ResponseBody
-	public AjaxResponse<Activity> update(@RequestBody Activity activity) {
+	public AjaxResponse<Activity> update(Activity activity) {
 		AjaxResponse<Activity> aJaxResp=new AjaxResponse<>();
 		System.out.println(activity);
 		
@@ -252,7 +252,7 @@ public class ActivityController {
 	
 	@PostMapping("/uploadActivityPhoto")
 	public String upload(@RequestParam("imageFile") MultipartFile imageFile, @RequestParam("activityId") Long activityId)
-			throws IOException {
+			throws IOException, InterruptedException {
 		System.out.println(activityId);
 		String returnValue = "redirect:/activity/edit/"+activityId;
 		try {
@@ -261,6 +261,7 @@ public class ActivityController {
 			e.printStackTrace();
 			returnValue = "error";
 		}
+		TimeUnit.SECONDS.sleep(1);
 		return returnValue;
 	}
 	

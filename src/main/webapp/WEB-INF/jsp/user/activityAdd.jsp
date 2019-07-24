@@ -61,7 +61,7 @@ html, body {
 
 <!-- Page Content -->
 <div class="container">
-<form id="form" name="form" class="user" autocomplete="off">
+
   <input type="text" class="form-control form-control-user" id="useraId" name="useraId"	 value="${useraId}" hidden='hidden'>
   <div class="card border-0 shadow my-5">
     <div class="card-body p-5">
@@ -113,7 +113,7 @@ html, body {
   	</script>
   
   
-  
+  <form id="form"  name="form" class="user" autocomplete="off">
    <div style='padding-top:20px' id="塞資料處">
    <div class='row'>
    
@@ -215,7 +215,7 @@ html, body {
    
    </div>  
    </div>
-   
+   </form>
 </div>
 
 
@@ -236,7 +236,7 @@ html, body {
 								class="fas fa-file-excel"></i>
 							</span> <span class="text"> Reset Input</span>
 						</button>
-  </form>
+  
 </div>
 
 
@@ -474,14 +474,14 @@ $("#insert").click(
 		function() {
 			$.ajax({
 				url : '/activity/insert',
-				method : 'PUT',
+				method : 'GET',
 				contentType : 'application/json;charset=UTF-8',
 				dataType : 'json',
-				data : $("#form").serializeObject(),
+				data : JSON.parse($("#form").serializeObject()),
 				success : function(response) {
 					if (response.type == "SUCCESS") {
 						alert("資料修改成功！\n您修改了一筆名為："
-								+ JSON.stringify(response.data.name)+"\n即將導入文章頁面");
+								+ JSON.stringify(response.data.name)+"\n即將導入活動頁面");
 // 						alert(response.data['id']);
 						window.location.assign('/activity/view/'+response.data['id']);
 					} else {
@@ -493,6 +493,38 @@ $("#insert").click(
 				}
 			})
 		})
+	
+		
+// var form = $('#form').get(0);  
+// var formdata = new FormData(form);  
+// 		$("#clickUpdatePhoto").click(
+// 		function() {		
+// 			$("#imageFile").trigger("click");	
+// 			$("#imageFile").change(function() {
+// 		 		$("#clickUpdatePhoto").html("<img src='' style='height:280px;border-radius:20px;width:500px' id='activityPic'>");
+// 		 		readURL(this);
+// 		 		$.ajax({
+// 					url : '/activity/addActivityPhoto',
+// 					method : 'Post',
+// 					async: false,  
+// 			        cache: false,  
+// 			        contentType: false,  
+// 			        processData: false,
+// 					data : formdata,
+// 					success : function(response) {
+// 						alert("成功!")
+// 					},
+// 					error : function(re) {
+// 						alert("失敗！");
+// 					}
+// 				})
+		 		
+		 		
+// 		 	});
+					
+// 		})
+		
+		
 
 </script>
 <script
