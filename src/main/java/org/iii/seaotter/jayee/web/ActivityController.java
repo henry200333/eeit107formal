@@ -262,7 +262,39 @@ public class ActivityController {
 		return returnValue;
 	}
 	
-	
+	@PostMapping("/follow")
+	@ResponseBody
+	public Activity follow(@RequestParam("id")Long id,@RequestParam("follow") int follow,@RequestParam("username") String username) {
+		
+		SecurityUser user = securityUserService.getByUserName(username);
+		Activity activity = activityService.getById(id);
+		List<SecurityUser> UserFolList = activity.getFollowUser();
+		Long followNum = activity.getAwesomeNum();
+		if(follow==0) {
+			followNum++;
+			activity.setAwesomeNum(followNum);
+			UserFolList.add(user);
+			activity.setFollowUser(UserFolList);
+			activityService.update(activity);
+		}if(follow==1) {
+			followNum--;
+			activity.setAwesomeNum(followNum);
+			int size = UserFolList.size();
+			if(size>0) {
+				for(int i =0;i<size;i++) {
+					Long userId = UserFolList.get(i).getUserId();
+					if(userId==user.getUserId()) {
+						UserFolList.remove(UserFolList.get(i));
+					}
+				}
+			}
+			
+			
+			
+		}	
+		activityService.update(activity);
+		return activity;
+	}
 	
 	
 }

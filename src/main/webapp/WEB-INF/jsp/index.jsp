@@ -172,7 +172,7 @@
 						</div>
 						<div class="col-8" style="margin-top: 10px; position:relative;">
 							<p id="articleTop1" style="font-size: 19px; position: absolute; top: 5px""></p>
-							<span style="font-size: 14px; position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 1750<i id="articleView1" class="fas fa-eye" style="margin-left:15px;"></i></span>
+							<span style="font-size: 14px; position: absolute; bottom: 5px;"><i class="far fa-comment-dots"></i><i id="articleView1" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
 					<div class="row articleblock" style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
@@ -180,7 +180,7 @@
 						</div>
 						<div class="col-8" style="margin-top: 10px; position:relative;">
 							<p id="articleTop2" style="font-size: 19px; position: absolute; top: 5px""></p>
-							<span style="font-size: 14px; position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 315<i id="articleView2" class="fas fa-eye" style="margin-left:15px;"></i></span>
+							<span style="font-size: 14px; position: absolute; bottom: 5px;"><i class="far fa-comment-dots"></i><i id="articleView2" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
 					<div class="row articleblock" style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
@@ -188,7 +188,7 @@
 						</div>
 						<div class="col-8" style="margin-top: 10px; position:relative;">
 							<p id="articleTop3" style="font-size: 19px; position: absolute; top: 5px""></p>
-							<span style="font-size: 14px; position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 189<i id="articleView3" class="fas fa-eye" style="margin-left:15px;"></i></span>
+							<span style="font-size: 14px; position: absolute; bottom: 5px;"><i class="far fa-comment-dots"></i><i id="articleView3" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
 					<div class="row articleblock" style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
@@ -197,7 +197,7 @@
 						<div class="col-8" style="margin-top: 10px; position:relative;"
 							style="margin-top:10px;">
 							<p id="articleTop4" style="font-size: 19px; position: absolute; top: 5px""></p>
-							<span style="font-size: 14px; position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 115<i id="articleView4" class="fas fa-eye" style="margin-left:15px;"></i></span>
+							<span style="font-size: 14px; position: absolute; bottom: 5px;"><i class="far fa-comment-dots"></i><i id="articleView4" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
 					<div class="row articleblock" style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
@@ -205,7 +205,7 @@
 						</div>
 						<div class="col-8" style="margin-top: 10px; position:relative;">
 							<p id="articleTop5" style="font-size: 19px; position: absolute; top: 5px""></p>
-							<span style="font-size: 14px;  position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 1<i id="articleView5" class="fas fa-eye" style="margin-left:15px;"></i></span>
+							<span style="font-size: 14px;  position: absolute; bottom: 5px;"><i class="far fa-comment-dots"></i><i id="articleView5" class="fas fa-eye" style="margin-left:15px;"></i></span>
 						</div>
 					</div>
 					<div class="row articleblock" style="height: 120px; cursor: pointer;" onclick="goToArticle(this);">
@@ -213,7 +213,7 @@
 						</div>
 						<div class="col-8" style="margin-top: 10px; position:relative;">
 							<p id="articleTop6" style="font-size: 19px; position: absolute; top: 5px"></p>
-							<span style="font-size: 14px;  position: absolute; bottom: 10px;"><i class="far fa-comment-dots"></i> 125<i id="articleView6" class="fas fa-eye" style="margin-left:15px;"></i></span>
+							<span style="font-size: 14px;  position: absolute; bottom: 5px;"><i class="far fa-comment-dots"></i><i id="articleView6" class="fas fa-eye" style="margin-left:15px;"></i></span>
 							<a class="btn btn-primary" href="/article" style="position: absolute; bottom: 0; margin-left: 170px;">看更多</a>
 						</div>
 					</div>
@@ -382,6 +382,21 @@
 			}
 		}
 	});
+	//獲取forum數量填入熱門文章TOP6的指定位置
+	$.ajax({
+		url:"/articleTop6ForumNum",
+		type:"GET",
+		success: function(res){
+			if(res.type == "SUCCESS"){
+				var data = res.data;
+				var articleView = "#articleView";
+				for(var i = 0; i < data.length; i++){
+					$(articleView + (i + 1)).before(" " + data[i]); //加入文章觀看次數
+				}
+			}
+		}
+	});
+	//獲取forum數量填入熱門文章TOP6的指定位置
 	//前往指定id的article頁面開始
 	function goToArticle(obj){
 		$(location).attr('href', '/article/' + obj.id.substring(7));

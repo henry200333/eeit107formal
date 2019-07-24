@@ -66,5 +66,8 @@ public class ArticleService {
 	public List<Article> getByAnnouncedUserId(Long announcedUserId){
 		return articleDao.findByAnnouncedUserId(announcedUserId);
 	}
-
+	
+	public List<Integer> getTop6ForumCountByOrderByCountDesc(){
+		return articleDao.findTop6ForumCountByOrderByCountDesc();
+	}
 }
