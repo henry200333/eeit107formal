@@ -36,6 +36,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -203,6 +204,55 @@ public class ArticleController {
 		}
 		ajaxRes.setType(AjaxResponseType.SUCCESS);
 		ajaxRes.setData(articleService.insert(article));
+		return ajaxRes;
+	}
+	
+	@RequestMapping("/edit/{articleId}")
+	public String editArticlePage(@PathVariable(name = "articleId") Long id, Model model) {
+		Long userId = securityUserService.getByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getUserId();
+		if (userId == null) {
+			return "/user/article-list";
+		}
+		Article article = articleService.getById(id);
+		if (article != null) {
+			if (userId != article.getAnnouncedUserId()) {
+				return "/user/article-list";
+			}
+			model.addAttribute("articleParam", article);
+			return "/user/article-edit";
+		}
+		return "/user/article-list";
+	}
+	
+	@PutMapping("/edit")
+	@ResponseBody
+	public AjaxResponse<Article> update(@Valid@RequestBody Article newArticle, BindingResult result){
+		AjaxResponse<Article> ajaxRes = new AjaxResponse<>();
+		String articleName = newArticle.getName();
+		String articleContent = newArticle.getContent();
+		Article oldArticle = articleService.getById(newArticle.getId());
+		if (result.hasErrors()) {
+			ajaxRes.setType(AjaxResponseType.ERROR);
+			System.out.println(result.getAllErrors());
+			return ajaxRes;
+		}
+		if (oldArticle == null) {
+			ajaxRes.setType(AjaxResponseType.ERROR);
+			return ajaxRes;
+		}
+		Long userId = securityUserService.getByUserName(SecurityContextHolder.getContext().getAuthentication().getName()).getUserId();
+		if (userId == null) {
+			ajaxRes.setType(AjaxResponseType.ERROR);
+			return ajaxRes;
+		}
+		if (userId != oldArticle.getAnnouncedUserId()) {
+			ajaxRes.setType(AjaxResponseType.ERROR);
+			return ajaxRes;
+		}
+		ajaxRes.setType(AjaxResponseType.SUCCESS);
+		oldArticle.setName(articleName);
+		oldArticle.setContent(articleContent);
+		ajaxRes.setData(articleService.update(oldArticle));
 		return ajaxRes;
 	}
 
