@@ -31,8 +31,6 @@
 		var url = $(location).attr('href');
 		if(url.match('/securityUser') != null){
 			$("#navUser").addClass("active");
-		}else if (url.match('/artist') != null) {
-			$("#navArtist").addClass("active");
 		} else if (url.match('/activity') != null) {
 			$("#navActivity").addClass("active");
 		} else if (url.match('/performance') != null) {

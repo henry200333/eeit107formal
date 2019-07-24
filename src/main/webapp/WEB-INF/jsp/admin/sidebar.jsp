@@ -18,15 +18,15 @@
       <hr class="sidebar-divider">
 	   
       <!-- Heading -->
-      <div class="sidebar-heading">
+      <div class="sidebar-heading" >
         Security
       </div>
       
       <!-- Nav Item - User -->
       <li id="navUser" class="nav-item">
         <a class="nav-link" href="/admin/securityUser/list">
-          <i class="fas fa-fw fa-key"></i>
-          <span>User</span></a>
+          <i class="fas fa-fw fa-users"></i>
+          <span style="font-family: 'Noto Sans TC', sans-serif;">用戶管理</span></a>
       </li>
 
       <!-- Divider -->
@@ -37,18 +37,11 @@
         Entities
       </div>
 
-      <!-- Nav Item - Artist -->
-      <li id="navArtist" class="nav-item">
-        <a class="nav-link" href="/admin/artist/list">
-          <i class="fas fa-fw fa-users"></i>
-          <span>Artist</span></a>
-      </li>
-
       <!-- Nav Item - Activity -->
       <li id="navActivity" class="nav-item">
         <a class="nav-link" href="/admin/activity/list">
-          <i class="fas fa-fw fa-calendar-alt"></i>
-          <span>Activity</span>
+          <i class="fas fa-fw fa-glass-cheers"></i>
+          <span style="font-family: 'Noto Sans TC', sans-serif;">活動管理</span>
         </a>
       </li>
 
@@ -56,30 +49,30 @@
       <li id="navPerformance" class="nav-item">
         <a class="nav-link" href="/admin/performance/list">
           <i class="fas fa-fw fa-film"></i>
-          <span>Performance</span>
+          <span style="font-family: 'Noto Sans TC', sans-serif;">表演管理</span>
         </a>
       </li>
 
       <!-- Nav Item - Vender -->
       <li id="navVender" class="nav-item">
         <a class="nav-link" href="/admin/vender/list">
-          <i class="fas fa-fw fa-dollar-sign"></i>
-          <span>Vender</span>
+          <i class="fas fa-fw fa-hands-helping"></i>
+          <span style="font-family: 'Noto Sans TC', sans-serif;">廠商管理</span>
         </a>
       </li>
 
       <!-- Nav Item - Article -->
       <li id="navArticle" class="nav-item">
         <a class="nav-link" href="/admin/article/list">
-          <i class="fas fa-fw fa-file-alt"></i>
-          <span>Article</span></a>
+          <i class="fas fa-fw fa-newspaper"></i>
+          <span style="font-family: 'Noto Sans TC', sans-serif;">文章管理</span></a>
       </li>
 
       <!-- Nav Item - Forum -->
       <li id="navForum" class="nav-item">
         <a class="nav-link" href="/admin/forum/list">
           <i class="fas fa-fw fa-comments"></i>
-          <span>Forum</span></a>
+          <span style="font-family: 'Noto Sans TC', sans-serif;">留言管理</span></a>
       </li>
 
       <!-- Divider -->

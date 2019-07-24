@@ -32,14 +32,14 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Edit This Article</h1>
+						<h1 class="h3 mb-0 text-gray-800">編輯文章</h1>
 
 					</div>
 
 					<!-- Return to Article -->
 					<a href="list" class="btn btn-info btn-icon-split"> <span
 						class="icon text-white-50"> <i class="fas fa-reply"></i>
-					</span> <span class="text">Return to Article</span>
+					</span> <span class="text">回文章列表</span>
 					</a>
 
 					<hr>
@@ -53,60 +53,65 @@
 								<small class="form-text text-muted">由系統自動產生ID，不可修改</small>
 							</div>
 							<div class="col-sm-7 mb-3 mb-sm-0">
-								<label for="name">NAME:</label>
+								<label for="name">文章標題:</label>
 								<input class="form-control form-control-user" id="name" name="name"
-									placeholder="NAME" value="${articleParam.name}" />
-								<small class="form-text text-muted">NAME最少2個字元，最大30個字元</small>
+									placeholder="文章標題" value="${articleParam.name}" />
+								<small class="form-text text-muted">文章標題最少2個字，最大30個字</small>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-10 mb-3 mb-sm-0">
-								<label for="context">CONTENT(支援Markdown編輯器):</label>
+								<label for="context">文章內容(支援Markdown語法):</label>
 								<div id="test-editor">
 								<textarea id="content" name="content" style="display:none;">${articleParam.content}</textarea>
 								</div>
 							</div>
 						</div>
 						<div class="form-group row">
-							<div class="col-sm-4 mb-3 mb-sm-0">
-								<label for="type">TYPE:</label>
+							<div class="col-sm-3 mb-3 mb-sm-0">
+								<label for="type">文章類型:</label>
 								<div class=" input-group">
 									<input type="text" id="articleType" name="articleType" class="form-control form-control-user"
 										value="${articleParam.articleType}" readonly="readonly" style="background-color: white;pointer-events: none;">
 									<div class="input-group-append">
 										<button type="button" class="btn btn-secondary dropdown-toggle"
 											type="button" id="dropdownMenuButton" data-toggle="dropdown"
-											aria-haspopup="true">請選擇TYPE</button>
+											aria-haspopup="true">請選擇文章類型</button>
 										<div class="dropdown-menu"
 											aria-labelledby="dropdownMenuButton">
-											<button type="button" class="dropdown-item"	onclick="(function(){$('#articleType').val('Artist')})()">Artist</button>
-											<button type="button" class="dropdown-item"	onclick="(function(){$('#articleType').val('Activity')})()">Activity</button>
-											<button type="button" class="dropdown-item" onclick="(function(){$('#articleType').val('Performance')})()">Performance</button>
-											<button type="button" class="dropdown-item" onclick="(function(){$('#articleType').val('Vender')})()">Vender</button>
-											<button type="button" class="dropdown-item"	onclick="(function(){$('#articleType').val('Other')})()">Other</button>
+											<button type="button" class="dropdown-item"	onclick="(function(){$('#articleType').val('Artist')})()">藝人</button>
+											<button type="button" class="dropdown-item"	onclick="(function(){$('#articleType').val('Activity')})()">活動</button>
+											<button type="button" class="dropdown-item" onclick="(function(){$('#articleType').val('Performance')})()">表演</button>
+											<button type="button" class="dropdown-item" onclick="(function(){$('#articleType').val('Vender')})()">廠商</button>
+											<button type="button" class="dropdown-item"	onclick="(function(){$('#articleType').val('Other')})()">其他</button>
 										</div>
 									</div>
 								</div>
+							</div><div class="col-sm-3 mb-3 mb-sm-0">
+								<label for="announcedUserId">發布者ID:</label> <input id="announcedUserId"
+									name="announcedUserId" class="form-control form-control-user" value="${articleParam.announcedUserId}"
+									placeholder="發布者ID" />
+								<small class="form-text text-muted">發布者ID必須為數字</small>
 							</div>
-							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="refId">REF_ID:</label>
+							<div class="col-sm-2 mb-3 mb-sm-0">
+								<label for="refId">關聯ID:</label>
 								<input id="refId" name="refId" class="form-control form-control-user"
-									placeholder="REF_ID" value="${articleParam.refId}" />
-								<small class="form-text text-muted">REF_ID必須為數字</small>
+									placeholder="關聯ID" value="${articleParam.refId}" />
+								<small class="form-text text-muted">關聯ID必須為數字</small>
 							</div>
-							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="count">VIEWS:</label>
+							<div class="col-sm-2 mb-3 mb-sm-0">
+								<label for="count">人氣:</label>
 								<input id="count" name="count" class="form-control form-control-user"
-									placeholder="VIEWS" value="${articleParam.count}" />
-								<small class="form-text text-muted">VIEWS必須為數字</small>
+									placeholder="人氣" value="${articleParam.count}" />
+								<small class="form-text text-muted">人氣必須為數字</small>
 							</div>
 						</div>
-						<button id="goToUpdate" type="button" class="btn btn-primary btn-user btn-block"><span
+						<button id="goToUpdate" type="button" class="btn btn-warning btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-import"></i>
-						</span> <span class="text"> Edit This Article</span></button>
+						</span> <span class="text"> 修改文章</span></button>
 						<button type="reset" class="btn btn-danger btn-user btn-block"><span
 							class="icon text-white-50"> <i class="fas fa-file-excel"></i>
-						</span> <span class="text"> Reset Input</span></button>
+						</span> <span class="text"> 重置欄位</span></button>
 					</form>
 				</div>
 				<!-- /.container-fluid -->
@@ -140,6 +145,14 @@
 					var input = $(this).val();
 					if(input.length >= 2 && input.length <= 30){
 						$(this).attr("class", "form-control form-control-user is-valid");
+					} else {
+						$(this).attr("class", "form-control form-control-user is-invalid");
+					}
+				})
+				$("#announcedUserId").blur(function(){
+					var input = $(this).val();
+					if(input.length != 0 && !isNaN(input)){
+						$(this).attr("class", "form-control form-control-user is-valid")
 					} else {
 						$(this).attr("class", "form-control form-control-user is-invalid");
 					}
