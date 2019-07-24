@@ -140,7 +140,9 @@ margin-top:20px;
 							"username" : username
 						},
 						success : function(data) {
-							console.log(data);
+							if(data['length']==0){
+								alert("您沒有辦過活動喔!");
+							}
 							var count = 1 ;
 							var flag = true;
 							$
