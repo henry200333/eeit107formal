@@ -24,21 +24,21 @@
 		<div id="content-wrapper" class="d-flex flex-column">
 
 			<!-- Main Content -->
-			<div id="content">
+			<div id="content" >
 
 				<!-- Topbar -->
 				<jsp:include page="topbar.jsp"></jsp:include>
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div class="container-fluid" style="font-family: 'Noto Sans TC', sans-serif;">
 
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">List of Article</h1>
+						<h1 class="h3 mb-0 text-gray-800">文章列表</h1>
 						<a href="#"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
+							class="fas fa-download fa-sm text-white-50"></i> 下載資料</a>
 					</div>
 
 					<!-- Add New Article Button + search name&type -->
@@ -46,7 +46,7 @@
 			            <div class="form-group row">
 			            	<div class="col-sm-3 mb-3 mb-sm-0">
 					            <div class="input-group">
-					              <input id="search" name="search" type="text" class="form-control border-0 small" placeholder="Search Article..." aria-label="Search" aria-describedby="basic-addon2">
+					              <input id="search" name="search" type="text" class="form-control border-0 small" placeholder="搜尋文章..." aria-label="Search" aria-describedby="basic-addon2">
 					              <div class="input-group-append">
 					                <button id="searchBT" class="btn btn-primary" type="button">
 					                  <i class="fas fa-search fa-sm"></i>
@@ -57,7 +57,7 @@
 				            <div class="col-sm-3 mb-3 mb-sm-0">
 				            	<a href="/admin/article/add" class="btn btn-primary btn-icon-split"> <span
 									class="icon text-white-50"> <i class="fas fa-file-medical"></i>
-									</span> <span class="text">Add New Article</span>
+									</span> <span class="text">新增文章</span>
 								</a>
 				            </div>
 			            </div>
@@ -66,12 +66,12 @@
 			        <div class="row">
 				        <div class="col-9">
 							<div class="input-group-append">
-								<button id="allBT" type="button" class="btn btn-success">ALL</button>
-								<button id="artistBT" type="button" class="btn btn-light">ARTIST</button>
-								<button id="activityBT" type="button" class="btn btn-light">ACTIVITY</button>
-								<button id="performanceBT" type="button" class="btn btn-light">PERFORMANCE</button>
-								<button id="venderBT" type="button" class="btn btn-light">VENDER</button>
-								<button id="otherBT" type="button" class="btn btn-light">OTHER</button>
+								<button id="allBT" type="button" class="btn btn-success">全部文章</button>
+								<button id="artistBT" type="button" class="btn btn-light">藝人文章</button>
+								<button id="activityBT" type="button" class="btn btn-light">活動文章</button>
+								<button id="performanceBT" type="button" class="btn btn-light">表演文章</button>
+								<button id="venderBT" type="button" class="btn btn-light">廠商文章</button>
+								<button id="otherBT" type="button" class="btn btn-light">其他文章</button>
 							</div>
 						</div>
 					</div>
@@ -80,8 +80,7 @@
 
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">List of
-								Article</h6>
+							<h6 class="m-0 font-weight-bold text-primary">文章列表</h6>
 						</div>
 						<div id="articleList" class="card-body" style="font-family: 'Noto Sans TC', sans-serif;">
 								<table id="articleGrid"></table>
