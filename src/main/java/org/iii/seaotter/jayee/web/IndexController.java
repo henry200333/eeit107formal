@@ -97,6 +97,15 @@ public class IndexController {
 		return res;
 	}
 	
+	@GetMapping("/articleTop6ForumNum")
+	@ResponseBody
+	public AjaxResponse<List<Integer>> articleTop6ForumNum() {
+		AjaxResponse<List<Integer>> res = new AjaxResponse<>();
+		res.setType(AjaxResponseType.SUCCESS);
+		res.setData(articleService.getTop6ForumCountByOrderByCountDesc());
+		return res;
+	}
+	
 	@GetMapping("/activityTop3")
 	@ResponseBody
 	public List<Activity> activityTop3() {
