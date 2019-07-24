@@ -180,43 +180,43 @@
 				width : 4
 			}, {
 				name : 'title',
-				label : 'Title',
+				label : '標題',
 				width : 20,
 				sortable : false
 			},
 			// 				{ name: 'introduction', label:'Introduction', width:25,sortable: false},
 			{
 				name : 'url',
-				label : 'URL',
+				label : '網址',
 				width : 25,
 				sortable : false
 			}, {
 				name : 'updateTime',
-				label : 'UpdateTime',
+				label : '上傳時間',
 				width : 15
 			}, {
 				name : 'activityId',
-				label : 'ActivityId',
+				label : '關聯活動ID',
 				width : 5
 			}, {
 				name : 'views',
-				label : 'Views',
+				label : '觀看數',
 				width : 5
 			}, {
 				name : 'likes',
-				label : 'Likes',
+				label : '喜歡數',
 				width : 5
 			}, {
 				name : 'dislikes',
-				label : 'dislikes',
+				label : '不喜歡數',
 				width : 5
 			}, {
-				name : 'edit',
+				name : '編輯',
 				width : 5,
 				formatter : editBT,
 				sortable : false
 			}, {
-				name : 'delete',
+				name : '刪除',
 				width : 5,
 				formatter : deleteBT,
 				sortable : false

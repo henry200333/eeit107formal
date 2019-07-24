@@ -140,7 +140,9 @@ margin-top:20px;
 							"username" : username
 						},
 						success : function(data) {
-							console.log(data);
+							if(data['length']==0){
+								alert("您沒有辦過活動喔!");
+							}
 							var count = 1 ;
 							var flag = true;
 							$
@@ -200,9 +202,15 @@ margin-top:20px;
 																		})
 																	})
 																	$("#del").click(function(){
-																		$("#insertdiv"+count).remove();
-																		$("#movie"+count).remove();
-																		count--;
+																		if(count==1){
+																			alert("無法少於1筆");
+																		}
+																		if(count>1){
+																			$("#insertdiv"+count).remove();
+																			$("#movie"+count).remove();
+																			count--;
+																		}
+																		
 																	})
 																	$("#enter").click(function(){
 																		var total = $("iframe").length;
@@ -240,6 +248,7 @@ margin-top:20px;
  																									}
  																								})
  																							}
+ 																							j=total+1;
  																							
  																						}
  																					}
