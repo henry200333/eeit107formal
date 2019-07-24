@@ -86,9 +86,11 @@ public class ActivityController {
 	public String addPage(Model model) {
 		String userName=SecurityContextHolder.getContext().getAuthentication().getName();
 		securityUserService.getByUserName(userName).getDisplayName();
+		int size = activityService.getAll().size();
 		model.addAttribute("useraId", securityUserService.getByUserName(userName).getUserId());
 		model.addAttribute("userName", securityUserService.getByUserName(userName).getDisplayName());
 		model.addAttribute("activity", new Activity());
+		model.addAttribute("activityPicId",size+1);
 		return "/user/activityAdd";
 	}
 	
@@ -295,6 +297,29 @@ public class ActivityController {
 		activityService.update(activity);
 		return activity;
 	}
+	
+	@RequestMapping("/followedOrNot")
+	@ResponseBody
+	public Boolean followedOrNot(@RequestParam("id")Long id,@RequestParam("username") String username) {
+		SecurityUser user = securityUserService.getByUserName(username);
+		Long thisId = user.getUserId();
+		Activity activity = activityService.getById(id);
+		List<SecurityUser> followUser = activity.getFollowUser();
+		int size =followUser.size();
+		if(size>0) {
+			for(int i =0;i<size;i++) {
+				Long userId = followUser.get(i).getUserId();
+				if(userId==thisId) {
+					return true;
+				}
+			}
+		}else {
+			return false;
+		}
+		return false;
+	}
+	
+	//
 	
 	
 }

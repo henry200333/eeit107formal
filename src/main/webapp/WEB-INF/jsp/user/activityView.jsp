@@ -320,67 +320,28 @@ function initMap(address) {
     });
 }
 					
-	
+$.ajax({
+	url:'/activity/followedOrNot',
+	data:{
+		"username":thisuser,
+		"id":thisaid
+	},
+	type:'POST',
+	success:function(data){
+		if(data==true){
+			$("#sub").attr('class','btn btn-danger');
+			$("#subpic").attr('class','fas fa-minus');
+			$("#subhtml").html("取消追蹤");
+			
+		}else{
+			$("#sub").attr('class','btn btn-success');
+			$("#subpic").attr('class','fas fa-plus');
+			$("#subhtml").html("追蹤活動");
+		}
+	}
+})
 					
 					
-					
-					
-					
-// var	map
-// var self;
-// var marker;
-// function initMap() {	
-// 	map = new google.maps.Map(document.getElementById('map'), {
-// 		center : {
-// 				lat :  25.0337113,
-// 				lng :  121.543364
-// 			},
-// 			 draggable: true,
-// 			clickableIcons : false,
-// 			zoom : 21,
-// 			minZoom : 16,
-// 			maxZoom : 20,
-// 			disableDefaultUI : true,
-// 			styles : [ {
-// 				"featureType" : "poi.business",
-// 				"stylers" : [ {
-// 					"visibility" : "off"
-// 				} ]
-// 			}, {
-// 				"featureType" : "poi.park",
-// 				"elementType" : "labels.text",
-// 				"stylers" : [ {
-// 					"visibility" : "off"
-// 				} ]
-// 			} ]
-// 		});
-	
-// 	self = new google.maps.Marker({
-// 		position : {
-
-// 			lat : map.getCenter().lat(),
-// 			lng : map.getCenter().lng()
-// 		},
-// 		map : map
-// 	});
-	
-// 	};
-	
-// function changeCenter(){
-// 		var geocoder = new google.maps.Geocoder();
-// 		geocoder.geocode({
-// 		        'address':$("#addressForMap").html(),
-// 		    }, function (results, status) {
-// 		        if (status == google.maps.GeocoderStatus.OK) {
-// 				map.setCenter(results[0].geometry.location);
-// 	            map.setZoom(15);
-// 	            self.setPosition(results[0].geometry.location);
-// 		    }	        
-// 		});	
-// 	};
-
-
-// 	changeCenter();
 </script>
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4fmDiIyJ9mPTKGL7iIVPvB5Igfo54eMk&callback=initMap"
