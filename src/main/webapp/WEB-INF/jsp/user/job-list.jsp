@@ -77,7 +77,7 @@
 					<label class=' h4 mb-0 text-gray-800'>查詢</label>
 					<div class="row" style="background: #DDDDDD">
 						<div class="col-sm-3 mb-3 mb-sm-0">
-							<label for="city">表演類型:</label> <select name="YourLocation"
+							<label for="type">表演類型:</label> <select name="YourLocation"
 								id="type">
 								<option value="全部">全部</option>
 								<option value="表演藝術">表演藝術</option>

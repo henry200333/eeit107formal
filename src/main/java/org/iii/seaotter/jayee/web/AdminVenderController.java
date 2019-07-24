@@ -172,6 +172,7 @@ public class AdminVenderController {
 	@ResponseBody
 	public Map<String, String> insert(@RequestBody Vender vender, Model model) {
 		Map<String, String> res = new HashMap<>();
+		System.out.println(vender.getCity());
 //		Vender vender=venders.get(0);
 		String name = vender.getName();
 		if (name == null || name.trim().length() == 0) {

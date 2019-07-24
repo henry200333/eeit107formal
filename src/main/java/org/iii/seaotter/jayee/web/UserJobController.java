@@ -25,6 +25,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -114,6 +115,17 @@ public class UserJobController {
 		return "/user/venderpage";
 	}
 
+	@RequestMapping("/vender/{venderId}/newjob")
+	public String addjob(@PathVariable(name = "venderId") Long venderId, Model model) {
+		Vender vender = venderService.getById(venderId);
+		SecurityUser user = vender.getUser();
+//		System.out.println(user.getUserId());
+		vender.setUser(null);
+		model.addAttribute("vender", vender);
+		model.addAttribute("user", user);
+		return "/user/newjobpage";
+	}
+	
 	@RequestMapping("/findjobs")
 	@ResponseBody
 	public List<Job> findById(@RequestParam("id") Long id, Model model) {
@@ -347,6 +359,18 @@ public class UserJobController {
 
 		}
 
+	
+	
+	@PostMapping("/addjob")
+	@ResponseBody
+	public Map<String, String> insert(@RequestBody Job job, Model model) {
+		Map<String, String> res = new HashMap<>();
 
+		System.out.println(job);
+//		jobservice.create(job);
+		res.put("success", "success");
+		return res;
+
+	}
 
 }
