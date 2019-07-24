@@ -341,6 +341,14 @@ INSERT INTO activity (name,artist,description,begin_time,end_time,perf_type,awes
  ('創新捏麵藝術','吳俊毅','此次展演作品以傳統捏麵技法加以創新元素，作品均為袖珍迷你大小，樣式涵蓋Q版人型，趣味動物，12生肖，花精靈等多元呈現','2019/07/14 07:35','2019/07/14 17:15','創意藝術',384,2,2),
  ('綜合彩繪','傅遠超','水彩麥克筆等綜合媒材創作','2019/06/27 23:35','2019/06/28 07:35','視覺藝術',292,3,1),
  ('創新融合音樂','八荒印痕','現代流行的音樂曲風及概念，融合中國傳統樂器的特有音色及風格，創造新音樂型態','2019/04/25 07:35','2019/05/01 17:15','表演藝術',353,1,2);
+
+ insert into Notice(url,content,readed,friend_status,sender,receiver) values
+('/index','XXX舉辦新活動',0,null,null,1),
+('/index','AAA舉辦新活動',0,null,null,1),
+('/index','BBB舉辦新活動',0,null,null,1),
+('/index','CCC舉辦新活動',0,null,null,1);
+ 
+ 
  
 ALTER TABLE friend NOCHECK CONSTRAINT ALL;
 INSERT INTO friend (self_id , friend_id) values
@@ -349,3 +357,6 @@ INSERT INTO friend (self_id , friend_id) values
 (1,3),
 (3,1);
 ALTER TABLE friend CHECK CONSTRAINT ALL;
+
+
+

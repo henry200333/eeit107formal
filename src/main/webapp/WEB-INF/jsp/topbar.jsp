@@ -4,6 +4,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <header>
+<input hidden="hidden" name="userName" value="<sec:authentication property="name" />" id="username">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="headernav">
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarTogglerDemo01"
@@ -26,10 +27,15 @@
 			</sec:authorize>
 			<!-- 			登入狀態 -->
 			<sec:authorize access="isAuthenticated()">
+				<div style="  position: relative">
+				<div style="display: none;position: absolute;border:solid 1px black;background-color:white;top:50px;;left:0;width:300px;opacity:1" id="notice">
+				
+				</div>
 				<button type="button" class="btn btn-dark"
-					style="margin-right: 20px;">
-					通知 <span class="badge badge-warning">9</span> 
+					style="margin-right: 20px;" id="toggleNotcie">
+					通知 <span class="badge badge-warning" id="noticeSize">9</span> 
 				</button>
+				</div>
 				<img src="/resources/profile_image/<sec:authentication		property="name" />.jpg" width="45px">
 				<span style="color: white; margin-right: 40px; margin-left: 20px"><sec:authentication
 						property="name" /></span>
@@ -46,6 +52,35 @@
 			function edit(Object) {
 				window.location.href = '/settings/profile';
 			}
+			
+			$("#toggleNotcie").click(function(){
+				$("#notice").toggle();
+				$.ajax({
+					url :"/readNotice/"+$("#username").val(),
+					type :"GET",
+					success : function(data) {
+						 notice();
+					}
+				});	
+			});
+		function notice(){
+			$.ajax({
+				url :"/findNotice/"+$("#username").val(),
+				type :"GET",
+				success : function(data) {
+					var txt="";
+					$("#noticeSize").text(data.size);
+					$.each(data.notices,function(key, obj){
+						txt+="<a  href='";
+						txt+=obj.url;
+						txt+="'><div style='border-bottom:solid 1px silver;padding-left:5px;height=30px;font-size:20px'>";
+						txt+=obj.content;
+						txt+="</div></a>"	
+					})
+					$("#notice").html(txt)
+				}
+			});	}
+		 notice();
 			</script>
 			</sec:authorize>	
 			<sec:authorize access="hasRole('ADMIN')">
@@ -54,6 +89,7 @@
 			
 			</sec:authorize>
 		</div>
+
 	</nav>
 	
 </header>
