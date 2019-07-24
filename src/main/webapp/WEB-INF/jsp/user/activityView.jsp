@@ -46,12 +46,12 @@ html, body {
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">新增活動
+          <button class="nav-link" id='newActivity'>新增活動
                 <span class="sr-only">(current)</span>
-              </a>
+              </button>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/activity/list">返回查詢頁面</a>
+          <button class="nav-link" onclick='javascript:window.location.assign("/activity/list")'>返回查詢頁面</button>
         </li>
       </ul>
     </div>
@@ -107,7 +107,7 @@ html, body {
    
    </div>
    <div class="col-6" id='subdiv' style='margin-top:10px'>
-   <button type="button" class="btn btn-danger" id="sub">
+   <button type="button" class="btn btn-success" id="sub">
 		<i class="fas fa-plus" style="color: white" id="subpic"></i><span id="subhtml">追蹤活動</span>
 	</button>
    </div>
@@ -169,65 +169,9 @@ html, body {
 		<jsp:include page="../chat.jsp"></jsp:include>	
 		<!-- Footer -->
 
-		<footer class="page-footer font-small blue" style="margin-top: 30px;">
-
-			<div style="background-color: black; text-align: center">
-				<div class="container">
-					<div class="row">
-						<div class="col-4" style="margin-top: 20px">
-							<span
-								style="color: white; font-size: 20px; border-bottom: 2px solid white; padding: 0px 50px;">訂閱街藝</span>
-							<br> <br> <input type="email" size="26"
-								placeholder="Email@" style="line-height: 30px;">
-							<button type="button" class="btn btn-danger">訂閱</button>
-						</div>
-						<div class="col-4" style="margin-top: 20px">
-							<span
-								style="color: white; font-size: 20px; border-bottom: 2px solid white; padding: 0px 50px;">最新消息</span>
-							<div class="row"
-								style="border-bottom: 1px solid white; padding: 20px 0px;">
-								<div class="col-4" style="text-align: right">
-									<img src="/resources/user-bootstrap/img/index/artist2.gif"
-										width="80%" style="border-radius: 15px;"> <br>
-								</div>
-								<div class="col-8" style="text-align: left">
-									<a href="" class="btn btn-primary" style="font-size: 10px;">藝人</a>
-									<br> <br> <span style="color: white">藝人標題</span> <br>
-								</div>
-							</div>
-							<div class="row"
-								style="border-bottom: 1px solid white; padding: 20px 0px;">
-								<div class="col-4" style="text-align: right">
-									<img src="/resources/user-bootstrap/img/index/artist3.jpg"
-										width="80%" style="border-radius: 15px;"> <br>
-								</div>
-								<div class="col-8" style="text-align: left">
-									<a href="" class="btn btn-danger" style="font-size: 10px;">文章</a>
-									<br> <br> <span style="color: white">文章標題</span> <br>
-								</div>
-							</div>
-							<div class="row" style="padding: 20px 0px;">
-								<div class="col-4" style="text-align: right">
-									<img src="/resources/user-bootstrap/img/index/artist6.jpg"
-										width="80%" style="border-radius: 15px;"> <br>
-								</div>
-								<div class="col-8" style="text-align: left">
-									<a href="" class="btn btn-success" style="font-size: 10px;">表演</a>
-									<br> <br> <span style="color: white">表演標題</span> <br>
-								</div>
-							</div>
-						</div>
-						<div class="col-4" style="margin-top: 20px">
-							<span
-								style="color: white; font-size: 20px; border-bottom: 2px solid white; padding: 0px 50px;">最近瀏覽</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
 	<jsp:include page="../footer.jsp"></jsp:include>
 	
-		</footer>
+		
 		
 
 
@@ -294,26 +238,61 @@ $.ajax({
 							if(login==true){window.open("/login")+(location.href).substring(7);}
 						}else{
 							//追蹤
-							var thispid = $("#thisp").val();
-// 							$.ajax({
-// 								url:'/user/performance/addfriend',
-// 								data:{"id":thispid,
-// 									"username":user									
-// 								},
-// 								success:function(data){
-									
-// 								}
-// 							})
-							
-							var activityName = $("#activityName").html();
-							alert("已追蹤活動:"+activityName);
-							$("#sub").attr('class','btn btn-success');
-							$("#subpic").attr('class','fas fa-star');
-							$("#subhtml").html("已追蹤");
-							
+							var thisaid = $("#thisp").val();
+							var follow = 0;
+							var subFollow = $("#sub").attr("class");
+// 							class="btn btn-danger"
+							if(subFollow == "btn btn-success"){
+								follow=0;
+							}if(subFollow=="btn btn-danger"){
+								follow=1;
+							}
+								$.ajax({
+										url:"/activity/follow",
+										type:"POST",
+										data:{"id":thisaid,
+											"username":user,
+											"follow":follow	
+										},
+										success:function(data){
+											if(follow==0){
+												alert("已追蹤活動:"+data.name);
+											}if(follow==1){
+												alert("已取消追蹤活動:"+data.name);
+											}
+										}
+									})
+
+							var activityName = $("#activityName").html();				
+							if(subFollow=="btn btn-success"){
+								$("#sub").attr('class','btn btn-danger');
+								$("#subpic").attr('class','fas fa-minus');
+								$("#subhtml").html("取消追蹤");
+							}if(subFollow=="btn btn-danger"){
+								$("#sub").attr('class','btn btn-success');
+								$("#subpic").attr('class','fas fa-plus');
+								$("#subhtml").html("追蹤活動");
+							}
 							
 						}
-						
+					})
+					
+					
+					
+					
+					
+					
+					
+					
+					
+	$("#newActivity").click(function(){
+						var user = $("#thisuser").val();
+						if(user=="anonymousUser"){
+							var login = confirm("請先登入");
+							if(login==true){window.open("/login")+(location.href).substring(7);}
+						}else{
+							window.location.assign("/activity/add");
+						}
 					})
 					
 	
