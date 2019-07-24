@@ -112,22 +112,22 @@ color:#ffaad5;
 		<div class="row" style="margin-top:20px;">
 		
 		<div class="col-12">
-			<h5><i class="fab fa-youtube youtube"></i>   我的表演    <span title="新增影片" style="cursor: pointer;" id="padd" ><i class="far fa-plus-square" ></i></span></h5>
+			<h5><i class="fab fa-youtube youtube"></i>   我的表演    <span title="新增影片" style="cursor: pointer;" id="padd" ></span></h5>
 			<c:forEach var="performance" items="${userParam.performanceSet}">
-				<a href="/performanceview/${performance.id}">${performance.title}</a>
+				<a href="/performanceview/${performance.id}">${performance.title}</a><br>
 			</c:forEach><hr></div>
 		<div class="col-12" style="margin-top:20px;">
 			<h5><i class="fas fa-heart heart"></i>   我的最愛</h5>
 			<c:forEach var="plikes" items="${plike}">
-				<a href="/performanceview/${plikes.id}">${plikes.title}</a>
+				<a href="/performanceview/${plikes.id}">${plikes.title}</a><br>
 			</c:forEach><hr></div>
 		<div class="col-12" style="margin-top:20px;">
-			<h5><i class="far fa-newspaper news"></i>    我的文章    <span title="新增文章" style="cursor: pointer;" onclick="(function(){window.location.href='/article/add?type=Artist&refid=${articleParam[0].announcedUserId}'})()" id="atadd"><i class="far fa-plus-square"></i></span></h5>
+			<h5><i class="far fa-newspaper news"></i>    我的文章    <span title="新增文章" style="cursor: pointer;" onclick="(function(){window.location.href='/article/add?type=Artist&refid=${articleParam[0].announcedUserId}'})()" id="atadd"></span></h5>
 			<c:forEach var="article" items="${articleParam}">
 				<a href="javascript:window.open('/article/${article.id}');">${article.name}</a><br>
 			</c:forEach><hr></div>
 			<div class="col-12" style="margin-top:20px;">
-			<h5><i class="fas fa-gamepad game" ></i>    我的活動    <span title="新增活動" style="cursor: pointer;"  id="acadd"><i class="far fa-plus-square"></i></span></h5>
+			<h5><i class="fas fa-gamepad game" ></i>    我的活動    <span title="新增活動" style="cursor: pointer;"  id="acadd"></span></h5>
 			<c:forEach var="activity" items="${userParam.activitySet}">
 				<a href="javascript:window.open('/activity/view/${activity.id}');">${activity.name}－${activity.description}</a><br>
 			</c:forEach><hr></div>
@@ -139,6 +139,12 @@ color:#ffaad5;
 		$("#acadd").click(function(){
 			window.location.href="/activity/add";
 		})
+		
+		if(location.href.substring(17)=="<sec:authentication property='name' />"){
+			$("#padd").html("<i class='far fa-plus-square'></i>")
+			$("#atadd").html("<i class='far fa-plus-square'></i>")
+			$("#acadd").html("<i class='far fa-plus-square'></i>")
+		}
 		</script>
 		</div>
 </body>
