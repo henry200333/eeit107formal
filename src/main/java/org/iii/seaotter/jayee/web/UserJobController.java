@@ -1,5 +1,9 @@
 package org.iii.seaotter.jayee.web;
 
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +13,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.hibernate.hql.internal.ast.tree.IsNullLogicOperatorNode;
 import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Job;
 import org.iii.seaotter.jayee.entity.JobApplication;
@@ -25,9 +28,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -361,16 +361,31 @@ public class UserJobController {
 
 	
 	
-	@PostMapping("/addjob")
+	@RequestMapping("/addjob")
 	@ResponseBody
-	public Map<String, String> insert(@RequestBody Job job, Model model) {
+	public Map<String, String> insert(@RequestParam Map<String,String> jobinf)  {
 		Map<String, String> res = new HashMap<>();
-
-		System.out.println(job);
-//		jobservice.create(job);
+		Job job=new Job();
+		Vender vender=venderService.getById(Long.parseLong(jobinf.get("venderId")));
+		job.setCity(vender.getCity());
+		job.setVender(vender);
+		job.setDistrict(vender.getDistrict());
+		job.setAddress(vender.getAddress());
+		job.setVenderName(jobinf.get("venderName"));
+		job.setName(jobinf.get("name"));
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+//			System.out.println((Date)sdf.parse(jobinf.get("jobTime")));
+			job.setJobTime((Date) sdf.parse(jobinf.get("jobTime")));
+		} catch (ParseException e) {
+			System.out.println("出錯啦!!!!");
+		}
+		job.setJobType(jobinf.get("jobType"));
+		job.setReward(Integer.parseInt(jobinf.get("reward")));
+		job.setStatus("未應聘");
+		jobservice.create(job);
 		res.put("success", "success");
 		return res;
-
 	}
 
 }

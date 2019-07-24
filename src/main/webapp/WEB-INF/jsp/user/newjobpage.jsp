@@ -33,6 +33,8 @@
 		</div>
 
 		<form class="user" id="addjob" name="addjob" method="POST">
+		<input hidden="hidden" name="venderId"
+		value="${vender.id}" id="venderId">
 			<div class="form-group row"
 				style="font-family: 'Noto Sans TC', sans-serif;">
 				<div class="col-sm-6 mb-3 mb-sm-0">
@@ -40,6 +42,7 @@
 						class="form-control form-control-user" id="name" name="name"
 						placeholder="誠徵XXX" value="${param.name}">
 				</div>
+				
 				<div class="col-sm-6 mb-3 mb-sm-0">
 					<label for="name">店家名稱:</label> <input type="text"
 						class="form-control form-control-user" id="venderName"
@@ -120,8 +123,8 @@
 				url : "/job/addjob",
 				type : "POST",
 				dataType : "json",
-				data : $("#addjob").serializeObject(),
-				contentType : "application/json",
+				data :JSON.parse($("#addjob").serializeObject()),
+// 				contentType : "application/json",
 				success : function(data) {
 					if (data["success"] != null)
 						window.location.assign("/admin/vender/list");
