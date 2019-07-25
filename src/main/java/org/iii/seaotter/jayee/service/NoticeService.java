@@ -38,7 +38,7 @@ public class NoticeService {
 		return;
 	}
 	
-	public void addFriendNotice(String reciever) {
+	public Long addFriendNotice(String reciever) {
 		String account = SecurityContextHolder.getContext().getAuthentication().getName();
 		SecurityUser sender = securityUserDao.findByAccount(account);
 		SecurityUser recieverBean = securityUserDao.findByDisplayName(reciever);
@@ -49,8 +49,13 @@ public class NoticeService {
 		notice.setReceiver(recieverBean.getUserId());
 		notice.setSender(sender.getUserId());
 		notice.setUrl("/"+sender.getAccount());
-		System.out.println(notice);
 		noticeDao.save(notice);
+		return notice.getId();
+	}
+	
+	public void disFriendNotice(Long noticeId) {
+		Notice notice = noticeDao.getOne(noticeId);
+		noticeDao.delete(notice);
 	}
 
 	public Notice findById(Long id) {

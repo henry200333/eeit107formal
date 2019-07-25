@@ -71,7 +71,14 @@ public class SecurityUserController {
 
 	@PostMapping("/add/friend")
 	@ResponseBody
-	public void addFriend(@RequestParam("reciever") String reciever) {
-		noticeService.addFriendNotice(reciever);
+	public Long addFriend(@RequestParam("reciever") String reciever) {
+		return noticeService.addFriendNotice(reciever);
 	}
+	
+	@PostMapping("/dis/friend")
+	@ResponseBody
+	public void disFriend(@RequestParam("noticeId") Long noticeId) {
+		noticeService.disFriendNotice(noticeId);
+	}
+	
 }

@@ -79,6 +79,7 @@ color:#ffaad5;
 		<h4 style="margin-left:20px;font-weight:bold"><i class="fas fa-user"></i>   個人頁面</h4>
 		<sec:authorize access="hasAnyRole('USER', 'ARTIST')">
 		<h5 id="addFriendBT"></h5>
+		<input id="noticeId" type="text" hidden="hidden" value="">
 		<script>
 		function addFriend(){
 			$("#addFriendBT").html("<button onclick='disFriend()'>已送出好友請求</button>");
@@ -88,12 +89,23 @@ color:#ffaad5;
 				type:"POST",
 				data:{"reciever":reciever},
 				success:function(data){
-					alert("success")
+					alert("已送出好友請求")
+					$("#noticeId").val(data)
 				}
 			})
 		}
 		function disFriend(){
 			$("#addFriendBT").html("<button onclick='addFriend()'>加為好友</button>");
+			var noticeId = $("#noticeId").val();
+			$.ajax({
+				url:"/dis/friend",
+				type:"POST",
+				data:{"noticeId":noticeId},
+				success:function(data){
+					alert("已取消好友請求")
+					$("#noticeId").val("")
+				}
+			})
 		}
 		</script>
 		</sec:authorize>
