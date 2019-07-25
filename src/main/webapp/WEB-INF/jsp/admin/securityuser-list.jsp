@@ -102,16 +102,20 @@
         styleUI : 'Bootstrap4',
         iconSet : "fontAwesome",
         colModel: [
-			{ name: 'userId', index: 'userId', label: '使用者ID', width: 15, align:'center'},
+			{ name: 'userId', index: 'userId', label: '使用者ID', width: 12, align:'center'},
+			{ name: 'displayName', index: 'displayName', label: '使用者名稱', width: 15, align:'center'},
+			{ name: 'displayName', index: 'displayName', label: '使用者名稱', width: 15, align:'center'},
 			{ name: 'account', label: '帳號',editable:false, width: 20, align:'center'},
-			{ name: 'password', label: '密碼', width: 15,align:'center', editable:false, sortable:false, formatter:Colpassword},
-			{ name: 'enabled', label: '啟用', width: 15 ,editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: enableCheck},
+			{ name: 'password', label: '密碼', width: 8, align:'center', editable:false, sortable:false, formatter:Colpassword},
+			{ name: 'enabled', label: '啟用', width: 8, editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: enableCheck},
 			{ name: 'ADMIN', label: '管理者權限', width: 15, editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: AuthCheck},
 			{ name: 'USER', label: '使用者權限', width: 15, editable:false, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
 			{ name: 'ARTIST', label: '藝人權限', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
 			{ name: 'VENDER', label: '廠商權限', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
-			{ name:'EDIT',index:'EDIT',label:'修改', width:15, align:'center', sortable:false, formatter:editBT},
-			{ name:'SAVE',index:'SAVE',label:'保存', width:15, align:'center',sortable:false, formatter:saveBT}
+			{ name: 'registerDate', index: 'registerDate', label: '註冊時間', width: 20, align:'center'},
+			{ name:'EDIT',index:'EDIT',label:'修改權限', width:10, align:'center', sortable:false, formatter:editBT},
+			{ name:'SAVE',index:'SAVE',label:'保存', width:8, align:'center',sortable:false, formatter:saveBT},
+			{ name:'DETAIL',index:'DETAIL',label:'詳細資料', width:10, align:'center',sortable:false, formatter:detailBT}
 		],
         prmNames: {search: null, nd: null},
         pager: '#pager',
@@ -178,6 +182,11 @@
 		 return "<button type='button' id='"
 			+ options.rowId
 			+ "'onclick='saveId(this)' class='btn btn-success btn-sm'><i class='fas fa-save'></i></button>";
+		};
+	 function detailBT (cellvalue, options, rowObject) {
+		 return "<button type='button' id='"
+			+ options.rowId
+			+ "'onclick='' class='btn btn-primary btn-sm'><i class='far fa-file-alt'></i></button>";
 		};
 	 
 		function editId(Object) {

@@ -205,4 +205,8 @@ public class SecurityUserService implements UserDetailsService {
 	public List<SecurityUser> getAll(){
 		return securityUserDao.findAll();
 	}
+	
+	public List<SecurityUser> getByDisplayName(String displayName){
+		return securityUserDao.findByDisplayNameContaining(displayName);
+	}
 }
