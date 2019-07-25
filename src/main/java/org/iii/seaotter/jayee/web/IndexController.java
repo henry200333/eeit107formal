@@ -103,7 +103,6 @@ public class IndexController {
 		return res;
 	}
 
-	
 	@GetMapping("/articleTop6ForumNum")
 	@ResponseBody
 	public AjaxResponse<List<Integer>> articleTop6ForumNum() {
@@ -112,7 +111,6 @@ public class IndexController {
 		res.setData(articleService.getTop6ForumCountByOrderByCountDesc());
 		return res;
 	}
-	
 
 	@GetMapping("/activityTop3")
 	@ResponseBody
@@ -277,5 +275,21 @@ public class IndexController {
 		res.put("success", "success");
 		return res;
 	}
-
+	@RequestMapping("/notice/response/{response}/{noticeId}")
+	@ResponseBody
+	public Map<String, String> responsefriend(@PathVariable(value = "response") String response,
+			@PathVariable(value = "noticeId") Long noticeId) {
+		Map<String, String> res = new HashMap<>();
+		Notice notice = noticeservice.findById(noticeId);
+		if ("申請中".equals(notice.getFriendstatus()) && "accept".equals(response)) {
+			securityUserService.addfirend(securityUserService.getById(notice.getSender()),
+					securityUserService.getById(notice.getReceiver()));
+			notice.setFriendstatus("已接受");
+			noticeservice.save(notice);
+		} else if ("申請中".equals(notice.getFriendstatus()) && "reject".equals(response)) {
+			notice.setFriendstatus("已拒絕");
+			noticeservice.save(notice);
+		}
+		return res;
+	}
 }

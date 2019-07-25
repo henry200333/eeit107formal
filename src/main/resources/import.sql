@@ -342,11 +342,12 @@ INSERT INTO activity (name,artist,description,begin_time,end_time,perf_type,awes
  ('綜合彩繪','傅遠超','水彩麥克筆等綜合媒材創作','2019/06/27 23:35','2019/06/28 07:35','視覺藝術',292,3,1),
  ('創新融合音樂','八荒印痕','現代流行的音樂曲風及概念，融合中國傳統樂器的特有音色及風格，創造新音樂型態','2019/04/25 07:35','2019/05/01 17:15','表演藝術',353,1,2);
 
- insert into Notice(url,content,readed,friend_status,sender,receiver) values
-('/index','XXX舉辦新活動',0,null,null,1),
-('/index','AAA舉辦新活動',0,null,null,1),
-('/index','BBB舉辦新活動',0,null,null,1),
-('/index','CCC舉辦新活動',0,null,null,1);
+ insert into Notice(url,content,readed,send_time,friend_status,sender,receiver) values
+('/index','XXX舉辦新活動',0,'2019-07-24 12:00:00',null,null,1),
+('/index','AAA舉辦新活動',0,'2019-07-24 11:00:00',null,null,1),
+('/index','BBB舉辦新活動',0,'2019-07-24 15:00:00',null,null,1),
+('/artist003','XXX對你發送好友邀請',0,'2019-07-24 15:00:00','申請中',5,1),
+('/index','CCC舉辦新活動',0,'2019-07-24 14:00:00',null,null,1);
  
  
  
