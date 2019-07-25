@@ -7,11 +7,14 @@ package org.iii.seaotter.jayee.service;
 import java.util.List;
 
 import org.iii.seaotter.jayee.dao.NoticeDao;
+import org.iii.seaotter.jayee.dao.SecurityUserDao;
 import org.iii.seaotter.jayee.entity.Notice;
+import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +22,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class NoticeService {
 	@Autowired
 	private NoticeDao noticeDao ;
-
+	
+	@Autowired
+	private SecurityUserDao securityUserDao;
+	
 	
 	@Transactional(readOnly = true)
 	public Page<Notice> getAll(Specification<Notice> specification, Pageable pageable) {
@@ -32,6 +38,20 @@ public class NoticeService {
 		return;
 	}
 	
+	public void addFriendNotice(String reciever) {
+		String account = SecurityContextHolder.getContext().getAuthentication().getName();
+		SecurityUser sender = securityUserDao.findByAccount(account);
+		SecurityUser recieverBean = securityUserDao.findByDisplayName(reciever);
+		Notice notice = new Notice();
+		notice.setContent(sender.getDisplayName()+"對你發送好友邀請");
+		notice.setFriendStatus("申請中");
+		notice.setReaded(false);
+		notice.setReceiver(recieverBean.getUserId());
+		notice.setSender(sender.getUserId());
+		notice.setUrl("/"+sender.getAccount());
+		System.out.println(notice);
+		noticeDao.save(notice);
+	}
 	
 	public List<Notice> getAllByReceiver(Long receiverId){
 		return noticeDao.findByReceiver(receiverId);
