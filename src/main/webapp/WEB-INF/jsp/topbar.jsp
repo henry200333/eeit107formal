@@ -29,7 +29,7 @@
 			<sec:authorize access="isAuthenticated()">
 				<div style="  position: relative">
 					<div
-						style="font-size:15px;display: none; position: absolute; border: solid 1px black; background-color: #CCEEFF; top: 50px;; left: 0; width: 400px; opacity: 0.9"
+						style="font-size:15px;display: none; position: absolute; border: solid 1px black; background-color: white; top: 50px;; left: 0; width: 400px; opacity: 0.9"
 						id="notice">
 						
 					</div>
@@ -84,34 +84,34 @@
 				url :"/findNotice/"+$("#username").val(),
 				type :"GET",
 				success : function(data) {
-					var txt="";
+					var txt="<div style='height:40px;background-color:black'><span style='color:white;line-height:40px;font-weight:bold;margin-left:10px;'>通知</span></div>";
 					$("#noticeSize").text(data.size);
 					$.each(data.notices,function(key, obj){
 						
 						if(obj.friendstatus=="申請中"){
-							txt+="<div style='height:30px;border-bottom:solid 1px silver;padding-left:5px;height=30px' id='";
+							txt+="<div style='height:50px;border-bottom:solid 1px silver;padding-left:5px' id='";
 							txt+=obj.id;
 							txt+="'><a href='";
 							txt+=obj.url;
 							txt+="'>";
-							txt+=obj.content;
+							txt+="<span style='line-height:50px;margin-left:5px;'>"+obj.content+"</span>"
 							txt+="</a><button onclick='response(this)' class='btn btn-danger my-2 my-sm-0'  style='float: right' value='reject'>拒絕</button><button onclick='response(this)' class='btn btn-primary my-2 my-sm-0' value='accept' style='float: right' value='accept'>接受</button></div>";
 						}else if(obj.friendstatus!=null){
-							txt+="<div style='height:30px;border-bottom:solid 1px silver;padding-left:5px;height=30px'' id='";
+							txt+="<div style='height:50px;border-bottom:solid 1px silver;padding-left:5px;'' id='";
 							txt+=obj.id;
 							txt+="'><a href='";
 							txt+=obj.url;
 							txt+="'>";
-							txt+=obj.content;
-							txt+="</a><p style='float:right;font-color:silver'>";
+							txt+="<span style='line-height:50px;margin-left:5px;'>"+obj.content+"</span>"
+							txt+="</a><p style='float:right;font-color:silver;line-height:50px;padding-left:10px;'>";
 							txt+=obj.friendstatus;
 							txt+="<p></div>";
 						
 						}else{
 						txt+="<a  href='";
 						txt+=obj.url;
-						txt+="'><div style='height:30px;border-bottom:solid 1px silver;padding-left:5px;height=30px'>";
-						txt+=obj.content;
+						txt+="'><div style='height:50px;border-bottom:solid 1px silver;padding-left:5px;height=30px'>";
+						txt+="<span style='line-height:50px;margin-left:5px;'>"+obj.content+"</span>";
 						txt+="</div></a>"
 						}
 					})
