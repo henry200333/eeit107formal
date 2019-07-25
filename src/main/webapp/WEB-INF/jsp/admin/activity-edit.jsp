@@ -17,7 +17,7 @@
 		<jsp:include page="sidebar.jsp"></jsp:include>
 
 		<!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column">
+		<div id="content-wrapper" class="d-flex flex-column" style="font-family: 'Noto Sans TC', sans-serif;">
 
 			<!-- Main Content -->
 			<div id="content">

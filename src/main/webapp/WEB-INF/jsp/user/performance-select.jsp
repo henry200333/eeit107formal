@@ -22,13 +22,45 @@
 
 .act1 {
 	font-size: 80px;
+	background-color: #ffb5b5;
+	color: white;
+	padding: 5px 32px 14px;
+	border-radius: 50%;
+}
+
+.act2 {
+	font-size: 80px;
 	background-color: #00aeae;
 	color: white;
 	padding: 5px 32px 14px;
 	border-radius: 50%;
 }
 
-.activity {
+.act3 {
+	font-size: 80px;
+	background-color: #84c1ff;
+	color: white;
+	padding: 5px 32px 14px;
+	border-radius: 50%;
+}
+
+.activity1 {
+	text-align: center;
+	background-color: #ae0000;
+	padding: 20px 0;
+	border-radius: 40px;
+	margin: 0 10px;
+	opacity: 1;
+}
+
+.activity1:hover {
+	cursor: pointer;
+	transition-property: opacity;
+	transition-duration: 0.3s;
+	opacity: 0.7;
+}
+
+.activity2 {
 	text-align: center;
 	background-color: #007979;
 	padding: 20px 0;
@@ -37,7 +69,23 @@
 	opacity: 1;
 }
 
-.activity:hover {
+.activity2:hover {
+	cursor: pointer;
+	transition-property: opacity;
+	transition-duration: 0.3s;
+	opacity: 0.7;
+}
+
+.activity3 {
+	text-align: center;
+	background-color: #004b97;
+	padding: 20px 0;
+	border-radius: 40px;
+	margin: 0 10px;
+	opacity: 1;
+}
+
+.activity3:hover {
 	cursor: pointer;
 	transition-property: opacity;
 	transition-duration: 0.3s;
@@ -93,6 +141,27 @@ margin-left:10px;
 margin-top:20px;
 	cursor: pointer;
 }
+
+.gree{
+	margin-left:30px; 
+	font-size:20px;
+	font-weight:bold;
+	color:#009100;
+}
+
+.redd{
+	margin-left:30px; 
+	font-size:20px;
+	font-weight:bold;
+	color:#ea0000;
+}
+
+.blue{
+	margin-left:30px; 
+	font-size:20px;
+	font-weight:bold;
+	color:#0066cc;
+}
 </style>
 <body>
 	<jsp:include page="../topbar.jsp"></jsp:include>
@@ -100,7 +169,10 @@ margin-top:20px;
 		id="thisuser">
 
 	<div class="container" style="margin-top: 40px;">
-		<span class="select"><i class="fas fa-mouse-pointer"></i> 選擇活動</span><br>
+		<span class="select"><i class="fas fa-mouse-pointer"></i> 選擇活動</span><br><br>
+		<span class="gree">綠色為:即將舉行的活動   </span>
+		<span class="redd">紅色為:舉行中的活動   </span>
+		<span class="blue">藍色為:已結束的活動</span><br>
 
 
 		<div class="row" style="margin-top: 50px;" id="activitys"></div>
@@ -149,20 +221,53 @@ margin-top:20px;
 									.each(
 											data,
 											function(index, value) {
-												var txt = "<div class='col-3' style='margin-top:20px;margin-bottom:10px'>";
-												txt += "<div class='activity' id='" +value['id'] +"'>"
-												txt += "<span class='act1'><i class='fas fa-chess-knight'></i></span><br>";
-												txt += "<br> <span class='title'>"
-														+ value['name']
-														+ "</span><br> <span	class='user'>"
-														+ value['artist']
-														+ "</span><br> <span class='time'>"
-														+ value['beginTime']
-														+ "<br>↓<br>"
-														+ value['endTime']
-														+ "</span>";
-												txt += "</div></div>";
-												$("#activitys").append(txt);
+												if(value['activityStatus']==0){
+													var txt = "<div class='col-3' style='margin-top:20px;margin-bottom:10px'>";
+													txt += "<div class='activity1' id='" +value['id'] +"'>"
+													txt += "<span class='act1'><i class='fas fa-chess-knight'></i></span><br>";
+													txt += "<br> <span class='title'>"
+															+ value['name']
+															+ "</span><br> <span	class='user'>"
+															+ value['artist']
+															+ "</span><br> <span class='time'>"
+															+ value['beginTime']
+															+ "<br>↓<br>"
+															+ value['endTime']
+															+ "</span>";
+													txt += "</div></div>";
+													$("#activitys").append(txt);
+												}else if(value['activityStatus']==1){
+													var txt = "<div class='col-3' style='margin-top:20px;margin-bottom:10px'>";
+													txt += "<div class='activity2' id='" +value['id'] +"'>"
+													txt += "<span class='act2'><i class='fas fa-chess-knight'></i></span><br>";
+													txt += "<br> <span class='title'>"
+															+ value['name']
+															+ "</span><br> <span	class='user'>"
+															+ value['artist']
+															+ "</span><br> <span class='time'>"
+															+ value['beginTime']
+															+ "<br>↓<br>"
+															+ value['endTime']
+															+ "</span>";
+													txt += "</div></div>";
+													$("#activitys").append(txt);
+												}else if(value['activityStatus']==2){
+													var txt = "<div class='col-3' style='margin-top:20px;margin-bottom:10px'>";
+													txt += "<div class='activity3' id='" +value['id'] +"'>"
+													txt += "<span class='act3'><i class='fas fa-chess-knight'></i></span><br>";
+													txt += "<br> <span class='title'>"
+															+ value['name']
+															+ "</span><br> <span	class='user'>"
+															+ value['artist']
+															+ "</span><br> <span class='time'>"
+															+ value['beginTime']
+															+ "<br>↓<br>"
+															+ value['endTime']
+															+ "</span>";
+													txt += "</div></div>";
+													$("#activitys").append(txt);
+												}
+												
 												$("#" + value['id'])
 														.click(function() {
 																	$(".select").html("<i class='fas fa-film'></i>  新增表演");

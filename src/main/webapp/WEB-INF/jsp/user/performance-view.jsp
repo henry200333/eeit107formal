@@ -415,15 +415,16 @@
 						}else{
 							//新增好友
 							var thispid = $("#thisp").val();
-// 							$.ajax({
-// 								url:'/user/performance/addfriend',
-// 								data:{"id":thispid,
-// 									"username":user									
-// 								},
-// 								success:function(data){
+							$.ajax({
+								url:'/user/performance/addfriend',
+								data:{"id":thispid,
+									"username":user									
+								},
+								success:function(data){
 									
-// 								}
-// 							})
+								}
+							//
+					})
 							
 							var username = $(".artist").html();
 							alert("訂閱使用者"+username);

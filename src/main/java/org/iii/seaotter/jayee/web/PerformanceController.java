@@ -245,15 +245,14 @@ public class PerformanceController {
 		
 	}
 	
-//	@RequestMapping("/addfriend")
-//	public void addfriend(@RequestParam("id")Long id,@RequestParam("username") String username) {
-//		System.out.println("addfriend");
-//		SecurityUser thisuser = SecurityUserService.getByUserName(username);
-//		Performance performance = performanceService.getById(id);
-//		SecurityUser adduser = SecurityUserService.getById(performance.getUserpId());
-//
-//		SecurityUserService.addfirend(thisuser, adduser);
-//	}
+	@RequestMapping("/addfriend")
+	public void addfriend(@RequestParam("id")Long id,@RequestParam("username") String username) {
+		System.out.println("addfriend");
+		SecurityUser thisuser = SecurityUserService.getByUserName(username);
+		Performance performance = performanceService.getById(id);
+		SecurityUser adduser = SecurityUserService.getById(performance.getUserpId());
+		SecurityUserService.addfirend(thisuser, adduser);
+	}
 	
 	
 	@RequestMapping("/checkuser")

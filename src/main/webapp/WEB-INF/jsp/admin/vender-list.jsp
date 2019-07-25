@@ -30,15 +30,15 @@
 				<jsp:include page="topbar.jsp"></jsp:include>
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div class="container-fluid" style="font-family: 'Noto Sans TC', sans-serif;">
 
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">List of Vender</h1>
+						<h1 class="h3 mb-0 text-gray-800">廠商列表</h1>
 						<a href="#"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
+							class="fas fa-download fa-sm text-white-50"></i> 下載檔案</a>
 					</div>
 
 					<!-- Add New Article Button -->
@@ -46,7 +46,7 @@
 			            <div class="form-group row">
 			            	<div class="col-sm-3 mb-3 mb-sm-0">
 					            <div class="input-group">
-					              <input id="search" name="search" type="text" class="form-control border-0 small" placeholder="Search Vender..." aria-label="Search" aria-describedby="basic-addon2">
+					              <input id="search" name="search" type="text" class="form-control border-0 small" placeholder="搜尋廠商..." aria-label="Search" aria-describedby="basic-addon2">
 					              <div class="input-group-append">
 					                <button id="searchBT" class="btn btn-primary" type="button">
 					                  <i class="fas fa-search fa-sm"></i>
@@ -57,7 +57,7 @@
 				            <div class="col-sm-3 mb-3 mb-sm-0">
 				            	<a href="add" class="btn btn-primary btn-icon-split"> <span
 									class="icon text-white-50"> <i class="fas fa-file-medical"></i>
-									</span> <span class="text">Add New Vender</span>
+									</span> <span class="text">新增廠商</span>
 								</a>
 				            </div>
 			            </div>
@@ -67,10 +67,9 @@
 
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">List of
-								Vender</h6>
+							<h6 class="m-0 font-weight-bold text-primary">廠商列表</h6>
 						</div>
-						<div id="articleList" class="card-body" style="font-family: 'Noto Sans TC', sans-serif;">
+						<div id="venderList" class="card-body" style="font-family: 'Noto Sans TC', sans-serif;">
 								<table id="venderGrid" ></table>
 								<div id="pager"></div>
 						</div>
@@ -103,16 +102,16 @@
         styleUI : 'Bootstrap4',
         iconSet : "fontAwesome",
         colModel: [
-			{name:'id',index:'id',width:3},
-			{name:'name',index:'name',width:5},
-			{name:'city',index:'city',width:2},
-			{name:'district',index:'district',width:2},
-			{name:'address',index:'address',width:5},
-			{name:'maxPeople',index:'max_people',sortable:false,width:5},
-			{name:'phone',index:'phone',sortable:false,width:5}	,
-			{name:'detal',width:3,sortable:false,formatter:detalbt},
-			{name:'edit',width:3,sortable:false,formatter:editbt},
-			{name:'delete',width:3,sortable:false,formatter:deletebt}
+			{name:'id',index:'id', width:3},
+			{name:'name',index:'name', label : '名稱', width:5},
+			{name:'city',index:'city', label : '縣市', width:2},
+			{name:'district',index:'district', label : '區域', width:2},
+			{name:'address',index:'address', label : '地址', width:5},
+			{name:'maxPeople',index:'max_people', label : '最大人數', sortable:false,width:5},
+			{name:'phone',index:'phone', label : '電話', sortable:false,width:5}	,
+			{name:'detal',width:3, label : '詳細資料', sortable:false,formatter:detalbt},
+			{name:'edit',width:3, label : '編輯', sortable:false,formatter:editbt},
+			{name:'delete',width:3, label : '刪除', sortable:false,formatter:deletebt}
 		],
         prmNames: {search: null, nd: null},
         pager: '#pager',

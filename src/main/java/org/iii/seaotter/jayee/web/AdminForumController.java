@@ -71,12 +71,12 @@ public class AdminForumController {
 		return "/admin/forum-edit";
 	}
 
-	@PostMapping
+	@RequestMapping("/insertone")
 	@ResponseBody
-	public AjaxResponse<Forum> insert(@Valid @RequestBody Forum forum, BindingResult bindingResult, Model model) {
+	public AjaxResponse<Forum> insert(Forum forum, Model model) {
+		System.out.println(forum);
 		AjaxResponse<Forum> result = new AjaxResponse<>();
 		List<Message> messages = new ArrayList<>();
-		System.out.println(bindingResult.getAllErrors());
 		if (forum.getUserName() == null || forum.getUserName().trim() == "") {
 			messages.add(new Message("name", "請輸入名稱"));
 		}
@@ -166,6 +166,11 @@ public class AdminForumController {
 	};
 	
 	
+	@RequestMapping("/selectall")
+	@ResponseBody
+	public List<Forum> selectAll(){
+		return forumService.getAll();
+	}
 	
 
 }

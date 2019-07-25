@@ -1,6 +1,9 @@
 package org.iii.seaotter.jayee.web;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +20,7 @@ import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Location;
 import org.iii.seaotter.jayee.entity.SecurityUser;
+import org.iii.seaotter.jayee.mail.EmailSenderService;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.LocationService;
@@ -27,6 +31,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,6 +61,8 @@ public class ActivityController {
 	@Autowired
 	SecurityUserService securityUserService;
 	
+	@Autowired
+	EmailSenderService emailSenderService;
 
 	@RequestMapping(value= {"/list","/view"})
 	public String list() {
@@ -129,7 +137,7 @@ public class ActivityController {
 										@RequestParam(value="actType", defaultValue="") String actType,
 										@RequestParam(value="find", defaultValue="") String find
 			) {
-		String sidx="id";
+		String sidx="activityStatus";
 		GridResponse<Activity> grid = new GridResponse<Activity>();
 		Sort sort = new Sort(Sort.Direction.ASC, sidx);
 		Pageable pageable = PageRequest.of(page - 1, rows, sort);
@@ -211,6 +219,8 @@ public class ActivityController {
 		String userName=SecurityContextHolder.getContext().getAuthentication().getName();
 		Long currentUserId =securityUserService.getByUserName(userName).getUserId();
 		activity.setUseraId(currentUserId);
+		activity.setActivityStatus(1L);;
+		activity.setNoticed(0L);
 		System.out.println("即將新增資料:"+activity);
 		AjaxResponse<Activity> aJaxResp=new AjaxResponse<>();
 		activity.setAwesomeNum(0L);
@@ -320,7 +330,63 @@ public class ActivityController {
 		return false;
 	}
 	
-	//
+	
+//	private static final Logger logger =LoggerFactory.getLogger(ScheduledTasks.class);
+//	private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+	@Scheduled(cron = "0/1 * * * * ?")
+	public void activityStatusCheckScheduleWithCron() {
+			Date date = new java.util.Date();
+			for(Activity a:activityService.getAll()) {
+				if(a.getBeginTime().compareTo(date)==-1 & a.getEndTime().compareTo(date)==1) {
+					a.setActivityStatus(0L);
+				}else if(a.getBeginTime().compareTo(date)==1) {
+					a.setActivityStatus(1L);
+				}else if(a.getEndTime().compareTo(date)==-1) {
+					a.setActivityStatus(2L);
+				}
+				activityService.update(a);
+			}
+			try {
+				TimeUnit.MINUTES.sleep(5);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+	
+	};
+	
+//	@Scheduled(cron = "0/5 * * * * ?")
+//	public void activityNotice() {
+//		SimpleMailMessage mailMessage = new SimpleMailMessage();
+//		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//		for(Activity a:activityService.getAll()) {
+//			if(a.getActivityStatus()==1) {			
+//				Date date = new java.util.Date();
+//				Calendar calendar = Calendar.getInstance(); 
+//				calendar.setTime(a.getBeginTime());
+//				calendar.add(Calendar.DAY_OF_MONTH, -1); 
+//				Date dBefore = calendar.getTime(); //前一天的日期	
+//				if(date.compareTo(dBefore)==1 & a.getNoticed()==0) {
+////					Location location=(Location) locationService.getById(a.getLocationId());
+//					a.setNoticed(1L);
+//					activityService.update(a);
+////					mailMessage.setTo(securityUserService.getById(a.getUseraId()).getMail());
+//					mailMessage.setTo("vaildiablo448@gmail.com");
+//					mailMessage.setSubject("您收藏的活動即將在明日開辦！");
+//					mailMessage.setFrom("jayee20192019@outlook.com");
+//					mailMessage.setText(
+//							"用戶您好，您收藏的活動：「"+a.getName()+"」即將在明日"+sdf.format(a.getBeginTime())+"舉辦，歡迎您來共襄盛舉！");
+//					emailSenderService.sendMail(mailMessage);
+//					System.out.println("信件已送出");
+//				}
+//			}
+//		}
+//		try {
+//			TimeUnit.MINUTES.sleep(50);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
 	
 	
 }

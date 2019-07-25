@@ -10,4 +10,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 public interface NoticeDao extends JpaRepository<Notice, Long>,JpaSpecificationExecutor<Notice> {
 	
 	public List<Notice> findByReceiver(Long receiverId);
+	public List<Notice> findByReceiverAndFriendstatusOrderBySendtimeDesc(Long receiverId,String friendStatus);
 }

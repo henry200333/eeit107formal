@@ -23,14 +23,14 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
 
 	@Override
 	public void configureClientInboundChannel(ChannelRegistration registration) {
-		System.out.println("跳進來");
+
 		WebSocketMessageBrokerConfigurer.super.configureClientInboundChannel(registration);
 		
 	}
 
 	@Override
 	public void configureClientOutboundChannel(ChannelRegistration registration) {
-		System.out.println("跳出去");
+
 		WebSocketMessageBrokerConfigurer.super.configureClientOutboundChannel(registration);
 		
 	}

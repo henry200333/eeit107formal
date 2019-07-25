@@ -103,11 +103,14 @@ public class SecurityUserService implements UserDetailsService {
 	public void addfirend(SecurityUser self, SecurityUser friend) {
 
 		List<SecurityUser> selffriends = self.getFriends();
+//		System.out.println(selffriends.size());
 		selffriends.add(friend);
 		self.setFriends(selffriends);
+		securityUserDao.save(self);
 		List<SecurityUser> friendfriends = friend.getFriends();
 		friendfriends.add(self);
-		self.setFriends(friendfriends);
+		friend.setFriends(friendfriends);
+		securityUserDao.save(friend);
 		return;
 	}
 

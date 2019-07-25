@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 
@@ -18,7 +20,7 @@ public class Notice {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Long Id;
+	private Long id;
 	
 	@Column(name = "url")
 	private String url;
@@ -32,7 +34,11 @@ public class Notice {
 	
 	/*申請中   已拒絕  已接受*/
 	@Column(name = "friend_status")
-	private String friendStatus;
+	private String friendstatus;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@Column(name="send_time")
+	private java.util.Date sendtime;
 	
 	@Column(name = "sender")
 	private Long sender;

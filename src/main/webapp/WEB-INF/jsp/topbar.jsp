@@ -28,12 +28,14 @@
 			<!-- 			登入狀態 -->
 			<sec:authorize access="isAuthenticated()">
 				<div style="  position: relative">
-				<div style="display: none;position: absolute;border:solid 1px black;background-color:white;top:50px;;left:0;width:300px;opacity:1" id="notice">
-				
-				</div>
-				<button type="button" class="btn btn-dark"
+					<div
+						style="font-size:15px;display: none; position: absolute; border: solid 1px black; background-color: white; top: 50px;; left: 0; width: 400px; opacity: 0.9"
+						id="notice">
+						
+					</div>
+					<button type="button" class="btn btn-dark"
 					style="margin-right: 20px;" id="toggleNotcie">
-					通知 <span class="badge badge-warning" id="noticeSize">9</span> 
+					通知 <span class="badge badge-warning" id="noticeSize"></span> 
 				</button>
 				</div>
 				<img src="/resources/profile_image/<sec:authentication		property="name" />.jpg" width="45px">
@@ -63,19 +65,55 @@
 					}
 				});	
 			});
+			function response(object){
+				console.log(object.value);
+				console.log($(object).parent().attr('id'));
+				$.ajax({
+					url :"/notice/response/"+object.value+"/"+$(object).parent().attr('id'),
+					type :"GET",
+					success : function(data) {
+						 notice();
+					}
+				});	
+				
+			}
+			
+			
 		function notice(){
 			$.ajax({
 				url :"/findNotice/"+$("#username").val(),
 				type :"GET",
 				success : function(data) {
-					var txt="";
+					var txt="<div style='height:40px;background-color:black'><span style='color:white;line-height:40px;font-weight:bold;margin-left:10px;'>通知</span></div>";
 					$("#noticeSize").text(data.size);
 					$.each(data.notices,function(key, obj){
+						
+						if(obj.friendstatus=="申請中"){
+							txt+="<div style='height:50px;border-bottom:solid 1px silver;padding-left:5px' id='";
+							txt+=obj.id;
+							txt+="'><a href='";
+							txt+=obj.url;
+							txt+="'>";
+							txt+="<span style='line-height:50px;margin-left:5px;'>"+obj.content+"</span>"
+							txt+="</a><button onclick='response(this)' class='btn btn-danger my-2 my-sm-0'  style='float: right' value='reject'>拒絕</button><button onclick='response(this)' class='btn btn-primary my-2 my-sm-0' value='accept' style='float: right' value='accept'>接受</button></div>";
+						}else if(obj.friendstatus!=null){
+							txt+="<div style='height:50px;border-bottom:solid 1px silver;padding-left:5px;'' id='";
+							txt+=obj.id;
+							txt+="'><a href='";
+							txt+=obj.url;
+							txt+="'>";
+							txt+="<span style='line-height:50px;margin-left:5px;'>"+obj.content+"</span>"
+							txt+="</a><p style='float:right;font-color:silver;line-height:50px;padding-left:10px;'>";
+							txt+=obj.friendstatus;
+							txt+="<p></div>";
+						
+						}else{
 						txt+="<a  href='";
 						txt+=obj.url;
-						txt+="'><div style='border-bottom:solid 1px silver;padding-left:5px;height=30px;font-size:20px'>";
-						txt+=obj.content;
-						txt+="</div></a>"	
+						txt+="'><div style='height:50px;border-bottom:solid 1px silver;padding-left:5px;height=30px'>";
+						txt+="<span style='line-height:50px;margin-left:5px;'>"+obj.content+"</span>";
+						txt+="</div></a>"
+						}
 					})
 					$("#notice").html(txt)
 				}
@@ -84,7 +122,7 @@
 			</script>
 			</sec:authorize>	
 			<sec:authorize access="hasRole('ADMIN')">
-    		<a href="/admin/artist/list" class="btn btn-warning"><i class="fas fa-cog"></i></a>
+    		<a href="/admin/securityUser/list" class="btn btn-warning"><i class="fas fa-cog"></i></a>
 			</sec:authorize>
 			
 			</sec:authorize>
