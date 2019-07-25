@@ -23,11 +23,6 @@
 					onclick="javascript:location.href='/artist'">
 					<i class="fas fa-street-view"></i> 藝人
 				</button>
-				<button type="button" class="btn bar2" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false"></button>
-				<div class="dropdown-menu" id="artistbar">
-					<a class="dropdown-item" href="#">關於藝人</a>
-				</div>
 			</div>
 			<div class="btn-group">
 				<button type="button" class="btn bar" id="topbar3"
