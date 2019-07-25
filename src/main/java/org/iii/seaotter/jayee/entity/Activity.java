@@ -86,5 +86,8 @@ public class Activity {
 	
 	@Column(name="activity_status")
 	private Long activityStatus;
+	
+	@Column(name="noticed")
+	private Long noticed;
 
 }
