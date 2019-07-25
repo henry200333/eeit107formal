@@ -1,6 +1,7 @@
 package org.iii.seaotter.jayee.web;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -27,6 +28,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -320,7 +322,29 @@ public class ActivityController {
 		return false;
 	}
 	
-	//
+	
+//	private static final Logger logger =LoggerFactory.getLogger(ScheduledTasks.class);
+//	private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+	@Scheduled(cron = "0/1 * * * * ?")
+	public void activityStatusCheckScheduleWithCron() {
+			Date date = new java.util.Date();
+			for(Activity a:activityService.getAll()) {
+				if(a.getBeginTime().compareTo(date)==-1 & a.getEndTime().compareTo(date)==1) {
+					a.setActivityStatus(0L);
+				}else if(a.getBeginTime().compareTo(date)==1) {
+					a.setActivityStatus(1L);
+				}else if(a.getEndTime().compareTo(date)==-1) {
+					a.setActivityStatus(2L);
+				}
+				activityService.update(a);
+			}
+			try {
+				TimeUnit.MINUTES.sleep(5);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+	
+	};
 	
 	
 }

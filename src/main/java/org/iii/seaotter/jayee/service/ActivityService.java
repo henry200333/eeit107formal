@@ -68,6 +68,20 @@ public class ActivityService {
 		return activityDao.findByUseraId(userid);
 	}
 	
+	
+	public List<Activity> getActiveActivity(java.util.Date date){
+		return activityDao.findByBeginTimeLessThanEqual(date);
+	}
+	public List<Activity> getPastActivity(java.util.Date date){
+		return activityDao.findByBeginTimeLessThanEqual(date);
+	}
+	
+	
+	
+	
+	
+	
+	
 	public static void saveImage(MultipartFile imageFile, Long activityId) throws Exception {
 
 		URL R = This.class.getResource("/");

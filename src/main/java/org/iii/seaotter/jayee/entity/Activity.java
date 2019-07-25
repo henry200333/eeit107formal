@@ -84,6 +84,7 @@ public class Activity {
 			@JoinColumn(name = "user_id") })
 	private List<SecurityUser> followUser;
 	
-	
+	@Column(name="activity_status")
+	private Long activityStatus;
 
 }
