@@ -32,6 +32,10 @@ public class NoticeService {
 		return;
 	}
 	
+	public Notice findById(Long id) {
+		return noticeDao.getOne(id);
+	}
+	
 	
 	public List<Notice> getAllByReceiver(Long receiverId){
 		return noticeDao.findByReceiver(receiverId);

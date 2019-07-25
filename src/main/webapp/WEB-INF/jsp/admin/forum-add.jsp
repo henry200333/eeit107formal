@@ -98,11 +98,10 @@
 		$("#insertButton").click(function() {
 			console.log($("#form").serializeObject());			
 			$.ajax({
-				url : "/admin/forum",
-				type : "POST",
-				contentType : "application/json;charset=utf-8",
+				url : "/admin/forum/insertone",
+				type : "GET",
 				dataType : "json",
-				data : $("#form").serializeObject(),
+				data : JSON.parse($("#form").serializeObject()),
 				success : function(result) {
 					console.log("enter success");
 					
