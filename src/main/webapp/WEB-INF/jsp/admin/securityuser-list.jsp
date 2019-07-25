@@ -30,15 +30,15 @@
 				<jsp:include page="topbar.jsp"></jsp:include>
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div class="container-fluid" style="font-family: 'Noto Sans TC', sans-serif;">
 
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">List of SecurityUser</h1>
+						<h1 class="h3 mb-0 text-gray-800">使用者列表</h1>
 						<a href="#"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
+							class="fas fa-download fa-sm text-white-50"></i> 下載檔案</a>
 					</div>
 
 					<!-- Add New Article Button -->
@@ -46,7 +46,7 @@
 			            <div class="form-group row">
 			            	<div class="col-sm-3 mb-3 mb-sm-0">
 					            <div class="input-group">
-					              <input id="search" name="search" type="text" class="form-control border-0 small" placeholder="Search Account..." aria-label="Search" aria-describedby="basic-addon2">
+					              <input id="search" name="search" type="text" class="form-control border-0 small" placeholder="搜尋帳號..." aria-label="Search" aria-describedby="basic-addon2">
 					              <div class="input-group-append">
 					                <button id="searchBT" class="btn btn-primary" type="button">
 					                  <i class="fas fa-search fa-sm"></i>
@@ -57,7 +57,7 @@
 				            <div class="col-sm-3 mb-3 mb-sm-0">
 				            	<a href="add" class="btn btn-primary btn-icon-split"> <span
 									class="icon text-white-50"> <i class="fas fa-file-medical"></i>
-									</span> <span class="text">Add New SecurityUser</span>
+									</span> <span class="text">新增使用者</span>
 								</a>
 				            </div>
 			            </div>
@@ -67,8 +67,7 @@
 
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">List of
-								SecurityUser</h6>
+							<h6 class="m-0 font-weight-bold text-primary">使用者列表</h6>
 						</div>
 						<div id="securityUserList" class="card-body" style="text-align: center">
 								<table id="securityUserGrid"></table>
@@ -103,16 +102,16 @@
         styleUI : 'Bootstrap4',
         iconSet : "fontAwesome",
         colModel: [
-			{ name: 'userId', index: 'userId', label: 'USER_ID', width: 15, align:'center'},
-			{ name: 'account', label: 'ACCOUNT',editable:false, width: 20, align:'center'},
-			{ name: 'password', label: 'PASSWORD', width: 15,align:'center', editable:false, sortable:false, formatter:Colpassword},
-			{ name: 'enabled', label: 'ENABLE', width: 15 ,editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: enableCheck},
-			{ name: 'ADMIN', label: 'ADMIN', width: 15, editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: AuthCheck},
-			{ name: 'USER', label: 'USER', width: 15, editable:false, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
-			{ name: 'ARTIST', label: 'ARTIST', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
-			{ name: 'VENDER', label: 'VENDER', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
-			{ name:'EDIT',index:'EDIT',label:'EDIT', width:15, align:'center', sortable:false, formatter:editBT},
-			{ name:'SAVE',index:'SAVE',label:'SAVE', width:15, align:'center',sortable:false, formatter:saveBT}
+			{ name: 'userId', index: 'userId', label: '使用者ID', width: 15, align:'center'},
+			{ name: 'account', label: '帳號',editable:false, width: 20, align:'center'},
+			{ name: 'password', label: '密碼', width: 15,align:'center', editable:false, sortable:false, formatter:Colpassword},
+			{ name: 'enabled', label: '啟用', width: 15 ,editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: enableCheck},
+			{ name: 'ADMIN', label: '管理者權限', width: 15, editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: AuthCheck},
+			{ name: 'USER', label: '使用者權限', width: 15, editable:false, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
+			{ name: 'ARTIST', label: '藝人權限', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
+			{ name: 'VENDER', label: '廠商權限', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
+			{ name:'EDIT',index:'EDIT',label:'修改', width:15, align:'center', sortable:false, formatter:editBT},
+			{ name:'SAVE',index:'SAVE',label:'保存', width:15, align:'center',sortable:false, formatter:saveBT}
 		],
         prmNames: {search: null, nd: null},
         pager: '#pager',
@@ -120,8 +119,8 @@
         autowidth: false,
         shrinkToFit: true,
         height: 'auto',
-        rowNum: 5,
-        rowList: [5, 10, 20, 50],
+        rowNum: 10,
+        rowList: [10, 20, 50],
         sortname: 'userId',
         sortorder: "asc",
         viewrecords: true,
@@ -146,8 +145,8 @@
 		 var txt = "";
 		 var oCN = options.colModel.name;
 		 var rowId = options.rowId;
-		 for(i=0;i<rowObject.roles.length;i++){
-			 var authority = rowObject.roles[i].authority;
+		 for(i=0;i<rowObject.authorities.length;i++){
+			 var authority = rowObject.authorities[i].authority;
 			 txt += authority; 
 			 }
 		 		if(txt.indexOf(oCN) > -1){
@@ -173,7 +172,7 @@
 	 function editBT (cellvalue, options, rowObject) {
 		 return "<button type='button' id='"
 			+ options.rowId
-			+ "'onclick='editId(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button>";  //返回的html即為欄位中的樣式
+			+ "'onclick='editId(this)' class='btn btn-warning btn-sm'><i class='fas fa-edit'></i></button>";  //返回的html即為欄位中的樣式
 		};
 	 function saveBT (cellvalue, options, rowObject) {
 		 return "<button type='button' id='"

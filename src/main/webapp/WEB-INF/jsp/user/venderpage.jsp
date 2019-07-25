@@ -89,9 +89,12 @@ html, body {
 
 
 
-		<div class='row'
-			style='border: solid 1px silver; margin-left: 2%; margin-right: 2%'
-			id='joblist'>
+		<div >
+		<div  class='row' style='margin-left: 2%; margin-right: 2%'>
+		<div class='col-sm-10 mb-0 mb-sm-0'></div><div class='col-sm-2 mb-0 mb-sm-0' id='addnewjob'><label
+		class='btn btn-primary my-2 my-sm-0'>新增工作</label></div>
+		</div>
+			<div  class='row' style='border: solid 1px silver; margin-left: 2%; margin-right: 2%' id='joblist'> 
 			<div class='col-sm-12 mb-0 mb-sm-0'>
 				<h3 style='text-align: center'>jobname</h3>
 			</div>
@@ -135,7 +138,7 @@ html, body {
 
 
 			</div>
-
+</div>
 		</div>
 
 
@@ -146,7 +149,7 @@ html, body {
 	<br>
 	<br>
 	<br>
-	<form id="venderinfo" name="vender" action="/user/job/findByVender"
+	<form id="venderinfo" name="vender" id='venderobj'
 		method="POST" hidden>
 		<input id="venderId" name="id" value="${vender.id}">
 	</form>

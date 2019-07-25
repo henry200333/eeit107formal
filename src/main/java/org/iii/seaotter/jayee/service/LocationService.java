@@ -20,6 +20,9 @@ public class LocationService {
 	public Object getById(Long id){
 		return locationDao.findById(id);
 	}
+//	public List<String> getLocationById(Long id){
+//		return locationDao.findLocationById(id);
+//	}
 	public List<Location> getListById(Long id){
 		return locationDao.findByLocationIdIs(id);
 	}
