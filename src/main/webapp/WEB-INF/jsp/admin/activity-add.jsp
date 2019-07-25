@@ -19,7 +19,7 @@
 		<jsp:include page="sidebar.jsp"></jsp:include>
 
 		<!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column">
+		<div id="content-wrapper" class="d-flex flex-column" style="font-family: 'Noto Sans TC', sans-serif;">
 
 			<!-- Main Content -->
 			<div id="content">
@@ -33,14 +33,14 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Add New Activity</h1>
+						<h1 class="h3 mb-0 text-gray-800">新增活動</h1>
 
 					</div>
 
 					<!-- Return to Article -->
 					<a href="list" class="btn btn-info btn-icon-split"> <span
 						class="icon text-white-50"> <i class="fas fa-reply"></i>
-					</span> <span class="text">Return to Activity</span>
+					</span> <span class="text">活動列表</span>
 					</a>
 
 					<hr>
@@ -48,27 +48,27 @@
 					<form class="user" id="form" action="/admin/activity/insert" method="POST">
 						<div class="form-group row">
 							<div class="col-sm-5 mb-3 mb-sm-0">
-								<label for="name">Name:</label> <input type="text"
+								<label for="name">活動名稱:</label> <input type="text"
 									class="form-control form-control-user" id="name" name="name"
-									placeholder="NAME">
+									placeholder="" autocomplete="off">
 							</div>
 							<div class="col-sm-4 mb-3 mb-sm-0">
-								<label for="artist">Artist:</label> <input type="text"
+								<label for="artist">表演者:</label> <input type="text"
 									class="form-control form-control-user" id="artist"
-									name="artist" placeholder="Artist">
+									name="artist" placeholder="Artist" autocomplete="off">
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0"></div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-9 mb-3 mb-sm-0">
-								<label for="description">Description:</label>
+								<label for="description">活動描述:</label>
 								<textarea class="form-control" id="description"
-									name="description"></textarea>
+									name="description" autocomplete="off"></textarea>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="beginTime">Begin Time:</label> <input
+								<label for="beginTime">開始時間:</label> <input
 									type="text" class="form-control form-control-user" 
 									id="beginTime" name="beginTime" placeholder="點我輸入起始日期" autocomplete="off" readonly="readonly" style="background-color:#ffffff">
 									
@@ -76,7 +76,7 @@
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="endTime">End Time:</label> <input
+								<label for="endTime">結束時間:</label> <input
 									 class="form-control form-control-user" type="text"
 									id="endTime" name="endTime" placeholder="點我輸入結束日期" autocomplete="off" readonly="readonly" style="background-color:#ffffff">
 									
@@ -86,9 +86,9 @@
 						
 						<div class="form-group row">
 						<div class="col-sm-3 mb-3 mb-sm-0">
-						<label for="awesomeNum">Awesome Num:</label> <input
+						<label for="awesomeNum">追蹤人數:</label> <input
 									type="text" class="form-control form-control-user" 
-									id="awesomeNum" name="awesomeNum" placeholder="點我輸入讚數" autocomplete="off">
+									id="awesomeNum" name="awesomeNum" placeholder="點我輸入追蹤數" autocomplete="off">
 						</div>
 						<div class="col-sm-3 mb-3 mb-sm-0">
 						<label for="badNum">Bad Num:</label> <input
