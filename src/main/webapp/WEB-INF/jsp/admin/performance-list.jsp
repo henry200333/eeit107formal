@@ -51,15 +51,15 @@
 				<jsp:include page="topbar.jsp"></jsp:include>
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div class="container-fluid" style="font-family: 'Noto Sans TC', sans-serif;">
 
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">List of Performance</h1>
+						<h1 class="h3 mb-0 text-gray-800">表演列表</h1>
 						<a href="#"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
+							class="fas fa-download fa-sm text-white-50"></i> 下載檔案</a>
 					</div>
 					<form id="searchTitle" class="user">
 						<div class="form-group row">
@@ -68,7 +68,7 @@
 
 									<input id="title" name="title" type="text"
 										class="form-control border-0 small"
-										placeholder="Search Title..." aria-label="Search"
+										placeholder="搜尋表演標題..." aria-label="Search"
 										aria-describedby="basic-addon2">
 
 									<div class="input-group-append">
@@ -82,7 +82,7 @@
 								<a href="add" class="btn btn-primary btn-icon-split"> <span
 									class="icon text-white-50"> <i
 										class="fas fa-file-medical"></i>
-								</span> <span class="text">Add New Performance</span>
+								</span> <span class="text">新增表演</span>
 								</a>
 							</div>
 						</div>
@@ -91,8 +91,7 @@
 
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">List of
-								Performance</h6>
+							<h6 class="m-0 font-weight-bold text-primary">表演列表</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive"
@@ -107,8 +106,8 @@
 							</div>
 						</div>
 
-						<a href="/user/login"><button type="button"
-								class="btn btn-primary btn-user btn-block">請點我到登入頁面</button></a> <br>
+<!-- 						<a href="/user/login"><button type="button" -->
+<!-- 								class="btn btn-primary btn-user btn-block">請點我到登入頁面</button></a> <br> -->
 						<hr>
 						<!-- /.container-fluid -->
 						<!-- End of Main Content -->
@@ -230,8 +229,8 @@
 			autowidth : true,
 			shrinkToFit : true,
 			height : 'auto',
-			rowNum : 2,
-			rowList : [ 2, 20, 50 ],
+			rowNum : 5,
+			rowList : [ 5, 10, 20, 50 ],
 			sortname : 'updateTime',
 			sortable : true,
 			sortorder : 'asc',
