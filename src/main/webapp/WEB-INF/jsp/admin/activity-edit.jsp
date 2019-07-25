@@ -31,14 +31,14 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Edit This Activity</h1>
+						<h1 class="h3 mb-0 text-gray-800">編輯活動</h1>
 
 					</div>
 
 					<!-- Return to Activity -->
 					<a href="/admin/activity/list" class="btn btn-info btn-icon-split"> <span
 						class="icon text-white-50"> <i class="fas fa-reply"></i>
-					</span> <span class="text">Return to Activity</span>
+					</span> <span class="text">活動列表</span>
 					</a>
 
 					<hr>
@@ -47,17 +47,17 @@
 						<div class="form-group row"
 							style="font-family: 'Noto Sans TC', sans-serif;">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="id">ID:</label> <input type="text"
+								<label for="id">活動編號:</label> <input type="text"
 									class="form-control form-control-user" id="id" name="id"
 									placeholder="" value="${activityParam.id}" readonly>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="name">Name:</label> <input id="name" name="name"
+								<label for="name">活動名稱:</label> <input id="name" name="name"
 									class="form-control form-control-user" placeholder="NAME"
 									value="${activityParam.name}" />
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="artist">Artist:</label> <input id="artist"
+								<label for="artist">表演者:</label> <input id="artist"
 									name="artist" class="form-control form-control-user"
 									placeholder="Artist" value="${activityParam.artist}" />
 							</div>
@@ -65,21 +65,21 @@
 
 						<div class="form-group row">
 							<div class="col-sm-9 mb-3 mb-sm-0">
-								<label for="description">Description:</label>
+								<label for="description">活動描述:</label>
 								<textarea id="description" name="description"
 									class="form-control">${activityParam.description}</textarea>
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="beginTime">Begin time:</label> <input id="beginTime"
+								<label for="beginTime">開始時間:</label> <input id="beginTime"
 									name="beginTime" type="text"
 									class="form-control form-control-user" placeholder="BeginTime"
 									value="${activityParam.beginTime}" readonly="readonly" style="background-color:#ffffff" />
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
 							<div class="col-sm-3 mb-3 mb-sm-0">
-								<label for="endTime">End time:</label> <input id="endTime" type="text"
+								<label for="endTime">結束時間:</label> <input id="endTime" type="text"
 									name="endTime" class="form-control form-control-user"
 									placeholder="EndTime" value="${activityParam.endTime}" readonly="readonly" style="background-color:#ffffff" />
 							</div>
@@ -88,7 +88,7 @@
 						
 						<div class="form-group row">
 						<div class="col-sm-3 mb-3 mb-sm-0">
-						<label for="perfType">PerfType:</label> 
+						<label for="perfType">表演類型:</label> 
 					<select  name="perfType" id="perfType"  class="form-control">
 					<option selected  hidden='true' value="${activityParam.perfType}">${activityParam.perfType}</option>
 					<option value='創意藝術'>創意藝術</option>
@@ -97,13 +97,13 @@
 					</select>   
 						</div>
 						<div class="col-sm-3 mb-3 mb-sm-0">
-						<label for="awesomeNum">Awesome Num:</label> <input id="awesomeNum" type="text"
+						<label for="awesomeNum">追蹤人數:</label> <input id="awesomeNum" type="text"
 									name="awesomeNum" class="form-control form-control-user"
 									value="${activityParam.awesomeNum}"  />
 						
 						</div>
 						<div class="col-sm-3 mb-3 mb-sm-0">
-						<label for="locationId">LocationId:</label> <input id="locationId" type="text"
+						<label for="locationId">場地編號:</label> <input id="locationId" type="text"
 									name="locationId" class="form-control form-control-user"
 									value="${activityParam.locationId}" readonly />
 						</div>
@@ -144,14 +144,14 @@
 							class="btn btn-primary btn-user btn-block">
 							<span class="icon text-white-50"> <i
 								class="fas fa-file-import"></i>
-							</span> <span class="text"> Edit This Activity</span>
+							</span> <span class="text"> 確認編輯</span>
 						</button>
 
 						<button id="reset" type="button"
 							class="btn btn-danger btn-user btn-block">
 							<span class="icon text-white-50"> <i
 								class="fas fa-file-excel"></i>
-							</span> <span class="text"> Reset Input</span>
+							</span> <span class="text"> 恢復未修改資料</span>
 						</button>
 					</form>
 				</div>

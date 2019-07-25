@@ -227,14 +227,14 @@ html, body {
 							class="btn btn-primary btn-user btn-block">
 							<span class="icon text-white-50"> <i
 								class="fas fa-file-import"></i>
-							</span> <span class="text"> Insert This Activity</span>
+							</span> <span class="text"> 新增活動</span>
 						</button>
 
 						<button id="reset" type="button"
 							class="btn btn-danger btn-user btn-block">
 							<span class="icon text-white-50"> <i
 								class="fas fa-file-excel"></i>
-							</span> <span class="text"> Reset Input</span>
+							</span> <span class="text"> 取消</span>
 						</button>
   
 </div>
@@ -480,16 +480,16 @@ $("#insert").click(
 				data : JSON.parse($("#form").serializeObject()),
 				success : function(response) {
 					if (response.type == "SUCCESS") {
-						alert("資料修改成功！\n您修改了一筆名為："
+						alert("資料新增成功！\n您修改了一筆名為："
 								+ JSON.stringify(response.data.name)+"\n即將導入活動頁面");
 // 						alert(response.data['id']);
 						window.location.assign('/activity/view/'+response.data['id']);
 					} else {
-						alert("資料修改失敗！請檢查輸入欄位！");
+						alert("資料新增失敗！請檢查輸入欄位！");
 					}
 				},
 				error : function(re) {
-					alert("資料修改失敗！請檢查輸入欄位！");
+					alert("資料新增失敗！請檢查輸入欄位！");
 				}
 			})
 		})

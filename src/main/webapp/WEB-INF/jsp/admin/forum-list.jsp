@@ -117,20 +117,27 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/css/ui.jqgrid.css" type="text/javascript"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.57/pdfmake.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.57/vfs_fonts.js"></script>
-	<script src="/resources/vfs_fonts.js"></script>
 	
 	</div>
-	<button type="button" id='export'>export</button>
-	<button type="button" id='exportdownload'>download</button>
-
-	</div>
+	
 	<!-- End of Page Wrapper -->
 	
 		<table id="forExcel"></table>
 		<div id="forExcelpager"  style='display=:none'></div>
 		<table id="forPDF"></table>
 		<div id="forPDFpager"  style='display=:none'></div>		
+		<button type="button" onclick='abc()'>test0725</button>
+	<script>
+	function abc(){
+		$.ajax({
+			url:'/forum/test0725',
+			dataType:'application/x-download',
+			success:function(data){
+				
+			}
+		})
+	}
+	</script>
 	<script>
 	var totaldata;
 	
