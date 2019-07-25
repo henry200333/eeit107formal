@@ -44,7 +44,7 @@ public class NoticeService {
 		SecurityUser recieverBean = securityUserDao.findByDisplayName(reciever);
 		Notice notice = new Notice();
 		notice.setContent(sender.getDisplayName()+"對你發送好友邀請");
-		notice.setFriendStatus("申請中");
+		notice.setFriendstatus("申請中");
 		notice.setReaded(false);
 		notice.setReceiver(recieverBean.getUserId());
 		notice.setSender(sender.getUserId());
