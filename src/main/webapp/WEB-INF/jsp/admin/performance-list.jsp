@@ -58,8 +58,8 @@
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">表演列表</h1>
 						<a href="#"
-							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> 下載檔案</a>
+							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> 下載</a><i	class="fas fa-download fa-sm text-white-50"></i> 下載檔案</a>
+
 					</div>
 					<form id="searchTitle" class="user">
 						<div class="form-group row">

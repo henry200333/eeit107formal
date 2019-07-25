@@ -122,7 +122,7 @@
 			</script>
 			</sec:authorize>	
 			<sec:authorize access="hasRole('ADMIN')">
-    		<a href="/admin/artist/list" class="btn btn-warning"><i class="fas fa-cog"></i></a>
+    		<a href="/admin/securityUser/list" class="btn btn-warning"><i class="fas fa-cog"></i></a>
 			</sec:authorize>
 			
 			</sec:authorize>
