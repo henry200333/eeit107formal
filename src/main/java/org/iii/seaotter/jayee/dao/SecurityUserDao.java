@@ -18,4 +18,8 @@ public interface SecurityUserDao extends JpaRepository<SecurityUser, Long>,JpaSp
 	public List<SecurityUser> findTop5ByOrderByFollowersDesc();
 	
 	public List<Performance> findPlikesByUserId(Long id);
+	
+	public List<SecurityUser> findByDisplayNameContaining(String displayName);
+
+	public SecurityUser findByDisplayName(String displayName);
 }

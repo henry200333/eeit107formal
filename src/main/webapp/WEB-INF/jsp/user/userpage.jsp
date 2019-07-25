@@ -77,10 +77,29 @@ color:#ffaad5;
 	<jsp:include page="../topbar.jsp"></jsp:include>
 		<div class="container" style="margin-top: 90px;">
 		<h4 style="margin-left:20px;font-weight:bold"><i class="fas fa-user"></i>   個人頁面</h4>
+		<sec:authorize access="hasAnyRole('USER', 'ARTIST')">
+		<h5 id="addFriendBT"></h5>
+		<script>
+		function addFriend(){
+			$("#addFriendBT").html("<button onclick='disFriend()'>已送出好友請求</button>");
+			var reciever = "${userParam.displayName }";
+			$.ajax({
+				url:"/add/friend",
+				type:"POST",
+				data:{"reciever":reciever},
+				success:function(data){
+					alert("success")
+				}
+			})
+		}
+		function disFriend(){
+			$("#addFriendBT").html("<button onclick='addFriend()'>加為好友</button>");
+		}
+		</script>
+		</sec:authorize>
 		<div class="row" style="margin-top:20px;">
 			<div class="col-3">
 				<img  src="${userParam.photo }" width="100%">
-				
 			</div>
 			<div class="col-9" style="padding-top:10px;">
 				<h5 ><i class="fas fa-user-tag"></i>   基本資料</h5>
@@ -144,6 +163,9 @@ color:#ffaad5;
 			$("#padd").html("<i class='far fa-plus-square'></i>")
 			$("#atadd").html("<i class='far fa-plus-square'></i>")
 			$("#acadd").html("<i class='far fa-plus-square'></i>")
+		}
+		if(location.href.substring(17)!="<sec:authentication property='name' />"){
+			$("#addFriendBT").html("<button onclick='addFriend()'>加為好友</button>")
 		}
 		</script>
 		</div>

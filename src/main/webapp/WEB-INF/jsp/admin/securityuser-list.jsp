@@ -30,7 +30,7 @@
 				<jsp:include page="topbar.jsp"></jsp:include>
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div class="container-fluid" style="font-family: 'Noto Sans TC', sans-serif;">
 
 					<!-- Page Heading -->
 					<div
@@ -46,7 +46,7 @@
 			            <div class="form-group row">
 			            	<div class="col-sm-3 mb-3 mb-sm-0">
 					            <div class="input-group">
-					              <input id="search" name="search" type="text" class="form-control border-0 small" placeholder="Search Account..." aria-label="Search" aria-describedby="basic-addon2">
+					              <input id="search" name="search" type="text" class="form-control border-0 small" placeholder="搜尋帳號..." aria-label="Search" aria-describedby="basic-addon2">
 					              <div class="input-group-append">
 					                <button id="searchBT" class="btn btn-primary" type="button">
 					                  <i class="fas fa-search fa-sm"></i>
@@ -102,16 +102,20 @@
         styleUI : 'Bootstrap4',
         iconSet : "fontAwesome",
         colModel: [
-			{ name: 'userId', index: 'userId', label: 'USER_ID', width: 15, align:'center'},
-			{ name: 'account', label: 'ACCOUNT',editable:false, width: 20, align:'center'},
-			{ name: 'password', label: 'PASSWORD', width: 15,align:'center', editable:false, sortable:false, formatter:Colpassword},
-			{ name: 'enabled', label: 'ENABLE', width: 15 ,editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: enableCheck},
-// 			{ name: 'ADMIN', label: 'ADMIN', width: 15, editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: AuthCheck},
-// 			{ name: 'USER', label: 'USER', width: 15, editable:false, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
-// 			{ name: 'ARTIST', label: 'ARTIST', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
-// 			{ name: 'VENDER', label: 'VENDER', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
-			{ name:'EDIT',index:'EDIT',label:'EDIT', width:15, align:'center', sortable:false, formatter:editBT},
-			{ name:'SAVE',index:'SAVE',label:'SAVE', width:15, align:'center',sortable:false, formatter:saveBT}
+			{ name: 'userId', index: 'userId', label: '使用者ID', width: 12, align:'center'},
+			{ name: 'displayName', index: 'displayName', label: '使用者名稱', width: 15, align:'center'},
+			{ name: 'displayName', index: 'displayName', label: '使用者名稱', width: 15, align:'center'},
+			{ name: 'account', label: '帳號',editable:false, width: 20, align:'center'},
+			{ name: 'password', label: '密碼', width: 8, align:'center', editable:false, sortable:false, formatter:Colpassword},
+			{ name: 'enabled', label: '啟用', width: 8, editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: enableCheck},
+			{ name: 'ADMIN', label: '管理者權限', width: 15, editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: AuthCheck},
+			{ name: 'USER', label: '使用者權限', width: 15, editable:false, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
+			{ name: 'ARTIST', label: '藝人權限', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
+			{ name: 'VENDER', label: '廠商權限', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
+			{ name: 'registerDate', index: 'registerDate', label: '註冊時間', width: 20, align:'center'},
+			{ name:'EDIT',index:'EDIT',label:'修改權限', width:10, align:'center', sortable:false, formatter:editBT},
+			{ name:'SAVE',index:'SAVE',label:'保存', width:8, align:'center',sortable:false, formatter:saveBT},
+			{ name:'DETAIL',index:'DETAIL',label:'詳細資料', width:10, align:'center',sortable:false, formatter:detailBT}
 		],
         prmNames: {search: null, nd: null},
         pager: '#pager',
@@ -145,8 +149,8 @@
 		 var txt = "";
 		 var oCN = options.colModel.name;
 		 var rowId = options.rowId;
-		 for(i=0;i<rowObject.roles.length;i++){
-			 var authority = rowObject.roles[i].authority;
+		 for(i=0;i<rowObject.authorities.length;i++){
+			 var authority = rowObject.authorities[i].authority;
 			 txt += authority; 
 			 }
 		 		if(txt.indexOf(oCN) > -1){
@@ -172,12 +176,17 @@
 	 function editBT (cellvalue, options, rowObject) {
 		 return "<button type='button' id='"
 			+ options.rowId
-			+ "'onclick='editId(this)' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i></button>";  //返回的html即為欄位中的樣式
+			+ "'onclick='editId(this)' class='btn btn-warning btn-sm'><i class='fas fa-edit'></i></button>";  //返回的html即為欄位中的樣式
 		};
 	 function saveBT (cellvalue, options, rowObject) {
 		 return "<button type='button' id='"
 			+ options.rowId
 			+ "'onclick='saveId(this)' class='btn btn-success btn-sm'><i class='fas fa-save'></i></button>";
+		};
+	 function detailBT (cellvalue, options, rowObject) {
+		 return "<button type='button' id='"
+			+ options.rowId
+			+ "'onclick='' class='btn btn-primary btn-sm'><i class='far fa-file-alt'></i></button>";
 		};
 	 
 		function editId(Object) {

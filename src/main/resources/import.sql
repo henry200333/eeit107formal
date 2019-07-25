@@ -150,9 +150,9 @@ alex@skrpresents.com
  							
 insert into  Vender (name,city,district,address,max_people,phone,lat,lng,user_id,img,contact_person,introduction) values
 ('EZ5音樂餐廳','台北市','大安區','安和路二段211號',50,'0227383995',25.0260149,121.550337,11,'/resources/vender_image/1.jpg','劉先生','在英國利物浦有一家小小的PUB，因為Beatles的駐唱而聲名大噪。而今日台北街頭也有這樣的一個地方。演唱者實力備受矚目，如果你已是EZ5一百多萬名忠實聽眾中的一員，讓我們邀請你一起進入EZ-5的世界。'),
-('Music Corner角落音樂餐廳','台北市','中山區',' 建國北路一段156號',40,'0225043688',25.0516328,121.5341573,null,'/resources/vender_image/2.jpg','陳先生','每天都有固定Live Band演出！相關節目以店家粉絲團公告為主'),
-('LOTUS 音樂餐廳','台北市','中山區','長安東路二段78號',60,' 0223468888',25.0483426,121.5317147,null,'/resources/vender_image/3.jpg','彭先生','2008年、兩位愛好音樂的朋友，以女性柔和的思考線條，在 【LOTUS音樂餐廳】 ，您就是演唱會的巨星，絕對有別於您以往的歌唱經驗！'),
-('HOOTERS美式餐廳','台北市','松山區','長安東路二段78號',55,'0227165168','25.0532667','121.54544720000001',null,'/resources/vender_image/4.jpg',null,null);
+('Music Corner角落音樂餐廳','台北市','中山區',' 建國北路一段156號',40,'0225043688',25.0516328,121.5341573,1,'/resources/vender_image/2.jpg','陳先生','每天都有固定Live Band演出！相關節目以店家粉絲團公告為主'),
+('LOTUS 音樂餐廳','台北市','中山區','長安東路二段78號',60,' 0223468888',25.0483426,121.5317147,2,'/resources/vender_image/3.jpg','彭先生','2008年、兩位愛好音樂的朋友，以女性柔和的思考線條，在 【LOTUS音樂餐廳】 ，您就是演唱會的巨星，絕對有別於您以往的歌唱經驗！'),
+('HOOTERS美式餐廳','台北市','松山區','長安東路二段78號',55,'0227165168','25.0532667','121.54544720000001',9,'/resources/vender_image/4.jpg','王先生','歡迎來我們餐聽用餐，我們週五公休');
 
 insert into  job (name,job_type,job_time,detal,reward,vender_name,city,district,address,status,vender_id) values
 ('誠徵鼓手一名','聽覺藝術','2019-07-15 12:00:00','經驗要求5年以上',1000,'EZ5音樂餐廳','台北市','大安區','安和路二段211號','未應聘',1),

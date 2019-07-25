@@ -49,40 +49,57 @@
 					<form id="form" class="user"
 						action="/admin/performance/update" method="POST">
 						<input type="hidden" id="id" name="id" value="${performance.id}" />
-						<input type="hidden" id="views" name="views" value="${performance.views}" />
-						<input type="hidden" id="likes" name="likes" value="${performance.likes}" />
-						<input type="hidden" id="unlikes" name="unlikes" value="${performance.dislikes}" />
 						<div class="form-group row">
-							<div class="col-sm-7 mb-3 mb-sm-0">
-							<label for="context">Title:</label>
+							<div class="col-sm-4 mb-3 mb-sm-0">
+							<label for="context">表演標題:</label>
 								<input type="text" id="title" name="title" class="form-control form-control-user"
-									placeholder="title" value="${performance.title}"  />
-								
+									 value="${performance.title}"  />
 							</div>
-						</div>
-						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
-							<label for="context">Introduction:</label>
+							<label for="context">表演簡介:</label>
 								<input type="text" id="introduction" name="introduction" class="form-control form-control-user"
-									placeholder="Introduction" value="${performance.introduction}"  />
-								
+									 value="${performance.introduction}"  />
 							</div>
 						</div>
 						<div class="form-group row">
-							<div class="col-sm-7 mb-3 mb-sm-0">
-								<label for="context">URL:</label>
+							<div class="col-sm-5 mb-3 mb-sm-0">
+								<label for="context">表演連結:</label>
 								<input type="text" id="url"  name="url" class="form-control form-control-user"
-									placeholder="URL" value="${performance.url}" />
+									 value="${performance.url}" />
 								
 						</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-sm-7 mb-3 mb-sm-0">
-								<label for="type">Related Activity:</label> <select
+						<div class="col-sm-3 mb-3 mb-sm-0">
+								<label for="type">關聯活動:</label> <select
 									name="activityId" id="activityId"
 									class="form-control " ></select>
 
 							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-sm-1 mb-3 mb-sm-0">
+								<label for="context">觀看數:</label>
+								<input type="text" id="views"  name="views" class="form-control form-control-user"
+									 value="${performance.views}" />
+								
+						</div>
+						<div class="col-sm-1 mb-3 mb-sm-0">
+								<label for="context">喜歡數:</label>
+								<input type="text" id="likes"  name="likes" class="form-control form-control-user"
+									 value="${performance.likes}" />
+								
+						</div>
+						<div class="col-sm-1 mb-3 mb-sm-0">
+								<label for="context">不喜歡數:</label>
+								<input type="text" id="dislikes"  name="dislikes" class="form-control form-control-user"
+									 value="${performance.dislikes}" />
+								
+						</div>
+						<div class="col-sm-1 mb-3 mb-sm-0">
+								<label for="context">發布人ID:</label>
+								<input type="text" id="userpId"  name="userpId" class="form-control form-control-user"
+									 value="${performance.userpId}" />
+								
+						</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-3 mb-3 mb-sm-0">
@@ -123,7 +140,6 @@ $.ajax({
 	type:"POST",
 	success: function(data){
 		var txt="";		
-		console.log(data);
 		$.each(data,function(index,value){
 			txt += 	"<option value='"+value['id']+"'>"+ value['name']+"</option>"			
 			})	
@@ -141,6 +157,7 @@ $("#update").click(
 						dataType : "json",
 						data : $("#form").serializeObject(),
 						success : function(result) {
+							console.log(result)
 							if (result.type == "SUCCESS") {
 								alert("更新成功");
 							} else if (result.type == "ERROR") {
