@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/jqgrid/css/ui.jqgrid-bootstrap4.css" />
 <!-- Load jquery-ui css -->
 <link rel="stylesheet" type="text/css" href="/resources/jqgrid/jquery-ui/jquery-ui.theme.min.css"/>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
 <body id="page-top">
 
@@ -36,9 +37,12 @@
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">List of Forum</h1>
-						<a href="#"
+						<div><button type="button" id='exportExcel'
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
+							class="fas fa-download fa-sm text-white-50"></i> Download Excel</button>
+							<button type="button" id='exportPDF'
+							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+							class="fas fa-download fa-sm text-white-50"></i> Download PDF</button></div>
 					</div>
 					<form id="searchForm" class="user">
 			            <div class="form-group row">
@@ -95,7 +99,6 @@
 							</form>
 						</div>
 					</div>
-					<div><button type='button' id='testBT'>Click</button></div>
 				</div>
 				<!-- /.container-fluid -->
 
@@ -111,12 +114,184 @@
 	<script src="/resources/jqgrid/js/i18n/grid.locale-tw.js" type="text/javascript"></script>
 	<!-- 	Add jquery plugin -->
 	<script src="/resources/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/css/ui.jqgrid.css" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.57/pdfmake.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.57/vfs_fonts.js"></script>
+	<script src="/resources/vfs_fonts.js"></script>
+	
 	</div>
-	<button type="button" id='t0709'>click123</button>
-	<!-- End of Page Wrapper -->
-	<script>
+	<button type="button" id='export'>export</button>
+	<button type="button" id='exportdownload'>download</button>
 
+	<!-- End of Page Wrapper -->
+	
+		<table id="forExcel"></table>
+		<div id="forExcelpager"  style='display=:none'></div>
+		<table id="forPDF"></table>
+		<div id="forPDFpager"  style='display=:none'></div>		
+	<script>
+	var totaldata;
+	
+	$("#exportPDF").on("click", function(){		
+		$("#forPDF").jqGrid({
+			iconSet : "fontAwesome",
+			url : '/admin/forum/query',
+			datatype : 'json',
+			mtype : 'GET',
+			styleUI : 'Bootstrap4',
+			colModel : [ {
+				name : 'id',
+				index : 'id',
+				width : 5
+			}, //設定第一個欄位為id，並且index設成id為到時候ajax回server side連結時使用的parameter。並且設定為不可做排序。
+			{
+				name : 'forumBoard',
+				index : 'forumBoard',
+				width : 20
+			}, {
+				name : 'refId',
+				index : 'refId',
+				width : 10
+			}, {
+				name : 'refCommentId',
+				index : 'refCommentId',
+				width : 15
+			}, {
+				name : 'userName',
+				index : 'userName',
+				width : 15
+			}, {
+				name : 'comment',
+				index : 'comment',
+				width : 50
+			}, {
+				name : 'commentDate',
+				index : 'commentDate',
+				width : 25
+			}, {
+				name : 'likeCount',
+				index : 'likeCount',
+				width : 15
+			}, {
+				name : 'dislikeCount',
+				index : 'dislikeCount',
+				width : 15,
+				align : 'right'
+			}],
+			prmNames : {
+				search : null,
+				nd : null
+			},
+			pager : '#forExcelpager',
+			page : 1,
+			autowidth : true,
+			shrinkToFit : true,
+			height : 'auto',
+			rowNum : totaldata,
+			rowList : [totaldata],
+			sortname : 'id',
+			sortorder : "asc",
+			viewrecords : true,
+			loadonce:true,
+			altRows : true,
+			gridComplete:function(){	
+				$("#gbox_forPDF").hide();
+		            $("#forPDF").jqGrid("exportToPdf", {
+		                onBeforeExport: function (doc) {
+		                    doc.styles.tableBody.fontSize = 10;	                    
+		                },
+		                title: '課程列表',
+		                orientation: 'portrait',
+		                pageSize: 'A4',
+		                description: '課程列表',
+						download: 'download',
+		                includeLabels: true,
+		                includeGroupHeader: true,
+		                includeFooter: true,
+		                fileName: "ExportPDF.pdf" 
+		        })
+			}
+		});	
+	})
+	
+	//PDF結束	
+	$("#exportExcel").on("click", function(){		
+		$("#forExcel").jqGrid({
+			iconSet : "fontAwesome",
+			url : '/admin/forum/query',
+			datatype : 'json',
+			mtype : 'GET',
+			styleUI : 'Bootstrap4',
+			colModel : [ {
+				name : 'id',
+				index : 'id',
+				width : 5
+			}, //設定第一個欄位為id，並且index設成id為到時候ajax回server side連結時使用的parameter。並且設定為不可做排序。
+			{
+				name : 'forumBoard',
+				index : 'forumBoard',
+				width : 20
+			}, {
+				name : 'refId',
+				index : 'refId',
+				width : 10
+			}, {
+				name : 'refCommentId',
+				index : 'refCommentId',
+				width : 15
+			}, {
+				name : 'userName',
+				index : 'userName',
+				width : 15
+			}, {
+				name : 'comment',
+				index : 'comment',
+				width : 50
+			}, {
+				name : 'commentDate',
+				index : 'commentDate',
+				width : 25
+			}, {
+				name : 'likeCount',
+				index : 'likeCount',
+				width : 15
+			}, {
+				name : 'dislikeCount',
+				index : 'dislikeCount',
+				width : 15,
+				align : 'right'
+			}],
+			prmNames : {
+				search : null,
+				nd : null
+			},
+			pager : '#forExcelpager',
+			page : 1,
+			autowidth : true,
+			shrinkToFit : true,
+			height : 'auto',
+			rowNum : totaldata,
+			rowList : [totaldata],
+			sortname : 'id',
+			sortorder : "asc",
+			viewrecords : true,
+			loadonce:true,
+			altRows : true,
+			gridComplete:function(){		
+		
+				$("#gbox_forExcel").hide();
+				$("#forExcel").jqGrid("exportToExcel",{
+					includeLabels : true,
+					includeGroupHeader : true,
+					includeFooter: true,
+					fileName : "jqGridExport.xlsx",
+					maxlength : 40 // maxlength for visible string data 
+				})
+			}
+		});	
+	})
+	
 		$("#forumGrid").jqGrid({
 			iconSet : "fontAwesome",
 			url : '/admin/forum/query',
@@ -183,11 +358,14 @@
 			shrinkToFit : true,
 			height : 'auto',
 			rowNum : 3,
-			rowList : [ 3, 2, 20, 50 ],
+			rowList : [ 3,20, 50 ],
 			sortname : 'id',
 			sortorder : "asc",
 			viewrecords : true,
-			altRows : true
+			altRows : true,
+			gridComplete:function(){
+				totaldata = $("#forumGrid").getGridParam("records");
+			}
 		});
 
 		function editBT(cellvalue, options, rowObject) {
