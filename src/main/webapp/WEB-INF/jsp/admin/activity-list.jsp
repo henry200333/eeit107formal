@@ -31,15 +31,15 @@
 				<jsp:include page="topbar.jsp"></jsp:include>
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div class="container-fluid" style="font-family: 'Noto Sans TC', sans-serif;">
 
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">List of Activity</h1>
+						<h1 class="h3 mb-0 text-gray-800">活動列表</h1>
 						<a href="#"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
+							class="fas fa-download fa-sm text-white-50"></i> 下載檔案</a>
 					</div>
 
 					<!-- Add New Activity Button -->
@@ -48,7 +48,7 @@
 				            <div class="col-sm-3 mb-3 mb-sm-0">
 				            	<a href="add" class="btn btn-primary btn-icon-split"> <span
 									class="icon text-white-50"> <i class="fas fa-file-medical"></i>
-									</span> <span class="text">Add New Activity</span>
+									</span> <span class="text">新增活動</span>
 								</a>
 				            </div>
 				            <div class="col-sm-3 mb-3 mb-sm-0">
@@ -68,8 +68,7 @@
 
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">List of
-								Activity</h6>
+							<h6 class="m-0 font-weight-bold text-primary">活動列表</h6>
 						</div>
 						<div id="" class="card-body">
 <!-- 			ajax版 塞資料處				<div class="table-responsive"></div> -->

@@ -35,10 +35,10 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">List of SecurityUser</h1>
+						<h1 class="h3 mb-0 text-gray-800">使用者列表</h1>
 						<a href="#"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> Download Data</a>
+							class="fas fa-download fa-sm text-white-50"></i> 下載檔案</a>
 					</div>
 
 					<!-- Add New Article Button -->
@@ -57,7 +57,7 @@
 				            <div class="col-sm-3 mb-3 mb-sm-0">
 				            	<a href="add" class="btn btn-primary btn-icon-split"> <span
 									class="icon text-white-50"> <i class="fas fa-file-medical"></i>
-									</span> <span class="text">Add New SecurityUser</span>
+									</span> <span class="text">新增使用者</span>
 								</a>
 				            </div>
 			            </div>
@@ -67,8 +67,7 @@
 
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">List of
-								SecurityUser</h6>
+							<h6 class="m-0 font-weight-bold text-primary">使用者列表</h6>
 						</div>
 						<div id="securityUserList" class="card-body" style="text-align: center">
 								<table id="securityUserGrid"></table>
@@ -107,10 +106,10 @@
 			{ name: 'account', label: 'ACCOUNT',editable:false, width: 20, align:'center'},
 			{ name: 'password', label: 'PASSWORD', width: 15,align:'center', editable:false, sortable:false, formatter:Colpassword},
 			{ name: 'enabled', label: 'ENABLE', width: 15 ,editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: enableCheck},
-			{ name: 'ADMIN', label: 'ADMIN', width: 15, editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: AuthCheck},
-			{ name: 'USER', label: 'USER', width: 15, editable:false, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
-			{ name: 'ARTIST', label: 'ARTIST', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
-			{ name: 'VENDER', label: 'VENDER', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
+// 			{ name: 'ADMIN', label: 'ADMIN', width: 15, editable:true, edittype:'checkbox', editoptions: {value:"1:0"}, align:'center', formatter: AuthCheck},
+// 			{ name: 'USER', label: 'USER', width: 15, editable:false, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
+// 			{ name: 'ARTIST', label: 'ARTIST', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
+// 			{ name: 'VENDER', label: 'VENDER', width: 15, editable:true, edittype: 'checkbox', editoptions: {value: "1:0"}, align:'center', formatter: AuthCheck},
 			{ name:'EDIT',index:'EDIT',label:'EDIT', width:15, align:'center', sortable:false, formatter:editBT},
 			{ name:'SAVE',index:'SAVE',label:'SAVE', width:15, align:'center',sortable:false, formatter:saveBT}
 		],
@@ -120,8 +119,8 @@
         autowidth: false,
         shrinkToFit: true,
         height: 'auto',
-        rowNum: 5,
-        rowList: [5, 10, 20, 50],
+        rowNum: 10,
+        rowList: [10, 20, 50],
         sortname: 'userId',
         sortorder: "asc",
         viewrecords: true,

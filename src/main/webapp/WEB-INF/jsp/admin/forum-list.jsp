@@ -31,25 +31,25 @@
 				<jsp:include page="topbar.jsp"></jsp:include>
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div class="container-fluid" style="font-family: 'Noto Sans TC', sans-serif;">
 
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">List of Forum</h1>
+						<h1 class="h3 mb-0 text-gray-800">留言列表</h1>
 						<div><button type="button" id='exportExcel'
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> Download Excel</button>
+							class="fas fa-download fa-sm text-white-50"></i> 下載Excel</button>
 							<button type="button" id='exportPDF'
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> Download PDF</button></div>
+							class="fas fa-download fa-sm text-white-50"></i> 下載 PDF</button></div>
 					</div>
 					<form id="searchForm" class="user">
 			            <div class="form-group row">
 			            	<div class="col-sm-3 mb-3 mb-sm-0">
 					            <div class="input-group">
 					        
-					              <input id="userName" name="userName" type="text" class="form-control border-0 small" placeholder="Search Forum..." aria-label="Search" aria-describedby="basic-addon2">
+					              <input id="userName" name="userName" type="text" class="form-control border-0 small" placeholder="搜尋留言..." aria-label="Search" aria-describedby="basic-addon2">
 					         
 					              <div class="input-group-append">
 					                <button id="searchBT" class="btn btn-primary" type="button">
@@ -62,7 +62,7 @@
 								<a href="add" class="btn btn-primary btn-icon-split"> <span
 									class="icon text-white-50"> <i
 										class="fas fa-file-medical"></i>
-								</span> <span class="text">Add New Forum</span>
+								</span> <span class="text">新增留言</span>
 								</a>
 							</div>
 			            </div>
@@ -84,7 +84,7 @@
 
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">List of Forum</h6>
+							<h6 class="m-0 font-weight-bold text-primary">留言列表</h6>
 						</div>
 						<!-- Grid -->
 						<div id="forumList" class="card-body" style="font-family: 'Noto Sans TC', sans-serif;">
@@ -124,6 +124,7 @@
 	<button type="button" id='export'>export</button>
 	<button type="button" id='exportdownload'>download</button>
 
+	</div>
 	<!-- End of Page Wrapper -->
 	
 		<table id="forExcel"></table>
@@ -306,44 +307,54 @@
 			{
 				name : 'forumBoard',
 				index : 'forumBoard',
+				label : '留言位置',
 				width : 20
 			}, {
 				name : 'refId',
 				index : 'refId',
+				label : '關聯ID',
 				width : 10
 			}, {
 				name : 'refCommentId',
 				index : 'refCommentId',
+				label : '關聯留言ID',
 				width : 15
 			}, {
 				name : 'userName',
 				index : 'userName',
+				label : '使用者名稱',
 				width : 15
 			}, {
 				name : 'comment',
 				index : 'comment',
+				label : '留言內容',
 				width : 50
 			}, {
 				name : 'commentDate',
 				index : 'commentDate',
+				label : '留言時間',
 				width : 25
 			}, {
 				name : 'likeCount',
 				index : 'likeCount',
+				label : '喜歡數',
 				width : 15
 			}, {
 				name : 'dislikeCount',
 				index : 'dislikeCount',
+				label : '不喜歡數',
 				width : 15,
-				align : 'right'
+// 				align : 'right'
 			}, //設定欄位，這邊是故意設定靠右對齊
 			{
 				name : 'edit',
+				label : '編輯', 
 				width : 15,
 				formatter : editBT,
 				sortable : false
 			}, {
 				name : 'delete',
+				label : '刪除',
 				width : 15,
 				formatter : deleteBT,
 				sortable : false
@@ -358,7 +369,7 @@
 			shrinkToFit : true,
 			height : 'auto',
 			rowNum : 3,
-			rowList : [ 3,20, 50 ],
+			rowList : [ 3, 20, 50 ],
 			sortname : 'id',
 			sortorder : "asc",
 			viewrecords : true,
