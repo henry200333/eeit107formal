@@ -2,6 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 
@@ -34,14 +36,14 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Add New Performance</h1>
+						<h1 class="h3 mb-0 text-gray-800">新增表演</h1>
 
 					</div>
 
 					<!-- Return to Article -->
 					<a href="list" class="btn btn-info btn-icon-split"> <span
 						class="icon text-white-50"> <i class="fas fa-reply"></i>
-					</span> <span class="text">Return to List</span>
+					</span> <span class="text">回到列表</span>
 					</a>
 
 					<hr>
@@ -49,28 +51,28 @@
 					<form id="form" class="user">
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
-								<label for="context">FILE TITLE:</label><input type="text"
+								<label for="context">表演標題:</label><input type="text"
 									name="title" id="title" class="form-control form-control-user"
-									placeholder="File Title"  />
+									placeholder="表演標題"  />
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
-								<label for="context">FILE INTRODUCTION:</label><input type="text"
+								<label for="context">表演簡介:</label><input type="text"
 									name="introduction" id="introduction" class="form-control form-control-user"
-									placeholder="File Introduction"  />
+									placeholder="表演簡介"  />
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
-								<label for="context">URL:</label> <input type="text" name="url"
+								<label for="context">表演連結:</label> <input type="text" name="url"
 									id="url" class="form-control form-control-user"
-									placeholder="URL" />
+									placeholder="表演連結" />
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-7 mb-3 mb-sm-0">
-								<label for="type">Related activities:</label> <select
+								<label for="type">關聯活動</label> <select
 									name="activityId" id="activityId"
 									class="form-control " ></select>
 
@@ -82,7 +84,7 @@
 									class="btn btn-primary btn-user btn-block">
 									<span class="icon text-white-50"> <i
 										class="fas fa-file-import"></i>
-									</span> <span class="text"> OK</span>
+									</span> <span class="text"> 確定</span>
 								</button>
 							</div>
 						</div>
@@ -91,9 +93,10 @@
 								<a href="javascript:document.getElementById('forum').reset();"
 									class="btn btn-danger btn-user btn-block"><span
 									class="icon text-white-50"> <i class="fas fa-file-excel"></i>
-								</span> <span class="text"> Reset Input</span></a>
+								</span> <span class="text"> 重新輸入</span></a>
 							</div>
 						</div>
+						<input type='hidden' name='username' value='<sec:authentication property="name"/>' >
 					</form>
 				</div>
 				<!-- /.container-fluid -->
@@ -127,17 +130,13 @@
 					console.log($("#form").serializeObject());
 					$.ajax({
 						url : "/admin/performance/insert",
-						type : "POST",
+						type : "GET",
 						contentType : "application/json",
 						dataType : "json",
-						data : $("#form").serializeObject(),
+						data : JSON.parse($("#form").serializeObject()),
 						success : function(result) {
 							if (result.type == "SUCCESS") {
-								console.log("success");
-								$("#form").attr("action",
-										"/admin/performance/edit");
-								$("#id").val(result.data["id"]);
-								$("#form").submit();
+								window.location.href = "/admin/performance/edit/"+result.data["id"];
 							} else if (result.type == "ERROR") {
 								alert("新增失敗，請檢查輸入");
 								var messages = result.messages;

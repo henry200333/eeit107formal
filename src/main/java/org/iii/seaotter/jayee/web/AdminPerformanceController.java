@@ -17,9 +17,11 @@ import org.iii.seaotter.jayee.common.Message;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Performance;
+import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.PerformanceService;
+import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -49,8 +51,12 @@ public class AdminPerformanceController {
 
 	@Autowired
 	private ActivityService activityService;
+	
 	@Autowired
 	private ArticleService articleService;
+	
+	@Autowired
+	private SecurityUserService securityUserService;
 
 	@RequestMapping("/list")
 	public String listPage(Model model) {
@@ -162,11 +168,10 @@ public class AdminPerformanceController {
 
 	}
 
-	@PostMapping("/insert")
+	@RequestMapping("/insert")
 	@ResponseBody
-	public AjaxResponse<Performance> insert(@RequestBody Performance performance, Model model) {
+	public AjaxResponse<Performance> insert(Performance performance, Model model) {
 		// 測試是否傳到後台
-
 		// 回傳型態AjaxResponse與內部的宣告
 		AjaxResponse<Performance> result = new AjaxResponse<>();
 		List<Message> messages = new ArrayList<>();
@@ -203,9 +208,15 @@ public class AdminPerformanceController {
 			result.setMessages(messages);
 			return result;
 		}
+		
+		Activity act  =activityService.getById(performance.getActivityId());
+		SecurityUser user = securityUserService.getByUserName(performance.getUsername());
 		performance.setViews(0L);
 		performance.setLikes(0L);
 		performance.setDislikes(0L);
+		performance.setUserpId(1L);
+		performance.setPerformanceGerne(act.getPerfType());
+		performance.setUserpId(user.getUserId());
 		result.setType(AjaxResponseType.SUCCESS);
 		result.setData(performanceSurvice.insert(performance));
 		return result;
@@ -215,7 +226,8 @@ public class AdminPerformanceController {
 	@PutMapping("/update")
 	@ResponseBody
 	public AjaxResponse<Performance> update(@RequestBody Performance performance, Model model) {
-
+		System.out.println(performance);
+		
 		// 測試是否傳到後台
 
 		// 回傳型態AjaxResponse與內部的宣告
