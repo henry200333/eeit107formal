@@ -12,6 +12,7 @@ import org.iii.seaotter.jayee.entity.Notice;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ActivityService;
+import org.iii.seaotter.jayee.service.NoticeService;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,9 @@ public class PerformanceController {
 	
 	@Autowired
 	private ActivityService activityService;
+	
+	@Autowired
+	private NoticeService noticeService;
 	
 	
 	@RequestMapping("/add")
@@ -392,11 +396,18 @@ public class PerformanceController {
 	
 	@RequestMapping("/notice")
 	@ResponseBody
-	public boolean notice() {
-		Performance performancenew = performanceService.findTopByOrderByIdDesc();
-		Long pid = performancenew.getId();
+	public boolean notice(@RequestParam("size") int size,@RequestParam("username") String username) {
+		SecurityUser artist  = SecurityUserService.getByUserName(username);
+		List<SecurityUser> friends  = artist.getFriends();
 		Notice notice = new Notice();
-		//SecurityUser artist = 
+		notice.setUrl("/index");
+		notice.setContent(username +"新增了"+size+"部表演");
+		notice.setReaded(false);
+		for(int i =0;i<friends.size();i++) {
+			SecurityUser friend = friends.get(i);
+			notice.setReceiver(friend.getUserId());
+			noticeService.save(notice);			
+		}
 		return true;
 	}
 }

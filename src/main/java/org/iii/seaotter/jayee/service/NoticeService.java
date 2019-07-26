@@ -4,6 +4,10 @@ package org.iii.seaotter.jayee.service;
 
 
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 
 import org.iii.seaotter.jayee.dao.NoticeDao;
@@ -34,6 +38,13 @@ public class NoticeService {
 	}
 	
 	public void save(Notice notice) {
+		notice.setReaded(false);
+		LocalDateTime localDateTime = LocalDateTime.now();		
+		ZoneId zoneId = ZoneId.systemDefault();
+        ZonedDateTime zdt = localDateTime.atZone(zoneId);
+        Date date = Date.from(zdt.toInstant());
+        notice.setSendtime(date);
+        System.out.println(notice);
 		noticeDao.save(notice);
 		return;
 	}
@@ -77,6 +88,8 @@ public class NoticeService {
 	public Long getReceiverAndSender(Long userId,Long friendId) {
 		return noticeDao.findByReceiverAndSender(friendId, userId).getId();
 	}
+	
+
 	
 	
 }

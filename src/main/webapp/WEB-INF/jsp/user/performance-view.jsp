@@ -363,7 +363,7 @@
 								},
 								success:function(data){
 									if(data==true){
-										$("#subdiv").html("<button type='button' class='btn btn-success' id='subed'><i class='fas fa-star' style='color: white' id='subpic'></i><span id='subhtml'> 已訂閱</span></button>");
+										$("#subdiv").html("<button type='button' class='btn btn-success' id='subed'><i class='fas fa-star' style='color: white' id='subpic'></i><span id='subhtml'> 已是好友</span></button>");
 										$("#subed").click(function(){
 											var username = $(".artist").html();
 											$.ajax({
@@ -387,34 +387,14 @@
 											
 										})
 									}else{
-										$("#subdiv").html("<button type='button' class='btn btn-danger' id='sub'><i class='fas fa-plus' style='color: white' id='subpic'></i><span id='subhtml'> 訂閱</span></button>");
+										$("#subdiv").html("<button type='button' class='btn btn-danger' id='sub'><i class='fas fa-plus' style='color: white' id='subpic'></i><span id='subhtml'> 加好友</span></button>");
 										$("#sub").click(function(){
 											var user = $("#thisuser").val();
 											if(user=="anonymousUser"){
 												var login = confirm("請先登入");
 												if(login==true){window.open("/login")+(location.href).substring(7);}
 											}else{
-												//新增好友
-												var thispid = $("#thisp").val();
-												$.ajax({
-													url:'/user/performance/suscribe',
-													data:{
-														"id":thispid,
-														"username":user									
-													},
-													success:function(data){
-													}
-												//
-										})
-												
-												var username = $(".artist").html();
-												alert("訂閱使用者"+username);
-												$("#sub").attr('class','btn btn-success');
-												$("#sub").attr('id','subed');
-												$("#subpic").attr('class','fas fa-star');
-												$("#subhtml").html("已訂閱");
-												location.reload();
-												
+												window.location.href="/${userinf.account}";
 											}
 											
 										})					
