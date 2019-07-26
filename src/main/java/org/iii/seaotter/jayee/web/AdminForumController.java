@@ -1,15 +1,12 @@
 package org.iii.seaotter.jayee.web;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.validation.Valid;
 
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
@@ -18,8 +15,6 @@ import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.common.Message;
 import org.iii.seaotter.jayee.dao.SecurityRoleDao;
 import org.iii.seaotter.jayee.entity.Forum;
-import org.iii.seaotter.jayee.entity.SecurityRole;
-import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ForumService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +23,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -96,16 +89,10 @@ public class AdminForumController {
 		return result;
 	}
 
-	@PutMapping
+	@GetMapping("/update")
 	@ResponseBody
-	public AjaxResponse<Forum> update(@RequestBody Forum forum, BindingResult bindingResult) {
+	public AjaxResponse<Forum> update(Forum forum) {
 		AjaxResponse<Forum> result = new AjaxResponse<Forum>();
-		if (bindingResult.hasErrors()) {
-			System.out.println(bindingResult.getObjectName());
-			result.setType(AjaxResponseType.ERROR);
-			System.out.println("result with error");
-			return result;
-		}
 		forumService.update(forum);
 		result.setType(AjaxResponseType.SUCCESS);
 		System.out.println("result with success");
