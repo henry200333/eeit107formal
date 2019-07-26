@@ -66,9 +66,17 @@ public class NoticeService {
 		return noticeDao.findByReceiver(receiverId);
 	}
 	
-
+	public Boolean checkFriendNotice(Long userId,Long friendId){
+		Notice notice= noticeDao.findByReceiverAndSender(friendId, userId);
+		if(notice!=null && notice.getFriendstatus().equals("申請中"))
+			return true;
+		else
+			return false;
+	}
 	
-	
+	public Long getReceiverAndSender(Long userId,Long friendId) {
+		return noticeDao.findByReceiverAndSender(friendId, userId).getId();
+	}
 	
 	
 }

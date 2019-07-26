@@ -1,6 +1,8 @@
 package org.iii.seaotter.jayee.web;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.iii.seaotter.jayee.entity.Notice;
 import org.iii.seaotter.jayee.entity.SearchUser;
@@ -80,5 +82,30 @@ public class SecurityUserController {
 	public void disFriend(@RequestParam("noticeId") Long noticeId) {
 		noticeService.disFriendNotice(noticeId);
 	}
+	
+	@PostMapping("/check/friend")
+	@ResponseBody
+	public Map<String,String> checkFriend(@RequestParam Map<String,String> data) {
+		Map<String,String> res=new HashMap<>();
+		SecurityUser user=securityUserService.getByUserName(data.get("username"));
+		Long userId=user.getUserId();
+		Long friendId =securityUserService.getByUserName(data.get("friendname")).getUserId();
+		for(int i=0;i<user.getFriends().size();i++) {
+			if(user.getFriends().get(i).getUserId().equals(friendId)) {
+				res.put("status", "已是好友");
+				return res;
+			};
+		}
+		
+		if(noticeService.checkFriendNotice(userId, friendId)) {
+			res.put("status", "申請中");
+			res.put("noticeId", noticeService.getReceiverAndSender(userId, friendId).toString());
+			return res;
+		}else {
+			res.put("status", "可申請");
+			return res;
+		}
+	}
+	
 	
 }
