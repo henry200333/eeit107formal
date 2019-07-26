@@ -57,8 +57,9 @@
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">表演列表</h1>
-						<a href="#"
-							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> 下載</a><i	class="fas fa-download fa-sm text-white-50"></i> 下載檔案</a>
+						<button type="button" id='exportExcel'
+							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+							class="fas fa-download fa-sm text-white-50"></i>下載資料</button>
 
 					</div>
 					<form id="searchTitle" class="user">
@@ -121,13 +122,97 @@
 			</div>
 		</div>
 	</div>
+	<table id="forExcel"></table>
+		<div id="forExcelpager"  style='display=:none'></div>
 	<!-- 	Add language package for TW-ZH -->
 	<script src="/resources/jqgrid/js/i18n/grid.locale-tw.js"
 		type="text/javascript"></script>
 	<!-- 	Add jquery plugin -->
 	<script src="/resources/jqgrid/js/jquery.jqGrid.min.js"
 		type="text/javascript"></script>
+		<!-- EXCEL -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js"></script>
 	<script>
+	var totaldata;
+	
+	$("#exportExcel").on("click", function(){
+		$("#forExcel").jqGrid({
+			url : '/admin/performance/query',
+			datatype : 'json',
+			mtype : 'GET',
+			styleUI : 'Bootstrap4',
+			iconSet : 'fontAwesome',
+			colModel : [ {
+				name : 'id',
+				label : 'ID',
+				width : 4
+			}, {
+				name : 'title',
+				label : '標題',
+				width : 20,
+				sortable : false
+			},
+			// 				{ name: 'introduction', label:'Introduction', width:25,sortable: false},
+			{
+				name : 'url',
+				label : '網址',
+				width : 25,
+				sortable : false
+			}, {
+				name : 'updateTime',
+				label : '上傳時間',
+				width : 15
+			}, {
+				name : 'activityId',
+				label : '關聯活動ID',
+				width : 5
+			}, {
+				name : 'views',
+				label : '觀看數',
+				width : 5
+			}, {
+				name : 'likes',
+				label : '喜歡數',
+				width : 5
+			}, {
+				name : 'dislikes',
+				label : '不喜歡數',
+				width : 5
+			}],
+			prmNames : {
+				search : null,
+				nd : null
+			},
+			pager : '#forExcelpager',
+			page : 1,
+			autowidth : true,
+			shrinkToFit : true,
+			height : 'auto',
+			rowNum : totaldata,
+			rowList : [totaldata,50],
+			sortname : 'updateTime',
+			sortable : true,
+			sortorder : 'asc',
+			viewrecords : true,
+			loadonce:true,
+			altRows : true,
+			gridComplete:function(){	
+				$("#gbox_forExcel").hide();
+				$("#forExcel").jqGrid("exportToExcel",{
+					includeLabels : true,
+					includeGroupHeader : true,
+					includeFooter: true,
+					fileName : "jqGridExport.xlsx",
+					maxlength : 40 // maxlength for visible string data 
+				})
+			}
+		});
+
+	})
+	
+	
+	
+	
 		function searchp() {
 			var search = $("#search").val();
 			$.ajax({
@@ -235,7 +320,10 @@
 			sortable : true,
 			sortorder : 'asc',
 			viewrecords : true,
-			altRows : true
+			altRows : true,
+			gridComplete:function(){
+				totaldata = $("#dataTable").getGridParam("records");
+			}		
 		});
 
 		function editBT(cellvalue, options, rowObject) {

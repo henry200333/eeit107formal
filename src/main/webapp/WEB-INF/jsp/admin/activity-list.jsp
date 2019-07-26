@@ -37,9 +37,9 @@
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">活動列表</h1>
-						<a href="#"
+						<button type="button" id='exportExcel'
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> 下載檔案</a>
+							class="fas fa-download fa-sm text-white-50"></i>下載資料</button>
 					</div>
 
 					<!-- Add New Activity Button -->
@@ -89,14 +89,65 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
+	<table id="forExcel"></table>
+<div id="forExcelpager"  style='display=:none'></div>	
 	
 	<!-- 	Add language package for TW-ZH -->
 	<script src="/resources/jqgrid/js/i18n/grid.locale-tw.js" type="text/javascript"></script>
 	<!-- 	Add jquery plugin -->
 	<script src="/resources/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
-	
+	<!-- excel -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js"></script>
 	
 	<script>
+	var totaldata;
+	$("#exportExcel").on("click", function(){
+		 $("#forExcel").jqGrid({
+		        url: '/admin/activity/query',
+		        datatype: 'json',
+		        mtype: 'GET',
+		        styleUI : 'Bootstrap4',
+		    	colModel :[ //從這邊開始要設定的就是跟欄位本身有關係的設定了.....
+		    		{name:'id', index:'id',label:'活動編號', sortable: false,width: 6}, //設定第一個欄位為id，並且index設成id為到時候ajax回server side連結時使用的parameter。並且設定為不可做排序。
+		    		{name:'name', index:'name',label:'活動名稱', width: 10},
+		    		{name:'artist', index:'artist',label:'表演者', width: 10},	
+		    		{name:'description', index:'description',label:'活動描述', width: 25},
+		    		{name:'beginTime', index:'beginTime',label:'開始時間', width: 15},
+		    		{name:'endTime', index:'endTime',label:'結束時間', width: 15},
+		    		{name:'awesomeNum', index:'awesomeNum',label:'關注數', width: 5,align:'right'},
+		    		{name:'perfType', index:'perfType',label:'表演類型', width: 6}],
+		        prmNames: {search: null, nd: null},
+		        pager: '#forExcelpager',
+		        page: 1,
+		        autowidth:false,
+		        shrinkToFit: true,
+		        height: 'auto',
+		        rowNum: 8,
+		        rowList: [8, 16, 24, 32],
+		        sortname: 'id',
+		        sortorder: "asc",
+		        viewrecords: true, 
+		        iconSet:'fontAwesome',
+		        loadComplete: function () {
+		            reSizejqGridWidth();
+		        },	
+		        loadonce:true,
+		        gridComplete:function(){				    		
+					$("#gbox_forExcel").hide();
+					$("#forExcel").jqGrid("exportToExcel",{
+						includeLabels : true,
+						includeGroupHeader : true,
+						includeFooter: true,
+						fileName : "jqGridExport.xlsx",
+						maxlength : 40 // maxlength for visible string data 
+					})
+				}
+		        
+		    });
+		
+		
+	})
+	
 	
 		<!-- ajax版 抓資料 -->
 // 		$.ajax({

@@ -146,6 +146,8 @@ alex@skrpresents.com
  ('輪到你了SP','日本熱門懸疑劇輪到你了，女主角居然死掉了','https://www.youtube.com/watch?v=TBjykqBrhMg','2019/06/18 17:34:36',3,1100,75,46,5,'柳川鳳','創意藝術'),
  ('超級可愛的柴犬','可愛的柴犬讓你融化','https://www.youtube.com/watch?v=TxgYs4_29KI','2019/06/19 11:45:01',1,151100,7890,10,8,'敏敏','表演藝術'),
  ('阿滴開始健身了','瘦巴巴的阿滴居然開始健身了，究竟會怎麼樣呢','https://www.youtube.com/watch?v=SF8s3jVmiAs','2019/06/27 22:15:23',2,6400,590,17,5,'柳川鳳','視覺藝術'),
+ ('不知道在幹嘛的印地安人','印第安街頭藝人表演《大地英豪/最後的莫希干人》(Top of the world)','https://www.youtube.com/watch?v=48QiYU-KlfU','2019/07/20 20:11:53',15,149,80,2,7,'王芯營','創意藝術'),
+ ('胡[啟志]老師魔幻飄移水晶球大鐵環出神入化特技','讓我們靜靜觀賞啟志的表演','https://www.youtube.com/watch?v=giS6KZ7WdQ4','2019/07/21 05:11:43',10,205,17,1,3,'桑源雅沂','創意藝術'),
  ('暗殺教室S1 第21話','支持正版動畫，官頻廣告不略過，看好看滿才能看更多！','https://www.youtube.com/watch?v=wRs3z2Mr-uA','2019/07/18 15:15:22',7,212,71,2,7,'王芯營','視覺藝術');
  							
 insert into  Vender (name,city,district,address,max_people,phone,lat,lng,user_id,img,contact_person,introduction) values

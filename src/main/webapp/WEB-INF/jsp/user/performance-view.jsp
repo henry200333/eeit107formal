@@ -349,11 +349,62 @@
 						</div>
 					</div>
 					<div class="col-2" id="subdiv">
-						<button type="button" class="btn btn-danger" id="sub">
-							<i class="fas fa-plus" style="color: white" id="subpic"></i><span id="subhtml"> 訂閱</span>
-						</button>
+						
 					</div>
 					<script>
+					//判斷是否有訂閱決定按鈕
+					var thispid = $("#thisp").val();
+					var thisuser = $("#thisuser").val();
+					$.ajax({
+								url:'/user/performance/checksus',
+								data:{
+									"id":thispid,
+									"username":thisuser									
+								},
+								success:function(data){
+									if(data==true){
+										$("#subdiv").html("<button type='button' class='btn btn-success' id='subed'><i class='fas fa-star' style='color: white' id='subpic'></i><span id='subhtml'> 已是好友</span></button>");
+										$("#subed").click(function(){
+											var username = $(".artist").html();
+											$.ajax({
+												url:'/user/performance/suscribedel',
+												data:{
+													"id":thispid,
+													"username":thisuser									
+												},
+												success:function(data){
+													
+												}
+											//
+									})
+											alert("取消訂閱使用者"+username);
+											$("#subed").attr('class','btn btn-danger');
+											$("#subed").attr('id','sub');
+											$("#subpic").attr('class','fas fa-plus');
+											$("#subhtml").html("訂閱");
+											location.reload();
+											
+											
+										})
+									}else{
+										$("#subdiv").html("<button type='button' class='btn btn-danger' id='sub'><i class='fas fa-plus' style='color: white' id='subpic'></i><span id='subhtml'> 加好友</span></button>");
+										$("#sub").click(function(){
+											var user = $("#thisuser").val();
+											if(user=="anonymousUser"){
+												var login = confirm("請先登入");
+												if(login==true){window.open("/login")+(location.href).substring(7);}
+											}else{
+												window.location.href="/${userinf.account}";
+											}
+											
+										})					
+									}
+									
+									
+								}
+							//
+					})
+					
 // 					判斷發布者與登入者是否相同---------------------------------------------------------------------
 					var thispid = $("#thisp").val();
 					var thisuser = $("#thisuser").val();
@@ -403,38 +454,6 @@
 																
 							}
 						}
-					})
-					
-					
-					
-					$("#sub").click(function(){
-						var user = $("#thisuser").val();
-						if(user=="anonymousUser"){
-							var login = confirm("請先登入");
-							if(login==true){window.open("/login")+(location.href).substring(7);}
-						}else{
-							//新增好友
-							var thispid = $("#thisp").val();
-							$.ajax({
-								url:'/user/performance/addfriend',
-								data:{"id":thispid,
-									"username":user									
-								},
-								success:function(data){
-									
-								}
-							//
-					})
-							
-							var username = $(".artist").html();
-							alert("訂閱使用者"+username);
-							$("#sub").attr('class','btn btn-success');
-							$("#subpic").attr('class','fas fa-star');
-							$("#subhtml").html("已訂閱");
-							
-							
-						}
-						
 					})
 					</script>
 				</div>
