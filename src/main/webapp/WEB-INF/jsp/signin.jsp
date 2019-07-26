@@ -49,7 +49,7 @@
 				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178"
 					action="/login" method="POST" name="f">
 					<span class="login100-form-title"> Jayee </span>
-					<div class="wrap-input100 validate-input m-b-16"
+					<div  class="wrap-input100 validate-input m-b-16"
 						data-validate="請輸入帳號或電子信箱">
 						<input class="input100" type="text" name="username"
 							autofocus="autofocus" value="" placeholder="帳號或電子信箱"> <span
