@@ -37,12 +37,10 @@
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">留言列表</h1>
-						<div><button type="button" id='exportExcel'
+						<button type="button" id='exportExcel'
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> 下載Excel</button>
-							<button type="button" id='exportPDF'
-							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> 下載 PDF</button></div>
+							class="fas fa-download fa-sm text-white-50"></i>下載資料</button>
+					
 					</div>
 					<form id="searchForm" class="user">
 			            <div class="form-group row">
@@ -116,7 +114,6 @@
 	<script src="/resources/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/css/ui.jqgrid.css" type="text/javascript"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.57/pdfmake.js"></script>
 	
 	</div>
 	
@@ -124,106 +121,9 @@
 	
 		<table id="forExcel"></table>
 		<div id="forExcelpager"  style='display=:none'></div>
-		<table id="forPDF"></table>
-		<div id="forPDFpager"  style='display=:none'></div>		
-		<button type="button" onclick='abc()'>test0725</button>
-	<script>
-	function abc(){
-		$.ajax({
-			url:'/forum/test0725',
-			dataType:'application/x-download',
-			success:function(data){
-				
-			}
-		})
-	}
-	</script>
 	<script>
 	var totaldata;
 	
-	$("#exportPDF").on("click", function(){		
-		$("#forPDF").jqGrid({
-			iconSet : "fontAwesome",
-			url : '/admin/forum/query',
-			datatype : 'json',
-			mtype : 'GET',
-			styleUI : 'Bootstrap4',
-			colModel : [ {
-				name : 'id',
-				index : 'id',
-				width : 5
-			}, //設定第一個欄位為id，並且index設成id為到時候ajax回server side連結時使用的parameter。並且設定為不可做排序。
-			{
-				name : 'forumBoard',
-				index : 'forumBoard',
-				width : 20
-			}, {
-				name : 'refId',
-				index : 'refId',
-				width : 10
-			}, {
-				name : 'refCommentId',
-				index : 'refCommentId',
-				width : 15
-			}, {
-				name : 'userName',
-				index : 'userName',
-				width : 15
-			}, {
-				name : 'comment',
-				index : 'comment',
-				width : 50
-			}, {
-				name : 'commentDate',
-				index : 'commentDate',
-				width : 25
-			}, {
-				name : 'likeCount',
-				index : 'likeCount',
-				width : 15
-			}, {
-				name : 'dislikeCount',
-				index : 'dislikeCount',
-				width : 15,
-				align : 'right'
-			}],
-			prmNames : {
-				search : null,
-				nd : null
-			},
-			pager : '#forExcelpager',
-			page : 1,
-			autowidth : true,
-			shrinkToFit : true,
-			height : 'auto',
-			rowNum : totaldata,
-			rowList : [totaldata],
-			sortname : 'id',
-			sortorder : "asc",
-			viewrecords : true,
-			loadonce:true,
-			altRows : true,
-			gridComplete:function(){	
-				$("#gbox_forPDF").hide();
-		            $("#forPDF").jqGrid("exportToPdf", {
-		                onBeforeExport: function (doc) {
-		                    doc.styles.tableBody.fontSize = 10;	                    
-		                },
-		                title: '課程列表',
-		                orientation: 'portrait',
-		                pageSize: 'A4',
-		                description: '課程列表',
-						download: 'download',
-		                includeLabels: true,
-		                includeGroupHeader: true,
-		                includeFooter: true,
-		                fileName: "ExportPDF.pdf" 
-		        })
-			}
-		});	
-	})
-	
-	//PDF結束	
 	$("#exportExcel").on("click", function(){		
 		$("#forExcel").jqGrid({
 			iconSet : "fontAwesome",
@@ -263,11 +163,11 @@
 			}, {
 				name : 'likeCount',
 				index : 'likeCount',
-				width : 15
+				width : 5
 			}, {
 				name : 'dislikeCount',
 				index : 'dislikeCount',
-				width : 15,
+				width : 5,
 				align : 'right'
 			}],
 			prmNames : {

@@ -2,6 +2,7 @@ package org.iii.seaotter.jayee.web;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -129,28 +130,6 @@ public class ForumController {
 	public  List<Forum> getUserDislike(@RequestParam String account) {	
 		
 		return securityUserService.getByUserName(account).getForumDislikes();
-	}
-	
-@GetMapping("/test0725")
-public void test0725(HttpServletResponse resp) throws IOException{
-	String  mimetype = "application/x-download";
-	resp.setCharacterEncoding("utf-8");
-	resp.setHeader("Content-Disposition","attachment; filename=" + "123.xlsx");
-	resp.setContentType(mimetype);
-	File xlsx = new File("C:/Users/User/Desktop/157.xlsx"); // or whatever your file is
-	FileInputStream in = new FileInputStream(xlsx);
-	OutputStream out = resp.getOutputStream();
-
-	byte[] buffer= new byte[8192]; // use bigger if you want
-	int length = 0;
-
-	while ((length = in.read(buffer)) > 0){
-	     out.write(buffer, 0, length);
-	}
-	resp.flushBuffer();
-	in.close();
-	out.close();
-	
-}
+	}	
 	
 }

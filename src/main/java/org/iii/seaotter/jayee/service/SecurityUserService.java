@@ -54,10 +54,10 @@ public class SecurityUserService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
-		if (securityUserDao.findByAccount(account) != null)
-			return securityUserDao.findByAccount(account);
-		else
+		if (account.contains("@"))
 			return securityUserDao.findByMail(account);
+		else
+			return securityUserDao.findByAccount(account);
 	}
 
 	public SecurityUser findUserBean(String account) throws UsernameNotFoundException {
@@ -112,6 +112,14 @@ public class SecurityUserService implements UserDetailsService {
 		friend.setFriends(friendfriends);
 		securityUserDao.save(friend);
 		return;
+	}
+	
+// 單向訂閱
+	public void suscribe(SecurityUser self , SecurityUser artist) {
+		List<SecurityUser> selffriends = self.getFriends();
+		selffriends.add(artist);
+		self.setFriends(selffriends);
+		securityUserDao.save(self);
 	}
 
 	public List<Performance> findPlikesByUserId(Long id) {
@@ -183,6 +191,7 @@ public class SecurityUserService implements UserDetailsService {
 		emailSenderService.sendMail(mailMessage);
 		
 	}
+	
 	
 	public SearchUser checkPasswordReset(String passwordResetToken) {
 		PasswordResetToken token = passwordResetTokenRepository.findByPasswordToken(passwordResetToken);

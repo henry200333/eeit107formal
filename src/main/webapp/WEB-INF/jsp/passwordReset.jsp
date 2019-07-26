@@ -39,6 +39,9 @@
 <!--===============================================================================================-->
 </head>
 <body>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+		crossorigin="anonymous"></script>
 	<jsp:include page="topbar.jsp"></jsp:include>
 	<div class="limiter">
 		<div class="container-login100">
@@ -47,22 +50,24 @@
 					<div style="color: red; font-weight: bold; margin: 30px 0px;">${errorMessage}</div>
 				</c:if>
 				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178"
-					action="/resetPassword" method="POST" name="f">
-					<span class="login100-form-title"> Jayee </span>
-					<input type="text" hidden="hidden" name="username" value="${user.account }">
+					action="/resetPassword" method="POST" name="f" onsubmit="return check()">
+					<span class="login100-form-title"> Jayee </span> <input type="text"
+						hidden="hidden" name="username" value="${user.account }">
 					<div class="wrap-input100 validate-input m-b-16"
 						data-validate="請輸入新密碼">
-						<input class="input100" type="password" name="password" value=""
-							placeholder="新密碼"> <span class="focus-input100"></span>
+						<input class="input100" type="password" name="password"
+							id="password" value="" placeholder="新密碼"> <span
+							class="focus-input100"></span>
 					</div>
-					<div class="wrap-input100 validate-input m-b-16" data-validate="請確認密碼">
-						<input class="input100" type="password" name="checked-password"
-							value="" placeholder="確認密碼"> <span class="focus-input100"></span>
+					<div class="wrap-input100 validate-input m-b-16"
+						data-validate="請確認密碼">
+						<input class="input100" type="password" name="checked"
+							id="checked" value="" placeholder="確認密碼"> <span
+							class="focus-input100"></span>
 					</div>
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" type="submit">重設密碼</button>
+						<button class="login100-form-btn" type="submit" >重設密碼</button>
 					</div>
-
 					<div class="flex-col-c p-t-170 p-b-40">
 						<span class="txt1 p-b-9"> 還沒有帳號嗎? </span> <a href="/register"
 							class="txt3"> 馬上註冊! </a>
@@ -72,6 +77,27 @@
 		</div>
 	</div>
 
+	<script>
+	function check(){
+		var check = false;
+		$('#checked').blur(function(input) {
+			var check = false;
+			var pass = $('#password').val();
+			var confirm = $('#checked').val();
+			if (pass != confirm){
+				check = false;
+			}else {
+				check = true;
+			}
+			return check;
+		});
+		if (!check){
+			alert('密碼輸入不一致')
+		}
+		return check
+	}
+			
+	</script>
 	<!--===============================================================================================-->
 	<script src="/resources/login/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->

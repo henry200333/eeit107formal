@@ -223,5 +223,9 @@ color:#ffaad5;
 		
 
 		</div>
+			<!-- 	footer開始，包含聊天 -->
+	<jsp:include page="../chat.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include>
+	<!-- 	footer結束 -->
 </body>
 </html>
