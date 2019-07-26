@@ -4,30 +4,19 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-
 import org.iii.seaotter.jayee.common.AjaxResponse;
 import org.iii.seaotter.jayee.common.AjaxResponseType;
-import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.common.Message;
 import org.iii.seaotter.jayee.entity.Activity;
+import org.iii.seaotter.jayee.entity.Notice;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.PerformanceService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -353,4 +342,61 @@ public class PerformanceController {
 		return true;
 	}
 
+	//訂閱
+	@RequestMapping("/suscribe")
+	@ResponseBody
+	public boolean suscribe(@RequestParam("username") String username,@RequestParam("id") Long thispid) {
+		SecurityUser self  = SecurityUserService.getByUserName(username);
+		Performance thisp = performanceService.getById(thispid);
+		SecurityUser artist  = SecurityUserService.getById(thisp.getUserpId());
+		SecurityUserService.suscribe(self, artist);
+		return true;
+	}
+	@RequestMapping("/suscribedel")
+	@ResponseBody
+	public boolean suscribedel(@RequestParam("username") String username,@RequestParam("id") Long thispid) {
+		SecurityUser self  = SecurityUserService.getByUserName(username);
+		Performance thisp = performanceService.getById(thispid);
+		List<SecurityUser> friends = self.getFriends();
+		System.out.println(friends.size());
+		for(int i = 0 ;i<friends.size();i++) {
+			SecurityUser friend = friends.get(i);
+			if(friend.getUserId()==thisp.getUserpId()) {
+				friends.remove(i);
+				i--;
+			}
+		}
+		//		for(SecurityUser friend : friends) {
+//			if(friend.getUserId()==thisp.getUserpId()) {
+//				friends.remove(friend);
+//			}
+//		}
+		self.setFriends(friends);
+		SecurityUserService.update(self);
+		return true;
+	}
+	
+	@RequestMapping("/checksus")
+	@ResponseBody
+	public boolean checksus(@RequestParam("username") String username,@RequestParam("id") Long thispid) {
+		SecurityUser self  = SecurityUserService.getByUserName(username);
+		Performance thisp = performanceService.getById(thispid);
+		List<SecurityUser> friends = self.getFriends();
+		for(SecurityUser friend : friends) {
+			if(friend.getUserId()==thisp.getUserpId()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	@RequestMapping("/notice")
+	@ResponseBody
+	public boolean notice() {
+		Performance performancenew = performanceService.findTopByOrderByIdDesc();
+		Long pid = performancenew.getId();
+		Notice notice = new Notice();
+		//SecurityUser artist = 
+		return true;
+	}
 }

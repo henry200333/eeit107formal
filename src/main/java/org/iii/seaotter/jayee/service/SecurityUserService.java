@@ -113,6 +113,14 @@ public class SecurityUserService implements UserDetailsService {
 		securityUserDao.save(friend);
 		return;
 	}
+	
+// 單向訂閱
+	public void suscribe(SecurityUser self , SecurityUser artist) {
+		List<SecurityUser> selffriends = self.getFriends();
+		selffriends.add(artist);
+		self.setFriends(selffriends);
+		securityUserDao.save(self);
+	}
 
 	public List<Performance> findPlikesByUserId(Long id) {
 		return securityUserDao.findPlikesByUserId(id);
@@ -183,6 +191,7 @@ public class SecurityUserService implements UserDetailsService {
 		emailSenderService.sendMail(mailMessage);
 		
 	}
+	
 	
 	public SearchUser checkPasswordReset(String passwordResetToken) {
 		PasswordResetToken token = passwordResetTokenRepository.findByPasswordToken(passwordResetToken);

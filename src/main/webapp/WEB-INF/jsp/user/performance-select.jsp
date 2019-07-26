@@ -360,7 +360,16 @@ margin-top:20px;
  																				})
  																			}
  																			if(flag){
- 																				alert("表演資料新增成功，將回到表演列表。");
+ 																				alert("表演"+ j+"個資料新增成功，將回到表演列表。");
+ 																				for(var z=1;z<=(j-1);z++){
+ 																					$.ajax({
+ 																						url:"/user/performance/notice",
+ 																						type:"POST",
+ 																						success:function(data){
+ 																							console.log("通知新增成功");
+ 																						}
+ 																					})
+ 																				}
  																				window.location.href="/performances";
  																			}
  																		}
