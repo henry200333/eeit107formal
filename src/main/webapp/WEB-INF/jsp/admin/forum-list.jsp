@@ -163,11 +163,11 @@
 			}, {
 				name : 'likeCount',
 				index : 'likeCount',
-				width : 15
+				width : 5
 			}, {
 				name : 'dislikeCount',
 				index : 'dislikeCount',
-				width : 15,
+				width : 5,
 				align : 'right'
 			}],
 			prmNames : {
