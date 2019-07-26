@@ -124,8 +124,8 @@ public class UserJobController {
 		vender.setUser(null);
 		model.addAttribute("vender", vender);
 		model.addAttribute("user", user);
-		System.out.println(user.getAccount());
-		System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
+//		System.out.println(user.getAccount());
+//		System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
 		if(user.getAccount().equals(SecurityContextHolder.getContext().getAuthentication().getName())){
 			
 		
@@ -385,6 +385,7 @@ public class UserJobController {
 		job.setAddress(vender.getAddress());
 		job.setVenderName(jobinf.get("venderName"));
 		job.setName(jobinf.get("name"));
+		job.setDetal(jobinf.get("detal"));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try {
 //			System.out.println((Date)sdf.parse(jobinf.get("jobTime")));
