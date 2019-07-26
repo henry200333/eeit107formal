@@ -59,7 +59,7 @@
 						<h1 class="h3 mb-0 text-gray-800">表演列表</h1>
 						<button type="button" id='exportExcel'
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> 下載Excel</button>
+							class="fas fa-download fa-sm text-white-50"></i>下載資料</button>
 
 					</div>
 					<form id="searchTitle" class="user">
