@@ -11,4 +11,6 @@ public interface NoticeDao extends JpaRepository<Notice, Long>,JpaSpecificationE
 	
 	public List<Notice> findByReceiver(Long receiverId);
 	public List<Notice> findByReceiverAndFriendstatusOrderBySendtimeDesc(Long receiverId,String friendStatus);
+	public Notice findByReceiverAndSender(Long receiver,Long Sender);
+	
 }

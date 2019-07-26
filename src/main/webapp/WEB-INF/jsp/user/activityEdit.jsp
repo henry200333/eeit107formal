@@ -209,14 +209,14 @@
 							class="btn btn-primary btn-user btn-block">
 							<span class="icon text-white-50"> <i
 								class="fas fa-file-import"></i>
-							</span> <span class="text"> Edit This Activity</span>
+							</span> <span class="text"> 編輯活動</span>
 						</button>
 
 						<button id="reset" type="button"
 							class="btn btn-danger btn-user btn-block">
 							<span class="icon text-white-50"> <i
 								class="fas fa-file-excel"></i>
-							</span> <span class="text"> Reset Input</span>
+							</span> <span class="text"> 取消</span>
 						</button>
   
 </div>

@@ -1,11 +1,15 @@
 package org.iii.seaotter.jayee.web;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.iii.seaotter.jayee.entity.Notice;
 import org.iii.seaotter.jayee.entity.SearchUser;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.ArtistService;
+import org.iii.seaotter.jayee.service.NoticeService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -27,11 +32,14 @@ public class SecurityUserController {
 	@Autowired
 	private ArticleService articleService;
 
+	@Autowired
+	private NoticeService noticeService;
+
 	@RequestMapping("/{username}")
 	public String userPage(@PathVariable String username, Model model) {
 		SearchUser user = new SearchUser();
 		SecurityUser source = securityUserService.getByUserName(username);
-		model.addAttribute("plike",source.getPlikes());
+		model.addAttribute("plike", source.getPlikes());
 		BeanUtils.copyProperties(source, user);
 		model.addAttribute("userParam", user);
 		model.addAttribute("articleParam", articleService.getByAnnouncedUserId(source.getUserId()));
@@ -40,7 +48,8 @@ public class SecurityUserController {
 
 	@RequestMapping("/settings/profile")
 	public String edit(Model model) {
-		SecurityUser user = securityUserService.getByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+		SecurityUser user = securityUserService
+				.getByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
 		model.addAttribute("userParam", user);
 		return "/user/edit";
 	}
@@ -61,4 +70,42 @@ public class SecurityUserController {
 		securityUserService.update(user);
 		return returnValue;
 	}
+
+	@PostMapping("/add/friend")
+	@ResponseBody
+	public Long addFriend(@RequestParam("reciever") String reciever) {
+		return noticeService.addFriendNotice(reciever);
+	}
+	
+	@PostMapping("/dis/friend")
+	@ResponseBody
+	public void disFriend(@RequestParam("noticeId") Long noticeId) {
+		noticeService.disFriendNotice(noticeId);
+	}
+	
+	@PostMapping("/check/friend")
+	@ResponseBody
+	public Map<String,String> checkFriend(@RequestParam Map<String,String> data) {
+		Map<String,String> res=new HashMap<>();
+		SecurityUser user=securityUserService.getByUserName(data.get("username"));
+		Long userId=user.getUserId();
+		Long friendId =securityUserService.getByUserName(data.get("friendname")).getUserId();
+		for(int i=0;i<user.getFriends().size();i++) {
+			if(user.getFriends().get(i).getUserId().equals(friendId)) {
+				res.put("status", "已是好友");
+				return res;
+			};
+		}
+		
+		if(noticeService.checkFriendNotice(userId, friendId)) {
+			res.put("status", "申請中");
+			res.put("noticeId", noticeService.getReceiverAndSender(userId, friendId).toString());
+			return res;
+		}else {
+			res.put("status", "可申請");
+			return res;
+		}
+	}
+	
+	
 }

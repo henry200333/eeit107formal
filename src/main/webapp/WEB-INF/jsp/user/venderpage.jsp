@@ -91,7 +91,7 @@ html, body {
 
 		<div >
 		<div  class='row' style='margin-left: 2%; margin-right: 2%'>
-		<div class='col-sm-10 mb-0 mb-sm-0'></div><div class='col-sm-2 mb-0 mb-sm-0' id='addnewjob'><label
+		<div class='col-sm-10 mb-0 mb-sm-0'></div><div class='col-sm-2 mb-0 mb-sm-0' id='addnewjob' onclick='addnewjob()'><label
 		class='btn btn-primary my-2 my-sm-0'>新增工作</label></div>
 		</div>
 			<div  class='row' style='border: solid 1px silver; margin-left: 2%; margin-right: 2%' id='joblist'> 
@@ -197,8 +197,9 @@ html, body {
 
 <script>
 
-
-
+function addnewjob(){
+	window.location.assign('/job/vender/'+${vender.id}+'/newjob');
+}
 
 
 	

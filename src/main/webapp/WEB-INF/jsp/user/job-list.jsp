@@ -12,6 +12,7 @@
 
 <!-- Topbar -->
 <jsp:include page="../topbar.jsp"></jsp:include>
+
 <body id="page-top">
 
 	<!-- Page Wrapper -->
@@ -286,7 +287,7 @@
 							$.each(data.rows,function(key, obj) {
 												txt += "<form class='col-sm-4 mb-0 mb-sm-0' style='padding: 5px;background:white'><div style='border: solid;background:#DDDDDD'><div class='col-sm-12 mb-3 mb-sm-3'><h2 class=' h3 mb-0 text-gray-800'>"
 												txt += obj.name;
-												txt += "</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>店家:</label><br><a href='/job/vender/";
+												txt += "</h2></div><div class='col-sm-12 mb-3 mb-sm-3'><label class=' h4 mb-0 text-gray-800'>店家:</label><br><a style='color:red;' href='/job/vender/";
 												txt += obj.vender.id;
 												txt += "'class=' h4 mb-0 text-gray-800'>";
 												txt += obj.venderName;

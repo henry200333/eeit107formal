@@ -55,7 +55,7 @@
 							<div class="col-sm-4 mb-3 mb-sm-0">
 								<label for="artist">表演者:</label> <input type="text"
 									class="form-control form-control-user" id="artist"
-									name="artist" placeholder="Artist" autocomplete="off">
+									name="artist" placeholder="" autocomplete="off">
 							</div>
 							<div class="col-sm-6 mb-3 mb-sm-0"></div>
 						</div>

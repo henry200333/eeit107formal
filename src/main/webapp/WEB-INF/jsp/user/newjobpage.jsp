@@ -127,7 +127,7 @@
 // 				contentType : "application/json",
 				success : function(data) {
 					if (data["success"] != null)
-						window.location.assign("/admin/vender/list");
+						window.location.assign("/job/vender/"+${vender.id});
 				}
 			})
 		})

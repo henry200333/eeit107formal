@@ -54,10 +54,10 @@ public class SecurityUserService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
-		if (securityUserDao.findByAccount(account) != null)
-			return securityUserDao.findByAccount(account);
-		else
+		if (account.contains("@"))
 			return securityUserDao.findByMail(account);
+		else
+			return securityUserDao.findByAccount(account);
 	}
 
 	public SecurityUser findUserBean(String account) throws UsernameNotFoundException {
@@ -213,5 +213,9 @@ public class SecurityUserService implements UserDetailsService {
 	
 	public List<SecurityUser> getAll(){
 		return securityUserDao.findAll();
+	}
+	
+	public List<SecurityUser> getByDisplayName(String displayName){
+		return securityUserDao.findByDisplayNameContaining(displayName);
 	}
 }

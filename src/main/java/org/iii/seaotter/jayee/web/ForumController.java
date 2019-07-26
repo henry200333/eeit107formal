@@ -1,8 +1,13 @@
 package org.iii.seaotter.jayee.web;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.iii.seaotter.jayee.entity.Forum;
@@ -12,6 +17,7 @@ import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -124,5 +130,27 @@ public class ForumController {
 		
 		return securityUserService.getByUserName(account).getForumDislikes();
 	}
+	
+@GetMapping("/test0725")
+public void test0725(HttpServletResponse resp) throws IOException{
+	String  mimetype = "application/x-download";
+	resp.setCharacterEncoding("utf-8");
+	resp.setHeader("Content-Disposition","attachment; filename=" + "123.xlsx");
+	resp.setContentType(mimetype);
+	File xlsx = new File("C:/Users/User/Desktop/157.xlsx"); // or whatever your file is
+	FileInputStream in = new FileInputStream(xlsx);
+	OutputStream out = resp.getOutputStream();
+
+	byte[] buffer= new byte[8192]; // use bigger if you want
+	int length = 0;
+
+	while ((length = in.read(buffer)) > 0){
+	     out.write(buffer, 0, length);
+	}
+	resp.flushBuffer();
+	in.close();
+	out.close();
+	
+}
 	
 }

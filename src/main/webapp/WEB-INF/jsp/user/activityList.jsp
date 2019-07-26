@@ -93,14 +93,15 @@ $("#searchBT").click(function searchBT(){
 		dataType : 'json',
 		success : function(res) {
 	 			var txt6 ="";
-		 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
+		 		
 		 		//加活動名稱區
 		 		txt3="</a></h4><p class='card-text'>";
 		 		//加文章區
 		 		txt4="</p></div></div></div>";
 		 		$.each(res.rows,function(index,value){
+		 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
 		 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
-		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
+		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
 		 			txt6 += txt5;
 		 		 })
 				totalPage = res.total;
@@ -125,14 +126,15 @@ function type11(obj){
 		dataType : 'json',
 		success : function(res) {
 	 			var txt6 ="";
-		 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
+		 		
 		 		//加活動名稱區
 		 		txt3="</a></h4><p class='card-text'>";
 		 		//加文章區
 		 		txt4="</p></div></div></div>";
 		 		$.each(res.rows,function(index,value){
+		 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
 		 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
-		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
+		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
 		 			txt6 += txt5;
 		 		 })
 				$("#dataBody").append(txt6);
@@ -185,14 +187,15 @@ function showjobs(page) {
 		data:{'page':page,'rows':rows},
 		success : function(data) {
 	 		var txt6 ="";
-	 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
+	 		
 	 		//加活動名稱區
 	 		txt3="</a></h4><p class='card-text'>";
 	 		//加文章區
 	 		txt4="</p></div></div></div>";
 	 		$.each(data.rows,function(index,value){
+	 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
 	 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
-	 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
+	 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
 	 			txt6 += txt5;
 	 		 })
 			$("#dataBody").append(txt6);
@@ -226,14 +229,15 @@ $(window).scroll(function(){
 						 		var txt6 ="";
 								
 						 		//加圖片處
-						 		txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='#'>";
+						 		
 						 		//加活動名稱區
 						 		txt3="</a></h4><p class='card-text'>";
 						 		//加文章區
 						 		txt4="</p></div></div></div>";
 						 		$.each(data.rows,function(index,value){
+						 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
 						 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
-						 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 + value['description'] +"   "+value['perfType']+txt4;
+						 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
 						 			txt6 += txt5;
 						 		 })
 								$("#dataBody").append(txt6);
