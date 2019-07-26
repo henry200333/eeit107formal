@@ -26,10 +26,10 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <button class="nav-link" id='newActivity'>新增活動</button>
+          <button class="btn btn-primary" id='newActivity'>新增活動</button>
         </li>
         <li class="nav-item  active">
-          <button class="nav-link" >查詢頁面
+          <button class="btn btn-muted" >查詢頁面
           	<span class="sr-only"></span>
           </button>
         </li>
@@ -93,18 +93,30 @@ $("#searchBT").click(function searchBT(){
 		dataType : 'json',
 		success : function(res) {
 	 			var txt6 ="";
-		 		
-		 		//加活動名稱區
-		 		txt3="</a></h4><p class='card-text'>";
-		 		//加文章區
-		 		txt4="</p></div></div></div>";
 		 		$.each(res.rows,function(index,value){
-		 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
-		 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
-		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
-		 			txt6 += txt5;
+		 			if(value['activityStatus']==0){
+		 				txt3="</a></h4><div style='text-decoration: underline'><i class='fab fa-hotjar' style='color:Orange'></i>活動進行中！</div><p class='card-text'>";
+			 			txt4="</p></div></div></div>";
+			 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
+			 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+			 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
+			 			txt6 += txt5;
+		 			}else if(value['activityStatus']==1){
+		 				txt3="</a></h4><div style='text-decoration: underline'><i class='far fa-clock' style='color:LimeGreen'></i>活動尚未舉辦...</div><p class='card-text'>";
+			 			txt4="</p></div></div></div>";
+			 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
+			 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+			 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
+			 			txt6 += txt5;
+		 			}else if(value['activityStatus']==2){
+		 				txt3="</a></h4><div style='text-decoration: underline'><i class='fas fa-bed' style='color:RoyalBlue'></i>活動已結束！</div><p class='card-text'>";
+			 			txt4="</p></div></div></div>";
+			 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
+			 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+			 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
+			 			txt6 += txt5;
+		 			}
 		 		 })
-				totalPage = res.total;
 				$("#dataBody").append(txt6);
 		}
 	})
@@ -126,16 +138,29 @@ function type11(obj){
 		dataType : 'json',
 		success : function(res) {
 	 			var txt6 ="";
-		 		
-		 		//加活動名稱區
-		 		txt3="</a></h4><p class='card-text'>";
-		 		//加文章區
-		 		txt4="</p></div></div></div>";
-		 		$.each(res.rows,function(index,value){
-		 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
-		 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
-		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
-		 			txt6 += txt5;
+		 		$.each(res.rows,function(index,value){	
+		 			if(value['activityStatus']==0){
+		 				txt3="</a></h4><div style='text-decoration: underline'><i class='fab fa-hotjar' style='color:Orange'></i>活動進行中！</div><p class='card-text'>";
+			 			txt4="</p></div></div></div>";
+			 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
+			 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+			 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
+			 			txt6 += txt5;
+		 			}else if(value['activityStatus']==1){
+		 				txt3="</a></h4><div style='text-decoration: underline'><i class='far fa-clock' style='color:LimeGreen'></i>活動尚未舉辦...</div><p class='card-text'>";
+			 			txt4="</p></div></div></div>";
+			 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
+			 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+			 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
+			 			txt6 += txt5;
+		 			}else if(value['activityStatus']==2){
+		 				txt3="</a></h4><div style='text-decoration: underline'><i class='fas fa-bed' style='color:RoyalBlue'></i>活動已結束！</div><p class='card-text'>";
+			 			txt4="</p></div></div></div>";
+			 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
+			 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+			 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
+			 			txt6 += txt5;
+		 			}
 		 		 })
 				$("#dataBody").append(txt6);
 		 		totalPage = res.total;
@@ -187,16 +212,29 @@ function showjobs(page) {
 		data:{'page':page,'rows':rows},
 		success : function(data) {
 	 		var txt6 ="";
-	 		
-	 		//加活動名稱區
-	 		txt3="</a></h4><p class='card-text'>";
-	 		//加文章區
-	 		txt4="</p></div></div></div>";
 	 		$.each(data.rows,function(index,value){
-	 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
-	 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
-	 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
-	 			txt6 += txt5;
+	 			if(value['activityStatus']==0){
+	 				txt3="</a></h4><div style='text-decoration: underline'><i class='fab fa-hotjar' style='color:Orange'></i>活動進行中！</div><p class='card-text'>";
+		 			txt4="</p></div></div></div>";
+		 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
+		 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
+		 			txt6 += txt5;
+	 			}else if(value['activityStatus']==1){
+	 				txt3="</a></h4><div style='text-decoration: underline'><i class='far fa-clock' style='color:LimeGreen'></i>活動尚未舉辦...</div><p class='card-text'>";
+		 			txt4="</p></div></div></div>";
+		 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
+		 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
+		 			txt6 += txt5;
+	 			}else if(value['activityStatus']==2){
+	 				txt3="</a></h4><div style='text-decoration: underline'><i class='fas fa-bed' style='color:RoyalBlue'></i>活動已結束！</div><p class='card-text'>";
+		 			txt4="</p></div></div></div>";
+		 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
+		 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+		 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
+		 			txt6 += txt5;
+	 			}
 	 		 })
 			$("#dataBody").append(txt6);
 // 	 		page++;
@@ -227,18 +265,29 @@ $(window).scroll(function(){
 							data:{'page':page,'rows':rows,'actType':actType,'find':find},
 							success : function(data) {
 						 		var txt6 ="";
-								
-						 		//加圖片處
-						 		
-						 		//加活動名稱區
-						 		txt3="</a></h4><p class='card-text'>";
-						 		//加文章區
-						 		txt4="</p></div></div></div>";
 						 		$.each(data.rows,function(index,value){
-						 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
-						 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
-						 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
-						 			txt6 += txt5;
+						 			if(value['activityStatus']==0){
+						 				txt3="</a></h4><div style='text-decoration: underline'><i class='fab fa-hotjar' style='color:Orange'></i>活動進行中！</div><p class='card-text'>";
+							 			txt4="</p></div></div></div>";
+							 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
+							 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+							 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
+							 			txt6 += txt5;
+						 			}else if(value['activityStatus']==1){
+						 				txt3="</a></h4><div style='text-decoration: underline'><i class='far fa-clock' style='color:LimeGreen'></i>活動尚未舉辦...</div><p class='card-text'>";
+							 			txt4="</p></div></div></div>";
+							 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
+							 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+							 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
+							 			txt6 += txt5;
+						 			}else if(value['activityStatus']==2){
+						 				txt3="</a></h4><div style='text-decoration: underline'><i class='fas fa-bed' style='color:RoyalBlue'></i>活動已結束！</div><p class='card-text'>";
+							 			txt4="</p></div></div></div>";
+							 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
+							 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+							 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+"<br><div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+txt4;
+							 			txt6 += txt5;
+						 			}
 						 		 })
 								$("#dataBody").append(txt6);
 						 		totalPage = data.total;

@@ -47,12 +47,12 @@ html, body {
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <button class="nav-link">新增活動
+          <button class="btn btn-muted">新增活動
                 <span class="sr-only">(current)</span>
               </button>
         </li>
         <li class="nav-item">
-          <button class="nav-link" onclick='javascript:window.location.assign("/activity/list")'>返回查詢頁面</button>
+          <button class="btn btn-primary" onclick='javascript:window.location.assign("/activity/list")'>返回查詢頁面</button>
         </li>
       </ul>
     </div>
@@ -90,24 +90,24 @@ html, body {
   </form>
   
   <script>
-  	$("#clickUpdatePhoto").click(function(){
-  		$("#imageFile").trigger("click");
-  	});
-  	$("#imageFile").change(function() {
-		$("#clickUpdatePhoto").html("<img src='' style='height:280px;border-radius:20px;width:500px' id='activityPic'>");
-		readURL(this);
-		$("#pictureSubmit").trigger("click");
-	});
+//   	$("#clickUpdatePhoto").click(function(){
+//   		$("#imageFile").trigger("click");
+//   	});
+//   	$("#imageFile").change(function() {
+// 		$("#clickUpdatePhoto").html("<img src='' style='height:280px;border-radius:20px;width:500px' id='activityPic'>");
+// 		readURL(this);
+// 		$("#pictureSubmit").trigger("click");
+// 	});
 
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				$("#activityPic").attr('src', e.target.result);
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
+// 	function readURL(input) {
+// 		if (input.files && input.files[0]) {
+// 			var reader = new FileReader();
+// 			reader.onload = function(e) {
+// 				$("#activityPic").attr('src', e.target.result);
+// 			}
+// 			reader.readAsDataURL(input.files[0]);
+// 		}
+// 	}
   	
   	
   	</script>

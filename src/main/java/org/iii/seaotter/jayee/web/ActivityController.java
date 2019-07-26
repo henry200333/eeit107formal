@@ -1,8 +1,7 @@
 package org.iii.seaotter.jayee.web;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -19,11 +18,13 @@ import org.iii.seaotter.jayee.common.GridResponse;
 import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Article;
 import org.iii.seaotter.jayee.entity.Location;
+import org.iii.seaotter.jayee.entity.Notice;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.mail.EmailSenderService;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.LocationService;
+import org.iii.seaotter.jayee.service.NoticeService;
 import org.iii.seaotter.jayee.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,7 +32,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -63,6 +63,9 @@ public class ActivityController {
 	
 	@Autowired
 	EmailSenderService emailSenderService;
+	
+	@Autowired
+	NoticeService noticeService;
 
 	@RequestMapping(value= {"/list","/view"})
 	public String list() {
@@ -218,10 +221,21 @@ public class ActivityController {
 	public AjaxResponse<Activity> insert(Activity activity) {
 		String userName=SecurityContextHolder.getContext().getAuthentication().getName();
 		Long currentUserId =securityUserService.getByUserName(userName).getUserId();
+		List<SecurityUser> friendList = securityUserService.getById(currentUserId).getFriends();
+		Date date = new java.util.Date();
+		for(SecurityUser friend:friendList) {
+			Notice notice = new Notice();
+			notice.setContent(securityUserService.getById(currentUserId).getDisplayName()+"已新增活動: "+activity.getName()+"，點我觀看");
+			notice.setReaded(false);
+			notice.setReceiver(friend.getUserId());
+			notice.setUrl("/activity/view/"+(activityService.getAll().size()+1));
+			notice.setSendtime(date);
+			noticeService.save(notice);	
+		}
+	
 		activity.setUseraId(currentUserId);
-		activity.setActivityStatus(1L);;
+		activity.setActivityStatus(1L);
 		activity.setNoticed(0L);
-		System.out.println("即將新增資料:"+activity);
 		AjaxResponse<Activity> aJaxResp=new AjaxResponse<>();
 		activity.setAwesomeNum(0L);
 		activity=activityService.insert(activity);
@@ -238,7 +252,21 @@ public class ActivityController {
 	@ResponseBody
 	public AjaxResponse<Activity> update(Activity activity) {
 		AjaxResponse<Activity> aJaxResp=new AjaxResponse<>();
-		System.out.println(activity);
+		String userName=SecurityContextHolder.getContext().getAuthentication().getName();
+		Long currentUserId =securityUserService.getByUserName(userName).getUserId();
+		List<SecurityUser> friendList = securityUserService.getById(currentUserId).getFriends();
+		Date date = new java.util.Date();
+		for(SecurityUser friend:friendList) {
+			Notice notice = new Notice();
+			notice.setContent(securityUserService.getById(currentUserId).getDisplayName()+"已編輯活動: "+activity.getName()+"，點我觀看");
+			notice.setReaded(false);
+			notice.setReceiver(friend.getUserId());
+			notice.setUrl("/activity/view/"+activity.getId());
+			notice.setSendtime(date);
+			noticeService.save(notice);	
+		}
+		
+		
 		
 		activity=activityService.update(activity);
 		aJaxResp.setType(AjaxResponseType.SUCCESS);
@@ -283,12 +311,23 @@ public class ActivityController {
 		Activity activity = activityService.getById(id);
 		List<SecurityUser> UserFolList = activity.getFollowUser();
 		Long followNum = activity.getAwesomeNum();
+		Date date = new java.util.Date();
 		if(follow==0) {
+			//追蹤活動
 			followNum++;
 			activity.setAwesomeNum(followNum);
 			UserFolList.add(user);
 			activity.setFollowUser(UserFolList);
 			activityService.update(activity);
+			//新增追蹤活動通知
+			Notice notice = new Notice();
+			notice.setContent("您已追蹤活動: "+activity.getName());
+			notice.setReaded(false);
+			notice.setReceiver(user.getUserId());
+			notice.setUrl("/activity/view/"+id);
+			notice.setSendtime(date);
+			noticeService.save(notice);	
+			
 		}if(follow==1) {
 			followNum--;
 			activity.setAwesomeNum(followNum);
@@ -298,12 +337,16 @@ public class ActivityController {
 					Long userId = UserFolList.get(i).getUserId();
 					if(userId==user.getUserId()) {
 						UserFolList.remove(UserFolList.get(i));
+						Notice notice = new Notice();
+						notice.setContent("您已取消追蹤活動: "+activity.getName());
+						notice.setReaded(false);
+						notice.setReceiver(user.getUserId());
+						notice.setUrl("/activity/view/"+id);
+						notice.setSendtime(date);
+						noticeService.save(notice);
 					}
 				}
-			}
-			
-			
-			
+			}	
 		}	
 		activityService.update(activity);
 		return activity;
@@ -387,6 +430,18 @@ public class ActivityController {
 //		}
 //	}
 	
-	
+//	@RequestMapping("/followedOrNot")
+//	public Long trackActivityNotice(String reciever, Long activityId) {
+//		String account = SecurityContextHolder.getContext().getAuthentication().getName();
+//		SecurityUser securityUser=securityUserService.getByUserName(account);
+//		Activity activity = activityService.getById(activityId);
+//		Notice notice = new Notice();
+//		notice.setContent("您已追蹤活動: "+activity.getName());
+//		notice.setReaded(false);
+//		notice.setReceiver(securityUser.getUserId());
+//		notice.setUrl("/activity/view/"+activityId);
+//		noticeService.save(notice);
+//		return notice.getId();
+//	}
 	
 }

@@ -46,12 +46,12 @@ html, body {
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <button class="nav-link" id='newActivity'>新增活動
+          <button class="btn btn-success" id='newActivity'>新增活動
                 <span class="sr-only">(current)</span>
               </button>
         </li>
         <li class="nav-item">
-          <button class="nav-link" onclick='javascript:window.location.assign("/activity/list")'>返回查詢頁面</button>
+          <button class="btn btn-info" onclick='javascript:window.location.assign("/activity/list")'>返回查詢頁面</button>
         </li>
       </ul>
     </div>

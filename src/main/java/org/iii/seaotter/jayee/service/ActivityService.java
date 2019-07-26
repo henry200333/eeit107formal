@@ -7,12 +7,15 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import org.iii.seaotter.jayee.dao.ActivityDao;
+import org.iii.seaotter.jayee.dao.SecurityUserDao;
 import org.iii.seaotter.jayee.entity.Activity;
+import org.iii.seaotter.jayee.entity.Notice;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +26,9 @@ import net.bytebuddy.asm.Advice.This;
 public class ActivityService {
 	@Autowired
 	private ActivityDao activityDao;
+	
+	@Autowired
+	private SecurityUserDao securityUserDao; 
 	
 	@Transactional(readOnly = true)
 	public List<Activity> getAll() {
@@ -95,6 +101,8 @@ public class ActivityService {
 		Files.write(Paths.get(decoded +"activity"+activityId + ".jpg"), imageFile.getBytes());
 
 	}
+	
+	
 	
 	
 	
