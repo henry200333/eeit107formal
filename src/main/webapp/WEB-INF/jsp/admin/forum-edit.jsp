@@ -74,7 +74,7 @@
 							<div class="col-sm-3 mb-3 mb-sm-0">
 								<label for="commentDate">Date:</label> <input type="text"
 									class="form-control form-control-user" id="showDate"
-									name="commentDate" placeholder="系統將自動產生Date"
+									name="commentDate3" placeholder="系統將自動產生Date"
 									value="${forumParam.commentDate}" readonly>
 							</div>
 							<div class="col-sm-3 mb-3 mb-sm-0"></div>
@@ -114,11 +114,11 @@
 		console.log("edit button onclick");
 		var o = $("#forum").serializeObject();
 		$.ajax({
-			url:"/admin/forum",
-			type:"PUT",
-			contentType:"application/json",
+			url:"/admin/forum/update",
+			type:"GET",
+			contentType:"application/json;charset=UTF-8",
 			dataType:"json",
-			data:o,
+			data:JSON.parse(o),
 			success:function(result){
 				console.log("ajax return success");
 				console.log(result);	

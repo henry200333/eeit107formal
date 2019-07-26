@@ -36,9 +36,7 @@
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">文章列表</h1>
-						<a href="#"
-							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> 下載資料</a>
+						<button type="button" id='exportExcel' class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>下載資料</button>
 					</div>
 
 					<!-- Add New Article Button + search name&type -->
@@ -101,13 +99,67 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
-	
+	<table id="forExcel"></table>
+<div id="forExcelpager"  style='display=:none'></div>	
 	<!-- 	Add language package for TW-ZH -->
 	<script src="/resources/jqgrid/js/i18n/grid.locale-tw.js" type="text/javascript"></script>
 	<!-- 	Add jquery plugin -->
 	<script src="/resources/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+	<!-- EXCEL -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js"></script>
+	
 	
 	<script>
+	var totaldata;
+	
+	$("#exportExcel").on("click", function(){
+		$("#forExcel").jqGrid({
+	        url: '/admin/article/query',
+	        datatype: 'json',
+	        mtype: 'GET',
+	        styleUI : 'Bootstrap4',
+	        iconSet : "fontAwesome",
+	        colModel: [
+				{ name: 'id', index: 'id', label: 'ID', width: 30 },
+				{ name: 'name', label: '文章標題', width: 80 },
+				{ name: 'content', label: '文章內容'},
+				{ name: 'articleType', label: '文章類型', width: 30 },
+				{ name: 'refId', label: '關聯ID', width: 20 },
+				{ name: 'count', label: '人氣', width: 20 },
+				{ name: 'announcedUserId', label: '文章發布者ID', width: 35 },
+				{ name: 'announce', label: '創建時間', width: 45 }
+			],
+	        prmNames: {search: null, nd: null},
+	        pager: '#forExcelpager',
+	        page: 1,
+	        autowidth: false,
+	        shrinkToFit: true,
+	        height: 'auto',
+	        rowNum: totaldata,
+	        rowList: [totaldata],
+	        sortname: 'id',
+	        sortorder: "asc",
+	        viewrecords: true,
+	        loadonce:true,
+	        loadComplete: function () {
+	            reSizejqGridWidth();
+	        },
+			gridComplete:function(){					
+				$("#gbox_forExcel").hide();
+				$("#forExcel").jqGrid("exportToExcel",{
+					includeLabels : true,
+					includeGroupHeader : true,
+					includeFooter: true,
+					fileName : "jqGridExport.xlsx",
+					maxlength : 40 // maxlength for visible string data 
+				})
+			}
+	    });
+		
+		
+	})
+	
+	
 	 $("#articleGrid").jqGrid({
         url: '/admin/article/query',
         datatype: 'json',
