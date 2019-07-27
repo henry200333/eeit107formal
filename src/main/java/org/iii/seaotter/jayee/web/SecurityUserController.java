@@ -81,7 +81,6 @@ public class SecurityUserController {
 		}else if ("gender".equals(type)) {
 			user.setGender(context);
 			securityUserService.update(user);
-			System.out.println(user.getGender());
 			return true;
 		}else
 			return false;
