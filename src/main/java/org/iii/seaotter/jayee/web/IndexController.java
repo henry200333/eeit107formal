@@ -22,6 +22,7 @@ import org.iii.seaotter.jayee.entity.Forum;
 import org.iii.seaotter.jayee.entity.Notice;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.entity.SecurityUser;
+import org.iii.seaotter.jayee.entity.Vender;
 import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.ForumService;
@@ -269,8 +270,9 @@ public class IndexController {
 		List<Notice> notices = noticeservice.getAllByReceiver(id);
 		for (int i = 0; i < notices.size(); i++) {
 			Notice notice = notices.get(i);
+			System.out.println("已讀讀測試");
 			notice.setReaded(true);
-			noticeservice.save(notice);
+			noticeservice.update(notice);
 		}
 		res.put("success", "success");
 		return res;
@@ -292,4 +294,18 @@ public class IndexController {
 		}
 		return res;
 	}
+	
+	@RequestMapping("/venderselfpage/{username}")
+	@ResponseBody
+	public Map<String,String> userfindvender(@PathVariable(value = "username") String username) {
+		Map<String, String> res = new HashMap<>();
+		Vender vender=securityUserService.getByUserName(username).getVender();
+		Long venderId=null;
+		if(vender!=null) {
+			venderId=vender.getId();
+		}
+		res.put("venderId",venderId.toString());
+		return res;
+	}
+	
 }

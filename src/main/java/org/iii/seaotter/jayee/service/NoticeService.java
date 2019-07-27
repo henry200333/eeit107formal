@@ -44,7 +44,12 @@ public class NoticeService {
         ZonedDateTime zdt = localDateTime.atZone(zoneId);
         Date date = Date.from(zdt.toInstant());
         notice.setSendtime(date);
-        System.out.println(notice);
+//        System.out.println(notice);
+		noticeDao.save(notice);
+		return;
+	}
+	
+	public void update(Notice notice) {
 		noticeDao.save(notice);
 		return;
 	}
