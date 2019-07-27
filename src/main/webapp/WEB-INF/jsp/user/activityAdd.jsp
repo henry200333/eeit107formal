@@ -118,7 +118,7 @@ html, body {
    <div class='row'>
    
    <div class="col-6">
-   <span style="font-size: 20px; font-weight: bold;"><i class="far fa-smile-beam"></i>表演者名:</span>
+   <span style="font-size: 20px; font-weight: bold;"><i class="fas fa-user"></i>表演者名:</span>
    <div class='col-8'>
    <input type="text" class="form-control form-control-user" id="artist" name="artist"	placeholder="" value="${userName}" readonly>
    </div>
@@ -160,7 +160,7 @@ html, body {
    </div>
    
    <div class="col-6">
-   <span style="font-size: 20px; font-weight: bold;"><i class="far fa-smile-beam"></i>表演類型:</span>
+   <span style="font-size: 20px; font-weight: bold;"><i class="fas fa-hat-wizard"></i>表演類型:</span>
    <div class='col-8'>
 	<select  name="perfType" id="perfType"  class="form-control">
 					<option selected  hidden='true' value="">請選擇表演類型</option>
@@ -200,7 +200,7 @@ html, body {
    </div>
   
   <div class="col-6">
-   <span style="font-size: 20px; font-weight: bold;"><i class="far fa-smile-beam"></i>活動描述: </span>
+   <span style="font-size: 20px; font-weight: bold;"><i class="fas fa-audio-description"></i>活動描述: </span>
    <div class='col-12'>
    <textarea class="form-control form-control-user" id="description" name="description"	 ></textarea>
    </div>
@@ -480,7 +480,7 @@ $("#insert").click(
 				data : JSON.parse($("#form").serializeObject()),
 				success : function(response) {
 					if (response.type == "SUCCESS") {
-						alert("資料新增成功！\n您修改了一筆名為："
+						alert("資料新增成功！\n您新增了一筆名為："
 								+ JSON.stringify(response.data.name)+"\n即將導入活動頁面");
 // 						alert(response.data['id']);
 						window.location.assign('/activity/view/'+response.data['id']);

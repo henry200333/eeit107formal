@@ -81,7 +81,7 @@ html, body {
    <span style="font-size: 20px; font-weight: bold;padding-left:15px">${activityParam.artist}</span>
    </div>
    <div class="col-6">
-   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="far fa-smile-beam"></i>活動地點: </span>
+   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="fas fa-map-marked-alt"></i>活動地點: </span>
    <span style="font-size: 20px; font-weight: bold;padding-left:15px">${locationLocationName}</span>
    </div>
    <div class="col-6">

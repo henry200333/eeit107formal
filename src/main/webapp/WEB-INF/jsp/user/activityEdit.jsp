@@ -95,7 +95,7 @@
    <div class='row'>
    
    <div class="col-6">
-   <span style="font-size: 20px; font-weight: bold;"><i class="far fa-smile-beam"></i>表演者名: </span>
+   <span style="font-size: 20px; font-weight: bold;"><i class="fas fa-user"></i>表演者名: </span>
    <div class='col-8'>
    <input type="text" class="form-control form-control-user" id="artist" name="artist"	placeholder="" value="${activityParam.artist}" readonly>
    </div>
@@ -137,7 +137,7 @@
    </div>
    
    <div class="col-6">
-   <span style="font-size: 20px; font-weight: bold;"><i class="far fa-smile-beam"></i>表演類型:</span>
+   <span style="font-size: 20px; font-weight: bold;"><i class="fas fa-hat-wizard"></i>表演類型:</span>
    <div class='col-8'>
 	<select  name="perfType" id="perfType"  class="form-control">
 					<option selected  hidden='true' value="${activityParam.perfType}">${activityParam.perfType}</option>
@@ -180,7 +180,7 @@
    </div>
   
   <div class="col-6">
-   <span style="font-size: 20px; font-weight: bold;"><i class="far fa-smile-beam"></i>活動描述: </span>
+   <span style="font-size: 20px; font-weight: bold;"><i class="fas fa-audio-description"></i>活動描述: </span>
    <div class='col-12'>
    <textarea class="form-control form-control-user" id="description" name="description"	placeholder="" >${activityParam.description}</textarea>
    </div>
