@@ -168,7 +168,8 @@
 		</div>
 		<script>
 			$(".edit").click(function() {
-				$(this).prev().trigger("click");
+				alert($(this).parent().children('span').eq(1).text());
+// 				$(this).prev().trigger("click");
 			})
 			function edit() {
 				var context = $(this).prev().text();
