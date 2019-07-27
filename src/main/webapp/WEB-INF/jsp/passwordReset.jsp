@@ -80,17 +80,13 @@
 	<script>
 	function check(){
 		var check = false;
-		$('#checked').blur(function(input) {
-			var check = false;
-			var pass = $('#password').val();
-			var confirm = $('#checked').val();
-			if (pass != confirm){
-				check = false;
-			}else {
-				check = true;
-			}
-			return check;
-		});
+		var pass = $('#password').val();
+		var confirm = $('#checked').val();
+		if (pass != confirm){
+			check = false;
+		}else {
+			check = true;
+		}
 		if (!check){
 			alert('密碼輸入不一致')
 		}
