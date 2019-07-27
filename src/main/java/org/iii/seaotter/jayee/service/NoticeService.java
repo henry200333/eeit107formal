@@ -48,6 +48,11 @@ public class NoticeService {
 		return;
 	}
 	
+	public void update(Notice notice) {
+		noticeDao.save(notice);
+		return;
+	}
+	
 	public Long addFriendNotice(String reciever) {
 		String account = SecurityContextHolder.getContext().getAuthentication().getName();
 		SecurityUser sender = securityUserDao.findByAccount(account);

@@ -47,7 +47,7 @@
 					<label for="name">店家名稱:</label> <input type="text"
 						class="form-control form-control-user" id="venderName"
 						name="venderName" placeholder="NAME" value="${vender.name}"
-						readonly>
+						 readonly>
 				</div>
 			</div>
 

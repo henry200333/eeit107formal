@@ -125,6 +125,8 @@ public class AuthController {
 		securityUserService.resetPassword(account, password);
 		return "redirect:/login?reset";
 	}
+	
+	
 //	@GetMapping("/register")
 //	public String signup() {
 //		return "signup";

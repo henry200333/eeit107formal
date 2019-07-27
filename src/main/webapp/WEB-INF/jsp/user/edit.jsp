@@ -72,13 +72,11 @@
 			<div class="row">
 				<div class='col-4'>
 					<label
-						style="font-size: 20px; font-weight: bold; margin-top: 20px;">頭像</label>
-					<span class="edit" id='photoIcon'><i
-						class="fas fa-highlighter"></i></span>
+						style="font-size: 20px; font-weight: bold; margin-top: 20px;">頭像(點擊以更換)</label>
 					<form method="post" action="/uploadPhoto"
 						enctype="multipart/form-data">
 						<div id="previewDiv" class="previewDiv">
-							<img width="100%" src="${userParam.photo }"
+							<img id="userPhoto" width="100%" src="${userParam.photo }"
 								style='width: 290px; height: 353px' />
 						</div>
 						<input type="file" name="imageFile" id="imageFile"
@@ -90,24 +88,21 @@
 					</form>
 				</div>
 				<div class="col-8" style="padding-top: 20px;">
-					<span class="lab" style="margin-left: 15px;">個人介紹</span><br> <span
-						class="value" id="introduction" style="margin-left: 15px;">${userParam.introduction}</span>
-					<span class="edit"><i class="fas fa-highlighter"></i></span>
+					<span class="lab" style="margin-left: 15px;">個人介紹</span><br> <input
+						class="form-control" type="text" value="${userParam.introduction}">
+					<%-- 					<span class="value" id="introduction" style="margin-left: 15px;">${userParam.introduction}</span> --%>
+					<span id="introduction" onclick="edit(this)" class="edit"><i
+						class="fas fa-highlighter"></i></span>
 				</div>
 			</div>
 			<script>
-				$("#photoIcon").click(function() {
+				$("#userPhoto").click(function() {
 					$("#imageFile").trigger("click");
 				});
-				$("#imageFile")
-						.change(
-								function() {
-									$("#previewDiv")
-											.html(
-													"<img id='PreviewPic' style='width:290px;height:353px' src='#' />");
-									readURL(this);
-									$("#photoSubmit").trigger("click");
-								});
+				$("#imageFile").change(function() {
+					readURL(this);
+					$("#photoSubmit").trigger("click");
+				});
 				function readURL(input) {
 					if (input.files && input.files[0]) {
 						var reader = new FileReader();
@@ -120,60 +115,88 @@
 			</script>
 			<div class="row" style="margin-top: 40px">
 				<div class="col-4">
-					<span class="lab" style="margin-left: 15px;">顯示名稱</span><br> <span
-						class="value" id="desplayName" style="margin-left: 15px;">${userParam.displayName}</span>
-					<input type="button" id="editBefore" style="display: none"
-						onclick="edit()"> <span class="edit"><i
+					<span class="lab" style="margin-left: 15px;">顯示名稱</span><br> <input
+						class="form-control" type="text" value="${userParam.displayName}">
+
+					<%-- 					<span class="value" id="desplayName" style="margin-left: 15px;">${userParam.displayName}</span> --%>
+					<span id="displayName" onclick="edit(this)" class="edit"><i
 						class="fas fa-highlighter"></i></span>
 				</div>
 				<div class="col-4">
-					<span class="lab" style="margin-left: 15px;">真實姓名</span><br> <span
-						class="value" id="memberName" style="margin-left: 15px;">${userParam.memberName}</span>
-					<input type="button" id="editBefore" style="display: none"
-						onclick="edit()"> <span class="edit"><i
+					<span class="lab" style="margin-left: 15px;">真實姓名</span><br> <input
+						class="form-control" type="text" value="${userParam.memberName}">
+					<%-- 					 <span class="value" id="memberName" style="margin-left: 15px;">${userParam.memberName}</span> --%>
+					<span id="trueName" onclick="edit(this)" class="edit"><i
 						class="fas fa-highlighter"></i></span>
 				</div>
 				<div class="col-4">
-					<span class="lab" style="margin-left: 15px;">性別</span><br> <span
-						class="value" id="gender" style="margin-left: 15px;">${userParam.gender}</span>
-					<input type="button" id="editBefore" style="display: none"
-						onclick="edit()"> <span class="edit"><i
+					<span class="lab" style="margin-left: 15px;">性別</span><br> 
+					<input type="radio" name="gender" id="genderMale" value="male">男
+					<input type="radio" name="gender" id="genderFemale" value="female">女 
+					<input type="radio" name="gender" id="genderOther" value="other">其他
+					<span id="gender" onclick="edit(this)" class="edit"><i
 						class="fas fa-highlighter"></i></span>
 				</div>
+
 				<div class="col-12">
 					<hr>
 				</div>
 				<div class="col-4">
-					<span class="lab" style="margin-left: 15px;">電子郵件</span><br> <span
-						class="value" id="mail" style="margin-left: 15px;">${userParam.mail}</span>
-					<input type="button" id="editBefore" style="display: none"
-						onclick="edit()"> <span class="edit"><i
+					<span class="lab" style="margin-left: 15px;">電子郵件</span><br> <input
+						class="form-control" type="text" value="${userParam.mail}">
+					<%-- 					 <span class="value" id="mail" style="margin-left: 15px;">${userParam.mail}</span> --%>
+					<span id="mail" onclick="edit(this)" class="edit"><i
 						class="fas fa-highlighter"></i></span>
 				</div>
 				<div class="col-4">
-					<span class="lab" style="margin-left: 15px;">生日</span><br> <span
-						class="value" id="birth" style="margin-left: 15px;">${userParam.birth}</span>
+					<span class="lab" style="margin-left: 15px;">生日</span><br> <input
+						class="form-control" type="text" value="${userParam.birth}">
+					<%-- 					 <span class="value" id="birth" style="margin-left: 15px;">${userParam.birth}</span> --%>
 					<input type="button" id="editBefore" style="display: none"
-						onclick="edit()"> <span class="edit"><i
+						onclick="edit(this)"> <span class="edit"><i
 						class="fas fa-highlighter"></i></span>
 				</div>
 				<div class="col-4">
-					<span class="lab" style="margin-left: 15px;">住址</span><br> <span
-						class="value" id="address" style="margin-left: 15px;">${userParam.address}</span>
-					<input type="button" id="editBefore" style="display: none"
-						onclick="edit()"> <span class="edit"><i
+					<span class="lab" style="margin-left: 15px;">住址</span><br> <input
+						class="form-control" type="text" value="${userParam.address}">
+					<%-- 					 <span class="value" id="address" style="margin-left: 15px;">${userParam.address}</span> --%>
+					<span id="address" onclick="edit(this)" class="edit"><i
 						class="fas fa-highlighter"></i></span>
 				</div>
 			</div>
 		</div>
 		<script>
-			$(".edit").click(function() {
-				alert($(this).parent().children('span').eq(1).text());
-// 				$(this).prev().trigger("click");
-			})
-			function edit() {
-				var context = $(this).prev().text();
-				alert(context);
+		var gender = "${userParam.gender}";
+		if (gender == $("#genderMale").val()) {
+			$("#genderMale").attr("checked", true);
+			$("#gender").before("<input type='text' hidden='hidden' value='male' id='genderValue'>");
+		}
+		if (gender == $("#genderFemale").val()) {
+			$("#genderFemale").attr("checked", true);
+			$("#gender").before("<input type='text' hidden='hidden' value='female' id='genderValue'>");
+		}
+		if (gender == $("#genderOther").val()) {
+			$("genderOther").attr("checked", true);
+			$("#gender").before("<input type='text' hidden='hidden' value='other' id='genderValue'>");
+		}
+		$('input[type=radio]').change(function(){
+			$("#genderValue").val($(this).val())
+		});
+			function edit(obj) {
+				$.ajax({
+					url : "/settings/profiles",
+					method : "POST",
+					data : {
+						"context" : $(obj).prev().val(),
+						"type" : obj.id
+					},
+					success : function(data) {
+						if (data) {
+							alert("修改成功")
+						} else if (!data)
+							alert("修改失敗，請重新修改")
+					}
+				})
 			}
 		</script>
 	</sec:authorize>

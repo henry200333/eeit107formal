@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.iii.seaotter.jayee.entity.Notice;
 import org.iii.seaotter.jayee.entity.SearchUser;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.service.ArticleService;
@@ -53,7 +52,40 @@ public class SecurityUserController {
 		model.addAttribute("userParam", user);
 		return "/user/edit";
 	}
-
+	
+	@PostMapping("/settings/profiles")
+	@ResponseBody
+	public Boolean profileSetting(@RequestParam("type")String type, @RequestParam("context") String context) {
+		SecurityUser user = securityUserService
+				.getByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+		if ("introduction".equals(type)) {
+			user.setIntroduction(context);
+			securityUserService.update(user);
+			return true;
+		}else if ("displayName".equals(type)) {
+			user.setDisplayName(context);
+			securityUserService.update(user);
+			return true;
+		}else if ("trueName".equals(type)) {
+			user.setMemberName(context);
+			securityUserService.update(user);
+			return true;
+		}else if ("address".equals(type)) {
+			user.setAddress(context);
+			securityUserService.update(user);
+			return true;
+		}else if ("mail".equals(type)) {
+			user.setMail(context);
+			securityUserService.update(user);
+			return true;
+		}else if ("gender".equals(type)) {
+			user.setGender(context);
+			securityUserService.update(user);
+			return true;
+		}else
+			return false;
+	}
+	
 	@PostMapping("/uploadPhoto")
 	public String upload(@RequestParam("imageFile") MultipartFile imageFile, @RequestParam("username") String username)
 			throws IOException {
