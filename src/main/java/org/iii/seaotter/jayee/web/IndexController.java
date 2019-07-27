@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -35,6 +37,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -59,6 +63,8 @@ public class IndexController {
 	private SecurityUserService securityUserService;
 	@Autowired
 	private NoticeService noticeservice;
+	@Autowired
+	private JavaMailSender javaMailSender;
 
 	@RequestMapping("/index")
 	public String index() {
@@ -306,6 +312,22 @@ public class IndexController {
 		}
 		res.put("venderId",venderId.toString());
 		return res;
+	}
+	
+	@RequestMapping("/sendmail")
+	@ResponseBody
+	public boolean sendemail(@RequestParam(value = "mail") String mail) throws MessagingException {
+		
+		MimeMessage message = javaMailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message);
+		
+		helper.setFrom("jayee20192019@outlook.com");
+		helper.setTo(mail);
+		helper.setText("謝謝您對JAYEE的肯定，我們會讓您在第一時間得到網站的第一手消息!長軒愛你喔<3");
+		helper.setSubject("成功訂閱JAYEE");
+
+		javaMailSender.send(message);
+		return true;
 	}
 	
 }
