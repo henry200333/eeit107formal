@@ -143,16 +143,15 @@
 					txt += "<option value='"+ value +"'>" + value + "</option>"
 				})
 				$("#city").html(txt);
+				page=1;
 				showjobs();
 			}
 		})
 
 		$('#city')
-				.change(
-						function() {
+				.change(function() {
 							var CName = $('#city').val();
-							$
-									.ajax({
+							$.ajax({
 										type : "POST",
 										url : '/job/location/' + CName,
 										cache : false,
@@ -162,9 +161,8 @@
 										success : function(data) {
 											var txt = "";
 											console.log(data);
-											txt += '<option value="" style="display: none">請選擇</option>';
-											$
-													.each(
+											txt += '<option value="" style="">請選擇</option>';
+											$.each(
 															data,
 															function(index,
 																	value) {
@@ -179,6 +177,7 @@
 						});
 
 		$('#district').change(function() {
+			page=1;
 			showjobs();
 		})
 

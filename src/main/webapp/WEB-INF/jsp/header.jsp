@@ -66,17 +66,22 @@
 			<div class="btn-group">
 				<button type="button" class="btn bar" id="topbar6"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<i class="fas fa-hands-helping"></i> 廠商
+					<i class="fas fa-hands-helping"></i> 職缺
 				</button>
 				<button type="button" class="btn bar2" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"></button>
 				<div class="dropdown-menu" id="venderbar">
-					<a class="dropdown-item" href="/job/list">關於廠商</a>
+					<a class="dropdown-item" href="/job/list">工作列表</a>
+					<sec:authorize access="hasRole('VENDER')" >
+						<a class="dropdown-item" id=venderselfpage href="">廠商頁面</a>
+					</sec:authorize>
 				</div>
+	
 			</div>
 
 		</div>
 	</nav>
+
 </header>
 <head>
 <meta charset="UTF-8">

@@ -55,6 +55,14 @@
 				window.location.href = '/settings/profile';
 			}
 			
+			$.ajax({
+				url :"/venderselfpage/"+$("#username").val(),
+				type :"GET",
+				success : function(data) {
+					$("#venderselfpage").attr("href","/job/vender/"+data.venderId)
+				}
+			});
+			
 			$("#toggleNotcie").click(function(){
 				$("#notice").toggle();
 				$.ajax({
