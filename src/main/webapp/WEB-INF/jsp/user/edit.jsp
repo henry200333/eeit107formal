@@ -71,39 +71,43 @@
 			</h4>
 			<div class="row">
 				<div class='col-4'>
-					<label 
+					<label
 						style="font-size: 20px; font-weight: bold; margin-top: 20px;">頭像</label>
-						<span class="edit" id='photoIcon'><i class="fas fa-highlighter"></i></span>
+					<span class="edit" id='photoIcon'><i
+						class="fas fa-highlighter"></i></span>
 					<form method="post" action="/uploadPhoto"
 						enctype="multipart/form-data">
 						<div id="previewDiv" class="previewDiv">
-							<img width="100%" src="${userParam.photo }" style='width:290px;height:353px' />
-						</div> 
-					<input type="file" name="imageFile" id="imageFile"	accept="image/gif, image/jpeg, image/png" style='display:none' /> 
-					<input type="text"	hidden="hidden" name="username" id="username" value="<sec:authentication		property="name" />"> 
-					<input type="submit" value="Upload" style='display:none' id='photoSubmit' />
+							<img width="100%" src="${userParam.photo }"
+								style='width: 290px; height: 353px' />
+						</div>
+						<input type="file" name="imageFile" id="imageFile"
+							accept="image/gif, image/jpeg, image/png" style='display: none' />
+						<input type="text" hidden="hidden" name="username" id="username"
+							value="<sec:authentication		property="name" />"> <input
+							type="submit" value="Upload" style='display: none'
+							id='photoSubmit' />
 					</form>
 				</div>
 				<div class="col-8" style="padding-top: 20px;">
 					<span class="lab" style="margin-left: 15px;">個人介紹</span><br> <span
 						class="value" id="introduction" style="margin-left: 15px;">${userParam.introduction}</span>
-						<span class="edit"><i class="fas fa-highlighter"></i></span>
+					<span class="edit"><i class="fas fa-highlighter"></i></span>
 				</div>
 			</div>
 			<script>
-			$("#photoIcon").click(function(){
-		  		$("#imageFile").trigger("click");
-		  	});
-			
-			
-			
-			
-				$("#imageFile").change(function() {
-					$("#previewDiv").html("<img id='PreviewPic' style='width:290px;height:353px' src='#' />");
-					readURL(this);
-					$("#photoSubmit").trigger("click");
+				$("#photoIcon").click(function() {
+					$("#imageFile").trigger("click");
 				});
-
+				$("#imageFile")
+						.change(
+								function() {
+									$("#previewDiv")
+											.html(
+													"<img id='PreviewPic' style='width:290px;height:353px' src='#' />");
+									readURL(this);
+									$("#photoSubmit").trigger("click");
+								});
 				function readURL(input) {
 					if (input.files && input.files[0]) {
 						var reader = new FileReader();
@@ -118,17 +122,23 @@
 				<div class="col-4">
 					<span class="lab" style="margin-left: 15px;">顯示名稱</span><br> <span
 						class="value" id="desplayName" style="margin-left: 15px;">${userParam.displayName}</span>
-					<span class="edit"><i class="fas fa-highlighter"></i></span>
+					<input type="button" id="editBefore" style="display: none"
+						onclick="edit()"> <span class="edit"><i
+						class="fas fa-highlighter"></i></span>
 				</div>
 				<div class="col-4">
 					<span class="lab" style="margin-left: 15px;">真實姓名</span><br> <span
 						class="value" id="memberName" style="margin-left: 15px;">${userParam.memberName}</span>
-						<span class="edit"><i class="fas fa-highlighter"></i></span>
+					<input type="button" id="editBefore" style="display: none"
+						onclick="edit()"> <span class="edit"><i
+						class="fas fa-highlighter"></i></span>
 				</div>
 				<div class="col-4">
 					<span class="lab" style="margin-left: 15px;">性別</span><br> <span
 						class="value" id="gender" style="margin-left: 15px;">${userParam.gender}</span>
-						<span class="edit"><i class="fas fa-highlighter"></i></span>
+					<input type="button" id="editBefore" style="display: none"
+						onclick="edit()"> <span class="edit"><i
+						class="fas fa-highlighter"></i></span>
 				</div>
 				<div class="col-12">
 					<hr>
@@ -136,20 +146,36 @@
 				<div class="col-4">
 					<span class="lab" style="margin-left: 15px;">電子郵件</span><br> <span
 						class="value" id="mail" style="margin-left: 15px;">${userParam.mail}</span>
-						<span class="edit"><i class="fas fa-highlighter"></i></span>
+					<input type="button" id="editBefore" style="display: none"
+						onclick="edit()"> <span class="edit"><i
+						class="fas fa-highlighter"></i></span>
 				</div>
 				<div class="col-4">
 					<span class="lab" style="margin-left: 15px;">生日</span><br> <span
 						class="value" id="birth" style="margin-left: 15px;">${userParam.birth}</span>
-						<span class="edit"><i class="fas fa-highlighter"></i></span>
+					<input type="button" id="editBefore" style="display: none"
+						onclick="edit()"> <span class="edit"><i
+						class="fas fa-highlighter"></i></span>
 				</div>
 				<div class="col-4">
 					<span class="lab" style="margin-left: 15px;">住址</span><br> <span
 						class="value" id="address" style="margin-left: 15px;">${userParam.address}</span>
-						<span class="edit"><i class="fas fa-highlighter"></i></span>
+					<input type="button" id="editBefore" style="display: none"
+						onclick="edit()"> <span class="edit"><i
+						class="fas fa-highlighter"></i></span>
 				</div>
 			</div>
 		</div>
+		<script>
+			$(".edit").click(function() {
+				alert($(this).parent().children('span').eq(1).text());
+// 				$(this).prev().trigger("click");
+			})
+			function edit() {
+				var context = $(this).prev().text();
+				alert(context);
+			}
+		</script>
 	</sec:authorize>
 	<!-- 	footer開始，包含聊天 -->
 	<jsp:include page="../chat.jsp"></jsp:include>
