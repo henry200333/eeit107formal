@@ -156,7 +156,7 @@ margin-top:20px;
 	color:#ea0000;
 }
 
-.blue{
+.blues{
 	margin-left:30px; 
 	font-size:20px;
 	font-weight:bold;
@@ -172,7 +172,7 @@ margin-top:20px;
 		<span class="select"><i class="fas fa-mouse-pointer"></i> 選擇活動</span><br><br>
 		<span class="gree">綠色為:即將舉行的活動   </span>
 		<span class="redd">紅色為:舉行中的活動   </span>
-		<span class="blue">藍色為:已結束的活動</span><br>
+		<span class="blues">藍色為:已結束的活動</span><br>
 
 
 		<div class="row" style="margin-top: 50px;" id="activitys"></div>
