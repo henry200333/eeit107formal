@@ -10,14 +10,15 @@
 							<span
 								style="color: white; font-size: 20px; border-bottom: 2px solid white; padding: 0px 50px;">訂閱街藝</span>
 							<br> <br> <input type="email" size="26"
-								placeholder="Email@" style="line-height: 30px;margin-top:40px;">
-							<button type="button" class="btn btn-danger" style="vertical-align:baseline;border-radius:0">訂閱</button>
+								placeholder="Email@" style="line-height: 30px;margin-top:40px;" id="susmail">
+							<button type="button" class="btn btn-danger" style="vertical-align:baseline;border-radius:0" id="susenter">訂閱</button>
 							<br><br><span style="color:white">訂閱jayee街藝</span><br>
 							<span style="color:white">獲取第一手最新消息</span><br>
 						</div>
 						<div class="col-4" style="margin-top: 20px">
 							<span
-								style="color: white; font-size: 20px; border-bottom: 2px solid white; padding: 0px 50px;">最新消息</span>
+								style="color: white; font-size: 20px; border-bottom: 2px solid white; padding: 0px 50px;">最新消息</span><br><br><br><br><br>
+								<span style="color:white">Jayee街藝 將於<br>2019年8月2日<br>停止營運<br>請要儲值的用戶把握最後的時間</span><br><br><span style="color:white">/\/\</span><br><span style="color:white">\/</span>
 						</div>
 						<div class="col-4" style="margin-top: 20px">
 							<span
@@ -33,7 +34,7 @@
 								<span style="color:white">陳品堯</span><br>
 								<span style="color:white">李承宇</span><br>
 								<span style="color:white">吳帆祥</span><br>
-								<span style="color:white">李宜鳴</span><br>
+								<span style="color:white">李宜鳴</span><br><br>
 						</div>
 					</div>
 				</div>
@@ -62,6 +63,17 @@
 	        });
 	        return JSON.stringify(o);
 	    };
+	    
+	    $("#susenter").click(function(){
+	    	$.ajax({
+	    		url:"/sendmail",
+	    		type:"POST",
+	    		data:{"mail":$("#susmail").val()},
+	    		success:function(){
+	    			alert("訂閱成功，請到email信箱確認");
+	    		}
+	    	})
+	    })
 	</script>
 	
 </nav>
