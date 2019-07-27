@@ -399,11 +399,11 @@ public class PerformanceController {
 	public boolean notice(@RequestParam("size") int size,@RequestParam("username") String username) {
 		SecurityUser artist  = SecurityUserService.getByUserName(username);
 		List<SecurityUser> friends  = artist.getFriends();
-		Notice notice = new Notice();
-		notice.setUrl("/index");
-		notice.setContent(username +"新增了"+size+"部表演");
-		notice.setReaded(false);
 		for(int i =0;i<friends.size();i++) {
+			Notice notice = new Notice();
+			notice.setUrl("/"+username);
+			notice.setContent(artist.getDisplayName() +"新增了"+size+"部表演");
+			notice.setReaded(false);
 			SecurityUser friend = friends.get(i);
 			notice.setReceiver(friend.getUserId());
 			noticeService.save(notice);			
