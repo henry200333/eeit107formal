@@ -159,8 +159,24 @@ html, body {
 					$.ajax({url :"/map/activity?id="+vender["locationId"],
 						type : "GET",
 						success : function(data) {
-							console.log(data)}
-						})
+// 							alert(JSON.stringify(data));
+							var txt="";
+							txt+="<div class='row' style='border: solid 1px silver; margin: 2%'><div class='col-sm-12 mb-0 mb-sm-0'><br></div><div class='col-sm-12 mb-0 mb-sm-0'><a href='/activity/view/";
+							txt+=data[0].id;
+							txt+="' ><h4 style='text-align: center'>";
+							txt+=data[0].name;
+							txt+="</h4></a></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>表演者名:</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5 style='padding-left: 10%'>";
+							txt+=data[0].artist;
+							txt+="</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>活動描述:</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5 style='padding-left: 10%'>";
+							txt+=data[0].description;
+							txt+="</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>開始時間:</h5></div><div class='col-sm-12 mb-3 mb-sm-0'><h5 style='border: solid 1px silver; text-align: center; padding: 1%'>";
+							txt+=data[0].beginTime;
+							txt+="</h5></div></div>";
+							$("#list").html(txt);	
+				
+						}
+					
+					})
 				})
 			}
 		}
@@ -199,7 +215,7 @@ html, body {
 															},
 															map : map,
 															icon : {
-																url : "http://www.oxxostudio.tw/img/articles/201801/google-maps-3-marker-icon.png",
+																url : "/resources/user-bootstrap/img/venderIcon.png",
 																scale : 8.5,
 																fillColor : "#F99",
 																fillOpacity : 0.1,
@@ -220,7 +236,7 @@ html, body {
 						type : "POST",
 						success : function(data) {
 							$.each(data,function(key, obj) {
-																				alert(obj['locationId'])
+// 																				alert(obj['locationId'])
 												locationmarkers[key] = new google.maps.Marker(
 														{position : {
 																lat : obj['lat'],
@@ -228,7 +244,7 @@ html, body {
 															},
 															map : map,
 															icon : {
-																url : "http://www.oxxostudio.tw/img/articles/201801/google-maps-3-marker-icon.png",
+																url : "/resources/user-bootstrap/img/activityIcon.png",
 																scale : 8.5,
 																fillColor : "#F99",
 																fillOpacity : 0.1,
