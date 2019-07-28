@@ -21,8 +21,8 @@
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
-	height: 650px;
-	width: 650px;
+	height: 750px;
+	width: px;
 }
 
 .body {
@@ -42,7 +42,7 @@ html, body {
 <jsp:include page="../topbar.jsp"></jsp:include>
 <body>
 
-	<div class="container">
+	<div >
 		<div class="row">
 			<div class="col-2"></div>
 			<div class="col-10">
@@ -50,10 +50,10 @@ html, body {
 
 				<button id="click">搜尋地址</button>
 			</div>
-			<div class="col-7">
+			<div class="col-8">
 				<div id="map"></div>
 			</div>
-			<div class="col-5" id="list">
+			<div class="col-4" id="list">
 				
 			</div>
 			<div hidden>
@@ -137,8 +137,8 @@ html, body {
 
 		function list(vendermarkers, id, type, vender) {
 			// 	
-			console.log(vender)
-			if (type = "vender") {
+			console.log(type)
+			if (type == "vender") {
 				vendermarkers.addListener('click', function() {
 					var txt="";
 					txt+="<div class='row' style='border: solid 1px silver; margin: 2%'><div class='col-sm-12 mb-0 mb-sm-0'><br></div><div class='col-sm-12 mb-0 mb-sm-0'><a href='/job/vender/";
@@ -152,23 +152,12 @@ html, body {
 					txt+="</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>關於我們:</h5></div><div class='col-sm-12 mb-3 mb-sm-0'><h5 style='border: solid 1px silver; text-align: center; padding: 1%'>";
 					txt+=vender.introduction;
 					txt+="</h5></div></div>";
-					$("#list").html(txt);
-// <div class='row' style='border: solid 1px silver; margin: 2%'><div class='col-sm-12 mb-0 mb-sm-0'><br></div><div class='col-sm-12 mb-0 mb-sm-0'><a href='
-// vender.id
-// ' ><h4 style='text-align: center'>
-// vender.name
-// </h4></a></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>預約專線:</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5 style='padding-left: 10%'>
-// vender.phone
-// </h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>地址:</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5 style='padding-left: 10%'>
-// vender.city+vender.district+vender.address
-// </h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>關於我們:</h5></div><div class='col-sm-12 mb-3 mb-sm-0'><h5style='border: solid 1px silver; text-align: center; padding: 1%'>
-// vender.data
-// </h5></div></div>
-					
-					
-					
-					
+					$("#list").html(txt);	
 				});
+			}else if(type=="location"){
+				vendermarkers.addListener('click', function() {
+					alert(vender["locationId"])
+				})
 			}
 		}
 
@@ -192,21 +181,15 @@ html, body {
 					+ (gp.getNorthEast().lng() - gp.getSouthWest().lng()) * 1.0;
 			var minlng = gp.getSouthWest().lng()
 					+ (gp.getNorthEast().lng() - gp.getSouthWest().lng()) * 0.0;
-			$
-					.ajax({
-						url : "/map/map?page=1&rows=20&maxlat=" + maxlat
+			$.ajax({url : "/map/map?page=1&rows=20&maxlat=" + maxlat
 								+ "&minlat=" + minlat + "&maxlng=" + maxlng
 								+ "&minlng=" + minlng,
 						type : "POST",
 						success : function(data) {
-							$
-									.each(
-											data,
-											function(key, obj) {
+							$.each(data,function(key, obj) {
 												// 								alert(obj['lat'])
 												vendermarkers[key] = new google.maps.Marker(
-														{
-															position : {
+														{position : {
 																lat : obj['lat'],
 																lng : obj['lng'],
 															},
@@ -222,6 +205,33 @@ html, body {
 												list(vendermarkers[key],
 														obj['id'], "vender",
 														obj);
+											});
+						}
+
+					})
+					
+			$.ajax({url : "/map/location?page=1&rows=20&maxlat=" + maxlat
+								+ "&minlat=" + minlat + "&maxlng=" + maxlng
+								+ "&minlng=" + minlng,
+						type : "POST",
+						success : function(data) {
+							$.each(data,function(key, obj) {
+																				alert(obj['locationId'])
+												locationmarkers[key] = new google.maps.Marker(
+														{position : {
+																lat : obj['lat'],
+																lng : obj['lng'],
+															},
+															map : map,
+															icon : {
+																url : "http://www.oxxostudio.tw/img/articles/201801/google-maps-3-marker-icon.png",
+																scale : 8.5,
+																fillColor : "#F99",
+																fillOpacity : 0.1,
+																strokeWeight : 1
+															}
+														});
+												list(locationmarkers[key],obj['id'], "location",obj);
 											});
 						}
 
