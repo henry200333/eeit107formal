@@ -41,9 +41,9 @@ public class Location {
 	@JsonIgnore
 	@OneToMany(mappedBy="locationId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)	
 	private List<Activity> activityLocaltionSet;
-//	經緯度
-//	@Column(name="lat")
-//	private Double lat;
-//	@Column(name="lng")
-//	private Double lng;
+	
+	@Column(name="lat")
+	private Double lat;
+	@Column(name="lng")
+	private Double lng;
 }

@@ -3,8 +3,12 @@ package org.iii.seaotter.jayee.service;
 import java.util.List;
 
 import org.iii.seaotter.jayee.dao.LocationDao;
+import org.iii.seaotter.jayee.entity.Activity;
 import org.iii.seaotter.jayee.entity.Location;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,6 +63,11 @@ public class LocationService {
 		if (locationDao.findById(entity.getLocationId()) != null) {
 			locationDao.delete(entity);
 		}
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<Location> getAll(Specification<Location> specification, Pageable  pageable) {
+		return locationDao.findAll(specification, pageable);
 	}
 	
 	
