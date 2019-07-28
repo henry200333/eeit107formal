@@ -1,35 +1,27 @@
 package org.iii.seaotter.jayee.web;
 
-import java.util.HashMap;
+
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.ListIterator;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.iii.seaotter.jayee.common.ArticleType;
-import org.iii.seaotter.jayee.common.GridResponse;
-import org.iii.seaotter.jayee.entity.Article;
-import org.iii.seaotter.jayee.entity.Job;
 import org.iii.seaotter.jayee.entity.Vender;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.JobService;
 import org.iii.seaotter.jayee.service.VenderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,11 +32,7 @@ public class EventSearchController {
 
 	@Autowired
 	private VenderService venderService;
-	@Autowired
-	private JobService jobservice;
-	
-	@Autowired
-	private ArticleService articleService;
+
 
 	@RequestMapping("/page")
 	public String listPage(Model model) {
@@ -61,7 +49,8 @@ public class EventSearchController {
 		model.addAttribute("venderparam",bean);
 		return "/admin/vender-jobs";
 	}
-
+	
+	
 
 	
 

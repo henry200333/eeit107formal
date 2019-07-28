@@ -21,8 +21,8 @@
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
-	height: 80%;
-	width: 80%;
+	height: 650px;
+	width: 650px;
 }
 
 .body {
@@ -42,21 +42,34 @@ html, body {
 <jsp:include page="../topbar.jsp"></jsp:include>
 <body>
 
-	<div class="body">
-		<div id="map"></div>
-		<input type="text" id="address"></input>
-		<button id="click">搜尋地址</button>
-		<br> <label>Lat:</label>
-		<p id=lat></p>
-		<label>Lng:</label>
-		<p id=lng></p>
+	<div class="container">
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-10">
+				<input type="text" id="address"></input>
+
+				<button id="click">搜尋地址</button>
+			</div>
+			<div class="col-7">
+				<div id="map"></div>
+			</div>
+			<div class="col-5" id="list">
+				
+			</div>
+			<div hidden>
+				<br> <label>Lat:</label>
+				<p id=lat></p>
+				<label>Lng:</label>
+				<p id=lng></p>
+			</div>
+		</div>
 	</div>
 	<script>
 		var map;
 		var self;
 
 		var vendermarkersdata = [];
-// 		var vendermarkers;
+		// 		var vendermarkers;
 		var locationmarkers = [];
 		var vendermarkers = [];
 		function initMap() {
@@ -122,12 +135,41 @@ html, body {
 
 		}
 
-		function list(vendermarkers,id) {
-// 	
-
-			vendermarkers.addListener('click', function() {
-					alert(id);
-			});
+		function list(vendermarkers, id, type, vender) {
+			// 	
+			console.log(vender)
+			if (type = "vender") {
+				vendermarkers.addListener('click', function() {
+					var txt="";
+					txt+="<div class='row' style='border: solid 1px silver; margin: 2%'><div class='col-sm-12 mb-0 mb-sm-0'><br></div><div class='col-sm-12 mb-0 mb-sm-0'><a href='/job/vender/";
+					txt+=vender.id;
+					txt+="' ><h4 style='text-align: center'>";
+					txt+=vender.name;
+					txt+="</h4></a></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>預約專線:</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5 style='padding-left: 10%'>";
+					txt+=vender.phone;
+					txt+="</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>地址:</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5 style='padding-left: 10%'>";
+					txt+=vender.city+vender.district+vender.address;
+					txt+="</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>關於我們:</h5></div><div class='col-sm-12 mb-3 mb-sm-0'><h5 style='border: solid 1px silver; text-align: center; padding: 1%'>";
+					txt+=vender.introduction;
+					txt+="</h5></div></div>";
+					$("#list").html(txt);
+// <div class='row' style='border: solid 1px silver; margin: 2%'><div class='col-sm-12 mb-0 mb-sm-0'><br></div><div class='col-sm-12 mb-0 mb-sm-0'><a href='
+// vender.id
+// ' ><h4 style='text-align: center'>
+// vender.name
+// </h4></a></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>預約專線:</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5 style='padding-left: 10%'>
+// vender.phone
+// </h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>地址:</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5 style='padding-left: 10%'>
+// vender.city+vender.district+vender.address
+// </h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>關於我們:</h5></div><div class='col-sm-12 mb-3 mb-sm-0'><h5style='border: solid 1px silver; text-align: center; padding: 1%'>
+// vender.data
+// </h5></div></div>
+					
+					
+					
+					
+				});
+			}
 		}
 
 		function changelatlng() {
@@ -135,8 +177,6 @@ html, body {
 			$("#lng").text(self.getPosition().lng());
 
 		}
-
-
 
 		function addmarker(map) {
 
@@ -152,19 +192,25 @@ html, body {
 					+ (gp.getNorthEast().lng() - gp.getSouthWest().lng()) * 1.0;
 			var minlng = gp.getSouthWest().lng()
 					+ (gp.getNorthEast().lng() - gp.getSouthWest().lng()) * 0.0;
-			$.ajax({url : "/map/map?page=1&rows=20&maxlat=" + maxlat
+			$
+					.ajax({
+						url : "/map/map?page=1&rows=20&maxlat=" + maxlat
 								+ "&minlat=" + minlat + "&maxlng=" + maxlng
 								+ "&minlng=" + minlng,
 						type : "POST",
 						success : function(data) {
-							$.each(data,function(key, obj) {
-// 								alert(obj['lat'])
-								vendermarkers[key] = new google.maps.Marker({
-										position : {
-											lat : obj['lat'],
-											lng : obj['lng'],
-													},
-													map : map,
+							$
+									.each(
+											data,
+											function(key, obj) {
+												// 								alert(obj['lat'])
+												vendermarkers[key] = new google.maps.Marker(
+														{
+															position : {
+																lat : obj['lat'],
+																lng : obj['lng'],
+															},
+															map : map,
 															icon : {
 																url : "http://www.oxxostudio.tw/img/articles/201801/google-maps-3-marker-icon.png",
 																scale : 8.5,
@@ -172,19 +218,20 @@ html, body {
 																fillOpacity : 0.1,
 																strokeWeight : 1
 															}
-														});								
-							list(vendermarkers[key],obj['id']);
+														});
+												list(vendermarkers[key],
+														obj['id'], "vender",
+														obj);
 											});
 						}
 
 					})
-					
-		
+
 		};
 
 		function clearmarker() {
 			console.log(vendermarkers)
-			for(var i = 0; i < vendermarkers.length; i++) {
+			for (var i = 0; i < vendermarkers.length; i++) {
 				if (vendermarkers[i]) {
 					vendermarkers[i].setMap(null);
 				}
