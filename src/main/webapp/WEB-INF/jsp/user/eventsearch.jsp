@@ -156,7 +156,11 @@ html, body {
 				});
 			}else if(type=="location"){
 				vendermarkers.addListener('click', function() {
-					alert(vender["locationId"])
+					$.ajax({url :"/map/activity?id="+vender["locationId"],
+						type : "GET",
+						success : function(data) {
+							console.log(data)}
+						})
 				})
 			}
 		}
