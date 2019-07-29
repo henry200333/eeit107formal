@@ -1,28 +1,28 @@
 insert into chat_message_store(content,message_time,receiver,sender,user_display_name) values
-('我4雅伊','2019-07-11 19:10:00','admin','artist001','ADMIN_BOT'),
-('午餐吃什麼？','2019-07-11 19:20:00','admin','123','ADMIN_BOT'),
-('隨便吧','2019-07-11 19:20:01','123','admin','112233'),
-('滷肉飯','2019-07-11 19:20:02','admin','123','ADMIN_BOT'),
-('有點油','2019-07-11 19:20:03','123','admin','112233'),
-('那..小火鍋嗎','2019-07-11 19:20:04','admin','123','ADMIN_BOT'),
-('很熱欸@@!','2019-07-11 19:20:05','123','admin','112233'),
-('掰掰','2019-07-11 19:20:06','admin','123','ADMIN_BOT'),
-('你生氣了噢','2019-07-11 19:20:07','123','admin','112233'),
-('沒有阿','2019-07-11 19:20:08','admin','123','ADMIN_BOT'),
-('你為什麼要生氣啊','2019-07-11 19:20:09','123','admin','112233'),
-('我沒間考慮太久，隨便吃吃','2019-07-11 19:20:10','admin','123','ADMIN_BOT'),
-('那就隨便吃阿','2019-07-11 19:20:11','123','admin','112233'),
-('牛肉麵?','2019-07-11 19:20:12','admin','123','ADMIN_BOT'),
-('你等我一下我有電話','2019-07-11 19:20:13','123','admin','112233'),
-('還沒好嗎??','2019-07-11 19:50:14','admin','123','ADMIN_BOT'),
-('啊!我朋友找我吃飯','2019-07-11 19:50:15','123','admin','112233'),
-('我在餐廳了耶','2019-07-11 19:50:16','123','admin','112233'),
-('刪好友吧^^','2019-07-11 19:50:17','admin','123','ADMIN_BOT'),
-('......','2019-07-11 19:50:18','123','admin','112233'),
-('人生短短幾個秋~','2019-07-11 19:50:19','admin','123','ADMIN_BOT'),
-('請你喝蜂蜜檸檬？','2019-07-11 19:50:20','123','admin','112233'),
-('可可可可可可可以喔','2019-07-11 19:50:21','admin','123','ADMIN_BOT'),
-('算了，手頭有點緊，還是刪吧','2019-07-11 19:50:22','123','admin','112233');
+('我4雅伊','2019-07-11 19:10:00','admin100','artist001','JayeeAdm'),
+('午餐吃什麼？','2019-07-11 19:20:00','admin100','123','JayeeAdm'),
+('隨便吧','2019-07-11 19:20:01','123','admin100','Scofield'),
+('滷肉飯','2019-07-11 19:20:02','admin100','123','JayeeAdm'),
+('有點油','2019-07-11 19:20:03','123','admin100','Scofield'),
+('那..小火鍋嗎','2019-07-11 19:20:04','admin100','123','JayeeAdm'),
+('很熱欸@@!','2019-07-11 19:20:05','123','admin100','Scofield'),
+('掰掰','2019-07-11 19:20:06','admin100','123','JayeeAdm'),
+('你生氣了噢','2019-07-11 19:20:07','123','admin100','Scofield'),
+('沒有阿','2019-07-11 19:20:08','admin100','123','JayeeAdm'),
+('你為什麼要生氣啊','2019-07-11 19:20:09','123','admin100','Scofield'),
+('我沒間考慮太久，隨便吃吃','2019-07-11 19:20:10','admin100','123','JayeeAdm'),
+('那就隨便吃阿','2019-07-11 19:20:11','123','admin100','Scofield'),
+('牛肉麵?','2019-07-11 19:20:12','admin100','123','JayeeAdm'),
+('你等我一下我有電話','2019-07-11 19:20:13','123','admin100','Scofield'),
+('還沒好嗎??','2019-07-11 19:50:14','admin100','123','JayeeAdm'),
+('啊!我朋友找我吃飯','2019-07-11 19:50:15','123','admin100','Scofield'),
+('我在餐廳了耶','2019-07-11 19:50:16','123','admin100','Scofield'),
+('刪好友吧^^','2019-07-11 19:50:17','admin100','123','JayeeAdm'),
+('......','2019-07-11 19:50:18','123','admin100','Scofield'),
+('人生短短幾個秋~','2019-07-11 19:50:19','admin100','123','JayeeAdm'),
+('請你喝蜂蜜檸檬？','2019-07-11 19:50:20','123','admin100','Scofield'),
+('可可可可可可可以喔','2019-07-11 19:50:21','admin100','123','JayeeAdm'),
+('算了，手頭有點緊，還是刪吧','2019-07-11 19:50:22','123','admin100','Scofield');
 
 INSERT INTO security_role(code) values
 ('ROLE_ADMIN'),
@@ -32,8 +32,8 @@ INSERT INTO security_role(code) values
 
 
  INSERT INTO security_user(account, password, display_name, member_name, photo, gender, mail, birth, address, tel, favorite_location, register_date, introduction, enabled, followers) values
-('admin','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 'ADMIN_BOT', 'Mr.Admin', '/resources/profile_image/admin.jpg', 'male', 'jasonben26@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im admin',  1, 0),
-('123', '$2a$10$weN4FB8uqq1jpv/7HEPBDuYMuw2xbMCBGKx3xYfWk3Da/UoVFS/7W', '112233', 'OneTwoThree', '/resources/profile_image/123.jpg', 'male', 'vaildiablo448@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im 123',  1, 0),
+('admin100','$2a$10$CI.TCDqxdr8xAhnkCz9oyOViGnBG5iHFFxicjcRwJORbt1IzENR7G', 'JayeeAdm', 'Mr.Admin', '/resources/profile_image/admin.jpg', 'male', 'jasonben26@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im admin',  1, 0),
+('123', '$2a$10$weN4FB8uqq1jpv/7HEPBDuYMuw2xbMCBGKx3xYfWk3Da/UoVFS/7W', 'Scofield', 'OneTwoThree', '/resources/profile_image/123.jpg', 'male', 'vaildiablo448@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im 123',  1, 0),
 ('artist001', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','桑源雅沂', '劉長軒', '/resources/profile_image/artist001.jpg', 'female', 'Liu0807@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Liu',  1, 86520),
 ('artist002', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','白賊虞', '李承宇', '/resources/profile_image/artist002.jpg', 'male', 'Lee0708@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Lee',  1, 30678),
 ('artist003', '$2a$10$n8yvS9u7oftROmfhAsbQtejfz98C6Bgnfje6nkY88m6ua7iOiV9ai','柳川鳳', '吳帆祥', '/resources/profile_image/artist003.jpg', 'male', 'Wu0102@gmail.com', '1989/01/01', '台北市大安區', '0912345678', '台北市', '2019/07/01', 'hi,im Wu',  1, 66666),
@@ -130,11 +130,11 @@ alex@skrpresents.com
  (2, 1,'Article', '大平台', '我已經買了zzZ', '2019/05/28 20:00:27',0,0);
  
  insert into forum (ref_id, ref_comment_id, forum_board, user_name, comment, comment_date,user_photo,like_count,dislike_count) values
- (7, 0,'Performance', 'ADMIN_BOT', '好可愛', '2006/03/04 13:14:55','/resources/profile_image/artist004.jpg',10,5),
+ (7, 0,'Performance', 'JayeeAdm', '好可愛', '2006/03/04 13:14:55','/resources/profile_image/artist004.jpg',10,5),
  (7, 0,'Performance', '大中天', '我覺得不行', '2006/03/04 13:14:55','/resources/profile_image/artist004.jpg',3,0),
  (7, 7,'Performance', '大平台', '好狗命', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg',7,58),
  (7, 8,'Performance', '大平台', '梗也太老了', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg',1,0),
- (7, 7,'Performance', 'ADMIN_BOT', 'ㄏㄏ', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg',0,99);
+ (7, 7,'Performance', 'JayeeAdm', 'ㄏㄏ', '2019/05/28 20:00:27','/resources/profile_image/artist002.jpg',0,99);
  
  
  INSERT INTO performance (title,introduction,youtube_url,update_time,activity_id,views,likes,dislikes,userp_id,username,gerne) values
@@ -314,12 +314,12 @@ INSERT INTO Location (location_name,city,district,address,lat,lng) values
 ('捷運東區地下街','台北市','大安區','大安路一段77號',25.0419812,121.5441652);
 
 INSERT INTO activity (name,artist,description,begin_time,end_time,perf_type,awesome_Num,usera_id,location_id,activity_status,noticed) values
- ('造型氣球表演','ADMIN_BOT','造型氣球教學、氣球表演、現埸折氣球、活動演出、魔術','2019/03/28 12:03','2019/05/28 12:30','創意藝術',372,1,1,1,0),
+ ('造型氣球表演','JayeeAdm','造型氣球教學、氣球表演、現埸折氣球、活動演出、魔術','2019/03/28 12:03','2019/05/28 12:30','創意藝術',372,1,1,1,0),
  ('攝影卡片','王怡霖','用復古相機現場為每位在場的朋友拍照，現場貼在卡片上讓每位前來的朋友帶回家','2019/07/25 10:02','2019/07/28 07:35','視覺藝術',219,4,2,1,0),
  ('吉他彈唱','派派x游偉','不插電演出，木吉他加上歌聲傳達最簡單的感動','2019/07/29 07:35','2019/07/29 17:15','表演藝術',377,4,3,1,0),
  ('摺紙藝術','鄭皓剛','以紙做為創作的素材，將多面體摺紙、環狀摺紙，應用在紙首飾、紙飾品的創作上，挑戰紙的無限可能性','2019/07/26 10:35','2019/07/28 07:35','創意藝術',227,3,4,1,0),
  ('創意明信片','梁濯紳','客製著色明信片畫','2019/04/25 07:35','2019/05/01 17:15','視覺藝術',203,2,5,1,0),
- ('扯鈴技藝','ADMIN_BOT','多顆扯鈴同時演出','2019/03/28 12:03','2019/05/28 12:30','表演藝術',189,1,4,1,0),
+ ('扯鈴技藝','JayeeAdm','多顆扯鈴同時演出','2019/03/28 12:03','2019/05/28 12:30','表演藝術',189,1,4,1,0),
  ('打包帶藝術','白錫石','已打包帶為材料，透過個人巧思編摺成各種動物、昆蟲','2019/02/22 23:35','2019/02/23 07:35','創意藝術',359,3,3,1,0),
  ('創意繪製','麥考艾裘','搞笑人像繪製','2019/07/14 07:35','2019/07/14 17:15','視覺藝術',278,2,2,1,0),
  ('抽象人形','林志儒','將抽象畫融入人形裝置，再與觀眾互動','2019/06/27 23:35','2019/06/28 07:35','表演藝術',57,3,1,1,0),
