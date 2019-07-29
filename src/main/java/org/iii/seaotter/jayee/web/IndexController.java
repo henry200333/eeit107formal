@@ -309,8 +309,9 @@ public class IndexController {
 		Long venderId=null;
 		if(vender!=null) {
 			venderId=vender.getId();
+			res.put("venderId",venderId.toString());
 		}
-		res.put("venderId",venderId.toString());
+
 		return res;
 	}
 	
