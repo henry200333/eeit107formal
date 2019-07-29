@@ -1,7 +1,8 @@
 package org.iii.seaotter.jayee.web;
 
 import java.io.IOException;
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -32,6 +33,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -265,9 +267,8 @@ public class ActivityController {
 			notice.setSendtime(date);
 			noticeService.save(notice);	
 		}
-		
-		
-		
+		activity.setActivityStatus(activity.getActivityStatus());	
+		activity.setNoticed(0L);
 		activity=activityService.update(activity);
 		aJaxResp.setType(AjaxResponseType.SUCCESS);
 		aJaxResp.setData(activity);
@@ -376,7 +377,7 @@ public class ActivityController {
 	
 //	private static final Logger logger =LoggerFactory.getLogger(ScheduledTasks.class);
 //	private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-	@Scheduled(cron = "0/1 * * * * ?")
+	@Scheduled(cron = "0/5 * * * * ?")
 	public void activityStatusCheckScheduleWithCron() {
 			Date date = new java.util.Date();
 			for(Activity a:activityService.getAll()) {
@@ -389,11 +390,52 @@ public class ActivityController {
 				}
 				activityService.update(a);
 			}
-			try {
-				TimeUnit.MINUTES.sleep(5);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			
+			SimpleMailMessage mailMessage = new SimpleMailMessage();
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			for(Activity a:activityService.getAll()) {
+				if(a.getActivityStatus()==1) {			
+//					Date date = new java.util.Date();
+					Calendar calendar = Calendar.getInstance(); 
+					calendar.setTime(a.getBeginTime());
+					calendar.add(Calendar.DAY_OF_MONTH, -1); 
+					Date dBefore = calendar.getTime(); //前一天的日期
+					for(SecurityUser followUser:a.getFollowUser()) {
+					if(date.compareTo(dBefore)==1 && a.getNoticed()==0L) {
+						System.out.println(a.getNoticed()+"Before"+"ID="+a.getId());
+						a.setNoticed(1L);
+						activityService.update(a);
+						System.out.println(a.getNoticed()+"After"+"ID="+a.getId());
+//						try {
+//							TimeUnit.MINUTES.sleep(50);
+//						} catch (InterruptedException e) {
+//							e.printStackTrace();
+//						}
+						System.out.println(a.getNoticed()+"After");
+						mailMessage.setTo(followUser.getMail());
+//						mailMessage.setTo("vaildiablo448@gmail.com");
+						mailMessage.setSubject("您收藏的活動即將在明日開辦！");
+						mailMessage.setFrom("jayee20192019@outlook.com");
+						mailMessage.setText(
+								"用戶您好，您收藏的活動：「"+a.getName()+"」即將在明日"+sdf.format(a.getBeginTime())+"舉辦，歡迎您來共襄盛舉！");
+						emailSenderService.sendMail(mailMessage);
+						System.out.println("信件已送出給:"+ followUser.getUsername());
+					}
+					}
+				}
 			}
+			
+			
+			
+			
+			
+			
+			
+//			try {
+//				TimeUnit.MINUTES.sleep(5);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
 	
 	};
 	
@@ -407,27 +449,36 @@ public class ActivityController {
 //				Calendar calendar = Calendar.getInstance(); 
 //				calendar.setTime(a.getBeginTime());
 //				calendar.add(Calendar.DAY_OF_MONTH, -1); 
-//				Date dBefore = calendar.getTime(); //前一天的日期	
-//				if(date.compareTo(dBefore)==1 & a.getNoticed()==0) {
-////					Location location=(Location) locationService.getById(a.getLocationId());
+//				Date dBefore = calendar.getTime(); //前一天的日期
+//				for(SecurityUser followUser:a.getFollowUser()) {
+//				if(date.compareTo(dBefore)==1 && a.getNoticed()==0L) {
+//					System.out.println(a.getNoticed()+"Before"+"ID="+a.getId());
 //					a.setNoticed(1L);
 //					activityService.update(a);
-////					mailMessage.setTo(securityUserService.getById(a.getUseraId()).getMail());
-//					mailMessage.setTo("vaildiablo448@gmail.com");
+//					System.out.println(a.getNoticed()+"After"+"ID="+a.getId());
+////					try {
+////						TimeUnit.MINUTES.sleep(50);
+////					} catch (InterruptedException e) {
+////						e.printStackTrace();
+////					}
+//					System.out.println(a.getNoticed()+"After");
+//					mailMessage.setTo(followUser.getMail());
+////					mailMessage.setTo("vaildiablo448@gmail.com");
 //					mailMessage.setSubject("您收藏的活動即將在明日開辦！");
 //					mailMessage.setFrom("jayee20192019@outlook.com");
 //					mailMessage.setText(
 //							"用戶您好，您收藏的活動：「"+a.getName()+"」即將在明日"+sdf.format(a.getBeginTime())+"舉辦，歡迎您來共襄盛舉！");
 //					emailSenderService.sendMail(mailMessage);
-//					System.out.println("信件已送出");
+//					System.out.println("信件已送出給:"+ followUser.getUsername());
+//				}
 //				}
 //			}
 //		}
-//		try {
-//			TimeUnit.MINUTES.sleep(50);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
+////		try {
+////			TimeUnit.MINUTES.sleep(50);
+////		} catch (InterruptedException e) {
+////			e.printStackTrace();
+////		}
 //	}
 	
 //	@RequestMapping("/followedOrNot")

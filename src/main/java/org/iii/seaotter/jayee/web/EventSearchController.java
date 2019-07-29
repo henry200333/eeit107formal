@@ -1,27 +1,28 @@
 package org.iii.seaotter.jayee.web;
 
-
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.iii.seaotter.jayee.entity.Activity;
+import org.iii.seaotter.jayee.entity.Location;
 import org.iii.seaotter.jayee.entity.Vender;
+import org.iii.seaotter.jayee.service.ActivityService;
 import org.iii.seaotter.jayee.service.ArticleService;
 import org.iii.seaotter.jayee.service.JobService;
+import org.iii.seaotter.jayee.service.LocationService;
 import org.iii.seaotter.jayee.service.VenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,50 +33,43 @@ public class EventSearchController {
 
 	@Autowired
 	private VenderService venderService;
+	@Autowired
+	private JobService jobservice;
 
+	@Autowired
+	private ArticleService articleService;
+
+	@Autowired
+	private ActivityService activityService;
+
+	@Autowired
+	private LocationService locationService;
 
 	@RequestMapping("/page")
 	public String listPage(Model model) {
 		return "/user/eventsearch";
 	}
 
-
-	
 	@RequestMapping("/venderself")
-	public String venderselfpage(@RequestParam("id")Long id, Model model) {
-		Vender bean= venderService.getById(id);
+	public String venderselfpage(@RequestParam("id") Long id, Model model) {
+		Vender bean = venderService.getById(id);
 
 //		System.out.println(bean);
-		model.addAttribute("venderparam",bean);
+		model.addAttribute("venderparam", bean);
 		return "/admin/vender-jobs";
 	}
-	
-	
 
-	
-
-	
-	
-	
 	@RequestMapping("/maptest")
 	public String mapPage() {
 		return "/admin/vender-maptest";
 	}
-	
-
-	
-	
-	
-
-	
-
 
 	@RequestMapping("/map")
 	@ResponseBody
 	public List<Vender> map(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size,
 			@RequestParam(value = "maxlat") Double maxlat, @RequestParam(value = "minlat") Double minlat,
 			@RequestParam(value = "maxlng") Double maxlng, @RequestParam(value = "minlng") Double minlng) {
-		
+
 		Pageable pageable = PageRequest.of(page - 1, size);
 		Specification<Vender> specification = new Specification<Vender>() {
 
@@ -85,11 +79,11 @@ public class EventSearchController {
 			public Predicate toPredicate(Root<Vender> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				Predicate predicate = cb.conjunction();
 				if (!StringUtils.isEmpty(maxlat) && !StringUtils.isEmpty(minlat)) {
-					predicate = cb.and(predicate,cb.between(root.get("lat"), minlat, maxlat));
+					predicate = cb.and(predicate, cb.between(root.get("lat"), minlat, maxlat));
 				}
 				if (!StringUtils.isEmpty(maxlng) && !StringUtils.isEmpty(minlng)) {
 
-					predicate = cb.and(predicate,cb.between(root.get("lng"), minlng, maxlng));
+					predicate = cb.and(predicate, cb.between(root.get("lng"), minlng, maxlng));
 				}
 
 				return predicate;
@@ -100,8 +94,54 @@ public class EventSearchController {
 		return venderService.getAll(specification, pageable).getContent();
 	}
 
-	
+	@RequestMapping("/location")
+	@ResponseBody
+	public List<Location> queryLocation(@RequestParam(value = "page") Integer page,
+			@RequestParam(value = "rows") Integer size, @RequestParam(value = "maxlat") Double maxlat,
+			@RequestParam(value = "minlat") Double minlat, @RequestParam(value = "maxlng") Double maxlng,
+			@RequestParam(value = "minlng") Double minlng) {
+		Pageable pageable = PageRequest.of(page - 1, size);
+		Specification<Location> specification = new Specification<Location>() {
 
-	
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Predicate toPredicate(Root<Location> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Predicate predicate = cb.conjunction();
+				if (!StringUtils.isEmpty(maxlat) && !StringUtils.isEmpty(minlat)) {
+					predicate = cb.and(predicate, cb.between(root.get("lat"), minlat, maxlat));
+				}
+				if (!StringUtils.isEmpty(maxlng) && !StringUtils.isEmpty(minlng)) {
+
+					predicate = cb.and(predicate, cb.between(root.get("lng"), minlng, maxlng));
+				}
+
+				return predicate;
+			}
+		};
+		return locationService.getAll(specification, pageable).getContent();
+	}
+
+	@RequestMapping("/activity")
+	@ResponseBody
+	public List<Activity> queryActivity( @RequestParam("id") Long id) {
+		String sidx = "activityStatus";
+		Sort sort = new Sort(Sort.Direction.ASC, sidx);
+		Pageable pageable = PageRequest.of(0,50);
+
+		Specification<Activity> specification = new Specification<Activity>() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Predicate toPredicate(Root<Activity> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Predicate where = cb.conjunction();
+				where = cb.and(where, cb.between(root.get("activityStatus"), 0, 1));
+				where = cb.and(where, cb.equal(root.get("locationId"),id));
+				return where;
+			}
+		};
+//		System.out.println(activityService.getAll(specification, pageable).getContent().size());
+		return activityService.getAll(specification, pageable).getContent();
+	}
 
 }

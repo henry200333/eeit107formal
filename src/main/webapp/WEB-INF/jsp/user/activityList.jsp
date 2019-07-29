@@ -95,29 +95,46 @@ $("#searchBT").click(function searchBT(){
 	 			var txt6 ="";
 		 		$.each(res.rows,function(index,value){
 		 			if(value['activityStatus']==0){
+		 				if(userDisplayName==value['artist']){
+		 	 				backgr = "changeColor";
+		 	 			}else{
+		 	 				backgr = "changeColor1";
+		 	 			}
 		 				txt3="</a></h4><div style='text-decoration: underline;background-color:Moccasin'><i class='fab fa-hotjar' style='color:Orange'></i>活動進行中！</div><p class='card-text'>";
 			 			txt4="</p></div></div></div>";
 			 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
-			 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+			 			txt1="<div class='col-lg-4 mb-4'><div name='"+backgr+"' class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 			 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演者名：</span>"+ value['artist'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+"<div style='font-weight:bold;'><span style='color:red'>開始時間：</span>"+ value['beginTime'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+txt4;
 			 			txt6 += txt5;
 		 			}else if(value['activityStatus']==1){
+		 				if(userDisplayName==value['artist']){
+		 	 				backgr = "changeColor";
+		 	 			}else{
+		 	 				backgr = "changeColor1";
+		 	 			}
 		 				txt3="</a></h4><div style='text-decoration: underline;background-color:PaleGreen'><i class='far fa-clock' style='color:OliveDrab'></i>活動尚未舉辦...</div><p class='card-text'>";
 			 			txt4="</p></div></div></div>";
 			 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
-			 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+			 			txt1="<div class='col-lg-4 mb-4'><div name='"+backgr+"' class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 			 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演者名：</span>"+ value['artist'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+"<div style='font-weight:bold;'><span style='color:red'>開始時間：</span>"+ value['beginTime'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+txt4;
 			 			txt6 += txt5;
 		 			}else if(value['activityStatus']==2){
+		 				if(userDisplayName==value['artist']){
+		 	 				backgr = "changeColor";
+		 	 			}else{
+		 	 				backgr = "changeColor1";
+		 	 			}
 		 				txt3="</a></h4><div style='text-decoration: underline;background-color:LightSkyBlue'><i class='fas fa-bed' style='color:RoyalBlue'></i>活動已結束！</div><p class='card-text'>";
 			 			txt4="</p></div></div></div>";
 			 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
-			 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+			 			txt1="<div class='col-lg-4 mb-4'><div name='"+backgr+"' class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 			 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演者名：</span>"+ value['artist'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+"<div style='font-weight:bold;'><span style='color:red'>開始時間：</span>"+ value['beginTime'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+txt4;
 			 			txt6 += txt5;
 		 			}
 		 		 })
 				$("#dataBody").append(txt6);
+		 		$("div[name='changeColor']").attr("style","border-radius:20px;background-color:MistyRose");
+		 		$("div[name='changeColor1']").attr("style","border-radius:20px;background-color:White");
 		}
 	})
 	page++;
@@ -140,29 +157,46 @@ function type11(obj){
 	 			var txt6 ="";
 		 		$.each(res.rows,function(index,value){	
 		 			if(value['activityStatus']==0){
+		 				if(userDisplayName==value['artist']){
+		 	 				backgr = "changeColor";
+		 	 			}else{
+		 	 				backgr = "changeColor1";
+		 	 			}
 		 				txt3="</a></h4><div style='text-decoration: underline;background-color:Moccasin'><i class='fab fa-hotjar' style='color:Orange'></i>活動進行中！</div><p class='card-text'>";
 			 			txt4="</p></div></div></div>";
 			 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
-			 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+			 			txt1="<div class='col-lg-4 mb-4'><div name='"+backgr+"' class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 			 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演者名：</span>"+ value['artist'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+"<div style='font-weight:bold;'><span style='color:red'>開始時間：</span>"+ value['beginTime'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+txt4;
 			 			txt6 += txt5;
 		 			}else if(value['activityStatus']==1){
+		 				if(userDisplayName==value['artist']){
+		 	 				backgr = "changeColor";
+		 	 			}else{
+		 	 				backgr = "changeColor1";
+		 	 			}
 		 				txt3="</a></h4><div style='text-decoration: underline;background-color:PaleGreen'><i class='far fa-clock' style='color:OliveDrab'></i>活動尚未舉辦...</div><p class='card-text'>";
 			 			txt4="</p></div></div></div>";
 			 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
-			 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+			 			txt1="<div class='col-lg-4 mb-4'><div name='"+backgr+"' class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 			 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演者名：</span>"+ value['artist'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+"<div style='font-weight:bold;'><span style='color:red'>開始時間：</span>"+ value['beginTime'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+txt4;
 			 			txt6 += txt5;
 		 			}else if(value['activityStatus']==2){
+		 				if(userDisplayName==value['artist']){
+		 	 				backgr = "changeColor";
+		 	 			}else{
+		 	 				backgr = "changeColor1";
+		 	 			}
 		 				txt3="</a></h4><div style='text-decoration: underline;background-color:LightSkyBlue'><i class='fas fa-bed' style='color:RoyalBlue'></i>活動已結束！</div><p class='card-text'>";
 			 			txt4="</p></div></div></div>";
 			 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
-			 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+			 			txt1="<div class='col-lg-4 mb-4'><div name='"+backgr+"' class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 			 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演者名：</span>"+ value['artist'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+"<div style='font-weight:bold;'><span style='color:red'>開始時間：</span>"+ value['beginTime'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+txt4;
 			 			txt6 += txt5;
 		 			}
 		 		 })
 				$("#dataBody").append(txt6);
+		 		$("div[name='changeColor']").attr("style","border-radius:20px;background-color:MistyRose");
+		 		$("div[name='changeColor1']").attr("style","border-radius:20px;background-color:White");
 		 		totalPage = res.total;
 		}
 	})
@@ -207,7 +241,6 @@ var totalPage=10;
 var backgr;
 $(document).ready(showjobs(page-1));
 function showjobs(page) {
-	alert(userAccount);
 	$.ajax({url : "/activity/query",
 		type : "GET",
 		data:{'page':page,'rows':rows},
@@ -217,6 +250,8 @@ function showjobs(page) {
 	 			if(value['activityStatus']==0){
 	 				if(userDisplayName==value['artist']){
 	 	 				backgr = "changeColor";
+	 	 			}else{
+	 	 				backgr = "changeColor1";
 	 	 			}
 	 				txt3="</a></h4><div style='text-decoration: underline;background-color:Moccasin'><i class='fab fa-hotjar' style='color:Orange'></i>活動進行中！</div><p class='card-text'>";
 		 			txt4="</p></div></div></div>";
@@ -239,6 +274,8 @@ function showjobs(page) {
 	 			}else if(value['activityStatus']==2){
 	 				if(userDisplayName==value['artist']){
 	 	 				backgr = "changeColor";
+	 	 			}else{
+	 	 				backgr = "changeColor1";
 	 	 			}
 	 				txt3="</a></h4><div style='text-decoration: underline;background-color:LightSkyBlue'><i class='fas fa-bed' style='color:RoyalBlue'></i>活動已結束！</div><p class='card-text'>";
 		 			txt4="</p></div></div></div>";
@@ -250,7 +287,7 @@ function showjobs(page) {
 	 		 })
 			$("#dataBody").append(txt6);
 	 		$("div[name='changeColor']").attr("style","border-radius:20px;background-color:MistyRose");
-// 	 		page++;
+	 		$("div[name='changeColor1']").attr("style","border-radius:20px;background-color:White");
 		}
 	})
 }
@@ -280,29 +317,46 @@ $(window).scroll(function(){
 						 		var txt6 ="";
 						 		$.each(data.rows,function(index,value){
 						 			if(value['activityStatus']==0){
+						 				if(userDisplayName==value['artist']){
+						 	 				backgr = "changeColor";
+						 	 			}else{
+						 	 				backgr = "changeColor1";
+						 	 			}
 						 				txt3="</a></h4><div style='text-decoration: underline;background-color:Moccasin'><i class='fab fa-hotjar' style='color:Orange'></i>活動進行中！</div><p class='card-text'>";
 							 			txt4="</p></div></div></div>";
 							 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
-							 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+							 			txt1="<div class='col-lg-4 mb-4'><div name='"+backgr+"' class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 							 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演者名：</span>"+ value['artist'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+"<div style='font-weight:bold;'><span style='color:red'>開始時間：</span>"+ value['beginTime'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+txt4;
 							 			txt6 += txt5;
 						 			}else if(value['activityStatus']==1){
+						 				if(userDisplayName==value['artist']){
+						 	 				backgr = "changeColor";
+						 	 			}else{
+						 	 				backgr = "changeColor1";
+						 	 			}
 						 				txt3="</a></h4><div style='text-decoration: underline;background-color:PaleGreen'><i class='far fa-clock' style='color:OliveDrab'></i>活動尚未舉辦...</div><p class='card-text'>";
 							 			txt4="</p></div></div></div>";
 							 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
-							 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+							 			txt1="<div class='col-lg-4 mb-4'><div name='"+backgr+"' class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 							 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演者名：</span>"+ value['artist'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+"<div style='font-weight:bold;'><span style='color:red'>開始時間：</span>"+ value['beginTime'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+txt4;
 							 			txt6 += txt5;
 						 			}else if(value['activityStatus']==2){
+						 				if(userDisplayName==value['artist']){
+						 	 				backgr = "changeColor";
+						 	 			}else{
+						 	 				backgr = "changeColor1";
+						 	 			}
 						 				txt3="</a></h4><div style='text-decoration: underline;background-color:LightSkyBlue'><i class='fas fa-bed' style='color:RoyalBlue'></i>活動已結束！</div><p class='card-text'>";
 							 			txt4="</p></div></div></div>";
 							 			txt2=".jpg' style='height:280px;width:100%;border-radius:20px;'></a><div class='card-body'><h4 class='card-title'><a href='/activity/view/"+value['id']+"'>";
-							 			txt1="<div class='col-lg-4 mb-4'><div class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
+							 			txt1="<div class='col-lg-4 mb-4'><div name='"+backgr+"' class='card h-100' style='border-radius:20px';><a href='/activity/view/"+value['id']+"'><img class='artist1' src='/resources/user-bootstrap/img/activity/activity";
 							 			txt5 = txt1 + value['id'] + txt2 + value['name'] + txt3 +"<div style='font-weight:bold;'><span style='color:red'>表演者名：</span>"+ value['artist'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演類型：</span>"+value['perfType']+"</div>"+"<div style='font-weight:bold;'><span style='color:red'>開始時間：</span>"+ value['beginTime'] +"</div>"+"<div style='font-weight:bold;'><span style='color:red'>表演描述：</span>"+ value['description'] +"</div>"+txt4;
 							 			txt6 += txt5;
 						 			}
 						 		 })
 								$("#dataBody").append(txt6);
+						 		$("div[name='changeColor']").attr("style","border-radius:20px;background-color:MistyRose");
+						 		$("div[name='changeColor1']").attr("style","border-radius:20px;background-color:White");
 						 		totalPage = data.total;
 							}
 						})//ajax尾	
