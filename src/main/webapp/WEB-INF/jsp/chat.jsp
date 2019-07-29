@@ -21,16 +21,7 @@
 
 		
 <script>
-window.onbeforeunload = function(evt) {
-	offline();
-    // Cancel the event (if necessary)
-    evt.preventDefault();
 
-    // Google Chrome requires returnValue to be set
-//     evt.returnValue = '';
-
-    return null;
-};
 function offline(){
 	stompClient.send('/app/offline',{},JSON.stringify(userAccount));
 }
