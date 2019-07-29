@@ -33,6 +33,7 @@
 					aria-haspopup="true" aria-expanded="false"></button>
 				<div class="dropdown-menu" id="activitybar">
 					<a class="dropdown-item" href="/activity/list">搜尋活動頁面</a>
+					<a class="dropdown-item" href="/map/page">探索附近活動</a>
 				</div>
 			</div>
 			<div class="btn-group">

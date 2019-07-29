@@ -140,7 +140,7 @@ public class EventSearchController {
 				return where;
 			}
 		};
-		System.out.println(activityService.getAll(specification, pageable).getContent().size());
+//		System.out.println(activityService.getAll(specification, pageable).getContent().size());
 		return activityService.getAll(specification, pageable).getContent();
 	}
 
