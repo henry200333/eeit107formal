@@ -109,7 +109,7 @@ public class UserJobController {
 //		System.out.println("aaa");
 		Vender vender = venderService.getById(venderId);
 		SecurityUser user = vender.getUser();
-		System.out.println(user.getUserId());
+//		System.out.println(user.getUserId());
 		vender.setUser(null);
 		model.addAttribute("vender", vender);
 		model.addAttribute("user", user);
@@ -269,7 +269,7 @@ public class UserJobController {
 		}
 		if (jobservice.getApplication(user, job) != null
 				&& jobservice.getApplication(user, job).getStatus().equals("申請中")) {
-			System.out.println("已申請");
+//			System.out.println("已申請");
 			message.put("mes", "你已經申請了");
 		} else {
 			JobApplication application;
@@ -317,7 +317,7 @@ public class UserJobController {
 		List<Job>  jobs=jobservice.getByVender(vender);
 		for(int i=0;i<jobs.size();i++) {
 			if(jobs.get(i).getUser()==null) {
-				System.out.println("aa");
+//				System.out.println("aa");
 				SecurityUser user=new SecurityUser();
 				user.setDisplayName("尚未有表演者");
 				user.setAccount("job/vender/"+id);
@@ -391,7 +391,7 @@ public class UserJobController {
 //			System.out.println((Date)sdf.parse(jobinf.get("jobTime")));
 			job.setJobTime((Date) sdf.parse(jobinf.get("jobTime")));
 		} catch (ParseException e) {
-			System.out.println("出錯啦!!!!");
+//			System.out.println("出錯啦!!!!");
 		}
 		job.setJobType(jobinf.get("jobType"));
 		job.setReward(Integer.parseInt(jobinf.get("reward")));
