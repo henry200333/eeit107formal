@@ -1,5 +1,6 @@
 package org.iii.seaotter.jayee.service;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -142,7 +143,12 @@ public class SecurityUserService implements UserDetailsService {
 		user.setAccount(account);
 		user.setPassword(passwordEncoder.encode(rawPassword));
 		user.setMail(mail);
-
+		user.setPhoto("admin.jpg");
+		user.setDisplayName(account);
+		user.setMemberName(account);
+		java.util.Date date = new java.util.Date();
+		user.setRegisterDate(date);
+		
 		Set<SecurityRole> roles = new HashSet<SecurityRole>();
 		roles.add(securityRoleDao.findByCode("ROLE_USER"));
 		user.setRoles(roles);

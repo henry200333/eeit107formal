@@ -391,7 +391,7 @@ color:black;
 					txt+="<div class='per' id='"+value['id']+"'></div>";
 					txt+="<iframe width='100%' height='190px' src='https://www.youtube.com/embed/"+url+"' 	frameborder='0'		allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'		allowfullscreen></iframe>";
 					txt+="</div>";
-					txt+="<div class='col-8'><p class='title'>"+value['title']+"</p><img src='/resources/user-bootstrap/img/performance/"+value['userpId'] +".jpg' width='40px' style='border-radius:50%;padding-top:20px'><br><span class='username'>"+value['pdisplayName']+ "</span><span class='type'>#"+value['performanceGerne']+"</span><p class='viewandtime'>"+value['views']+" 觀看，"+parseInt(timeresult)+"天前發布</p><p class='int'>"+value['introduction']+"</p></div></div>";
+					txt+="<div class='col-8'><p class='title'>"+value['title']+"</p><img src='/resources/profile_image/"+value['username'] +".jpg' width='40px' style='border-radius:50%;padding-top:20px'><br><span class='username'>"+value['pdisplayName']+ "</span><span class='type'>#"+value['performanceGerne']+"</span><p class='viewandtime'>"+value['views']+" 觀看，"+parseInt(timeresult)+"天前發布</p><p class='int'>"+value['introduction']+"</p></div></div>";
 						$("#pdiv").append(txt);
 						$("#"+value['id']).click(function(){
 							window.location.href="/performanceview/"+value['id'];

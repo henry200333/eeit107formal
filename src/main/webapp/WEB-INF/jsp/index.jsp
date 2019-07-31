@@ -128,12 +128,12 @@
 				<div class="col-8" style="margin-top: 40px;">
 					<span
 						style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold;"><i
-						class="fab fa-hotjar"></i>熱門活動</span>
+						class="fab fa-hotjar"></i>最新活動</span>
 				</div>
 
 				<div class="col-4" style="margin-top: 40px; padding-left: 0;">
 					<span
-						style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold"><i class="fas fa-star"></i>熱門文章</span>
+						style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold"><i class="fas fa-star"></i>發燒文章</span>
 				</div>
 			</div>
 
@@ -223,7 +223,7 @@
 			<div class="row">
 				<div class="col-12" style="margin-top: 40px;">
 					<span
-						style="border-bottom: 3px solid black; font-size: 30px; font-weight: bold;"><i class="fab fa-youtube"></i>本週熱門表演</span>
+						style="border-bottom: 3px solid black; font-size: 30px; font-weight: bold;"><i class="fab fa-youtube"></i>推薦表演</span>
 				</div>
 			</div>
 

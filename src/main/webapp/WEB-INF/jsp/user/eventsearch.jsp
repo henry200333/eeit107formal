@@ -111,7 +111,7 @@ html, body {
 				},
 				map : map
 			});
-			changelatlng();
+// 			changelatlng();
 			map.addListener('click', function(event) {
 				// 				alert(event.latLng.lat())
 
@@ -136,10 +136,10 @@ html, body {
 				changelatlng();
 
 			});
-			// 			addmarker(map);
-
+			window.setTimeout(function() {
+				addmarker(map);
+			}, 100);
 		}
-
 		function list(vendermarkers, id, type, vender) {
 			// 	
 			console.log(type)
