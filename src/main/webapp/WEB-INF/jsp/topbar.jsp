@@ -58,7 +58,8 @@
 			$.ajax({
 				url :"/venderselfpage/"+$("#username").val(),
 				type :"GET",
-				success : function(data) {
+				success : function(data) {	
+// 					alert(data.venderId);
 					$("#venderselfpage").attr("href","/job/vender/"+data.venderId)
 				}
 			});

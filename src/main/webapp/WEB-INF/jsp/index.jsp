@@ -295,7 +295,7 @@
 					window.location.href="/performanceview/"+value['id'];
 				});
 				$("#performance"+(p+1)).children("#p1").html(value['title']);
-				$("#performance"+(p+1)).children("#p2").html(value['username']);
+				$("#performance"+(p+1)).children("#p2").html(value['pdisplayName']);
 				$("#performance"+(p+1)).children("#p3").html(value['views']+"觀看");
 				$("#performance"+(p+1)).children("#p4").html(parseInt(timeresult)+"  天前發布");
 				

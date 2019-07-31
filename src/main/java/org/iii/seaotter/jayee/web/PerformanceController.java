@@ -327,7 +327,8 @@ public class PerformanceController {
 			performancenew.setViews(0L);
 			performancenew.setLikes(0L);
 			performancenew.setDislikes(0L);
-			performancenew.setUsername(user.getDisplayName());
+			performancenew.setUsername(user.getAccount());
+			performancenew.setPdisplayName(user.getDisplayName());
 			performancenew.setPerformanceGerne(activity.getPerfType());
 			performancenew.setUserpId(user.getUserId());
 			performanceService.insert(performancenew);

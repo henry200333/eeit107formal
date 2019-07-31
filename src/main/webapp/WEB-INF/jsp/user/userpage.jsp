@@ -128,7 +128,7 @@ color:#ffaad5;
 		</sec:authorize>
 		<div class="row" style="margin-top:20px;">
 			<div class="col-3">
-				<img  src="${userParam.photo }" width="100%">
+				<img  src="${userParam.photo}" width="100%">
 			</div>
 			<div class="col-9" style="padding-top:10px;">
 				<h5 ><i class="fas fa-user-tag"></i>   基本資料</h5>

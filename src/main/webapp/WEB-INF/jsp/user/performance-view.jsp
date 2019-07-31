@@ -304,7 +304,7 @@
 							class="photo">
 					</div>
 					<div class="col-9" style="padding-top: 5px;">
-						<span class="artist">${performance.username}</span><br> <span
+						<span class="artist">${userinf.displayName}</span><br> <span
 							class="time">${time}</span><br> <span class="introduction">${performance.introduction}</span><br>
 						<span>________________________________________________________</span><br>
 						<div class="row" style="margin-top: 15px;">
@@ -689,7 +689,7 @@ var thisThemeId = $('#thisp').val();
 												$("#ft" + count).html(
 														value['title']);
 												$("#fn" + count).html(
-														value['username']);
+														value['pdisplayName']);
 												$("#fg" + count)
 														.html(
 																"# "
