@@ -568,12 +568,12 @@ FF34的社團入場證已全數寄出，各社團應可在幾個工作日內陸�
 社團貨物寄送方式：本活動與黑貓宅急便合作，實行活動前夜貨物寄送。欲使用前夜寄物之社團，最晚請在7月24日下午14:00前寄出，且必須在託運單上寫明攤位名稱與攤位編號，並在箱子的明顯處貼上社團用前夜寄物表格，如果是請印刷廠代為寄送，也務必告知印刷廠遵照格式辦理。若任何一箱的託運單與前夜寄物表格其中的任何一張未填寫、或字體潦草至會造成主辦單位辨識上的困難，主辦單位有權拒收該箱並予以退回。詳細寄物方式請務必閱讀社團送貨資訊之每一項說明。
 
 其餘注意事項請見隨社團入場證寄發之社團須知上的說明。', 2, N'【FF34】社團入場證寄出與社團貨物寄送辦法', 31)
-INSERT [dbo].[article] ([id], [announce], [announced_user_id], [article_type], [content], [count], [name], [ref_id]) VALUES (9, CAST(N'2019-07-31T18:27:44.9100000' AS DateTime2), 9, N'Activity', N'為了與學生拉進距離，桃園市有一位補教老師陳熒家，特別學習摺氣球送給學生，甚至還因此報名桃園市街頭藝人徵選，成了一位氣球街頭藝人，陳熒家表示，靠著在街頭吹氣球賣藝，不但讓她的人生方向大不同，也讓女兒愛上這樣的才藝，兩人也會一起研發不同造型的氣球，而每一次與女兒的造型氣球演出，都能讓路過的大小朋友樂開懷。
+INSERT [dbo].[article] ([id], [announce], [announced_user_id], [article_type], [content], [count], [name], [ref_id]) VALUES (9, CAST(N'2019-07-31T18:27:44.9100000' AS DateTime2), 9, N'Artist', N'為了與學生拉進距離，桃園市有一位補教老師陳熒家，特別學習摺氣球送給學生，甚至還因此報名桃園市街頭藝人徵選，成了一位氣球街頭藝人，陳熒家表示，靠著在街頭吹氣球賣藝，不但讓她的人生方向大不同，也讓女兒愛上這樣的才藝，兩人也會一起研發不同造型的氣球，而每一次與女兒的造型氣球演出，都能讓路過的大小朋友樂開懷。
 ![](https://i.ytimg.com/vi/C88gtpe2l5E/maxresdefault.jpg)
 
 請大家多多關注喔 <3 啾咪
 
-![](https://6.share.photo.xuite.net/wendy.qq.0221/1664ab2/12185719/701645627_l.jpg)', 9, N'補教老師成為氣球天使', 38)
+![](https://6.share.photo.xuite.net/wendy.qq.0221/1664ab2/12185719/701645627_l.jpg)', 9, N'補教老師成為氣球天使', 9)
 INSERT [dbo].[article] ([id], [announce], [announced_user_id], [article_type], [content], [count], [name], [ref_id]) VALUES (10, CAST(N'2019-07-31T18:30:00.0000000' AS DateTime2), 1, N'Other', N'# 系統將於2019/7/25 13:00 ~ 15:00 進行維護
 ![](http://www.r-rcooling.com/wp-content/uploads/2016/07/maintenance.gif)
 ### 訊息
