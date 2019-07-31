@@ -57,7 +57,7 @@ public class JobService {
 	};
 	
 	public List<Job> getByVender(Vender vender){
-		return jobDao.findByVenderOrderByVenderIdDesc(vender);
+		return jobDao.findByVenderOrderByIdDesc(vender);
 	}
 	
 	public void setjobarist(Job job,SecurityUser user) {

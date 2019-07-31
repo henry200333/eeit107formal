@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface JobDao extends JpaRepository<Job, Long>,JpaSpecificationExecutor<Job> {
-	public List<Job> findByVenderOrderByVenderIdDesc(Vender vender);
+	public List<Job> findByVenderOrderByIdDesc(Vender vender);
 
 }
