@@ -574,6 +574,12 @@ INSERT [dbo].[article] ([id], [announce], [announced_user_id], [article_type], [
 請大家多多關注喔 <3 啾咪
 
 ![](https://6.share.photo.xuite.net/wendy.qq.0221/1664ab2/12185719/701645627_l.jpg)', 9, N'補教老師成為氣球天使', 38)
+INSERT [dbo].[article] ([id], [announce], [announced_user_id], [article_type], [content], [count], [name], [ref_id]) VALUES (10, CAST(N'2019-07-31T18:30:00.0000000' AS DateTime2), 1, N'Other', N'# 系統將於2019/7/25 13:00 ~ 15:00 進行維護
+![](http://www.r-rcooling.com/wp-content/uploads/2016/07/maintenance.gif)
+### 訊息
+#### 各位Jayee的用戶午安，為了提升網站品質，
+#### 本網將於2019/7/25 13:00 ~ 15:00 進行維護，屆時將暫時關閉伺服器，
+#### 造成您的不便，我們深感抱歉。', 20, N'網站維護公告', 1)
 SET IDENTITY_INSERT [dbo].[article] OFF
 ALTER TABLE article CHECK CONSTRAINT ALL;
 ALTER TABLE chat_message_store NOCHECK CONSTRAINT ALL;
