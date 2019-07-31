@@ -170,7 +170,7 @@ color:#ffaad5;
 				<a href="/performanceview/${plikes.id}">${plikes.title}</a><br>
 			</c:forEach><hr></div>
 		<div class="col-12" style="margin-top:20px;">
-			<h5><i class="far fa-newspaper news"></i>    我的文章    <span title="新增文章" style="cursor: pointer;" onclick="(function(){window.location.href='/article/add?type=Artist&refid=${articleParam[0].announcedUserId}'})()" id="atadd"></span></h5>
+			<h5><i class="far fa-newspaper news"></i>    我的文章    <span title="新增文章" style="cursor: pointer;" onclick="(function(){window.location.href='/article/add?type=Artist&refid=${userParam.userId}'})()" id="atadd"></span></h5>
 			<c:forEach var="article" items="${articleParam}">
 				<a href="javascript:window.open('/article/${article.id}');">${article.name}</a><br>
 			</c:forEach><hr></div>
