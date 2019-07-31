@@ -128,12 +128,12 @@
 				<div class="col-8" style="margin-top: 40px;">
 					<span
 						style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold;"><i
-						class="fab fa-hotjar"></i>熱門活動</span>
+						class="fab fa-hotjar"></i>最新活動</span>
 				</div>
 
 				<div class="col-4" style="margin-top: 40px; padding-left: 0;">
 					<span
-						style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold"><i class="fas fa-star"></i>熱門文章</span>
+						style="font-size: 30px; border-bottom: 3px solid black; font-weight: bold"><i class="fas fa-star"></i>發燒文章</span>
 				</div>
 			</div>
 
@@ -223,7 +223,7 @@
 			<div class="row">
 				<div class="col-12" style="margin-top: 40px;">
 					<span
-						style="border-bottom: 3px solid black; font-size: 30px; font-weight: bold;"><i class="fab fa-youtube"></i>本週熱門表演</span>
+						style="border-bottom: 3px solid black; font-size: 30px; font-weight: bold;"><i class="fab fa-youtube"></i>推薦表演</span>
 				</div>
 			</div>
 
@@ -295,7 +295,7 @@
 					window.location.href="/performanceview/"+value['id'];
 				});
 				$("#performance"+(p+1)).children("#p1").html(value['title']);
-				$("#performance"+(p+1)).children("#p2").html(value['username']);
+				$("#performance"+(p+1)).children("#p2").html(value['pdisplayName']);
 				$("#performance"+(p+1)).children("#p3").html(value['views']+"觀看");
 				$("#performance"+(p+1)).children("#p4").html(parseInt(timeresult)+"  天前發布");
 				

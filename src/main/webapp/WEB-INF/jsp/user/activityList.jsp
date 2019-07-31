@@ -134,7 +134,7 @@ $("#searchBT").click(function searchBT(){
 		 		 })
 				$("#dataBody").append(txt6);
 		 		$("div[name='changeColor']").attr("style","border-radius:20px;background-color:MistyRose");
-		 		$("div[name='changeColor1']").attr("style","border-radius:20px;background-color:White");
+		 		$("div[name='changeColor1']").attr("style","border-radius:20px;background-color:White;border:1px Gainsboro solid");
 		}
 	})
 	page++;
@@ -196,7 +196,7 @@ function type11(obj){
 		 		 })
 				$("#dataBody").append(txt6);
 		 		$("div[name='changeColor']").attr("style","border-radius:20px;background-color:MistyRose");
-		 		$("div[name='changeColor1']").attr("style","border-radius:20px;background-color:White");
+		 		$("div[name='changeColor1']").attr("style","border-radius:20px;background-color:White;border:1px Gainsboro solid");
 		 		totalPage = res.total;
 		}
 	})
@@ -287,7 +287,7 @@ function showjobs(page) {
 	 		 })
 			$("#dataBody").append(txt6);
 	 		$("div[name='changeColor']").attr("style","border-radius:20px;background-color:MistyRose");
-	 		$("div[name='changeColor1']").attr("style","border-radius:20px;background-color:White");
+	 		$("div[name='changeColor1']").attr("style","border-radius:20px;background-color:White;border:1px Gainsboro solid");
 		}
 	})
 }
@@ -356,7 +356,7 @@ $(window).scroll(function(){
 						 		 })
 								$("#dataBody").append(txt6);
 						 		$("div[name='changeColor']").attr("style","border-radius:20px;background-color:MistyRose");
-						 		$("div[name='changeColor1']").attr("style","border-radius:20px;background-color:White");
+						 		$("div[name='changeColor1']").attr("style","border-radius:20px;background-color:White;border:1px Gainsboro solid");
 						 		totalPage = data.total;
 							}
 						})//ajax尾	

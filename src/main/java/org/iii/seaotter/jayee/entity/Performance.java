@@ -54,6 +54,8 @@ public class Performance {
 	private String performanceGerne;
 	@JoinColumn(name="userp_id")
 	private Long userpId;
+	@Column(name="displayName")
+	private String pdisplayName;
 	
 	//dislike
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

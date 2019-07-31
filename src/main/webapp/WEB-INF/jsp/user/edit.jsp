@@ -148,21 +148,21 @@
 					<span id="mail" onclick="edit(this)" class="edit"><i
 						class="fas fa-highlighter"></i></span>
 				</div>
-				<div class="col-4">
-					<span class="lab" style="margin-left: 15px;">生日</span><br> <input
-						class="form-control" type="text" value="${userParam.birth}">
-					<%-- 					 <span class="value" id="birth" style="margin-left: 15px;">${userParam.birth}</span> --%>
-					<input type="button" id="editBefore" style="display: none"
-						onclick="edit(this)"> <span class="edit"><i
-						class="fas fa-highlighter"></i></span>
-				</div>
-				<div class="col-4">
-					<span class="lab" style="margin-left: 15px;">住址</span><br> <input
-						class="form-control" type="text" value="${userParam.address}">
-					<%-- 					 <span class="value" id="address" style="margin-left: 15px;">${userParam.address}</span> --%>
-					<span id="address" onclick="edit(this)" class="edit"><i
-						class="fas fa-highlighter"></i></span>
-				</div>
+<!-- 				<div class="col-4"> -->
+<!-- 					<span class="lab" style="margin-left: 15px;">生日</span><br> <input -->
+<%-- 						class="form-control" type="text" value="${userParam.birth}"> --%>
+<%-- 										 <span class="value" id="birth" style="margin-left: 15px;">${userParam.birth}</span> --%>
+<!-- 					<input type="button" id="editBefore" style="display: none" -->
+<!-- 						onclick="edit(this)"> <span class="edit"><i -->
+<!-- 						class="fas fa-highlighter"></i></span> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-4"> -->
+<!-- 					<span class="lab" style="margin-left: 15px;">住址</span><br> <input -->
+<%-- 						class="form-control" type="text" value="${userParam.address}"> --%>
+<%-- 										 <span class="value" id="address" style="margin-left: 15px;">${userParam.address}</span> --%>
+<!-- 					<span id="address" onclick="edit(this)" class="edit"><i -->
+<!-- 						class="fas fa-highlighter"></i></span> -->
+<!-- 				</div> -->
 			</div>
 		</div>
 		<script>

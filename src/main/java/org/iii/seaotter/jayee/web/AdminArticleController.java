@@ -112,8 +112,15 @@ public class AdminArticleController {
 			ajaxRes.setType(AjaxResponseType.ERROR);
 			return ajaxRes;
 		}
+		Article oldArticle = articleService.getById(article.getId());
+		oldArticle.setName(article.getName());
+		oldArticle.setContent(article.getContent());
+		oldArticle.setArticleType(article.getArticleType());
+		oldArticle.setAnnouncedUserId(article.getAnnouncedUserId());
+		oldArticle.setRefId(article.getRefId());
+		oldArticle.setCount(article.getCount());
 		ajaxRes.setType(AjaxResponseType.SUCCESS);
-		ajaxRes.setData(articleService.update(article));
+		ajaxRes.setData(articleService.update(oldArticle));
 		return ajaxRes;
 
 	}

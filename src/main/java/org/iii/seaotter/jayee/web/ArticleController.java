@@ -90,7 +90,8 @@ public class ArticleController {
 			Long userId = securityUser.getUserId();
 //			System.out.println("article_id = " + url.substring(25));
 			try {
-				Long articleId = Long.parseLong(url.substring(25));
+				int articlePosition = url.indexOf("article");
+				Long articleId = Long.parseLong(url.substring(articlePosition + 8));
 				Long announcedUserId = articleService.getById(articleId).getAnnouncedUserId();
 				if (userId != null && userId.equals(announcedUserId)) {
 					res.setType(AjaxResponseType.SUCCESS);

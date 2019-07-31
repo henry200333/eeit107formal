@@ -106,7 +106,7 @@ public class UserJobController {
 	
 	@RequestMapping("/vender/{venderId}")
 	public String venderPage(@PathVariable(name = "venderId") Long venderId, Model model) {
-//		System.out.println("aaa");
+		System.out.println("aaa");
 		Vender vender = venderService.getById(venderId);
 		SecurityUser user = vender.getUser();
 //		System.out.println(user.getUserId());
