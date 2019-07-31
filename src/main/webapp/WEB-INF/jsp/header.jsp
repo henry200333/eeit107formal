@@ -23,6 +23,8 @@
 					onclick="javascript:location.href='/artist'">
 					<i class="fas fa-street-view"></i> 藝人
 				</button>
+				<button type="button" class="btn bar2" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"></button>
 			</div>
 			<div class="btn-group">
 				<button type="button" class="btn bar" id="topbar3"
@@ -33,6 +35,7 @@
 					aria-haspopup="true" aria-expanded="false"></button>
 				<div class="dropdown-menu" id="activitybar">
 					<a class="dropdown-item" href="/activity/list">搜尋活動頁面</a>
+					<a class="dropdown-item" href="/map/page">探索附近活動</a>
 				</div>
 			</div>
 			<div class="btn-group">

@@ -84,7 +84,13 @@
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
-	}
+	};
+	
+	 function clickInfo(){
+	  		$("#name").val("水彩人物寫生");
+	  		$("#description").val("利用水彩為媒材，傳達人物之神韻，畫出精采人生。");
+	  		
+	  	};
   	
   	
   	</script>
@@ -96,8 +102,11 @@
    
    <div class="col-6">
    <span style="font-size: 20px; font-weight: bold;"><i class="fas fa-user"></i>表演者名: </span>
-   <div class='col-8'>
+   <div class='col-8 input-group mb-3'>
    <input type="text" class="form-control form-control-user" id="artist" name="artist"	placeholder="" value="${activityParam.artist}" readonly>
+   <div class="input-group-append">
+    <input type='button' class="btn btn-success" onclick='clickInfo()' value='一鍵編輯'></input> 
+  </div>
    </div>
    </div>
    <div class="col-6">

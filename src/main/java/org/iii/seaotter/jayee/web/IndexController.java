@@ -276,7 +276,7 @@ public class IndexController {
 		List<Notice> notices = noticeservice.getAllByReceiver(id);
 		for (int i = 0; i < notices.size(); i++) {
 			Notice notice = notices.get(i);
-			System.out.println("已讀讀測試");
+//			System.out.println("已讀讀測試");
 			notice.setReaded(true);
 			noticeservice.update(notice);
 		}
@@ -309,8 +309,9 @@ public class IndexController {
 		Long venderId=null;
 		if(vender!=null) {
 			venderId=vender.getId();
+			res.put("venderId",venderId.toString());
 		}
-		res.put("venderId",venderId.toString());
+
 		return res;
 	}
 	

@@ -16,13 +16,13 @@
 <head>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <meta charset="utf-8">
-<title>Using Closures in Event Listeners</title>
+<title>即時探索周遭活動</title>
 <style>
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
 	height: 750px;
-	width: px;
+	width: 750px;
 }
 
 .body {
@@ -42,21 +42,26 @@ html, body {
 <jsp:include page="../topbar.jsp"></jsp:include>
 <body>
 
-	<div >
+	<div class="container">
 		<div class="row">
-			<div class="col-2"></div>
-			<div class="col-10">
-				<input type="text" id="address"></input>
-
-				<button id="click">搜尋地址</button>
+			<div class="col-6">
+			<div class="input-group mb-3">
+				<input type="text" id="address" autocomplete="off" class="form-control" placeholder="輸入地址查詢附近活動"></input>
+				<div class="input-group-append">
+				<button id="click" class="btn btn-info">搜尋GO!</button>
+				</div>
 			</div>
+		</div>
+			
+			</div>
+			<div class="row">
 			<div class="col-8">
 				<div id="map"></div>
 			</div>
 			<div class="col-4" id="list">
 				
 			</div>
-			<div hidden>
+			<div hidden='hidden'>
 				<br> <label>Lat:</label>
 				<p id=lat></p>
 				<label>Lng:</label>
@@ -141,15 +146,15 @@ html, body {
 			if (type == "vender") {
 				vendermarkers.addListener('click', function() {
 					var txt="";
-					txt+="<div class='row' style='border: solid 1px silver; margin: 2%'><div class='col-sm-12 mb-0 mb-sm-0'><br></div><div class='col-sm-12 mb-0 mb-sm-0'><a href='/job/vender/";
+					txt+="<div class='row' style='border: solid 1px silver;border-radius:20px;background-color:rgba(152, 251, 152, 0.2); margin: 2%'><div class='col-sm-12 mb-0 mb-sm-0'><br></div><div class='col-sm-12 mb-0 mb-sm-0'><a href='/job/vender/";
 					txt+=vender.id;
-					txt+="' ><h4 style='text-align: center'>";
-					txt+=vender.name;
-					txt+="</h4></a></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>預約專線:</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5 style='padding-left: 10%'>";
+					txt+="' style='color:SandyBrown' ><h4 style='text-align: center;font-weight:bold'>";
+					txt+=vender.name +"<hr>";
+					txt+="</h4></a></div><div class='col-sm-12 mb-0 mb-sm-0'><span style='font-weight:bold;color:OliveDrab;border-radius:20px;background-color:PaleGreen;border-bottom: 3px solid SeaGreen'>預約專線:</span></div><div class='col-sm-12 mb-0 mb-sm-0'><h5 style='padding-left: 10%;font-weight:bold'>";
 					txt+=vender.phone;
-					txt+="</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>地址:</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5 style='padding-left: 10%'>";
+					txt+="</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><span  style='font-weight:bold;color:OliveDrab;border-radius:20px;background-color:PaleGreen;border-bottom: 3px solid SeaGreen'>地址:</span></div><div class='col-sm-12 mb-0 mb-sm-0'><h5 style='padding-left: 10% ;font-weight:bold'>";
 					txt+=vender.city+vender.district+vender.address;
-					txt+="</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>關於我們:</h5></div><div class='col-sm-12 mb-3 mb-sm-0'><h5 style='border: solid 1px silver; text-align: center; padding: 1%'>";
+					txt+="</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><span  style='font-weight:bold;color:OliveDrab;border-radius:20px;background-color:PaleGreen;border-bottom: 3px solid SeaGreen'>關於我們:</span></div><div class='col-sm-12 mb-3 mb-sm-0'><h5 style='text-align: center; padding: 1% ;font-weight:bold'>";
 					txt+=vender.introduction;
 					txt+="</h5></div></div>";
 					$("#list").html(txt);	
@@ -161,15 +166,15 @@ html, body {
 						success : function(data) {
 // 							alert(JSON.stringify(data));
 							var txt="";
-							txt+="<div class='row' style='border: solid 1px silver; margin: 2%'><div class='col-sm-12 mb-0 mb-sm-0'><br></div><div class='col-sm-12 mb-0 mb-sm-0'><a href='/activity/view/";
+							txt+="<div class='row' style='border: solid 1px silver;border-radius:20px;background-color:rgba(152, 251, 152, 0.2); margin: 2%'><div class='col-sm-12 mb-0 mb-sm-0'><br></div><div class='col-sm-12 mb-0 mb-sm-0'><a href='/activity/view/";
 							txt+=data[0].id;
-							txt+="' ><h4 style='text-align: center'>";
-							txt+=data[0].name;
-							txt+="</h4></a></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>表演者名:</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5 style='padding-left: 10%'>";
+							txt+="' style='color:OrangeRed ' ><h4 style='text-align: center;font-weight:bold'>";
+							txt+=data[0].name+"<hr>";
+							txt+="</h4></a></div><div class='col-sm-12 mb-0 mb-sm-0'><span style='font-weight:bold;color:OliveDrab;border-radius:20px;background-color:PaleGreen;border-bottom: 3px solid SeaGreen'>表演者名:</span></div><div class='col-sm-12 mb-0 mb-sm-0'><h5 style='padding-left: 10%;font-weight:bold'>";
 							txt+=data[0].artist;
-							txt+="</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>活動描述:</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5 style='padding-left: 10%'>";
+							txt+="</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><span  style='font-weight:bold;color:OliveDrab;border-radius:20px;background-color:PaleGreen;border-bottom: 3px solid SeaGreen'>活動描述:</span></div><div class='col-sm-12 mb-0 mb-sm-0'><h5 style='padding-left: 10% ;font-weight:bold'>";
 							txt+=data[0].description;
-							txt+="</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><h5>開始時間:</h5></div><div class='col-sm-12 mb-3 mb-sm-0'><h5 style='border: solid 1px silver; text-align: center; padding: 1%'>";
+							txt+="</h5></div><div class='col-sm-12 mb-0 mb-sm-0'><span  style='font-weight:bold;color:OliveDrab;border-radius:20px;background-color:PaleGreen;border-bottom: 3px solid SeaGreen'>開始時間:</span></div><div class='col-sm-12 mb-3 mb-sm-0'><h5 style='text-align: center; padding: 1% ;font-weight:bold'>";
 							txt+=data[0].beginTime;
 							txt+="</h5></div></div>";
 							$("#list").html(txt);	
