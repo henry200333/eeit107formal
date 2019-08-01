@@ -111,8 +111,8 @@ html, body {
   function clickInfo(){
   		$("#name").val("小白出沒？");
   		$("#description").val("台北兒童新樂園，暑假開始的第一場演出！讓我們一起帥一波吧！");
-  		$("#beginTime").val("2019-08-03 15:00:00");
-  		$("#endTime").val("2019-08-03 19:00:00");
+  		$("#beginTime").val("2019-08-03 09:00:00");
+  		$("#endTime").val("2019-08-03 12:00:00");
   		$("#perfType").val("表演藝術");
   	}
   	

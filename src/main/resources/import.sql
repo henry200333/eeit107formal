@@ -201,9 +201,6 @@ INSERT [dbo].[activity] ([activity_id], [activity_status], [artist], [awesome_nu
 INSERT [dbo].[activity] ([activity_id], [activity_status], [artist], [awesome_num], [begin_time], [description], [end_time], [location_id], [name], [noticed], [perf_type], [usera_id]) VALUES (47, 0, N'蚊子', 0, CAST(N'2019-07-27T09:00:00.0000000' AS DateTime2), N'淡水老街，熟悉的小金人表演！喜歡的話記得一定要打賞哦！', CAST(N'2019-07-27T19:00:00.0000000' AS DateTime2), 99, N'蚊子的街頭小金人', 0, N'表演藝術', 16)
 SET IDENTITY_INSERT [dbo].[activity] OFF
 ALTER TABLE activity CHECK CONSTRAINT ALL;
-ALTER TABLE user_follow_act NOCHECK CONSTRAINT ALL;
-INSERT [dbo].[user_follow_act] ([activity_id], [user_id]) VALUES (32, 27)
-ALTER TABLE user_follow_act CHECK CONSTRAINT ALL;
 ALTER TABLE forum NOCHECK CONSTRAINT ALL;
 SET IDENTITY_INSERT [dbo].[forum] ON 
 INSERT [dbo].[forum] ([forum_id], [comment], [comment_date], [dislike_count], [forum_board], [like_count], [ref_comment_id], [ref_id], [user_name], [user_photo]) VALUES (1, N'大家好我是薔薔4', CAST(N'2019-05-25T18:13:21.0000000' AS DateTime2), 0, N'Performance', 0, 0, 1, N'薔薔4', NULL)

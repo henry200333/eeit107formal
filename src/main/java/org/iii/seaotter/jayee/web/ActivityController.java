@@ -402,18 +402,9 @@ public class ActivityController {
 					Date dBefore = calendar.getTime(); //前一天的日期
 					for(SecurityUser followUser:a.getFollowUser()) {
 					if(date.compareTo(dBefore)==1 && a.getNoticed()==0L) {
-						System.out.println(a.getNoticed()+"Before"+"ID="+a.getId());
 						a.setNoticed(1L);
 						activityService.update(a);
-						System.out.println(a.getNoticed()+"After"+"ID="+a.getId());
-//						try {
-//							TimeUnit.MINUTES.sleep(50);
-//						} catch (InterruptedException e) {
-//							e.printStackTrace();
-//						}
-						System.out.println(a.getNoticed()+"After");
 						mailMessage.setTo(followUser.getMail());
-//						mailMessage.setTo("vaildiablo448@gmail.com");
 						mailMessage.setSubject("您收藏的活動即將在明日開辦！");
 						mailMessage.setFrom("jayee20192019@outlook.com");
 						mailMessage.setText(
