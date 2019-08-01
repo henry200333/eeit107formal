@@ -111,7 +111,9 @@ html, body {
   function clickInfo(){
   		$("#name").val("小白出沒？");
   		$("#description").val("台北兒童新樂園，暑假開始的第一場演出！讓我們一起帥一波吧！");
-  		
+  		$("#beginTime").val("2019-08-03 15:00:00");
+  		$("#endTime").val("2019-08-03 19:00:00");
+  		$("#perfType").val("表演藝術");
   	}
   	
   	
@@ -197,14 +199,14 @@ html, body {
    <div class='input-group-prepend'>
    <span class='input-group-text' style="font-weight: bold;padding-left:15px">起</span>
    </div>
-   <input id="beginTime" name="beginTime" type="text"	class="form-control form-control-user" placeholder="請輸入起始時間"	readonly="readonly" style="background-color:#ffffff;" />
+   <input id="beginTime" name="beginTime" type="text"	class="form-control form-control-user" placeholder="請輸入起始時間"	style="background-color:#ffffff;" />
    </div>
       
   <div class='input-group mb-3 col-8'>
    <div class='input-group-prepend'>
    <span class='input-group-text' style="font-weight: bold;padding-left:15px">至</span>
    </div>
-   <input id="endTime" name="endTime" type="text"	class="form-control form-control-user" placeholder="請輸入結束時間" readonly="readonly" style="background-color:#ffffff;" />
+   <input id="endTime" name="endTime" type="text"	class="form-control form-control-user" placeholder="請輸入結束時間"  style="background-color:#ffffff;" />
    </div>
   
   
