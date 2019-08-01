@@ -447,7 +447,6 @@ INSERT [dbo].[user_role] ([user_id], [role_id]) VALUES (25, 2)
 INSERT [dbo].[user_role] ([user_id], [role_id]) VALUES (25, 4)
 INSERT [dbo].[user_role] ([user_id], [role_id]) VALUES (26, 2)
 INSERT [dbo].[user_role] ([user_id], [role_id]) VALUES (26, 4)
-INSERT [dbo].[user_role] ([user_id], [role_id]) VALUES (27, 2)
 ALTER TABLE user_role CHECK CONSTRAINT ALL;
 ALTER TABLE friend NOCHECK CONSTRAINT ALL;
 INSERT [dbo].[friend] ([self_id], [friend_id]) VALUES (1, 2)
