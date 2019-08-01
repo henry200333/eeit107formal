@@ -377,7 +377,7 @@ public class ActivityController {
 	
 //	private static final Logger logger =LoggerFactory.getLogger(ScheduledTasks.class);
 //	private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-	@Scheduled(cron = "0/5 * * * * ?")
+	@Scheduled(fixedDelay=3000)
 	public void activityStatusCheckScheduleWithCron() {
 			Date date = new java.util.Date();
 			for(Activity a:activityService.getAll()) {

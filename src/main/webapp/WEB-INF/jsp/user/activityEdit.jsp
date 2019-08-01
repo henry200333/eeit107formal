@@ -87,8 +87,8 @@
 	};
 	
 	 function clickInfo(){
-	  		$("#name").val("水彩人物寫生");
-	  		$("#description").val("利用水彩為媒材，傳達人物之神韻，畫出精采人生。");
+	  		$("#name").val("小白出沒？台北兒童新樂園不見不散～");
+	  		$("#description").val("台北兒童新樂園，暑假開始的第一場演出！讓我們一起帥一波吧！如果你有看到此文，當天來的話，我們一起穿白色吧！穿白衣者有機會獲得好康，耶～");
 	  		
 	  	};
   	
@@ -447,7 +447,8 @@ $("#update").click(
 				success : function(response) {
 					if (response.type == "SUCCESS") {
 						alert("資料修改成功！\n您修改了一筆名為："
-								+ JSON.stringify(response.data.name));
+								+ JSON.stringify(response.data.name)+"\n即將導入活動頁面");
+						window.location.assign('/activity/view/'+response.data['id']);
 					} else {
 						alert("資料修改失敗！請檢查輸入欄位！");
 					}

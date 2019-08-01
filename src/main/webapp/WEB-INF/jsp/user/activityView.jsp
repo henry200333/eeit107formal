@@ -103,6 +103,11 @@ html, body {
    <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i	class="fab fa-hotjar"></i>地址:</span><br>
    <span style="font-size: 20px; font-weight: bold;padding-left:20px" id='addressForMap'>${locationCity}${locationDistrict}${locationAddress}</span>
    </div>
+   <div class="col-6">
+   <span style="font-size: 20px; border-bottom: 3px solid black; font-weight: bold;"><i class="fas fa-audio-description"></i>活動描述:</span><br>
+   <span style="font-size: 20px; font-weight: bold;padding-left:20px" id='addressForMap'>${activityParam.description}</span>
+   </div>
+   
    <div class="col-6" id='article'>
    
    </div>

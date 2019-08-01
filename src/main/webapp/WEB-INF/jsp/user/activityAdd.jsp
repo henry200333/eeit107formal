@@ -109,8 +109,8 @@ html, body {
 // 		}
 // 	}
   function clickInfo(){
-  		$("#name").val("水彩人物寫生");
-  		$("#description").val("利用水彩為媒材，傳達人物之神韻。");
+  		$("#name").val("小白出沒？");
+  		$("#description").val("台北兒童新樂園，暑假開始的第一場演出！讓我們一起帥一波吧！");
   		
   	}
   	
