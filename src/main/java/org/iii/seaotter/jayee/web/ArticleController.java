@@ -73,6 +73,7 @@ public class ArticleController {
 		if (article != null) {
 			model.addAttribute("createdDate", article.getAnnounce().toString().substring(0, 19));
 			model.addAttribute("article", article);
+			model.addAttribute("articleAnnounceUser", securityUserService.getById(article.getAnnouncedUserId()).getDisplayName());
 			article.setCount(article.getCount() + 1);
 			articleService.update(article);
 			return "/user/article-single";

@@ -39,6 +39,10 @@
 			<div class="col-11" style="text-align: right;">發布時間：
 				${createdDate}</div>
 		</div>
+		<div class="row">
+			<div class="col-11" style="text-align: right;">發布者：
+				${articleAnnounceUser}</div>
+		</div>
 		<hr>
 		<div class="row">
 			<div class="col-1"></div>
