@@ -1,6 +1,5 @@
 package org.iii.seaotter.jayee.service;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,10 +9,10 @@ import org.iii.seaotter.jayee.dao.PasswordResetTokenRepository;
 import org.iii.seaotter.jayee.dao.SecurityRoleDao;
 import org.iii.seaotter.jayee.dao.SecurityUserDao;
 import org.iii.seaotter.jayee.entity.ConfirmationToken;
+import org.iii.seaotter.jayee.entity.PasswordResetToken;
 import org.iii.seaotter.jayee.entity.Performance;
 import org.iii.seaotter.jayee.entity.RegisterUser;
 import org.iii.seaotter.jayee.entity.SearchUser;
-import org.iii.seaotter.jayee.entity.PasswordResetToken;
 import org.iii.seaotter.jayee.entity.SecurityRole;
 import org.iii.seaotter.jayee.entity.SecurityUser;
 import org.iii.seaotter.jayee.mail.EmailSenderService;
@@ -143,7 +142,7 @@ public class SecurityUserService implements UserDetailsService {
 		user.setAccount(account);
 		user.setPassword(passwordEncoder.encode(rawPassword));
 		user.setMail(mail);
-		user.setPhoto("admin.jpg");
+		user.setPhoto("/resources/profile_image/admin.jpg");
 		user.setDisplayName(account);
 		user.setMemberName(account);
 		java.util.Date date = new java.util.Date();
