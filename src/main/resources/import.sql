@@ -501,7 +501,7 @@ INSERT INTO article (id, name, announced_user_id, announce, count, article_type,
 
 
 活動歡迎洽詢'),
-(4, '竟然遇上叮噹!', 27, '2019-07-31T15:21:44.7420000', 68, 'Activity', 34, '![](https://cdn2.ettoday.net/images/4182/d4182680.jpg)
+(4, '竟然遇上叮噹!', 19, '2019-07-31T15:21:44.7420000', 68, 'Activity', 34, '![](https://cdn2.ettoday.net/images/4182/d4182680.jpg)
 今天表演的時候，
 演奏著酒矸仔得賣無，
 無意間發現有個熟面孔藏在人群中，
